@@ -17,6 +17,9 @@ Living notes for this build. Update it at the end of every frame/section.
 1. **Container width is `1300px` for the whole site**, every frame/section. Token: `--container-width`, helper class `.container` (adds `20px` side gutters).
 2. **Images must be WebP only.** Source PNG/JPG go in `/images`; `npm run images` converts them into `/public/images` as `.webp` (quality 90, alpha preserved, skips up-to-date files). Never reference a png/jpg in components.
 3. Match the provided screenshot as closely as possible.
+4. **Never commit `images/designframes/`.** The design screenshots stay on disk as the
+   reference for each frame but must not reach the public GitHub repo — the folder is in
+   `.gitignore`, and `npm run images` already skips it.
 
 ## 3. Design tokens — `app/globals.css`
 
