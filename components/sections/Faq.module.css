@@ -142,11 +142,14 @@
   text-decoration-color: currentColor;
 }
 
-/* the reference's portrait is 205x280 — within a rounding error of the 656x899 this section's
-   own media already carries, so it drops into the slot at its existing ratio */
+/* The reference's portrait measures 205x283 against a 788px-wide question list — a ratio of
+   0.260. The list here resolves to 48% of the container and this column to 20%, so 0.260 of
+   the list is 62.5% of this column, and stating it that way holds the proportion at any width.
+   Height follows from the ratio, which is within a rounding error of the reference's own
+   0.724, so nothing is stretched. */
 .photo {
   display: block;
-  width: 100%;
+  width: 62.5%;
   height: auto;
   margin-top: 56px;
   aspect-ratio: 656 / 899;
@@ -192,6 +195,7 @@
   .photo {
     grid-row: 1 / span 2;
     grid-column: 2;
+    width: 100%;
     margin-top: 0;
   }
 }
