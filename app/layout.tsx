@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
 import TopBar from '@/components/layout/TopBar';
 import { siteConfig } from '@/lib/site';
@@ -27,6 +28,7 @@ export default function RootLayout({
         <TopBar />
         <Header />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

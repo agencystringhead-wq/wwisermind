@@ -334,3 +334,15 @@ export const faq = {
   ],
   link: { label: 'See Full Directory List', href: '#faq' },
 };
+
+export const footerCta = {
+  background: '/images/cta-bg.webp',
+  heading: 'Ready when you are.',
+  bodyLead: 'One free call. No pitch deck, no pressure.',
+  bodyRest:
+    "You'll leave with an honest read on your online presence, whether you hire us or not.",
+  actions: [
+    { label: 'Book A Free Strategy Call', href: '#book-a-call', whatsapp: false },
+    { label: 'Say us Hi', href: 'https://wa.me/', whatsapp: true },
+  ],
+};

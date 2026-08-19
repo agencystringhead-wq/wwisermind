@@ -87,6 +87,7 @@ app/
   layout.tsx         html shell, font, TopBar + Header + main
   page.tsx           home page — sections added frame by frame
 components/layout/
+  Footer.tsx(.module.css)   global footer — top CTA (more rows to come)
   TopBar.tsx(.module.css)   cream announcement bar
   Header.tsx(.module.css)   logo + nav + actions (client: mobile menu)
 components/sections/
@@ -527,9 +528,33 @@ Built as `components/sections/Faq.tsx` (client component — accordion state), c
 Measured against the design: photo 517×709 at top 159, h2 top 194 (scaled 194), columns at
 0 / 53.9%, section 1111 tall (scaled 1069).
 
+### ✅ Footer part 1 — top CTA (done)
+
+Source: `images/designframes/footertop-cta.jpg` (1920 frame, 1639 container). Built as
+**`components/layout/Footer.tsx`** — a *global* footer rendered from `app/layout.tsx`
+after `<main>`, not from `page.tsx`. Copy in `lib/site.ts` → `footerCta`.
+Further footer rows get appended inside this same component.
+
+- **Band** — full-bleed, no inset or radius. `cta-bg.webp` (1920×1017, the whole frame) as
+  a `fill` + cover backdrop over a `#1f7cf5` base. 459 kB → **43 kB**.
+- **Type** — heading `clamp(32px, 4.4vw, 56px)`/700 (the design sets this at 76px, larger
+  than the hero h1 — it is the biggest type on the site); body
+  `clamp(18px, 1.9vw, 24px)`/600 capped at 700px with an explicit break after the first
+  sentence, as the frame breaks it.
+- **Buttons** — black pills 68px tall, 38px side padding, 22px apart, 20px/600 labels.
+  The WhatsApp mark is an inline SVG (green `#01c43a` disc, sampled).
+- **Padding** — 163px top / **299px bottom**: the design leaves a deep stretch of sky
+  under the buttons, so the band runs ~790px tall.
+
+Measured against the design: heading top 163 (scaled 163), body top 273 (278), buttons top
+416 (430) at 68px tall, band 783 tall (796).
+
+**Delta:** the design pads its two buttons unequally (48px vs 80px), making the second one
+260px wide where ours is 210px. Uniform padding was kept deliberately.
+
 ### ⬜ Next frames
 
-- Whatever follows the FAQ — awaiting the next frame.
+- The rest of the footer — awaiting the next frame.
 - (earlier note) Whatever follows the banner — awaiting the next frame. The gap between `HeroTop` and the
   banner is currently just `HeroTop`'s 56px bottom padding (the frame is cropped at the
   banner's top edge, so the real gap is unknown).
