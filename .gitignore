@@ -9,3 +9,6 @@ next-env.d.ts
 .vercel
 *.tsbuildinfo
 scratch/
+
+# design reference screenshots — kept locally, never published
+images/designframes/
