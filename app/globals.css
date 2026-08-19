@@ -46,7 +46,7 @@
   --dur: 0.25s;
 
   /* chrome heights */
-  --topbar-height: 42px;
+  --topbar-height: 36px; /* was 42px */
   --header-height: 104px;
 }
 

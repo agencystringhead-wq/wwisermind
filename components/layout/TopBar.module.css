@@ -9,15 +9,21 @@
   justify-content: center;
   gap: 6px;
   min-height: var(--topbar-height);
-  padding-block: 10px;
+  /* The 14px/1.4 line box is 19.6px, so anything over ~16px of padding outgrows the height
+     token and sets the bar's height on its own. Kept under that so the token governs. */
+  padding-block: 8px;
   font-size: var(--fs-topbar);
   line-height: 1.4;
   text-align: center;
 }
 
+/* Photoshop measures tracking in 1/1000 em, so the design's -25 is -0.025em — which is also
+   why this is set in em rather than px: it keeps the same proportion at the 13px mobile size
+   below. A literal -25px would be roughly the whole line's width per character. */
 .text {
   font-size: var(--fs-topbar);
   line-height: 1.4;
+  letter-spacing: -0.025em;
 }
 
 .label {
