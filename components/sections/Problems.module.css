@@ -1,0 +1,181 @@
+/* Frame 05 — "the problems we hear" 3-up slider.
+   Measured off images/designframes/005section2.jpg (1920 frame, 1639 container).
+   Cards in the design are 535/522/554 wide (their images' natural sizes) with ~15px gaps —
+   rebuilt as three equal columns with a 12px gap (design 15.5 × 0.793). */
+
+.section {
+  padding-block: 100px 128px;
+  background-color: var(--color-white);
+}
+
+/* --- header ------------------------------------------------------------- */
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.heading {
+  font-size: clamp(24px, 2.6vw, 34px);
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-wrap: initial;
+}
+
+.headingMuted {
+  display: block;
+  color: var(--color-heading-muted);
+}
+
+.controls {
+  display: flex;
+  flex: none;
+  gap: 13px;
+}
+
+.control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #f2eeeb;
+  color: var(--color-ink);
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.control svg {
+  width: 20px;
+  height: 20px;
+}
+
+.control:hover:not(:disabled) {
+  background-color: var(--color-ink);
+  color: var(--color-white);
+}
+
+.control:disabled {
+  background-color: #faf9f7;
+  color: #d2d1cf;
+  cursor: default;
+}
+
+/* --- slider ------------------------------------------------------------- */
+.slider {
+  margin-top: 72px;
+}
+
+.track {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.slide {
+  flex: 0 0 calc((100% - 24px) / 3);
+  scroll-snap-align: start;
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 535 / 891;
+  overflow: hidden;
+  border-radius: 20px;
+  background-color: #d9d9d9;
+}
+
+.media img {
+  object-fit: cover;
+}
+
+/* flat 30% black — measured by comparing the source photos with the design frame */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* the design sits the line 28% of the card height up from the bottom — a percentage
+   `bottom` resolves against height, a percentage margin would resolve against width */
+.title {
+  position: absolute;
+  right: 0;
+  bottom: 28%;
+  left: 0;
+  z-index: 1;
+  padding-inline: 22px;
+  color: var(--color-white);
+  font-size: 25px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.caption {
+  margin-top: 34px;
+  color: var(--color-body-muted);
+  font-size: 15px;
+  font-weight: var(--fw-regular);
+  line-height: 1.35;
+}
+
+/* --- responsive --------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .section {
+    padding-block: 72px 88px;
+  }
+
+  .slider {
+    margin-top: 48px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .slide {
+    flex-basis: calc((100% - 12px) / 2);
+  }
+
+  .head {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-block: 56px 64px;
+  }
+
+  .slide {
+    flex-basis: 84%;
+  }
+
+  .control {
+    width: 42px;
+    height: 42px;
+  }
+
+  .title {
+    bottom: 24%;
+    font-size: 20px;
+  }
+
+  .caption {
+    margin-top: 24px;
+  }
+}

@@ -1,0 +1,47 @@
+.topbar {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: var(--topbar-height);
+  padding-block: 10px;
+  font-size: var(--fs-topbar);
+  line-height: 1.4;
+  text-align: center;
+}
+
+.text {
+  font-size: var(--fs-topbar);
+  line-height: 1.4;
+}
+
+.label {
+  font-weight: var(--fw-medium);
+}
+
+.link {
+  font-weight: var(--fw-medium);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: transparent;
+  transition: text-decoration-color var(--dur) var(--ease);
+}
+
+.link:hover {
+  text-decoration-color: currentColor;
+}
+
+@media (max-width: 640px) {
+  .inner {
+    padding-block: 8px;
+  }
+
+  .text {
+    font-size: 13px;
+  }
+}

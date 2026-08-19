@@ -1,0 +1,223 @@
+/* Frame 03 — hero bottom banner.
+   Measured off images/designframes/003herosectionbottom.jpg: a 1920px frame whose banner
+   is 1904 x 975 (≈8px side margins, ~28px radius). Rebuilt full-bleed with a 10px inset and
+   a 20px radius; everything inside is positioned in % of the banner so it scales with it,
+   while type keeps the project's 0.784 design→build scale. */
+
+.section {
+  padding-inline: 10px;
+}
+
+.banner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1904 / 975;
+  overflow: hidden;
+  border-radius: 20px;
+  isolation: isolate;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+/* --- left column -------------------------------------------------------- */
+.textWrap {
+  position: absolute;
+  right: 0;
+  bottom: 21%;
+  left: 0;
+  z-index: 1;
+}
+
+.heading {
+  max-width: 40ch;
+  color: var(--color-white);
+  font-size: 24px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+  text-wrap: initial;
+}
+
+.brand {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.storyLink {
+  display: inline-block;
+  margin-top: 30px;
+  color: var(--color-white);
+  font-size: 17px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.storyLink:hover {
+  opacity: 0.75;
+}
+
+/* --- testimonial card --------------------------------------------------- */
+.card {
+  position: absolute;
+  right: 1.95%;
+  bottom: 7.5%;
+  z-index: 2;
+  width: 28.8%;
+  min-width: 300px;
+  max-width: 500px;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 20px;
+  background:
+    radial-gradient(90% 70% at 50% 115%, rgba(0, 6, 20, 0.72) 0%, rgba(0, 6, 20, 0) 70%),
+    linear-gradient(
+      180deg,
+      rgba(14, 32, 60, 0.52) 0%,
+      rgba(7, 20, 44, 0.86) 55%,
+      rgba(4, 14, 34, 0.94) 100%
+    );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--color-white);
+}
+
+.cardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.stars {
+  display: flex;
+  gap: 4px;
+  color: #7f83ff;
+}
+
+.star {
+  width: 20px;
+  height: 20px;
+}
+
+.quote {
+  width: 17px;
+  height: 17px;
+  color: var(--color-white);
+}
+
+.quoteText {
+  margin-top: 74px;
+  font-size: 15px;
+  font-weight: var(--fw-regular);
+  line-height: 1.65;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.avatar {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.authorName {
+  font-size: 16px;
+  font-weight: var(--fw-bold);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.authorRole {
+  font-size: 15px;
+  font-weight: var(--fw-regular);
+  line-height: 1.4;
+}
+
+/* --- responsive --------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .heading {
+    font-size: 22px;
+  }
+
+  .card {
+    width: 33%;
+    padding: 24px;
+  }
+
+  .quoteText {
+    margin-top: 48px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .banner {
+    aspect-ratio: auto;
+    border-radius: 16px;
+  }
+
+  .inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    padding-block: 300px 40px;
+  }
+
+  .textWrap {
+    position: static;
+  }
+
+  .card {
+    position: static;
+    width: auto;
+    max-width: 460px;
+    margin: 36px 20px 0;
+  }
+
+  .quoteText {
+    margin-top: 40px;
+  }
+
+  .lineBreak {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .inner {
+    padding-block: 220px 32px;
+  }
+
+  .heading {
+    font-size: 20px;
+  }
+
+  .storyLink {
+    margin-top: 24px;
+    font-size: 15px;
+  }
+
+  .card {
+    min-width: 0;
+    padding: 22px;
+  }
+}
