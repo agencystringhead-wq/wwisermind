@@ -1,5 +1,6 @@
 import Founder from '@/components/sections/Founder';
 import Freebies from '@/components/sections/Freebies';
+import GetFound from '@/components/sections/GetFound';
 import HeroBanner from '@/components/sections/HeroBanner';
 import HeroTop from '@/components/sections/HeroTop';
 import HomeIntro from '@/components/sections/HomeIntro';
@@ -22,6 +23,7 @@ export default function HomePage() {
       <WhyUs />
       <Founder />
       <Freebies />
+      <GetFound />
       {/* Next frames get appended here. */}
     </>
   );

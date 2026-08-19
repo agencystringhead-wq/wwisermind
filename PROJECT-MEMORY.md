@@ -100,6 +100,7 @@ components/sections/
   WhyUs.tsx(.module.css)       frame 09 — navy block, three numbered rows
   Founder.tsx(.module.css)     frame 10 — grey band, portrait + founder quote
   Freebies.tsx(.module.css)    frame 11 — badge + h2 + three-row list beside a photo
+  GetFound.tsx(.module.css)    frame 12 — full-bleed gradient, directory + AI logos
 lib/site.ts          siteConfig, announcement copy, mainNav items
 scripts/convert-images.mjs  png/jpg -> webp
 images/              SOURCE images (png/jpg) — user drops files here
@@ -473,9 +474,38 @@ Built as `components/sections/Freebies.tsx`, copy in `lib/site.ts` → `freebies
 Measured against the design: h2 top 196 (scaled 203), list top 400 (415), photo 520×713
 (520×713), section 1016 tall (1012).
 
+### ✅ Frame 12 — "Get found where your clients are searching" (done)
+
+Source: `images/designframes/012section9.jpg` (1920 frame, 1639 container). Built as
+`components/sections/GetFound.tsx`, copy in `lib/site.ts` → `getFound`.
+
+- **Section** — **full-bleed, no inset and no radius** (the gradient runs corner to corner
+  in the frame). `found-bg.webp` is 1920×833, exactly the frame, so it is a `fill` + cover
+  backdrop over an `#eef3ff` base. 370 kB → **25 kB**.
+- **Copy** — h2 34px/700 capped at 470px so it wraps to the design's two lines, then a
+  15px/600 body (the design sets this paragraph heavier than normal body copy).
+- **Logos** — all five run at their natural size × 0.793, passed as `width`/`height` on
+  `next/image`. Psychology Today sits on its own row; the other four are a wrapping flex
+  row with `gap: 32px 10.8%` (design gaps average 178px of a 1639 container). Measured
+  positions 0 / 29.1 / 52.1 / 78.2% against the design's 0 / 28.4 / 52.5 / 78.2%.
+- **Link** — 15px/600 brand blue, underlined, 73px below the logos.
+- **Logo row sits 79px below Psychology Today**, not the 49px the frame measures — the user
+  found the extra air reads better and asked for it (tablet override raised 40 → 56 to match).
+- **Responsive** — ≤640px logos drop to two per row at an explicit 140px width.
+
+**Two traps hit here, worth remembering:**
+
+1. A `width: auto; height: auto` rule on an image *overrides the `width`/`height`
+   attributes* (they are only presentational hints), so the logos rendered at full file
+   size. Let the attributes do the sizing.
+2. CSS Modules only exports class names that appear in the stylesheet — deleting the rule
+   made `styles.logo` `undefined` and the class silently vanished from the markup.
+
+Section measures 667 tall against the design's scaled 658.
+
 ### ⬜ Next frames
 
-- Whatever follows the freebies list — awaiting the next frame.
+- Whatever follows the get-found logos — awaiting the next frame.
 - (earlier note) Whatever follows the banner — awaiting the next frame. The gap between `HeroTop` and the
   banner is currently just `HeroTop`'s 56px bottom padding (the frame is cropped at the
   banner's top edge, so the real gap is unknown).

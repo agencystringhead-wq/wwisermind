@@ -300,3 +300,19 @@ export const freebies = {
     },
   ],
 };
+
+export const getFound = {
+  background: '/images/found-bg.webp',
+  heading: 'Get found where your ideal clients are searching',
+  body:
+    'We optimize your presence across the search engines, directories, and AI tools your clients actually use',
+  /** Natural sizes scaled by the project's 0.793 design factor. */
+  featured: { src: '/images/psycology-today.webp', alt: 'Psychology Today', width: 238, height: 52 },
+  logos: [
+    { src: '/images/zencare.webp', alt: 'Zencare', width: 238, height: 51 },
+    { src: '/images/gemini.webp', alt: 'Google Gemini', width: 159, height: 59 },
+    { src: '/images/chatgpt.webp', alt: 'ChatGPT', width: 198, height: 58 },
+    { src: '/images/perplexity.webp', alt: 'Perplexity', width: 198, height: 48 },
+  ],
+  link: { label: 'See Full Directory List', href: '#directories' },
+};

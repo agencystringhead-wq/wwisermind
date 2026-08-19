@@ -1,0 +1,115 @@
+/* Frame 12 — "get found where your clients are searching".
+   Measured off images/designframes/012section9.jpg (1920 frame, 1639 container).
+   Full-bleed gradient background — no inset and no radius. Design values × 0.793. */
+
+.section {
+  position: relative;
+  overflow: hidden;
+  background-color: #eef3ff;
+}
+
+.backdrop {
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  padding-block: 76px 147px;
+}
+
+.heading {
+  /* design wraps the heading in two lines at ~443px */
+  max-width: 470px;
+  font-size: clamp(24px, 2.6vw, 34px);
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-wrap: initial;
+}
+
+.body {
+  max-width: 46ch;
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.25;
+}
+
+.featured {
+  margin-top: 48px;
+}
+
+.logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 32px 10.8%;
+  margin-top: 79px;
+}
+
+.link {
+  display: inline-block;
+  margin-top: 73px;
+  color: var(--color-brand);
+  font-size: 15px;
+  font-weight: var(--fw-semibold);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.link:hover {
+  opacity: 0.7;
+}
+
+/* --- responsive ----------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .inner {
+    padding-block: 64px 104px;
+  }
+
+  .logos {
+    gap: 28px 7%;
+    margin-top: 56px;
+  }
+
+  .featured {
+    margin-top: 40px;
+  }
+
+  .link {
+    margin-top: 56px;
+  }
+}
+
+@media (max-width: 640px) {
+  .inner {
+    padding-block: 48px 64px;
+  }
+
+  .heading {
+    max-width: none;
+  }
+
+  .logos {
+    gap: 24px 32px;
+  }
+
+  /* an explicit width (not max-width) so flex line-breaking uses the small size */
+  .logos img {
+    width: 140px;
+    height: auto;
+  }
+
+  .featured {
+    width: 180px;
+    height: auto;
+  }
+
+  .link {
+    margin-top: 40px;
+  }
+}
