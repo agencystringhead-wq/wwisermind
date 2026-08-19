@@ -6,7 +6,7 @@ import { faq } from '@/lib/site';
 import styles from './Faq.module.css';
 
 export default function Faq() {
-  const { background, headingLead, headingRest, items, link } = faq;
+  const { background, heading, subheading, items, support, link } = faq;
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const baseId = useId();
 
@@ -14,27 +14,12 @@ export default function Faq() {
     <section className={styles.section}>
       <div className="container">
         <div className={styles.grid}>
-          <video
-            className={styles.photo}
-            poster={background.poster}
-            aria-label={background.alt}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-          >
-            {background.sources.map((source) => (
-              <source key={source.src} src={source.src} type={source.type} />
-            ))}
-          </video>
+          <div className={styles.intro}>
+            <h2 className={styles.heading}>{heading}</h2>
+            <p className={styles.subheading}>{subheading}</p>
+          </div>
 
           <div className={styles.column}>
-            <h2 className={styles.heading}>
-              {headingLead}
-              <span className={styles.headingMuted}>{headingRest}</span>
-            </h2>
-
             <div className={styles.list}>
               {items.map((item, index) => {
                 const open = openIndex === index;
@@ -51,7 +36,14 @@ export default function Faq() {
                       aria-controls={panelId}
                       onClick={() => setOpenIndex(open ? null : index)}
                     >
-                      {item.question}
+                      <span className={styles.number}>
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <span className={styles.questionText}>{item.question}</span>
+                      <span
+                        className={`${styles.dot} ${open ? styles.dotOpen : ''}`}
+                        aria-hidden="true"
+                      />
                     </button>
 
                     {open && (
@@ -68,6 +60,29 @@ export default function Faq() {
               {link.label}
             </Link>
           </div>
+
+          <aside className={styles.sidebar}>
+            <p className={styles.sidebarText}>{support.text}</p>
+
+            <a href={support.href} className={styles.emailLink}>
+              {support.linkLabel}
+            </a>
+
+            <video
+              className={styles.photo}
+              poster={background.poster}
+              aria-label={background.alt}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+            >
+              {background.sources.map((source) => (
+                <source key={source.src} src={source.src} type={source.type} />
+              ))}
+            </video>
+          </aside>
         </div>
       </div>
     </section>

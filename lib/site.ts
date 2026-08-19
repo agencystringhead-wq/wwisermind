@@ -406,8 +406,8 @@ export const faq = {
     ],
     alt: 'A therapist talking during a session',
   },
-  headingLead: 'Questions therapists actually ask —',
-  headingRest: ' answered plainly, before you have to ask them.',
+  heading: 'F.A.Q',
+  subheading: 'Straightforward answers, so you can move forward with confidence.',
   items: [
     { question: "You're based in India. How does that work for US and Australian therapists?", answer: PLACEHOLDER_ANSWER },
     { question: 'Have you worked with therapists before?', answer: PLACEHOLDER_ANSWER },
@@ -416,6 +416,12 @@ export const faq = {
     { question: 'Do you handle HIPAA compliance?', answer: PLACEHOLDER_ANSWER },
     { question: "Can I cancel if it's not working?", answer: PLACEHOLDER_ANSWER },
   ],
+  /** Right-hand support block from the reference layout. */
+  support: {
+    text: 'Still have questions? Our team is here to help.',
+    linkLabel: 'Email Us',
+    href: 'mailto:admin@wwisermind.com',
+  },
   link: { label: 'See Full Directory List', href: '#faq' },
 };
 
