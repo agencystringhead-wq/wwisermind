@@ -426,21 +426,21 @@ export const faq = {
 };
 
 export const footerCta = {
-  /** Decorative backdrop, same media shape as `heroBanner.background`: `poster` is the still
-      shown while the video loads and the permanent fallback wherever none of `sources` can
-      play (Safari before 17.4 has no WebM). Add an mp4 to `sources` to cover those. */
-  background: {
-    poster: '/images/cta-bg.webp',
-    sources: [{ src: '/videos/Get-started-with-wwsiermind.webm', type: 'video/webm' }],
-  },
-  heading: 'Ready when you are.',
-  bodyLead: 'One free call. No pitch deck, no pressure.',
-  bodyRest:
-    "You'll leave with an honest read on your online presence, whether you hire us or not.",
-  actions: [
-    { label: 'Book A Free Strategy Call', href: '#book-a-call', whatsapp: false },
-    { label: 'Say us Hi', href: 'https://wa.me/', whatsapp: true },
+  /** The backdrop is drawn in CSS now — see the concentric rings in Footer.module.css. */
+  /** Three fixed lines, as in both reference frames. */
+  headingLines: ['Ready to', 'move', 'faster?'],
+  /** Three lines on desktop; the breaks collapse under 640px so it wraps to the column. */
+  bodyLines: [
+    'We are here to help you grow',
+    'without stress. No runaround. Just',
+    'experienced people ready to help.',
   ],
+  /** Cursor-following circle on desktop, static pill on touch — same words, two forms. */
+  badge: {
+    lines: ['Work', 'with us'],
+    pillLabel: 'Work with us',
+    href: '#book-a-call',
+  },
 };
 
 export type FooterGroup = {

@@ -2,120 +2,244 @@
    Part 1 — the top CTA, measured off images/designframes/footertop-cta.jpg
    (1920 frame, 1639 container; full-bleed sky, no inset or radius). Design × 0.793. */
 
+/* Height comes from the reference rather than from the content: cta-inspiration.png is
+   1919x716, a height/width of 0.373, so the section holds that proportion and the copy
+   centres inside it. Clamped so an ultrawide monitor does not get a 1300px-tall panel. */
 .cta {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: clamp(430px, 37.3vw, 900px);
   overflow: hidden;
-  background-color: #1f7cf5;
+  background-color: #111111;
   color: var(--color-white);
 }
 
-/* Same box the <Image fill> filled: `.cta` has no ratio of its own — its height comes from
-   `.ctaInner`'s padding — so the backdrop is stretched over whatever height that resolves to
-   and cropped, rather than laid out at the video's native size. */
-.ctaBackdrop {
+/* Sonar rings. Each circle leaves the centre, grows past the corners and fades out; six of
+   them share one 18s cycle at even offsets, so a ring departs every three seconds and the
+   field is already mid-cycle on arrival rather than starting empty. Brightness is the 5.5%
+   white measured off the reference. Only transform and opacity animate, so this stays on the
+   compositor. */
+.ripples {
   position: absolute;
   inset: 0;
   z-index: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
 }
 
+.ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.06);
+  animation: ripple 18s linear infinite;
+  will-change: transform, opacity;
+}
+
+.ripple:nth-child(2) {
+  animation-delay: -3s;
+}
+
+.ripple:nth-child(3) {
+  animation-delay: -6s;
+}
+
+.ripple:nth-child(4) {
+  animation-delay: -9s;
+}
+
+.ripple:nth-child(5) {
+  animation-delay: -12s;
+}
+
+.ripple:nth-child(6) {
+  animation-delay: -15s;
+}
+
+@keyframes ripple {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.06);
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.9);
+  }
+}
+
+/* Centred, as both reference frames are — measured off cta-inspiration.png, where all three
+   heading lines and all three body lines share the frame's centre axis to within 4px. The
+   padding is only a floor now; the section's min-height sets the real breathing room. */
 .ctaInner {
   position: relative;
   z-index: 1;
-  padding-block: 163px 299px;
+  padding-block: 72px;
+  text-align: center;
 }
 
+/* The reference sets its heading at 88px on a 1919px frame — 4.6vw — with the lines 84px
+   apart, so a line-height just under 1. The floor holds the mobile frame's 39px equivalent. */
 .heading {
-  font-size: clamp(32px, 4.4vw, 56px);
+  font-size: clamp(39px, 4.6vw, 88px);
   font-weight: var(--fw-bold);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  text-wrap: initial;
 }
 
+/* Small caption, per the reference's ~16px/1.34 — not the 24px semibold this section used. */
 .body {
-  max-width: 700px;
-  margin-top: 43px;
-  font-size: clamp(18px, 1.9vw, 24px);
-  font-weight: var(--fw-semibold);
-  line-height: 1.3;
+  max-width: 640px;
+  margin-top: 34px;
+  margin-inline: auto;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 16px;
+  font-weight: var(--fw-regular);
+  line-height: 1.35;
 }
 
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 22px;
-  margin-top: 49px;
+/* --- work-with-us, in its two forms --------------------------------------- */
+/* Desktop: a circle tracking the cursor, and the section's only control now that the buttons
+   are gone. While tracking, the component zeroes `left`/`top` inline and moves it by transform
+   alone; the values here are its resting place, which is where a keyboard user meets it. */
+.badge {
+  position: absolute;
+  top: 86%;
+  left: 50%;
+  z-index: 2;
+  display: none;
+  place-content: center;
+  transform: translate(-50%, -50%);
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  background-color: var(--color-brand);
+  color: var(--color-white);
+  font-size: 14px;
+  font-weight: var(--fw-bold);
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+  will-change: transform;
 }
 
-.button {
+.badge span {
+  display: block;
+}
+
+/* visible under the cursor, and to a keyboard user who tabs to it */
+.badge[data-visible='true'],
+.badge:focus-visible {
+  opacity: 1;
+}
+
+/* Touch: the same words as a static outlined pill, per cta-mobile.png. */
+.pill {
   display: inline-flex;
   align-items: center;
-  gap: 20px;
-  height: 68px;
-  padding-inline: 38px;
+  justify-content: center;
+  height: 44px;
+  margin-top: 34px;
+  padding-inline: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: var(--radius-pill);
-  background-color: var(--color-black);
   color: var(--color-white);
-  font-size: 20px;
-  font-weight: var(--fw-semibold);
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-  transition: transform var(--dur) var(--ease), background-color var(--dur) var(--ease);
+  font-size: 13px;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 
-.button:hover {
-  background-color: #101010;
-  transform: translateY(-2px);
+.pill:hover {
+  background-color: var(--color-white);
+  color: var(--color-brand);
 }
 
-.whatsapp {
-  flex: none;
-  width: 26px;
-  height: 26px;
+/* The two are alternatives, split on pointer type rather than width: a narrow desktop window
+   still has a cursor to follow, and a wide tablet still has none. */
+@media (hover: hover) and (pointer: fine) {
+  .badge {
+    display: grid;
+  }
+
+  .pill {
+    display: none;
+  }
 }
+
 
 /* --- responsive ----------------------------------------------------------- */
 @media (max-width: 1279px) {
-  .ctaInner {
-    padding-block: 112px 180px;
-  }
-
   .body {
     margin-top: 32px;
-  }
-
-  .actions {
-    margin-top: 40px;
   }
 }
 
 @media (max-width: 640px) {
+  /* cta-mobile.png is 449x567 — a height/width of 1.263, far taller in proportion than the
+     desktop frame, so the phone gets its own ratio rather than the desktop number. Capped so
+     the tail of this range does not run away from the narrow frame it was measured on. */
+  .cta {
+    min-height: min(126.3vw, 500px);
+  }
+
   .ctaInner {
-    padding-block: 72px 110px;
+    padding-block: 56px;
   }
 
   .body {
     margin-top: 24px;
   }
 
-  .actions {
-    gap: 14px;
-    margin-top: 32px;
+  /* let the caption wrap to the column instead of holding the desktop line breaks */
+  .bodyBreak {
+    display: none;
+  }
+}
+
+/* Motion off: drop the ripples and fall back to the static ring field this section carried
+   before — the same 92px-on-a-1919px-frame spacing measured off the reference. */
+@media (prefers-reduced-motion: reduce) {
+  .ripples {
+    display: none;
   }
 
-  .button {
-    height: 56px;
-    padding-inline: 26px;
-    gap: 14px;
-    font-size: 16px;
+  .cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: repeating-radial-gradient(
+      circle at 50% 50%,
+      transparent 0 calc(4.8vw - 1px),
+      rgba(255, 255, 255, 0.055) calc(4.8vw - 1px) 4.8vw
+    );
   }
+}
 
-  .whatsapp {
-    width: 22px;
-    height: 22px;
+/* on a phone the wide-frame spacing would show barely one arc */
+@media (prefers-reduced-motion: reduce) and (max-width: 640px) {
+  .cta::before {
+    background: repeating-radial-gradient(
+      circle at 50% 50%,
+      transparent 0 calc(15vw - 1px),
+      rgba(255, 255, 255, 0.055) calc(15vw - 1px) 15vw
+    );
   }
 }
 
