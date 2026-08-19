@@ -1,0 +1,142 @@
+/* Frame 11 — freebies.
+   Measured off images/designframes/011section8.jpg (1919 frame, 1639 container).
+   Two columns: copy 52.7% and the photo 40% at its natural 656x899. Design × 0.793. */
+
+.section {
+  padding-block: 140px 163px;
+  background-color: var(--color-white);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 52.7% 40%;
+  justify-content: space-between;
+  align-items: start;
+}
+
+/* --- left column ---------------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding-inline: 20px;
+  border-radius: var(--radius-pill);
+  background-color: #cce6fd;
+  color: var(--color-ink);
+  font-size: 13px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.heading {
+  margin-top: 26px;
+  font-size: clamp(24px, 2.6vw, 34px);
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-wrap: initial;
+}
+
+.headingMuted {
+  color: var(--color-heading-muted);
+}
+
+.list {
+  margin-top: 122px;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 55% 45%;
+  align-items: start;
+  padding-block: 52px;
+}
+
+.item:first-child {
+  padding-top: 0;
+}
+
+.item:last-child {
+  padding-bottom: 0;
+}
+
+.item + .item {
+  border-top: 1px solid #abb2ba;
+}
+
+.itemTitle {
+  padding-right: 24px;
+  font-size: 15px;
+  font-weight: var(--fw-bold);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.itemNote {
+  color: var(--color-heading-muted);
+  font-weight: var(--fw-bold);
+}
+
+.itemBody {
+  font-size: 15px;
+  font-weight: var(--fw-regular);
+  line-height: 1.35;
+}
+
+/* --- photo ---------------------------------------------------------------- */
+.photo {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+/* --- responsive ------------------------------------------------------------ */
+@media (max-width: 1279px) {
+  .section {
+    padding-block: 96px 112px;
+  }
+
+  .list {
+    margin-top: 80px;
+  }
+
+  .item {
+    padding-block: 40px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .photo {
+    max-width: 520px;
+  }
+
+  .list {
+    margin-top: 56px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-block: 56px 64px;
+  }
+
+  .item {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding-block: 28px;
+  }
+
+  .itemTitle {
+    padding-right: 0;
+  }
+
+  .list {
+    margin-top: 40px;
+  }
+}

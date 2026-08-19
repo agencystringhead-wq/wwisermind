@@ -99,6 +99,7 @@ components/sections/
   Process.tsx(.module.css)     frame 08 — process steps, fitted blobs, arrow pattern
   WhyUs.tsx(.module.css)       frame 09 — navy block, three numbered rows
   Founder.tsx(.module.css)     frame 10 — grey band, portrait + founder quote
+  Freebies.tsx(.module.css)    frame 11 — badge + h2 + three-row list beside a photo
 lib/site.ts          siteConfig, announcement copy, mainNav items
 scripts/convert-images.mjs  png/jpg -> webp
 images/              SOURCE images (png/jpg) — user drops files here
@@ -449,9 +450,32 @@ Source: `images/designframes/010section7.jpg` (1920 frame, 1639 container). Buil
 Measured against the design: mark top 195 (design 195), quote top 308 (308), section 833
 tall (893 — one fewer quote line).
 
+### ✅ Frame 11 — Freebies (done)
+
+Source: `images/designframes/011section8.jpg` (1919 frame, 1639 container, white page).
+Built as `components/sections/Freebies.tsx`, copy in `lib/site.ts` → `freebies`.
+
+- **Section** — padding 140px / 163px, two columns
+  `grid-template-columns: 52.7% 40%` with `justify-content: space-between` (the design
+  leaves a 7.4% gutter between the copy and the photo).
+- **Left column** — `#cce6fd` badge (30px tall here; the frame-08 badge is 36px — the
+  design itself differs), then the two-tone h2 26px below, then the list 122px down.
+- **List** — three rows, each `55% 45%` (title | body), 52px of padding either side of a
+  1px `#abb2ba` rule. The rule sits **between** rows only — no top rule on the first, no
+  bottom rule on the last, unlike frame 09.
+  Titles 15px/700 (the "(2026 Edition)" tail is a muted span), bodies 15px/400, both at
+  line-height 1.35 — the design sets them at the same size and separates them by weight.
+- **Photo** — `freebies.webp` at its natural 656×899 → 520×713 build (40% of the
+  container), 20px radius, top-aligned with the badge. 333 kB → **68 kB**.
+- **Responsive** — ≤1023px the photo drops below the copy (capped at 520px); ≤640px each
+  list row stacks title over body.
+
+Measured against the design: h2 top 196 (scaled 203), list top 400 (415), photo 520×713
+(520×713), section 1016 tall (1012).
+
 ### ⬜ Next frames
 
-- Whatever follows the founder quote — awaiting the next frame.
+- Whatever follows the freebies list — awaiting the next frame.
 - (earlier note) Whatever follows the banner — awaiting the next frame. The gap between `HeroTop` and the
   banner is currently just `HeroTop`'s 56px bottom padding (the frame is cropped at the
   banner's top edge, so the real gap is unknown).

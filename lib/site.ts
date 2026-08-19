@@ -275,3 +275,28 @@ export const founder = {
     " not because good therapists weren't out there, but because they were invisible online. Nine years of building websites for healthcare practices taught me how to fix that. This company exists to make sure the people who need you can actually find you.",
   attribution: 'SrikaantH · Founder, wwisermind',
 };
+
+export const freebies = {
+  badge: 'Freebies',
+  headingLead: 'Free resources, no strings —',
+  headingRest: " take what's useful, whether we ever work together.",
+  image: { src: '/images/freebies.webp', alt: 'A therapist smiling with her eyes closed' },
+  items: [
+    {
+      title: 'The AI Visibility Guide for Therapists',
+      note: ' (2026 Edition)',
+      body:
+        'Find out how to show up when clients ask ChatGPT, Gemini, or Google AI for a therapist near them, before your competitors do.',
+    },
+    {
+      title: '30 Days of Social Content for Therapists',
+      body:
+        'A month of ready-to-post templates that keep your practice visible without turning you into a content creator.',
+    },
+    {
+      title: 'Free Website Review',
+      body:
+        "Send us your current website and get a detailed report: what's working, what's costing you clients, and what to fix first. No pitch, just the honest read.",
+    },
+  ],
+};

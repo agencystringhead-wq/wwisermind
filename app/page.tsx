@@ -1,4 +1,5 @@
 import Founder from '@/components/sections/Founder';
+import Freebies from '@/components/sections/Freebies';
 import HeroBanner from '@/components/sections/HeroBanner';
 import HeroTop from '@/components/sections/HeroTop';
 import HomeIntro from '@/components/sections/HomeIntro';
@@ -20,6 +21,7 @@ export default function HomePage() {
       <Process />
       <WhyUs />
       <Founder />
+      <Freebies />
       {/* Next frames get appended here. */}
     </>
   );
