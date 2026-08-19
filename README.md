@@ -5,8 +5,9 @@ Marketing site for Wisermind, built frame by frame from the supplied design scre
 - **Stack:** Next.js 15 (App Router) · React 19 · TypeScript · CSS Modules
 - **Container:** 1300px site-wide (`--container-width`, `.container`)
 - **Type:** Inter — body 15px/400, headings 700 (see `app/globals.css`)
-- **Images:** sources live in `images/`, `npm run images` converts them to WebP in
-  `public/images/`. Components only ever reference `.webp`.
+- **Images:** source png/jpg live in a local `images/` folder (git-ignored — build material
+  only). `npm run images` converts them to WebP into `public/images/`, which *is* committed
+  and is what the site serves. Components only ever reference `.webp`.
 
 See [PROJECT-MEMORY.md](PROJECT-MEMORY.md) for the design measurements, tokens and a
 per-frame build log.

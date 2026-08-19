@@ -10,5 +10,6 @@ next-env.d.ts
 *.tsbuildinfo
 scratch/
 
-# design reference screenshots — kept locally, never published
-images/designframes/
+# source images + design reference frames — local build material only,
+# the site ships the converted webp in public/images/
+images/
