@@ -235,3 +235,34 @@ export const processSection = {
     alt: 'A therapist sitting in her practice with a notebook',
   },
 };
+
+export const whyUs = {
+  label: 'Why practices choose us',
+  background: '/images/why-choose-us.webp',
+  rows: [
+    {
+      number: '01',
+      title: 'Built in India. Honest about it from the first hello.',
+      image: '/images/01.webp',
+      imageAlt: 'The Wisermind team working together at a desk',
+      body:
+        "We build from Pune, India and say so upfront, because it works in your favor: revisions happen while you sleep, meetings happen on video in your timezone, and you get agency-grade work at a price a practice can justify. We'd rather be judged on the work.",
+    },
+    {
+      number: '02',
+      title: 'Only Therapists. Every project. No exceptions.',
+      image: '/images/02.webp',
+      imageAlt: 'A therapist sitting on a couch in her practice',
+      body:
+        'We only work with therapists and psychologists. No dentists, no law firms, no restaurants. So you never explain your world to your own marketing team, and everything we build fits how a practice actually runs.',
+    },
+    {
+      number: '03',
+      title: 'Built for how clients search next.',
+      image: '/images/03.webp',
+      imageAlt: 'A therapist with a laptop in a warmly lit room',
+      body:
+        'Most therapist websites are built for how people searched in 2019. Yours will be ready for Google, Maps, and the AI tools clients already ask for recommendations, because AI visibility is in our foundations, not an upsell.',
+    },
+  ],
+};

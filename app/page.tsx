@@ -5,6 +5,7 @@ import Practice from '@/components/sections/Practice';
 import Problems from '@/components/sections/Problems';
 import Process from '@/components/sections/Process';
 import Services from '@/components/sections/Services';
+import WhyUs from '@/components/sections/WhyUs';
 
 export default function HomePage() {
   return (
@@ -16,6 +17,7 @@ export default function HomePage() {
       <Services />
       <Practice />
       <Process />
+      <WhyUs />
       {/* Next frames get appended here. */}
     </>
   );

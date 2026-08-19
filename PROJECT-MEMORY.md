@@ -97,6 +97,7 @@ components/sections/
   Services.tsx(.module.css)    frame 06 — blue field, three outlined service rows
   Practice.tsx(.module.css)    frame 07 — gradient panels + metric widget + photo
   Process.tsx(.module.css)     frame 08 — process steps, fitted blobs, arrow pattern
+  WhyUs.tsx(.module.css)       frame 09 — navy block, three numbered rows
 lib/site.ts          siteConfig, announcement copy, mainNav items
 scripts/convert-images.mjs  png/jpg -> webp
 images/              SOURCE images (png/jpg) — user drops files here
@@ -397,9 +398,35 @@ Built as `components/sections/Process.tsx`, copy in `lib/site.ts` → `processSe
 **Delta:** the launch card renders 331px tall against the design's scaled 259 — our body copy
 takes more lines in the same width.
 
+### ✅ Frame 09 — "Why practices choose us" navy block (done)
+
+Source: `images/designframes/009section6.jpg` (1920 frame; the block is 1904 × 1628 with
+8px side margins — the same inset as the hero banner). Built as
+`components/sections/WhyUs.tsx`, copy in `lib/site.ts` → `whyUs`.
+
+- **Block** — full-bleed with the hero's 10px inset and a 20px radius, base `#172444`,
+  with `why-choose-us.webp` as a `next/image` `fill` + cover backdrop (the supplied art is
+  1905 × 1629 — exactly the design block, so it is the background, not decoration).
+  372 kB jpg → **22 kB** webp.
+- **Label** — 18px/700 uppercase at `letter-spacing: .1em`, same as the frame-06 label.
+- **Rows** — three, `grid-template-columns: 45.5% 24.3% 30.2%`, `align-items: center`,
+  62px of padding either side of a 1px `#265490` rule. The rule sits **below** every row
+  including the last, and never above the first — matching the frame.
+  - the number and title share the first cell as a flex row (`align-items: flex-start`,
+    59px apart) because the design tops the number against the title's first line
+  - number 24px/600 in `#32578b` (sampled), title 34px/700 (design 48 × 0.793 lands at 38,
+    but 34 keeps the two-line wrap and matches the other section headings)
+  - image `aspect-ratio: 398/237` with a 20px radius and a soft drop shadow
+  - body 15px/1.4 with `padding-left: 73px`, which puts the text at **75.4%** of the
+    container — exactly where the design starts it
+- **Responsive** — ≤1023px each row stacks to one column (title, image capped at 420px,
+  then body); ≤640px the label and number step down.
+
+**Copy fix:** the design reads "in yourtimezone" — set as "in your timezone".
+
 ### ⬜ Next frames
 
-- Whatever follows the process steps — awaiting the next frame.
+- Whatever follows the navy block — awaiting the next frame.
 - (earlier note) Whatever follows the banner — awaiting the next frame. The gap between `HeroTop` and the
   banner is currently just `HeroTop`'s 56px bottom padding (the frame is cropped at the
   banner's top edge, so the real gap is unknown).
