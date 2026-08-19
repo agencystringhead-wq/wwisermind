@@ -111,3 +111,231 @@
     height: 22px;
   }
 }
+
+/* ==========================================================================
+   Part 2 — main footer, measured off images/designframes/main-footer.jpg
+   (1920 frame, 1639 container). Three rows: the link grid, the social row and
+   the clipped watermark. Design values × 0.793.
+   ========================================================================== */
+
+.main {
+  overflow: hidden;
+  padding-top: 148px;
+  background-color: #1a1a1a;
+  color: var(--color-white);
+}
+
+/* --- row 1: brand column + 3 x 3 link grid -------------------------------- */
+.grid {
+  display: grid;
+  grid-template-columns: 39% 25% 24% 12%;
+  row-gap: 65px;
+  align-items: start;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  grid-area: 1 / 1 / 4 / 2;
+  padding-right: 40px;
+  height: 100%;
+}
+
+.headline {
+  font-size: clamp(24px, 2.6vw, 34px);
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.contact {
+  margin-top: 50px;
+  font-size: 15px;
+  font-weight: var(--fw-regular);
+  line-height: 1.45;
+}
+
+.contact a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.copyright {
+  margin-top: 48px;
+  font-size: 14px;
+  font-weight: var(--fw-regular);
+  line-height: 1.5;
+}
+
+.copyright a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* --- link groups ---------------------------------------------------------- */
+.groupTitle {
+  color: #9a9a9a;
+  font-size: 13px;
+  font-weight: var(--fw-regular);
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.groupTitleSecond {
+  margin-top: 54px;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 48px;
+}
+
+.link {
+  color: #9a9a9a;
+  font-size: 14px;
+  line-height: 1.5;
+  transition: color var(--dur) var(--ease);
+}
+
+.link:hover {
+  color: var(--color-white);
+}
+
+.linkUpper {
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.lines {
+  margin-top: 26px;
+  color: #9a9a9a;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* --- row 2: social -------------------------------------------------------- */
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 24px 40px;
+  margin-top: 193px;
+}
+
+.socialLink {
+  font-size: clamp(24px, 2.8vw, 36px);
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.01em;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.socialLink:hover {
+  opacity: 0.7;
+}
+
+/* --- row 3: clipped watermark --------------------------------------------- */
+.watermarkBox {
+  container-type: inline-size;
+}
+
+.watermark {
+  margin-top: 110px;
+  overflow: hidden;
+  /* At weight 900 the ink starts .079em below the box top and the baseline sits at .864em,
+     so the letters are .795em tall. Clipping at .83em shows ~94% of them and shaves only a
+     sliver off their feet. */
+  height: 0.83em;
+  color: #3c3c3c;
+  /* Sized so the word's *ink* spans the container edge to edge. Measured on the loaded font
+     at weight 900: the ink is 5.9915em wide, so font-size = container / 5.9915 (16.69%).
+     cqw resolves against the container itself; vw counts the scrollbar, so it is only the
+     fallback. */
+  font-size: clamp(40px, calc(16.69vw - 6.7px), 217px);
+  font-size: min(217px, 16.69cqw);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  user-select: none;
+}
+
+.watermarkWord {
+  /* inline-block so the box is the text's own width, and a nudge left to cancel the
+     first glyph's side bearing so the ink starts flush on the container edge */
+  display: inline-block;
+  margin-left: 0.005em;
+  white-space: nowrap;
+}
+
+/* --- responsive ------------------------------------------------------------ */
+@media (max-width: 1279px) {
+  .main {
+    padding-top: 96px;
+  }
+
+  .grid {
+    grid-template-columns: 34% 24% 23% 19%;
+    row-gap: 56px;
+  }
+
+  .social {
+    margin-top: 120px;
+  }
+
+  .watermark {
+    margin-top: 80px;
+  }
+
+  .links {
+    margin-top: 32px;
+  }
+
+  .groupTitleSecond {
+    margin-top: 36px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 48px;
+  }
+
+  .brand {
+    grid-area: auto;
+    padding-right: 0;
+  }
+
+  .copyright {
+    margin-top: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .main {
+    padding-top: 64px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    row-gap: 40px;
+  }
+
+  .contact {
+    margin-top: 28px;
+  }
+
+  .social {
+    margin-top: 72px;
+    gap: 16px 24px;
+  }
+
+  .watermark {
+    margin-top: 48px;
+  }
+}

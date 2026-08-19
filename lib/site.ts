@@ -346,3 +346,110 @@ export const footerCta = {
     { label: 'Say us Hi', href: 'https://wa.me/', whatsapp: true },
   ],
 };
+
+export type FooterGroup = {
+  title?: string;
+  title2?: string;
+  links?: NavItem[];
+  lines?: string[];
+  uppercaseLinks?: boolean;
+};
+
+export const footerMain = {
+  headline: ['Be found. Be trusted.', 'Stay booked.'],
+  contactLabel: 'New Business',
+  email: 'admin@wwisermind.com',
+  copyright: {
+    lead: '© Copyright ',
+    brand: 'wwisermind',
+    tail: ' powered by Stringhead Technologies',
+  },
+  /** Three rows of three columns, laid out row by row beside the brand column. */
+  rows: [
+    [
+      {
+        title: 'Therapist website design',
+        links: [
+          { label: 'One Week Website', href: '#one-week-website' },
+          { label: 'Custom Website Design', href: '#custom-website-design' },
+          { label: 'Website Hosting Services', href: '#hosting' },
+          { label: 'Website Care Plans', href: '#care-plans' },
+        ],
+      },
+      {
+        title: 'Online marketing',
+        links: [
+          { label: 'Local SEO', href: '#local-seo' },
+          { label: 'SEO Audit/ Assessment', href: '#seo-audit' },
+          { label: 'One Time SEO', href: '#one-time-seo' },
+          { label: 'Ongoing SEO/AEO/GEO', href: '#ongoing-seo' },
+          { label: 'Copywriting', href: '#copywriting' },
+          { label: 'Meta Ads', href: '#meta-ads' },
+        ],
+      },
+      {
+        title: 'AI services',
+        links: [
+          { label: 'AI Chatbot', href: '#ai-chatbot' },
+          { label: 'AI Search Optimization', href: '#ai-search-optimization' },
+        ],
+      },
+    ],
+    [
+      {
+        title: 'Results',
+        title2: 'Who we help',
+        links: [
+          { label: 'Group Practices', href: '#group-practices' },
+          { label: 'Solo Practices', href: '#solo-practices' },
+        ],
+      },
+      {
+        title: 'About',
+        links: [
+          { label: 'About Us', href: '#about' },
+          { label: 'Our Process', href: '#process' },
+          { label: 'Blog', href: '#blog' },
+          { label: 'Reviews', href: '#reviews' },
+          { label: "FAQ's", href: '#faq' },
+        ],
+      },
+      {
+        title: 'Freebies',
+        title2: 'Tools',
+        links: [
+          { label: 'AI Visibility Report', href: '#ai-visibility-report' },
+          { label: 'Marketing Assessment', href: '#marketing-assessment' },
+          { label: 'Local Map Assessment', href: '#local-map-assessment' },
+        ],
+      },
+    ],
+    [
+      {
+        title: 'Address:',
+        lines: [
+          '1st Floor, C6, Indialand Global',
+          'Tech Park, Phase 1, Hinjawadi,',
+          'Rajiv Gandhi Infotech Park,',
+          'Pune, Maharashtra 411057',
+        ],
+      },
+      { title: 'Phone:', lines: ['(+91) 9175414055'] },
+      {
+        uppercaseLinks: true,
+        links: [
+          { label: 'Privacy Policy', href: '#privacy' },
+          { label: 'Terms of Service', href: '#terms' },
+          { label: 'Cookie Policy', href: '#cookies' },
+        ],
+      },
+    ],
+  ] as FooterGroup[][],
+  social: [
+    { label: 'Instagram', href: 'https://instagram.com/' },
+    { label: 'Twitter', href: 'https://twitter.com/' },
+    { label: 'Linkedin', href: 'https://linkedin.com/' },
+    { label: 'Reddit', href: 'https://reddit.com/' },
+  ],
+  watermark: 'wwisermind',
+};

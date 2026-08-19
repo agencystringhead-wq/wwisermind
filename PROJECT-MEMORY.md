@@ -87,7 +87,7 @@ app/
   layout.tsx         html shell, font, TopBar + Header + main
   page.tsx           home page — sections added frame by frame
 components/layout/
-  Footer.tsx(.module.css)   global footer — top CTA (more rows to come)
+  Footer.tsx(.module.css)   global footer — top CTA + main footer
   TopBar.tsx(.module.css)   cream announcement bar
   Header.tsx(.module.css)   logo + nav + actions (client: mobile menu)
 components/sections/
@@ -552,9 +552,52 @@ Measured against the design: heading top 163 (scaled 163), body top 273 (278), b
 **Delta:** the design pads its two buttons unequally (48px vs 80px), making the second one
 260px wide where ours is 210px. Uniform padding was kept deliberately.
 
+### ✅ Footer part 2 — main footer (done)
+
+Source: `images/designframes/main-footer.jpg` (1920 frame, 1639 container). Appended to
+`components/layout/Footer.tsx`; data in `lib/site.ts` → `footerMain`. Background `#1a1a1a`.
+
+**Row 1 — brand column + a 3 × 3 link grid.** `grid-template-columns: 39% 25% 24% 12%`
+reproduces the design's uneven columns (measured starts 0 / 38.9 / 63.8 / 87.6%; built
+0 / 39 / 64 / 88%). The brand cell spans all three rows (`grid-area: 1 / 1 / 4 / 2`) with
+`justify-content: space-between`, which is what puts the copyright line at the bottom edge
+of the grid as the design has it. Groups are emitted **row-major** so auto-placement fills
+the rows correctly around the spanning brand cell.
+
+Group shapes vary and the data model carries that: some have one title, some two
+(`Results` + `Who we help`, `Freebies` + `Tools`), one is address lines, one is a phone
+number, and the legal group is uppercase links with no title at all.
+
+**Row 2 — social.** Four links, `justify-content: space-between`; measured at
+0 / 32.6 / 61.1 / 91.6% against the design's 0 / 32.6 / 61.7 / 91.8%. 36px/600 white.
+
+**Row 3 — watermark.** "wwisermind" in `#3c3c3c` (sampled), **weight 900** (Inter is loaded
+with 800/900 for this). Sized so the word's *ink* spans the container edge to edge — verified
+at 1300/1300 and 969/969.
+
+How the numbers were derived, because guessing here wasted time:
+
+- Measure the loaded font with `canvas.measureText`, using the family name from
+  `document.fonts` (`"Inter"`). Passing `getComputedStyle().fontFamily` silently resolved to
+  a fallback and every number was ~15% out. SVG `getBBox` is no help either — Firefox
+  returns the em box, not the ink.
+- At weight 900 the ink is **5.9915em** wide, starts **0.005em left** of the text origin, and
+  the right side bearing is 0.0255em. So `font-size = container / 5.9915` (16.69%) and
+  `margin-left: .005em` on the word puts the ink flush on the left edge.
+- Sizing uses **`cqw`** against a `container-type: inline-size` wrapper. `vw` counts the
+  scrollbar and overshot the container by ~15px at 1024px; the `vw` line is only a fallback.
+- Vertically the ink runs .079em → .874em from the box top, so `height: .83em` with
+  `overflow: hidden` shows ~94% of the letters and shaves a sliver off their feet.
+- The word must sit *inside* `.container`; outside it stretches to the viewport. And the
+  span must be `inline-block` — as a block its box reports the container width no matter how
+  wide the text is, which is what made an earlier "it spans 1300" reading wrong.
+
+Type: labels 13px uppercase and links 14px, both `#9a9a9a` (sampled — the design uses one
+grey for both). Small text stays readable rather than scaling to the design's ~11px.
+
 ### ⬜ Next frames
 
-- The rest of the footer — awaiting the next frame.
+- Inner pages / anything still to come — the homepage and footer are complete.
 - (earlier note) Whatever follows the banner — awaiting the next frame. The gap between `HeroTop` and the
   banner is currently just `HeroTop`'s 56px bottom padding (the frame is cropped at the
   banner's top edge, so the real gap is unknown).
