@@ -266,3 +266,12 @@ export const whyUs = {
     },
   ],
 };
+
+export const founder = {
+  portrait: { src: '/images/srikaant.webp', alt: 'SrikaantH, founder of wwisermind, at his desk' },
+  quoteLead:
+    'I started wwisermind after watching my own family search for the right therapist and struggle to find one —',
+  quoteRest:
+    " not because good therapists weren't out there, but because they were invisible online. Nine years of building websites for healthcare practices taught me how to fix that. This company exists to make sure the people who need you can actually find you.",
+  attribution: 'SrikaantH · Founder, wwisermind',
+};

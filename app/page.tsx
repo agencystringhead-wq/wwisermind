@@ -1,3 +1,4 @@
+import Founder from '@/components/sections/Founder';
 import HeroBanner from '@/components/sections/HeroBanner';
 import HeroTop from '@/components/sections/HeroTop';
 import HomeIntro from '@/components/sections/HomeIntro';
@@ -18,6 +19,7 @@ export default function HomePage() {
       <Practice />
       <Process />
       <WhyUs />
+      <Founder />
       {/* Next frames get appended here. */}
     </>
   );

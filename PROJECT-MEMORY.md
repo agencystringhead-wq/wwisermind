@@ -98,6 +98,7 @@ components/sections/
   Practice.tsx(.module.css)    frame 07 — gradient panels + metric widget + photo
   Process.tsx(.module.css)     frame 08 — process steps, fitted blobs, arrow pattern
   WhyUs.tsx(.module.css)       frame 09 — navy block, three numbered rows
+  Founder.tsx(.module.css)     frame 10 — grey band, portrait + founder quote
 lib/site.ts          siteConfig, announcement copy, mainNav items
 scripts/convert-images.mjs  png/jpg -> webp
 images/              SOURCE images (png/jpg) — user drops files here
@@ -424,9 +425,33 @@ Source: `images/designframes/009section6.jpg` (1920 frame; the block is 1904 × 
 
 **Copy fix:** the design reads "in yourtimezone" — set as "in your timezone".
 
+### ✅ Frame 10 — Founder quote (done)
+
+Source: `images/designframes/010section7.jpg` (1920 frame, 1639 container). Built as
+`components/sections/Founder.tsx`, copy in `lib/site.ts` → `founder`.
+
+- **Band** — a **full-bleed grey strip**: no 10px inset and no radius, unlike the hero and
+  navy blocks (measured x 0→1919). `--color-surface`, 80px clear of the navy block above,
+  padding 111px / 144px.
+- **Grid** — `25% 75%`. Portrait at its natural 274px (→ 217px build, 20px radius) topping
+  111px into the band; the quote column starts 84px lower so the mark lands at 195px,
+  matching the design.
+- **Quote mark** — the design uses squared commas, not a typographic glyph, so it is an SVG
+  (86×63 → 68×50): a block with a tail tapering down-left.
+- **Quote** — 34px/700 two-tone, black lead + `--color-heading-muted` remainder, capped at
+  975px so it wraps to 7 lines against the design's 8.
+- **Attribution** — the design sets this line in a **monospace** face, the only non-Inter
+  type in the build. Rendered with the system stack (`ui-monospace, SFMono-Regular, …`) at
+  22px in the sampled `#0c1929`, which measures within a few px of the design's width.
+  Swap in a webfont mono if an exact match matters.
+- **Responsive** — ≤1023px stacks to one column (portrait 180px, no quote offset).
+
+Measured against the design: mark top 195 (design 195), quote top 308 (308), section 833
+tall (893 — one fewer quote line).
+
 ### ⬜ Next frames
 
-- Whatever follows the navy block — awaiting the next frame.
+- Whatever follows the founder quote — awaiting the next frame.
 - (earlier note) Whatever follows the banner — awaiting the next frame. The gap between `HeroTop` and the
   banner is currently just `HeroTop`'s 56px bottom padding (the frame is cropped at the
   banner's top edge, so the real gap is unknown).
