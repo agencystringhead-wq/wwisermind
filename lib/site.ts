@@ -179,3 +179,29 @@ export const services = {
   ],
   startWithLabel: 'Start with:',
 };
+
+export const practice = {
+  headingLead: 'Built around how you practice —',
+  headingRest: "whether that's just you, or a whole team",
+  metric: { label: 'AI Search Visibility', value: '159', unit: '%' },
+  rows: [
+    {
+      title: 'Group Practice',
+      body:
+        'Your website has to sell the whole team: every clinician, every specialty, every location, and hold up to referral sources and insurance-savvy clients checking you out. We build sites that grow with your roster and marketing that fills every calendar, not just the founder’s.',
+      link: { label: 'Built for group practices', href: '#group-practices' },
+      image: '/images/grouppractice.webp',
+      imageAlt: 'A group practice team together outside their office',
+      photoFirst: false,
+    },
+    {
+      title: 'Solo Practice',
+      body:
+        'You are the practice, so your website has to carry your voice, your specialty, and your credibility, and bring in clients without you becoming a marketer on the side. We build sites and marketing that work quietly while you’re in session.',
+      link: { label: 'Built for solo practitioners', href: '#solo-practitioners' },
+      image: '/images/solopractice.webp',
+      imageAlt: 'A solo practitioner holding a tablet in her office',
+      photoFirst: true,
+    },
+  ],
+};

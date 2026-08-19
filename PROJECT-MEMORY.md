@@ -17,7 +17,8 @@ Living notes for this build. Update it at the end of every frame/section.
 1. **Container width is `1300px` for the whole site**, every frame/section. Token: `--container-width`, helper class `.container` (adds `20px` side gutters).
 2. **Images must be WebP only.** Source PNG/JPG go in `/images`; `npm run images` converts them into `/public/images` as `.webp` (quality 90, alpha preserved, skips up-to-date files). Never reference a png/jpg in components.
 3. Match the provided screenshot as closely as possible.
-4. **Never commit the `images/` folder.** Source photos and the design screenshots in
+4. **Never commit the `/images/` folder** (leading slash — a bare `images/` rule also
+   swallows `public/images/`, silently keeping new webp assets out of the deploy). Source photos and the design screenshots in
    `images/designframes/` are local build material — they stay on disk but are git-ignored,
    so the public repo never carries them. Only the converted `public/images/*.webp` is
    committed, and that is all Cloudflare needs to serve the site.
@@ -94,6 +95,7 @@ components/sections/
   HomeIntro.tsx(.module.css)   frame 04 — grey block, two-tone h2, project slider
   Problems.tsx(.module.css)    frame 05 — 3-up card slider with arrow controls
   Services.tsx(.module.css)    frame 06 — blue field, three outlined service rows
+  Practice.tsx(.module.css)    frame 07 — gradient panels + metric widget + photo
 lib/site.ts          siteConfig, announcement copy, mainNav items
 scripts/convert-images.mjs  png/jpg -> webp
 images/              SOURCE images (png/jpg) — user drops files here
@@ -311,9 +313,46 @@ Built as `components/sections/Services.tsx` (server component), copy in `lib/sit
 **Delta:** the body copy sets on 3 lines instead of the design's 4 — our 25% column is 299px
 where the design's was ~190px scaled.
 
+### ✅ Frame 07 — "Built around how you practice" (done)
+
+Source: `images/designframes/007section4.jpg` (1920 frame, 1639 container, white page).
+Built as `components/sections/Practice.tsx` (server component), copy in `lib/site.ts` →
+`practice`.
+
+- **Section** — padding 140px / 116px, h2 two-tone (same 34px clamp as the other sections),
+  rows 116px below it, 17px apart.
+- **Row** — `grid-template-columns: minmax(0,1fr) 32.8%`, gap 13px, `align-items: stretch`
+  so the photo always matches the panel's height (design: both 761px). Row 2 mirrors via
+  swapped columns + `order`, and its gradient stops swap too.
+- **Panel gradient** — sampled on a 5×5 grid: the corners are `#cce6fd` (blue) and
+  `#fefdf9` (warm white), and the measured centre (231,241,251) matches the midpoint of a
+  straight two-stop `linear-gradient(to top right, …)` almost exactly (229,241,251).
+  **The blue corner always faces the photo** — row 1 blue-right, row 2 blue-left.
+- **Metric widget** — 538×198 (design 678×250), centred in the panel
+  (design left/right padding 205/202 → genuinely centred), everything else in the panel
+  aligns to its left edge:
+  - a **back card** peeking 17px above, inset 11px each side, `rgba(255,255,255,.45)`
+  - the front card is a fading white wash —
+    `rgba(255,255,255,.8)` → `.06` top to bottom (measured: the widget lifts the background
+    by ~15 luminance at its top and by nothing at its bottom) — plus a soft
+    `0 18px 40px rgba(38,90,160,.1)` shadow
+  - "AI" bold + "Search Visibility" medium, 16px `#2d3548`; a green `#2aba02` arrow;
+    "159" 44px `#06152a`; "%" 21px
+  - two pill bars, 96% and 54% of the content box, 8px tall
+  - `arrow.webp` (the supplied 128px blue circle, glow included) at 97px, hanging
+    39px past the widget's right edge and 5px below its bottom
+- **Copy block** — title 36px/700, body 15px/**600** (the design's body here is visibly
+  heavier than other sections), link 13px/700 uppercase in `--color-brand-deep` with an
+  arrow glyph and an underlined label.
+- **Responsive** — ≤1023px the row stacks (photo gets `aspect-ratio: 538/500`); ≤640px the
+  panel copy goes full width and the circle shrinks to 74px.
+
+**Delta:** the panel renders 651px tall against the design's scaled 603px — our body copy
+wraps to more lines in the same column. The photo stretches to match, so the row stays flush.
+
 ### ⬜ Next frames
 
-- Whatever follows the services rows — awaiting the next frame.
+- Whatever follows the practice rows — awaiting the next frame.
 - (earlier note) Whatever follows the banner — awaiting the next frame. The gap between `HeroTop` and the
   banner is currently just `HeroTop`'s 56px bottom padding (the frame is cropped at the
   banner's top edge, so the real gap is unknown).

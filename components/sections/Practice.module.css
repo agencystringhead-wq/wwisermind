@@ -1,0 +1,290 @@
+/* Frame 07 — "built around how you practice".
+   Measured off images/designframes/007section4.jpg (1920 frame, 1639 container).
+   Two rows of gradient panel + photo, mirrored. Design values × 0.793. */
+
+.section {
+  padding-block: 140px 116px;
+  background-color: var(--color-white);
+}
+
+.heading {
+  font-size: clamp(24px, 2.6vw, 34px);
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-wrap: initial;
+}
+
+.headingMuted {
+  display: block;
+  color: var(--color-heading-muted);
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  margin-top: 116px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 32.8%;
+  gap: 13px;
+  align-items: stretch;
+}
+
+.rowReverse {
+  grid-template-columns: 32.8% minmax(0, 1fr);
+}
+
+.rowReverse .panel {
+  order: 2;
+}
+
+.rowReverse .photo {
+  order: 1;
+}
+
+/* --- gradient panel ------------------------------------------------------ */
+/* the blue corner always faces the photo — sampled #cce6fd → #fefdf9 diagonally */
+.panel {
+  padding-block: 71px 96px;
+  border-radius: 20px;
+  background-image: linear-gradient(to top right, #fefdf9, #cce6fd);
+}
+
+.rowReverse .panel {
+  background-image: linear-gradient(to top right, #cce6fd, #fefdf9);
+}
+
+.panelInner {
+  width: min(538px, 82%);
+  margin-inline: auto;
+}
+
+/* --- floating metric widget ---------------------------------------------- */
+.widget {
+  position: relative;
+}
+
+/* the card peeking out behind the top edge */
+.widgetBack {
+  position: absolute;
+  top: -17px;
+  right: 11px;
+  left: 11px;
+  height: 60px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.45);
+}
+
+.widgetBody {
+  position: relative;
+  min-height: 198px;
+  padding: 32px;
+  border-radius: 20px;
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.42) 55%,
+    rgba(255, 255, 255, 0.06) 100%
+  );
+  box-shadow: 0 18px 40px rgba(38, 90, 160, 0.1);
+}
+
+.metricLabel {
+  color: #2d3548;
+  font-size: 16px;
+  font-weight: var(--fw-medium);
+  line-height: 1.2;
+}
+
+.metricLabel strong {
+  font-weight: var(--fw-bold);
+}
+
+.metric {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: 10px;
+  color: #06152a;
+}
+
+.metricArrow {
+  align-self: center;
+  width: 28px;
+  height: 33px;
+  color: #2aba02;
+}
+
+.metricValue {
+  font-size: 44px;
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.metricUnit {
+  font-size: 21px;
+  font-weight: var(--fw-bold);
+  line-height: 1;
+}
+
+.bar {
+  display: block;
+  width: 96%;
+  height: 8px;
+  margin-top: 24px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.barShort {
+  width: 54%;
+  margin-top: 12px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.widgetIcon {
+  position: absolute;
+  right: -39px;
+  bottom: -5px;
+  width: 97px;
+  height: 97px;
+}
+
+/* --- panel copy ---------------------------------------------------------- */
+.title {
+  margin-top: 47px;
+  font-size: 36px;
+  font-weight: var(--fw-bold);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.body {
+  max-width: 460px;
+  margin-top: 24px;
+  font-size: 15px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.4;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 46px;
+  color: var(--color-brand-deep);
+  font-size: 13px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.linkText {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.link:hover {
+  opacity: 0.7;
+}
+
+/* --- photo --------------------------------------------------------------- */
+.photo {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  background-color: #e6e6e6;
+}
+
+.photo img {
+  object-fit: cover;
+}
+
+/* --- responsive ---------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .section {
+    padding-block: 96px 88px;
+  }
+
+  .rows {
+    margin-top: 72px;
+  }
+
+  .panel {
+    padding-block: 56px 72px;
+  }
+
+  .panelInner {
+    width: 86%;
+  }
+
+  .title {
+    font-size: 30px;
+    margin-top: 40px;
+  }
+
+  .metricValue {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .row,
+  .rowReverse {
+    grid-template-columns: 1fr;
+    gap: 13px;
+  }
+
+  .rowReverse .panel,
+  .rowReverse .photo {
+    order: 0;
+  }
+
+  .photo {
+    aspect-ratio: 538 / 500;
+  }
+
+  .panel {
+    padding-block: 48px 56px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-block: 64px 64px;
+  }
+
+  .rows {
+    margin-top: 40px;
+  }
+
+  .panelInner {
+    width: 100%;
+    padding-inline: 22px;
+  }
+
+  .widgetBody {
+    min-height: 0;
+    padding: 22px;
+  }
+
+  .widgetIcon {
+    right: -14px;
+    width: 74px;
+    height: 74px;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .metricValue {
+    font-size: 32px;
+  }
+}
