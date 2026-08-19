@@ -205,3 +205,33 @@ export const practice = {
     },
   ],
 };
+
+export const processSection = {
+  badge: 'Our process',
+  headingLead:
+    "No mystery, no chasing, no tech headaches. One free call, an honest plan, and a clear timeline you'll know before anything starts —",
+  headingRest:
+    ' while you stay in session, we handle the build, the SEO, and everything after launch, with updates in plain English at every step.',
+  cta: { label: 'Book your free strategy session', href: '#book-a-call' },
+  steps: [
+    {
+      title: 'Step 1 — Strategy call',
+      body:
+        "One free 30-minute video call, in your timezone. We look at your current website and visibility together, and you get an honest read on what's worth fixing and what isn't. You'll leave with a clear plan and a real timeline, whether you hire us or not. And if we're not the right fit, I'll say so.",
+    },
+    {
+      title: 'Step 2 — Design & build',
+      body:
+        'You approve the plan before anything starts, and review the design before anything goes live. We handle everything in between: the design, the build, the HIPAA-aware forms, the SEO foundation, the mobile experience. Your total time investment is a couple of reviews, not a second job.',
+    },
+    {
+      title: 'Step 3 — Launch & grow',
+      body:
+        "Your site goes live on schedule, and that's the beginning, not the end. Care plans keep it fast, secure, and updated. SEO and content keep you climbing. And every month you get a growth report: what happened, what it means, what's next.",
+    },
+  ],
+  launchImage: {
+    src: '/images/launch-and-grow.webp',
+    alt: 'A therapist sitting in her practice with a notebook',
+  },
+};

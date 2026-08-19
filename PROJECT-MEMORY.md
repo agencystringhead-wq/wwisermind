@@ -96,6 +96,7 @@ components/sections/
   Problems.tsx(.module.css)    frame 05 — 3-up card slider with arrow controls
   Services.tsx(.module.css)    frame 06 — blue field, three outlined service rows
   Practice.tsx(.module.css)    frame 07 — gradient panels + metric widget + photo
+  Process.tsx(.module.css)     frame 08 — process steps, fitted blobs, arrow pattern
 lib/site.ts          siteConfig, announcement copy, mainNav items
 scripts/convert-images.mjs  png/jpg -> webp
 images/              SOURCE images (png/jpg) — user drops files here
@@ -350,9 +351,55 @@ Built as `components/sections/Practice.tsx` (server component), copy in `lib/sit
 **Delta:** the panel renders 651px tall against the design's scaled 603px — our body copy
 wraps to more lines in the same column. The photo stretches to match, so the row stays flush.
 
+### ✅ Frame 08 — "Our process", three steps (done)
+
+Source: `images/designframes/008section5.jpg` (1920 frame, 1639 container, white page).
+Built as `components/sections/Process.tsx`, copy in `lib/site.ts` → `processSection`
+(named that, not `process`, so it never shadows the Node global).
+
+- **Section** — padding **88px** / 162px, `position: relative; overflow: hidden`.
+  (Design says 116px top, and frame 07 says 116px bottom, but the two stacked to a 232px
+  white gap on the page — each frame is cropped separately so neither shows the real
+  seam. Trimmed to 72 + 88 = **160px**, in line with the other white section seams
+  (128–140px), at the user's request.)
+- **Row 1** — a `#cce6fd` pill badge (36px tall, 13px/700 uppercase), then the two-tone h2
+  17px below. `max-width: 750px` reproduces the design's 6-line wrap (the design block is
+  ~950px of a 1639 container); without it the copy ran to 10 lines.
+- **Arrow pattern** — `arrow-up.webp` (supplied). The design places the 349×258 asset at
+  its natural size with its **right edge flush on the frame edge**, top at y=424 — measured
+  by isolating low-saturation greys above the cards. Built as `right: 0; top: 336px;
+  width: 277px` (349 × 0.793), hidden below 1024px.
+- **Row 2 — two step cards**, 135px down, `1fr 1fr` with a 14px gap, `min-height: 477px`
+  (design 601 × 0.793):
+  - card 1 `#f5f5f5`, content **top**-aligned, padding 58/47
+  - card 2 `#f2f7fb`, content **bottom**-aligned, padding-left 205px — the design runs the
+    two blocks diagonally, top-left in card 1 and bottom-right in card 2
+  - both `overflow: hidden`; copy column 373px; titles 28px/700, body 15px/1.4, link 13px
+    uppercase in `--color-brand-deep`
+- **Decorative blobs** — `pattern2.webp` in card 1, `pattern1.webp` in card 2. Placement was
+  solved from **colour-feature centroids**: the teal and purple centroids of the source art
+  are matched to the same centroids measured in the design frame, which gives a scale and
+  offset directly. Average-pixel-error fitting was tried first and got card 2 badly wrong
+  (it parked the art half outside the card so its hard edge showed) — the centroid solve is
+  the one to trust, and a rendered side-by-side confirmed it.
+  - card 1: **195% wide, left −0.6%, top 62.4%**, full strength
+  - card 2: **64% wide (its natural size), top-left corner, `opacity: .5`** — the design
+    fades the art to half strength (measured 0.49 mean / 0.51 peak deviation from the card
+    colour, against the raw art)
+  - both need `max-width: none`; the global reset caps images at 100% and silently pinned
+    the first blob to the card width
+- **Row 3** — the photo at `aspect-ratio: 1641/919` with a white card overlapping the
+  bottom-left: `left: 4.9%; width: 34%; bottom: 0`, radius `20px 20px 0 0` (the design's
+  bottom corners sit flush on the photo edge).
+- **Responsive** — ≤1023px cards stack, card 2 loses its big indent, and the launch card
+  drops below the photo instead of overlapping.
+
+**Delta:** the launch card renders 331px tall against the design's scaled 259 — our body copy
+takes more lines in the same width.
+
 ### ⬜ Next frames
 
-- Whatever follows the practice rows — awaiting the next frame.
+- Whatever follows the process steps — awaiting the next frame.
 - (earlier note) Whatever follows the banner — awaiting the next frame. The gap between `HeroTop` and the
   banner is currently just `HeroTop`'s 56px bottom padding (the frame is cropped at the
   banner's top edge, so the real gap is unknown).

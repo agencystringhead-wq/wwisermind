@@ -3,7 +3,7 @@
    Two rows of gradient panel + photo, mirrored. Design values × 0.793. */
 
 .section {
-  padding-block: 140px 116px;
+  padding-block: 140px 72px;
   background-color: var(--color-white);
 }
 
