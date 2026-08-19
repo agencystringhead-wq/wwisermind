@@ -17,10 +17,17 @@
   isolation: isolate;
 }
 
-.image {
+/* Background video. Fills the banner exactly as the previous <Image fill> did, and stays
+   static on arrival — it is simply playing on load, with no entrance transition, because
+   nothing above the fold animates in. */
+.video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
-  z-index: 0;
 }
 
 /* --- left column -------------------------------------------------------- */

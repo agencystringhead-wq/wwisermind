@@ -86,12 +86,19 @@ export default function Practice() {
               </div>
 
               <div className={styles.photo}>
-                <Image
-                  src={row.image}
-                  alt={row.imageAlt}
-                  fill
-                  sizes="(max-width: 1023px) 100vw, 430px"
-                />
+                <video
+                  poster={row.background.poster}
+                  aria-label={row.background.alt}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                >
+                  {row.background.sources.map((source) => (
+                    <source key={source.src} src={source.src} type={source.type} />
+                  ))}
+                </video>
               </div>
             </div>
           ))}

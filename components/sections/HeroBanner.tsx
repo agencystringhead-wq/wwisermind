@@ -20,21 +20,27 @@ function QuoteMark() {
 }
 
 export default function HeroBanner() {
-  const { image, headingLines, brandWord, brandHref, linkLabel, linkHref, testimonial } =
+  const { background, headingLines, brandWord, brandHref, linkLabel, linkHref, testimonial } =
     heroBanner;
   const [brandBefore, brandAfter] = headingLines[1].split('{brand}');
 
   return (
     <section className={styles.section}>
       <div className={styles.banner}>
-        <Image
-          src={image.src}
-          alt={image.alt}
-          fill
-          sizes="100vw"
-          priority
-          className={styles.image}
-        />
+        <video
+          className={styles.video}
+          poster={background.poster}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+        >
+          {background.sources.map((source) => (
+            <source key={source.src} src={source.src} type={source.type} />
+          ))}
+        </video>
 
         <div className={styles.inner}>
           <div className={styles.textWrap}>

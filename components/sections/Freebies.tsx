@@ -1,9 +1,8 @@
-import Image from 'next/image';
 import { freebies } from '@/lib/site';
 import styles from './Freebies.module.css';
 
 export default function Freebies() {
-  const { badge, headingLead, headingRest, image, items } = freebies;
+  const { badge, headingLead, headingRest, background, items } = freebies;
 
   return (
     <section className={styles.section}>
@@ -30,13 +29,20 @@ export default function Freebies() {
             </div>
           </div>
 
-          <Image
-            src={image.src}
-            alt={image.alt}
-            width={656}
-            height={899}
+          <video
             className={styles.photo}
-          />
+            poster={background.poster}
+            aria-label={background.alt}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          >
+            {background.sources.map((source) => (
+              <source key={source.src} src={source.src} type={source.type} />
+            ))}
+          </video>
         </div>
       </div>
     </section>

@@ -37,7 +37,7 @@ function LinkArrow() {
 }
 
 export default function Process() {
-  const { badge, headingLead, headingRest, cta, steps, launchImage } = processSection;
+  const { badge, headingLead, headingRest, cta, steps, launchBackground } = processSection;
 
   const ctaLink = (
     <Link href={cta.href} className={styles.link}>
@@ -92,7 +92,19 @@ export default function Process() {
 
         <div className={styles.launch}>
           <div className={styles.launchImage}>
-            <Image src={launchImage.src} alt={launchImage.alt} fill sizes="100vw" />
+            <video
+              poster={launchBackground.poster}
+              aria-label={launchBackground.alt}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+            >
+              {launchBackground.sources.map((source) => (
+                <source key={source.src} src={source.src} type={source.type} />
+              ))}
+            </video>
           </div>
 
           <div className={styles.launchCard}>

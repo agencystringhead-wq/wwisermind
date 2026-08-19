@@ -9,10 +9,17 @@
   color: var(--color-white);
 }
 
+/* Same box the <Image fill> filled: `.cta` has no ratio of its own — its height comes from
+   `.ctaInner`'s padding — so the backdrop is stretched over whatever height that resolves to
+   and cropped, rather than laid out at the video's native size. */
 .ctaBackdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
-  z-index: 0;
 }
 
 .ctaInner {

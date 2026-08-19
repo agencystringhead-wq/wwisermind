@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { footerCta, footerMain, type FooterGroup } from '@/lib/site';
 import styles from './Footer.module.css';
@@ -58,7 +57,20 @@ export default function Footer() {
   return (
     <footer>
       <section className={styles.cta}>
-        <Image src={background} alt="" fill sizes="100vw" className={styles.ctaBackdrop} />
+        <video
+          className={styles.ctaBackdrop}
+          poster={background.poster}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        >
+          {background.sources.map((source) => (
+            <source key={source.src} src={source.src} type={source.type} />
+          ))}
+        </video>
 
         <div className={`container ${styles.ctaInner}`}>
           <h2 className={styles.heading}>{heading}</h2>

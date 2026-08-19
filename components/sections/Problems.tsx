@@ -1,7 +1,6 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
 import { problems } from '@/lib/site';
 import styles from './Problems.module.css';
 
@@ -98,12 +97,19 @@ export default function Problems() {
             {slides.map((card, index) => (
               <article className={styles.slide} key={`${card.title}-${index}`}>
                 <div className={styles.media}>
-                  <Image
-                    src={card.image}
-                    alt=""
-                    fill
-                    sizes="(max-width: 640px) 84vw, (max-width: 1023px) 46vw, 425px"
-                  />
+                  <video
+                    poster={card.background.poster}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    aria-hidden="true"
+                  >
+                    {card.background.sources.map((source) => (
+                      <source key={source.src} src={source.src} type={source.type} />
+                    ))}
+                  </video>
                   <span className={styles.overlay} aria-hidden="true" />
                   <p className={styles.title}>{card.title}</p>
                 </div>

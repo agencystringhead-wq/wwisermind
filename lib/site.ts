@@ -47,11 +47,12 @@ export const heroTop = {
 };
 
 export const heroBanner = {
-  image: {
-    src: '/images/hero-bg.webp',
-    width: 1905,
-    height: 976,
-    alt: '',
+  /** Decorative background media. `poster` is the still shown while the video loads and
+      the permanent fallback wherever none of `sources` can play (Safari before 17.4 has
+      no WebM). To cover those, drop an mp4 in /public/videos and append it to `sources`. */
+  background: {
+    poster: '/images/hero-bg.webp',
+    sources: [{ src: '/videos/hero-bg.webm', type: 'video/webm' }],
   },
   headingLines: [
     'My nephew’s autism therapy journey',
@@ -107,22 +108,49 @@ export const homeIntro = {
 export const problems = {
   headingLead: 'The problems we hear from',
   headingRest: 'therapists every week',
+  /** Each card's media follows the same shape as `heroBanner.background`: `poster` is the
+      still shown while the video loads and the permanent fallback wherever none of `sources`
+      can play (Safari before 17.4 has no WebM). Add an mp4 to `sources` to cover those. */
   cards: [
     {
       title: 'I’m invisible on Google.',
-      image: '/images/slider1.webp',
+      background: {
+        poster: '/images/slider1.webp',
+        sources: [
+          {
+            src: '/videos/Therapist-Invisible-on-Google-Solution-wwisermind.webm',
+            type: 'video/webm',
+          },
+        ],
+      },
       body:
         'Your website exists, but when someone searches "therapist in [your city]," it’s your competitors and Psychology Today who show up. Page two might as well be nowhere.',
     },
     {
       title: 'AI doesn’t know I exist.',
-      image: '/images/slider2.webp',
+      background: {
+        poster: '/images/slider2.webp',
+        sources: [
+          {
+            src: '/videos/AI-visibility-issue-therapist-solution-by-wwisermind.webm',
+            type: 'video/webm',
+          },
+        ],
+      },
       body:
         'When someone asks ChatGPT, Google AI or Perplexity to recommend a therapist nearby, it names other practices, or none at all. A whole new way clients search, and you’re not in the answer.',
     },
     {
       title: 'My website embarrasses me.',
-      image: '/images/slider3.webp',
+      background: {
+        poster: '/images/slider3.webp',
+        sources: [
+          {
+            src: '/videos/My-website-embrasses-me-therapist-probelm-solution-wwisermind.webm',
+            type: 'video/webm',
+          },
+        ],
+      },
       body:
         'It was fine in 2019. Now it looks dated on phones, doesn’t reflect how you actually practice, and you avoid sending people to it.',
     },
@@ -184,14 +212,26 @@ export const practice = {
   headingLead: 'Built around how you practice —',
   headingRest: "whether that's just you, or a whole team",
   metric: { label: 'AI Search Visibility', value: '159', unit: '%' },
+  /** Same media shape as `heroBanner.background`, plus `alt`: unlike the decorative hero and
+      problem-card media, these two carry a description the old `imageAlt` supplied, so it is
+      kept on the video. `poster` is the still shown while the video loads and the permanent
+      fallback wherever none of `sources` can play (Safari before 17.4 has no WebM). */
   rows: [
     {
       title: 'Group Practice',
       body:
         'Your website has to sell the whole team: every clinician, every specialty, every location, and hold up to referral sources and insurance-savvy clients checking you out. We build sites that grow with your roster and marketing that fills every calendar, not just the founder’s.',
       link: { label: 'Built for group practices', href: '#group-practices' },
-      image: '/images/grouppractice.webp',
-      imageAlt: 'A group practice team together outside their office',
+      background: {
+        poster: '/images/grouppractice.webp',
+        sources: [
+          {
+            src: '/videos/Therapist-Group-Practice-Website-Marketing-Solution-wwisermind.webm',
+            type: 'video/webm',
+          },
+        ],
+        alt: 'A group practice team together outside their office',
+      },
       photoFirst: false,
     },
     {
@@ -199,8 +239,16 @@ export const practice = {
       body:
         'You are the practice, so your website has to carry your voice, your specialty, and your credibility, and bring in clients without you becoming a marketer on the side. We build sites and marketing that work quietly while you’re in session.',
       link: { label: 'Built for solo practitioners', href: '#solo-practitioners' },
-      image: '/images/solopractice.webp',
-      imageAlt: 'A solo practitioner holding a tablet in her office',
+      background: {
+        poster: '/images/solopractice.webp',
+        sources: [
+          {
+            src: '/videos/Individual-Therapist-Practice-Website-SEO-Marketing-Solution-wwisermind.webm',
+            type: 'video/webm',
+          },
+        ],
+        alt: 'A solo practitioner holding a tablet in her office',
+      },
       photoFirst: true,
     },
   ],
@@ -230,8 +278,18 @@ export const processSection = {
         "Your site goes live on schedule, and that's the beginning, not the end. Care plans keep it fast, secure, and updated. SEO and content keep you climbing. And every month you get a growth report: what happened, what it means, what's next.",
     },
   ],
-  launchImage: {
-    src: '/images/launch-and-grow.webp',
+  /** Same media shape as `heroBanner.background`, plus `alt` — as in `practice.rows`, this
+      one carries a real description rather than being decorative, so it is kept on the video.
+      `poster` is the still shown while the video loads and the permanent fallback wherever
+      none of `sources` can play (Safari before 17.4 has no WebM). */
+  launchBackground: {
+    poster: '/images/launch-and-grow.webp',
+    sources: [
+      {
+        src: '/videos/wwisermind-easy-process-therapist-business-growth.webm',
+        type: 'video/webm',
+      },
+    ],
     alt: 'A therapist sitting in her practice with a notebook',
   },
 };
@@ -280,7 +338,20 @@ export const freebies = {
   badge: 'Freebies',
   headingLead: 'Free resources, no strings —',
   headingRest: " take what's useful, whether we ever work together.",
-  image: { src: '/images/freebies.webp', alt: 'A therapist smiling with her eyes closed' },
+  /** Same media shape as `heroBanner.background`, plus `alt` — like `practice.rows`, this one
+      carries a real description rather than being decorative, so it is kept on the video.
+      `poster` is the still shown while the video loads and the permanent fallback wherever
+      none of `sources` can play (Safari before 17.4 has no WebM). */
+  background: {
+    poster: '/images/freebies.webp',
+    sources: [
+      {
+        src: '/videos/freebies-growth-solutions-therapist-wwisermind.webm',
+        type: 'video/webm',
+      },
+    ],
+    alt: 'A therapist smiling with her eyes closed',
+  },
   items: [
     {
       title: 'The AI Visibility Guide for Therapists',
@@ -321,7 +392,20 @@ const PLACEHOLDER_ANSWER =
   'Placeholder answer — real copy to come. It sits in the accordion so the open and closed states can be checked, and it wraps to a couple of lines the way a real answer will.';
 
 export const faq = {
-  image: { src: '/images/faq.webp', alt: 'A therapist talking during a session' },
+  /** Same media shape as `heroBanner.background`, plus `alt` — like `practice.rows`, this one
+      carries a real description rather than being decorative, so it is kept on the video.
+      `poster` is the still shown while the video loads and the permanent fallback wherever
+      none of `sources` can play (Safari before 17.4 has no WebM). */
+  background: {
+    poster: '/images/faq.webp',
+    sources: [
+      {
+        src: '/videos/Therapist-Frequently-Asked-Questions-wwisermind.webm',
+        type: 'video/webm',
+      },
+    ],
+    alt: 'A therapist talking during a session',
+  },
   headingLead: 'Questions therapists actually ask —',
   headingRest: ' answered plainly, before you have to ask them.',
   items: [
@@ -336,7 +420,13 @@ export const faq = {
 };
 
 export const footerCta = {
-  background: '/images/cta-bg.webp',
+  /** Decorative backdrop, same media shape as `heroBanner.background`: `poster` is the still
+      shown while the video loads and the permanent fallback wherever none of `sources` can
+      play (Safari before 17.4 has no WebM). Add an mp4 to `sources` to cover those. */
+  background: {
+    poster: '/images/cta-bg.webp',
+    sources: [{ src: '/videos/Get-started-with-wwsiermind.webm', type: 'video/webm' }],
+  },
   heading: 'Ready when you are.',
   bodyLead: 'One free call. No pitch deck, no pressure.',
   bodyRest:

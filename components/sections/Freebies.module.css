@@ -85,10 +85,15 @@
 }
 
 /* --- photo ---------------------------------------------------------------- */
+/* The <Image> carried its 656x899 as width/height attributes and drew at that ratio under
+   `height: auto`. A <video> would otherwise lay out at the file's own size, so the ratio is
+   pinned here instead and the frame keeps the exact box the photo occupied. */
 .photo {
   width: 100%;
   height: auto;
+  aspect-ratio: 656 / 899;
   border-radius: 20px;
+  object-fit: cover;
 }
 
 /* --- responsive ------------------------------------------------------------ */

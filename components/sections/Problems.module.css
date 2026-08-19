@@ -94,7 +94,13 @@
   background-color: #d9d9d9;
 }
 
-.media img {
+/* Same box the <Image fill> filled: the media frame is sized by its aspect-ratio above, and
+   the video is stretched over it and cropped rather than being laid out at its native size. */
+.media video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 

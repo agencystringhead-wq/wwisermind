@@ -1,13 +1,12 @@
 'use client';
 
 import { useId, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { faq } from '@/lib/site';
 import styles from './Faq.module.css';
 
 export default function Faq() {
-  const { image, headingLead, headingRest, items, link } = faq;
+  const { background, headingLead, headingRest, items, link } = faq;
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const baseId = useId();
 
@@ -15,13 +14,20 @@ export default function Faq() {
     <section className={styles.section}>
       <div className="container">
         <div className={styles.grid}>
-          <Image
-            src={image.src}
-            alt={image.alt}
-            width={656}
-            height={899}
+          <video
             className={styles.photo}
-          />
+            poster={background.poster}
+            aria-label={background.alt}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          >
+            {background.sources.map((source) => (
+              <source key={source.src} src={source.src} type={source.type} />
+            ))}
+          </video>
 
           <div className={styles.column}>
             <h2 className={styles.heading}>

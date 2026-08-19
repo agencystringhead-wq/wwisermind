@@ -202,7 +202,14 @@
   background-color: #e6e6e6;
 }
 
-.photo img {
+/* Same box the <Image fill> filled: `.photo` is sized by the row (and by its aspect-ratio
+   under 1024px), and the video is stretched over it and cropped rather than laid out at its
+   native size. */
+.photo video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
