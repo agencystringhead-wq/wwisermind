@@ -327,3 +327,24 @@ where the design's was ~190px scaled.
 - Don't run `npm run build` while `npm run dev` is running — they share `.next` and the dev
   server starts throwing `Cannot find module './xxx.js'` / 500s. Fix: stop dev, `rm -rf .next`,
   start dev again.
+
+## 8. Deployment
+
+- **GitHub:** https://github.com/agencystringhead-wq/wwisermind (public, `main`).
+- **Build:** the site is fully static — `next.config.mjs` sets `output: 'export'` and
+  `images.unoptimized: true`, so `npm run build` writes plain HTML to `out/` (~1.6 MB).
+  Every image is already WebP and correctly sized by `npm run images`, and Inter is
+  self-hosted into `_next/static/media`, so nothing is lost by turning the optimizer off
+  and the page makes no third-party requests.
+- **Node:** pinned to 22 via `.node-version` (Cloudflare Pages reads it).
+- **Cloudflare Pages settings** (Connect to Git → this repo):
+
+  | Setting | Value |
+  | --- | --- |
+  | Framework preset | Next.js (Static HTML Export) |
+  | Build command | `npm run build` |
+  | Build output directory | `out` |
+  | Production branch | `main` |
+
+  Wrangler is installed but its token is expired; connecting Pages needs an interactive
+  `wrangler login` or the dashboard.
