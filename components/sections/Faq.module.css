@@ -1,0 +1,134 @@
+/* Frame 13 — FAQ.
+   Measured off images/designframes/013section10.jpg (1920 frame, 1639 container).
+   Photo 39.8% and questions 46.1%, with the design's 14% gutter between. × 0.793. */
+
+.section {
+  padding-block: 159px 197px;
+  background-color: var(--color-white);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 39.8% 46.1%;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.photo {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+/* the design starts the copy 35px below the photo's top edge */
+.column {
+  margin-top: 35px;
+}
+
+.heading {
+  font-size: clamp(24px, 2.6vw, 34px);
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-wrap: initial;
+}
+
+.headingMuted {
+  color: var(--color-heading-muted);
+}
+
+.list {
+  margin-top: 73px;
+}
+
+.item + .item {
+  border-top: 1px solid #abb2bc;
+}
+
+.question {
+  display: block;
+  width: 100%;
+  padding-block: 29px;
+  font-size: 15px;
+  font-weight: var(--fw-bold);
+  line-height: 1.35;
+  text-align: left;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.item:first-child .question {
+  padding-top: 0;
+}
+
+.question:hover {
+  opacity: 0.65;
+}
+
+.answer {
+  overflow: hidden;
+  max-width: 62ch;
+  padding-bottom: 29px;
+  font-size: 15px;
+  font-weight: var(--fw-regular);
+  line-height: 1.5;
+  color: var(--color-body-muted);
+}
+
+.link {
+  display: inline-block;
+  margin-top: 56px;
+  color: var(--color-brand);
+  font-size: 15px;
+  font-weight: var(--fw-semibold);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.link:hover {
+  opacity: 0.7;
+}
+
+/* --- responsive ----------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .section {
+    padding-block: 96px 120px;
+  }
+
+  .list {
+    margin-top: 48px;
+  }
+
+  .question {
+    padding-block: 22px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .photo {
+    max-width: 520px;
+  }
+
+  .column {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-block: 56px 64px;
+  }
+
+  .list {
+    margin-top: 36px;
+  }
+
+  .link {
+    margin-top: 40px;
+  }
+}

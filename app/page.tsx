@@ -1,3 +1,4 @@
+import Faq from '@/components/sections/Faq';
 import Founder from '@/components/sections/Founder';
 import Freebies from '@/components/sections/Freebies';
 import GetFound from '@/components/sections/GetFound';
@@ -24,6 +25,7 @@ export default function HomePage() {
       <Founder />
       <Freebies />
       <GetFound />
+      <Faq />
       {/* Next frames get appended here. */}
     </>
   );

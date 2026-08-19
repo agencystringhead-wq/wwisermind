@@ -101,6 +101,7 @@ components/sections/
   Founder.tsx(.module.css)     frame 10 — grey band, portrait + founder quote
   Freebies.tsx(.module.css)    frame 11 — badge + h2 + three-row list beside a photo
   GetFound.tsx(.module.css)    frame 12 — full-bleed gradient, directory + AI logos
+  Faq.tsx(.module.css)         frame 13 — photo + accordion (client)
 lib/site.ts          siteConfig, announcement copy, mainNav items
 scripts/convert-images.mjs  png/jpg -> webp
 images/              SOURCE images (png/jpg) — user drops files here
@@ -503,9 +504,32 @@ Source: `images/designframes/012section9.jpg` (1920 frame, 1639 container). Buil
 
 Section measures 667 tall against the design's scaled 658.
 
+### ✅ Frame 13 — FAQ (done)
+
+Source: `images/designframes/013section10.jpg` (1920 frame, 1639 container, white page).
+Built as `components/sections/Faq.tsx` (client component — accordion state), copy in
+`lib/site.ts` → `faq`.
+
+- **Section** — padding 159px / 197px, `grid-template-columns: 39.8% 46.1%` with
+  `justify-content: space-between` (the design leaves a 14% gutter).
+- **Photo** — `faq.webp` at its natural 656×899 → 517×709, 20px radius, 333 kB → **57 kB**.
+- **Copy column** — starts 35px below the photo's top edge, as the design does. Two-tone
+  h2 wrapping to three lines, list 73px below, link 56px under the last question.
+- **Accordion** — each question is a real `<button>` with `aria-expanded`/`aria-controls`
+  and the answer is a labelled region. One panel open at a time; clicking the open one
+  closes it. 15px/700 questions on 29px of padding either side of a 1px `#abb2bc` rule
+  (rules between items only, none top or bottom).
+- **Answers are placeholder copy** (`PLACEHOLDER_ANSWER` in `lib/site.ts`) — swap in real
+  answers there and nothing else needs touching.
+- **No open/close icon** — the frame shows none, so none was added. Worth revisiting: the
+  rows give no affordance that they expand.
+
+Measured against the design: photo 517×709 at top 159, h2 top 194 (scaled 194), columns at
+0 / 53.9%, section 1111 tall (scaled 1069).
+
 ### ⬜ Next frames
 
-- Whatever follows the get-found logos — awaiting the next frame.
+- Whatever follows the FAQ — awaiting the next frame.
 - (earlier note) Whatever follows the banner — awaiting the next frame. The gap between `HeroTop` and the
   banner is currently just `HeroTop`'s 56px bottom padding (the frame is cropped at the
   banner's top edge, so the real gap is unknown).

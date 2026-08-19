@@ -316,3 +316,21 @@ export const getFound = {
   ],
   link: { label: 'See Full Directory List', href: '#directories' },
 };
+
+const PLACEHOLDER_ANSWER =
+  'Placeholder answer — real copy to come. It sits in the accordion so the open and closed states can be checked, and it wraps to a couple of lines the way a real answer will.';
+
+export const faq = {
+  image: { src: '/images/faq.webp', alt: 'A therapist talking during a session' },
+  headingLead: 'Questions therapists actually ask —',
+  headingRest: ' answered plainly, before you have to ask them.',
+  items: [
+    { question: "You're based in India. How does that work for US and Australian therapists?", answer: PLACEHOLDER_ANSWER },
+    { question: 'Have you worked with therapists before?', answer: PLACEHOLDER_ANSWER },
+    { question: 'What makes wwisermind different from other agencies?', answer: PLACEHOLDER_ANSWER },
+    { question: "I'm not tech-savvy. Will I need to manage anything?", answer: PLACEHOLDER_ANSWER },
+    { question: 'Do you handle HIPAA compliance?', answer: PLACEHOLDER_ANSWER },
+    { question: "Can I cancel if it's not working?", answer: PLACEHOLDER_ANSWER },
+  ],
+  link: { label: 'See Full Directory List', href: '#faq' },
+};
