@@ -244,145 +244,654 @@
 }
 
 /* ==========================================================================
-   Part 2 — main footer, measured off images/designframes/main-footer.jpg
-   (1920 frame, 1639 container). Three rows: the link grid, the social row and
-   the clipped watermark. Design values × 0.793.
+   Part 2 — main footer, measured off design-references/wwiserfooter.png.
+
+   The reference is a 1920px export of a 1560px design wrapper. Its content band runs
+   x44→1875 — 1832px — which resolves to a clean 8-column grid of 208px columns and 24px
+   gutters; divided by the 1.1744 export scale that is the design's own 177px / 20.4px grid
+   summing to 1560. This site's wrapper is 1300px, so the grid is that design × 0.833:
+   eight 147.6px columns with a 17px gutter, which `repeat(8, 1fr)` + `column-gap: 17px`
+   produces exactly. Every horizontal position below is a column edge from the reference,
+   and every vertical offset is a reference y × 0.7096 (ref px → 1300 wrapper).
+
+   Type is the one thing NOT scaled by 0.833. The design's own sizes are already small —
+   14px links, 10.5px labels — and taking another 17% off puts labels near 8px, which is
+   below what anyone should have to read. Font sizes therefore hold the design's 1560px
+   values while the layout around them is scaled, so the hierarchy is the reference's and
+   the copy stays legible.
    ========================================================================== */
 
 .main {
-  overflow: hidden;
-  padding-top: 148px;
-  background-color: #1a1a1a;
-  color: var(--color-white);
+  padding-top: 36px;
+  padding-bottom: 56px;
+  background-color: var(--color-white);
+  color: var(--color-ink);
 }
 
-/* --- row 1: brand column + 3 x 3 link grid -------------------------------- */
 .grid {
   display: grid;
-  grid-template-columns: 39% 25% 24% 12%;
-  row-gap: 65px;
+  grid-template-columns: repeat(8, 1fr);
+  column-gap: 17px;
+  row-gap: 0; /* rows are spaced by each item's own margin — see the notes per row */
   align-items: start;
 }
 
+/* Shared hairline. #e7e7e7 is the divider colour sampled off the reference. */
+.ruleShort,
+.ruleLong,
+.ruleTabs,
+.ruleFull {
+  height: 1px;
+  background-color: #e7e7e7;
+}
+
+/* --- row 1: tagline, over a rule that stops short --------------------------- */
+.tagline {
+  grid-column: 1 / 3;
+  grid-row: 1;
+  color: #535353;
+  font-size: 14px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+/* The reference's first rule is two segments, not one: a short one under the tagline
+   (x44→369, so 231px here) and a long one from column 3 to the right edge. */
+.ruleShort {
+  grid-column: 1 / 3;
+  grid-row: 2;
+  max-width: 231px;
+  margin-top: 16px;
+}
+
+.ruleLong {
+  grid-column: 3 / -1;
+  grid-row: 2;
+  margin-top: 16px;
+}
+
+/* --- row 2: brand rail | three link columns | schedule a call ---------------- */
 .brand {
+  grid-column: 1 / 3;
+  grid-row: 3;
+  margin-top: 26px;
+}
+
+.logoLink {
+  display: inline-block;
+}
+
+.logo {
+  width: auto;
+  height: 20px;
+}
+
+.social {
+  display: flex;
+  gap: 13px;
+  margin-top: 26px;
+}
+
+.socialLink {
+  display: block;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.socialLink img {
+  width: 20px;
+  height: 20px;
+}
+
+.socialLink:hover {
+  opacity: 0.55;
+}
+
+.navColumns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* Columns 3-6 rather than the reference's 3-5, and a gutter and a half between them: at
+     the reference's pitch a 110px label sat in a 147px column and the three read as one
+     block. This spends the empty column that separated them from the CTA, which has enough
+     air of its own — the widest label still clears the button by ~150px. */
+  column-gap: 24px;
+  grid-column: 3 / 7;
+  grid-row: 3;
+  margin-top: 70px;
+}
+
+.navColumn {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  grid-area: 1 / 1 / 4 / 2;
-  padding-right: 40px;
-  height: 100%;
+  align-items: flex-start;
+  gap: 8px;
 }
 
-.headline {
-  font-size: clamp(24px, 2.6vw, 34px);
-  font-weight: var(--fw-bold);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-}
-
-.contact {
-  margin-top: 50px;
-  font-size: 15px;
-  font-weight: var(--fw-regular);
-  line-height: 1.45;
-}
-
-.contact a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.copyright {
-  margin-top: 48px;
+.navLink {
+  color: #535353;
   font-size: 14px;
-  font-weight: var(--fw-regular);
-  line-height: 1.5;
+  font-weight: var(--fw-semibold);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  transition: color var(--dur) var(--ease);
 }
 
-.copyright a {
+.navLink:hover {
+  color: var(--color-ink);
+}
+
+.ctaBlock {
+  grid-column: 7 / -1;
+  grid-row: 3;
+  margin-top: 70px;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 38px;
+  padding-inline: 20px;
+  border-radius: var(--radius-pill);
+  background-color: #111111;
+  color: var(--color-white);
+  font-size: 11px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  transition: background-color var(--dur) var(--ease);
+}
+
+.ctaButton:hover {
+  background-color: var(--color-brand);
+}
+
+.ctaIcon {
+  width: 15px;
+  height: 15px;
+}
+
+.ctaNote {
+  margin-top: 26px;
+  color: var(--color-muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.ctaNote a {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
-/* --- link groups ---------------------------------------------------------- */
-.groupTitle {
-  color: #9a9a9a;
-  font-size: 13px;
-  font-weight: var(--fw-regular);
-  letter-spacing: 0.06em;
+.ctaNote a:hover {
+  color: var(--color-ink);
+}
+
+/* --- row 3: the Services / AI Tools tab row --------------------------------- */
+.tabs {
+  grid-column: 3 / -1;
+  grid-row: 4;
+  margin-top: 72px;
+}
+
+/* Track and thumb, per the reference: a #f3f3f3 pill holding a white pill on the
+   selected label. The thumb is the button's own background, so it moves with selection
+   without a second animated element. */
+.tabList {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: var(--radius-pill);
+  background-color: #f3f3f3;
+}
+
+.tab {
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  color: var(--color-muted);
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.11em;
+  line-height: 1;
+  text-transform: uppercase;
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.tab:hover {
+  color: var(--color-ink);
+}
+
+.tab[aria-selected='true'] {
+  background-color: var(--color-white);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  color: var(--color-ink);
+}
+
+/* The ticker viewport. It clips the track, and the mask feathers both ends so items arrive
+   and leave rather than popping at a hard edge. */
+.marquee {
+  margin-top: 16px;
+  overflow: hidden;
+  animation: tabFade 0.45s var(--ease) both;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent);
+}
+
+/* Two copies of the list side by side, slid left by exactly half the track — so the moment
+   the first copy leaves, the second is already in its place and the loop has no seam. Only
+   `transform` animates, so this runs on the compositor and never repaints.
+
+   `animation-duration` is set inline by the component from the measured track width, which
+   is what holds the speed constant however many items a tab carries. */
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  animation-name: marqueeScroll;
+  animation-duration: 40s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+/* Stop under the cursor: an item that slides away as you reach for it cannot be clicked, and
+   the hover colour below would never be seen. */
+@media (hover: hover) and (pointer: fine) {
+  .marquee:hover .marqueeTrack {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.tabItems {
+  display: flex;
+  align-items: baseline;
+}
+
+/* Every item carries its own trailing separator rather than the dot living between pairs.
+   That keeps the rhythm identical where one copy of the list meets the next, which is the
+   join the loop runs through. */
+.tabItem {
+  display: flex;
+  align-items: baseline;
+  color: #d9d9d9;
+  font-size: 22px;
+  font-weight: var(--fw-medium);
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+}
+
+.tabItem::after {
+  content: '.';
+  padding-inline: 22px;
+  color: inherit;
+}
+
+.tabLink {
+  transition: color var(--dur) var(--ease);
+}
+
+.tabLink:hover {
+  color: var(--color-brand);
+}
+
+/* Motion off: park the track and let the viewport show the head of the list. */
+@media (prefers-reduced-motion: reduce) {
+  .marqueeTrack {
+    animation: none;
+  }
+}
+
+@keyframes tabFade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.ruleTabs {
+  grid-column: 3 / -1;
+  grid-row: 5;
+  margin-top: 20px;
+}
+
+/* --- rows 4/5: thumbnail | office | reach | love note + world clock ---------- */
+/* The reference runs these as two aligned rows: the second labels ("accepting projects
+   from", "office hours") share a baseline across both columns, which is why the blocks are
+   placed on explicit grid rows rather than stacked inside one flex column each. */
+/* 64px, not the reference's 34px equivalent, so the ticker reads as its own band rather
+   than as the top of this row. */
+.thumbnail {
+  grid-column: 1 / 3;
+  grid-row: 6 / 8;
+  width: 100%;
+  max-width: 231px;
+  height: auto;
+  margin-top: 64px;
+  /* the corner treatment the rest of the site's imagery uses */
+  border-radius: 30px;
+}
+
+.detailOffice {
+  grid-column: 3 / 5;
+  grid-row: 6;
+  margin-top: 64px;
+}
+
+.detailReach {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  grid-column: 5 / 7;
+  grid-row: 6;
+  margin-top: 64px;
+}
+
+.detailAccepting {
+  grid-column: 3 / 5;
+  grid-row: 7;
+  margin-top: 52px;
+}
+
+.detailHours {
+  grid-column: 5 / 7;
+  grid-row: 7;
+  margin-top: 52px;
+}
+
+.aside {
+  grid-column: 7 / -1;
+  grid-row: 6 / 8;
+  margin-top: 64px;
+}
+
+.detailLabel {
+  color: var(--color-muted);
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.08em;
   line-height: 1.4;
   text-transform: uppercase;
 }
 
-.groupTitleSecond {
-  margin-top: 54px;
+.detailValue {
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
 }
 
-.links {
+.detailValue a:hover {
+  color: var(--color-brand);
+}
+
+.detailLink {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.detailLink:hover {
+  color: var(--color-brand);
+}
+
+.detailArrow {
+  text-decoration: none;
+}
+
+/* --- the love note and the world clock -------------------------------------- */
+/* No longer a flex row with the icon in a gutter — the heart sits in the sentence where the
+   word "love" was, so this is ordinary running text with an inline image in it. */
+.love {
+  color: var(--color-muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.loveIcon {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  /* seated on the text's own baseline rather than hanging below it */
+  vertical-align: -0.1em;
+  margin-inline: 1px;
+}
+
+/* Measured off the reference at pengon.dev, whose four clocks are 64px columns 21px apart —
+   318px, near enough identical to the 312px this column already had, so the numbers transfer
+   straight across.
+
+   Its restraint is the point: the time in mono at 12.8px on a line-height of exactly 1 so the
+   digits sit as a tight block, the city in the body face a size down and grey, and only the
+   region label tracked out. Nothing is bold, and the three lines step down in weight of
+   colour rather than in size. */
+.clocks {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 21px;
+  margin-top: 30px;
+}
+
+.clock {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-  margin-top: 48px;
 }
 
-.link {
-  color: #9a9a9a;
-  font-size: 14px;
+.clockTime {
+  font-family: var(--font-mono);
+  font-size: 12.8px;
+  font-weight: var(--fw-regular);
+  /* the reason the reference sets a clock in mono: a digit change never reflows the row */
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: 0;
+  color: #0a0a0a;
+}
+
+.clockCity {
+  margin-top: 7px;
+  color: #5f5d57;
+  font-size: 11px;
+  font-weight: var(--fw-regular);
+  line-height: 1.55;
+}
+
+.clockRegion {
+  color: #9a958c;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: var(--fw-regular);
+  letter-spacing: 0.12em;
+  line-height: 1.55;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* --- row 6: legal ----------------------------------------------------------- */
+.ruleFull {
+  grid-column: 1 / -1;
+  grid-row: 8;
+  margin-top: 44px;
+}
+
+.copyright {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  grid-column: 1 / 3;
+  grid-row: 9;
+  margin-top: 20px;
+  color: #414141;
+  font-size: 11px;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.06em;
   line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.legalLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px 32px;
+  grid-column: 3 / -1;
+  grid-row: 9;
+  margin-top: 20px;
+  color: #414141;
+  font-size: 11px;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.legalLinks a {
   transition: color var(--dur) var(--ease);
 }
 
-.link:hover {
-  color: var(--color-white);
+.legalLinks a:hover {
+  color: var(--color-ink);
 }
 
-.linkUpper {
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-size: 13px;
-}
+/* ==========================================================================
+   Part 3 — the closing panel: looping video, dotted headline, clipped word.
 
-.lines {
-  margin-top: 26px;
-  color: #9a9a9a;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-/* --- row 2: social -------------------------------------------------------- */
-.social {
+   Full-bleed, as in the reference, where it runs the whole 1920 frame. Its height is the
+   reference's own: 1012px of a 1920 frame, so 52.7vw, clamped at both ends.
+   ========================================================================== */
+.media {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 24px 40px;
-  margin-top: 193px;
+  flex-direction: column;
+  min-height: clamp(520px, 52.7vw, 1080px);
+  overflow: hidden;
+  /* Stands in for a poster frame, which the repo has no still for. These are the video's own
+     opening frame averaged into three bands — sky, haze, hillside — so the panel holds the
+     right shape and tone for the moment before the footage paints. */
+  background-image: linear-gradient(
+    to bottom,
+    rgb(231, 228, 219) 0%,
+    rgb(167, 160, 132) 50%,
+    rgb(53, 58, 41) 100%
+  );
 }
 
-.socialLink {
-  font-size: clamp(24px, 2.8vw, 36px);
-  font-weight: var(--fw-semibold);
-  letter-spacing: -0.01em;
-  transition: opacity var(--dur) var(--ease);
+.mediaVideo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.socialLink:hover {
-  opacity: 0.7;
+/* The reference does not butt the white footer against the photograph — it dissolves into
+   it, reaching the untouched image about 40% down (measured: still 240/255 at y1400, full
+   image by y1440). This is that fade, and it is also what keeps the black headline legible
+   over a frame whose own top is dark. */
+.mediaWash {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.98) 8%,
+    rgba(255, 255, 255, 0.88) 18%,
+    rgba(255, 255, 255, 0.55) 30%,
+    rgba(255, 255, 255, 0) 44%
+  );
 }
 
-/* --- row 3: clipped watermark --------------------------------------------- */
+/* --- the dotted headline ---------------------------------------------------- */
+/* The canvas replaces the heading once it has painted, so the padding that sets the line
+   down from the top of the panel lives here rather than on the heading itself. */
+.dotStage {
+  position: relative;
+  z-index: 2;
+  padding: 5vw var(--container-gutter) 0;
+}
+
+/* The dot field. `pointer-events: none` because it is decoration sitting over the panel —
+   the component listens on the window for the cursor, so it needs no hit area of its own. */
+.dotCanvas {
+  display: block;
+  max-width: 100%;
+  margin-inline: auto;
+  pointer-events: none;
+}
+
+/* Typography for the line. This element is what the canvas measures itself against — size,
+   weight, family, tracking and case all come off its computed style — and it is what a
+   reader without JS, or the moment before hydration, actually sees. */
+.dotHeadline {
+  /* The wwiserfooter reference set this at 3.15vw, which spanned 64% of the frame. The dot
+     treatment on unitedcarriers.com runs its equivalent line at 95% of the frame, and that
+     scale is what makes the dots read as a texture rather than as noise — 4.2vw puts this
+     line at ~95% of the 1300 wrapper to match. */
+  font-size: clamp(30px, 4.2vw, 88px);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+/* The letterforms are the real text with a dot grid clipped to the glyphs, so the headline
+   stays selectable, searchable and readable to a screen reader. The grid is measured in em,
+   so the dot pitch tracks the font size at every viewport instead of coarsening as the type
+   grows. */
+.dotText {
+  position: relative;
+  display: inline-block;
+  background-image: radial-gradient(circle 0.0255em at 50% 50%, #0b0b0b 0 92%, transparent 94%);
+  background-size: 0.075em 0.075em;
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .dotText {
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/* --- the clipped watermark -------------------------------------------------- */
 .watermarkBox {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
   container-type: inline-size;
 }
 
 .watermark {
-  margin-top: 110px;
   overflow: hidden;
   /* At weight 900 the ink starts .079em below the box top and the baseline sits at .864em,
-     so the letters are .795em tall. Clipping at .83em shows ~94% of them and shaves only a
-     sliver off their feet. */
-  height: 0.83em;
-  color: #3c3c3c;
+     so the letters are .795em tall. Cutting at .556em keeps .477em of that — the top 60% —
+     and drops the rest off the bottom of the frame, the partial crop the reference ends on
+     rather than a wordmark merely kissed at the feet. */
+  height: 0.556em;
+  color: var(--color-white);
   /* Sized so the word's *ink* spans the container edge to edge. Measured on the loaded font
      at weight 900: the ink is 5.9915em wide, so font-size = container / 5.9915 (16.69%).
      cqw resolves against the container itself; vw counts the scrollbar, so it is only the
@@ -403,70 +912,216 @@
   white-space: nowrap;
 }
 
-/* --- responsive ------------------------------------------------------------ */
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+/* Below the design width the eight columns still hold, but the vertical offsets — which are
+   reference measurements rather than content-driven — are pulled in. */
 @media (max-width: 1279px) {
-  .main {
-    padding-top: 96px;
+  .navColumns,
+  .ctaBlock {
+    margin-top: 54px;
   }
 
-  .grid {
-    grid-template-columns: 34% 24% 23% 19%;
-    row-gap: 56px;
+  .tabs {
+    margin-top: 56px;
   }
 
-  .social {
-    margin-top: 120px;
+  .tabItem {
+    font-size: 20px;
   }
 
-  .watermark {
-    margin-top: 80px;
-  }
-
-  .links {
-    margin-top: 32px;
-  }
-
-  .groupTitleSecond {
-    margin-top: 36px;
+  .thumbnail,
+  .detailOffice,
+  .detailReach,
+  .aside {
+    margin-top: 52px;
   }
 }
 
+/* The eight-column grid stops working once a column is narrower than a two-word link, so
+   from here the footer is four columns and everything that sat in columns 3-8 folds under
+   the rail. */
 @media (max-width: 1023px) {
   .grid {
-    grid-template-columns: 1fr 1fr;
-    row-gap: 48px;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;
+  }
+
+  .tagline,
+  .ruleShort {
+    grid-column: 1 / 3;
+  }
+
+  .ruleShort {
+    max-width: none;
+  }
+
+  .ruleLong {
+    grid-column: 3 / -1;
   }
 
   .brand {
-    grid-area: auto;
-    padding-right: 0;
+    grid-column: 1 / -1;
+  }
+
+  .navColumns {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    margin-top: 48px;
+  }
+
+  .ctaBlock {
+    grid-column: 1 / -1;
+    grid-row: 5;
+    margin-top: 40px;
+  }
+
+  .tabs {
+    grid-column: 1 / -1;
+    grid-row: 6;
+    margin-top: 48px;
+  }
+
+  .ruleTabs {
+    grid-column: 1 / -1;
+    grid-row: 7;
+  }
+
+  .thumbnail {
+    grid-column: 1 / -1;
+    grid-row: 8;
+    max-width: 320px;
+  }
+
+  .detailOffice {
+    grid-column: 1 / 3;
+    grid-row: 9;
+  }
+
+  .detailReach {
+    grid-column: 3 / -1;
+    grid-row: 9;
+  }
+
+  .detailAccepting {
+    grid-column: 1 / 3;
+    grid-row: 10;
+  }
+
+  .detailHours {
+    grid-column: 3 / -1;
+    grid-row: 10;
+  }
+
+  .aside {
+    grid-column: 1 / -1;
+    grid-row: 11;
+    margin-top: 44px;
+  }
+
+  .ruleFull {
+    grid-row: 12;
   }
 
   .copyright {
-    margin-top: 32px;
+    grid-column: 1 / -1;
+    grid-row: 13;
+  }
+
+  .legalLinks {
+    grid-column: 1 / -1;
+    grid-row: 14;
+    margin-top: 14px;
+  }
+
+  .dotStage {
+    padding-top: 8vw;
+  }
+
+  .dotHeadline {
+    font-size: clamp(26px, 5.4vw, 56px);
   }
 }
 
 @media (max-width: 640px) {
   .main {
-    padding-top: 64px;
+    padding-top: 28px;
+    padding-bottom: 44px;
   }
 
   .grid {
-    grid-template-columns: 1fr;
-    row-gap: 40px;
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .contact {
-    margin-top: 28px;
+  .tagline,
+  .ruleShort,
+  .ruleLong,
+  .brand,
+  .navColumns,
+  .ctaBlock,
+  .tabs,
+  .ruleTabs,
+  .thumbnail,
+  .detailOffice,
+  .detailReach,
+  .detailAccepting,
+  .detailHours,
+  .aside,
+  .ruleFull,
+  .copyright,
+  .legalLinks {
+    grid-column: 1 / -1;
   }
 
-  .social {
-    margin-top: 72px;
-    gap: 16px 24px;
+  .ruleLong {
+    display: none;
   }
 
-  .watermark {
-    margin-top: 48px;
+  /* stacked under the copyright rather than pushed to the far edge of a narrow column */
+  .legalLinks {
+    justify-content: flex-start;
+  }
+
+  .navColumns {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 28px;
+    margin-top: 40px;
+  }
+
+  .tabItem {
+    font-size: 17px;
+  }
+
+  .tabItem::after {
+    padding-inline: 14px;
+  }
+
+  /* four clock columns will not fit a phone; two rows of two do */
+  .clocks {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 12px;
+  }
+
+  .thumbnail {
+    max-width: none;
+  }
+
+  .detailReach,
+  .detailAccepting,
+  .detailHours {
+    margin-top: 32px;
+  }
+
+  .media {
+    min-height: clamp(420px, 116vw, 720px);
+  }
+
+  .dotStage {
+    padding-top: 15vw;
+  }
+
+  .dotHeadline {
+    font-size: clamp(24px, 8.4vw, 44px);
   }
 }

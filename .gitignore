@@ -14,3 +14,4 @@ scratch/
 # Leading slash matters: a bare "images/" would also swallow public/images/,
 # which is the folder the site actually ships.
 /images/
+/design-references/

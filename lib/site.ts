@@ -443,109 +443,159 @@ export const footerCta = {
   },
 };
 
-export type FooterGroup = {
-  title?: string;
-  title2?: string;
-  links?: NavItem[];
-  lines?: string[];
-  uppercaseLinks?: boolean;
-};
+/* ==========================================================================
+   Main footer — measured off design-references/wwiserfooter.png.
 
+   The reference is a 1920px export of a 1560px design wrapper: its content band runs
+   x44→1875 (1832px), which is an 8-column grid of 208px columns and 24px gutters —
+   1560px once divided by the 1.1744 export scale (177px columns, 20.4px gutters).
+   This site's wrapper is 1300px, so every position and gap below is that design × 0.833
+   and the same 8-column grid survives as `repeat(8, 1fr)` + a 17px gap.
+   ========================================================================== */
 export const footerMain = {
-  headline: ['Be found. Be trusted.', 'Stay booked.'],
-  contactLabel: 'New Business',
-  email: 'admin@wwisermind.com',
-  copyright: {
-    lead: '© Copyright ',
-    brand: 'wwisermind',
-    tail: ' powered by Stringhead Technologies',
+  tagline: ['Be found. Be trusted.', 'Stay booked'],
+
+  logo: {
+    src: '/images/wwisermind-logo-footer.webp',
+    width: 1461,
+    height: 244,
+    alt: 'wwisermind',
   },
-  /** Three rows of three columns, laid out row by row beside the brand column. */
-  rows: [
-    [
-      {
-        title: 'Therapist website design',
-        links: [
-          { label: 'One Week Website', href: '#one-week-website' },
-          { label: 'Custom Website Design', href: '#custom-website-design' },
-          { label: 'Website Hosting Services', href: '#hosting' },
-          { label: 'Website Care Plans', href: '#care-plans' },
-        ],
-      },
-      {
-        title: 'Online marketing',
-        links: [
-          { label: 'Local SEO', href: '#local-seo' },
-          { label: 'SEO Audit/ Assessment', href: '#seo-audit' },
-          { label: 'One Time SEO', href: '#one-time-seo' },
-          { label: 'Ongoing SEO/AEO/GEO', href: '#ongoing-seo' },
-          { label: 'Copywriting', href: '#copywriting' },
-          { label: 'Meta Ads', href: '#meta-ads' },
-        ],
-      },
-      {
-        title: 'AI services',
-        links: [
-          { label: 'AI Chatbot', href: '#ai-chatbot' },
-          { label: 'AI Search Optimization', href: '#ai-search-optimization' },
-        ],
-      },
-    ],
-    [
-      {
-        title: 'Results',
-        title2: 'Who we help',
-        links: [
-          { label: 'Group Practices', href: '#group-practices' },
-          { label: 'Solo Practices', href: '#solo-practices' },
-        ],
-      },
-      {
-        title: 'About',
-        links: [
-          { label: 'About Us', href: '#about' },
-          { label: 'Our Process', href: '#process' },
-          { label: 'Blog', href: '#blog' },
-          { label: 'Reviews', href: '#reviews' },
-          { label: "FAQ's", href: '#faq' },
-        ],
-      },
-      {
-        title: 'Freebies',
-        title2: 'Tools',
-        links: [
-          { label: 'AI Visibility Report', href: '#ai-visibility-report' },
-          { label: 'Marketing Assessment', href: '#marketing-assessment' },
-          { label: 'Local Map Assessment', href: '#local-map-assessment' },
-        ],
-      },
-    ],
-    [
-      {
-        title: 'Address:',
-        lines: [
-          '1st Floor, C6, Indialand Global',
-          'Tech Park, Phase 1, Hinjawadi,',
-          'Rajiv Gandhi Infotech Park,',
-          'Pune, Maharashtra 411057',
-        ],
-      },
-      { title: 'Phone:', lines: ['(+91) 9175414055'] },
-      {
-        uppercaseLinks: true,
-        links: [
-          { label: 'Privacy Policy', href: '#privacy' },
-          { label: 'Terms of Service', href: '#terms' },
-          { label: 'Cookie Policy', href: '#cookies' },
-        ],
-      },
-    ],
-  ] as FooterGroup[][],
+
+  /** Icon files already in /public/icons — square PNGs with alpha, drawn as flat marks. */
   social: [
-    { label: 'Instagram', href: 'https://instagram.com/' },
-    { label: 'Twitter', href: 'https://twitter.com/' },
-    { label: 'Linkedin', href: 'https://linkedin.com/' },
-    { label: 'Reddit', href: 'https://reddit.com/' },
+    { label: 'Instagram', href: 'https://instagram.com/', icon: '/icons/instagram.png' },
+    { label: 'LinkedIn', href: 'https://linkedin.com/', icon: '/icons/linkedin.png' },
+    { label: 'X', href: 'https://x.com/', icon: '/icons/x.png' },
   ],
-  watermark: 'wwisermind',
+
+  /** Three link columns, one per grid column, matching the reference's 3 x 3 block. */
+  navColumns: [
+    [
+      { label: 'Website Design', href: '#website-design' },
+      { label: 'Online Marketing', href: '#marketing' },
+      { label: 'AI Services', href: '#ai-services' },
+    ],
+    [
+      { label: 'Who We Help', href: '#who-we-help' },
+      { label: 'Results', href: '#results' },
+      { label: 'Pricing', href: '#pricing' },
+    ],
+    [
+      { label: 'About', href: '#about' },
+      { label: 'Freebies', href: '#freebies' },
+      { label: 'Tools', href: '#tools' },
+    ],
+  ] as NavItem[][],
+
+  cta: {
+    label: 'Schedule a call',
+    href: '#book-a-call',
+    note: {
+      lead: 'Websites and marketing that help families find the right therapist. Built with love in Pune, India at ',
+      linkLabel: 'wwisermind',
+      href: '/',
+      tail: '.',
+    },
+  },
+
+  /** The two halves of the footer's tabbed row. One list shows at a time and scrolls as a
+      marquee, so these are read twice per render — see FooterTabs. */
+  tabs: [
+    {
+      id: 'services',
+      label: 'Services',
+      items: [
+        { label: 'One Week Website', href: '/#one-week-website' },
+        { label: 'Custom Website Design', href: '/#custom-website-design' },
+        { label: 'Website Care Plans', href: '/#care-plans' },
+        { label: 'Local SEO', href: '/#local-seo' },
+        { label: 'SEO Assessment', href: '/#seo-audit' },
+        { label: 'One Time SEO', href: '/#one-time-seo' },
+        { label: 'Ongoing SEO / AEO / GEO', href: '/#ongoing-seo' },
+        { label: 'Copywriting', href: '/#copywriting' },
+        { label: 'Meta Ads', href: '/#meta-ads' },
+      ],
+    },
+    {
+      id: 'ai-tools',
+      label: 'AI Tools',
+      items: [
+        { label: 'AI Visibility Report', href: '/#ai-visibility-report' },
+        { label: 'AI Search Optimization', href: '/#ai-search-optimization' },
+        { label: 'AI Chatbot', href: '/#ai-chatbot' },
+        { label: 'Local Map Assessment', href: '/#local-map-assessment' },
+      ],
+    },
+  ],
+
+  /** 3:2 thumbnail beside the contact block, as in the reference's left rail. Derived from
+      wwisermind-footer.webp at 2x its 231px slot — the 1500px original is 1.9 MB, which is
+      not something to ship for a thumbnail. Swap the file when the intended photo exists. */
+  thumbnail: {
+    src: '/images/footer-thumb.webp',
+    width: 462,
+    height: 308,
+    alt: '',
+  },
+
+  contact: {
+    headOffice: {
+      label: 'Head office',
+      lines: ['1st Floor, Indialand Global Tech Park,', 'Hinjawadi Rd, Phase 1, Pune, India'],
+      link: {
+        label: 'Direction on Google',
+        href: 'https://maps.google.com/?q=Indialand+Global+Tech+Park+Hinjawadi+Pune',
+      },
+    },
+    accepting: {
+      label: 'Accepting projects from',
+      value: 'USA  /  Australia  /  Ireland  /  Dubai',
+    },
+    email: { label: 'Email', value: 'admin@wwisermind.com', href: 'mailto:admin@wwisermind.com' },
+    hotline: { label: 'Hotline', value: '+91-91754 14055', href: 'tel:+919175414055' },
+    hours: { label: 'Office hours', value: 'Monday-Friday / 8:30AM - 5PM' },
+  },
+
+  /** The heart sits inline where the word "love" would be, so its alt text is that word and
+      the sentence still reads straight through for anyone not seeing the icon. */
+  love: {
+    icon: '/icons/heart.png',
+    iconAlt: 'love',
+    lead: 'Therapist websites and marketing. Created with ',
+    tail: ' and gratitude in India, for the world, at wwisermind.',
+  },
+
+  /** Four live clocks, in the reference's city-over-region format. */
+  clocks: [
+    { city: 'India', region: 'Asia', timeZone: 'Asia/Kolkata' },
+    { city: 'New York', region: 'N. America', timeZone: 'America/New_York' },
+    { city: 'Ireland', region: 'Europe', timeZone: 'Europe/Dublin' },
+    { city: 'Sydney', region: 'Oceania', timeZone: 'Australia/Sydney' },
+  ],
+
+  legal: {
+    copyright: 'wwisermind © 2026.',
+    rights: 'All rights reserved.',
+    links: [
+      { label: 'Privacy Policy', href: '#privacy' },
+      { label: 'Terms & Conditions', href: '#terms' },
+      { label: 'Cookie Policy', href: '#cookies' },
+      { label: 'Refer wwisermind', href: '#refer' },
+      { label: 'Sitemap', href: '#sitemap' },
+    ],
+  },
+
+  /** Full-bleed closing panel: the looping video, then the clipped word.
+
+      No `poster` — there is no still of this footage in the repo, and the only footer
+      photograph, wwisermind-footer.webp, is the bridge that belongs in the left rail above,
+      not this frame. Until a real still is exported from the video, the panel shows the
+      three-band gradient in Footer.module.css, which is that footage's own first frame
+      averaged into sky / haze / hillside. */
+  media: {
+    sources: [{ src: '/videos/footer-video.webm', type: 'video/webm' }],
+    headline: ['Artificial Intelligence', '+', 'Human Care'],
+    watermark: 'wwisermind',
+  },
 };
