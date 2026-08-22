@@ -323,7 +323,7 @@ export const homeIntro = {
       image: '/images/Evolve-Therapy-Yoga-Case-Studies.webp',
       stats: [
         { value: '81%', label: 'Patient Appointment' },
-        { value: '148%', label: 'Website Visitors' },
+        { value: '134%', label: 'Website Visitors' },
       ],
     },
   ],

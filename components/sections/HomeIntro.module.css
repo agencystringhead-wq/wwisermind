@@ -209,7 +209,7 @@
 
 .name {
   font-size: 32px;
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-semibold);
   line-height: 1.1;
   letter-spacing: -0.02em;
   text-decoration: underline;
@@ -237,7 +237,7 @@
 
 .statValue {
   font-size: 26px;
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-semibold);
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
@@ -246,7 +246,7 @@
   max-width: 88px;
   margin-left: 2px;
   font-size: 13px;
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-semibold);
   line-height: 1.2;
 }
 
