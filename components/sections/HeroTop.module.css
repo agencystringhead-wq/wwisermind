@@ -58,9 +58,12 @@
 }
 
 /* col 1 */
+/* Set smaller and tracked out: at 15px with no tracking this read as body copy that happened
+   to be uppercase rather than as a label over the two links below it. */
 .introLabel {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: var(--fw-regular);
+  letter-spacing: 0.09em;
   line-height: 1.3;
   text-transform: uppercase;
 }
