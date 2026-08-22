@@ -4,7 +4,9 @@
 
 .hero {
   position: relative;
-  padding-block: 56px 56px;
+  /* The banner below has no margin or padding of its own, so this bottom padding *is* the
+     gap down to it. 56px → 48px pulls the video up by 14.3%. */
+  padding-block: 56px 48px;
   background-color: var(--color-white);
 }
 
@@ -45,7 +47,9 @@
 /* --- rule --------------------------------------------------------------- */
 .divider {
   height: 1px;
-  margin-block: 40px 44px;
+  /* The row below has no margin of its own, so this bottom margin is the whole gap.
+     44px → 40px lifts the row by 9.1%. */
+  margin-block: 40px 40px;
   border: 0;
   background-color: var(--color-divider);
 }
@@ -94,15 +98,28 @@
 }
 
 /* col 2 */
+/* A column rather than a block, so the badge stops being an inline box. Sitting in an
+   anonymous line box it was baseline-aligned inside the inherited 24px leading and hung 4.5px
+   below the eyebrow opposite it — `align-items: start` on the row could not reach that,
+   because the offset was inside the column, not the grid. Children still stretch, so the
+   title keeps the full column width; only the badge shrinks to its content. */
+.colGuide {
+  display: flex;
+  flex-direction: column;
+}
+
 .badge {
+  align-self: flex-start;
   display: inline-flex;
   align-items: center;
-  height: 20px;
-  padding-inline: 12px;
+  /* The pill has no vertical padding — `height` is what sets it — so the 2px came off the
+     inline padding and off the height, which keeps the badge's proportions as it shrinks. */
+  height: 18px;
+  padding-inline: 10px;
   border-radius: var(--radius-pill);
   background-color: var(--color-brand);
   color: var(--color-white);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: var(--fw-bold);
   line-height: 1;
   letter-spacing: 0.01em;
@@ -111,25 +128,37 @@
 
 .guideTitle {
   margin-top: 8px;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: var(--fw-bold);
+  /* a ratio, so the leading comes down with the type rather than needing its own number */
   line-height: 1.2;
   letter-spacing: -0.01em;
   text-wrap: initial;
 }
 
+/* The edition always takes its own line. Done here rather than by squeezing the column, so
+   the break is deliberate at every width — and the line above it still wraps on its own when
+   the column gets narrow. */
+.guideEdition {
+  display: block;
+}
+
 /* col 3 */
 .detailText {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: var(--fw-regular);
-  line-height: 1.25;
+  /* 1.25 was set for 14px; at 12px the same ratio leaves the lines too close to read across
+     several of them, so this one gets opened up rather than kept proportional. */
+  line-height: 1.45;
 }
 
 .detailLink {
   display: inline-block;
   margin-top: 10px;
   color: var(--color-brand);
-  font-size: 14px;
+  font-size: 12px;
+  /* left at 1.25: this is one line, and a taller box would recentre the text inside it and
+     read as a change to the 10px gap above */
   line-height: 1.25;
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -143,7 +172,7 @@
 /* --- responsive --------------------------------------------------------- */
 @media (max-width: 1023px) {
   .hero {
-    padding-block: 44px;
+    padding-block: 44px 37px;
   }
 
   .row {
@@ -156,7 +185,7 @@
   }
 
   .divider {
-    margin-block: 32px 36px;
+    margin-block: 32px 32px;
   }
 
   .glow {

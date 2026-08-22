@@ -259,7 +259,9 @@ export const heroTop = {
   },
   guide: {
     badge: 'Free Guide',
-    title: 'The AI Visibility Guide for Therapists (2026 Edition)',
+    title: 'The AI Visibility Guide for Therapists',
+    /** Set on its own line under the title — see .guideEdition. */
+    titleEdition: '(2026 Edition)',
     description:
       'How to show up when clients ask ChatGPT and Google AI for a therapist near them. Plus the 12 AI tools that save practices 10+ hours a week, without becoming a "content creator."',
     linkLabel: 'Get the Free Guide',
