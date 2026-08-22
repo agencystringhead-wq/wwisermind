@@ -311,7 +311,7 @@ export const homeIntro = {
     {
       name: 'Timely',
       href: '#timely',
-      image: '/images/Timely-Therapy-Owner-Real-Pic.webp',
+      image: '/images/Timely-Therapy-Case-Studies-wwisermind.webp',
       stats: [
         { value: '31%', label: 'Conversion Rate Growth' },
         { value: '48%', label: 'Leads Submission' },

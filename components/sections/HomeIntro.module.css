@@ -164,14 +164,12 @@
 /* The zoom is contained by the frame's own overflow, so the picture grows inside the card
    rather than the card growing with it.
 
-   The frame is square and the Timely photograph is 3:4, so cover has to lose a quarter of
-   its height. Taken off centre that cut lands across the chin; biasing the crop to 25% keeps
-   the head with a little room above it and trims from the bottom instead. A square source
-   like Evolve's is unaffected: it fills the frame exactly, so there is no overflow for this
-   to shift. */
+   Both photographs are square now, as is the frame, so cover fills it exactly and crops
+   nothing — the centred default is the whole story. The 25% bias that used to sit here was
+   for a 3:4 portrait whose head the centre cut would have clipped; with that picture gone it
+   had nothing left to move. */
 .figure img {
   object-fit: cover;
-  object-position: 50% 25%;
   transition: transform 400ms ease-out;
 }
 
