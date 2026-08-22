@@ -11,7 +11,7 @@
 .block {
   border-radius: 20px;
   background-color: var(--color-surface);
-  padding-block: 90px 128px;
+  padding-block: 90px 90px;
 }
 
 /* --- row 1: heading ----------------------------------------------------- */
@@ -127,9 +127,10 @@
 }
 
 .viewAll {
-  font-size: 15px;
-  font-weight: var(--fw-bold);
-  letter-spacing: 0.06em;
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+  /* 10% off the 0.06em it carried — still open enough to hold the uppercase apart */
+  letter-spacing: 0.054em;
   text-transform: uppercase;
   text-decoration: underline;
   text-decoration-thickness: 2px;
@@ -142,27 +143,14 @@
   opacity: 0.65;
 }
 
-/* --- row 3: slider ------------------------------------------------------ */
-.slider {
-  margin-top: 44px;
-}
-
-.track {
-  display: flex;
+/* --- row 3: the two case studies ---------------------------------------- */
+/* Two cards, so a grid rather than the snap-scrolling track this used to be — no overflow,
+   no snap points, nothing to drag. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 28px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  scroll-behavior: smooth;
-}
-
-.track::-webkit-scrollbar {
-  display: none;
-}
-
-.slide {
-  flex: 0 0 calc((100% - 28px) / 2);
-  scroll-snap-align: start;
+  margin-top: 44px;
 }
 
 .figure {
@@ -173,8 +161,44 @@
   background-color: #e6e6e6;
 }
 
+/* The zoom is contained by the frame's own overflow, so the picture grows inside the card
+   rather than the card growing with it.
+
+   The frame is square and the Timely photograph is 3:4, so cover has to lose a quarter of
+   its height. Taken off centre that cut lands across the chin; biasing the crop to 25% keeps
+   the head with a little room above it and trims from the bottom instead. A square source
+   like Evolve's is unaffected: it fills the frame exactly, so there is no overflow for this
+   to shift. */
 .figure img {
   object-fit: cover;
+  object-position: 50% 25%;
+  transition: transform 400ms ease-out;
+}
+
+.figure:hover img {
+  transform: scale(1.04);
+}
+
+/* A band of light crossing the frame. It only carries a transition while hovered, so the
+   sweep plays on the way in and the band snaps back to its start on the way out — a reset
+   nobody sees, since both ends sit outside the frame. */
+.shine {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    rgba(255, 255, 255, 0) 35%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0) 65%
+  );
+  transform: translateX(-100%);
+}
+
+.figure:hover .shine {
+  transform: translateX(100%);
+  transition: transform 700ms ease-out;
 }
 
 /* stats line under each card */
@@ -228,44 +252,14 @@
   line-height: 1.2;
 }
 
-/* --- dots --------------------------------------------------------------- */
-.dots {
-  display: flex;
-  gap: 7px;
-  margin-top: 100px;
-}
-
-.dotButton {
-  width: 8px;
-  height: 8px;
-  padding: 0;
-  border: 1px solid rgba(0, 0, 0, 0.4);
-  border-radius: 50%;
-  background-color: transparent;
-  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
-}
-
-.dotButton:hover {
-  border-color: var(--color-ink);
-}
-
-.dotActive {
-  border-color: #333333;
-  background-color: #333333;
-}
-
 /* --- responsive --------------------------------------------------------- */
 @media (max-width: 1279px) {
   .block {
-    padding-block: 64px 88px;
+    padding-block: 64px 64px;
   }
 
   .metaRow {
     margin-top: 96px;
-  }
-
-  .dots {
-    margin-top: 64px;
   }
 
   .name {
@@ -305,19 +299,16 @@
 @media (max-width: 640px) {
   .block {
     border-radius: 16px;
-    padding-block: 48px 64px;
+    padding-block: 48px 48px;
   }
 
-  .slide {
-    flex-basis: 84%;
+  /* one card per row from here down */
+  .grid {
+    grid-template-columns: 1fr;
   }
 
   .name {
     font-size: 24px;
-  }
-
-  .dots {
-    margin-top: 48px;
   }
 }
 
@@ -326,6 +317,16 @@
    static ring are what remain. */
 @media (prefers-reduced-motion: reduce) {
   .dot::after {
+    display: none;
+  }
+
+  .figure img,
+  .figure:hover img {
+    transform: none;
+    transition: none;
+  }
+
+  .shine {
     display: none;
   }
 }

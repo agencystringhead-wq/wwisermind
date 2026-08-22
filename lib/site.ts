@@ -305,28 +305,28 @@ export const homeIntro = {
     ' thoughtful websites and marketing built only for therapists and psychologists, by people who know why this work matters.',
   eyebrow: 'Recent Launches',
   viewAll: { label: 'View all projects', href: '#projects' },
+  /* Two case studies, laid out as a plain two-column grid — there is no longer a slider for
+     them to repeat into. */
   projects: [
     {
-      name: 'Mindora',
-      href: '#mindora',
-      image: '/images/mindora.webp',
+      name: 'Timely',
+      href: '#timely',
+      image: '/images/Timely-Therapy-Owner-Real-Pic.webp',
       stats: [
         { value: '31%', label: 'Conversion Rate Growth' },
         { value: '48%', label: 'Leads Submission' },
       ],
     },
     {
-      name: 'Healyra',
-      href: '#healyra',
-      image: '/images/healyra.webp',
+      name: 'Evolve',
+      href: '#evolve',
+      image: '/images/Evolve-Therapy-Yoga-Case-Studies.webp',
       stats: [
         { value: '81%', label: 'Patient Appointment' },
         { value: '148%', label: 'Website Visitors' },
       ],
     },
   ],
-  /** How many times the project list repeats to fill the slider for now. */
-  slideRepeat: 4,
 };
 
 export const problems = {
