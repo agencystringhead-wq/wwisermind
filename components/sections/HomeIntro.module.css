@@ -20,17 +20,35 @@
   justify-content: flex-end;
 }
 
+/* Weight and tracking stay on the container. The spans below carry nothing but colour, so
+   splitting the sentence into words cannot alter its tracking or how it wraps. */
 .heading {
   width: 57.4%;
   font-size: clamp(24px, 2.6vw, 34px);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-semibold);
   line-height: 1.2;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   text-wrap: initial;
+
+  --reveal-from: #b9bfc9;
+  --reveal-to: var(--color-ink);
 }
 
-.headingMuted {
-  color: var(--color-heading-muted);
+/* `--t` runs 0 to 1 per word and the browser does the interpolation, so the scroll handler
+   only ever writes one number per span. It defaults to 1 — fully ink — so the sentence is
+   readable before the script runs and stays readable without it. */
+.word {
+  color: var(--reveal-to);
+}
+
+@supports (color: color-mix(in srgb, red, blue)) {
+  .word {
+    color: color-mix(
+      in srgb,
+      var(--reveal-to) calc(var(--t, 1) * 100%),
+      var(--reveal-from)
+    );
+  }
 }
 
 /* --- row 2: eyebrow + view all ------------------------------------------ */

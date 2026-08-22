@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { homeIntro } from '@/lib/site';
+import StatementReveal from './StatementReveal';
 import styles from './HomeIntro.module.css';
 
 function ArrowUp() {
@@ -69,10 +70,9 @@ export default function HomeIntro() {
       <div className={styles.block}>
         <div className="container">
           <div className={styles.headingRow}>
-            <h2 className={styles.heading}>
-              {headingLead}
-              <span className={styles.headingMuted}>{headingRest}</span>
-            </h2>
+            {/* The two halves were a fixed grey/ink split; the reveal now carries that
+                contrast itself, word by word, so they join back into one sentence. */}
+            <StatementReveal text={`${headingLead}${headingRest}`} />
           </div>
 
           <div className={styles.metaRow}>
