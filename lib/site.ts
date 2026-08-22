@@ -107,7 +107,12 @@ export const megaPanels: Record<string, MegaPanel> = {
       lead: 'The One Week Website',
       body: 'Your practice online in seven days. Design, build, HIPAA-aware forms, and launch — all handled while you stay in session.',
       link: { label: 'See how it works', href: '/#one-week-website' },
-      image: { src: '/images/mindora.webp', width: 802, height: 802, alt: 'The Mindora practice site' },
+      image: {
+        src: '/images/Timely-Therapy-Case-Studies-wwisermind.webp',
+        width: 900,
+        height: 900,
+        alt: 'The Timely Therapy practice site',
+      },
     },
     strip: {
       text: 'Not sure where to start? One free call, an honest plan.',
