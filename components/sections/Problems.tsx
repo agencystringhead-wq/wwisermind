@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { problems } from '@/lib/site';
 import ScrollReveal from '@/components/ui/ScrollReveal';
@@ -97,19 +98,31 @@ export default function Problems() {
             {slides.map((card, index) => (
               <article className={styles.slide} key={`${card.title}-${index}`}>
                 <div className={styles.media}>
-                  <video
-                    poster={card.background.poster}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    aria-hidden="true"
-                  >
-                    {card.background.sources.map((source) => (
-                      <source key={source.src} src={source.src} type={source.type} />
-                    ))}
-                  </video>
+                  {/* An image card renders no <video> at all rather than a hidden one, so the
+                      clip is never requested. Both fill the same frame and are cropped by it. */}
+                  {'image' in card ? (
+                    <Image
+                      src={card.image.src}
+                      alt={card.image.alt}
+                      fill
+                      sizes="(max-width: 640px) 84vw, (max-width: 1023px) 45vw, 420px"
+                      className={styles.still}
+                    />
+                  ) : (
+                    <video
+                      poster={card.background.poster}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      aria-hidden="true"
+                    >
+                      {card.background.sources.map((source) => (
+                        <source key={source.src} src={source.src} type={source.type} />
+                      ))}
+                    </video>
+                  )}
                   <span className={styles.overlay} aria-hidden="true" />
                   <p className={styles.title}>{card.title}</p>
                 </div>

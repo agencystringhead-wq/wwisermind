@@ -334,12 +334,29 @@ export const homeIntro = {
   ],
 };
 
-export const problems = {
+/** A card shows a looping clip or a still, never both — spelled as a union rather than two
+    optional keys so the renderer is made to check, and a card carrying neither cannot compile. */
+export type ProblemCard = {
+  title: string;
+  body: string;
+} & (
+  | { background: { poster: string; sources: { src: string; type: string }[] } }
+  | { image: { src: string; alt: string } }
+);
+
+export const problems: {
+  headingLead: string;
+  headingRest: string;
+  cards: ProblemCard[];
+  slideRepeat: number;
+} = {
   headingLead: 'The problems we hear from',
   headingRest: 'therapists every week',
-  /** Each card's media follows the same shape as `heroBanner.background`: `poster` is the
-      still shown while the video loads and the permanent fallback wherever none of `sources`
-      can play (Safari before 17.4 has no WebM). Add an mp4 to `sources` to cover those. */
+  /** A card carries either a `background` or an `image`, never both. `background` follows the
+      same shape as `heroBanner.background`: `poster` is the still shown while the video loads
+      and the permanent fallback wherever none of `sources` can play (Safari before 17.4 has no
+      WebM) — add an mp4 to `sources` to cover those. `image` is a plain still, and the card
+      renders no video element at all, so nothing about the clip is fetched. */
   cards: [
     {
       title: 'I’m invisible on Google.',
@@ -357,14 +374,11 @@ export const problems = {
     },
     {
       title: 'AI doesn’t know I exist.',
-      background: {
-        poster: '/images/slider2.webp',
-        sources: [
-          {
-            src: '/videos/AI-visibility-issue-therapist-solution-by-wwisermind.webm',
-            type: 'video/webm',
-          },
-        ],
+      /* A still rather than a clip. Cut to the card's frame already — 534x887 against the
+         media box's 535/891 — so `cover` has all of about a pixel to trim. */
+      image: {
+        src: '/images/Not-exist-on-AI-Therapist-Solution.webp',
+        alt: 'Woman searching for a therapist on her phone',
       },
       body:
         'When someone asks ChatGPT, Google AI or Perplexity to recommend a therapist nearby, it names other practices, or none at all. A whole new way clients search, and you’re not in the answer.',
