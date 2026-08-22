@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { problems } from '@/lib/site';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 import styles from './Problems.module.css';
 
 function ArrowIcon({ direction }: { direction: 'left' | 'right' }) {
@@ -65,10 +66,9 @@ export default function Problems() {
     <section className={styles.section}>
       <div className="container">
         <div className={styles.head}>
-          <h2 className={styles.heading}>
-            {headingLead}
-            <span className={styles.headingMuted}>{headingRest}</span>
-          </h2>
+          {/* The two halves were a fixed black/grey split; the reveal carries that contrast
+              itself now, word by word, so they join back into one sentence. */}
+          <ScrollReveal text={`${headingLead} ${headingRest}`} className={styles.heading} />
 
           <div className={styles.controls}>
             <button

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { homeIntro } from '@/lib/site';
-import StatementReveal from './StatementReveal';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 import styles from './HomeIntro.module.css';
 
 function ArrowUp() {
@@ -28,7 +28,7 @@ export default function HomeIntro() {
           <div className={styles.headingRow}>
             {/* The two halves were a fixed grey/ink split; the reveal now carries that
                 contrast itself, word by word, so they join back into one sentence. */}
-            <StatementReveal text={`${headingLead}${headingRest}`} />
+            <ScrollReveal text={`${headingLead}${headingRest}`} className={styles.heading} />
           </div>
 
           <div className={styles.metaRow}>

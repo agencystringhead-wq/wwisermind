@@ -1,0 +1,25 @@
+/* The reveal mechanism only — the colours it interpolates between and the per-word rule that
+   reads them. Nothing here sets type: size, weight and tracking belong to whichever section
+   is using it, and arrive as a second class on the same element. */
+
+.reveal {
+  --reveal-from: #b9bfc9;
+  --reveal-to: var(--color-ink);
+}
+
+/* `--t` runs 0 to 1 per word and the browser does the interpolation, so the scroll handler
+   only ever writes one number. Without color-mix every word simply stays ink, which is the
+   sentence at full contrast rather than a broken effect. */
+.word {
+  color: var(--reveal-to);
+}
+
+@supports (color: color-mix(in srgb, red, blue)) {
+  .word {
+    color: color-mix(
+      in srgb,
+      var(--reveal-to) calc(var(--t, 1) * 100%),
+      var(--reveal-from)
+    );
+  }
+}

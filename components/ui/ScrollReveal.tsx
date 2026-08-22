@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useLayoutEffect, useMemo, useRef } from 'react';
-import styles from './HomeIntro.module.css';
+import styles from './ScrollReveal.module.css';
 
 /* Where the reveal runs, as fractions of the viewport height measured to the top of the
    block: it starts as the sentence enters the lower third and is finished by the time it
@@ -20,7 +20,7 @@ const STEPS = 50;
 const clamp = (value: number) => (value < 0 ? 0 : value > 1 ? 1 : value);
 
 /**
- * The statement, revealed by scroll position rather than by time.
+ * A section heading revealed by scroll position rather than by time.
  *
  * Every word is its own span carrying a `--t` from 0 to 1, and the colour is a `color-mix`
  * between the muted and ink tokens driven by that number — so the interpolation is the
@@ -31,8 +31,12 @@ const clamp = (value: number) => (value < 0 ? 0 : value > 1 ? 1 : value);
  *
  * The sentence is also set on the container as an `aria-label`, so a screen reader gets one
  * clean sentence rather than three dozen fragments, and the text stays selectable.
+ *
+ * `className` is the calling section's own heading class. Everything about how the type looks
+ * — size, weight, tracking, how wide it is allowed to run — stays there; this component owns
+ * only the reveal, so two sections can share the effect without sharing a scale.
  */
-export default function StatementReveal({ text }: { text: string }) {
+export default function ScrollReveal({ text, className }: { text: string; className?: string }) {
   const containerRef = useRef<HTMLHeadingElement>(null);
   const wordRefs = useRef<HTMLSpanElement[]>([]);
   const lastValues = useRef<number[]>([]);
@@ -136,7 +140,11 @@ export default function StatementReveal({ text }: { text: string }) {
   }, []);
 
   return (
-    <h2 className={styles.heading} aria-label={text} ref={containerRef}>
+    <h2
+      className={className ? `${styles.reveal} ${className}` : styles.reveal}
+      aria-label={text}
+      ref={containerRef}
+    >
       {words.map((word, index) => (
         <span
           className={styles.word}
