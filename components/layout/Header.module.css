@@ -250,3 +250,477 @@
     display: block;
   }
 }
+
+/* ==========================================================================
+   Mega menu — everything below this line is the addition. The header above is
+   untouched: same grid, same logo, same nav type, same black pill.
+
+   The panels are children of .header, which is already sticky and therefore a
+   positioned ancestor, so `top: 100%` drops them exactly under the bar. It also
+   means a cursor travelling from a nav item down into a panel never leaves the
+   element whose mouseleave starts the close timer.
+   ========================================================================== */
+
+/* A trigger is a button so it can carry aria-expanded, but globals.css already
+   resets buttons to inherit their font, and it shares .navLink — so it renders
+   identically to the anchors beside it, underline hover and all.
+
+   The padding reserves the indicator's lane. Keeping the plus out of flow is what stops it
+   affecting the label's tracking, and shortening the underline by exactly that lane is what
+   stops the rule running under it. */
+.navTrigger {
+  padding-right: 13px;
+}
+
+.navTrigger::after {
+  width: calc(100% - 13px);
+}
+
+.navTrigger[aria-expanded='true']::after {
+  transform: scaleX(1);
+}
+
+/* Absolute, and stretched top to bottom of the label's line box, so centring is the grid's
+   job rather than a magic number — the plus stays on the label's optical centre at any size.
+   Only `transform` animates, so the rotation is a compositor job. */
+.navPlus {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: grid;
+  place-items: center;
+  width: 8px;
+  color: var(--color-muted);
+  font-size: 11px;
+  font-weight: var(--fw-regular);
+  line-height: 1;
+  transition: transform 200ms var(--ease), color var(--dur) var(--ease);
+}
+
+/* a quarter turn is all a plus needs to read as a close */
+.navTrigger[aria-expanded='true'] .navPlus {
+  transform: rotate(45deg);
+}
+
+.navTrigger:hover .navPlus,
+.navTrigger[aria-expanded='true'] .navPlus {
+  color: var(--color-ink);
+}
+
+.mega {
+  /* Scoped here rather than in globals: the panels are a calmer navy-on-white than the
+     page's pure black, and nothing outside this menu should inherit that. */
+  --panel-ink: #10233f;
+  --panel-muted: #5a6b84;
+  --panel-faint: #8a97ab;
+  --panel-tint: #eef4fe;
+  --panel-line: #e7eaf0;
+
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--color-white);
+  border-top: 1px solid var(--panel-line);
+  border-bottom: 1px solid var(--panel-line);
+  box-shadow: 0 28px 64px -24px rgba(16, 35, 63, 0.22), 0 2px 6px rgba(16, 35, 63, 0.04);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease),
+    visibility 0s linear var(--dur);
+}
+
+.megaOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), visibility 0s;
+}
+
+.megaGrid {
+  display: grid;
+  gap: 36px;
+  padding-block: 34px 30px;
+}
+
+/* three link columns then the card, or two wider ones then the card */
+.megaGrid3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) 316px;
+}
+
+.megaGrid2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) 316px;
+}
+
+/* One mono line per column. The word before the slash carries the brand blue, which gives
+   the label a hierarchy without spending a second line of type on it. */
+.colLabel {
+  display: block;
+  margin-bottom: 14px;
+  padding-bottom: 11px;
+  border-bottom: 1px solid var(--panel-line);
+  color: var(--panel-faint);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.colLabel b {
+  color: var(--color-brand);
+  font-weight: var(--fw-medium);
+}
+
+/* --- a link and its description ------------------------------------------- */
+.mlink {
+  display: block;
+  margin-inline: -11px;
+  padding: 9px 11px;
+  border-radius: 10px;
+  transition: background-color var(--dur) var(--ease);
+}
+
+.mlink:hover {
+  background-color: var(--panel-tint);
+}
+
+.mlinkTitle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--panel-ink);
+  font-size: 15px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.01em;
+  transition: color var(--dur) var(--ease);
+}
+
+.mlink:hover .mlinkTitle {
+  color: var(--color-brand);
+}
+
+.mlinkDesc {
+  display: block;
+  margin-top: 2px;
+  color: var(--panel-muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+/* The arrow rides in after the description, and only on hover — so the resting state stays
+   quiet and the row being pointed at is the only one asking to be clicked. */
+.arrow {
+  display: inline-block;
+  margin-left: 5px;
+  color: var(--color-brand);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.mlink:hover .arrow,
+.mlink:focus-visible .arrow {
+  opacity: 1;
+  transform: none;
+}
+
+.badge {
+  flex: none;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background-color: var(--color-brand);
+  color: var(--color-white);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.09em;
+}
+
+/* --- a column that is a block of prose rather than a list ------------------ */
+.mblock {
+  margin-inline: -13px;
+  padding: 13px;
+}
+
+.mblock .mlinkTitle {
+  font-size: 17px;
+}
+
+.mblockBody {
+  display: block;
+  margin-top: 7px;
+  color: var(--panel-muted);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+/* --- featured card -------------------------------------------------------- */
+.feature {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px;
+  border: 1px solid rgba(20, 110, 245, 0.14);
+  border-radius: var(--radius-md);
+  background-color: var(--panel-tint);
+}
+
+.featureEyebrow {
+  color: var(--color-brand);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.featureLead {
+  margin-top: 11px;
+  color: var(--panel-ink);
+  font-size: 19px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+}
+
+.featureBody {
+  margin-top: 9px;
+  color: var(--panel-muted);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.featureLink {
+  margin-top: 16px;
+  border-bottom: 1px solid transparent;
+  color: var(--color-brand);
+  font-size: 13.5px;
+  font-weight: var(--fw-semibold);
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.featureLink:hover {
+  border-bottom-color: currentColor;
+  color: var(--color-brand-dark);
+}
+
+/* --- the image on the three cards that carry one -------------------------- */
+/* The card is a grid item, so it already stretches to the tallest column in its row. Pinning
+   the image to the bottom with `margin-top: auto` means that in a tall panel the picture
+   settles on the card's foot instead of the text floating away from it. */
+.featureMedia {
+  display: block;
+  align-self: stretch;
+  margin-top: auto;
+  padding-top: 16px;
+  overflow: hidden;
+  border-radius: 10px;
+  /* holds the slot open before the file lands, so nothing above it moves */
+  aspect-ratio: 16 / 10;
+  box-sizing: content-box;
+  /* a flex item shrinks by default, which would quietly flatten the ratio on a tight card */
+  flex: none;
+}
+
+.featureImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 300ms var(--ease);
+}
+
+.feature:hover .featureImage {
+  transform: scale(1.03);
+}
+
+/* A card carrying a picture is ~170px taller than one without, which on the shorter panels
+   would push the whole thing well past its own columns. Tightening the type and the padding
+   here takes about a third of that back without touching the two plain cards. */
+.featureWithImage {
+  padding: 20px;
+}
+
+.featureWithImage .featureLead {
+  margin-top: 9px;
+  font-size: 17px;
+}
+
+.featureWithImage .featureBody {
+  margin-top: 7px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.featureWithImage .featureLink {
+  margin-top: 12px;
+}
+
+/* --- the strip closing each panel ----------------------------------------- */
+.strip {
+  border-top: 1px solid var(--panel-line);
+  background-color: #fcfcfb;
+}
+
+.stripInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding-block: 15px;
+  color: var(--panel-muted);
+  font-size: 13.5px;
+}
+
+.stripLink {
+  color: var(--color-brand);
+  font-weight: var(--fw-semibold);
+  transition: color var(--dur) var(--ease);
+}
+
+.stripLink:hover {
+  color: var(--color-brand-dark);
+}
+
+/* --- overlay -------------------------------------------------------------- */
+/* Sits under the header's z-index 50, which is why the component renders it as a sibling
+   rather than a child — inside, it could never paint below the bar. */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background-color: rgba(16, 35, 63, 0.13);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur) var(--ease), visibility 0s linear var(--dur);
+}
+
+.overlayOpen {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--dur) var(--ease), visibility 0s;
+}
+
+/* --- accordions inside the existing mobile panel --------------------------- */
+/* These share .panelLink, so a section heading sits at exactly the type and rule of the
+   plain links it stands among. The plus is the only addition: an accordion with no
+   affordance gives no sign it opens. */
+.accTrigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+}
+
+.accPlus {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 14px;
+  color: var(--color-muted);
+  /* the desktop plus is 11px against 15px type; this holds that ratio against 18px */
+  font-size: 14px;
+  font-weight: var(--fw-regular);
+  line-height: 1;
+  transition: transform 200ms var(--ease), color var(--dur) var(--ease);
+}
+
+.accTrigger[aria-expanded='true'] .accPlus {
+  color: var(--color-ink);
+  transform: rotate(45deg);
+}
+
+.accPanel {
+  overflow: hidden;
+  transition: max-height var(--dur) var(--ease);
+}
+
+.accInner {
+  padding-block: 6px 10px;
+}
+
+.accGroup {
+  margin: 14px 0 4px;
+  color: var(--color-heading-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.accInner > div:first-child .accGroup {
+  margin-top: 4px;
+}
+
+.accGroup b {
+  color: var(--color-brand);
+  font-weight: var(--fw-medium);
+}
+
+.accLink {
+  display: block;
+  margin-inline: -12px;
+  padding: 9px 12px;
+  border-radius: 10px;
+}
+
+.accLink .mlinkTitle {
+  color: var(--color-ink);
+  font-size: 15px;
+}
+
+.accLink .mlinkDesc {
+  color: var(--color-muted);
+  font-size: 12.5px;
+}
+
+/* --- responsive ------------------------------------------------------------ */
+@media (max-width: 1180px) {
+  .megaGrid {
+    gap: 28px;
+  }
+
+  .megaGrid3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) 272px;
+  }
+
+  .megaGrid2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) 272px;
+  }
+}
+
+/* The same breakpoint the nav itself already used to hand over to the burger. */
+@media (max-width: 1023px) {
+  .mega {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mega {
+    transform: none;
+  }
+
+  /* the plus still becomes a cross, it just gets there without the sweep */
+  .navPlus,
+  .accPlus {
+    transition: none;
+  }
+
+  .featureImage {
+    transition: none;
+  }
+
+  .feature:hover .featureImage {
+    transform: none;
+  }
+}

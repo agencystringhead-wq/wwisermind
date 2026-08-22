@@ -26,6 +26,227 @@ export const mainNav: NavItem[] = [
   { label: 'Tools', href: '#tools' },
 ];
 
+/* ==========================================================================
+   Mega menu panels.
+
+   Keyed by the `mainNav` label they hang off, so the nav above stays a plain
+   list of links and nothing here changes what it renders. Five of the seven
+   items have a panel; Results and Freebies are ordinary links.
+
+   Every panel is the same shape — columns of links, one featured card, a strip
+   along the bottom — so the header draws them all from one component.
+   ========================================================================== */
+
+export type MegaLink = NavItem & {
+  /** the line under the label; absent on Pricing, which lists its packages plainly */
+  desc?: string;
+  /** a paragraph under the description — only Who We Help uses one */
+  body?: string;
+  badge?: string;
+};
+
+export type MegaColumn = {
+  /** the word before the slash in the column label, carried in the accent colour */
+  lead?: string;
+  title?: string;
+  links: MegaLink[];
+};
+
+export type MegaPanel = {
+  id: string;
+  columns: MegaColumn[];
+  feature: {
+    eyebrow: string;
+    lead?: string;
+    body?: string;
+    link?: NavItem;
+    /** Optional, and only on three of the five panels — the other two read better plain. */
+    image?: { src: string; width: number; height: number; alt: string };
+  };
+  strip: { text: string; link?: NavItem };
+};
+
+export const megaPanels: Record<string, MegaPanel> = {
+  Services: {
+    id: 'services',
+    columns: [
+      {
+        lead: 'Build',
+        title: 'Therapist Website Design',
+        links: [
+          { label: 'One Week Website', href: '/#one-week-website', desc: 'Live in 7 days, done for you' },
+          { label: 'Custom Website Design', href: '/#custom-website-design', desc: 'Built around your practice' },
+          { label: 'Website Hosting', href: '/#hosting', desc: 'Fast, secure, managed' },
+          { label: 'Website Care Plans', href: '/#care-plans', desc: 'Handled while you’re in session' },
+        ],
+      },
+      {
+        lead: 'Grow',
+        title: 'Online Marketing',
+        links: [
+          { label: 'Local SEO', href: '/#local-seo', desc: 'Be found in your city' },
+          { label: 'SEO Audit / Assessment', href: '/#seo-audit', desc: 'An honest read on your visibility' },
+          { label: 'One Time SEO', href: '/#one-time-seo', desc: 'Fix the foundation once' },
+          { label: 'Ongoing SEO / AEO / GEO', href: '/#ongoing-seo', desc: 'Keep climbing every month' },
+          { label: 'Copywriting', href: '/#copywriting', desc: 'Words that sound like you' },
+          { label: 'Meta Ads', href: '/#meta-ads', desc: 'Reach the right families' },
+        ],
+      },
+      {
+        lead: 'AI',
+        title: 'AI Services',
+        links: [
+          { label: 'AI Search Optimization', href: '/#ai-search-optimization', desc: 'Be the practice AI recommends' },
+          { label: 'AI Website Design', href: '/#ai-website-design', desc: 'Modern build, human review' },
+          { label: 'AI Chatbot', href: '/#ai-chatbot', desc: 'Answers at 11pm, bookings by 9' },
+        ],
+      },
+    ],
+    feature: {
+      eyebrow: 'Most Popular',
+      lead: 'The One Week Website',
+      body: 'Your practice online in seven days. Design, build, HIPAA-aware forms, and launch — all handled while you stay in session.',
+      link: { label: 'See how it works', href: '/#one-week-website' },
+      image: { src: '/images/mindora.webp', width: 802, height: 802, alt: 'The Mindora practice site' },
+    },
+    strip: {
+      text: 'Not sure where to start? One free call, an honest plan.',
+      link: { label: 'Book a free strategy call', href: '#book-a-call' },
+    },
+  },
+
+  'Who We Help': {
+    id: 'who-we-help',
+    /* No column labels here: the brief gives none, and inventing them only repeated the
+       title on the line below. These two columns are self-titled blocks instead. */
+    columns: [
+      {
+        links: [
+          {
+            label: 'Group Practices',
+            href: '/#group-practices',
+            desc: 'Sites that sell the whole team',
+            body: 'Every clinician gets a real profile, every location its own page, and referrers get one clear place to send people. Intake stays orderly as the team grows.',
+          },
+        ],
+      },
+      {
+        links: [
+          {
+            label: 'Solo Practices',
+            href: '/#solo-practices',
+            desc: 'Your voice, your specialty',
+            body: 'A site that carries your credibility while you’re in session — your specialty stated plainly, your availability current, and enquiries that arrive ready to answer.',
+          },
+        ],
+      },
+    ],
+    feature: {
+      eyebrow: 'Our Promise',
+      lead: 'Only therapists. Every project. No exceptions.',
+      image: {
+        src: '/images/02.webp',
+        width: 398,
+        height: 240,
+        alt: 'A therapist sitting on a couch in her practice',
+      },
+    },
+    strip: { text: 'Serving practices across the US, UK, and Australia — in your timezone.' },
+  },
+
+  Pricing: {
+    id: 'pricing',
+    columns: [
+      {
+        lead: 'Build',
+        title: 'Website Packages',
+        links: [
+          { label: 'One Week Website', href: '/#one-week-website' },
+          { label: 'Custom Website Design', href: '/#custom-website-design' },
+          { label: 'Website Hosting', href: '/#hosting' },
+        ],
+      },
+      {
+        lead: 'Grow',
+        title: 'Marketing Packages',
+        links: [
+          { label: 'Local SEO', href: '/#local-seo' },
+          { label: 'SEO Audit', href: '/#seo-audit' },
+          { label: 'One Time SEO', href: '/#one-time-seo' },
+          { label: 'Ongoing SEO / AEO / GEO', href: '/#ongoing-seo' },
+        ],
+      },
+    ],
+    feature: {
+      eyebrow: 'Fair & Flexible',
+      lead: 'No long-term contracts.',
+      body: 'Simple plans you can cancel anytime.',
+    },
+    strip: { text: 'Every price is on the page. No ‘speak to a coordinator.’' },
+  },
+
+  About: {
+    id: 'about',
+    columns: [
+      {
+        lead: 'Studio',
+        title: 'The People',
+        links: [
+          { label: 'About Us', href: '/#about', desc: 'The story behind wwisermind' },
+          { label: 'Our Process', href: '/#process', desc: 'Three steps, no mystery' },
+          { label: 'Reviews', href: '/#reviews', desc: 'What therapists say' },
+        ],
+      },
+      {
+        lead: 'Learn',
+        title: 'The Words',
+        links: [
+          { label: 'Blog', href: '/#blog', desc: 'Plain-English articles' },
+          { label: 'FAQ’s', href: '/#faq', desc: 'Answered before you ask' },
+        ],
+      },
+    ],
+    feature: {
+      eyebrow: 'Founder’s Note',
+      body: 'My nephew’s therapy journey inspired all of this. We understand what families search for — and how to help them find you.',
+      link: { label: 'Read the full story', href: '/#our-story' },
+      image: {
+        src: '/images/srikaant.webp',
+        width: 274,
+        height: 275,
+        alt: 'SrikaantH, founder of wwisermind, at his desk',
+      },
+    },
+    strip: { text: 'Built in Pune, India. Honest about it from the first hello.' },
+  },
+
+  Tools: {
+    id: 'tools',
+    columns: [
+      {
+        lead: 'Check',
+        title: 'Free Assessments',
+        links: [
+          { label: 'AI Visibility Report', href: '/#ai-visibility-report', desc: 'Does ChatGPT know you exist?', badge: 'NEW' },
+          { label: 'Marketing Assessment', href: '/#marketing-assessment', desc: 'Where you stand today' },
+          { label: 'Local Map Assessment', href: '/#local-map-assessment', desc: 'Your Google Maps presence' },
+        ],
+      },
+      {
+        lead: 'Open',
+        title: 'Transparency',
+        links: [{ label: 'OpenBook', href: '/#openbook', desc: 'A look inside the studio' }],
+      },
+    ],
+    feature: {
+      eyebrow: 'Try This First',
+      lead: 'AI Visibility Report',
+      body: 'Find out if ChatGPT, Gemini, and Perplexity recommend your practice — before your competitors do.',
+    },
+    strip: { text: 'All tools are free. No credit card, no strings.' },
+  },
+};
+
 export const heroTop = {
   headingLineOne: 'Therapist websites and marketing',
   headingLineTwo: 'that quietly grow your practice.',
