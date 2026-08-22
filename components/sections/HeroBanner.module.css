@@ -112,7 +112,9 @@
 .stars {
   display: flex;
   gap: 4px;
-  color: #7f83ff;
+  /* A warm gold rather than a pure yellow, which would go acid against the card's navy.
+     The stars are `fill: currentColor`, so this one declaration colours all five. */
+  color: #f5b301;
 }
 
 .star {

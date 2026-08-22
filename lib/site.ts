@@ -289,11 +289,12 @@ export const heroBanner = {
   testimonial: {
     rating: 5,
     quote:
-      'Clear guidance and smart planning helped our team focus faster and deliver results with confidence.',
+      'They just got it. I explained my practice once and they built something that sounds like me. Zero tech headaches on my end.',
     author: {
-      name: 'Chance Vetrovs',
-      role: 'Project manager',
-      avatar: '/images/testimonial-chance.webp',
+      name: 'Matt Erdman',
+      /** rendered by .authorRole, the card's existing subtitle style */
+      role: 'Timely Therapy',
+      avatar: '/images/matt-erdman.webp',
     },
   },
 };
