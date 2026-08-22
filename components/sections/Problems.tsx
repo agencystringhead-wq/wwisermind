@@ -26,7 +26,7 @@ function ArrowIcon({ direction }: { direction: 'left' | 'right' }) {
 
 const { headingLead, headingRest, cards, slideRepeat } = problems;
 
-/** The three real cards, repeated so the slider has something to slide through. */
+/** The cards, optionally repeated to give the slider more to slide through. */
 const slides = Array.from({ length: slideRepeat }, () => cards).flat();
 
 export default function Problems() {

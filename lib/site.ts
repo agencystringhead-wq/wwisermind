@@ -430,10 +430,10 @@ export const problems: {
         'Posting, optimizing, promoting yourself, it all feels uncomfortable and there’s no time between sessions anyway. So marketing keeps sliding to next month.',
     },
   ],
-  /** How many times the six cards repeat to fill the slider. At 3 that is eighteen slides and
-      nine autoplaying video elements; the six are enough to slide through on their own now, so
-      this wants to come down to 1 unless the repetition is deliberate. */
-  slideRepeat: 3,
+  /** How many times the six cards repeat to fill the slider. It was 3 while there were only
+      three cards and the track had nothing to slide through; six fill it on their own, and
+      repeating them cost eighteen slides and nine autoplaying video elements. */
+  slideRepeat: 1,
 };
 
 export const services = {
