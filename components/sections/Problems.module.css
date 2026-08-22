@@ -137,7 +137,14 @@
   text-wrap: balance;
 }
 
+/* The captions used to run the full width of their slide, which left the 12px track gap as
+   the only thing between one paragraph and the next and read as a single block of text. The
+   measure is capped instead of the gap widened: the slides are sized off that gap
+   — calc((100% - 24px) / 3) — so opening it would have pulled the media in with it. A
+   percentage resolves against the slide, so the gutter holds its proportion at every width,
+   and it comes off the right only, leaving the paragraph flush with the media above it. */
 .caption {
+  max-width: 89%;
   margin-top: 34px;
   color: var(--color-body-muted);
   font-size: 15px;
@@ -190,6 +197,9 @@
   }
 
   .caption {
+    /* One card at a time down here, so there is no neighbour to open a gutter against and the
+       cap would only be shortening the measure. */
+    max-width: 100%;
     margin-top: 24px;
   }
 }
