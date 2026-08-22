@@ -397,8 +397,42 @@ export const problems: {
       body:
         'It was fine in 2019. Now it looks dated on phones, doesn’t reflect how you actually practice, and you avoid sending people to it.',
     },
+    {
+      title: 'My Psychology Today profile stopped working.',
+      image: {
+        src: '/images/My-Psychology-Today-profile-stopped-working-solutions-wwisermind.webp',
+        alt: 'Therapist looking at an empty inquiry inbox',
+      },
+      body:
+        'Referrals from directories have quietly dried up. Big platforms with ad budgets now crowd the listings, and your profile sits pages deep where nobody scrolls.',
+    },
+    {
+      title: 'People visit my site, then vanish.',
+      background: {
+        poster: '/images/People-visit-my-site-then-vanish-poster.webp',
+        sources: [
+          {
+            src: '/videos/People-visit-my-site-then-vanish-therapist-solutions-wwisermind.webm',
+            type: 'video/webm',
+          },
+        ],
+      },
+      body:
+        'Inquiries are rare, and half are the wrong fit when they come. Your site talks about credentials when visitors in distress just want to feel understood.',
+    },
+    {
+      title: 'I trained to be a therapist, not a marketer.',
+      image: {
+        src: '/images/I-trained-to-be-a-therapist-not-a-marketer-Solution-wwisermind.webp',
+        alt: 'Therapist with no time left for marketing between sessions',
+      },
+      body:
+        'Posting, optimizing, promoting yourself, it all feels uncomfortable and there’s no time between sessions anyway. So marketing keeps sliding to next month.',
+    },
   ],
-  /** How many times the three cards repeat to fill the slider for now. */
+  /** How many times the six cards repeat to fill the slider. At 3 that is eighteen slides and
+      nine autoplaying video elements; the six are enough to slide through on their own now, so
+      this wants to come down to 1 unless the repetition is deliberate. */
   slideRepeat: 3,
 };
 
