@@ -443,6 +443,7 @@ export const services = {
       title: 'Websites',
       href: '#websites',
       icon: '/images/icon_1.webp',
+      iconOnFill: '/images/icon_1-on-fill.webp',
       iconWidth: 200,
       iconHeight: 152,
       body:
@@ -451,12 +452,12 @@ export const services = {
         { label: 'One week website', href: '#one-week-website' },
         { label: 'Custom website design', href: '#custom-website-design' },
       ],
-      seeAll: { label: 'See all website services', href: '#website-services' },
     },
     {
       title: 'Marketing',
       href: '#marketing',
       icon: '/images/icon_2.webp',
+      iconOnFill: '/images/icon_2-on-fill.webp',
       iconWidth: 200,
       iconHeight: 153,
       body:
@@ -465,12 +466,12 @@ export const services = {
         { label: 'Local SEO', href: '#local-seo' },
         { label: 'Ongoing SEO services', href: '#ongoing-seo' },
       ],
-      seeAll: { label: 'See all marketing services', href: '#marketing-services' },
     },
     {
       title: 'AI Services',
       href: '#ai-services',
       icon: '/images/icon_3.webp',
+      iconOnFill: '/images/icon_3-on-fill.webp',
       iconWidth: 200,
       iconHeight: 126,
       body:
@@ -479,7 +480,6 @@ export const services = {
         { label: 'AI search optimization', href: '#ai-search-optimization' },
         { label: 'AI chatbot', href: '#ai-chatbot' },
       ],
-      seeAll: { label: 'See all AI services', href: '#all-ai-services' },
     },
   ],
   startWithLabel: 'Start with:',

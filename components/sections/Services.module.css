@@ -1,16 +1,29 @@
 /* Frame 06 — services on a blue field.
-   Measured off images/designframes/006section3.jpg (1920 frame, 1639 container).
-   Background is a flat #006fda; the rows are outlined only — no fill — with a 1px #2786f2
-   border and a ~26px radius. Design values × 0.793 for the 1300 container. */
+
+   Rebuilt against design-references/services.webp, whose cards are 1729x249 on the same
+   #006fda. Our card is 1300 wide, so every measurement below is that reference scaled by
+   1300/1729 = 0.752, and the row is proportional rather than a set of round numbers: columns
+   and gutters are percentages, so the ratios survive every width.
+
+   What was wrong was not the card but what sat in it — the icon ran at 11.7% of the card
+   against the reference's 6.4%, and the arrow at 6.8% against 4.0%. Both near double what
+   they should be, which is where the crowding came from. */
 
 .section {
+  /* Sampled off design-references/pop-up-effect.png: the fill is #f7ff89 and the reference
+     sets its text at #333333. Ours goes a shade deeper — 16.3:1 against the fill rather than
+     11.8:1 — and both clear AA either way. */
+  --fill: #f7ff89;
+  --fill-ink: #1a1a1a;
+  --fill-dur: 200ms;
+
   padding-block: 128px 160px;
   background-color: var(--color-brand-deep);
   color: var(--color-white);
 }
 
 .label {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: var(--fw-semibold);
   line-height: 1.3;
   letter-spacing: 0.1em;
@@ -20,48 +33,104 @@
 .rows {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  /* 31px between cards in the reference, scaled */
+  gap: 24px;
   margin-top: 96px;
 }
 
+/* Every column is sized to what it actually holds and the gap carries all the space between
+   them, so the four gutters are one number rather than four different leftovers. Widths come
+   from the measured ink: icon 84, the longest name 253, the description measure 219, the
+   longest list link 175, arrow 52 — 783 of a 1234 content box, leaving about 110 for each of
+   the four gaps. The name and list columns each keep a little over their longest line rather
+   than sitting exactly on it — a column sized to its own max-content wraps on nothing more
+   than sub-pixel rounding.
+
+   Percentages, not pixels: the container only reaches 1300 above a 1340px viewport and
+   shrinks from there, and fixed columns take the whole difference out of the name. Icon and
+   arrow are the first and last columns, so they stay pinned to the row's two edges. */
 .row {
+  position: relative;
+  isolation: isolate;
   display: grid;
-  grid-template-columns: 16% 28% 25% 24% 7%;
+  grid-template-columns: 6.807% 21% 17.747% 15.2% 4.214%;
+  column-gap: 8.758%;
   align-items: center;
-  min-height: 186px;
-  padding-inline: 48px 55px;
+  /* Sized off the tallest thing in a row rather than kept at a round number. With the see-all
+     line gone the tallest is the four-line description at 73px, and the reference runs its
+     content at ~44% of the card height, which puts the card at 164 and leaves 45 above and
+     below. At 186 there were 56 — dead space at the bottom of every row. */
+  min-height: 164px;
+  padding-inline: 32px;
   border: 1px solid var(--color-brand-line);
   border-radius: 20px;
+  background-color: transparent;
+  transition: background-color var(--fill-dur) var(--ease),
+    color var(--fill-dur) var(--ease),
+    border-color var(--fill-dur) var(--ease);
+}
+
+/* The fill is the row's own background, so it covers the card edge to edge, takes its radius
+   and its full height for nothing, and cannot move anything: three colours change and no
+   geometry does. The border goes to the fill colour too, or a blue hairline would still be
+   drawn around a solid yellow card. Everything that inherits colour flips in this one
+   declaration; the arrow sets its own and is overridden below. */
+.row:hover {
+  background-color: var(--fill);
+  color: var(--fill-ink);
+  border-color: var(--fill);
+}
+
+/* 110px of a 1729 card — 6.4%, against the 11.7% it was running at. */
+/* The first copy is in flow and sets the box; the second is laid over it and only fades in.
+   The blue one stays opaque underneath rather than fading out with it, so the swap never dips
+   through a moment where neither is fully there. */
+.iconStack {
+  position: relative;
+  display: block;
 }
 
 .icon {
+  display: block;
   width: 100%;
-  max-width: 159px;
+  max-width: 84px;
   height: auto;
 }
 
+.iconOnFill {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--fill-dur) var(--ease);
+}
+
+.row:hover .iconOnFill {
+  opacity: 1;
+}
+
+/* 56px measures out at 57.3px against the design once its 1089px card is scaled to our
+   1300px one, so the name was already the right size and keeps it. */
 .title {
-  font-size: 56px;
+  position: relative;
+  z-index: 1;
+  /* Tied to the viewport so it comes down with its column rather than in one step at a
+     breakpoint, which is where the name used to outgrow the space it had. */
+  font-size: clamp(30px, 3.4vw, 48px);
   font-weight: var(--fw-semibold);
   line-height: 1.1;
   letter-spacing: -0.02em;
-  transition: opacity var(--dur) var(--ease);
 }
 
-.title:hover {
-  opacity: 0.75;
-}
-
+/* No cap needed any more: the column is the measure, sized to it above. */
 .body {
-  padding-right: 24px;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: var(--fw-regular);
-  line-height: 1.25;
+  line-height: 1.45;
 }
 
 /* --- start with list ----------------------------------------------------- */
 .startLabel {
-  font-size: 13px;
+  font-size: 11px;
   font-weight: var(--fw-bold);
   line-height: 1.4;
   letter-spacing: 0.04em;
@@ -77,19 +146,16 @@
 }
 
 .listLink {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: baseline;
   gap: 8px;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: var(--fw-semibold);
   line-height: 1.4;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  transition: opacity var(--dur) var(--ease);
-}
-
-.listLink:hover {
-  opacity: 0.75;
 }
 
 .listArrow {
@@ -97,41 +163,66 @@
   opacity: 0.9;
 }
 
-.seeAll {
-  display: inline-block;
-  margin-top: 14px;
-  font-size: 13px;
-  font-weight: var(--fw-semibold);
-  line-height: 1.4;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  transition: opacity var(--dur) var(--ease);
-}
-
-.seeAll:hover {
-  opacity: 0.75;
+/* The links inside are a fixed 11px, so this column's min-content is as wide as the longest
+   of them. Without this the column would refuse to go below that and push the row wider than
+   its container at the narrow end; with it, the text wraps instead of the row breaking. */
+.startCol {
+  min-width: 0;
 }
 
 /* --- long arrow ---------------------------------------------------------- */
+/* Left unpositioned and untransformed so the stretched hit area below resolves against the
+   row rather than against the arrow. */
 .go {
   display: flex;
   justify-content: flex-end;
   color: var(--color-white);
-  transition: transform var(--dur) var(--ease);
+  transition: color var(--fill-dur) var(--ease);
 }
 
-.go:hover {
-  transform: translateX(4px);
+.row:hover .go {
+  color: var(--fill-ink);
 }
 
+/* The row is the link. A pseudo-element rather than a wrapping anchor, because the name and
+   the four list links are anchors themselves and cannot be nested inside another one — they
+   sit a layer above this and stay separately clickable. */
+.go::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+}
+
+/* 69px of a 1729 card — 4.0%, against the 6.8% it was running at. */
 .goIcon {
-  width: 87px;
-  height: 39px;
+  width: 100%;
+  max-width: 52px;
+  height: auto;
+}
+
+/* Motion off: the row still fills, it just arrives rather than eases. */
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .iconOnFill,
+  .go {
+    transition: none;
+  }
 }
 
 /* --- responsive ---------------------------------------------------------- */
+/* The list links are a fixed 11px while the columns are proportional, so below roughly a
+   1255px viewport the list column stops being wide enough for "Custom website design" and the
+   link breaks over two lines. It gets a larger share from here down, paid for out of the
+   gaps — a slightly less even row is worth more than a wrapped link. */
+@media (max-width: 1254px) {
+  .row {
+    grid-template-columns: 6.807% 21% 17.747% 20.5% 4.214%;
+    column-gap: 7.433%;
+  }
+}
+
 @media (max-width: 1279px) {
   .section {
     padding-block: 96px 112px;
@@ -141,20 +232,11 @@
     margin-top: 64px;
   }
 
-  .row {
-    padding-inline: 32px;
-  }
-
-  .title {
-    font-size: 42px;
-  }
-
-  .goIcon {
-    width: 60px;
-    height: 28px;
-  }
+  /* The row itself needs nothing here — columns, gutters, caps and the name are all
+     proportional, so they come down with the container on their own. */
 }
 
+/* One column per row from here down: icon, name, description, list, then the arrow last. */
 @media (max-width: 1023px) {
   .row {
     display: flex;
@@ -165,12 +247,15 @@
     padding: 32px;
   }
 
+  /* Definite width: the image is a shrink-to-fit flex item here rather than a grid item
+     filling a column, so a percentage would have nothing to resolve against. Kept near the
+     desktop 84 so the mark does not grow as the row gets narrower. */
   .icon {
-    max-width: 120px;
+    width: 80px;
+    max-width: 100%;
   }
 
   .body {
-    padding-right: 0;
     max-width: 46ch;
   }
 
@@ -199,7 +284,4 @@
     letter-spacing: 0.08em;
   }
 
-  .title {
-    font-size: 34px;
-  }
 }

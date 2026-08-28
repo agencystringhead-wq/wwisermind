@@ -51,13 +51,28 @@ export default function Services() {
         <div className={styles.rows}>
           {rows.map((row) => (
             <article className={styles.row} key={row.title}>
-              <Image
-                src={row.icon}
-                alt=""
-                width={row.iconWidth}
-                height={row.iconHeight}
-                className={styles.icon}
-              />
+              {/* Two copies of the mark, the second recoloured for the fill and laid over the
+                  first. The reference's icon carries both the fill's yellow-green and a blue
+                  strong enough to read on it; ours is pale at both ends and would all but
+                  vanish, so the hover copy pushes its gradient to that same spread. The
+                  overlay is absolute, so swapping them moves nothing. */}
+              <span className={styles.iconStack}>
+                <Image
+                  src={row.icon}
+                  alt=""
+                  width={row.iconWidth}
+                  height={row.iconHeight}
+                  className={styles.icon}
+                />
+                <Image
+                  src={row.iconOnFill}
+                  alt=""
+                  width={row.iconWidth}
+                  height={row.iconHeight}
+                  className={`${styles.icon} ${styles.iconOnFill}`}
+                  aria-hidden="true"
+                />
+              </span>
 
               <h3>
                 <Link href={row.href} className={styles.title}>
@@ -67,7 +82,7 @@ export default function Services() {
 
               <p className={styles.body}>{row.body}</p>
 
-              <div>
+              <div className={styles.startCol}>
                 <p className={styles.startLabel}>{startWithLabel}</p>
                 <div className={styles.list}>
                   {row.startWith.map((item) => (
@@ -77,9 +92,6 @@ export default function Services() {
                     </Link>
                   ))}
                 </div>
-                <Link href={row.seeAll.href} className={styles.seeAll}>
-                  {row.seeAll.label}
-                </Link>
               </div>
 
               <Link href={row.href} className={styles.go} aria-label={`${row.title} — see more`}>
