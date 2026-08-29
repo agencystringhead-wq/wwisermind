@@ -1,0 +1,11 @@
+/* The announcement bar's twin at the foot of the page. Both the colour and the height come
+   from the top bar rather than being written out again here: the fill by composing its rule,
+   the height from the same token its own `.inner` uses. Retune either and both ends move.
+
+   It holds nothing, so there is no line box to set the height — the token is the whole of it,
+   which is also why it cannot follow the top bar when that one grows to two lines on a
+   narrow screen. */
+.bottomBar {
+  composes: topbar from './TopBar.module.css';
+  min-height: var(--topbar-height);
+}
