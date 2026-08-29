@@ -1,5 +1,5 @@
 .topbar {
-  background-color: var(--color-cream);
+  background-color: #f7ff89;
   color: var(--color-ink);
 }
 
@@ -9,16 +9,18 @@
   justify-content: center;
   gap: 6px;
   min-height: var(--topbar-height);
-  /* The 14px/1.4 line box is 19.6px, so anything over ~16px of padding outgrows the height
-     token and sets the bar's height on its own. Kept under that so the token governs. */
-  padding-block: 8px;
+  /* The 12px/1.4 line box is 16.8px, so anything over ~13px of padding outgrows the height
+     token and sets the bar's height on its own. Kept under that so the token governs — and
+     the token leaves 6.6px above and below the line, near the 8.2 it had at the larger size.
+     On a phone the line wraps, and then this padding is what sets the height instead. */
+  padding-block: 6px;
   font-size: var(--fs-topbar);
   line-height: 1.4;
   text-align: center;
 }
 
 /* Photoshop measures tracking in 1/1000 em, so the design's -25 is -0.025em — which is also
-   why this is set in em rather than px: it keeps the same proportion at the 13px mobile size
+   why this is set in em rather than px: it keeps the same proportion at the 11px mobile size
    below. A literal -25px would be roughly the whole line's width per character. */
 .text {
   font-size: var(--fs-topbar);
@@ -43,11 +45,7 @@
 }
 
 @media (max-width: 640px) {
-  .inner {
-    padding-block: 8px;
-  }
-
   .text {
-    font-size: 13px;
+    font-size: 11px;
   }
 }

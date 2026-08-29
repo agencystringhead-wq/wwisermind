@@ -34,7 +34,7 @@
   --fw-heading: var(--fw-bold);
   --fs-body: 15px;
   --fs-nav: 15px;
-  --fs-topbar: 14px;
+  --fs-topbar: 12px;
   --lh-body: 1.6;
   --lh-heading: 1.1;
   --tracking-heading: -0.02em;
@@ -48,7 +48,7 @@
   --dur: 0.25s;
 
   /* chrome heights */
-  --topbar-height: 36px; /* was 42px */
+  --topbar-height: 30px; /* was 42, then 36 */
   --header-height: 104px;
 }
 
