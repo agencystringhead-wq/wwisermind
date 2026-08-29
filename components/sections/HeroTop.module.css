@@ -1,4 +1,4 @@
-/* Frame 02 — hero top: 2-line H1 with a soft blue glow, rule, then a 3-column row.
+/* Frame 02 — hero top: 2-line H1 with a soft glow, rule, then a 3-column row.
    Measured off images/designframes/002herosectiontop.jpg (design container 1639px,
    rebuilt inside the project's 1300px container). */
 
@@ -23,14 +23,22 @@
   width: min(400px, 62%);
   height: 160px;
   transform: translateX(-50%);
+  /* The announcement bar's yellow. One hue across all four stops, as the blue was, so the
+     ramp stays a single colour fading out rather than a blend of two. */
   background: radial-gradient(
     closest-side,
-    rgba(120, 200, 255, 0.6),
-    rgba(120, 200, 255, 0.38) 45%,
-    rgba(120, 200, 255, 0.11) 72%,
-    rgba(120, 200, 255, 0) 100%
+    rgba(247, 255, 137, 0.6),
+    rgba(247, 255, 137, 0.38) 45%,
+    rgba(247, 255, 137, 0.11) 72%,
+    rgba(247, 255, 137, 0) 100%
   );
   filter: blur(18px);
+  /* The yellow is far lighter than the blue was — it drops the page by 0.05 where the blue
+     dropped it by 0.32 — but it sits further from white in colour: 35.7 against 26.4 at the
+     peak stop. Scaling the whole ramp by 0.75 brings that to 26.9, so it reads as present as
+     the blue did rather than louder. Applied here rather than in the stops so the four keep
+     their ratio. */
+  opacity: 0.75;
   pointer-events: none;
 }
 
