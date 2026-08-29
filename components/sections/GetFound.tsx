@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { getFound } from '@/lib/site';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 import styles from './GetFound.module.css';
 
 export default function GetFound() {
@@ -11,7 +12,7 @@ export default function GetFound() {
       <Image src={background} alt="" fill sizes="100vw" className={styles.backdrop} />
 
       <div className={`container ${styles.inner}`}>
-        <h2 className={styles.heading}>{heading}</h2>
+        <ScrollReveal text={heading} className={styles.heading} />
         <p className={styles.body}>{body}</p>
 
         <Image

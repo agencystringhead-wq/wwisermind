@@ -691,17 +691,20 @@ export const freebies = {
 };
 
 export const getFound = {
-  background: '/images/found-bg.webp',
+  background: '/images/wwisermind-directory-citation-services-therapist.webp',
   heading: 'Get found where your ideal clients are searching',
   body:
     'We optimize your presence across the search engines, directories, and AI tools your clients actually use',
-  /** Natural sizes scaled by the project's 0.793 design factor. */
-  featured: { src: '/images/psycology-today.webp', alt: 'Psychology Today', width: 238, height: 52 },
+  /** Natural sizes scaled by the project's 0.793 design factor, then halved. The design frame
+      is what balanced these against each other — a wordmark's own padding is why 159 and 238
+      read as the same size — so they are halved as a set, which keeps that balance rather
+      than re-deciding it. */
+  featured: { src: '/images/psycology-today.webp', alt: 'Psychology Today', width: 119, height: 26 },
   logos: [
-    { src: '/images/zencare.webp', alt: 'Zencare', width: 238, height: 51 },
-    { src: '/images/gemini.webp', alt: 'Google Gemini', width: 159, height: 59 },
-    { src: '/images/chatgpt.webp', alt: 'ChatGPT', width: 198, height: 58 },
-    { src: '/images/perplexity.webp', alt: 'Perplexity', width: 198, height: 48 },
+    { src: '/images/zencare.webp', alt: 'Zencare', width: 119, height: 26 },
+    { src: '/images/gemini.webp', alt: 'Google Gemini', width: 80, height: 30 },
+    { src: '/images/chatgpt.webp', alt: 'ChatGPT', width: 99, height: 29 },
+    { src: '/images/perplexity.webp', alt: 'Perplexity', width: 99, height: 24 },
   ],
   link: { label: 'See Full Directory List', href: '#directories' },
 };

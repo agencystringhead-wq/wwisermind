@@ -20,21 +20,19 @@
   padding-block: 76px 147px;
 }
 
+/* The problems headline's treatment, which is where the freebies heading takes its values
+   from too — composed rather than restated, so all three move together. Only the measure is
+   local: the design wraps this one in two lines at ~443px. */
 .heading {
-  /* design wraps the heading in two lines at ~443px */
+  composes: heading from './Problems.module.css';
   max-width: 470px;
-  font-size: clamp(24px, 2.6vw, 34px);
-  font-weight: var(--fw-bold);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  text-wrap: initial;
 }
 
 .body {
   max-width: 46ch;
   margin-top: 20px;
   font-size: 15px;
-  font-weight: var(--fw-semibold);
+  font-weight: var(--fw-regular);
   line-height: 1.25;
 }
 
@@ -46,7 +44,9 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 32px 10.8%;
+  /* Halved with the marks. At the old 10.8% the gaps came out at 140px against logos only
+     80-119px wide, which reads as four scattered images rather than one row. */
+  gap: 16px 5.4%;
   margin-top: 79px;
 }
 
@@ -54,7 +54,7 @@
   display: inline-block;
   margin-top: 73px;
   color: var(--color-brand);
-  font-size: 15px;
+  font-size: 13px;
   font-weight: var(--fw-semibold);
   text-decoration: underline;
   text-underline-offset: 5px;
@@ -72,7 +72,7 @@
   }
 
   .logos {
-    gap: 28px 7%;
+    gap: 14px 3.5%;
     margin-top: 56px;
   }
 
@@ -95,17 +95,18 @@
   }
 
   .logos {
-    gap: 24px 32px;
+    gap: 12px 16px;
   }
 
-  /* an explicit width (not max-width) so flex line-breaking uses the small size */
+  /* an explicit width (not max-width) so flex line-breaking uses the small size — halved
+     with the rest of the set */
   .logos img {
-    width: 140px;
+    width: 70px;
     height: auto;
   }
 
   .featured {
-    width: 180px;
+    width: 90px;
     height: auto;
   }
 
