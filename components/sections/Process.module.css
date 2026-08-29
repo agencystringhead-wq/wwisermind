@@ -89,13 +89,70 @@
   background-color: #f2f7fb;
 }
 
-.blob {
+/* Two layers on purpose: the wrapper carries the lean toward the cursor and the image inside
+   carries the ambient drift, so the two compose instead of overwriting one transform. Both
+   are transform-only on an absolutely positioned, pointer-events:none layer behind .inner —
+   nothing here can move anything else on the page or repaint the section. */
+.blobWrap {
   position: absolute;
   z-index: 0;
+  pointer-events: none;
+  transform: translate3d(var(--blob-x, 0px), var(--blob-y, 0px), 0);
+}
+
+.blob {
+  display: block;
   /* the global reset caps images at 100% — these deliberately overflow their card */
   max-width: none;
+  width: 100%;
   height: auto;
-  pointer-events: none;
+  will-change: transform;
+  animation: blobDrift 19s ease-in-out infinite;
+}
+
+/* The second runs on its own clock and the other way round, so the pair never arrives
+   anywhere together — two gradients breathing in step would read as the section pulsing. */
+.blobTwo .blob {
+  animation-duration: 16s;
+  animation-direction: reverse;
+}
+
+/* A closed circuit rather than a line walked back and forth: 100% is 0%, and ease-in-out
+   takes the velocity to zero at both, so the wrap-around has nothing to snap. The rotation is
+   what does most of the work — half a degree across a blurred mass reads as the colours
+   shifting against each other rather than as the picture moving. */
+@keyframes blobDrift {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate3d(10px, -7px, 0) rotate(0.45deg);
+  }
+  50% {
+    transform: translate3d(14px, 6px, 0) rotate(0deg);
+  }
+  75% {
+    transform: translate3d(5px, 9px, 0) rotate(-0.45deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+}
+
+/* Off-screen the section does no work at all: the observer parks the drift here and stops the
+   cursor loop in the same breath. */
+.motionPaused .blob {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob {
+    animation: none;
+  }
+
+  .blobWrap {
+    transform: none;
+  }
 }
 
 /* placement solved from the arc's purple centroid in the design frame */
@@ -123,7 +180,7 @@
 
 .stepTitle {
   font-size: 28px;
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-semibold);
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
@@ -141,7 +198,7 @@
   gap: 10px;
   margin-top: 37px;
   color: var(--color-brand-deep);
-  font-size: 13px;
+  font-size: 11px;
   font-weight: var(--fw-bold);
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -151,6 +208,15 @@
 .linkText {
   text-decoration: underline;
   text-underline-offset: 5px;
+}
+
+/* Was 14x10 px, which is 1.077em/0.769em against the 13px the link used to be set at. In em
+   it now tracks the label instead of needing its own pass every time that size moves — the
+   same treatment the practice links got. */
+.linkArrow {
+  flex: none;
+  width: 1.077em;
+  height: 0.769em;
 }
 
 .link:hover {

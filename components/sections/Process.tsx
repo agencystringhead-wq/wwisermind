@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { processSection } from '@/lib/site';
+import GradientDrift from '@/components/ui/GradientDrift';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import styles from './Process.module.css';
 
@@ -21,6 +22,7 @@ function ArrowPattern() {
 function LinkArrow() {
   return (
     <svg
+      className={styles.linkArrow}
       width="14"
       height="10"
       viewBox="0 0 14 10"
@@ -49,6 +51,7 @@ export default function Process() {
 
   return (
     <section className={styles.section}>
+      <GradientDrift pausedClass={styles.motionPaused} />
       <ArrowPattern />
 
       <div className={`container ${styles.inner}`}>
@@ -71,13 +74,15 @@ export default function Process() {
 
         <div className={styles.steps}>
           <article className={`${styles.card} ${styles.cardTop}`}>
-            <Image
-              src="/images/pattern2.webp"
-              alt=""
-              width={1573}
-              height={285}
-              className={`${styles.blob} ${styles.blobOne}`}
-            />
+            <span className={`${styles.blobWrap} ${styles.blobOne}`} aria-hidden="true">
+              <Image
+                src="/images/pattern2.webp"
+                alt=""
+                width={1573}
+                height={285}
+                className={styles.blob}
+              />
+            </span>
             <div className={styles.cardBody}>
               <h3 className={styles.stepTitle}>{steps[0].title}</h3>
               <p className={styles.stepBody}>{steps[0].body}</p>
@@ -86,13 +91,15 @@ export default function Process() {
           </article>
 
           <article className={`${styles.card} ${styles.cardBottom}`}>
-            <Image
-              src="/images/pattern1.webp"
-              alt=""
-              width={509}
-              height={425}
-              className={`${styles.blob} ${styles.blobTwo}`}
-            />
+            <span className={`${styles.blobWrap} ${styles.blobTwo}`} aria-hidden="true">
+              <Image
+                src="/images/pattern1.webp"
+                alt=""
+                width={509}
+                height={425}
+                className={styles.blob}
+              />
+            </span>
             <div className={styles.cardBody}>
               <h3 className={styles.stepTitle}>{steps[1].title}</h3>
               <p className={styles.stepBody}>{steps[1].body}</p>
