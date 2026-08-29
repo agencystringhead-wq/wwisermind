@@ -319,7 +319,7 @@ export default function Header() {
         <div className={`container ${styles.inner}`}>
           <Link href="/" className={styles.brand} aria-label={`${siteConfig.name} home`}>
             <Image
-              src="/images/logo.webp"
+              src="/images/wwisermind-official-logo.webp"
               alt={siteConfig.name}
               width={60}
               height={56}

@@ -124,7 +124,7 @@ Two stacked parts:
   middle column, so the gap to the left of the nav always equals the gap to its right
   (don't go back to `1fr auto 1fr` — that centres the nav on the page and pushes it right
   because the actions column is wider than the logo):
-  - logo `public/images/logo.webp`, 52px tall, links to `/`
+  - logo `public/images/wwisermind-official-logo.webp`, 52px tall, links to `/`
   - nav: Services · Results · Who We Help · Pricing · About · Freebies · Tools — 15px (`--fs-nav`) / `--fw-medium`,
     36px gap, underline sweep on hover
   - actions: `Contact Us` text link + `Book Your Free Call` black pill
