@@ -642,11 +642,17 @@ export const whyUs = {
 };
 
 export const founder = {
-  portrait: { src: '/images/srikaant.webp', alt: 'SrikaantH, founder of wwisermind, at his desk' },
-  quoteLead:
-    'I started wwisermind after watching my own family search for the right therapist and struggle to find one —',
-  quoteRest:
-    " not because good therapists weren't out there, but because they were invisible online. Nine years of building websites for healthcare practices taught me how to fix that. This company exists to make sure the people who need you can actually find you.",
+  portrait: {
+    src: '/images/Srikaanth-Founder-wwisermind.webp',
+    alt: 'SrikaantH, founder of wwisermind, at his desk in a book-lined office',
+    /* Square source in a square frame, so cover crops nothing — the position is here to hold
+       the face if a future portrait is not square. */
+    position: 'center 30%',
+  },
+  /* One sentence, not two halves: the grey second half is gone, because the reveal carries
+     that contrast itself now and a fixed colour would sit on top of it. */
+  quote:
+    "I started wwisermind after watching my own family search for the right therapist and struggle to find one — not because good therapists weren't out there, but because they were invisible online. Nine years of building websites for healthcare practices taught me how to fix that. This company exists to make sure the people who need you can actually find you.",
   attribution: 'SrikaantH · Founder, wwisermind',
 };
 

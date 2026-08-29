@@ -50,7 +50,7 @@ export default function ScrollReveal({
 }: {
   text: string;
   className?: string;
-  as?: 'h2' | 'h3' | 'p';
+  as?: 'h2' | 'h3' | 'p' | 'blockquote';
   /** Both as fractions of viewport height, measured to the top of the block: `start` is
       where the first word begins to turn and `end` is where the last one lands. */
   start?: number;

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { founder } from '@/lib/site';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 import styles from './Founder.module.css';
 
 /** The design's quote mark is a pair of squared commas, not a typographic glyph. */
@@ -13,7 +14,7 @@ function QuoteMark() {
 }
 
 export default function Founder() {
-  const { portrait, quoteLead, quoteRest, attribution } = founder;
+  const { portrait, quote, attribution } = founder;
 
   return (
     <section className={styles.section}>
@@ -25,15 +26,22 @@ export default function Founder() {
             width={274}
             height={275}
             className={styles.portrait}
+            style={{ objectPosition: portrait.position }}
           />
 
           <figure className={styles.quoteColumn}>
             <QuoteMark />
 
-            <blockquote className={styles.quote}>
-              {quoteLead}
-              <span className={styles.quoteRest}>{quoteRest}</span>
-            </blockquote>
+            {/* Still a quotation, so it keeps its element — the reveal renders whatever tag
+                it is handed. The window matches the process passage: 46 words there, 58 here,
+                and the headline default would run all of them past in a third of a screen. */}
+            <ScrollReveal
+              as="blockquote"
+              text={quote}
+              className={styles.quote}
+              start={0.95}
+              end={0.25}
+            />
 
             <figcaption className={styles.attribution}>{attribution}</figcaption>
           </figure>
