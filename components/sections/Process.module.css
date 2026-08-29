@@ -46,19 +46,19 @@
   text-transform: uppercase;
 }
 
+/* The problems headline's treatment, composed rather than restated, so size, weight, tracking
+   and leading stay tied to that one. The measure and the top margin are local — the grey
+   second half that used to sit under `.headingMuted` is gone, because the reveal is the
+   contrast now and a fixed colour would sit on top of it. */
 .heading {
-  /* design wraps this block at ~950px of a 1639 container */
-  max-width: 750px;
+  composes: heading from './Problems.module.css';
+  /* Its own measure, not the problems headline's — that one is 14em, tuned to break an
+     eight-word sentence in a particular place, and on 46 words it made nine short lines.
+     22.1em is the 750px the design wrapped this block at (~950px of a 1639 container), which
+     is what puts "headaches." at the end of the first line and the em dash at the end of the
+     third. In em rather than px so those breaks survive the clamp taking the type down. */
+  max-width: 22.1em;
   margin-top: 17px;
-  font-size: clamp(24px, 2.6vw, 34px);
-  font-weight: var(--fw-bold);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  text-wrap: initial;
-}
-
-.headingMuted {
-  color: var(--color-heading-muted);
 }
 
 /* --- row 2: two step cards ----------------------------------------------- */

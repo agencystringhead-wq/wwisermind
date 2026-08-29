@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { processSection } from '@/lib/site';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 import styles from './Process.module.css';
 
 /** The design places this at its natural size, flush with the viewport's right edge. */
@@ -53,10 +54,20 @@ export default function Process() {
       <div className={`container ${styles.inner}`}>
         <p className={styles.badge}>{badge}</p>
 
-        <h2 className={styles.heading}>
-          {headingLead}
-          <span className={styles.headingMuted}>{headingRest}</span>
-        </h2>
+        {/* The two halves were a fixed black/grey split; the reveal carries that contrast
+            itself now, word by word, so they join back into one sentence.
+
+            The window is widened from the headline default: this is 46 words where the
+            problems headline is 8, and the default 0.75→0.35 would run all of them past in
+            360px of scroll — one word every 8px. 0.95→0.25 spends 630px on them, the same
+            pace per word the practice paragraphs run at, and still lands the last word with
+            the whole block in view. */}
+        <ScrollReveal
+          text={`${headingLead}${headingRest}`}
+          className={styles.heading}
+          start={0.95}
+          end={0.25}
+        />
 
         <div className={styles.steps}>
           <article className={`${styles.card} ${styles.cardTop}`}>
