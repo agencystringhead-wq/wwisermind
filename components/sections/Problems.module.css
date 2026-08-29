@@ -16,19 +16,25 @@
   gap: 32px;
 }
 
-/* Weight and tracking match the statement section in HomeIntro, so the two headings that
-   carry the reveal read as the same treatment rather than two similar ones. */
+/* Weight and tracking match the statement section in HomeIntro, so the headings that carry
+   the reveal read as the same treatment rather than several similar ones. This block is the
+   treatment on its own — no measure — so other sections can `composes` it and set their own
+   wrap width; Practice does. Change a value here and it changes there too. */
 .heading {
-  /* The second half used to be a block-level span, which is what broke the line — with the
-     sentence flattened into words for the reveal, the break has to come from the measure
-     instead. In em so it holds across the clamp: the first line runs about 12.9em, and
-     "therapists" needs another 5.6, so 14em breaks in the same place at every size. */
-  max-width: 14em;
   font-size: clamp(24px, 2.6vw, 34px);
   font-weight: var(--fw-semibold);
   line-height: 1.2;
   letter-spacing: -0.025em;
   text-wrap: initial;
+}
+
+/* The second half used to be a block-level span, which is what broke the line — with the
+   sentence flattened into words for the reveal, the break has to come from the measure
+   instead. In em so it holds across the clamp: the first line runs about 12.9em, and
+   "therapists" needs another 5.6, so 14em breaks in the same place at every size. Kept off
+   .heading because the measure is this sentence's, not the treatment's. */
+.headingMeasure {
+  max-width: 14em;
 }
 
 .controls {

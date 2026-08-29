@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { practice } from '@/lib/site';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 import styles from './Practice.module.css';
 
 function UpArrow() {
@@ -37,10 +38,9 @@ export default function Practice() {
   return (
     <section className={styles.section}>
       <div className="container">
-        <h2 className={styles.heading}>
-          {headingLead}
-          <span className={styles.headingMuted}>{headingRest}</span>
-        </h2>
+        {/* The two halves were a fixed black/grey split; the reveal carries that contrast
+            itself now, word by word, so they join back into one sentence. */}
+        <ScrollReveal text={`${headingLead} ${headingRest}`} className={styles.heading} />
 
         <div className={styles.rows}>
           {rows.map((row) => (

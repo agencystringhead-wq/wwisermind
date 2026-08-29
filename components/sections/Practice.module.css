@@ -7,17 +7,16 @@
   background-color: var(--color-white);
 }
 
+/* Size, weight, tracking and leading are the problems heading's, composed rather than
+   copied, so the two stay identical if either is retuned. Only the measure is local: the
+   grey second half used to be a block-level span and broke the line itself, and with the
+   sentence flattened into words for the reveal the break has to come from the width. In em
+   so it holds across the clamp: the second line measures 18.3em on its own and the first
+   would only take "whether" back at 18.9, so 18.6em is the one width that breaks after the
+   dash at every size. */
 .heading {
-  font-size: clamp(24px, 2.6vw, 34px);
-  font-weight: var(--fw-bold);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  text-wrap: initial;
-}
-
-.headingMuted {
-  display: block;
-  color: var(--color-heading-muted);
+  composes: heading from './Problems.module.css';
+  max-width: 18.6em;
 }
 
 .rows {

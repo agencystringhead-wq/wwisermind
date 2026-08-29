@@ -69,7 +69,10 @@ export default function Problems() {
         <div className={styles.head}>
           {/* The two halves were a fixed black/grey split; the reveal carries that contrast
               itself now, word by word, so they join back into one sentence. */}
-          <ScrollReveal text={`${headingLead} ${headingRest}`} className={styles.heading} />
+          <ScrollReveal
+            text={`${headingLead} ${headingRest}`}
+            className={`${styles.heading} ${styles.headingMeasure}`}
+          />
 
           <div className={styles.controls}>
             <button
