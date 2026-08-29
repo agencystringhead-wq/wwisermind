@@ -134,49 +134,18 @@
 }
 
 .figure {
-  position: relative;
+  composes: frame from '../ui/MediaHover.module.css';
   aspect-ratio: 1 / 1;
-  overflow: hidden;
   border-radius: 20px;
   background-color: #e6e6e6;
 }
 
-/* The zoom is contained by the frame's own overflow, so the picture grows inside the card
-   rather than the card growing with it.
-
-   Both photographs are square now, as is the frame, so cover fills it exactly and crops
+/* Both photographs are square now, as is the frame, so cover fills it exactly and crops
    nothing — the centred default is the whole story. The 25% bias that used to sit here was
    for a 3:4 portrait whose head the centre cut would have clipped; with that picture gone it
    had nothing left to move. */
-.figure img {
-  object-fit: cover;
-  transition: transform 400ms ease-out;
-}
-
-.figure:hover img {
-  transform: scale(1.04);
-}
-
-/* A band of light crossing the frame. It only carries a transition while hovered, so the
-   sweep plays on the way in and the band snaps back to its start on the way out — a reset
-   nobody sees, since both ends sit outside the frame. */
 .shine {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-    105deg,
-    rgba(255, 255, 255, 0) 35%,
-    rgba(255, 255, 255, 0.18) 50%,
-    rgba(255, 255, 255, 0) 65%
-  );
-  transform: translateX(-100%);
-}
-
-.figure:hover .shine {
-  transform: translateX(100%);
-  transition: transform 700ms ease-out;
+  composes: shine from '../ui/MediaHover.module.css';
 }
 
 /* stats line under each card */
@@ -298,13 +267,4 @@
     display: none;
   }
 
-  .figure img,
-  .figure:hover img {
-    transform: none;
-    transition: none;
-  }
-
-  .shine {
-    display: none;
-  }
 }

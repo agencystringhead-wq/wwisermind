@@ -1,0 +1,56 @@
+/* The hover treatment shared by the project cards and the why-us rows: a contained zoom and a
+   band of light crossing the frame. Only the mechanics live here — aspect ratio, radius,
+   shadow and background stay with whichever section is using it, so the two can share the
+   behaviour without sharing a shape.
+
+   Compose `frame` onto the element that clips, and `shine` onto a span inside it. */
+
+.frame {
+  position: relative;
+  /* The zoom is contained by this, so the picture grows inside the card rather than the card
+     growing with it — nothing on the page moves. */
+  overflow: hidden;
+}
+
+.frame img {
+  object-fit: cover;
+  transition: transform 400ms ease-out;
+}
+
+.frame:hover img {
+  transform: scale(1.04);
+}
+
+/* A band of light crossing the frame. It only carries a transition while hovered, so the
+   sweep plays on the way in and the band snaps back to its start on the way out — a reset
+   nobody sees, since both ends sit outside the frame. */
+.shine {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    rgba(255, 255, 255, 0) 35%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0) 65%
+  );
+  transform: translateX(-100%);
+}
+
+.frame:hover .shine {
+  transform: translateX(100%);
+  transition: transform 700ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frame img,
+  .frame:hover img {
+    transform: none;
+    transition: none;
+  }
+
+  .shine {
+    display: none;
+  }
+}

@@ -612,24 +612,29 @@ export const whyUs = {
     {
       number: '01',
       title: 'Built in India. Honest about it from the first hello.',
-      image: '/images/01.webp',
-      imageAlt: 'The Wisermind team working together at a desk',
+      image: '/images/wwisermind-built-in-India-for-world-therapists.webp',
+      imageAlt: 'Three colleagues in business dress outside an office, giving a thumbs up',
+      /* The frame is wider than the source, so cover trims 10.6% off the height. Held above
+         centre to keep the full headroom above all three faces. */
+      imagePosition: 'center 30%',
       body:
         "We build from Pune, India and say so upfront, because it works in your favor: revisions happen while you sleep, meetings happen on video in your timezone, and you get agency-grade work at a price a practice can justify. We'd rather be judged on the work.",
     },
     {
       number: '02',
       title: 'Only Therapists. Every project. No exceptions.',
-      image: '/images/02.webp',
-      imageAlt: 'A therapist sitting on a couch in her practice',
+      image: '/images/wwisermind-built-for-mental-therapist-only.webp',
+      imageAlt: 'A therapist in a mustard blazer listening to a client across from her',
+      imagePosition: 'center 40%',
       body:
         'We only work with therapists and psychologists. No dentists, no law firms, no restaurants. So you never explain your world to your own marketing team, and everything we build fits how a practice actually runs.',
     },
     {
       number: '03',
       title: 'Built for how clients search next.',
-      image: '/images/03.webp',
-      imageAlt: 'A therapist with a laptop in a warmly lit room',
+      image: '/images/Built-for-clients-how-searches-next.webp',
+      imageAlt: 'A woman looking at her phone at a cafe table',
+      imagePosition: 'center 40%',
       body:
         'Most therapist websites are built for how people searched in 2019. Yours will be ready for Google, Maps, and the AI tools clients already ask for recommendations, because AI visibility is in our foundations, not an upsell.',
     },
