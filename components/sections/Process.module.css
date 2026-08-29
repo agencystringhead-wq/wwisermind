@@ -29,15 +29,18 @@
 }
 
 /* --- heading ------------------------------------------------------------- */
+/* Scaled to 60% of what it was — 36px tall on 20px sides at 13px, uppercase. Every length
+   moved by the same 0.6 so the pill shrinks whole rather than just flattening; the tracking
+   is already in em, so it follows the type down on its own. */
 .badge {
   display: inline-flex;
   align-items: center;
-  height: 36px;
-  padding-inline: 20px;
+  height: 21.6px;
+  padding-inline: 12px;
   border-radius: var(--radius-pill);
   background-color: #cce6fd;
   color: var(--color-ink);
-  font-size: 13px;
+  font-size: 7.8px;
   font-weight: var(--fw-bold);
   letter-spacing: 0.06em;
   text-transform: uppercase;
