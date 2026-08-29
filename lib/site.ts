@@ -915,8 +915,6 @@ export const footerMain = {
       three-band gradient in Footer.module.css, which is that footage's own first frame
       averaged into sky / haze / hillside. */
   media: {
-    sources: [{ src: '/videos/footer-video.webm', type: 'video/webm' }],
     headline: ['Artificial Intelligence', '+', 'Human Care'],
-    watermark: 'wwisermind',
   },
 };

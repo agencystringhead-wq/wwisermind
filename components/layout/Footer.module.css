@@ -773,62 +773,24 @@
 }
 
 /* ==========================================================================
-   Part 3 — the closing panel: looping video, dotted headline, clipped word.
+   Part 3 — the closing panel: the dotted headline.
 
-   Full-bleed, as in the reference, where it runs the whole 1920 frame. Its height is the
-   reference's own: 1012px of a 1920 frame, so 52.7vw, clamped at both ends.
+   The video that used to fill this panel is gone, and with it everything that existed to
+   hold it: the min-height sized to a 1920 frame, the poster-stand-in gradient, the white
+   wash that kept the headline legible over dark footage, and the flex column whose only job
+   was to push the wordmark to the bottom. What is left is one line, so the panel is sized by
+   it rather than by a frame that is no longer there.
    ========================================================================== */
 .media {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  min-height: clamp(520px, 52.7vw, 1080px);
-  overflow: hidden;
-  /* Stands in for a poster frame, which the repo has no still for. These are the video's own
-     opening frame averaged into three bands — sky, haze, hillside — so the panel holds the
-     right shape and tone for the moment before the footage paints. */
-  background-image: linear-gradient(
-    to bottom,
-    rgb(231, 228, 219) 0%,
-    rgb(167, 160, 132) 50%,
-    rgb(53, 58, 41) 100%
-  );
-}
-
-.mediaVideo {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* The reference does not butt the white footer against the photograph — it dissolves into
-   it, reaching the untouched image about 40% down (measured: still 240/255 at y1400, full
-   image by y1440). This is that fade, and it is also what keeps the black headline legible
-   over a frame whose own top is dark. */
-.mediaWash {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(
-    to bottom,
-    #ffffff 0%,
-    rgba(255, 255, 255, 0.98) 8%,
-    rgba(255, 255, 255, 0.88) 18%,
-    rgba(255, 255, 255, 0.55) 30%,
-    rgba(255, 255, 255, 0) 44%
-  );
 }
 
 /* --- the dotted headline ---------------------------------------------------- */
-/* The canvas replaces the heading once it has painted, so the padding that sets the line
-   down from the top of the panel lives here rather than on the heading itself. */
+/* The canvas replaces the heading once it has painted, so the padding that sets the line off
+   the panel lives here rather than on the heading itself. Symmetric now: the zero used to be
+   the wordmark's business. */
 .dotStage {
-  position: relative;
-  z-index: 2;
-  padding: 5vw var(--container-gutter) 0;
+  padding: 5vw var(--container-gutter);
 }
 
 /* The dot field. `pointer-events: none` because it is decoration sitting over the panel —
@@ -874,42 +836,6 @@
     background-clip: text;
     color: transparent;
   }
-}
-
-/* --- the clipped watermark -------------------------------------------------- */
-.watermarkBox {
-  position: relative;
-  z-index: 2;
-  margin-top: auto;
-  container-type: inline-size;
-}
-
-.watermark {
-  overflow: hidden;
-  /* At weight 900 the ink starts .079em below the box top and the baseline sits at .864em,
-     so the letters are .795em tall. Cutting at .556em keeps .477em of that — the top 60% —
-     and drops the rest off the bottom of the frame, the partial crop the reference ends on
-     rather than a wordmark merely kissed at the feet. */
-  height: 0.556em;
-  color: var(--color-white);
-  /* Sized so the word's *ink* spans the container edge to edge. Measured on the loaded font
-     at weight 900: the ink is 5.9915em wide, so font-size = container / 5.9915 (16.69%).
-     cqw resolves against the container itself; vw counts the scrollbar, so it is only the
-     fallback. */
-  font-size: clamp(40px, calc(16.69vw - 6.7px), 217px);
-  font-size: min(217px, 16.69cqw);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  user-select: none;
-}
-
-.watermarkWord {
-  /* inline-block so the box is the text's own width, and a nudge left to cancel the
-     first glyph's side bearing so the ink starts flush on the container edge */
-  display: inline-block;
-  margin-left: 0.005em;
-  white-space: nowrap;
 }
 
 /* ==========================================================================
@@ -1113,12 +1039,8 @@
     margin-top: 32px;
   }
 
-  .media {
-    min-height: clamp(420px, 116vw, 720px);
-  }
-
   .dotStage {
-    padding-top: 15vw;
+    padding-block: 9vw;
   }
 
   .dotHeadline {

@@ -236,33 +236,11 @@ export default function Footer() {
         </div>
       </section>
 
-      {/* --- closing panel: looping video, dotted headline, clipped word -------- */}
+      {/* --- closing panel: the dotted headline ---------------------------------- */}
       <section className={styles.media}>
-        <video
-          className={styles.mediaVideo}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          aria-hidden="true"
-        >
-          {media.sources.map((source) => (
-            <source key={source.src} src={source.src} type={source.type} />
-          ))}
-        </video>
-
-        <span className={styles.mediaWash} aria-hidden="true" />
-
         {/* A plain space between the words: the plus sign's own side bearings already open
             the gap the reference shows. */}
         <FooterDotText text={media.headline.join(' ')} />
-
-        <div className={`container ${styles.watermarkBox}`} aria-hidden="true">
-          <div className={styles.watermark}>
-            <span className={styles.watermarkWord}>{media.watermark}</span>
-          </div>
-        </div>
       </section>
     </footer>
   );
