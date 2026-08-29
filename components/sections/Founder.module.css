@@ -15,14 +15,25 @@
 }
 
 /* The box the old 274x275 portrait drew, pinned as a ratio rather than left to whatever the
-   source happens to be, so a replacement cannot change the section's height. */
-.portrait {
+   source happens to be, so a replacement cannot change the section's height. It is also what
+   clips the zoom, which is why the radius sits here rather than on the picture. */
+.portraitFrame {
+  composes: frame from '../ui/MediaHover.module.css';
+  display: block;
   width: 217px;
   max-width: 100%;
-  height: auto;
   aspect-ratio: 274 / 275;
-  object-fit: cover;
   border-radius: 20px;
+}
+
+/* object-fit and the transition arrive with the frame. */
+.portrait {
+  width: 100%;
+  height: 100%;
+}
+
+.shine {
+  composes: shine from '../ui/MediaHover.module.css';
 }
 
 /* design: portrait tops at 140 into the band, the quote mark at 246 */
@@ -55,7 +66,7 @@
   margin-top: 67px;
   color: #0c1929;
   font-family: var(--font-mono);
-  font-size: 19px;
+  font-size: 17px;
   font-weight: var(--fw-regular);
   line-height: 1.3;
 }
@@ -77,7 +88,7 @@
 
   .attribution {
     margin-top: 48px;
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
@@ -91,7 +102,7 @@
     margin-top: 0;
   }
 
-  .portrait {
+  .portraitFrame {
     width: 180px;
   }
 }
@@ -111,8 +122,8 @@
     margin-top: 32px;
   }
 
-  /* Smallest step of the three. The mono face runs about 9% wider than the stack this line
-     used to fall back to, so the phone column is the one that ever felt it. */
+  /* Held at 12px while the two larger steps came down again — another 2px here would put a
+     mono byline at 10px on a phone, which is past where this face stays comfortable. */
   .attribution {
     margin-top: 36px;
     font-size: 12px;

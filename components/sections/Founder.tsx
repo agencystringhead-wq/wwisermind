@@ -20,14 +20,18 @@ export default function Founder() {
     <section className={styles.section}>
       <div className="container">
         <div className={styles.grid}>
-          <Image
-            src={portrait.src}
-            alt={portrait.alt}
-            width={274}
-            height={275}
-            className={styles.portrait}
-            style={{ objectPosition: portrait.position }}
-          />
+          {/* The portrait is not a link, so the frame's own hover is the trigger. */}
+          <span className={styles.portraitFrame}>
+            <Image
+              src={portrait.src}
+              alt={portrait.alt}
+              width={274}
+              height={275}
+              className={styles.portrait}
+              style={{ objectPosition: portrait.position }}
+            />
+            <span className={styles.shine} aria-hidden="true" />
+          </span>
 
           <figure className={styles.quoteColumn}>
             <QuoteMark />
