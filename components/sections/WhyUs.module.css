@@ -6,18 +6,36 @@
   padding-inline: 10px;
 }
 
+/* The background-color is set inline from the clip's own mean colour, so the block is never
+   an empty box while the video loads. */
 .block {
   position: relative;
   overflow: hidden;
   border-radius: 20px;
-  background-color: #172444;
   color: var(--color-white);
 }
 
 .backdrop {
-  object-fit: cover;
-  object-position: center;
+  position: absolute;
+  inset: 0;
   z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* The clip is an abstract wash with no subject, so there is nothing a crop can cut off —
+     centre holds at every ratio from 1440 down to a phone. */
+  object-position: center;
+}
+
+/* Between the video and the copy, on DOM order rather than a stacking fight. 45% takes the
+   busiest frame's brightest pixel from 5.3:1 against white to 12.3:1 — the clip is dark
+   enough to clear AA on its own, so this is headroom, not rescue. */
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  pointer-events: none;
 }
 
 .inner {
@@ -26,12 +44,11 @@
   padding-block: 149px 161px;
 }
 
+/* The services label verbatim. It declares no colour of its own — it inherits — so composing
+   it here picks up the white this block sets rather than the ink it takes on a white page,
+   which is the only way the two can be "the same colour" and both legible. */
 .label {
-  font-size: 18px;
-  font-weight: var(--fw-bold);
-  line-height: 1.3;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  composes: label from './Services.module.css';
 }
 
 /* --- rows ---------------------------------------------------------------- */

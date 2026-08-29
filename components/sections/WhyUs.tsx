@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { whyUs } from '@/lib/site';
+import BackgroundVideo from '@/components/ui/BackgroundVideo';
 import styles from './WhyUs.module.css';
 
 export default function WhyUs() {
@@ -7,14 +8,14 @@ export default function WhyUs() {
 
   return (
     <section className={styles.section}>
-      <div className={styles.block}>
-        <Image
-          src={background}
-          alt=""
-          fill
-          sizes="100vw"
+      <div className={styles.block} style={{ backgroundColor: background.color }}>
+        <BackgroundVideo
+          src={background.sources[0].src}
+          type={background.sources[0].type}
+          poster={background.poster}
           className={styles.backdrop}
         />
+        <span className={styles.scrim} aria-hidden="true" />
 
         <div className={`container ${styles.inner}`}>
           <p className={styles.label}>{label}</p>

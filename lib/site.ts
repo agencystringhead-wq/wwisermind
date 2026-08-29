@@ -594,7 +594,20 @@ export const processSection = {
 
 export const whyUs = {
   label: 'Why practices choose us',
-  background: '/images/why-choose-us.webp',
+  /** The block's backdrop. `poster` is a frame pulled from the clip itself, so it is what
+      shows before the video loads, wherever it cannot play, and under reduced motion — three
+      cases that all want the same still. The colour behind both is the clip's own mean, so a
+      gap on either side of the load is a shade of the video rather than a hole. */
+  background: {
+    poster: '/images/why-practices-choose-poster.webp',
+    color: '#373494',
+    sources: [
+      {
+        src: '/videos/Why-practices-choose-wwisermind-for-growth.webm',
+        type: 'video/webm',
+      },
+    ],
+  },
   rows: [
     {
       number: '01',
