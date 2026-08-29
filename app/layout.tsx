@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import BottomBar from '@/components/layout/BottomBar';
+import ContactBar from '@/components/layout/ContactBar';
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
 import TopBar from '@/components/layout/TopBar';
@@ -42,6 +43,7 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <BottomBar />
+        <ContactBar />
       </body>
     </html>
   );

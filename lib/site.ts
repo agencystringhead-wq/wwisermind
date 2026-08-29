@@ -746,6 +746,42 @@ export const faq = {
   link: { label: 'See Full Directory List', href: '#faq' },
 };
 
+/** The floating contact bar, pinned to every page from the root layout. `icon` names one of
+    the inline glyphs the component draws — the project carries no icon package and these are
+    hand-drawn like the arrows and the calendar already in the footer. */
+export const contactBar = {
+  avatar: {
+    src: '/images/Srikaanth-Founder-wwisermind.webp',
+    alt: 'SrikaantH, founder of wwisermind',
+  },
+  items: [
+    {
+      id: 'book',
+      icon: 'calendar' as const,
+      /* TODO: awaiting the real number */
+      href: '#book-a-call',
+      label: 'Book a free call · 30 min',
+      aria: 'Book a free call, 30 minutes',
+    },
+    { id: 'phone', icon: 'phone' as const, href: '#', label: 'Call us', aria: 'Call us' },
+    {
+      id: 'email',
+      icon: 'envelope' as const,
+      href: 'mailto:admin@wwisermind.com',
+      label: 'Email us',
+      aria: 'Email us',
+    },
+    {
+      id: 'whatsapp',
+      icon: 'whatsapp' as const,
+      href: '#',
+      label: 'WhatsApp',
+      aria: 'Message us on WhatsApp',
+      accent: true,
+    },
+  ],
+};
+
 export const footerCta = {
   /** The backdrop is drawn in CSS now — see the concentric rings in Footer.module.css. */
   /** Three fixed lines, as in both reference frames. */

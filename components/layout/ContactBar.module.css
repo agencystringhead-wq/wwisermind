@@ -1,0 +1,179 @@
+/* The floating contact pill. Fixed to the foot of the viewport on every page, above the
+   content but below the header's 50 and the drawer's 40, so neither can end up underneath it. */
+.bar {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  /* The padding is what sets the height: the round items are 36 and this puts 14 clear above
+     and below them, so the pill contains them rather than being stretched to fit. 22 at the
+     ends keeps the avatar and the green circle off the rounded edges. */
+  gap: 12px;
+  padding: 14px 22px;
+  transform: translateX(-50%);
+  border: 1px solid rgba(12, 25, 41, 0.08);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-white);
+  box-shadow: 0 10px 30px rgba(12, 25, 41, 0.14);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+/* The one thing it gets out of the way of. The header marks the document while the drawer is
+   open; this drops the bar out of sight and out of the tab order, so a hidden bar cannot be
+   focused. It does not stand down for the footer — it is meant to sit over it. */
+:global(body[data-drawer-open]) .bar {
+  opacity: 0;
+  transform: translateX(-50%) translateY(12px);
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/* --- the founder ---------------------------------------------------------- */
+/* Decoration rather than a control: it is here to put a face on the row, so it is not a link
+   and takes no focus. */
+.avatar {
+  display: block;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  overflow: hidden;
+  border: 2px solid rgba(12, 25, 41, 0.1);
+  border-radius: 50%;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+/* --- the actions ---------------------------------------------------------- */
+.item {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  /* The same diameter the avatar takes, so the row reads the same at both ends. */
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: var(--color-ink);
+  transition: background-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+/* Matched by eye rather than by box. The three bare glyphs sit on nothing, so they carry
+   less weight than the same glyph on a filled circle — they run a shade larger, and the
+   WhatsApp mark a shade smaller, so all four read alike. */
+.item svg {
+  width: 21px;
+  height: 21px;
+}
+
+.accent svg {
+  width: 19px;
+  height: 19px;
+}
+
+.item:hover {
+  background-color: rgba(12, 25, 41, 0.06);
+  transform: translateY(-1px);
+}
+
+/* Keyboard users get the ring; a mouse press does not raise one. */
+.item:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+/* The last item carries the WhatsApp green as a filled circle, so the row ends on it. */
+.accent {
+  background-color: #25d366;
+  color: var(--color-white);
+}
+
+.accent:hover {
+  background-color: #1eb955;
+}
+
+/* --- the hover label ------------------------------------------------------ */
+/* A card above the icon. `visibility` rides along with the fade so it is untouchable while
+   hidden, and the whole thing is inert to the pointer so it can never eat the hover that
+   summoned it. */
+.tip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  z-index: 1;
+  padding: 6px 10px;
+  transform: translateX(-50%) translateY(4px);
+  border-radius: 8px;
+  background-color: #0c1929;
+  color: var(--color-white);
+  font-size: 12px;
+  font-weight: var(--fw-medium);
+  line-height: 1.3;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease),
+    visibility var(--dur) var(--ease);
+}
+
+.item:hover .tip,
+.item:focus-visible .tip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar,
+  .item,
+  .tip {
+    transition: none;
+  }
+
+  .item:hover {
+    transform: none;
+  }
+}
+
+/* --- responsive ----------------------------------------------------------- */
+/* Tighter on a phone, in the same proportion: 32px circles inside 10px of padding, so the
+   pill still contains them. The founder goes — four actions and a face do not fit a narrow
+   screen without crowding, and the face is the one part of the row not doing a job. */
+@media (max-width: 640px) {
+  .bar {
+    bottom: 16px;
+    gap: 8px;
+    padding: 10px 16px;
+  }
+
+  .avatar {
+    display: none;
+  }
+
+  .item {
+    width: 32px;
+    height: 32px;
+  }
+
+  .item svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .accent svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .tip {
+    font-size: 11px;
+  }
+}

@@ -234,10 +234,15 @@ export default function Header() {
 
     document.addEventListener('keydown', onKeyDown);
     document.body.style.overflow = 'hidden';
+    /* A mark on the document rather than a shared state: anything that has to stand down
+       while the drawer is open — the floating contact bar does — reads it from CSS, so
+       neither component needs to know the other exists. */
+    document.body.dataset.drawerOpen = 'true';
 
     return () => {
       document.removeEventListener('keydown', onKeyDown);
       document.body.style.overflow = '';
+      delete document.body.dataset.drawerOpen;
     };
   }, [open]);
 
