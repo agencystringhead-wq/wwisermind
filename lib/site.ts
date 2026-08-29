@@ -486,7 +486,7 @@ export const practice = {
   headingRest: "whether that's just you, or a whole team",
   /** The built stat widget's figure. Only Solo Practice draws it now — Group Practice has a
       `metricImage` and renders that instead — so this is effectively that row's metric. */
-  metric: { label: 'AI Search Visibility', value: '87', unit: '%' },
+  metric: { label: 'AI Search Visibility', value: 87, unit: '%' },
   /** Same media shape as `heroBanner.background`, plus `alt`: unlike the decorative hero and
       problem-card media, these two carry a description the old `imageAlt` supplied, so it is
       kept on the video. `poster` is the still shown while the video loads and the permanent

@@ -97,7 +97,7 @@ export default function Practice() {
                         <p className={styles.metricLabel}>{metric.label}</p>
                         <p className={styles.metric}>
                           <UpArrow className={styles.metricArrow} />
-                          <span className={styles.metricValue}>{metric.value}</span>
+                          <CountUp to={metric.value} className={styles.metricValue} />
                           <span className={styles.metricUnit}>{metric.unit}</span>
                         </p>
                         <span className={styles.bar} aria-hidden="true" />
