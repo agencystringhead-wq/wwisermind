@@ -146,15 +146,11 @@ export const megaPanels: Record<string, MegaPanel> = {
         ],
       },
     ],
+    /* No `image`: the photograph this carried was retired with 01/02/03.webp. The panel
+       renders text-only, the way the pricing one already does — Header checks for the key. */
     feature: {
       eyebrow: 'Our Promise',
       lead: 'Only therapists. Every project. No exceptions.',
-      image: {
-        src: '/images/02.webp',
-        width: 398,
-        height: 240,
-        alt: 'A therapist sitting on a couch in her practice',
-      },
     },
     strip: { text: 'Serving practices across the US, UK, and Australia — in your timezone.' },
   },
