@@ -1,4 +1,5 @@
 import { freebies } from '@/lib/site';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 import styles from './Freebies.module.css';
 
 export default function Freebies() {
@@ -11,10 +12,11 @@ export default function Freebies() {
           <div>
             <p className={styles.badge}>{badge}</p>
 
-            <h2 className={styles.heading}>
-              {headingLead}
-              <span className={styles.headingMuted}>{headingRest}</span>
-            </h2>
+            {/* The two halves were a fixed black/grey split; the reveal carries that
+                contrast itself now, word by word. Thirteen words is headline length, so it
+                keeps the component's default window rather than the wider one the process
+                passage needs for its forty-six. */}
+            <ScrollReveal text={`${headingLead}${headingRest}`} className={styles.heading} />
 
             <div className={styles.list}>
               {items.map((item) => (

@@ -15,31 +15,18 @@
 }
 
 /* --- left column ---------------------------------------------------------- */
+/* The process badge verbatim — height, padding and type all arrive from there, so the two
+   pills cannot drift. */
 .badge {
-  display: inline-flex;
-  align-items: center;
-  height: 30px;
-  padding-inline: 20px;
-  border-radius: var(--radius-pill);
-  background-color: #cce6fd;
-  color: var(--color-ink);
-  font-size: 13px;
-  font-weight: var(--fw-bold);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  composes: badge from './Process.module.css';
 }
 
+/* The problems headline's treatment, the one the process passage also takes. No measure of
+   its own: the 52.7% column is already narrower than any max-width worth setting, so it is
+   what decides the line length here. */
 .heading {
+  composes: heading from './Problems.module.css';
   margin-top: 26px;
-  font-size: clamp(24px, 2.6vw, 34px);
-  font-weight: var(--fw-bold);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  text-wrap: initial;
-}
-
-.headingMuted {
-  color: var(--color-heading-muted);
 }
 
 .list {
@@ -65,8 +52,17 @@
   border-top: 1px solid #abb2ba;
 }
 
+/* Turns "30 Days of Social Content" before "for": that phrase needs 12.37em and would take
+   "for" too at 13.97, so 13em breaks between them. Box-sizing is border-box, so the 1.6em of
+   padding-right lives inside this — 14.6em total. The other two are unaffected: the guide
+   still turns after "for", and "Free Website Review" is short enough to stay on one line. */
 .itemTitle {
+  max-width: 14.6em;
   padding-right: 24px;
+  /* Headings are balanced globally, which evens the two lines instead of filling the first —
+     that is what put the turn after "Social" rather than after "Content". Off, as the other
+     sections' headings have it, so the measure above decides the break. */
+  text-wrap: initial;
   font-size: 15px;
   font-weight: var(--fw-bold);
   line-height: 1.35;
@@ -79,7 +75,7 @@
 }
 
 .itemBody {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: var(--fw-regular);
   line-height: 1.35;
 }
