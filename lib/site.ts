@@ -488,7 +488,9 @@ export const services = {
 export const practice = {
   headingLead: 'Built around how you practice —',
   headingRest: "whether that's just you, or a whole team",
-  metric: { label: 'AI Search Visibility', value: '159', unit: '%' },
+  /** The built stat widget's figure. Only Solo Practice draws it now — Group Practice has a
+      `metricImage` and renders that instead — so this is effectively that row's metric. */
+  metric: { label: 'AI Search Visibility', value: '87', unit: '%' },
   /** Same media shape as `heroBanner.background`, plus `alt`: unlike the decorative hero and
       problem-card media, these two carry a description the old `imageAlt` supplied, so it is
       kept on the video. `poster` is the still shown while the video loads and the permanent
@@ -499,6 +501,23 @@ export const practice = {
       body:
         'Your website has to sell the whole team: every clinician, every specialty, every location, and hold up to referral sources and insurance-savvy clients checking you out. We build sites that grow with your roster and marketing that fills every calendar, not just the founder’s.',
       link: { label: 'Built for group practices', href: '#group-practices' },
+      /** Present only on this row, and where it is present it stands in for the whole built
+          widget — the graph is the image, the figure over it is real text. Solo Practice has
+          no `metricImage` and keeps the built one, which is why `metric` above still exists.
+          The file's back-card peek and rounded corners are baked in, on real transparency, so
+          it drops straight onto the gradient panel. */
+      metricImage: {
+        src: '/images/clinician-calendars-filled-group-practice-wwisermind.webp',
+        /* The graph only. The figure that used to be baked into it is set as real text over
+           the top, which is what `label`, `value` and `unit` below are for — so the number
+           can count up, and so it stays selectable, translatable and legible at any zoom. */
+        alt: '',
+        width: 1600,
+        height: 652,
+        label: 'Clinician Calendars Filled',
+        value: 159,
+        unit: '%',
+      },
       background: {
         poster: '/images/grouppractice.webp',
         sources: [
@@ -516,6 +535,8 @@ export const practice = {
       body:
         'You are the practice, so your website has to carry your voice, your specialty, and your credibility, and bring in clients without you becoming a marketer on the side. We build sites and marketing that work quietly while you’re in session.',
       link: { label: 'Built for solo practitioners', href: '#solo-practitioners' },
+      /* No `metricImage`: this row draws the built widget below, which is what it carried
+         before and what it has gone back to. */
       background: {
         poster: '/images/solopractice.webp',
         sources: [

@@ -5,7 +5,9 @@ import styles from './ScrollReveal.module.css';
 
 /* Where the reveal runs, as fractions of the viewport height measured to the top of the
    block: it starts as the sentence enters the lower third and is finished by the time it
-   sits around the middle. */
+   sits around the middle. Defaults suit a two-line section headline; callers with a longer
+   or smaller-set block pass their own, because the same window spent on four times the words
+   is four times the pace. */
 const START = 0.75;
 const END = 0.35;
 
@@ -35,9 +37,26 @@ const clamp = (value: number) => (value < 0 ? 0 : value > 1 ? 1 : value);
  * `className` is the calling section's own heading class. Everything about how the type looks
  * — size, weight, tracking, how wide it is allowed to run — stays there; this component owns
  * only the reveal, so two sections can share the effect without sharing a scale.
+ *
+ * `as` is the element to render. It defaults to the h2 the section headlines want, and body
+ * copy passes 'p' so that borrowing the effect does not invent a heading in the outline.
  */
-export default function ScrollReveal({ text, className }: { text: string; className?: string }) {
-  const containerRef = useRef<HTMLHeadingElement>(null);
+export default function ScrollReveal({
+  text,
+  className,
+  as: Tag = 'h2',
+  start: startAt = START,
+  end: endAt = END,
+}: {
+  text: string;
+  className?: string;
+  as?: 'h2' | 'h3' | 'p';
+  /** Both as fractions of viewport height, measured to the top of the block: `start` is
+      where the first word begins to turn and `end` is where the last one lands. */
+  start?: number;
+  end?: number;
+}) {
+  const containerRef = useRef<HTMLElement | null>(null);
   const wordRefs = useRef<HTMLSpanElement[]>([]);
   const lastValues = useRef<number[]>([]);
 
@@ -58,8 +77,8 @@ export default function ScrollReveal({ text, className }: { text: string; classN
     const progressNow = () => {
       const rect = container.getBoundingClientRect();
       const height = window.innerHeight || 1;
-      const from = height * START;
-      const to = height * END;
+      const from = height * startAt;
+      const to = height * endAt;
       return clamp((from - rect.top) / (from - to));
     };
 
@@ -131,7 +150,7 @@ export default function ScrollReveal({ text, className }: { text: string; classN
       stop();
       reduced.removeEventListener('change', onPreferenceChange);
     };
-  }, [words]);
+  }, [words, startAt, endAt]);
 
   /* The webfont lands after first paint and rewraps the block, which moves it up or down the
      page; without a re-measure the reveal would keep scrubbing against stale geometry. */
@@ -140,10 +159,12 @@ export default function ScrollReveal({ text, className }: { text: string; classN
   }, []);
 
   return (
-    <h2
+    <Tag
       className={className ? `${styles.reveal} ${className}` : styles.reveal}
       aria-label={text}
-      ref={containerRef}
+      ref={(node: HTMLElement | null) => {
+        containerRef.current = node;
+      }}
     >
       {words.map((word, index) => (
         <span
@@ -156,6 +177,6 @@ export default function ScrollReveal({ text, className }: { text: string; classN
           {word}{' '}
         </span>
       ))}
-    </h2>
+    </Tag>
   );
 }

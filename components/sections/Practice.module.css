@@ -63,8 +63,12 @@
 }
 
 /* --- floating metric widget ---------------------------------------------- */
+/* A query container, like .card is, purely so the composed label below resolves its cqw
+   font-size against this widget rather than against the viewport. No padding here, so the
+   content box is the panel's full 538px — the same width .card measures. */
 .widget {
   position: relative;
+  container-type: inline-size;
 }
 
 /* the card peeking out behind the top edge */
@@ -90,17 +94,6 @@
     rgba(255, 255, 255, 0.06) 100%
   );
   box-shadow: 0 18px 40px rgba(38, 90, 160, 0.1);
-}
-
-.metricLabel {
-  color: #2d3548;
-  font-size: 16px;
-  font-weight: var(--fw-medium);
-  line-height: 1.2;
-}
-
-.metricLabel strong {
-  font-weight: var(--fw-bold);
 }
 
 .metric {
@@ -146,6 +139,109 @@
   background-color: rgba(255, 255, 255, 0.6);
 }
 
+/* --- the metric card: graph image, real text over it ---------------------- */
+/* Stands in for the whole .widget composite, so it takes that footprint rather than sitting
+   inside it. At the panel's 538px the file's 1600x652 comes out 219px tall against the old
+   back-card-plus-body 215px; the -17px is the same overhang .widgetBack used to have, so the
+   card's top edge lands exactly where it did and nothing below it moves by more than 4px.
+
+   It is also the container the figure sizes itself against. Every length below is written in
+   cqw so the text scales with the graph rather than with the page — which is what keeps it
+   off the curve at narrow widths without a single breakpoint override. The px in front of
+   each is both the 538px-wide desktop equivalent and the fallback anywhere container queries
+   are missing. */
+.card {
+  position: relative;
+  margin-top: -17px;
+  container-type: inline-size;
+}
+
+.cardImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Anchored to the card rather than the panel, so the offsets below are measured from the
+   graph's own corner — which is where the figure used to be baked in. */
+.cardText {
+  position: absolute;
+  inset: 0;
+  padding-top: 48px;
+  padding-top: 9cqw;
+  padding-left: 32px;
+  padding-left: 5.86cqw;
+}
+
+/* Sized off the ink the file used to carry: its cap height measured 13.1px against the card
+   at 538px, which is Inter at 16.8. The baked face was the narrower of the two, so the words
+   run about 30px longer here — well clear of both the card edge and the curve. */
+.cardLabel {
+  color: #2d3548;
+  font-size: 16.8px;
+  /* Pure cqw would take this to 9px on a phone, where the card is only 291 wide. The floor
+     is the one place the figure stops scaling with the card: below a 352px card the label
+     holds at 11px, which still ends at half the card's width, nowhere near the curve. */
+  font-size: max(11px, 3.12cqw);
+  font-weight: var(--fw-semibold);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+/* The built widget's label, taking the image card's verbatim — size, weight, tracking and
+   colour all arrive from the rule above, so retuning that one retunes both and the two cards
+   cannot drift apart. It sits here rather than up in the widget block because `composes` only
+   resolves a class that is already defined. The 32px padding on .widgetBody puts it where
+   .cardText's padding puts the other one, so the position needs nothing. */
+.metricLabel {
+  composes: cardLabel;
+}
+
+/* All three sit on one baseline — including the arrow, which is why it is not centred: as a
+   replaced element its baseline is its bottom edge, so baseline alignment stands it on the
+   figure's baseline exactly as the baked version had it, tip level with the top of the 1. */
+.cardMetric {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  gap: 0.89cqw;
+  margin-top: 11px;
+  margin-top: 2.12cqw;
+  color: #06152a;
+}
+
+.cardArrow {
+  flex: none;
+  width: 30.5px;
+  width: 5.67cqw;
+  height: 40.7px;
+  height: 7.56cqw;
+  color: #2aba02;
+}
+
+/* Tabular figures in a box wide enough for as many of them as the number actually has —
+   `--digits` comes from the count itself. Without both, the per-cent sign would walk left and
+   right as the count runs up through one, two and three digits, and a two-digit card would
+   rest in a three-digit gap. One tabular digit measures 0.6265em in this face, tracking
+   included, so the reservation holds at any size. */
+.cardValue {
+  display: inline-block;
+  min-width: calc(var(--digits, 3) * 0.6265em);
+  font-size: 40.5px;
+  font-size: 7.53cqw;
+  font-weight: var(--fw-bold);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.cardUnit {
+  font-size: 21.8px;
+  font-size: 4.05cqw;
+  font-weight: var(--fw-bold);
+  line-height: 1;
+}
+
 .widgetIcon {
   position: absolute;
   right: -39px;
@@ -158,7 +254,7 @@
 .title {
   margin-top: 47px;
   font-size: 36px;
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-semibold);
   line-height: 1.15;
   letter-spacing: -0.02em;
 }
@@ -169,6 +265,7 @@
   font-size: 15px;
   font-weight: var(--fw-semibold);
   line-height: 1.4;
+  letter-spacing: -0.01em;
 }
 
 .link {
@@ -177,7 +274,7 @@
   gap: 10px;
   margin-top: 46px;
   color: var(--color-brand-deep);
-  font-size: 13px;
+  font-size: 11px;
   font-weight: var(--fw-bold);
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -187,6 +284,15 @@
 .linkText {
   text-decoration: underline;
   text-underline-offset: 5px;
+}
+
+/* Was 14x10 px, which is 1.077em/0.769em against the 13px the link used to be set at. In em
+   it now tracks the label instead of needing its own pass every time that size moves — which
+   is what the retuned row below asks of it. */
+.linkArrow {
+  flex: none;
+  width: 1.077em;
+  height: 0.769em;
 }
 
 .link:hover {
