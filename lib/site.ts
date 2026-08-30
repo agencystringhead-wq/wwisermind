@@ -813,10 +813,10 @@ export const footerMain = {
   tagline: ['Be found. Be trusted.', 'Stay booked'],
 
   logo: {
-    src: '/images/wwisermind-logo-footer.webp',
-    width: 1461,
+    src: '/images/wwisermind-official-logo-footer.webp',
+    width: 1389,
     height: 244,
-    alt: 'wwisermind',
+    alt: siteConfig.name,
   },
 
   /** Icon files already in /public/icons — square PNGs with alpha, drawn as flat marks. */
