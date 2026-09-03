@@ -1,0 +1,329 @@
+/* /contact frame 2 — the mosaic.
+
+   Measured off design-references/contact-gallery-mosaic.png, a 1510x513 frame: columns of
+   612, 360 and 518, and the two split columns breaking at different heights — 148 in the
+   middle, 318 on the right — which is why there are three row tracks rather than two. The
+   tracks are the measured pixels as fr units, and the grid holds the frame's ratio, so the
+   tiles keep their proportions at every container width.
+
+   It sits on white and is pulled up over the hero's foot, so it straddles the dark edge the
+   way the reference's does — the hero pays for the overlap in its own bottom padding. */
+
+.section {
+  --overlap: 150px;
+
+  margin-top: calc(var(--overlap) * -1);
+  padding-bottom: 8px;
+  background-color: transparent;
+}
+
+.grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 612fr 360fr 518fr;
+  grid-template-rows: 148fr 170fr 195fr;
+  gap: 13px;
+  aspect-ratio: 1510 / 513;
+}
+
+/* --- placement ------------------------------------------------------------- */
+.tall {
+  grid-column: 1;
+  grid-row: 1 / 4;
+}
+
+.accent {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.mid {
+  grid-column: 2;
+  grid-row: 2 / 4;
+}
+
+.wide {
+  grid-column: 3;
+  grid-row: 1 / 3;
+}
+
+.stat {
+  grid-column: 3;
+  grid-row: 3;
+}
+
+/* --- the photographs ---------------------------------------------------------- */
+/* The shared hover: the frame clips the 1.04 zoom and carries the sweep. The radius and the
+   surface are this mosaic's; the mechanics are the homepage's. `min-height: 0` lets a grid
+   item shrink to its track rather than to its content. */
+.photo {
+  composes: frame from '../ui/MediaHover.module.css';
+  min-width: 0;
+  min-height: 0;
+  border-radius: 16px;
+  background-color: var(--color-surface);
+}
+
+.shine {
+  composes: shine from '../ui/MediaHover.module.css';
+}
+
+/* --- the flat tiles ------------------------------------------------------------ */
+.flat {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  border-radius: 16px;
+}
+
+/* The announcement bar's yellow with the ink the services rows take on it: 16.3:1. */
+.accent {
+  align-items: center;
+  justify-content: center;
+  padding: 20px 24px;
+  background-color: #fafb87;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+.accentText {
+  font-size: clamp(16px, 1.45vw, 20px);
+  font-weight: var(--fw-semibold);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* A step deeper than the hero's navy, so the tile reads as its own block where the two
+   meet. White on it is 17.4:1. */
+.stat {
+  position: relative;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 16px;
+  padding: 18px 24px;
+  background-color: #140f4d;
+  color: var(--color-white);
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+}
+
+/* A hairline between the two, as the reference draws. */
+.review + .review {
+  position: relative;
+  padding-left: 24px;
+}
+
+.review + .review::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 0;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.18);
+}
+
+.platform {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.3;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+  white-space: nowrap;
+}
+
+.score {
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.outOf {
+  margin-left: 2px;
+  font-size: 0.5em;
+  font-weight: var(--fw-medium);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* Two rows of five stars laid over each other: outlines underneath, the filled copy on top
+   clipped to the score's share, in the announcement yellow. */
+.stars {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+
+.starRow {
+  display: inline-flex;
+  gap: 2px;
+  white-space: nowrap;
+}
+
+.starRow svg {
+  width: 13px;
+  height: 13px;
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.55);
+  stroke-width: 1.5;
+}
+
+.starFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  overflow: hidden;
+}
+
+.starFill svg {
+  fill: #fafb87;
+  stroke: #fafb87;
+}
+
+/* The placeholder note, pinned to the tile's foot so it does not shift the scores. */
+.note {
+  position: absolute;
+  right: 0;
+  bottom: 6px;
+  left: 0;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* --- responsive ---------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .section {
+    --overlap: 120px;
+  }
+
+  .grid {
+    gap: 10px;
+  }
+
+  .photo,
+  .flat {
+    border-radius: 14px;
+  }
+}
+
+/* Tablet: two columns. The tall photograph keeps the left of the first two rows, the accent
+   and the wide photograph stack beside it, and the square and the scores share the last row.
+   Rows are again pixels as fr units, sized so the tall tile holds close to its 6:5. */
+@media (max-width: 1023px) {
+  .section {
+    --overlap: 96px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 147fr 153fr 250fr;
+    aspect-ratio: 1000 / 790;
+  }
+
+  .tall {
+    grid-row: 1 / 3;
+  }
+
+  .accent {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .wide {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .mid {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .stat {
+    grid-column: 2;
+    grid-row: 3;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .review + .review {
+    padding-left: 0;
+    padding-top: 14px;
+  }
+
+  .review + .review::before {
+    top: 0;
+    right: 20%;
+    bottom: auto;
+    left: 20%;
+    width: auto;
+    height: 1px;
+  }
+}
+
+/* A phone: one column, every tile at its own ratio, in the order the desktop reads. */
+@media (max-width: 640px) {
+  .section {
+    --overlap: 64px;
+  }
+
+  .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    aspect-ratio: auto;
+  }
+
+  .tall {
+    aspect-ratio: 4 / 3;
+  }
+
+  .accent {
+    order: 1;
+    min-height: 88px;
+  }
+
+  .mid {
+    order: 2;
+    aspect-ratio: 4 / 3;
+  }
+
+  .wide {
+    order: 3;
+    aspect-ratio: 16 / 10;
+  }
+
+  .stat {
+    order: 4;
+    flex-direction: row;
+    padding: 24px 20px 26px;
+  }
+
+  .review + .review {
+    padding-top: 0;
+    padding-left: 20px;
+  }
+
+  .review + .review::before {
+    top: 6px;
+    right: auto;
+    bottom: 6px;
+    left: 0;
+    width: 1px;
+    height: auto;
+  }
+}

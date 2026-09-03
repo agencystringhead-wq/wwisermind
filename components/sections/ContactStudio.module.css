@@ -1,0 +1,116 @@
+/* /contact frame 7 — the studio and the map.
+
+   Two equal columns on white, after the grey of the form: heading, paragraph and the four
+   cities on the left; the world map in a card on the right. The columns stretch to one
+   height, so the card is as tall as the words beside it and never shorter. */
+
+.section {
+  padding-block: 112px 128px;
+  background-color: var(--color-white);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 64px;
+  align-items: stretch;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.heading {
+  composes: heading from './Problems.module.css';
+  max-width: 14em;
+}
+
+/* --color-muted rather than body-muted: 6.9:1 on white, where the lighter one is 3.9. */
+.body {
+  max-width: 52ch;
+  margin-top: 24px;
+  color: var(--color-muted);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* The footer's clock grid is built for a 312px column; here it has half the container, so
+   the strip is capped rather than left to stretch four readings across 600px. */
+.clockStrip {
+  max-width: 460px;
+  margin-top: 28px;
+}
+
+/* The clock's third line — the region, in 9px mono — is set at 2.98:1 on white in the
+   footer, where it sits beside a dark photograph and reads as texture. Here it is a row of
+   labels in open space, so it is lifted to the muted ink (6.9:1). Reached structurally
+   rather than by the component's hashed class: each clock is a column of three spans, and
+   the region is always the third. */
+.clockStrip > div > div > span:nth-child(3) {
+  color: var(--color-muted);
+}
+
+/* The card the map sits in — the radius and the border the page's other frames carry, on
+   the surface tint so the white and grey dots both read. The map is centred in whatever
+   height the column of words gives the frame; the tooltip may reach past the frame's edge
+   when a pin is high, so nothing here clips. */
+.mapFrame {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 420px;
+  padding: 40px 36px 32px;
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+  background-color: var(--color-white);
+}
+
+/* --- responsive ---------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .section {
+    padding-block: 88px 104px;
+  }
+
+  .grid {
+    gap: 40px;
+  }
+
+  .mapFrame {
+    min-height: 380px;
+    padding: 32px 28px 28px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  /* Stacked, the frame is as tall as the map and its legend, no floor. */
+  .mapFrame {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-block: 64px 72px;
+  }
+
+  .heading {
+    max-width: none;
+  }
+
+  .body {
+    margin-top: 20px;
+    font-size: 15px;
+  }
+
+  .mapFrame {
+    padding: 24px 16px 20px;
+    border-radius: 16px;
+  }
+}

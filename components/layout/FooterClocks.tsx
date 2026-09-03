@@ -15,7 +15,9 @@ type Clock = {
    24 some locales return under a plain `hour12: false`. */
 const formatters = new Map<string, Intl.DateTimeFormat>();
 
-function formatterFor(timeZone: string) {
+/** Exported so the contact page's world map can show the same reading, in the same shape,
+    as the clock strip that sits beside it. */
+export function formatterFor(timeZone: string) {
   let formatter = formatters.get(timeZone);
 
   if (!formatter) {

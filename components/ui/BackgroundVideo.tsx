@@ -44,6 +44,10 @@ export default function BackgroundVideo({
 
       if (reduced.matches) {
         video.pause();
+        /* Back to the first frame as well: on a slow hydration autoplay can get a few frames
+           in before this runs, and a clip stopped mid-loop is a different still from the
+           poster. At zero it is the poster again. */
+        video.currentTime = 0;
         return;
       }
 

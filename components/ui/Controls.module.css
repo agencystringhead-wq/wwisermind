@@ -1,0 +1,152 @@
+/* The small shared pieces the contact page needs in more than one section: the dark ground
+   the hero sits on, the pill buttons, the mono label that sits over a block, the card shell
+   and the icon tile.
+
+   Nothing here is new design. The buttons compose the header's own CTA so the two cannot
+   drift apart, and the card composes the MediaHover frame so its hover reads as the same
+   gesture the homepage cards make. Compose these rather than restating their values. */
+
+/* --- the dark ground ---------------------------------------------------------
+   The hero's ink. Every foreground was checked against it twice: on the flat colour, and
+   over the background clip at its veil (ContactHero.module.css), against the brightest
+   patch of any frame in the band the type occupies. Flat: headline 14.0:1, body 9.7:1,
+   quiet 8.1:1. Worst case over the clip: 7.2, 5.4 and 5.0. The quiet alpha is 0.72 rather
+   than the 0.62 it was because 0.62 fell to 4.0 in that worst case. The lift is white at a
+   low alpha rather than a second hex, so it is always a shade of whatever the ground is. */
+.dark {
+  --dark-bg: #1d166a;
+  --dark-headline: #fafb87;
+  --dark-body: rgba(255, 255, 255, 0.78);
+  --dark-quiet: rgba(255, 255, 255, 0.72);
+  --dark-lift: rgba(255, 255, 255, 0.09);
+  --dark-lift-hover: rgba(255, 255, 255, 0.16);
+  --dark-line: rgba(255, 255, 255, 0.22);
+
+  background-color: var(--dark-bg);
+  color: var(--color-white);
+}
+
+/* --- buttons -------------------------------------------------------------------
+   The header's black pill, verbatim — one source of truth for the primary button. Anything
+   composing it can still set its own margin, which is layout, not the button. */
+.button {
+  composes: cta from '../layout/Header.module.css';
+}
+
+/* The same pill in the site's blue: the primary button on this page, on the dark ground and
+   inside the white cards alike. Doubled selectors so these outrank the header's own hover
+   whatever order the two stylesheets land in. White text on the blue is 4.6:1. The hover
+   flips to white ink-on-white, the reverse of the header's black-to-blue, so the gesture
+   still reads as a colour swap. */
+.buttonBlue {
+  composes: button;
+}
+
+.buttonBlue.buttonBlue {
+  background-color: var(--color-brand);
+  color: var(--color-white);
+}
+
+.buttonBlue.buttonBlue:hover {
+  background-color: var(--color-white);
+  color: var(--color-ink);
+}
+
+/* The secondary: the same pill drawn as an outline on the dark ground. */
+.buttonOutline {
+  composes: button;
+}
+
+.buttonOutline.buttonOutline {
+  border: 1px solid var(--dark-line, rgba(255, 255, 255, 0.22));
+  background-color: transparent;
+  color: var(--color-white);
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.buttonOutline.buttonOutline:hover {
+  border-color: var(--color-white);
+  background-color: var(--dark-lift, rgba(255, 255, 255, 0.09));
+}
+
+/* --- labels --------------------------------------------------------------------
+   Small labels are set in the mono face across this site — the footer clock, the founder
+   byline. Tracked out and uppercased, they read as a label over a block rather than as a
+   short sentence in front of it. */
+.monoLabel {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: var(--fw-regular);
+  line-height: 1.3;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* The same label on the dark ground: white, pulled back so it sits under the headline
+   rather than beside it. */
+.monoLabelOnDark {
+  composes: monoLabel;
+  color: var(--dark-quiet, rgba(255, 255, 255, 0.62));
+}
+
+/* --- the section rule ------------------------------------------------------------
+   A hairline at the top of a white frame that follows another white frame, in the site's
+   line colour, at container width — it sits inside the container, so it is the same line
+   wherever it is drawn. The frame that carries it sets its own space above and below. */
+.rule {
+  display: block;
+  height: 1px;
+  background-color: var(--color-line);
+}
+
+/* --- cards ---------------------------------------------------------------------
+   The card shell. `frame` brings the clip and the sweep; the surface, border and radius are
+   this site's card, matching the 20px every other block on the page uses. The lift is the
+   header CTA's 1px, so a hover means the same thing everywhere. */
+.card {
+  composes: frame from './MediaHover.module.css';
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+  background-color: var(--color-white);
+  color: var(--color-ink);
+  transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.card:hover {
+  transform: translateY(-1px);
+  border-color: var(--color-divider);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+}
+
+.cardShine {
+  composes: shine from './MediaHover.module.css';
+}
+
+/* The soft rounded tile an icon sits in. The blue pair is the one the practice panels are
+   built from — #cce6fd into #fefdf9 on the same diagonal — so the tint belongs to the site
+   rather than to this page. */
+.tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 15px;
+  background-image: linear-gradient(to top right, #fefdf9, #cce6fd);
+  color: var(--color-brand-deep);
+}
+
+.tile svg {
+  width: 26px;
+  height: 26px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card:hover {
+    transform: none;
+  }
+}

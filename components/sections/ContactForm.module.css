@@ -1,0 +1,220 @@
+/* /contact frame 7 — "ask us a question".
+
+   The page's one frame on the light grey, which is what separates it from the white on
+   either side: the heading and its line on the left, the form on a white card to the
+   right, the way a question sits beside its answer. The intro stays put while the card
+   scrolls past it on desktop; below that the two stack. */
+
+.section {
+  padding-block: 96px 120px;
+  background-color: var(--color-surface);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 64px;
+  align-items: start;
+}
+
+.intro {
+  position: sticky;
+  top: calc(var(--header-height) + 32px);
+}
+
+.heading {
+  composes: heading from './Problems.module.css';
+  max-width: 12em;
+}
+
+/* --color-muted rather than body-muted: 6.3:1 on the grey, where the lighter one is 3.6. */
+.subheading {
+  max-width: 40ch;
+  margin-top: 16px;
+  color: var(--color-muted);
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+/* --- the card ------------------------------------------------------------ */
+/* The card's surface, border and radius, without the shell's hover: a form is not a
+   target. */
+.card {
+  padding: 40px;
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+  background-color: var(--color-white);
+  color: var(--color-ink);
+}
+
+.note {
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 20px;
+  margin-top: 24px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fieldWide {
+  grid-column: 1 / -1;
+}
+
+.label {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: var(--fw-medium);
+  letter-spacing: -0.005em;
+}
+
+.required {
+  color: var(--color-brand);
+}
+
+.hint {
+  margin-left: 2px;
+  color: var(--color-muted);
+  font-weight: var(--fw-regular);
+}
+
+.input {
+  width: 100%;
+  padding: 15px 18px;
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+  background-color: var(--color-white);
+  color: var(--color-ink);
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.5;
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.input:hover {
+  border-color: var(--color-divider);
+}
+
+/* The site's blue, as a ring rather than a colour swap — the border alone at 1px is not
+   enough of a signal at this field size. The global outline still draws over it. */
+.input:focus-visible {
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px rgba(20, 110, 245, 0.14);
+}
+
+/* --- selects ---------------------------------------------------------------- */
+.selectWrap {
+  position: relative;
+  display: block;
+}
+
+.select {
+  appearance: none;
+  padding-right: 46px;
+  cursor: pointer;
+}
+
+/* Muted while the placeholder is what shows, ink once something is chosen. */
+.select:has(option[value='']:checked) {
+  color: var(--color-muted);
+}
+
+.chevron {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  width: 18px;
+  height: 18px;
+  transform: translateY(-50%);
+  color: var(--color-muted);
+  pointer-events: none;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.submit {
+  composes: buttonBlue from '../ui/Controls.module.css';
+  margin-top: 28px;
+}
+
+/* White-on-white on hover would vanish inside the white card, so this one deepens instead. */
+.submit.submit:hover {
+  background-color: var(--color-brand-dark);
+  color: var(--color-white);
+}
+
+/* --- responsive ---------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .section {
+    padding-block: 80px 96px;
+  }
+
+  .grid {
+    gap: 40px;
+  }
+
+  .card {
+    padding: 32px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .intro {
+    position: static;
+  }
+
+  .heading {
+    max-width: 16em;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-block: 64px 72px;
+  }
+
+  .heading {
+    max-width: none;
+  }
+
+  .subheading {
+    font-size: 15px;
+  }
+
+  .card {
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+
+  /* One column: two fields side by side at this width leaves neither of them a measure. */
+  .fields {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .submit {
+    width: 100%;
+    margin-top: 24px;
+  }
+}

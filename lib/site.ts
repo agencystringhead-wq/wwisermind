@@ -1,3 +1,6 @@
+import type { ContactIconName } from '@/components/ui/icons';
+import type { MapPlace } from '@/components/ui/WorldMap';
+
 export type NavItem = {
   label: string;
   href: string;
@@ -6,7 +9,9 @@ export type NavItem = {
 export const siteConfig = {
   name: 'Wisermind',
   bookingUrl: '#book-a-call',
-  contactUrl: '#contact',
+  /* A real route now, not an on-page anchor — the header's "Contact Us" is the way in to
+     /contact from every page. The booking anchor above stays an in-page target. */
+  contactUrl: '/contact',
 };
 
 export const announcement = {
@@ -952,5 +957,247 @@ export const footerMain = {
       averaged into sky / haze / hillside. */
   media: {
     headline: ['Artificial Intelligence', '+', 'Human Care'],
+  },
+};
+
+/* ==========================================================================
+   /contact.
+
+   Two references. The hero follows helcim.com/industries/mental-health —
+   eyebrow, headline, lead, two buttons, a trust line, then a row of logos —
+   and everything under it follows helcim.com/contact: the tab strip in the
+   hero, the connect cards, a plain form.
+
+   The hero runs a dark treatment (Controls.module.css, `.dark`) and the
+   mosaic straddles its lower edge; everything from there down is white, bar
+   the form on the light grey, and a hairline at the top of the cards and the
+   calendar separates one white frame from the next. Nothing is a second
+   system: the type is the homepage's, the cards are the homepage card shell,
+   the buttons are the header pill recoloured, and the headings carry the
+   same scroll reveal.
+   ========================================================================== */
+type ContactCard = {
+  title: string;
+  body: string;
+  href: string;
+  linkLabel: string;
+  /** names an entry in `contactIcons` — a typo is a type error, not a blank tile */
+  icon: ContactIconName;
+  /** opens elsewhere, so it gets the external mark and a new tab */
+  external?: boolean;
+};
+
+type ContactTab = { label: string; href: string; current?: boolean; external?: boolean };
+
+export const contactPage = {
+  meta: {
+    title: 'Contact wwisermind — a free 30-minute call for your therapy practice',
+    description:
+      'Talk to wwisermind about your therapy practice’s website, SEO and AI visibility. One free 30-minute call in your timezone, an honest plan whether you hire us or not, and a reply to every message within one business day.',
+  },
+
+  /** The in-page targets every button, card and tab on this page points at. */
+  anchors: {
+    connect: 'connect',
+    booking: 'book-a-call',
+    form: 'contact-form',
+  },
+
+  /* The pill strip at the top of the hero. The first two stay on this page; the last two
+     leave it. TODO: `Submit a Ticket` and `FAQs` are `#` until the real URLs exist — the
+     ticket desk's address, and wherever the FAQ ends up living. */
+  tabs: [
+    { label: 'Contact Us', href: '#connect', current: true },
+    { label: 'Book a Call', href: '#book-a-call' },
+    { label: 'Submit a Ticket', href: '#', external: true },
+    { label: 'FAQs', href: '#', external: true },
+  ] satisfies ContactTab[],
+
+  hero: {
+    eyebrow: 'Contact wwisermind',
+    heading: 'Let’s find out if we’re the right fit',
+    lead: 'One free 30-minute call, in your timezone. We’ll look at your website and visibility together, and you’ll leave with an honest plan — whether you hire us or not.',
+    primary: { label: 'Book a free call', href: '#book-a-call' },
+    secondary: { label: 'Send a message', href: '#contact-form' },
+    trust: 'Trusted by therapy practices across the US, UK and Australia',
+    /** The hero's backdrop, in the shape the homepage's background media takes. The poster
+        is the clip's first frame, pulled from the file itself, and is what shows before the
+        video loads and for anyone who has asked for reduced motion. The section paints the
+        flat navy underneath both, so nothing is ever empty. */
+    background: {
+      poster: '/images/contact-hero-poster.webp',
+      sources: [
+        {
+          src: '/videos/wwisermind-blue-background-hero-banner-contact-us.mp4',
+          type: 'video/mp4',
+        },
+      ],
+    },
+  },
+
+  /* The mosaic under the trust line, measured off design-references/contact-gallery-mosaic.png
+     (1510x513): a 612-wide tile the full height, a 360-wide middle split 148 over 353, a
+     518-wide right split 318 over 181, 13px gaps. Three photographs and two flat tiles.
+
+     The photographs are the homepage's own — no picture was shot for this. Two of them are
+     cropped harder than they were made for (see `position`), so if purpose-shot images are
+     supplied later, the tiles want: tall ≈ 6:5, mid 1:1, wide ≈ 8:5. */
+  gallery: {
+    photos: {
+      tall: {
+        src: '/images/wwisermind-built-for-mental-therapist-only.webp',
+        alt: 'A therapist in a mustard blazer listening to a client across from her',
+        /* 3:2 into a near-square frame: cover trims a fifth off each side, so the crop is
+           held where the two faces are. */
+        position: '58% 40%',
+      },
+      mid: {
+        src: founder.portrait.src,
+        alt: founder.portrait.alt,
+        position: founder.portrait.position,
+      },
+      wide: {
+        src: '/images/wwisermind-built-in-India-for-world-therapists.webp',
+        alt: 'Three colleagues in business dress outside an office, giving a thumbs up',
+        position: 'center 30%',
+      },
+    },
+    accent: 'Only therapists. Every project.',
+    /* TODO: there is no review data in the project yet. `score` is null on both entries, and
+       the tile renders a dash and empty stars until real scores exist — nothing here is a
+       number anyone made up. The two platform names are the likely ones, not confirmed. */
+    reviews: {
+      note: 'Review scores to come',
+      outOf: 5,
+      items: [
+        { platform: 'Google', score: null },
+        { platform: 'Psychology Today', score: null },
+      ] as { platform: string; score: number | null }[],
+    },
+  },
+
+  /* The homepage's directory and AI marks, not a second set — there are no client logos
+     in the repo yet. Swap `items` for those when they exist and nothing else changes. */
+  logos: {
+    label: 'We get practices found on',
+    items: [getFound.featured, ...getFound.logos],
+  },
+
+  connect: {
+    heading: 'Choose how you’d like to connect',
+    subheading: 'However you prefer to reach out, we’re ready.',
+    cards: [
+      {
+        title: 'Book a free call',
+        body: 'One free 30-minute video call, in your timezone. An honest read on what’s worth fixing.',
+        href: '#book-a-call',
+        linkLabel: 'Pick a time',
+        icon: 'calendar',
+      },
+      {
+        title: 'Send us a message',
+        body: 'Fill out the form below and we’ll reply within one business day.',
+        href: '#contact-form',
+        linkLabel: 'Go to the form',
+        icon: 'message',
+      },
+      {
+        title: 'Email us directly',
+        body: 'Prefer email? Skip the form entirely.',
+        href: 'mailto:admin@wwisermind.com',
+        linkLabel: 'admin@wwisermind.com',
+        icon: 'mail',
+      },
+      {
+        /* TODO: `href` is a placeholder until the ticket desk has an address. */
+        title: 'Submit a ticket',
+        body: 'For care plan clients. Send a request and track it through to done.',
+        href: '#',
+        linkLabel: 'Open a ticket',
+        icon: 'ticket',
+        external: true,
+      },
+    ] satisfies ContactCard[],
+  },
+
+  booking: {
+    label: 'Pick a time',
+    /** The frame is sized by ratio, so dropping a real embed in cannot change the page. */
+    placeholder: {
+      title: 'Booking calendar',
+      note: 'Cal.com embed goes here',
+    },
+  },
+
+  form: {
+    heading: 'Ask us a question',
+    subheading:
+      'Tell us what’s going on with your practice and we’ll come back with an honest answer.',
+    requiredNote: 'Required',
+    /* Four text fields, two selects, one message — in that order, which is also the tab
+       order. The component pairs them off two to a row on desktop. */
+    fields: [
+      { id: 'contact-name', label: 'Name', type: 'text', autoComplete: 'name', required: true },
+      { id: 'contact-email', label: 'Email', type: 'email', autoComplete: 'email', required: true },
+      {
+        id: 'contact-practice',
+        label: 'Practice name',
+        type: 'text',
+        autoComplete: 'organization',
+        required: true,
+      },
+      {
+        id: 'contact-site',
+        label: 'Practice website',
+        hint: 'optional',
+        type: 'url',
+        autoComplete: 'url',
+        required: false,
+      },
+    ],
+    selects: [
+      {
+        id: 'contact-help',
+        label: 'What do you need help with?',
+        placeholder: 'Choose one',
+        options: ['New website', 'SEO', 'AI visibility', 'Copywriting', 'Ads', 'Not sure yet'],
+        required: true,
+      },
+      {
+        id: 'contact-practice-type',
+        label: 'Are you a solo or group practice?',
+        placeholder: 'Choose one',
+        options: ['Solo practice', 'Group practice'],
+        required: true,
+      },
+    ],
+    message: { id: 'contact-message', label: 'Your message', required: true },
+    submit: 'Send message',
+  },
+
+  studio: {
+    heading: 'Built in Pune. Working in your timezone.',
+    body: 'We work from Pune, India, and we’re upfront about it because it works in your favour. Revisions happen while you sleep, meetings happen on video in your hours, and you get agency-grade work at a price a practice can justify.',
+    /* The world map beside the copy. `id` names a country in lib/world-map.ts, so a typo
+       is a type error rather than a blank patch of dots; `role` is what colours it. The
+       time zones are the same four the clock strip reads. */
+    map: {
+      label:
+        'A world map: we work from India, and our clients are in the United States, the United Kingdom and Australia.',
+      legend: { from: 'Where we work from', clients: 'Where our clients are' },
+      places: [
+        { id: 'india', name: 'India', role: 'from', timeZone: 'Asia/Kolkata' },
+        { id: 'us', name: 'United States', role: 'client', timeZone: 'America/New_York' },
+        { id: 'uk', name: 'United Kingdom', role: 'client', timeZone: 'Europe/London' },
+        { id: 'australia', name: 'Australia', role: 'client', timeZone: 'Australia/Sydney' },
+      ] satisfies MapPlace[],
+    },
+    /* The footer's clock component, re-pointed at the four cities this page names. */
+    clocks: [
+      { city: 'Pune', region: 'India', timeZone: 'Asia/Kolkata' },
+      { city: 'New York', region: 'N. America', timeZone: 'America/New_York' },
+      { city: 'London', region: 'Europe', timeZone: 'Europe/London' },
+      { city: 'Sydney', region: 'Oceania', timeZone: 'Australia/Sydney' },
+    ],
   },
 };

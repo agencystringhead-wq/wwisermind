@@ -39,7 +39,8 @@ const clamp = (value: number) => (value < 0 ? 0 : value > 1 ? 1 : value);
  * only the reveal, so two sections can share the effect without sharing a scale.
  *
  * `as` is the element to render. It defaults to the h2 the section headlines want, and body
- * copy passes 'p' so that borrowing the effect does not invent a heading in the outline.
+ * copy passes 'p' so that borrowing the effect does not invent a heading in the outline. A
+ * page whose opening line *is* its title passes 'h1' — the contact hero does.
  */
 export default function ScrollReveal({
   text,
@@ -50,7 +51,7 @@ export default function ScrollReveal({
 }: {
   text: string;
   className?: string;
-  as?: 'h2' | 'h3' | 'p' | 'blockquote';
+  as?: 'h1' | 'h2' | 'h3' | 'p' | 'blockquote';
   /** Both as fractions of viewport height, measured to the top of the block: `start` is
       where the first word begins to turn and `end` is where the last one lands. */
   start?: number;

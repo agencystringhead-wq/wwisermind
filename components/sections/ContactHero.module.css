@@ -1,0 +1,245 @@
+/* /contact frame 1 — hero, on the dark ground.
+
+   The reference's centred stack: the pill strip first, then eyebrow, headline, lead, two
+   buttons and the trust line, every one of them on the page's centre axis. The strip sits
+   close under the header the way the reference's does; the stack below it gets the air. */
+
+/* The bottom padding is the frame's own 88px plus the mosaic's overlap — the mosaic pulls
+   itself up by that much (ContactGallery.module.css, `--overlap`), so the dark edge runs
+   through the middle of it rather than under it. The two numbers move together. */
+.section {
+  composes: dark from '../ui/Controls.module.css';
+  position: relative;
+  /* The clip is absolute and covers; this keeps it inside the hero, and the stacking context
+     keeps the three layers below from interleaving with anything outside the section. */
+  overflow: hidden;
+  isolation: isolate;
+  /* The top padding is the whole gap between the header and the tab strip — nothing else
+     sits above the strip — so it is what sets that space. 60, up from 36. */
+  padding-block: 60px calc(88px + 150px);
+}
+
+/* --- the backdrop -------------------------------------------------------------- */
+/* Three layers, back to front: the clip, the veil, the content. */
+.video,
+.veil {
+  position: absolute;
+  inset: 0;
+}
+
+/* Cover, centred: the clip's stripes run top to bottom and its light-to-dark runs left to
+   right, so what a narrower frame trims from the sides is the cyan edge and the black
+   edge — the middle, where the type sits, is what every width keeps. */
+.video {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* The hero's own colour laid over the clip. The alpha is solved, not guessed: every frame
+   of the clip was scanned at glyph scale for its brightest patch within the central 60%
+   of the frame — the band the type occupies at every width, since cover trims the sides —
+   and that patch is rgb(3,126,255). Under this veil it resolves to about rgb(16,74,181),
+   and against that the yellow headline is 7.2:1, white 7.9:1, the 0.78 body 5.4:1 and the
+   0.72 quiet lines 5.0:1 — all past AA. The far-left cyan edge of the clip is brighter
+   (rgb(3,185,234)) but no type ever sits over it. */
+.veil {
+  z-index: 1;
+  background-color: rgba(29, 22, 106, 0.5);
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* --- the tab strip ---------------------------------------------------------- */
+/* A scroll container, so on a phone the four stay on one line and slide rather than wrap.
+   The padding-and-negative-margin pair gives the focus ring room inside the clip: the
+   global ring is 2px at a 3px offset, and a scroll container clips anything past its
+   padding box. Shrink-to-fit as a flex item, capped at the container, so it is centred
+   while it fits and scrolls from the left edge once it does not. */
+.tabs {
+  max-width: 100%;
+  margin: -6px;
+  padding: 6px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+/* The lifted pill: white at a low alpha over the ground, so it is a shade of the ground.
+   4px around 28px tabs makes the capsule 36 tall, down from the 50 it was (5 around 40) —
+   28% slimmer. The pill radius is far past half of either height, so the ends stay full
+   semicircles at any size. */
+.tabList {
+  display: flex;
+  gap: 4px;
+  width: max-content;
+  padding: 4px;
+  border-radius: var(--radius-pill);
+  background-color: var(--dark-lift);
+}
+
+/* The inline padding is unchanged, so the pills keep their length as they lose height. The
+   14px label sits in 28px with 3px of clear either side of its line box, which is room
+   enough that it did not need to come down a size. */
+.tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 28px;
+  padding-inline: 20px;
+  border-radius: var(--radius-pill);
+  color: var(--color-white);
+  font-size: 14px;
+  font-weight: var(--fw-medium);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  transition: background-color var(--dur) var(--ease);
+}
+
+/* A 28px pill is under the 44px a finger wants, so on a coarse pointer the hit area is
+   grown above and below the pill without drawing anything: 8px each way makes 44. Only
+   vertical, so neighbours across the 4px gap do not overlap each other. */
+@media (pointer: coarse) {
+  .tab::before {
+    content: '';
+    position: absolute;
+    inset: -8px 0;
+  }
+}
+
+.tab:hover {
+  background-color: var(--dark-lift-hover);
+}
+
+/* The current page, filled in the site's blue — the one colour the page uses for anything
+   interactive, so the yellow stays the headline's. */
+.tabCurrent,
+.tabCurrent:hover {
+  background-color: var(--color-brand);
+}
+
+.tabIcon {
+  width: 14px;
+  height: 14px;
+  opacity: 0.8;
+}
+
+/* --- the stack --------------------------------------------------------------- */
+.eyebrow {
+  composes: monoLabelOnDark from '../ui/Controls.module.css';
+  margin-top: 64px;
+}
+
+/* The homepage h1 — same clamp, same tracking — composed so the two pages cannot drift.
+   Doubled so the three changes this page makes to it (the yellow, the semibold the brief
+   asks for, and a balanced wrap for centred type) outrank the original whichever order the
+   two stylesheets land in. */
+.heading {
+  composes: title from './HeroTop.module.css';
+}
+
+.heading.heading {
+  max-width: 16em;
+  margin-top: 20px;
+  color: var(--dark-headline);
+  font-weight: var(--fw-semibold);
+  text-wrap: balance;
+}
+
+/* `pretty` so the sentence cannot end on a two-word line under a centred block. */
+.lead {
+  max-width: 58ch;
+  margin-top: 24px;
+  color: var(--dark-body);
+  font-size: 17px;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.primary {
+  composes: buttonBlue from '../ui/Controls.module.css';
+}
+
+.secondary {
+  composes: buttonOutline from '../ui/Controls.module.css';
+}
+
+.trust {
+  margin-top: 28px;
+  color: var(--dark-quiet);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+
+/* --- responsive ---------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .section {
+    padding-block: 52px calc(72px + 120px);
+  }
+
+  .eyebrow {
+    margin-top: 52px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .section {
+    padding-block: 48px calc(64px + 96px);
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-block: 40px calc(56px + 64px);
+  }
+
+  /* Same 28px height as desktop — the coarse-pointer hit area above is what carries the
+     tap target here, not the pill. */
+  .tab {
+    padding-inline: 16px;
+    font-size: 13px;
+  }
+
+  .eyebrow {
+    margin-top: 40px;
+  }
+
+  .lead {
+    margin-top: 20px;
+    font-size: 15px;
+  }
+
+  .actions {
+    width: 100%;
+    flex-direction: column;
+    margin-top: 28px;
+  }
+
+  .trust {
+    margin-top: 22px;
+    font-size: 12px;
+  }
+}

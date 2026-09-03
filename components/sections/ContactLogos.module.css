@@ -1,0 +1,122 @@
+/* /contact frame 2 — the logo scroller.
+
+   A quiet white band directly under the dark hero: the label, then the marks in motion.
+   The marquee mechanics are the footer ticker's, restated here because keyframes cannot be
+   composed across modules; the speed matches its 55px/s so the two drift alike. */
+
+/* No rule of its own: the cards frame under it opens on the shared hairline, and two lines
+   a few pixels apart would read as a mistake. */
+.section {
+  padding-block: 64px 64px;
+  background-color: var(--color-white);
+}
+
+.label {
+  composes: monoLabel from '../ui/Controls.module.css';
+  text-align: center;
+}
+
+/* The viewport. It clips the track, and the mask feathers both ends so marks arrive and
+   leave rather than popping at a hard edge. */
+.marquee {
+  margin-top: 28px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+/* Six lists in a row — three to a half — slid left by one half. The half measures about
+   2450px, which at the footer's 55px/s is the 45s here. */
+.track {
+  display: flex;
+  width: max-content;
+  animation: logoScroll 45s linear infinite;
+  will-change: transform;
+}
+
+/* Stop under the cursor, as the footer's does. */
+@media (hover: hover) and (pointer: fine) {
+  .marquee:hover .track {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes logoScroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+/* The gap lives on each item as padding rather than between pairs, so the rhythm is the
+   same where one list meets the next — the join the loop runs through. */
+.item {
+  flex: none;
+  padding-inline: 36px;
+}
+
+/* The marks are already balanced against each other in lib/site.ts; here they are only
+   pulled back a touch so the row reads as one quiet line rather than five logos. */
+.logo {
+  opacity: 0.85;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.item:hover .logo {
+  opacity: 1;
+}
+
+/* Motion off: nothing runs. The first list sits centred and wraps if it must; the copies
+   are not shown. The global reduced-motion rule would otherwise leave a 0.01ms infinite
+   animation flickering at the start frame, so this one is switched off outright. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .track {
+    width: 100%;
+    justify-content: center;
+    animation: none;
+  }
+
+  .row {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 16px;
+  }
+
+  .track > :not(:first-child) {
+    display: none;
+  }
+}
+
+/* --- responsive ---------------------------------------------------------- */
+@media (max-width: 640px) {
+  .section {
+    padding-block: 44px 48px;
+  }
+
+  .marquee {
+    margin-top: 22px;
+  }
+
+  .item {
+    padding-inline: 24px;
+  }
+
+  /* An explicit width, halved with the homepage's own small-screen step for the same set. */
+  .logo {
+    width: 84px;
+    height: auto;
+  }
+}

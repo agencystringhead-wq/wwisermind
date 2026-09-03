@@ -1,0 +1,108 @@
+/* /contact frame 5 — the calendar.
+
+   A single framed block at container width, on white after the white of the cards — so
+   the frame opens on the shared hairline and carries its top space below that line. The
+   ratio is the point: the placeholder and a real embed both fill the same box, so swapping
+   one for the other cannot reflow the page. */
+
+.section {
+  padding-block: 0 112px;
+  background-color: var(--color-white);
+}
+
+.rule {
+  composes: rule from '../ui/Controls.module.css';
+}
+
+.label {
+  composes: monoLabel from '../ui/Controls.module.css';
+  margin-top: 96px;
+}
+
+/* 16:10, roughly what a month grid wants. The card shell without its hover: this block is
+   not a target, so it should not answer the pointer like one. */
+.frame {
+  position: relative;
+  overflow: hidden;
+  margin-top: 20px;
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+  background-color: var(--color-surface);
+}
+
+/* What the iframe will take. Declared here rather than on the embed later, so the swap is
+   one element and no new CSS. */
+.embed,
+.placeholder {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  color: var(--color-muted);
+}
+
+.placeholderTitle {
+  margin-top: 16px;
+  font-size: 17px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.01em;
+}
+
+.placeholderNote {
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+/* --- responsive ---------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .section {
+    padding-block: 0 88px;
+  }
+
+  .label {
+    margin-top: 80px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-block: 0 64px;
+  }
+
+  .label {
+    margin-top: 56px;
+  }
+
+  /* A 16:10 month grid on a phone is a letterbox of unreadable cells; taller is the shape a
+     real embed takes down here anyway. */
+  .frame {
+    aspect-ratio: 4 / 5;
+    border-radius: 16px;
+  }
+
+  .icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .placeholderTitle {
+    font-size: 15px;
+  }
+}

@@ -1,0 +1,200 @@
+/* The dotted world map: the SVG, the marker layer over it, the tooltip, the legend.
+
+   Colour is the site's: the neutral dots are the divider grey, the client countries a
+   tint of the brand blue, India the brand blue in full, and India's pin the announcement
+   yellow ringed in blue — so the origin reads as the one different thing at a glance. */
+
+.figure {
+  --map-neutral: var(--color-divider);
+  --map-client: #9cc3f7;
+  --map-from: var(--color-brand);
+  --map-pin-from: #fafb87;
+  /* dot diameter in viewBox units, as a share of the 5.56 pitch */
+  --dot: 2.9;
+  --dot-strong: 3.6;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 0;
+}
+
+/* --- the map ------------------------------------------------------------------- */
+.stage {
+  position: relative;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Every dot is a zero-length segment; the round cap is what draws the disc, and the
+   stroke width is its diameter. */
+.land,
+.dots {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.land {
+  stroke: var(--map-neutral);
+  stroke-width: var(--dot);
+  pointer-events: none;
+}
+
+/* The highlighted countries. Not pointer targets themselves — the hit layer below is. */
+.dots {
+  stroke-width: var(--dot-strong);
+  pointer-events: none;
+  transition: stroke var(--dur) var(--ease);
+}
+
+/* The hit layer over each highlighted country: the same dots with a stroke a little wider
+   than the pitch, so the discs overlap into one solid region, painted transparent.
+   `pointer-events: stroke` targets the stroke's geometry whatever its paint, which is what
+   makes an invisible stroke a hit area. */
+.hit {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 6.4;
+  stroke-linecap: round;
+  pointer-events: stroke;
+}
+
+.dotsClient {
+  stroke: var(--map-client);
+}
+
+.dotsFrom {
+  stroke: var(--map-from);
+}
+
+/* Deepen under the pointer, so the country answers the hover as a whole. */
+.dotsClient[data-active] {
+  stroke: var(--color-brand);
+}
+
+.dotsFrom[data-active] {
+  stroke: var(--color-brand-dark);
+}
+
+/* --- the markers ----------------------------------------------------------------- */
+/* A real button, centred on its coordinate, with a hit area a finger can find. The global
+   focus ring lands on it. */
+.marker {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+/* The Recent Launches dot, composed: the disc, its rings, and the pulse behind it — the
+   same keyframe, and the same reduced-motion rule that stops it. */
+.pin {
+  composes: dot from '../sections/HomeIntro.module.css';
+}
+
+/* India's pin: the yellow disc ringed in the brand blue. Doubled so it outranks the
+   composed rule whichever order the two stylesheets land in; the pulse stays blue. */
+.pinFrom.pinFrom::before {
+  background-color: var(--map-pin-from);
+  box-shadow:
+    0 0 0 2px var(--color-white),
+    0 0 0 3.5px var(--map-from);
+}
+
+/* --- the tooltip ----------------------------------------------------------------- */
+/* Above the pin, centred on it; the two edge variants swing it inward instead. */
+.tip {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background-color: var(--color-ink);
+  color: var(--color-white);
+  transform: translate(-50%, calc(-100% - 18px));
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
+.tipLeft {
+  transform: translate(-12px, calc(-100% - 18px));
+}
+
+.tipRight {
+  transform: translate(calc(-100% + 12px), calc(-100% - 18px));
+}
+
+.tipName {
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+/* The clock strip's reading, in the clock strip's face. */
+.tipTime {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* --- the legend ------------------------------------------------------------------ */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  color: var(--color-muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.swatch {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.swatchFrom {
+  background-color: var(--map-from);
+  box-shadow: 0 0 0 2px var(--color-white), 0 0 0 3px var(--map-pin-from);
+}
+
+.swatchClient {
+  background-color: var(--map-client);
+}
+
+/* --- responsive ---------------------------------------------------------------- */
+/* Narrow, the dots close up toward each other so the continents read as shapes rather
+   than as a scatter of pixels. */
+@media (max-width: 640px) {
+  .figure {
+    --dot: 4.2;
+    --dot-strong: 4.8;
+    gap: 16px;
+  }
+
+  .tip {
+    padding: 8px 12px;
+  }
+}
