@@ -1,0 +1,154 @@
+/* /services/[slug] frame 12b — related services, three rows. */
+
+.heading {
+  composes: heading from './Section.module.css';
+  max-width: 18em;
+}
+
+.rows {
+  margin-top: 48px;
+  border-top: 1px solid var(--color-divider);
+}
+
+/* One link per row: picture, words, arrow. `frame` on the row is what zooms the picture
+   and runs the sweep from anywhere on it; the row clips nothing it needs. */
+.row {
+  composes: frame from '../ui/MediaHover.module.css';
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr) auto;
+  gap: 40px;
+  align-items: center;
+  padding-block: 28px;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+/* 16:10, the site's radius, and the sweep clipped inside it. */
+.tile {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 16px;
+  background-color: #e6e6e6;
+}
+
+.tile img {
+  object-fit: cover;
+}
+
+.shine {
+  composes: shine from '../ui/MediaHover.module.css';
+}
+
+/* The practice panels' pair, on the same diagonal, with the initial in the deep blue. */
+.tileGradient {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(to top right, #fefdf9, #cce6fd);
+}
+
+.tileMark {
+  color: var(--color-brand-deep);
+  font-size: 56px;
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  opacity: 0.6;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.category {
+  composes: monoLabel from '../ui/Controls.module.css';
+}
+
+.name {
+  margin-top: 12px;
+  font-size: clamp(22px, 2vw, 26px);
+  font-weight: var(--fw-semibold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  transition: color var(--dur) var(--ease);
+}
+
+.row:hover .name {
+  color: var(--color-brand);
+}
+
+.body {
+  max-width: 56ch;
+  margin-top: 8px;
+  color: var(--color-muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* The problems slider's round control, filling with the ink when the row is pointed at,
+   and the glyph stepping right the way the card links' arrows do. */
+.arrow {
+  composes: control from '../sections/Problems.module.css';
+  flex: none;
+}
+
+.arrow svg {
+  transition: transform var(--dur) var(--ease);
+}
+
+.row:hover .arrow {
+  background-color: var(--color-ink);
+  color: var(--color-white);
+}
+
+.row:hover .arrow svg {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row:hover .arrow svg {
+    transform: none;
+  }
+}
+
+/* --- responsive ---------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .row {
+    grid-template-columns: 240px minmax(0, 1fr) auto;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .row {
+    grid-template-columns: 200px minmax(0, 1fr) auto;
+    gap: 24px;
+    padding-block: 24px;
+  }
+}
+
+/* A phone: the picture across the top, the words under it, the arrow beside the name. */
+@media (max-width: 640px) {
+  .rows {
+    margin-top: 36px;
+  }
+
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 16px 20px;
+    padding-block: 20px;
+  }
+
+  .tile {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 9;
+  }
+
+  .arrow {
+    width: 40px;
+    height: 40px;
+  }
+}

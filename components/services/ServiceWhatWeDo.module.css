@@ -1,0 +1,288 @@
+/* /services/[slug] frame 5 — what we do, measured off beclix.webflow.io/about at a
+   1321px container: heading to tabs 60, tabs to panel 48; tabs 62 tall on 16px padding,
+   12px radius, a 0.8px hairline, 20px apart, label bold and "01." muted with 32 between;
+   the panel a 24px-gap pair, the card on 40px padding, points on 24px with a yellow left
+   edge, 16 apart. The slide and the wipe are the reference's motions on the site's
+   easing. */
+
+/* --- the tabs ------------------------------------------------------------------ */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 60px;
+}
+
+.tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 32px;
+  min-height: 62px;
+  padding: 16px 24px;
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+  background-color: var(--color-white);
+  color: var(--color-ink);
+  text-align: left;
+  transition: border-color var(--dur) var(--ease);
+}
+
+.tab:hover {
+  border-color: var(--color-divider);
+}
+
+/* The reference's overlay: the yellow wiping in from the left edge. Scaled rather than
+   widened, so the wipe is a transform and never lays the row out again. */
+.fill {
+  position: absolute;
+  inset: 0;
+  background-color: #f7ff89;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 450ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.tabSelected .fill {
+  transform: scaleX(1);
+}
+
+.tabSelected,
+.tabSelected:hover {
+  border-color: #f7ff89;
+}
+
+.tabLabel,
+.tabNumber {
+  position: relative;
+  z-index: 1;
+}
+
+.tabLabel {
+  font-size: 16px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.tabNumber {
+  color: var(--color-body-muted);
+  font-size: 16px;
+  font-weight: var(--fw-regular);
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+  transition: color 300ms var(--ease);
+}
+
+.tabSelected .tabNumber {
+  color: #1a1a1a;
+}
+
+/* --- the panels --------------------------------------------------------------- */
+/* A window over a track of panels side by side; the track moves one panel-width per
+   tab. Flex stretches every panel to the tallest, so the window's height is fixed from
+   the first paint. */
+.viewport {
+  margin-top: 48px;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  align-items: stretch;
+  transform: translateX(calc(var(--active, 0) * -100%));
+  transition: transform 650ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.panel {
+  flex: 0 0 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: stretch;
+  min-width: 0;
+  /* Hidden once the slide has landed, so a panel out of the window is out of the tab
+     order too; the one arriving is visible from the first frame of its slide. */
+  visibility: hidden;
+  transition: visibility 0s linear 650ms;
+}
+
+.panelSelected {
+  visibility: visible;
+  transition: visibility 0s;
+}
+
+/* The reference's picture: 648 by 766. */
+.figure {
+  composes: frame from '../ui/MediaHover.module.css';
+  aspect-ratio: 648 / 766;
+  border-radius: 16px;
+  background-color: #e6e6e6;
+}
+
+.shine {
+  composes: shine from '../ui/MediaHover.module.css';
+}
+
+/* The reference's off-white card; the surface grey is this site's off-white. On the
+   grey ground it takes a hairline so it keeps an edge. */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px;
+  border: 1px solid var(--color-line);
+  border-radius: 16px;
+  background-color: var(--color-surface);
+}
+
+.heading {
+  max-width: 18em;
+  font-size: clamp(26px, 2.5vw, 34px);
+  font-weight: var(--fw-semibold);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  text-wrap: initial;
+}
+
+.paragraph {
+  max-width: 50ch;
+  margin-top: 24px;
+  color: var(--color-muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* Four points two by two: white, the yellow left edge, the check in a thin ring. */
+.points {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+  margin-top: 32px;
+}
+
+.point {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  border: 1px solid var(--color-line);
+  border-left: 2px solid #f7ff89;
+  border-radius: 12px;
+  background-color: var(--color-white);
+  font-size: 16px;
+  font-weight: var(--fw-medium);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.check {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--color-muted);
+  border-radius: 50%;
+  color: var(--color-ink);
+}
+
+.check svg {
+  width: 12px;
+  height: 12px;
+  stroke-width: 1.6;
+}
+
+/* The header's black pill, as the reference's own. */
+.button {
+  composes: button from '../ui/Controls.module.css';
+  margin-top: 32px;
+}
+
+/* --- responsive ---------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .tabs {
+    gap: 14px;
+    margin-top: 48px;
+  }
+
+  .tab {
+    gap: 24px;
+    padding: 14px 20px;
+  }
+
+  .viewport {
+    margin-top: 40px;
+  }
+
+  .card {
+    padding: 32px;
+  }
+
+  .point {
+    padding: 16px 18px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .tabs {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .tab {
+    justify-content: space-between;
+    min-height: 56px;
+  }
+
+  .panel {
+    grid-template-columns: 1fr;
+  }
+
+  .figure {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 640px) {
+  .viewport {
+    margin-top: 28px;
+  }
+
+  .card {
+    padding: 24px 20px;
+    border-radius: 12px;
+  }
+
+  .heading {
+    font-size: 24px;
+  }
+
+  .points {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .button {
+    width: 100%;
+    margin-top: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill,
+  .track,
+  .panel,
+  .panelSelected,
+  .tabNumber {
+    transition: none;
+  }
+}

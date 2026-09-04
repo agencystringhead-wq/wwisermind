@@ -1,0 +1,149 @@
+/* /services/[slug] frame 11 — testimonials, at the page's scale. */
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 64px;
+  align-items: start;
+}
+
+.heading {
+  composes: heading from './Section.module.css';
+  max-width: 12em;
+}
+
+.paragraph {
+  composes: lede from './Section.module.css';
+  max-width: 36ch;
+  margin-top: 20px;
+}
+
+/* --- the quote --------------------------------------------------------------- */
+/* Between two hairlines, the way the page's other lists sit — no card. */
+.quote {
+  padding-block: 32px;
+  border-top: 1px solid var(--color-divider);
+  border-bottom: 1px solid var(--color-divider);
+}
+
+/* The hero banner's gold, small. */
+.stars {
+  display: inline-flex;
+  gap: 4px;
+  color: #f5b301;
+}
+
+.star {
+  width: 16px;
+  height: 16px;
+}
+
+.starOff {
+  color: var(--color-line);
+}
+
+.text {
+  margin-top: 20px;
+}
+
+.text p {
+  max-width: 52ch;
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: var(--fw-medium);
+  line-height: 1.5;
+  letter-spacing: -0.015em;
+  text-wrap: pretty;
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 28px;
+}
+
+/* The hero banner's author line: the round photograph, the name in bold, the role. */
+.author {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  column-gap: 14px;
+  align-items: center;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.photo {
+  grid-row: 1 / span 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name {
+  font-weight: var(--fw-bold);
+}
+
+.role {
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+/* --- the controls -------------------------------------------------------------- */
+/* The problems slider's round arrows, at two thirds their size, with the count between. */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.control {
+  composes: control from '../sections/Problems.module.css';
+  width: 36px;
+  height: 36px;
+}
+
+.control svg {
+  width: 16px;
+  height: 16px;
+}
+
+.count {
+  min-width: 3.5em;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- responsive ---------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .grid {
+    gap: 48px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .heading {
+    max-width: 18em;
+  }
+}
+
+@media (max-width: 640px) {
+  .quote {
+    padding-block: 24px;
+  }
+
+  .text p {
+    font-size: 17px;
+  }
+}

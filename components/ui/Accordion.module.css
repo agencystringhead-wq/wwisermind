@@ -1,0 +1,182 @@
+/* The shared accordion. The rows are the homepage FAQ's — hairlines, a small tabular
+   number, a semibold title — with the header's plus as the indicator instead of that
+   section's dot, so the same glyph means "opens" everywhere on the site. */
+
+.list {
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.item {
+  border-top: 1px solid var(--color-divider);
+}
+
+/* The h3 is here for the outline; the button inside it is what looks like anything. */
+.heading {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: normal;
+  text-wrap: initial;
+}
+
+.trigger {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 12px;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  padding-block: 24px;
+  text-align: left;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.triggerNumbered {
+  grid-template-columns: 48px minmax(0, 1fr) 12px;
+}
+
+.trigger:hover {
+  opacity: 0.65;
+}
+
+.number {
+  color: var(--color-body-muted);
+  font-size: 13px;
+  font-weight: var(--fw-regular);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.title {
+  font-size: 17px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+/* The nav's plus, at the size the row's type asks for; a quarter turn is the whole open
+   state, and only transform animates. */
+.plus {
+  display: grid;
+  place-items: center;
+  width: 12px;
+  color: var(--color-muted);
+  font-size: 18px;
+  font-weight: var(--fw-regular);
+  line-height: 1;
+  transition: transform 200ms var(--ease), color var(--dur) var(--ease);
+}
+
+.trigger[aria-expanded='true'] .plus {
+  color: var(--color-ink);
+  transform: rotate(45deg);
+}
+
+/* --- the check variant ------------------------------------------------------
+   The core-values reference: a check in a thin ring at the row's end, the open row's
+   ring filled; closed titles in the muted ink so the open one reads as current. */
+.trigger {
+  --indicator-width: 12px;
+}
+
+.listCheck .trigger {
+  --indicator-width: 22px;
+  grid-template-columns: minmax(0, 1fr) var(--indicator-width);
+}
+
+.listCheck .triggerNumbered {
+  grid-template-columns: 48px minmax(0, 1fr) var(--indicator-width);
+}
+
+.listCheck .title {
+  color: var(--color-muted);
+  transition: color var(--dur) var(--ease);
+}
+
+.listCheck .trigger[aria-expanded='true'] .title {
+  color: var(--color-ink);
+}
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--color-body-muted);
+  border-radius: 50%;
+  color: var(--color-body-muted);
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.check svg {
+  width: 12px;
+  height: 12px;
+  stroke-width: 2.2;
+}
+
+.trigger[aria-expanded='true'] .check {
+  border-color: var(--color-ink);
+  background-color: var(--color-ink);
+  color: var(--color-white);
+}
+
+.panel {
+  padding-bottom: 26px;
+}
+
+/* Indented to the title's column so the paragraph hangs off it, not off the number. */
+.panelNumbered {
+  padding-left: 72px;
+}
+
+/* --color-muted rather than body-muted: 6.9:1 on white and 6.3:1 on the grey. */
+.body {
+  max-width: 60ch;
+  color: var(--color-muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@media (max-width: 1279px) {
+  .trigger {
+    padding-block: 20px;
+  }
+
+  .triggerNumbered {
+    grid-template-columns: 40px minmax(0, 1fr) 12px;
+  }
+
+  .panelNumbered {
+    padding-left: 64px;
+  }
+}
+
+@media (max-width: 640px) {
+  .trigger {
+    gap: 16px;
+    padding-block: 18px;
+  }
+
+  .triggerNumbered {
+    grid-template-columns: 32px minmax(0, 1fr) 12px;
+  }
+
+  .title {
+    font-size: 15px;
+  }
+
+  .panelNumbered {
+    padding-left: 48px;
+  }
+
+  .body {
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plus {
+    transition: none;
+  }
+}

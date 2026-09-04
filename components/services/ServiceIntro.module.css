@@ -1,0 +1,151 @@
+/* /services/[slug] frames 3 + 4 — intro, capabilities and pillars, one block.
+   Measured off design-references/design-idea.webp (1900 frame): the paragraph column is
+   870 wide — 46% of the frame — at 20px; the rule runs the container; the three columns
+   sit on a 483 pitch. Rebuilt at the 1300 container. */
+
+/* --- the centred measure -------------------------------------------------------- */
+/* 620px is 58 characters of 17px Inter — the reference's line length — and the text
+   inside is set left, so the block is centred and the lines are not. */
+.column {
+  max-width: 620px;
+  margin-inline: auto;
+}
+
+/* The capability items' size, in the muted ink, so the paragraph and the list read as one
+   block rather than a lead and a footnote. Was 19px in the ink. */
+.paragraph {
+  color: var(--color-muted);
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+
+/* Two to a row inside the measure, generous rows, the small plus. */
+.capabilities {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 40px;
+  margin-top: 44px;
+}
+
+/* A point under the paragraph: the same muted ink, a point smaller, and the regular
+   weight rather than the medium it had, so the list sits under the paragraph instead of
+   beside it. */
+.capability {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: var(--color-muted);
+  font-size: 14px;
+  font-weight: var(--fw-regular);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+/* The nav's plus at the nav's size: 11px, regular, muted. */
+.plus {
+  flex: none;
+  width: 10px;
+  margin-top: 1px;
+  color: var(--color-muted);
+  font-size: 13px;
+  font-weight: var(--fw-regular);
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* --- the rule ------------------------------------------------------------------- */
+.rule {
+  display: block;
+  height: 1px;
+  margin-top: 80px;
+  background-color: var(--color-divider);
+}
+
+/* --- the pillars ---------------------------------------------------------------- */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 64px;
+  margin-top: 80px;
+}
+
+.pillar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* The reference's line icons are drawn at 80px on a 1.2 stroke; ours are 24-unit glyphs,
+   so the stroke is set on the box to land at about 1.9px once drawn at 56 — thin, in the
+   site's deep blue. */
+.icon {
+  width: 56px;
+  height: 56px;
+  color: var(--color-brand-deep);
+  stroke-width: 0.8;
+}
+
+.title {
+  margin-top: 32px;
+  font-size: 24px;
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-wrap: initial;
+}
+
+.body {
+  max-width: 38ch;
+  margin-top: 16px;
+  color: var(--color-muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* --- responsive ---------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .rule,
+  .pillars {
+    margin-top: 64px;
+  }
+
+  .pillars {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .pillars {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .body {
+    max-width: 52ch;
+  }
+}
+
+@media (max-width: 640px) {
+  .capabilities {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 32px;
+  }
+
+  .rule,
+  .pillars {
+    margin-top: 48px;
+  }
+
+  .icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .title {
+    margin-top: 24px;
+    font-size: 22px;
+  }
+}

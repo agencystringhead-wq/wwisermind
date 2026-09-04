@@ -1,5 +1,6 @@
 import type { ContactIconName } from '@/components/ui/icons';
 import type { MapPlace } from '@/components/ui/WorldMap';
+import { serviceHref } from '@/lib/service-slugs';
 
 export type NavItem = {
   label: string;
@@ -8,10 +9,16 @@ export type NavItem = {
 
 export const siteConfig = {
   name: 'Wisermind',
+  /* TODO: confirm the production origin. It is only read for canonical URLs and the
+     structured data on the service pages — nothing on the page itself. */
+  url: 'https://wwisermind.com',
   bookingUrl: '#book-a-call',
   /* A real route now, not an on-page anchor — the header's "Contact Us" is the way in to
      /contact from every page. The booking anchor above stays an in-page target. */
   contactUrl: '/contact',
+  /** The booking anchor on the contact page, for a button on any other page: the anchor
+      alone only resolves on /contact, where the calendar lives. */
+  bookingPage: '/contact#book-a-call',
 };
 
 export const announcement = {
@@ -79,31 +86,31 @@ export const megaPanels: Record<string, MegaPanel> = {
         lead: 'Build',
         title: 'Therapist Website Design',
         links: [
-          { label: 'One Week Website', href: '/#one-week-website', desc: 'Live in 7 days, done for you' },
-          { label: 'Custom Website Design', href: '/#custom-website-design', desc: 'Built around your practice' },
-          { label: 'Website Hosting', href: '/#hosting', desc: 'Fast, secure, managed' },
-          { label: 'Website Care Plans', href: '/#care-plans', desc: 'Handled while you’re in session' },
+          { label: 'One Week Website', href: serviceHref('one-week-website'), desc: 'Live in 7 days, done for you' },
+          { label: 'Custom Website Design', href: serviceHref('custom-website-design'), desc: 'Built around your practice' },
+          { label: 'Website Hosting', href: serviceHref('website-hosting'), desc: 'Fast, secure, managed' },
+          { label: 'Website Care Plans', href: serviceHref('website-care-plans'), desc: 'Handled while you’re in session' },
         ],
       },
       {
         lead: 'Grow',
         title: 'Online Marketing',
         links: [
-          { label: 'Local SEO', href: '/#local-seo', desc: 'Be found in your city' },
-          { label: 'SEO Audit / Assessment', href: '/#seo-audit', desc: 'An honest read on your visibility' },
-          { label: 'One Time SEO', href: '/#one-time-seo', desc: 'Fix the foundation once' },
-          { label: 'Ongoing SEO / AEO / GEO', href: '/#ongoing-seo', desc: 'Keep climbing every month' },
-          { label: 'Copywriting', href: '/#copywriting', desc: 'Words that sound like you' },
-          { label: 'Meta Ads', href: '/#meta-ads', desc: 'Reach the right families' },
+          { label: 'Local SEO', href: serviceHref('local-seo'), desc: 'Be found in your city' },
+          { label: 'SEO Audit / Assessment', href: serviceHref('seo-audit'), desc: 'An honest read on your visibility' },
+          { label: 'One Time SEO', href: serviceHref('one-time-seo'), desc: 'Fix the foundation once' },
+          { label: 'Ongoing SEO / AEO / GEO', href: serviceHref('ongoing-seo'), desc: 'Keep climbing every month' },
+          { label: 'Copywriting', href: serviceHref('copywriting'), desc: 'Words that sound like you' },
+          { label: 'Meta Ads', href: serviceHref('meta-ads'), desc: 'Reach the right families' },
         ],
       },
       {
         lead: 'AI',
         title: 'AI Services',
         links: [
-          { label: 'AI Search Optimization', href: '/#ai-search-optimization', desc: 'Be the practice AI recommends' },
-          { label: 'AI Website Design', href: '/#ai-website-design', desc: 'Modern build, human review' },
-          { label: 'AI Chatbot', href: '/#ai-chatbot', desc: 'Answers at 11pm, bookings by 9' },
+          { label: 'AI Search Optimization', href: serviceHref('ai-search-optimization'), desc: 'Be the practice AI recommends' },
+          { label: 'AI Website Design', href: serviceHref('ai-website-design'), desc: 'Modern build, human review' },
+          { label: 'AI Chatbot', href: serviceHref('ai-chatbot'), desc: 'Answers at 11pm, bookings by 9' },
         ],
       },
     ],
@@ -111,7 +118,7 @@ export const megaPanels: Record<string, MegaPanel> = {
       eyebrow: 'Most Popular',
       lead: 'The One Week Website',
       body: 'Your practice online in seven days. Design, build, HIPAA-aware forms, and launch — all handled while you stay in session.',
-      link: { label: 'See how it works', href: '/#one-week-website' },
+      link: { label: 'See how it works', href: serviceHref('one-week-website') },
       image: {
         src: '/images/Timely-Therapy-Case-Studies-wwisermind.webp',
         width: 900,
@@ -166,20 +173,23 @@ export const megaPanels: Record<string, MegaPanel> = {
       {
         lead: 'Build',
         title: 'Website Packages',
+        /* TODO: the service pages carry no pricing frame any more, so these land on the
+           page's top and the strip below promises a price the page does not show. Both
+           want a pricing page, or the strip wants new words. */
         links: [
-          { label: 'One Week Website', href: '/#one-week-website' },
-          { label: 'Custom Website Design', href: '/#custom-website-design' },
-          { label: 'Website Hosting', href: '/#hosting' },
+          { label: 'One Week Website', href: serviceHref('one-week-website') },
+          { label: 'Custom Website Design', href: serviceHref('custom-website-design') },
+          { label: 'Website Hosting', href: serviceHref('website-hosting') },
         ],
       },
       {
         lead: 'Grow',
         title: 'Marketing Packages',
         links: [
-          { label: 'Local SEO', href: '/#local-seo' },
-          { label: 'SEO Audit', href: '/#seo-audit' },
-          { label: 'One Time SEO', href: '/#one-time-seo' },
-          { label: 'Ongoing SEO / AEO / GEO', href: '/#ongoing-seo' },
+          { label: 'Local SEO', href: serviceHref('local-seo') },
+          { label: 'SEO Audit', href: serviceHref('seo-audit') },
+          { label: 'One Time SEO', href: serviceHref('one-time-seo') },
+          { label: 'Ongoing SEO / AEO / GEO', href: serviceHref('ongoing-seo') },
         ],
       },
     ],
@@ -868,24 +878,26 @@ export const footerMain = {
       id: 'services',
       label: 'Services',
       items: [
-        { label: 'One Week Website', href: '/#one-week-website' },
-        { label: 'Custom Website Design', href: '/#custom-website-design' },
-        { label: 'Website Care Plans', href: '/#care-plans' },
-        { label: 'Local SEO', href: '/#local-seo' },
-        { label: 'SEO Assessment', href: '/#seo-audit' },
-        { label: 'One Time SEO', href: '/#one-time-seo' },
-        { label: 'Ongoing SEO / AEO / GEO', href: '/#ongoing-seo' },
-        { label: 'Copywriting', href: '/#copywriting' },
-        { label: 'Meta Ads', href: '/#meta-ads' },
+        { label: 'One Week Website', href: serviceHref('one-week-website') },
+        { label: 'Custom Website Design', href: serviceHref('custom-website-design') },
+        { label: 'Website Care Plans', href: serviceHref('website-care-plans') },
+        { label: 'Local SEO', href: serviceHref('local-seo') },
+        { label: 'SEO Assessment', href: serviceHref('seo-audit') },
+        { label: 'One Time SEO', href: serviceHref('one-time-seo') },
+        { label: 'Ongoing SEO / AEO / GEO', href: serviceHref('ongoing-seo') },
+        { label: 'Copywriting', href: serviceHref('copywriting') },
+        { label: 'Meta Ads', href: serviceHref('meta-ads') },
       ],
     },
     {
       id: 'ai-tools',
       label: 'AI Tools',
+      /* Two of these are services with pages; the report and the assessment are tools,
+         and their anchors wait for the tool pages. */
       items: [
         { label: 'AI Visibility Report', href: '/#ai-visibility-report' },
-        { label: 'AI Search Optimization', href: '/#ai-search-optimization' },
-        { label: 'AI Chatbot', href: '/#ai-chatbot' },
+        { label: 'AI Search Optimization', href: serviceHref('ai-search-optimization') },
+        { label: 'AI Chatbot', href: serviceHref('ai-chatbot') },
         { label: 'Local Map Assessment', href: '/#local-map-assessment' },
       ],
     },

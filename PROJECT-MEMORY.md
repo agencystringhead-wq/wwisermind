@@ -595,6 +595,49 @@ How the numbers were derived, because guessing here wasted time:
 Type: labels 13px uppercase and links 14px, both `#9a9a9a` (sampled — the design uses one
 grey for both). Small text stays readable rather than scaling to the design's ~11px.
 
+### ✅ Service pages — /services/[slug] (template v3, 1 of 13 populated)
+
+One dynamic route, one data file, one template. Adding a service is adding its slug to
+`SERVICE_SLUGS` in `lib/service-slugs.ts` and an entry to `services` in `lib/services.ts`;
+nothing else changes. `generateStaticParams` pre-renders all 13 and `dynamicParams = false`
+keeps the export honest (`npm run build` writes `out/services/<slug>.html` for all 13).
+
+- **Frames, top to bottom** — hero (dark, centred) → gallery mosaic (the contact page's
+  `ContactGallery`, prop-driven, straddling the hero's foot) → intro + capabilities +
+  three pillars (one white block, `ServiceIntro`, measured off design-idea.webp) → what we
+  do (beclix-style tabs, `ServiceWhatWeDo`) → what's included (numbered accordion) → why
+  choose us (2x2, one black stat card) → technology tiles → completed projects (sticky
+  stack) → process (check accordion in a card) → testimonials (compact, hairlined quote)
+  → the homepage `Faq` with the service's questions → related services as rows. The
+  footer's own CTA closes the page.
+- **Required vs optional** — hero, intro, included, FAQ and related are on every page.
+  Gallery, pillars, whatWeDo, whyChooseUs, technology, projects, process and testimonials
+  render only when the entry carries the field — no empty states. `ServicePage.tsx`
+  alternates white/grey over the frames that render; the FAQ is a fixed white point and
+  the alternation continues from it.
+- **What we do** — tabs are content-width pills 62px tall, 20px apart, centred; the
+  yellow is a `scaleX` wipe on a `::before`-style span; panels sit on a flex track that
+  slides `translateX(-active * 100%)` over 650ms, hidden with `visibility` once landed.
+  Real tablist, roving tabindex, arrows wrap. Transitions do not run in the preview
+  pane — verify tab motion in Playwright or a real browser.
+- **Icons** — `serviceIcons` in `ui/icons.tsx` (24-unit, 1.5 stroke); the pillars and
+  why cards draw them at 52–56px with `stroke-width: 0.8` for the thin beclix look.
+  The beclix reference icons are richer 82px illustrations on a 1.2 stroke — supply
+  SVGs at that spec to replace ours.
+- **Projects stack** — sticky panels; the script scales/dims the covered one (transform +
+  opacity), rAF-throttled, attached by an IntersectionObserver. Reduced motion: static.
+- **Why choose us** — `stat` names a case study + stat index, so the figure is the
+  homepage's; three cards + stat, or four cards. Checked at module load.
+- **FAQ** — `components/sections/Faq.tsx` takes `items?`; with none it is the homepage.
+- **Pricing frame removed** — the Pricing mega panel's links land on page tops and its
+  strip ("Every price is on the page.") is contradicted; both carry a TODO in `lib/site.ts`.
+- **Stubs** — 12 entries via `stub()`: required frames as visible TODOs, optional frames
+  absent, `draft: true` → `noindex`.
+- **Assets still wanted** — per service: 3 mosaic photos (≈6:5, 1:1, ≈8:5), 3 tab images
+  (648:766 ≈ 0.85), why-choose-us image (≈1:1), process image (≈1:1), related-row
+  `tileImage` (16:10); per project: a 16:9 landscape; per testimonial: a 44px-safe
+  square portrait; per technology: a logo (SVG, or WebP with alpha at 400x160).
+
 ### ⬜ Next frames
 
 - Inner pages / anything still to come — the homepage and footer are complete.

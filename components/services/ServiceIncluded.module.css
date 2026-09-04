@@ -1,0 +1,40 @@
+/* /services/[slug] frame 4 — what's included, on white. */
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 64px;
+  align-items: start;
+}
+
+/* The contact form's sticky intro: the heading holds while the list scrolls. */
+.intro {
+  position: sticky;
+  top: calc(var(--header-height) + 32px);
+}
+
+.heading {
+  composes: heading from './Section.module.css';
+  max-width: 14em;
+}
+
+@media (max-width: 1279px) {
+  .grid {
+    gap: 48px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .intro {
+    position: static;
+  }
+
+  .heading {
+    max-width: 20em;
+  }
+}

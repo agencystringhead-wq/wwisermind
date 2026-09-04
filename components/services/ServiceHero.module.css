@@ -1,0 +1,142 @@
+/* /services/[slug] frame 1 — the hero, on the contact page's dark ground.
+
+   The section, clip and veil are the contact hero's, restated here only where a value
+   differs. With a mosaic under it the bottom padding is the frame's own 56px plus the
+   mosaic's overlap (ContactGallery.module.css, `--overlap`) — the same pairing the contact
+   hero carries, breakpoint for breakpoint, so the dark edge runs through the mosaic's
+   middle. Without one, the foot is the frame's own. */
+
+.section {
+  composes: dark from '../ui/Controls.module.css';
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding-block: 96px 104px;
+}
+
+.sectionMosaic {
+  padding-bottom: calc(56px + 150px);
+}
+
+/* --- the backdrop: clip, veil, content ----------------------------------- */
+.video,
+.veil {
+  position: absolute;
+  inset: 0;
+}
+
+.video {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* The contact hero's alpha, solved there against the clip's brightest patch: the yellow
+   headline is 7.2:1 over it at worst, the body 5.4:1. */
+.veil {
+  z-index: 1;
+  background-color: rgba(29, 22, 106, 0.5);
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* The mono label on the dark ground, as a row: "SERVICES ↳ WEBSITE DESIGN". */
+.crumb {
+  composes: monoLabelOnDark from '../ui/Controls.module.css';
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.crumb li {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+.crumbArrow {
+  color: var(--dark-headline);
+}
+
+/* The homepage h1 — same clamp, same tracking — with the contact hero's three changes:
+   the yellow, the semibold, and a balanced wrap. Doubled so they outrank the original
+   whichever order the two stylesheets land in. */
+.heading {
+  composes: title from '../sections/HeroTop.module.css';
+}
+
+.heading.heading {
+  max-width: 14em;
+  margin-top: 24px;
+  color: var(--dark-headline);
+  font-weight: var(--fw-semibold);
+  text-wrap: balance;
+}
+
+.outcome {
+  max-width: 48ch;
+  margin-top: 20px;
+  color: var(--dark-body);
+  font-size: 17px;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.button {
+  composes: buttonBlue from '../ui/Controls.module.css';
+  margin-top: 36px;
+}
+
+/* --- responsive ---------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .section {
+    padding-block: 80px 88px;
+  }
+
+  .sectionMosaic {
+    padding-bottom: calc(48px + 120px);
+  }
+}
+
+@media (max-width: 1023px) {
+  .section {
+    padding-block: 64px 72px;
+  }
+
+  .sectionMosaic {
+    padding-bottom: calc(40px + 96px);
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-block: 48px 56px;
+  }
+
+  .sectionMosaic {
+    padding-bottom: calc(32px + 64px);
+  }
+
+  .outcome {
+    font-size: 15px;
+  }
+
+  .button {
+    width: 100%;
+    margin-top: 28px;
+  }
+}

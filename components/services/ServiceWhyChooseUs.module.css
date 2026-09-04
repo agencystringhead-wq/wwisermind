@@ -1,0 +1,146 @@
+/* /services/[slug] frame 7 — why choose us. */
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: stretch;
+  margin-top: 56px;
+}
+
+/* The photograph fills the column to the height of the four cards beside it. */
+.figure {
+  composes: frame from '../ui/MediaHover.module.css';
+  min-height: 520px;
+  border-radius: 20px;
+  background-color: #e6e6e6;
+}
+
+.shine {
+  composes: shine from '../ui/MediaHover.module.css';
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 24px;
+}
+
+/* The light card: the contact page's shell, the icon at the top and the words at the
+   foot, the way the reference sets them apart. */
+.card {
+  composes: card from '../ui/Controls.module.css';
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 32px 30px;
+}
+
+/* The reference's line icons: no tile, a thin stroke, in the ink. The 24-unit glyph
+   drawn at 52 with the stroke set on the box lands at about 1.7px. */
+.icon {
+  width: 52px;
+  height: 52px;
+  margin-bottom: auto;
+  color: var(--color-ink);
+  stroke-width: 0.8;
+  transition: transform 400ms ease-out;
+}
+
+.card:hover .icon {
+  transform: scale(1.04);
+}
+
+.title {
+  margin-top: 40px;
+  font-size: 20px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  text-wrap: initial;
+}
+
+.body {
+  margin-top: 10px;
+  color: var(--color-muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* The dark card: the reference's black, the figure in the site's yellow, the words in
+   white pulled back. The compound selector outranks the card shell's white whichever
+   order the two stylesheets land in. */
+.card.cardDark,
+.card.cardDark:hover {
+  border-color: var(--color-ink);
+  background-color: var(--color-ink);
+  color: var(--color-white);
+}
+
+.cardDark .body {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.stat {
+  margin-bottom: auto;
+  color: #fafb87;
+  font-size: clamp(48px, 4.6vw, 64px);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover .icon {
+    transform: none;
+  }
+}
+
+/* --- responsive ---------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .grid,
+  .cards {
+    gap: 16px;
+  }
+
+  .card {
+    padding: 26px 26px 24px;
+  }
+
+  .title {
+    margin-top: 32px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .figure {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    margin-top: 40px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+
+  .figure {
+    aspect-ratio: 4 / 3;
+  }
+
+  .title {
+    margin-top: 24px;
+  }
+}

@@ -5,8 +5,15 @@ import Link from 'next/link';
 import { faq } from '@/lib/site';
 import styles from './Faq.module.css';
 
-export default function Faq() {
-  const { background, heading, subheading, items, support, link } = faq;
+export type FaqItem = { question: string; answer: string };
+
+/**
+ * The homepage FAQ. With no props it is that section verbatim; the service pages hand it
+ * their own questions and it is the same frame — the same oversized heading, the same
+ * rows, the same support column — with only the questions changed.
+ */
+export default function Faq({ items = faq.items }: { items?: FaqItem[] } = {}) {
+  const { background, heading, subheading, support, link } = faq;
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const baseId = useId();
 

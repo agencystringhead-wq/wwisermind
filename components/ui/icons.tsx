@@ -94,6 +94,145 @@ export function ArrowRightIcon(props: IconProps) {
   );
 }
 
+/* --- the service pages ------------------------------------------------------ */
+
+/** The check beside a claim, and the plus's opposite number in a pricing card. */
+export function CheckIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M20 6 9 17l-5-5" />
+    </Icon>
+  );
+}
+
+/** The pillar and why-choose-us cards name one of these by string in lib/services.ts. */
+export function SearchIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-3.5-3.5" />
+    </Icon>
+  );
+}
+
+export function ShieldIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M12 3 4.5 6v5c0 4.6 3.2 8.4 7.5 10 4.3-1.6 7.5-5.4 7.5-10V6z" />
+      <path d="m9 12 2 2 4-4" />
+    </Icon>
+  );
+}
+
+export function BoltIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M13 2 4 14h7l-1 8 9-12h-7z" />
+    </Icon>
+  );
+}
+
+export function PenIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M12 20h9" />
+      <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z" />
+    </Icon>
+  );
+}
+
+export function ClipboardIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <rect x="5" y="4" width="14" height="17" rx="2" />
+      <path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1" />
+      <path d="M9 11h6M9 15h4" />
+    </Icon>
+  );
+}
+
+export function TargetIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="12" cy="12" r="9" />
+      <circle cx="12" cy="12" r="5" />
+      <circle cx="12" cy="12" r="1" />
+    </Icon>
+  );
+}
+
+export function ChatIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M8 10h.01M12 10h.01M16 10h.01" strokeWidth={2.2} />
+      <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.2A8 8 0 1 1 21 12z" />
+    </Icon>
+  );
+}
+
+export function ClockIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </Icon>
+  );
+}
+
+export function GlobeIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+    </Icon>
+  );
+}
+
+/** The star the hero banner's testimonial card draws, filled, at this set's box. */
+export function StarIcon({ className }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 1.6l3.1 6.3 6.9 1-5 4.87 1.18 6.87L12 17.4l-6.18 3.24L7 13.77l-5-4.87 6.9-1L12 1.6z" />
+    </svg>
+  );
+}
+
+export function ArrowLeftIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M19 12H5" />
+      <path d="m11 18-6-6 6-6" />
+    </Icon>
+  );
+}
+
+/* The registry the service data indexes into. A name with no entry here is a type error. */
+export const serviceIcons = {
+  search: SearchIcon,
+  calendar: CalendarIcon,
+  shield: ShieldIcon,
+  bolt: BoltIcon,
+  pen: PenIcon,
+  clipboard: ClipboardIcon,
+  target: TargetIcon,
+  chat: ChatIcon,
+  clock: ClockIcon,
+  globe: GlobeIcon,
+  mail: MailIcon,
+};
+
+export type ServiceIconName = keyof typeof serviceIcons;
+
+/** The filled up-arrow the homepage stats strip draws beside each figure — one path, drawn
+    here so the case-study stat on a service page is the same mark and not a copy of it. */
+export function TrendUpIcon({ className }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 22" fill="currentColor" aria-hidden="true">
+      <path d="M12 1.4c.5 0 1 .3 1.2.8l8.6 16.4c.5.9-.5 1.9-1.4 1.5L12 16.6l-8.4 3.5c-.9.4-1.9-.6-1.4-1.5L10.8 2.2c.2-.5.7-.8 1.2-.8z" />
+    </svg>
+  );
+}
+
 /* The registry the page's config indexes into, so lib/site.ts can name an icon as a string
    and stay free of JSX. A name with no entry here is a type error, not a blank card. */
 export const contactIcons = {

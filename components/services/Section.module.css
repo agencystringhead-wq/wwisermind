@@ -1,0 +1,74 @@
+/* The rhythm every service-page frame shares: one vertical padding, the two grounds the
+   page alternates between, the mono eyebrow, and the section heading treatment the homepage
+   and contact page carry — composed, so the service pages cannot drift from either.
+
+   A frame composes `section` with `light` or `grey`, then adds its own layout. The
+   template hands each frame its ground, alternating down the page over whichever frames
+   the entry actually has, so two of one colour never meet. */
+
+.section {
+  padding-block: 112px;
+}
+
+.light {
+  background-color: var(--color-white);
+}
+
+.grey {
+  background-color: var(--color-surface);
+}
+
+.eyebrow {
+  composes: monoLabel from '../ui/Controls.module.css';
+}
+
+/* The problems headline's treatment: size, weight, tracking and leading all come from that
+   one rule. Each frame sets its own measure. */
+.heading {
+  composes: heading from '../sections/Problems.module.css';
+  margin-top: 16px;
+}
+
+/* A centred head: eyebrow, heading and an optional line under it, balanced so centred type
+   does not leave a word alone on its last line. */
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.head .heading {
+  max-width: 18em;
+  text-wrap: balance;
+}
+
+/* A line of body under a heading, in the muted ink rather than the lighter body-muted:
+   6.9:1 on white, 6.3:1 on the grey. */
+.lede {
+  color: var(--color-muted);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.head .lede {
+  max-width: 56ch;
+  margin-top: 20px;
+  text-wrap: pretty;
+}
+
+@media (max-width: 1279px) {
+  .section {
+    padding-block: 88px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-block: 64px;
+  }
+
+  .lede {
+    font-size: 15px;
+  }
+}

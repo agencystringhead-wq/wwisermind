@@ -2,14 +2,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { homeIntro } from '@/lib/site';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+import { TrendUpIcon } from '@/components/ui/icons';
 import styles from './HomeIntro.module.css';
 
+/** The mark now lives in ui/icons so the service pages' case-study stat can draw the same
+    one; this keeps the call site as it was. */
 function ArrowUp() {
-  return (
-    <svg className={styles.arrow} viewBox="0 0 24 22" fill="currentColor" aria-hidden="true">
-      <path d="M12 1.4c.5 0 1 .3 1.2.8l8.6 16.4c.5.9-.5 1.9-1.4 1.5L12 16.6l-8.4 3.5c-.9.4-1.9-.6-1.4-1.5L10.8 2.2c.2-.5.7-.8 1.2-.8z" />
-    </svg>
-  );
+  return <TrendUpIcon className={styles.arrow} />;
 }
 
 const { headingLead, headingRest, eyebrow, viewAll, projects } = homeIntro;
