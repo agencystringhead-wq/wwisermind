@@ -32,7 +32,7 @@
   max-width: 40ch;
   margin-top: 16px;
   color: var(--color-muted);
-  font-size: 17px;
+  font-size: 15px;
   line-height: 1.55;
 }
 
@@ -196,10 +196,6 @@
 
   .heading {
     max-width: none;
-  }
-
-  .subheading {
-    font-size: 15px;
   }
 
   .card {

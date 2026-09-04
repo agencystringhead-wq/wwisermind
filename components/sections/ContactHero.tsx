@@ -5,8 +5,8 @@ import styles from './ContactHero.module.css';
 
 /**
  * The contact page's opening frame, on the dark ground: the tab strip, then the centred
- * stack the mental-health reference runs — eyebrow, the page's one h1, the lead, a filled
- * and an outlined button, and the trust line under them.
+ * stack the mental-health reference runs — eyebrow, the page's one h1, the lead, and one
+ * filled button, so the frame asks for exactly one thing.
  *
  * The strip is a nav of links rather than a tab list: two of them scroll this page and two
  * leave it, and none of them switch a panel, so tab semantics would promise something the
@@ -72,12 +72,7 @@ export default function ContactHero() {
           <a href={hero.primary.href} className={styles.primary}>
             {hero.primary.label}
           </a>
-          <a href={hero.secondary.href} className={styles.secondary}>
-            {hero.secondary.label}
-          </a>
         </div>
-
-        <p className={styles.trust}>{hero.trust}</p>
       </div>
     </section>
   );

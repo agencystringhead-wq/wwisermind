@@ -1,12 +1,14 @@
 /* /contact frame 1 — hero, on the dark ground.
 
-   The reference's centred stack: the pill strip first, then eyebrow, headline, lead, two
-   buttons and the trust line, every one of them on the page's centre axis. The strip sits
-   close under the header the way the reference's does; the stack below it gets the air. */
+   The reference's centred stack: the pill strip first, then eyebrow, headline, lead and
+   one button, every one of them on the page's centre axis. The strip sits close under the
+   header the way the reference's does; the stack below it gets the air. */
 
-/* The bottom padding is the frame's own 88px plus the mosaic's overlap — the mosaic pulls
+/* The bottom padding is the frame's own 56px plus the mosaic's overlap — the mosaic pulls
    itself up by that much (ContactGallery.module.css, `--overlap`), so the dark edge runs
-   through the middle of it rather than under it. The two numbers move together. */
+   through the middle of it rather than under it. The two numbers move together. The 56 is
+   the gap between the button and the top of the mosaic; it was 88 while the trust line sat
+   between them. */
 .section {
   composes: dark from '../ui/Controls.module.css';
   position: relative;
@@ -16,7 +18,7 @@
   isolation: isolate;
   /* The top padding is the whole gap between the header and the tab strip — nothing else
      sits above the strip — so it is what sets that space. 60, up from 36. */
-  padding-block: 60px calc(88px + 150px);
+  padding-block: 60px calc(56px + 150px);
 }
 
 /* --- the backdrop -------------------------------------------------------------- */
@@ -161,9 +163,11 @@
   text-wrap: balance;
 }
 
-/* `pretty` so the sentence cannot end on a two-word line under a centred block. */
+/* 64ch holds the lead to two lines at desktop: the sentence runs 1261px on one line at 17px
+   Inter, so anything under 62ch (665px) breaks it into three, and 64ch leaves 20px of slack
+   for a platform's rendering to differ. `pretty` so the second line cannot be two words. */
 .lead {
-  max-width: 58ch;
+  max-width: 64ch;
   margin-top: 24px;
   color: var(--dark-body);
   font-size: 17px;
@@ -183,21 +187,11 @@
   composes: buttonBlue from '../ui/Controls.module.css';
 }
 
-.secondary {
-  composes: buttonOutline from '../ui/Controls.module.css';
-}
-
-.trust {
-  margin-top: 28px;
-  color: var(--dark-quiet);
-  font-size: 13px;
-  letter-spacing: 0.01em;
-}
 
 /* --- responsive ---------------------------------------------------------- */
 @media (max-width: 1279px) {
   .section {
-    padding-block: 52px calc(72px + 120px);
+    padding-block: 52px calc(48px + 120px);
   }
 
   .eyebrow {
@@ -207,13 +201,13 @@
 
 @media (max-width: 1023px) {
   .section {
-    padding-block: 48px calc(64px + 96px);
+    padding-block: 48px calc(40px + 96px);
   }
 }
 
 @media (max-width: 640px) {
   .section {
-    padding-block: 40px calc(56px + 64px);
+    padding-block: 40px calc(32px + 64px);
   }
 
   /* Same 28px height as desktop — the coarse-pointer hit area above is what carries the
@@ -236,10 +230,5 @@
     width: 100%;
     flex-direction: column;
     margin-top: 28px;
-  }
-
-  .trust {
-    margin-top: 22px;
-    font-size: 12px;
   }
 }

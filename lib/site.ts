@@ -964,7 +964,7 @@ export const footerMain = {
    /contact.
 
    Two references. The hero follows helcim.com/industries/mental-health —
-   eyebrow, headline, lead, two buttons, a trust line, then a row of logos —
+   eyebrow, headline, lead, one button, then a row of logos —
    and everything under it follows helcim.com/contact: the tab strip in the
    hero, the connect cards, a plain form.
 
@@ -1018,8 +1018,6 @@ export const contactPage = {
     heading: 'Let’s find out if we’re the right fit',
     lead: 'One free 30-minute call, in your timezone. We’ll look at your website and visibility together, and you’ll leave with an honest plan — whether you hire us or not.',
     primary: { label: 'Book a free call', href: '#book-a-call' },
-    secondary: { label: 'Send a message', href: '#contact-form' },
-    trust: 'Trusted by therapy practices across the US, UK and Australia',
     /** The hero's backdrop, in the shape the homepage's background media takes. The poster
         is the clip's first frame, pulled from the file itself, and is what shows before the
         video loads and for anyone who has asked for reduced motion. The section paints the
@@ -1035,7 +1033,7 @@ export const contactPage = {
     },
   },
 
-  /* The mosaic under the trust line, measured off design-references/contact-gallery-mosaic.png
+  /* The mosaic under the hero's button, measured off design-references/contact-gallery-mosaic.png
      (1510x513): a 612-wide tile the full height, a 360-wide middle split 148 over 353, a
      518-wide right split 318 over 181, 13px gaps. Three photographs and two flat tiles.
 
