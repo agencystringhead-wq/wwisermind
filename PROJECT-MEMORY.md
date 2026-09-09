@@ -615,11 +615,31 @@ keeps the export honest (`npm run build` writes `out/services/<slug>.html` for a
   render only when the entry carries the field — no empty states. `ServicePage.tsx`
   alternates white/grey over the frames that render; the FAQ is a fixed white point and
   the alternation continues from it.
-- **What we do** — tabs are content-width pills 62px tall, 20px apart, centred; the
-  yellow is a `scaleX` wipe on a `::before`-style span; panels sit on a flex track that
-  slides `translateX(-active * 100%)` over 650ms, hidden with `visibility` once landed.
-  Real tablist, roving tabindex, arrows wrap. Transitions do not run in the preview
-  pane — verify tab motion in Playwright or a real browser.
+- **What we do** — a scroll-pinned slide sequence (a timed-autoplay build came between
+  and was scrapped; the slide mechanism is that build's, the driver is scroll). Tabs are
+  content-width pills 62px tall, 20px apart, centred. Slides sit on a flex track the
+  container's width with slides overflowing right, translated `-pos × (100% + gap)`; the
+  section is `overflow-x: clip` (not hidden — hidden would unstick the stage) so the
+  neighbours' edges show past the container without sideways page scroll. Non-current
+  slides are `inert` + aria-hidden. From 1024px up without reduced motion the tabs +
+  track (`stage`) stick under the header (`--pin-top` = header + 24) inside `pin`, whose
+  `::after` spacer is `--pin-per-slide` (90vh) × 3 — a spacer, not padding, because sticky
+  is confined to the parent's content box. The shared `ui/useScrollProgress` hook
+  (scrollY only in the handler, range measured on resize, IntersectionObserver detach,
+  exponential damping `DAMPING` 110ms) drives it: each slide owns a third of progress,
+  its tab's fill `scaleX` grows across that third, earlier tabs stay full, and the track
+  glides one slide in the last `GLIDE` 30% of the third (smoothstep). Clicks/arrows call
+  `scrollTo((i + 0.35) / 3)` so click and scroll agree. Beside the card the figure has
+  NO aspect-ratio and no max-height (`width: 100%; min-height: 0`): the row is the
+  tallest card's copy and the figure stretches to it (an aspect ratio, or the old pin
+  cap, handed the row height to the picture and left the cards centring copy in dead
+  space; an auto width + ratio also made the figure narrower than its column). Stacked
+  under 1024 it gets 16/10 again. Under 840px viewport height the card rhythm closes up
+  (media-query only, no class, so first paint matches) so the stage fits at 1280×800
+  and 1024×768. Below 1024 and under reduced motion it is the
+  click-tab version (`--pos` from state, `.fillDone` up to the active tab). Real tablist,
+  roving tabindex, arrows wrap. rAF never fires in the hidden preview pane — verify in
+  Playwright.
 - **Icons** — `serviceIcons` in `ui/icons.tsx` (24-unit, 1.5 stroke); the pillars and
   why cards draw them at 52–56px with `stroke-width: 0.8` for the thin beclix look.
   The beclix reference icons are richer 82px illustrations on a 1.2 stroke — supply

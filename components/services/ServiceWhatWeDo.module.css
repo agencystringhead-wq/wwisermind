@@ -1,9 +1,31 @@
 /* /services/[slug] frame 5 — what we do, measured off beclix.webflow.io/about at a
-   1321px container: heading to tabs 60, tabs to panel 48; tabs 62 tall on 16px padding,
+   1321px container: heading to tabs 60, tabs to slide 48; tabs 62 tall on 16px padding,
    12px radius, a 0.8px hairline, 20px apart, label bold and "01." muted with 32 between;
-   the panel a 24px-gap pair, the card on 40px padding, points on 24px with a yellow left
-   edge, 16 apart. The slide and the wipe are the reference's motions on the site's
-   easing. */
+   the slide a 24px-gap pair, the card on 40px padding, points on 24px with a yellow left
+   edge, 16 apart. Clicked, the slide glides on a 600ms ease-out and the fill wipes on the
+   site's easing; scrubbed, both are written by the component from scroll progress. */
+
+/* The track runs past the container on both sides, so the section clips it at the
+   viewport's edges rather than letting the page scroll sideways. `clip`, not `hidden`:
+   hidden would make the section a scroll container and unstick the stage inside it.
+   Horizontal only: the heading's reveal and the card's hover need the vertical axis open. */
+.section {
+  overflow-x: clip;
+}
+
+/* --- the pin ------------------------------------------------------------------ */
+/* Two boxes: `pin` is the range the page scrolls through, `stage` the tabs and slides that
+   hold still inside it. Here they are plain flow; the scrub block at the foot of the file
+   gives `pin` its extra height and sticks `stage` to the header, on the same query the
+   component uses to decide whether to drive them, so the layout is right before any script
+   runs.
+
+   `--pin-per-slide` is the scroll each slide holds the stage for — the one number to tune
+   if the sequence feels slow or rushed. `--slides` is set inline from the data. */
+.pin {
+  --pin-per-slide: 90vh;
+  --pin-top: calc(var(--header-height) + 24px);
+}
 
 /* --- the tabs ------------------------------------------------------------------ */
 .tabs {
@@ -34,8 +56,9 @@
   border-color: var(--color-divider);
 }
 
-/* The reference's overlay: the yellow wiping in from the left edge. Scaled rather than
-   widened, so the wipe is a transform and never lays the row out again. */
+/* The yellow, growing from the left edge. Scaled rather than widened, so the growth is a
+   transform and never lays the row out again. Clicked, the tabs up to the chosen one are
+   `fillDone` and wipe in; scrubbed, the component writes each fill's scale itself. */
 .fill {
   position: absolute;
   inset: 0;
@@ -43,9 +66,10 @@
   transform: scaleX(0);
   transform-origin: 0 50%;
   transition: transform 450ms cubic-bezier(0.65, 0, 0.35, 1);
+  will-change: transform;
 }
 
-.tabSelected .fill {
+.fillDone {
   transform: scaleX(1);
 }
 
@@ -80,44 +104,47 @@
   color: #1a1a1a;
 }
 
-/* --- the panels --------------------------------------------------------------- */
-/* A window over a track of panels side by side; the track moves one panel-width per
-   tab. Flex stretches every panel to the tallest, so the window's height is fixed from
-   the first paint. */
+/* --- the track ----------------------------------------------------------------- */
+/* The viewport is the container's width and clips nothing. The track is that wide too,
+   with its slides — each the track's full width — overflowing to the right in a row, so
+   `100%` in the translate is one slide and `--pos` counts slides. Flex stretches every
+   slide to the tallest, so the row's height is fixed from the first paint. */
 .viewport {
+  --slide-gap: 24px;
   margin-top: 48px;
-  overflow: hidden;
 }
 
 .track {
   display: flex;
   align-items: stretch;
-  transform: translateX(calc(var(--active, 0) * -100%));
-  transition: transform 650ms cubic-bezier(0.65, 0, 0.35, 1);
+  gap: var(--slide-gap);
+  width: 100%;
+  transform: translateX(calc(var(--pos, 0) * (-100% - var(--slide-gap))));
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
-.panel {
+.slide {
   flex: 0 0 100%;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 24px;
   align-items: stretch;
   min-width: 0;
-  /* Hidden once the slide has landed, so a panel out of the window is out of the tab
-     order too; the one arriving is visible from the first frame of its slide. */
-  visibility: hidden;
-  transition: visibility 0s linear 650ms;
 }
 
-.panelSelected {
-  visibility: visible;
-  transition: visibility 0s;
-}
-
-/* The reference's picture: 648 by 766. */
+/* The picture has no height of its own beside the card: the row is as tall as the
+   tallest card's copy and the figure stretches to it, the picture inside covering
+   whatever box that makes. An aspect ratio here would hand the row's height to the
+   picture instead — 754 at a 638 column — and leave the card centring its copy in dead
+   space. The width is the column's, stated outright, so nothing is ever worked out from
+   a ratio. Stacked under 1024 the figure gets a ratio again, since there is no column
+   beside it to take a height from. */
 .figure {
   composes: frame from '../ui/MediaHover.module.css';
-  aspect-ratio: 648 / 766;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
   border-radius: 16px;
   background-color: #e6e6e6;
 }
@@ -242,7 +269,7 @@
     min-height: 56px;
   }
 
-  .panel {
+  .slide {
     grid-template-columns: 1fr;
   }
 
@@ -253,6 +280,7 @@
 
 @media (max-width: 640px) {
   .viewport {
+    --slide-gap: 16px;
     margin-top: 28px;
   }
 
@@ -277,11 +305,66 @@
   }
 }
 
+/* --- the scrub ------------------------------------------------------------- */
+/* The same query the component reads. `pin` grows by one `--pin-per-slide` per slide and
+   `stage` sticks under the header for exactly that distance. The track and the fills drop
+   their transitions: the driver writes them every frame, already smoothed, and a transition
+   on top would only lag. */
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  /* The range is a spacer in the flow, not padding: a sticky element is held within its
+     parent's content box, so padding would give it no room to stick. */
+  .pin::after {
+    content: '';
+    display: block;
+    height: calc(var(--pin-per-slide) * var(--slides, 3));
+  }
+
+  .stage {
+    position: sticky;
+    top: var(--pin-top);
+  }
+
+  .scrub .track,
+  .scrub .fill {
+    transition: none;
+  }
+}
+
+/* On a short viewport the longest card is what decides whether the stage fits under the
+   header, so its rhythm closes up: at 1280 by 800 and 1024 by 768 that takes the third
+   slide's card from a few pixels past the foot of the screen to inside it. Gated on the
+   query alone, not on the component's class, so the first paint already has it and the
+   row does not shrink when the script lands. The query is the pinned case exactly; the
+   click-tab version keeps the full spacing. */
+@media (min-width: 1024px) and (max-height: 840px) and (prefers-reduced-motion: no-preference) {
+  .card {
+    padding: 28px;
+  }
+
+  .paragraph {
+    margin-top: 16px;
+    line-height: 1.6;
+  }
+
+  .points {
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .point {
+    padding: 14px 18px;
+  }
+
+  .button {
+    margin-top: 24px;
+  }
+}
+
+/* No glide and no wipe: the tabs are plain buttons, filled up to the chosen one, and a
+   click puts its slide in place. */
 @media (prefers-reduced-motion: reduce) {
-  .fill,
   .track,
-  .panel,
-  .panelSelected,
+  .fill,
   .tabNumber {
     transition: none;
   }
