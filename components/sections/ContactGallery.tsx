@@ -11,13 +11,12 @@ function Star() {
 }
 
 /** Five stars, with a filled copy clipped to the score's share of the row — so a 4.2 shows
-    four and a fifth, as the reference's does. A null score clips the fill to nothing. */
-function Stars({ score, outOf }: { score: number | null; outOf: number }) {
-  const share = score === null ? 0 : Math.max(0, Math.min(1, score / outOf));
-  const label = score === null ? 'no score yet' : `${score} out of ${outOf} stars`;
+    four and a fifth, as the reference's does. */
+function Stars({ score, outOf }: { score: number; outOf: number }) {
+  const share = Math.max(0, Math.min(1, score / outOf));
 
   return (
-    <span className={styles.stars} role="img" aria-label={label}>
+    <span className={styles.stars} role="img" aria-label={`${score} out of ${outOf} stars`}>
       <span className={styles.starRow}>
         {Array.from({ length: 5 }, (_, i) => (
           <Star key={i} />
@@ -32,6 +31,11 @@ function Stars({ score, outOf }: { score: number | null; outOf: number }) {
   );
 }
 
+/** A whole number stays whole — "5", not "5.0" — and anything else keeps one decimal. */
+function formatScore(score: number) {
+  return Number.isInteger(score) ? String(score) : score.toFixed(1);
+}
+
 type Photo = { src: string; alt: string; position?: string };
 
 /**
@@ -42,8 +46,8 @@ type Photo = { src: string; alt: string; position?: string };
  * MediaHover frame, so the zoom and the sweep are the homepage's, not a copy of them.
  *
  * With no props it is the contact page's mosaic. The service pages hand it their own
- * three photographs and accent line; the reviews tile is the one shared placeholder
- * either way — see `gallery.reviews` in lib/site.ts.
+ * three photographs and accent line; the review tile is the one shared piece either way,
+ * and everything it shows comes from `gallery.reviews` in lib/site.ts.
  */
 export default function ContactGallery({
   photos = contactPage.gallery.photos,
@@ -86,19 +90,17 @@ export default function ContactGallery({
         </div>
 
         <div className={`${styles.flat} ${styles.stat}`}>
-          {reviews.items.map((item) => (
-            <div className={styles.review} key={item.platform}>
-              <p className={styles.platform}>{item.platform}</p>
-              <p className={styles.score}>
-                {item.score === null ? '–' : item.score.toFixed(1)}
-                <span className={styles.outOf}>/{reviews.outOf}</span>
-              </p>
-              <Stars score={item.score} outOf={reviews.outOf} />
-            </div>
-          ))}
-
-          {/* TODO: remove once real scores are in — the tile is a placeholder until then. */}
-          <p className={styles.note}>{reviews.note}</p>
+          <div className={styles.review}>
+            <p className={styles.platform}>{reviews.source}</p>
+            <p className={styles.score}>
+              {formatScore(reviews.score)}
+              <span className={styles.outOf}>/{reviews.outOf}</span>
+            </p>
+            <Stars score={reviews.score} outOf={reviews.outOf} />
+            <p className={styles.count}>
+              {reviews.count} {reviews.count === 1 ? 'review' : 'reviews'}
+            </p>
+          </div>
         </div>
       </div>
     </section>

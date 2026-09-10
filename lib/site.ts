@@ -1073,16 +1073,13 @@ export const contactPage = {
       },
     },
     accent: 'Only therapists. Every project.',
-    /* TODO: there is no review data in the project yet. `score` is null on both entries, and
-       the tile renders a dash and empty stars until real scores exist — nothing here is a
-       number anyone made up. The two platform names are the likely ones, not confirmed. */
+    /* The review score the tile draws: rating, count and source, so a new review is a
+       one-line change here and the markup never moves. `score` is out of `outOf`. */
     reviews: {
-      note: 'Review scores to come',
+      source: 'Google',
+      score: 5,
       outOf: 5,
-      items: [
-        { platform: 'Google', score: null },
-        { platform: 'Psychology Today', score: null },
-      ] as { platform: string; score: number | null }[],
+      count: 12,
     },
   },
 

@@ -96,12 +96,11 @@
 }
 
 /* A step deeper than the hero's navy, so the tile reads as its own block where the two
-   meet. White on it is 17.4:1. */
+   meet. White on it is 17.4:1. One score, centred: the source above, the figure large, the
+   stars under it and the count last, sized so the stack fills the tile's height. */
 .stat {
-  position: relative;
   align-items: center;
-  justify-content: space-evenly;
-  gap: 16px;
+  justify-content: center;
   padding: 18px 24px;
   background-color: #140f4d;
   color: var(--color-white);
@@ -111,49 +110,45 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   min-width: 0;
-}
-
-/* A hairline between the two, as the reference draws. */
-.review + .review {
-  position: relative;
-  padding-left: 24px;
-}
-
-.review + .review::before {
-  content: '';
-  position: absolute;
-  top: 6px;
-  bottom: 6px;
-  left: 0;
-  width: 1px;
-  background-color: rgba(255, 255, 255, 0.18);
 }
 
 .platform {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.3;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.72);
   white-space: nowrap;
 }
 
 .score {
-  font-size: clamp(22px, 2vw, 28px);
+  font-size: clamp(36px, 3.4vw, 48px);
   font-weight: var(--fw-bold);
   line-height: 1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
 }
 
 .outOf {
-  margin-left: 2px;
-  font-size: 0.5em;
+  margin-left: 3px;
+  font-size: 0.42em;
   font-weight: var(--fw-medium);
+  letter-spacing: -0.01em;
   color: rgba(255, 255, 255, 0.72);
+}
+
+/* The count, quieter than the figure but a step up from the source label. */
+.count {
+  margin-top: 2px;
+  font-size: 13px;
+  font-weight: var(--fw-medium);
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.72);
+  white-space: nowrap;
 }
 
 /* Two rows of five stars laid over each other: outlines underneath, the filled copy on top
@@ -166,13 +161,13 @@
 
 .starRow {
   display: inline-flex;
-  gap: 2px;
+  gap: 3px;
   white-space: nowrap;
 }
 
 .starRow svg {
-  width: 13px;
-  height: 13px;
+  width: 17px;
+  height: 17px;
   fill: none;
   stroke: rgba(255, 255, 255, 0.55);
   stroke-width: 1.5;
@@ -187,20 +182,6 @@
 .starFill svg {
   fill: #fafb87;
   stroke: #fafb87;
-}
-
-/* The placeholder note, pinned to the tile's foot so it does not shift the scores. */
-.note {
-  position: absolute;
-  right: 0;
-  bottom: 6px;
-  left: 0;
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.55);
 }
 
 /* --- responsive ---------------------------------------------------------- */
@@ -220,7 +201,7 @@
 }
 
 /* Tablet: two columns. The tall photograph keeps the left of the first two rows, the accent
-   and the wide photograph stack beside it, and the square and the scores share the last row.
+   and the wide photograph stack beside it, and the square and the score share the last row.
    Rows are again pixels as fr units, sized so the tall tile holds close to its 6:5. */
 @media (max-width: 1023px) {
   .section {
@@ -252,26 +233,27 @@
     grid-row: 3;
   }
 
+  /* The tile is taller here than at desktop, so the stack grows to keep filling it. */
   .stat {
     grid-column: 2;
     grid-row: 3;
-    flex-direction: column;
-    justify-content: center;
-    gap: 14px;
   }
 
-  .review + .review {
-    padding-left: 0;
-    padding-top: 14px;
+  .review {
+    gap: 8px;
   }
 
-  .review + .review::before {
-    top: 0;
-    right: 20%;
-    bottom: auto;
-    left: 20%;
-    width: auto;
-    height: 1px;
+  .score {
+    font-size: 56px;
+  }
+
+  .starRow svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .count {
+    font-size: 14px;
   }
 }
 
@@ -309,21 +291,6 @@
 
   .stat {
     order: 4;
-    flex-direction: row;
-    padding: 24px 20px 26px;
-  }
-
-  .review + .review {
-    padding-top: 0;
-    padding-left: 20px;
-  }
-
-  .review + .review::before {
-    top: 6px;
-    right: auto;
-    bottom: 6px;
-    left: 0;
-    width: 1px;
-    height: auto;
+    padding: 28px 20px 30px;
   }
 }
