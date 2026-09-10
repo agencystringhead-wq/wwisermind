@@ -44,11 +44,11 @@
 }
 
 /* A line of body under a heading, in the muted ink rather than the lighter body-muted:
-   6.9:1 on white, 6.3:1 on the grey. */
+   6.9:1 on white, 6.3:1 on the grey. At the body size, like every paragraph on the page. */
 .lede {
   color: var(--color-muted);
-  font-size: 17px;
-  line-height: 1.6;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
 }
 
 .head .lede {
@@ -66,9 +66,5 @@
 @media (max-width: 640px) {
   .section {
     padding-block: 64px;
-  }
-
-  .lede {
-    font-size: 15px;
   }
 }

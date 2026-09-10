@@ -11,12 +11,12 @@
   margin-inline: auto;
 }
 
-/* The capability items' size, in the muted ink, so the paragraph and the list read as one
-   block rather than a lead and a footnote. Was 19px in the ink. */
+/* The body size, in the muted ink, so the paragraph and the list read as one block rather
+   than a lead and a footnote. Was 19px in the ink. */
 .paragraph {
   color: var(--color-muted);
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
   letter-spacing: -0.01em;
   text-wrap: pretty;
 }
@@ -37,7 +37,7 @@
   align-items: flex-start;
   gap: 12px;
   color: var(--color-muted);
-  font-size: 14px;
+  font-size: calc(var(--fs-body) - 1px);
   font-weight: var(--fw-regular);
   line-height: 1.45;
   letter-spacing: -0.01em;
@@ -96,11 +96,12 @@
   text-wrap: initial;
 }
 
+/* A 38ch measure: a touch under the body leading, so the short lines hold together. */
 .body {
   max-width: 38ch;
   margin-top: 16px;
   color: var(--color-muted);
-  font-size: 15px;
+  font-size: var(--fs-body);
   line-height: 1.55;
 }
 

@@ -84,8 +84,8 @@
   max-width: 56ch;
   margin-top: 8px;
   color: var(--color-muted);
-  font-size: 15px;
-  line-height: 1.55;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
 }
 
 /* The problems slider's round control, filling with the ink when the row is pointed at,

@@ -91,16 +91,17 @@
   transform: scale(1.35);
 }
 
-/* indented to the question's column so the answer hangs off it, not off the number */
+/* indented to the question's column so the answer hangs off it, not off the number.
+   --color-muted rather than body-muted, as the accordion: 6.9:1 on white. */
 .answer {
   overflow: hidden;
   max-width: 62ch;
   padding-left: 116px;
   padding-bottom: 30px;
-  color: var(--color-body-muted);
-  font-size: 13px;
+  color: var(--color-muted);
+  font-size: var(--fs-body);
   font-weight: var(--fw-regular);
-  line-height: 1.5;
+  line-height: var(--lh-body);
 }
 
 .link {

@@ -134,8 +134,8 @@
 .body {
   max-width: 60ch;
   color: var(--color-muted);
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
 }
 
 @media (max-width: 1279px) {
@@ -168,10 +168,6 @@
 
   .panelNumbered {
     padding-left: 48px;
-  }
-
-  .body {
-    font-size: 14px;
   }
 }
 

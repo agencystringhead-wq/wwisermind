@@ -32,6 +32,9 @@
   --fw-semibold: 600;
   --fw-bold: 700;
   --fw-heading: var(--fw-bold);
+  /* The one body-copy size. Every paragraph on the site reads it — the service pages'
+     intro, pillars, slide cards, accordion panels, FAQ answers and related-service rows
+     included — so a change here moves them all together. */
   --fs-body: 15px;
   --fs-nav: 15px;
   --fs-topbar: 12px;

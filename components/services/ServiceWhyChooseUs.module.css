@@ -61,11 +61,12 @@
   text-wrap: initial;
 }
 
+/* A card-wide measure, about 36ch: the pillars' leading rather than the paragraph's. */
 .body {
   margin-top: 10px;
   color: var(--color-muted);
-  font-size: 15px;
-  line-height: 1.5;
+  font-size: var(--fs-body);
+  line-height: 1.55;
 }
 
 /* The dark card: the reference's black, the figure in the site's yellow, the words in

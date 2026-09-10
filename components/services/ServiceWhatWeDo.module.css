@@ -179,8 +179,8 @@
   max-width: 50ch;
   margin-top: 24px;
   color: var(--color-muted);
-  font-size: 16px;
-  line-height: 1.7;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
 }
 
 /* Four points two by two: white, the yellow left edge, the check in a thin ring. */
@@ -343,7 +343,6 @@
 
   .paragraph {
     margin-top: 16px;
-    line-height: 1.6;
   }
 
   .points {
