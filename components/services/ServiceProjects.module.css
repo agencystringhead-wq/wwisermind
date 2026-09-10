@@ -1,18 +1,34 @@
-/* /services/[slug] frame 9 — completed projects, a sticky stack of two panels. */
+/* /services/[slug] frame 9 — completed projects, a stack of two panels on a pinned stage. */
 
-.stack {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+/* --- the pin ------------------------------------------------------------------ */
+/* Two boxes: `pin` is the range the page scrolls through, `stage` the panels that hold
+   still inside it. Here they are plain flow; the motion block at the foot of the file
+   gives `pin` its extra height and sticks `stage` under the header, on the same query the
+   component reads, so the layout is right before any script runs.
+
+   `--pin-distance` is the scroll the stage holds for — the one number to tune if the
+   sequence feels slow or rushed. The component splits it: the first quarter settles the
+   first panel, the next three tenths hold it still, the last forty-five hundredths slide
+   the next panel up over it. `--stack-gap` is how far below the first panel's foot the
+   next one starts its rise; the reduced-motion stack takes it as the space between them. */
+.pin {
+  --pin-distance: 160vh;
+  --pin-top: calc(var(--header-height) + 24px);
+  --stack-gap: 24px;
+
   margin-top: 56px;
 }
 
-/* Each panel sticks at the same offset under the header, so the next rises over it. The
-   covered one is transformed by the script; `transform-origin` at the top keeps its top
-   edge where the next panel meets it, and `will-change` keeps both on their own layers. */
+/* The stage is exactly one panel tall: the first panel gives it its height and the rest
+   sit over the first, so the stack is one block wherever it is. */
+.stage {
+  position: relative;
+}
+
+/* `transform-origin` at the top keeps a covered panel's top edge where the next meets it,
+   and `will-change` keeps every panel on its own layer for the driver's writes. */
 .panel {
-  position: sticky;
-  top: calc(var(--header-height) + 24px);
+  position: relative;
   overflow: hidden;
   aspect-ratio: 1300 / 640;
   border-radius: 20px;
@@ -20,6 +36,12 @@
   color: var(--color-white);
   transform-origin: 50% 0;
   will-change: transform, opacity;
+}
+
+.next {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 
 .image {
@@ -118,19 +140,59 @@
   composes: buttonOutline from '../ui/Controls.module.css';
 }
 
+/* --- the motion ------------------------------------------------------------ */
+/* The same query the component reads. `pin` grows by `--pin-distance` and `stage` sticks
+   under the header for exactly that distance. The panels start where the driver's first
+   frame would put them — the first a little low and faint, the next below the first's
+   foot — so the first paint and the first driven frame agree. The driver then owns
+   `transform` and `opacity` inline. */
+@media (prefers-reduced-motion: no-preference) {
+  /* The range is a spacer in the flow, not padding: a sticky element is held within its
+     parent's content box, so padding would give it no room to stick. */
+  .pin::after {
+    content: '';
+    display: block;
+    height: var(--pin-distance);
+  }
+
+  .stage {
+    position: sticky;
+    top: var(--pin-top);
+  }
+
+  .first {
+    transform: translateY(96px);
+    opacity: 0.4;
+  }
+
+  .next {
+    transform: translateY(calc(100% + var(--stack-gap)));
+  }
+}
+
 /* --- reduced motion: two panels at rest, one under the other ---------------- */
 @media (prefers-reduced-motion: reduce) {
+  .stage {
+    display: flex;
+    flex-direction: column;
+    gap: var(--stack-gap);
+  }
+
   .panel {
-    position: relative;
-    top: auto;
     will-change: auto;
+  }
+
+  .next {
+    position: relative;
+    inset: auto;
   }
 }
 
 /* --- responsive ---------------------------------------------------------- */
 @media (max-width: 1279px) {
-  .stack {
-    gap: 16px;
+  .pin {
+    --stack-gap: 16px;
+
     margin-top: 44px;
   }
 
@@ -180,5 +242,13 @@
 
   .link {
     width: 100%;
+  }
+}
+
+/* Over the first, the next panel has no flow height of its own on a phone either: it fills
+   the first's box. At rest under reduced motion it keeps the floor above. */
+@media (max-width: 640px) and (prefers-reduced-motion: no-preference) {
+  .next {
+    min-height: 0;
   }
 }
