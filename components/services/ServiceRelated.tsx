@@ -26,7 +26,7 @@ export default function ServiceRelated({ service, ground }: { service: Service; 
       <div className="container">
         <p className={section.eyebrow}>Related services</p>
         <ScrollReveal
-          text={`Often paired with the ${service.name}.`}
+          text={`Often paired with ${service.name}.`}
           className={styles.heading}
         />
 

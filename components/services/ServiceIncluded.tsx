@@ -17,7 +17,7 @@ export default function ServiceIncluded({ service, ground }: { service: Service;
         <div className={styles.intro}>
           <p className={section.eyebrow}>What’s included</p>
           <ScrollReveal
-            text={`Everything the ${service.name} comes with, in the order we build it.`}
+            text={`Everything that comes with ${service.name}, in the order we build it.`}
             className={styles.heading}
           />
         </div>
