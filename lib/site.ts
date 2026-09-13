@@ -9,9 +9,11 @@ export type NavItem = {
 
 export const siteConfig = {
   name: 'Wisermind',
-  /* TODO: confirm the production origin. It is only read for canonical URLs and the
-     structured data on the service pages — nothing on the page itself. */
-  url: 'https://wwisermind.com',
+  /* The origin the canonical URLs and the service pages' structured data point at. The
+     Pages address for now: wwisermind.com still serves the old WordPress site, so a
+     canonical there would point search engines at a page that 404s. Switch back to
+     https://wwisermind.com when the domain moves onto Pages. */
+  url: 'https://wwisermind.pages.dev',
   bookingUrl: '#book-a-call',
   /* A real route now, not an on-page anchor — the header's "Contact Us" is the way in to
      /contact from every page. The booking anchor above stays an in-page target. */
