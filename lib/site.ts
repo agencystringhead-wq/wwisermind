@@ -32,7 +32,7 @@ export const announcement = {
 
 export const mainNav: NavItem[] = [
   { label: 'Services', href: '#services' },
-  { label: 'Results', href: '#results' },
+  { label: 'Results', href: '/results' },
   { label: 'Who We Help', href: '#who-we-help' },
   { label: 'Pricing', href: '#pricing' },
   { label: 'About', href: '#about' },
@@ -852,7 +852,7 @@ export const footerMain = {
     ],
     [
       { label: 'Who We Help', href: '#who-we-help' },
-      { label: 'Results', href: '#results' },
+      { label: 'Results', href: '/results' },
       { label: 'Pricing', href: '#pricing' },
     ],
     [
@@ -1209,4 +1209,22 @@ export const contactPage = {
       { city: 'Sydney', region: 'Oceania', timeZone: 'Australia/Sydney' },
     ],
   },
+};
+
+/* ==========================================================================
+   /results — the work page.
+
+   Structure from design-references/results-inspiration.png: one large stacked headline,
+   then the projects. The projects themselves are the case studies in lib/services.ts,
+   listed in `resultsProjects` there; nothing about them is repeated here.
+   ========================================================================== */
+export const resultsPage = {
+  meta: {
+    title: 'Recent work — therapist websites and marketing by wwisermind',
+    description:
+      'Recent websites and marketing projects wwisermind has delivered for therapists and psychologists, including Timely Therapy and Evolve Therapy & Yoga, with the work behind each one.',
+  },
+  /** Three designed lines, as the reference stacks them. Set in sentence case here and
+      uppercased by the heading style, like every other display line on the site. */
+  headlineLines: ['Recent —', 'Works from', '©2025-2027'],
 };

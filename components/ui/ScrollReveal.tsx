@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useMemo, useRef } from 'react';
+import { Fragment, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import styles from './ScrollReveal.module.css';
 
 /* Where the reveal runs, as fractions of the viewport height measured to the top of the
@@ -38,6 +38,11 @@ const clamp = (value: number) => (value < 0 ? 0 : value > 1 ? 1 : value);
  * — size, weight, tracking, how wide it is allowed to run — stays there; this component owns
  * only the reveal, so two sections can share the effect without sharing a scale.
  *
+ * A newline in `text` is a designed line break — the results headline stacks three — and
+ * renders as a `<br>`, so the break holds at every width instead of depending on a measure
+ * that happens to wrap in the right place. The words still run on as one sequence for the
+ * reveal, and the aria-label joins them with spaces.
+ *
  * `as` is the element to render. It defaults to the h2 the section headlines want, and body
  * copy passes 'p' so that borrowing the effect does not invent a heading in the outline. A
  * page whose opening line *is* its title passes 'h1' — the contact hero does.
@@ -61,7 +66,15 @@ export default function ScrollReveal({
   const wordRefs = useRef<HTMLSpanElement[]>([]);
   const lastValues = useRef<number[]>([]);
 
-  const words = useMemo(() => text.trim().split(/\s+/), [text]);
+  const lines = useMemo(
+    () =>
+      text
+        .split('\n')
+        .map((line) => line.trim().split(/\s+/).filter(Boolean))
+        .filter((line) => line.length > 0),
+    [text],
+  );
+  const words = useMemo(() => lines.flat(), [lines]);
 
   /* Layout effect, not effect: the first paint would otherwise show the CSS default — every
      word already ink — and then drop the ones below the fold back to grey a frame later. */
@@ -159,24 +172,38 @@ export default function ScrollReveal({
     document.fonts?.ready.then(() => window.dispatchEvent(new Event('resize'))).catch(() => {});
   }, []);
 
+  /* One running index across the lines: the reveal reads the words as a single sequence,
+     whichever line each one sits on. */
+  let index = -1;
+
   return (
     <Tag
       className={className ? `${styles.reveal} ${className}` : styles.reveal}
-      aria-label={text}
+      aria-label={words.join(' ')}
       ref={(node: HTMLElement | null) => {
         containerRef.current = node;
       }}
     >
-      {words.map((word, index) => (
-        <span
-          className={styles.word}
-          key={`${word}-${index}`}
-          ref={(node) => {
-            if (node) wordRefs.current[index] = node;
-          }}
-        >
-          {word}{' '}
-        </span>
+      {lines.map((line, lineIndex) => (
+        <Fragment key={lineIndex}>
+          {lineIndex > 0 ? <br /> : null}
+          {line.map((word) => {
+            index += 1;
+            const at = index;
+
+            return (
+              <span
+                className={styles.word}
+                key={`${word}-${at}`}
+                ref={(node) => {
+                  if (node) wordRefs.current[at] = node;
+                }}
+              >
+                {word}{' '}
+              </span>
+            );
+          })}
+        </Fragment>
       ))}
     </Tag>
   );

@@ -1,0 +1,107 @@
+/* /results frame 2 — the projects, on the grey ground.
+
+   One card per project at the container's full width, a 30px radius, landscape; the
+   caption under its left edge; and 128px from one project's caption to the next card,
+   so the page reads as a series of pieces. The hover is the site's — the contained 1.04
+   zoom and the band of light — composed from MediaHover, which owns the mechanics; the
+   ratio, radius and surface are this frame's. */
+
+.section {
+  composes: grey from '../services/Section.module.css';
+  padding-block: 96px 128px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 128px;
+}
+
+/* The block is the whole project — card and caption — whether it is a link or not, so
+   the hover on a linked project runs over the caption too. */
+.block {
+  display: block;
+  color: var(--color-ink);
+}
+
+/* --- the card ------------------------------------------------------------------- */
+/* `frame` clips the zoom and carries the sweep. The picture is `fill`, so the box needs
+   the ratio and a position of its own; the line colour shows until the file lands. */
+.frame {
+  composes: frame from '../ui/MediaHover.module.css';
+  display: block;
+  aspect-ratio: 16 / 9;
+  border-radius: 30px;
+  background-color: var(--color-line);
+}
+
+.image {
+  object-fit: cover;
+}
+
+.shine {
+  composes: shine from '../ui/MediaHover.module.css';
+}
+
+/* --- the caption ------------------------------------------------------------------ */
+/* Two lines under the card's left edge, at the size the problem cards' captions are set
+   (15px on 1.35). The name carries the medium weight in ink; the work delivered sits under
+   it in the caption grey, regular, so the first line is the stronger of the two. */
+.caption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 60ch;
+  margin-top: 22px;
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.name {
+  font-weight: var(--fw-medium);
+  color: var(--color-ink);
+}
+
+.work {
+  font-weight: var(--fw-regular);
+  color: var(--color-body-muted);
+}
+
+/* --- responsive --------------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .section {
+    padding-block: 80px 104px;
+  }
+
+  .list {
+    gap: 104px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .list {
+    gap: 88px;
+  }
+}
+
+/* A phone: the card is still the container's width, gutter to gutter, with the caption
+   beneath — the same rhythm, closer. The ratio opens to 4:3 so the picture keeps some
+   height at 335px wide, and the radius comes down with the card. */
+@media (max-width: 640px) {
+  .section {
+    padding-block: 56px 80px;
+  }
+
+  .list {
+    gap: 64px;
+  }
+
+  .frame {
+    aspect-ratio: 4 / 3;
+    border-radius: 22px;
+  }
+
+  .caption {
+    margin-top: 16px;
+  }
+}

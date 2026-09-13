@@ -658,6 +658,40 @@ keeps the export honest (`npm run build` writes `out/services/<slug>.html` for a
   `tileImage` (16:10); per project: a 16:9 landscape; per testimonial: a 44px-safe
   square portrait; per technology: a logo (SVG, or WebP with alpha at 400x160).
 
+### ✅ Results page — /results (done, waiting on two pictures)
+
+Structure from `design-references/results-inspiration.png` (a three-column works grid under a
+stacked headline); styling is the site's own. `app/results/page.tsx` + two frames in
+`components/sections/`, copy in `lib/site.ts` → `resultsPage`, projects from
+`lib/services.ts` → `caseStudies` in the order of `resultsProjects`.
+
+- **Headline** (`ResultsHeadline`, white) — the one h1, "Recent — / Works from /
+  ©2025-2027" on three designed lines, composing the footer CTA's heading (the site's
+  largest scale: `clamp(39px, 4.6vw, 88px)` / 700 / 0.95 / uppercase) in ink, left-aligned,
+  through `ScrollReveal`. **ScrollReveal now takes `\n` as a designed line break** and
+  renders a `<br>`, so the stack holds at every width. The reveal is keyed to scroll and the
+  block is above the fold, so every word is already ink on arrival (`--t` = 1 at 390–1440).
+  Padding 72/64 → 56/48 (≤1279) → 40/32 (≤640).
+- **Projects** (`ResultsProjects`, grey, full-bleed via `Section.module.css` `grey`) — one
+  card per project at the container's width: `aspect-ratio: 16/9`, radius 30px,
+  `next/image fill` + cover, the MediaHover zoom + sweep; the caption 22px under the left
+  edge, 15px/1.35 — name in medium ink, work delivered comma-joined in `--color-body-muted`.
+  128px between blocks (104 ≤1279, 88 ≤1023, 64 ≤640); padding 96/128. ≤640 the card is
+  4:3 with a 22px radius. A project **without `wide` is left out** and the section renders
+  nothing while none has one; a project with `url` is one `<Link>`, otherwise an `<article>`
+  — no `#` links. Measured: 1440 → card 1300×731, headline-to-card 160px; 1024 → 969×545;
+  390 → 335×251. No horizontal overflow at any of the four.
+- **Data** — `CaseStudy` gained `delivered: string[]` (both `['Website Design']`, the only
+  claim the service pages make — extend when confirmed) and `url?`. `wide` is shared with
+  the service-page projects stack, so one 16:9 file serves both.
+- **Nav** — `mainNav` and the footer column point Results at `/results`.
+- **Closing CTA** — the footer's, from the root layout, as on every page; nothing repeated.
+- **Assets wanted** — `public/images/<name>.webp` at 16:9, 1920×1080 minimum (2600×1462
+  ideal for the 2x 1300 slot), one per project, then fill `wide` in `caseStudies`.
+  Nothing in the repo is landscape for either project (both card images are 900×900).
+- **Image weights** — `wwisermind-footer.webp` (1500×1000, unreferenced) was 1,825 kB, a
+  lossless encode; re-encoded at q90 → 304 kB. Everything else is under 160 kB.
+
 ### ⬜ Next frames
 
 - Inner pages / anything still to come — the homepage and footer are complete.

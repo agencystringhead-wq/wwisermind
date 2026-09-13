@@ -180,8 +180,9 @@ export type Service = {
    Not a second copy of the homepage's results: each entry points at the project card in
    `homeIntro.projects`, so a number changed on the homepage changes here. The headline is
    this file's own and restates the stat rather than claiming anything the stat does not.
-   `wide` is the landscape picture the projects stack wants (16:9); until one exists the
-   square homepage card is used and cover-cropped.
+   `wide` is the landscape picture the projects stack and the results page want (16:9);
+   the service-page stack falls back to the square homepage card, cover-cropped, and the
+   results page leaves the project out until the picture exists.
    ========================================================================== */
 export type CaseStudySlug = 'timely' | 'evolve';
 
@@ -190,27 +191,44 @@ export type CaseStudy = {
   name: string;
   headline: string;
   project: (typeof homeIntro.projects)[number];
+  /** What was delivered, as the results page captions it under the card — one entry per
+      line of work, printed comma-separated in this order. */
+  delivered: string[];
+  /** The 16:9 landscape of the finished site. Supply at 1920×1080 or larger. */
   wide?: ServiceImage;
+  /** The project's own page or case study, once one exists. Absent, the results page
+      shows the project as a plain block rather than a link to nowhere. */
+  url?: string;
 };
 
 const [timelyProject, evolveProject] = homeIntro.projects;
 
+/* `delivered` lists only what the service pages already claim: both projects sit in the
+   Completed projects frame of the One Week Website and Custom Website Design pages, and
+   nowhere else. Add the marketing lines as they are confirmed. */
 export const caseStudies: Record<CaseStudySlug, CaseStudy> = {
   timely: {
     slug: 'timely',
     name: 'Timely Therapy',
     headline: 'A calm, credible site that turned more of its visitors into clients.',
     project: timelyProject,
-    /* TODO: a 16:9 landscape of the Timely site. The square card image stands in. */
+    delivered: ['Website Design'],
+    /* TODO: a 16:9 landscape of the Timely site. The service-page stack shows the square
+       card meanwhile; the results page waits for the picture. */
   },
   evolve: {
     slug: 'evolve',
     name: 'Evolve Therapy & Yoga',
     headline: 'Therapy and yoga under one roof, and a calendar that filled up.',
     project: evolveProject,
-    /* TODO: a 16:9 landscape of the Evolve site. The square card image stands in. */
+    delivered: ['Website Design'],
+    /* TODO: a 16:9 landscape of the Evolve site, as above. */
   },
 };
+
+/** The results page, most recent first. Adding a project there is adding its case study
+    above and its slug here — the page maps over this list. */
+export const resultsProjects: CaseStudySlug[] = ['timely', 'evolve'];
 
 /* ==========================================================================
    Testimonials.

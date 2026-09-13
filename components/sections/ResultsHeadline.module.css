@@ -1,0 +1,33 @@
+/* /results frame 1 — the headline, on white.
+
+   The reference (design-references/results-inspiration.png) puts its headline close under
+   the header and leaves a deep band of white under it before the first project — measured
+   at 1300, the gap is around 110px. Here that gap is this frame's bottom padding plus the
+   grey projects frame's top padding. */
+
+.section {
+  composes: light from '../services/Section.module.css';
+  padding-block: 72px 64px;
+}
+
+/* The footer CTA's heading, verbatim: the site's largest display scale, bold, tight leading,
+   uppercase. Only the colour is this frame's — the footer's inherits white from its ground
+   and this one sits on white — and the reveal interpolates the words toward it. Left-aligned
+   as the reference is, and no measure: the breaks are designed, not wrapped. */
+.heading {
+  composes: heading from '../layout/Footer.module.css';
+  color: var(--color-ink);
+  text-align: left;
+}
+
+@media (max-width: 1279px) {
+  .section {
+    padding-block: 56px 48px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-block: 40px 32px;
+  }
+}
