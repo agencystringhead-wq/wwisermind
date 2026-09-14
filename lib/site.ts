@@ -272,8 +272,8 @@ export const heroTop = {
   intro: {
     label: 'Calm, credible websites and marketing for',
     audience: [
-      { label: 'Solo Therapists', href: '#solo-therapists' },
-      { label: 'Group Practices.', href: '#group-practices' },
+      { label: 'Solo Therapists', href: audienceHref('solo-practices') },
+      { label: 'Group Practices.', href: audienceHref('group-practices') },
     ],
   },
   guide: {
@@ -514,7 +514,7 @@ export const practice = {
       title: 'Group Practice',
       body:
         'Your website has to sell the whole team: every clinician, every specialty, every location, and hold up to referral sources and insurance-savvy clients checking you out. We build sites that grow with your roster and marketing that fills every calendar, not just the founder’s.',
-      link: { label: 'Built for group practices', href: '#group-practices' },
+      link: { label: 'Built for group practices', href: audienceHref('group-practices') },
       /** Present only on this row, and where it is present it stands in for the whole built
           widget — the graph is the image, the figure over it is real text. Solo Practice has
           no `metricImage` and keeps the built one, which is why `metric` above still exists.
@@ -548,7 +548,7 @@ export const practice = {
       title: 'Solo Practice',
       body:
         'You are the practice, so your website has to carry your voice, your specialty, and your credibility, and bring in clients without you becoming a marketer on the side. We build sites and marketing that work quietly while you’re in session.',
-      link: { label: 'Built for solo practitioners', href: '#solo-practitioners' },
+      link: { label: 'Built for solo practitioners', href: audienceHref('solo-practices') },
       /* No `metricImage`: this row draws the built widget below, which is what it carried
          before and what it has gone back to. */
       background: {

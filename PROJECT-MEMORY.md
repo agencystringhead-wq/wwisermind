@@ -737,9 +737,8 @@ the page reaches them, staged. Styling is the site's own throughout.
   `launch-and-grow`, the mustard-blazer therapist, the founder portrait, and four Pexels
   stand-ins from `public/images/services/` (7988669, 3184360, 7176027, 6255877). Slots
   want ≈ 9:10 (hero, two per page) and ≈ 16:10 → drawn at 4:3 (life, two per page).
-- **Nav** — the Who We Help mega panel links point at the two routes. Still dangling
-  on the same subject: `heroTop.audience` (`#solo-therapists`, `#group-practices`) and the
-  two `practice.rows[].link` anchors on the homepage — one-line changes to `audienceHref`.
+- **Nav** — the Who We Help mega panel links, the hero-top audience links and the two
+  practice-row links on the homepage all point at the two routes via `audienceHref`.
 - **Revision 2 (2026-09-14)** — hero headline-to-photos gap 64 → 88px (the reference's
   114 on its 1763 column); one figure per page on the proof row (group: Evolve 81%
   appointments, solo: Timely 48% enquiries) with three claims and the quote around it;
