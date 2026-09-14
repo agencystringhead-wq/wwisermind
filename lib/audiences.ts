@@ -128,10 +128,6 @@ export type Audience = {
   /** The homepage FAQ frame, with this audience's questions. Four to six. */
   faqs: AudienceFaq[];
 
-  /* --- 10 · closing statement --------------------------------------------------- */
-  /** One sentence, large and centred, on what stays constant as the studio grows. */
-  closing: string;
-
   /* --- seo ------------------------------------------------------------------ */
   seo: { title: string; description: string };
 };
@@ -341,8 +337,6 @@ export const audiences: Audience[] = [
       },
     ],
 
-    closing:
-      'As we take on more practices, what stays the same: we only build for therapists, every clinician gets a real page, and the site keeps filling calendars while you run the practice.',
 
     seo: {
       title: 'Websites and marketing for group therapy practices — wwisermind',
@@ -530,8 +524,6 @@ export const audiences: Audience[] = [
       },
     ],
 
-    closing:
-      'As we grow, what stays the same: we only build for therapists, we write in your words, and the site keeps working while you are in session.',
 
     seo: {
       title: 'Websites and marketing for solo therapy practices — wwisermind',

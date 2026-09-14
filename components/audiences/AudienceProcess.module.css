@@ -15,12 +15,17 @@
   max-width: 14em;
 }
 
-/* --- the two columns ------------------------------------------------------------- */
+/* --- the two columns -------------------------------------------------------------
+   `stretch`, and no ratio on the card: the card is as tall as the rows column, so its
+   top is the first row's top and its foot the last row's foot, and it follows the
+   column as a row opens or closes (the panel's height transition moves the column's
+   height, and the card with it). A fixed ratio had made the card 416 tall beside a
+   464 column. */
 .grid {
   display: grid;
   grid-template-columns: 375fr 915fr;
   gap: 10px;
-  align-items: start;
+  align-items: stretch;
   margin-top: 56px;
 }
 
@@ -28,7 +33,7 @@
 .graphic {
   display: grid;
   place-items: center;
-  aspect-ratio: 400 / 444;
+  min-height: 0;
   border: 1px solid var(--dark-line);
   border-radius: 20px;
   background-color: rgba(255, 255, 255, 0.02);
@@ -233,7 +238,8 @@
 }
 
 /* Under 1024 the card would drop below 300 wide beside the rows, so the graphic sits
-   above the list, as it does on a phone. */
+   above the list, as it does on a phone — on its own ratio there, since there is no
+   column beside it to match. */
 @media (max-width: 1023px) {
   .grid {
     grid-template-columns: 1fr;

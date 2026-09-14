@@ -748,8 +748,8 @@ the page reaches them, staged. Styling is the site's own throughout.
   Grok, Perplexity, not the trademark art) with one line each on what the structure lets
   that platform do; the process is the same row (mono `// 01`, the site's line icon,
   hairline, step, paragraph) and a client component; the vision runs 200px of padding with
-  a 292px portrait and a 12em statement; the homepage `Faq` with per-audience questions,
-  then a centred closing statement on grey, close the page. Motion: items slide in from the
+  a 292px portrait and a 12em statement; the homepage `Faq` with per-audience questions
+  closes the page (a centred closing statement after it was added and then removed). Motion: items slide in from the
   right (`--reveal-shift-x` on the Reveal item), the marks keep a 7s CSS drift keyed on the
   `data-playing` attribute `ui/Float.tsx` sets while the list is on screen, and the process
   steps ease ±36px up and down against each other over the band's passage through the
@@ -772,7 +772,10 @@ the page reaches them, staged. Styling is the site's own throughout.
   Reduced motion: the stylesheet forces every panel open and the markup says
   `aria-expanded="true"` on all four. The reference's white "AUDIT" tag is the row's
   `tag` (one word: Map / Write / Connect / Launch; Call / Write / Connect / Launch), a
-  white mono pill at the trigger's right, opacity 0 → 1 on the open row. Stacks under 1024 (card 420 max, 4:3).
+  white mono pill at the trigger's right, opacity 0 → 1 on the open row. Stacks under 1024 (card 420 max, 4:3). Beside the rows the card has no ratio: the grid
+  is `align-items: stretch`, so its top and foot are the first row's top and the last
+  row's foot, and it follows the column as a row opens (a fixed 400/444 ratio had left it
+  416 tall beside a 464 column).
 - **Verified** with Playwright at 1440 / 1280 / 1024 / 390: no horizontal overflow, all 40
   reveal items land at `--t: 1` after a scroll-through, reduced motion renders everything
   in place with no `--t` written. Caught on the way: grid auto-placement put the
