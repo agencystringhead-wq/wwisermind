@@ -233,6 +233,80 @@ export function TrendUpIcon({ className }: IconProps) {
   );
 }
 
+/* --- the AI platform marks -----------------------------------------------------
+   ChatGPT, Gemini, Grok and Perplexity, drawn as thin line marks on the same 24-unit box
+   and stroke as the rest of the set — the reference site's treatment, not the platforms'
+   own filled logos. Each is a close line reading of the mark rather than the trademark
+   artwork; drop the official path in here if the exact glyph matters. */
+
+/** OpenAI's knot: six interlocking loops, read as six lozenges around a ring. */
+export function ChatGptMark(props: IconProps) {
+  return (
+    <Icon {...props}>
+      {[0, 60, 120, 180, 240, 300].map((angle) => (
+        <rect
+          key={angle}
+          x="10.7"
+          y="2.6"
+          width="2.6"
+          height="9.6"
+          rx="1.3"
+          transform={`rotate(${angle} 12 12)`}
+        />
+      ))}
+    </Icon>
+  );
+}
+
+/** Gemini's four-point star. */
+export function GeminiMark(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M12 2.5c.4 5.2 4.3 9.1 9.5 9.5-5.2.4-9.1 4.3-9.5 9.5-.4-5.2-4.3-9.1-9.5-9.5 5.2-.4 9.1-4.3 9.5-9.5z" />
+    </Icon>
+  );
+}
+
+/** Grok's slash: one long diagonal and its short offset strokes. */
+export function GrokMark(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M20 4 4.5 19.5" />
+      <path d="M4 4l6.5 6.5" />
+      <path d="M13.5 13.5 20 20" />
+    </Icon>
+  );
+}
+
+/** Perplexity's mark: a stem with two mirrored brackets. */
+export function PerplexityMark(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M12 2.5v19" />
+      <path d="M5 3.5v7.5l7 5 7-5V3.5" />
+      <path d="M5 20.5V13l7-5 7 5v7.5" />
+    </Icon>
+  );
+}
+
+/** The registry the audience pages' capability rows index into. */
+export const aiMarks = {
+  chatgpt: ChatGptMark,
+  gemini: GeminiMark,
+  grok: GrokMark,
+  perplexity: PerplexityMark,
+};
+
+export type AiMarkName = keyof typeof aiMarks;
+
+/** What a screen reader hears for each mark. */
+export const aiMarkLabels: Record<AiMarkName, string> = {
+  chatgpt: 'ChatGPT',
+  gemini: 'Gemini',
+  grok: 'Grok',
+  perplexity: 'Perplexity',
+};
+
 /* The registry the page's config indexes into, so lib/site.ts can name an icon as a string
    and stay free of JSX. A name with no entry here is a type error, not a blank card. */
 export const contactIcons = {

@@ -1,0 +1,20 @@
+/* The reveal mechanism only: how an item looks at a given `--t`. Which elements are items,
+   and their order, is marked in the markup with `data-reveal`; what the type looks like
+   belongs to the section using it.
+
+   Gated on the query the component reads, so a reader who asked for less motion is
+   never shown the hidden state — with no rule here, an item is simply in place. The
+   transform and opacity are the only properties that ever change. `--reveal-shift` lets a
+   section set how far a picture rises against how far a line of type does, and
+   `--reveal-shift-x` slides an item in from the side instead — the capabilities rows
+   arrive from the right, as the reference site's do, with the rise set to zero. */
+
+@media (prefers-reduced-motion: no-preference) {
+  .group [data-reveal] {
+    opacity: var(--t, 0);
+    transform: translate(
+      calc((1 - var(--t, 0)) * var(--reveal-shift-x, 0px)),
+      calc((1 - var(--t, 0)) * var(--reveal-shift, 28px))
+    );
+  }
+}

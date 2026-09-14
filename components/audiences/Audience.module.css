@@ -1,0 +1,104 @@
+/* What every /who-we-help frame shares, composed from the pieces the rest of the site
+   already has, so the two pages cannot drift from the service pages or the homepage:
+
+   - the frame rhythm and the two light grounds are the service pages' (Section.module.css)
+   - the dark ground is the contact hero's block (Controls.module.css `.dark`), with its
+     yellow, its whites and its line alpha as custom properties
+   - the eyebrow is the mono label, the section heading is the problems headline's
+     treatment, the paragraph is the one body size in the muted ink
+   - a photograph takes the MediaHover frame — the contained 1.04 zoom and the sweep
+
+   The three display scales on these pages, largest first: the hero's own (AudienceHero),
+   the homepage h1 (`title` below, for a frame's statement), and the section heading. */
+
+.section {
+  composes: section from '../services/Section.module.css';
+}
+
+.light {
+  composes: light from '../services/Section.module.css';
+}
+
+.grey {
+  composes: grey from '../services/Section.module.css';
+}
+
+.dark {
+  composes: dark from '../ui/Controls.module.css';
+}
+
+/* The reference's bands are a dark grey, not the contact hero's navy: the footer's
+   #1a1a1a, which the reference's process band samples at exactly. The block's whites,
+   yellow and line alpha are kept; only the ground changes. Doubled to outrank the
+   composed block. */
+.dark.dark {
+  --dark-bg: #1a1a1a;
+}
+
+/* --- labels --------------------------------------------------------------- */
+.eyebrow {
+  composes: eyebrow from '../services/Section.module.css';
+}
+
+.eyebrowOnDark {
+  composes: monoLabelOnDark from '../ui/Controls.module.css';
+}
+
+/* --- headings ------------------------------------------------------------- */
+/* The section heading: 34px, semibold, the tracking the reveal headlines share. */
+.heading {
+  composes: heading from '../services/Section.module.css';
+  margin-top: 0;
+}
+
+/* The homepage h1's scale — 46px, bold, tight — for the frames whose one line is the
+   frame: the story, the vision, the life heading, the process. Semibold here, as every
+   headline on the service pages is. */
+.title {
+  composes: title from '../sections/HeroTop.module.css';
+  font-weight: var(--fw-semibold);
+  line-height: 1.12;
+}
+
+/* The word reveal interpolates between two custom properties set on `.reveal`; on the
+   dark ground they are restated as white and a quiet white. Doubled so they outrank the
+   reveal's own whichever order the two stylesheets land in. */
+.onDark.onDark {
+  --reveal-from: rgba(255, 255, 255, 0.32);
+  --reveal-to: var(--color-white);
+
+  color: var(--color-white);
+}
+
+/* --- copy ----------------------------------------------------------------- */
+.body {
+  composes: lede from '../services/Section.module.css';
+  text-wrap: pretty;
+}
+
+.bodyOnDark {
+  color: var(--dark-body, rgba(255, 255, 255, 0.78));
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  text-wrap: pretty;
+}
+
+/* --- photographs ---------------------------------------------------------- */
+/* A picture rises further than a line of type does when it arrives. */
+.figure {
+  composes: frame from '../ui/MediaHover.module.css';
+  --reveal-shift: 40px;
+
+  border-radius: 20px;
+  background-color: var(--color-surface);
+}
+
+.shine {
+  composes: shine from '../ui/MediaHover.module.css';
+}
+
+@media (max-width: 640px) {
+  .figure {
+    border-radius: 16px;
+  }
+}

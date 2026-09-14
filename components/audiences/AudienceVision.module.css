@@ -1,0 +1,138 @@
+/* /who-we-help frame 6 — the vision.
+
+   The reference: a square portrait 22.5% of the column wide at the left edge, the byline
+   under it; the eyebrow and its rule at 50% of the column, the statement under them on
+   six short lines, the paragraph 40px below. The band runs about 1080 tall on the 1920
+   frame — 800 at this scale — so the frame takes a deeper padding than the others. */
+
+.section {
+  padding-block: 200px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+/* --- the founder ------------------------------------------------------------------ */
+.founder {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.portrait {
+  display: block;
+  width: 292px;
+  max-width: 100%;
+  aspect-ratio: 1;
+  border-radius: 16px;
+}
+
+/* The founder frame's byline, in the mono face: the name tracked and uppercased as the
+   labels are, the role under it in the quiet white. */
+.byline {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 22px;
+}
+
+.name {
+  composes: monoLabelOnDark from '../ui/Controls.module.css';
+  color: var(--color-white);
+}
+
+.role {
+  color: var(--dark-quiet);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+/* --- the statement ---------------------------------------------------------------- */
+.copy {
+  padding-top: 8px;
+}
+
+.eyebrow {
+  composes: monoLabelOnDark from '../ui/Controls.module.css';
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.eyebrowRule {
+  display: block;
+  flex: 1 1 auto;
+  height: 1px;
+  background-color: var(--dark-line);
+}
+
+.statement {
+  max-width: 12em;
+  margin-top: 36px;
+}
+
+.paragraph {
+  max-width: 50ch;
+  margin-top: 32px;
+}
+
+/* --- responsive ---------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .section {
+    padding-block: 152px;
+  }
+
+  .grid {
+    gap: 32px;
+  }
+
+  .portrait {
+    width: 260px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .section {
+    padding-block: 104px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .portrait {
+    width: 228px;
+  }
+
+  .copy {
+    padding-top: 0;
+  }
+
+  .statement {
+    max-width: 18em;
+    margin-top: 28px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-block: 72px;
+  }
+
+  .portrait {
+    width: 180px;
+  }
+
+  .statement {
+    margin-top: 24px;
+  }
+
+  .paragraph {
+    margin-top: 24px;
+  }
+}

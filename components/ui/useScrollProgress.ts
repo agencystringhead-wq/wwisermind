@@ -20,6 +20,11 @@ export type ScrollProgressOptions = {
   damping?: number;
   /** Receives the (smoothed) progress, 0 to 1, once per frame while it is changing. */
   onProgress: (progress: number) => void;
+  /** Where the first paint starts. Set, the value glides from here to the real one on
+      mount instead of landing on it — an element already in view arrives rather than
+      simply being there. Only meaningful with `damping`; without it the first paint is
+      the real value either way. */
+  from?: number;
 };
 
 const clamp = (value: number) => (value < 0 ? 0 : value > 1 ? 1 : value);
@@ -141,7 +146,13 @@ export default function useScrollProgress(
     const sizes = new ResizeObserver(onResize);
 
     measure();
-    paint(target);
+    const from = latest.current.from;
+    if (from !== undefined && (latest.current.damping ?? 0) > 0) {
+      paint(clamp(from));
+      schedule();
+    } else {
+      paint(target);
+    }
     visibility.observe(element);
     sizes.observe(element);
     window.addEventListener('resize', onResize, { passive: true });

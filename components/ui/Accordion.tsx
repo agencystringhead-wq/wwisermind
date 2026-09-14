@@ -16,6 +16,8 @@ export type AccordionItem = { title: string; body: string };
  * at the row's end — the nav's plus, turned a quarter into a cross when open, or the
  * check in a ring the core-values reference draws, which fills when the row is open. With
  * the check, closed titles sit in the muted ink so the open one reads as current.
+ * `tone` is the ground it sits on: on 'dark' the hairlines, number, title and plus take
+ * the dark ground's whites, so the same rows can close the audience pages' process frame.
  *
  * The open panel is rendered, the closed ones are not — as on the homepage — which keeps
  * a closed answer out of the tab order and a screen reader's way without a second
@@ -30,12 +32,14 @@ export default function Accordion({
   numbered = false,
   defaultOpen = null,
   indicator = 'plus',
+  tone = 'light',
   className,
 }: {
   items: AccordionItem[];
   numbered?: boolean;
   defaultOpen?: number | null;
   indicator?: 'plus' | 'check';
+  tone?: 'light' | 'dark';
   className?: string;
 }) {
   const [openIndex, setOpenIndex] = useState<number | null>(defaultOpen);
@@ -56,7 +60,12 @@ export default function Accordion({
     buttons.current[next]?.focus();
   };
 
-  const listClass = [styles.list, indicator === 'check' ? styles.listCheck : '', className]
+  const listClass = [
+    styles.list,
+    indicator === 'check' ? styles.listCheck : '',
+    tone === 'dark' ? styles.listDark : '',
+    className,
+  ]
     .filter(Boolean)
     .join(' ');
 

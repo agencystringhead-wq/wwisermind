@@ -1,0 +1,167 @@
+/* /who-we-help frame 4 — the capabilities band.
+
+   The mono block is three 11px lines at the top left; the items sit 100px under it, four
+   to the row on a 262 pitch with 24px gutters, each a mark over a hairline over two
+   short lines. The marks are the four AI platforms drawn as thin line icons on the
+   site's 24-unit box, at the stroke the service pages draw theirs. */
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+/* The mono label, opened up to a paragraph's leading so three lines of it read. The
+   designed breaks arrive as newlines in the text. */
+.label {
+  composes: monoLabelOnDark from '../ui/Controls.module.css';
+  max-width: 78ch;
+  line-height: 1.75;
+  white-space: pre-line;
+}
+
+/* The reference's small outlined tile at the right: the page's name in the mono face. */
+.tag {
+  composes: monoLabelOnDark from '../ui/Controls.module.css';
+  flex: none;
+  padding: 12px 18px;
+  border: 1px solid var(--dark-line);
+  border-radius: 12px;
+  color: var(--color-white);
+  white-space: nowrap;
+}
+
+/* --- the items ---------------------------------------------------------------- */
+.items {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 96px;
+}
+
+/* The entrance is the reference site's: from the right, no rise. Each item carries its
+   own place in the order, so the four arrive one after another. */
+.item {
+  --reveal-shift: 0px;
+  --reveal-shift-x: 72px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* The mark's box: the drift below moves this, so the entrance on the item and the idle
+   motion on the mark never fight over one transform. */
+.mark {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+/* The 24-unit glyph at 40 with the stroke set on the box lands at about 1.3px — the
+   reference's thin line, in white. */
+.icon {
+  width: 100%;
+  height: 100%;
+  color: var(--color-white);
+  stroke-width: 0.8;
+}
+
+.rule {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin-top: 32px;
+  background-color: var(--dark-line);
+}
+
+.text {
+  max-width: 26ch;
+  margin-top: 24px;
+  color: var(--dark-body);
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+/* --- the idle drift ---------------------------------------------------------------
+   A few pixels of rise and a couple of degrees of tilt on a slow loop, each mark on its
+   own phase so the row never moves in step. Keyed on the attribute the Float wrapper
+   sets while the band is on screen, so nothing runs out of view, and inside the motion
+   query, so a reader who asked for less motion gets four still marks. Transform only. */
+@media (prefers-reduced-motion: no-preference) {
+  .items[data-playing] .mark {
+    animation: drift 7s ease-in-out infinite;
+  }
+
+  .item:nth-child(2) .mark {
+    animation-delay: -1.75s;
+    animation-duration: 8s;
+  }
+
+  .item:nth-child(3) .mark {
+    animation-delay: -3.5s;
+    animation-duration: 6.5s;
+  }
+
+  .item:nth-child(4) .mark {
+    animation-delay: -5.25s;
+    animation-duration: 7.5s;
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-5px) rotate(4deg);
+  }
+}
+
+/* --- responsive ---------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .items {
+    margin-top: 72px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .head {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .items {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 24px;
+    margin-top: 56px;
+  }
+}
+
+@media (max-width: 640px) {
+  .label {
+    line-height: 1.7;
+  }
+
+  .items {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-top: 44px;
+  }
+
+  .item {
+    --reveal-shift-x: 40px;
+  }
+
+  .rule {
+    margin-top: 20px;
+  }
+
+  .text {
+    margin-top: 16px;
+  }
+}

@@ -83,6 +83,7 @@ Global rules already set in `globals.css`:
 
 ```
 app/
+  who-we-help/[slug]/page.tsx  the two audience pages (data: lib/audiences.ts)
   globals.css        design tokens + reset + .container
   layout.tsx         html shell, font, TopBar + Header + main
   page.tsx           home page — sections added frame by frame
@@ -691,6 +692,94 @@ stacked headline); styling is the site's own. `app/results/page.tsx` + two frame
   Nothing in the repo is landscape for either project (both card images are 900×900).
 - **Image weights** — `wwisermind-footer.webp` (1500×1000, unreferenced) was 1,825 kB, a
   lossless encode; re-encoded at q90 → 304 kB. Everything else is under 160 kB.
+
+### ✅ Who we help — /who-we-help/group-practices and /who-we-help/solo-practices (done, copy in draft)
+
+One template, one data file, two entries — the service pages' arrangement. `lib/audiences.ts`
+holds both entries (words, pictures, SEO); `lib/audience-slugs.ts` holds the slug list and
+`audienceHref()` on its own so `lib/site.ts` (the mega menu) can link to the pages without
+`site → audiences → services → site` loading in a circle. `app/who-we-help/[slug]/page.tsx`
+pre-renders both (`dynamicParams = false`), sets the per-page title, description and
+canonical, and emits a WebPage + Audience JSON-LD block.
+
+Layout from `design-references/Template-Group-Practice-Solo-Practice.png` (1920 frame, a
+1010-wide column at 1100); motion after the spartanai / opus Framer sites — things arrive as
+the page reaches them, staged. Styling is the site's own throughout.
+
+- **Frames, top to bottom** (`components/audiences/`): hero (white: mono breadcrumb, the
+  two-line h1 with the word reveal, two 483:540 photographs at different heights with the
+  paragraph beside them) → story (white: the homepage-h1 scale heading, the paragraph set in
+  18%) → proof row (grey) → capabilities (dark) → life/context (white) → vision (dark: the
+  founder portrait + mono byline, the statement) → values (white: eyebrow left, three
+  hairlined entries) → process (dark: the shared accordion in its new `tone="dark"`, first
+  row open, mono note + blue pill at the foot). The footer's CTA closes the page; nothing is
+  repeated. `Audience.module.css` composes everything shared — the service-page frame
+  rhythm and grounds, the contact hero's `.dark` block, the mono label, the problems
+  headline treatment, the homepage h1 (`title`), the MediaHover frame — so nothing is
+  restated. The hero's own scale (`clamp(36px, 4.8vw, 64px)`) is the one new display step.
+- **Figures** — none typed. The proof row names a case study + stat index and reads the
+  value out of `caseStudies` (group: Evolve 81% appointments dark, 134% visitors light;
+  solo: Timely 31% conversion dark, 48% lead submissions light). The quote card is the hero
+  banner's Matt Erdman testimonial via `testimonials`. The two remaining slots (col 2 row 2,
+  col 3) are qualitative claims with a line icon. Checked at module load.
+- **Motion** — `components/ui/Reveal.tsx` + `Reveal.module.css`, the staged-arrival group.
+  Any descendant with `data-reveal="n"` is an item; the group is driven by the shared
+  `useScrollProgress` hook (range: top crossing 90vh → 58vh, damping 140ms, IO detach),
+  each item gets `--t` and the stylesheet turns it into opacity + translateY only, gated on
+  `prefers-reduced-motion: no-preference` so the reduced-motion page is simply in place.
+  The painted value only ever moves forward (scrolling back up leaves things revealed) and
+  a group already in view on arrival glides in from 0 — `useScrollProgress` gained a
+  `from` option for that. The hook's first paint happens on hydration, so before the JS
+  lands the items are hidden — the same trade the projects stack already makes. The word
+  reveal (`ScrollReveal`) is still position-scrubbed, so headings read grey again if you
+  scroll back to the top; `.onDark` restates its two colours for the dark frames.
+- **Images** — all from the repo: the homepage's `grouppractice`/`solopractice` stills,
+  `launch-and-grow`, the mustard-blazer therapist, the founder portrait, and four Pexels
+  stand-ins from `public/images/services/` (7988669, 3184360, 7176027, 6255877). Slots
+  want ≈ 9:10 (hero, two per page) and ≈ 16:10 → drawn at 4:3 (life, two per page).
+- **Nav** — the Who We Help mega panel links point at the two routes. Still dangling
+  on the same subject: `heroTop.audience` (`#solo-therapists`, `#group-practices`) and the
+  two `practice.rows[].link` anchors on the homepage — one-line changes to `audienceHref`.
+- **Revision 2 (2026-09-14)** — hero headline-to-photos gap 64 → 88px (the reference's
+  114 on its 1763 column); one figure per page on the proof row (group: Evolve 81%
+  appointments, solo: Timely 48% enquiries) with three claims and the quote around it;
+  every dark band on the footer's #1a1a1a (`.dark.dark { --dark-bg }` in
+  Audience.module.css), sampled off the reference's process band; the capabilities row
+  carries the four AI marks (`aiMarks` in ui/icons.tsx — line readings of ChatGPT, Gemini,
+  Grok, Perplexity, not the trademark art) with one line each on what the structure lets
+  that platform do; the process is the same row (mono `// 01`, the site's line icon,
+  hairline, step, paragraph) and a client component; the vision runs 200px of padding with
+  a 292px portrait and a 12em statement; the homepage `Faq` with per-audience questions,
+  then a centred closing statement on grey, close the page. Motion: items slide in from the
+  right (`--reveal-shift-x` on the Reveal item), the marks keep a 7s CSS drift keyed on the
+  `data-playing` attribute `ui/Float.tsx` sets while the list is on screen, and the process
+  steps ease ±36px up and down against each other over the band's passage through the
+  viewport, driven by `useScrollProgress` on a wrapper inside each item (not latched — it
+  runs back). All of it gated on the motion query; reduced motion is four still rows.
+- **Revision 3 (2026-09-14) — the process as spartanai's "our process"** — measured on
+  the reference at 1440 (1385 column): heading 54px on 800; a 400×444 outlined card with
+  the graphic at 300 inside, a 10px gutter, rows filling the rest at 30px padding / 20px
+  radius, 81 closed / 172 open, 10px apart, the open one filled 4% white; note and
+  button 50px under. Ours at 1300: card 375 (`grid-template-columns: 375fr 915fr`),
+  rows 84 / 182. The graphic is `public/images/process-isometric.webp` — the file the
+  user dropped as `process-isometric.png` was HEIF inside a .png wrapper (512², 16 kB),
+  which browsers will not draw, so it was converted with sharp (alpha kept, 23 kB); a
+  1200px+ source would sharpen it on 2x screens. Interaction is the reference's, checked
+  by sampling its row heights: hover opens a row and closes the open one (no revert on
+  leave), click/focus do the same, nothing auto-advances. Open/close is a
+  `grid-template-rows` 0fr↔1fr transition (380ms, ease-out) — a layout animation on
+  purpose, because a transform cannot push the rows beneath; the paragraph fades a beat
+  behind. Entrance: three Reveal groups (header; the card; the rows 1..4) plus the foot.
+  Reduced motion: the stylesheet forces every panel open and the markup says
+  `aria-expanded="true"` on all four. The reference's white "AUDIT" tag is the row's
+  `tag` (one word: Map / Write / Connect / Launch; Call / Write / Connect / Launch), a
+  white mono pill at the trigger's right, opacity 0 → 1 on the open row. Stacks under 1024 (card 420 max, 4:3).
+- **Verified** with Playwright at 1440 / 1280 / 1024 / 390: no horizontal overflow, all 40
+  reveal items land at `--t: 1` after a scroll-through, reduced motion renders everything
+  in place with no `--t` written. Caught on the way: grid auto-placement put the
+  row-spanning proof cards ahead of the short one (placed by hand now), and the phone
+  hero's first figure collapsed to 0×0 under the desktop `align-items: start` (stretch
+  under 640).
 
 ### ⬜ Next frames
 

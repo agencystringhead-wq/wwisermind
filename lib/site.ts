@@ -1,5 +1,6 @@
 import type { ContactIconName } from '@/components/ui/icons';
 import type { MapPlace } from '@/components/ui/WorldMap';
+import { audienceHref } from '@/lib/audience-slugs';
 import { serviceHref } from '@/lib/service-slugs';
 
 export type NavItem = {
@@ -143,7 +144,7 @@ export const megaPanels: Record<string, MegaPanel> = {
         links: [
           {
             label: 'Group Practices',
-            href: '/#group-practices',
+            href: audienceHref('group-practices'),
             desc: 'Sites that sell the whole team',
             body: 'Every clinician gets a real profile, every location its own page, and referrers get one clear place to send people. Intake stays orderly as the team grows.',
           },
@@ -153,7 +154,7 @@ export const megaPanels: Record<string, MegaPanel> = {
         links: [
           {
             label: 'Solo Practices',
-            href: '/#solo-practices',
+            href: audienceHref('solo-practices'),
             desc: 'Your voice, your specialty',
             body: 'A site that carries your credibility while you’re in session — your specialty stated plainly, your availability current, and enquiries that arrive ready to answer.',
           },

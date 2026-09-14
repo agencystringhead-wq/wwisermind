@@ -1,0 +1,38 @@
+/* /who-we-help frame 2 — the story.
+
+   In the reference the heading runs three lines at the left edge and the paragraph
+   starts 18% of the column in, on a measure of about a third of it, 60px under the
+   heading. The frame follows the hero on the same white, so its top padding is the gap
+   between the two rather than a full frame's. */
+
+.section {
+  padding-top: 24px;
+}
+
+.heading {
+  max-width: 13em;
+}
+
+.paragraph {
+  max-width: 46ch;
+  margin-top: 48px;
+  margin-left: 18%;
+}
+
+@media (max-width: 1023px) {
+  .paragraph {
+    margin-top: 36px;
+    margin-left: 12%;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-top: 8px;
+  }
+
+  .paragraph {
+    margin-top: 28px;
+    margin-left: 0;
+  }
+}

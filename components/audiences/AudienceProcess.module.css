@@ -1,0 +1,298 @@
+/* /who-we-help frame 8 — the process, as the reference site's block.
+
+   Measured on spartanai.framer.website at 1440 (a 1385 column): the heading 54px on an
+   800 measure; under it a 400×444 outlined card with the graphic drawn at 300 inside it,
+   a 10px gutter, and the rows filling the rest — each 30px of padding on a 20px radius,
+   81 tall closed and 172 open, 10px apart; the open one filled at 4% white; the number
+   and title 30px apart; the note and the button 50px under the last row. Rebuilt on the
+   1300 container with the proportions kept: the card is 375 of it. */
+
+.headline {
+  margin-top: 16px;
+}
+
+.heading {
+  max-width: 14em;
+}
+
+/* --- the two columns ------------------------------------------------------------- */
+.grid {
+  display: grid;
+  grid-template-columns: 375fr 915fr;
+  gap: 10px;
+  align-items: start;
+  margin-top: 56px;
+}
+
+/* --- the graphic ------------------------------------------------------------------ */
+.graphic {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 400 / 444;
+  border: 1px solid var(--dark-line);
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.02);
+  overflow: hidden;
+}
+
+/* The picture rises further than a line of type when it arrives. */
+.graphicInner {
+  --reveal-shift: 40px;
+
+  width: 75%;
+}
+
+.graphicImage {
+  width: 100%;
+  height: auto;
+}
+
+/* --- the rows ----------------------------------------------------------------------- */
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Every row arrives from the right, as the reference's do. */
+.row {
+  --reveal-shift: 0px;
+  --reveal-shift-x: 56px;
+
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0);
+  transition: background-color 360ms var(--ease), border-color 360ms var(--ease);
+}
+
+.rowOpen {
+  border-color: rgba(255, 255, 255, 0.04);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* The h3 is here for the outline; the button inside it is what looks like anything. */
+.rowHeading {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: normal;
+  text-wrap: initial;
+}
+
+.trigger {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 30px;
+  width: 100%;
+  padding: 30px;
+  text-align: left;
+  color: var(--color-white);
+}
+
+/* "// 01" in the mono face, in the quiet white — the reference sets it at 14px light. */
+.number {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.4);
+  white-space: nowrap;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+/* The reference's pill at the row's right: white, the word in the mono face at 11px,
+   uppercase. Only the open row shows it; it fades in a beat after the row has opened
+   and out as the row closes. Opacity only. */
+.tag {
+  align-self: center;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-white);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.3;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 240ms var(--ease);
+}
+
+.rowOpen .tag {
+  opacity: 1;
+  transition-delay: 120ms;
+}
+
+/* --- the panel ---------------------------------------------------------------------
+   A grid whose one row is 0fr closed and 1fr open, so the paragraph's box grows and
+   shrinks between nothing and its own height and the rows beneath move with it. This is
+   a layout transition on purpose: a sibling cannot be pushed by a transform. The curve
+   lands with a short ease-out, as the reference's does; the paragraph fades a beat
+   behind the box so it never reads while the box is still a slit. */
+.panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 380ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.rowOpen .panel {
+  grid-template-rows: 1fr;
+}
+
+.panelInner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Under the title: the number's column plus the gap, so the paragraph hangs off the
+   title and not off the number. The reference's white at 15px light; ours is the body
+   white at the body size. */
+.body {
+  max-width: 62ch;
+  padding: 0 30px 30px calc(30px + 56px + 30px);
+  color: var(--dark-body);
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  opacity: 0;
+  transition: opacity 240ms var(--ease);
+  text-wrap: pretty;
+}
+
+.rowOpen .body {
+  opacity: 1;
+  transition-delay: 120ms;
+}
+
+/* --- the foot ------------------------------------------------------------------- */
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin-top: 50px;
+}
+
+.note {
+  composes: monoLabelOnDark from '../ui/Controls.module.css';
+  max-width: 60ch;
+  line-height: 1.75;
+}
+
+/* The service hero's blue pill, verbatim. */
+.button {
+  composes: buttonBlue from '../ui/Controls.module.css';
+  flex: none;
+}
+
+/* --- reduced motion: every row open, nothing moving --------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    grid-template-rows: 1fr;
+    transition: none;
+  }
+
+  .row {
+    transition: none;
+  }
+
+  .body,
+  .tag {
+    opacity: 1;
+    transition: none;
+  }
+}
+
+/* --- responsive ---------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .grid {
+    margin-top: 44px;
+  }
+
+  .trigger {
+    grid-template-columns: 48px minmax(0, 1fr) auto;
+    gap: 24px;
+    padding: 24px;
+  }
+
+  .body {
+    padding: 0 24px 24px calc(24px + 48px + 24px);
+  }
+
+  .foot {
+    margin-top: 40px;
+  }
+}
+
+/* Under 1024 the card would drop below 300 wide beside the rows, so the graphic sits
+   above the list, as it does on a phone. */
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .graphic {
+    max-width: 420px;
+    aspect-ratio: 4 / 3;
+  }
+
+  .graphicInner {
+    width: 56%;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    margin-top: 32px;
+  }
+
+  .graphic {
+    max-width: none;
+    aspect-ratio: 16 / 11;
+    border-radius: 16px;
+  }
+
+  .row {
+    --reveal-shift-x: 32px;
+
+    border-radius: 16px;
+  }
+
+  .trigger {
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .tag {
+    padding: 4px 10px;
+    font-size: 10px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .body {
+    padding: 0 20px 20px calc(20px + 40px + 16px);
+  }
+
+  .foot {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+    margin-top: 32px;
+  }
+
+  .button {
+    width: 100%;
+  }
+}

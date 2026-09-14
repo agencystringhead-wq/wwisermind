@@ -1,0 +1,72 @@
+/* /who-we-help frame 5 — the context.
+
+   The reference puts the eyebrow at the left edge and the heading at 27% of the column;
+   the two photographs are 495 wide on a 24px gutter, 1.15:1, and the paragraph under
+   them runs the left half. */
+
+.head {
+  display: grid;
+  grid-template-columns: 25% minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+
+.heading {
+  max-width: 14em;
+}
+
+.paragraph {
+  max-width: 54ch;
+  margin-top: 24px;
+}
+
+/* --- the photographs ---------------------------------------------------------- */
+.photos {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  margin-top: 64px;
+}
+
+.photo {
+  aspect-ratio: 4 / 3;
+}
+
+.caption {
+  grid-column: 1;
+  max-width: 52ch;
+  margin-top: 40px;
+}
+
+/* --- responsive ---------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .photos {
+    gap: 16px;
+    margin-top: 48px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .head {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .caption {
+    grid-column: 1 / -1;
+    max-width: 60ch;
+    margin-top: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .photos {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 36px;
+  }
+
+  .caption {
+    margin-top: 24px;
+  }
+}

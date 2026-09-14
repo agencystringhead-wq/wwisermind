@@ -138,6 +138,34 @@
   line-height: var(--lh-body);
 }
 
+/* --- the dark variant ---------------------------------------------------------
+   The same rows on the dark ground: the hairlines at the ground's line alpha, the number
+   and the plus in its quiet white, the title in white and the paragraph in its body
+   white. The values are the `.dark` block's tokens (Controls.module.css), with the same
+   fallbacks, so the rows read as part of whichever dark frame holds them. */
+.listDark,
+.listDark .item {
+  border-color: var(--dark-line, rgba(255, 255, 255, 0.22));
+}
+
+.listDark .number,
+.listDark .plus {
+  color: var(--dark-quiet, rgba(255, 255, 255, 0.72));
+}
+
+.listDark .title,
+.listDark .trigger[aria-expanded='true'] .plus {
+  color: var(--color-white);
+}
+
+.listDark .body {
+  color: var(--dark-body, rgba(255, 255, 255, 0.78));
+}
+
+.listDark .trigger:hover {
+  opacity: 0.8;
+}
+
 @media (max-width: 1279px) {
   .trigger {
     padding-block: 20px;
