@@ -211,7 +211,7 @@ export const megaPanels: Record<string, MegaPanel> = {
         lead: 'Studio',
         title: 'The People',
         links: [
-          { label: 'About Us', href: '/#about', desc: 'The story behind wwisermind' },
+          { label: 'About Us', href: '/about', desc: 'The story behind wwisermind' },
           { label: 'Our Process', href: '/#process', desc: 'Three steps, no mystery' },
           { label: 'Reviews', href: '/#reviews', desc: 'What therapists say' },
         ],
@@ -857,7 +857,7 @@ export const footerMain = {
       { label: 'Pricing', href: '#pricing' },
     ],
     [
-      { label: 'About', href: '#about' },
+      { label: 'About', href: '/about' },
       { label: 'Freebies', href: '#freebies' },
       { label: 'Tools', href: '#tools' },
     ],

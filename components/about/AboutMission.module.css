@@ -1,0 +1,125 @@
+/* /about frame 3 — mission and vision.
+   Dark grey ground (#1a1a1a). Two columns + a wide image below.
+   Matches the dark band treatment from Audience.module.css. */
+
+.section {
+  padding-block: 112px 0;
+  background-color: #1a1a1a;
+  color: var(--color-white);
+}
+
+/* --- two-column grid -------------------------------------------------------- */
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.column {
+  padding-top: 8px;
+}
+
+/* Subheading at the section-heading scale, in yellow on the dark ground — matching
+   how the audience pages handle headings on dark. */
+.columnHead {
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: var(--fw-semibold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #fafb87; /* the dark-headline yellow from Controls.module.css */
+}
+
+.columnBody {
+  margin-top: 18px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  max-width: 48ch;
+  text-wrap: pretty;
+}
+
+/* --- check list ------------------------------------------------------------ */
+.claims {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.claim {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+.check {
+  flex: none;
+  color: #fafb87;
+  font-size: 14px;
+  line-height: var(--lh-body);
+}
+
+/* --- wide image ------------------------------------------------------------ */
+.imageWrap {
+  margin-top: 80px;
+}
+
+.figure {
+  composes: frame from '../ui/MediaHover.module.css';
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  border-radius: 20px 20px 0 0;
+  background-color: #2a2a2a;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+}
+
+.shine {
+  composes: shine from '../ui/MediaHover.module.css';
+}
+
+/* --- responsive ----------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .section {
+    padding-top: 88px;
+  }
+
+  .columns {
+    gap: 48px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .columns {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .figure {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-top: 64px;
+  }
+
+  .figure {
+    aspect-ratio: 4 / 3;
+    border-radius: 14px 14px 0 0;
+  }
+
+  .imageWrap {
+    margin-top: 56px;
+  }
+}

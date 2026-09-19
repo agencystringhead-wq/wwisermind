@@ -1,0 +1,114 @@
+/* /about frame 4 — our story / timeline.
+   Light ground. A centred header, then a vertical list of milestones separated by
+   hairlines. Each entry arrives as it enters the viewport. */
+
+.section {
+  padding-block: 112px;
+  background-color: var(--color-white);
+}
+
+/* --- header ---------------------------------------------------------------- */
+.head {
+  max-width: 600px;
+}
+
+.eyebrow {
+  composes: monoLabel from '../ui/Controls.module.css';
+}
+
+.heading {
+  margin-top: 16px;
+  font-size: clamp(24px, 2.6vw, 34px);
+  font-weight: var(--fw-semibold);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.intro {
+  margin-top: 20px;
+  color: var(--color-muted);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  max-width: 54ch;
+  text-wrap: pretty;
+}
+
+/* --- timeline -------------------------------------------------------------- */
+.timeline {
+  margin-top: 64px;
+}
+
+/* Each entry is a row: year label left (fixed 96px column), copy right. A hairline
+   runs the full width across the top of each row. */
+.entry {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 32px;
+  padding-block: 40px;
+  border-top: 1px solid var(--color-divider);
+}
+
+.entry:last-child {
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.year {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: var(--fw-regular);
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  padding-top: 4px; /* align with the title's cap height */
+}
+
+.entryBody {
+  max-width: 720px;
+}
+
+.entryTitle {
+  font-size: clamp(17px, 1.6vw, 20px);
+  font-weight: var(--fw-semibold);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+.entryText {
+  margin-top: 12px;
+  color: var(--color-muted);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  max-width: 60ch;
+  text-wrap: pretty;
+}
+
+/* --- responsive ----------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .section {
+    padding-block: 88px;
+  }
+
+  .timeline {
+    margin-top: 52px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-block: 64px;
+  }
+
+  .entry {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding-block: 32px;
+  }
+
+  .year {
+    padding-top: 0;
+  }
+
+  .timeline {
+    margin-top: 40px;
+  }
+}

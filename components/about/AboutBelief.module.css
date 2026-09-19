@@ -1,0 +1,43 @@
+/* /about frame 5 — belief statement.
+   Dark grey ground (#1a1a1a). A single large statement, centred, with generous
+   vertical space. The word reveal runs from a muted white to full white on the
+   dark ground, matching how AudienceVision treats its statement. */
+
+.section {
+  background-color: #1a1a1a;
+  color: var(--color-white);
+  padding-block: 140px;
+}
+
+.inner {
+  display: flex;
+  justify-content: center;
+}
+
+/* The statement is the audience-hero h1 scale, centred, set as a blockquote-level
+   large type. The reveal's colour tokens are overridden for the dark ground. */
+.statement {
+  --reveal-from: rgba(255, 255, 255, 0.28);
+  --reveal-to: var(--color-white);
+
+  max-width: 18em;
+  font-size: clamp(30px, 3.6vw, 52px);
+  font-weight: var(--fw-semibold);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* --- responsive ----------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .section {
+    padding-block: 112px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-block: 80px;
+  }
+}

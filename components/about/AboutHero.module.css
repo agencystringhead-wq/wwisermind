@@ -1,0 +1,96 @@
+/* /about frame 1 — hero.
+   White ground, full container. The headline is the page's h1 at the audience-hero
+   scale; the wide image below it takes the full container at a 16:7 ratio. */
+
+.section {
+  padding-top: 64px;
+  padding-bottom: 0;
+  background-color: var(--color-white);
+}
+
+/* --- the text block -------------------------------------------------------- */
+.eyebrow {
+  composes: monoLabel from '../ui/Controls.module.css';
+}
+
+.headlineWrap {
+  margin-top: 28px;
+}
+
+/* The audience-hero title scale: clamp from 36 at 640 to 64 at 1440. Semibold and
+   tightly tracked, as the AudienceHero.module.css title is. */
+.headline {
+  font-size: clamp(36px, 4.8vw, 64px);
+  font-weight: var(--fw-semibold);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  text-wrap: initial;
+  max-width: 18em;
+}
+
+.paragraph {
+  max-width: 60ch;
+  margin-top: 28px;
+  color: var(--color-muted);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  text-wrap: pretty;
+}
+
+/* --- the wide image ------------------------------------------------------- */
+.imageWrap {
+  margin-top: 64px;
+}
+
+/* 16:7 ratio, full container width, clipped at 24px radius. The figure is what clips
+   and what carries the hover, so it must be position:relative with overflow:hidden —
+   composed from MediaHover via the frame class on the figure itself. */
+.figure {
+  composes: frame from '../ui/MediaHover.module.css';
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  border-radius: 20px;
+  background-color: var(--color-surface);
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+}
+
+.shine {
+  composes: shine from '../ui/MediaHover.module.css';
+}
+
+/* --- responsive ------------------------------------------------------------ */
+@media (max-width: 1279px) {
+  .section {
+    padding-top: 52px;
+  }
+
+  .imageWrap {
+    margin-top: 52px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .figure {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-top: 40px;
+  }
+
+  .imageWrap {
+    margin-top: 40px;
+  }
+
+  .figure {
+    aspect-ratio: 4 / 3;
+    border-radius: 14px;
+  }
+}

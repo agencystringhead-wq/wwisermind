@@ -1,0 +1,149 @@
+/* /about frame 6 — our team.
+   Light ground. A left-aligned header, then three cards in a row.
+   Cards are sized for three: each one a portrait + meta, not a six-slot grid. */
+
+.section {
+  padding-block: 112px;
+  background-color: var(--color-white);
+}
+
+/* --- header ---------------------------------------------------------------- */
+.eyebrow {
+  composes: monoLabel from '../ui/Controls.module.css';
+}
+
+.heading {
+  margin-top: 16px;
+  font-size: clamp(24px, 2.6vw, 34px);
+  font-weight: var(--fw-semibold);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.lede {
+  margin-top: 16px;
+  color: var(--color-muted);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+/* --- cards ----------------------------------------------------------------- */
+/* Three equal columns with enough gap to breathe, sized for exactly three cards
+   rather than a generic multi-card grid. minmax(0, 1fr) prevents overflow. */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  margin-top: 56px;
+  align-items: start;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* --- portrait -------------------------------------------------------------- */
+/* The MediaHover frame: 1:1 ratio, 20px radius, the 1.04 zoom and light sweep. */
+.portraitFrame {
+  composes: frame from '../ui/MediaHover.module.css';
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 20px;
+  background-color: var(--color-surface);
+  overflow: hidden;
+}
+
+.portrait {
+  object-fit: cover;
+  object-position: top center;
+}
+
+.shine {
+  composes: shine from '../ui/MediaHover.module.css';
+}
+
+/* --- meta ------------------------------------------------------------------ */
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.name {
+  font-size: 17px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.role {
+  color: var(--color-muted);
+  font-size: var(--fs-body);
+  line-height: 1.3;
+}
+
+/* LinkedIn link — inline with the icon, subdued colour, underlines on hover. */
+.linkedin,
+.linkedinPlaceholder {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  color: var(--color-muted);
+  font-size: 13px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+
+.linkedin {
+  transition: color var(--dur) var(--ease);
+}
+
+.linkedin:hover {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* The placeholder is intentionally greyed out so it reads as "not yet linked" */
+.linkedinPlaceholder {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* --- responsive ----------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .section {
+    padding-block: 88px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+  }
+
+  .cards .card:nth-child(3) {
+    grid-column: 1 / 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-block: 64px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .cards .card:nth-child(3) {
+    grid-column: auto;
+  }
+}
