@@ -222,7 +222,7 @@ export const megaPanels: Record<string, MegaPanel> = {
         title: 'The Words',
         links: [
           { label: 'Blog', href: '/#blog', desc: 'Plain-English articles' },
-          { label: 'FAQ’s', href: '/#faq', desc: 'Answered before you ask' },
+          { label: 'FAQ’s', href: '/faq', desc: 'Answered before you ask' },
         ],
       },
     ],
@@ -855,6 +855,7 @@ export const footerMain = {
       { label: 'Website Design', href: '#website-design' },
       { label: 'Online Marketing', href: '#marketing' },
       { label: 'AI Services', href: '#ai-services' },
+      { label: 'FAQs', href: '/faq' },
     ],
     [
       { label: 'Who We Help', href: '#who-we-help' },
