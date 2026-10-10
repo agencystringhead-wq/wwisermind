@@ -844,7 +844,8 @@ export const footerMain = {
     { label: 'X', href: 'https://x.com/', icon: '/icons/x.png' },
   ],
 
-  /** Three link columns, one per grid column, matching the reference's 3 x 3 block. */
+  /** Three link columns, one per grid column. The reference is a 3 x 3 block; the third column
+      carries a fourth link, Our Process. */
   navColumns: [
     [
       { label: 'Website Design', href: '#website-design' },
@@ -858,6 +859,7 @@ export const footerMain = {
     ],
     [
       { label: 'About', href: '/about' },
+      { label: 'Our Process', href: '/process' },
       { label: 'Freebies', href: '#freebies' },
       { label: 'Tools', href: '#tools' },
     ],
