@@ -1004,8 +1004,40 @@
     display: none;
   }
 
+  /* Every block above spans the full width, but the tablet rules had paired them two to a
+     row (office with reach, accepting with hours), so on a phone each pair was drawn on top
+     of itself. One block per row from here down, in reading order. */
+  .detailOffice {
+    grid-row: 9;
+  }
+
+  .detailReach {
+    grid-row: 10;
+  }
+
+  .detailAccepting {
+    grid-row: 11;
+  }
+
+  .detailHours {
+    grid-row: 12;
+  }
+
+  .aside {
+    grid-row: 13;
+  }
+
+  .ruleFull {
+    grid-row: 14;
+  }
+
+  .copyright {
+    grid-row: 15;
+  }
+
   /* stacked under the copyright rather than pushed to the far edge of a narrow column */
   .legalLinks {
+    grid-row: 16;
     justify-content: flex-start;
   }
 
