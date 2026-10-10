@@ -199,6 +199,10 @@
   composes: buttonBlue from '../ui/Controls.module.css';
 }
 
+.secondary {
+  composes: buttonOutline from '../ui/Controls.module.css';
+}
+
 
 /* --- responsive ---------------------------------------------------------- */
 @media (max-width: 1279px) {

@@ -2,6 +2,7 @@ import type { ContactIconName } from '@/components/ui/icons';
 import type { MapPlace } from '@/components/ui/WorldMap';
 import { audienceHref } from '@/lib/audience-slugs';
 import { serviceHref } from '@/lib/service-slugs';
+import { reviews, reviewsSummary } from '@/lib/reviews';
 
 export type NavItem = {
   label: string;
@@ -213,7 +214,7 @@ export const megaPanels: Record<string, MegaPanel> = {
         links: [
           { label: 'About Us', href: '/about', desc: 'The story behind wwisermind' },
           { label: 'Our Process', href: '/process', desc: 'Three steps, no mystery' },
-          { label: 'Reviews', href: '/#reviews', desc: 'What therapists say' },
+          { label: 'Reviews', href: '/reviews', desc: 'What therapists say' },
         ],
       },
       {
@@ -288,6 +289,8 @@ export const heroTop = {
   },
 };
 
+const featuredReview = reviews.find((review) => review.featured) ?? reviews[0];
+
 export const heroBanner = {
   /** Decorative background media. `poster` is the still shown while the video loads and
       the permanent fallback wherever none of `sources` can play (Safari before 17.4 has
@@ -305,15 +308,16 @@ export const heroBanner = {
   brandHref: '#our-story',
   linkLabel: 'Read My Story',
   linkHref: '#our-story',
+  /* The homepage card shows the featured review. The words, the name, the practice and the
+     photo are read from lib/reviews.ts, so they cannot drift from the /reviews page. */
   testimonial: {
-    rating: 5,
-    quote:
-      'They just got it. I explained my practice once and they built something that sounds like me. Zero tech headaches on my end.',
+    rating: reviewsSummary.rating,
+    quote: featuredReview.quote,
     author: {
-      name: 'Matt Erdman',
+      name: featuredReview.name,
       /** rendered by .authorRole, the card's existing subtitle style */
-      role: 'Timely Therapy',
-      avatar: '/images/matt-erdman.webp',
+      role: featuredReview.practice,
+      avatar: featuredReview.photo ?? '/images/matt-erdman.webp',
     },
   },
 };
@@ -855,6 +859,7 @@ export const footerMain = {
     [
       { label: 'Who We Help', href: '#who-we-help' },
       { label: 'Results', href: '/results' },
+      { label: 'Reviews', href: '/reviews' },
       { label: 'Pricing', href: '#pricing' },
     ],
     [
@@ -1078,13 +1083,13 @@ export const contactPage = {
       },
     },
     accent: 'Only therapists. Every project.',
-    /* The review score the tile draws: rating, count and source, so a new review is a
-       one-line change here and the markup never moves. `score` is out of `outOf`. */
+    /* The review score the tile draws, read from lib/reviews.ts so it is the same figure
+       as the homepage card and /reviews. `score` is out of `outOf`. */
     reviews: {
-      source: 'Google',
-      score: 5,
-      outOf: 5,
-      count: 12,
+      source: reviewsSummary.source,
+      score: reviewsSummary.rating,
+      outOf: reviewsSummary.outOf,
+      count: reviewsSummary.count,
     },
   },
 

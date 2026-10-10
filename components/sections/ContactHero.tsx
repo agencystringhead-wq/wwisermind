@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { contactPage } from '@/lib/site';
 import { ExternalLinkIcon } from '@/components/ui/icons';
 import BackgroundVideo from '@/components/ui/BackgroundVideo';
@@ -28,6 +29,8 @@ type HeroCopy = {
   heading: string;
   lead: string;
   primary: { label: string; href: string };
+  /** An optional second button, drawn as the outline pill beside the first. */
+  secondary?: { label: string; href: string };
 };
 
 /**
@@ -40,10 +43,13 @@ export default function ContactHero({
   hero = contactPage.hero,
   tabs = contactPage.tabs,
   overlap = true,
+  children,
 }: {
   hero?: HeroCopy;
   tabs?: typeof contactPage.tabs | null;
   overlap?: boolean;
+  /** Anything that belongs between the lead and the buttons, such as a rating lockup. */
+  children?: ReactNode;
 } = {}) {
   const { background } = contactPage.hero;
   const [source] = background.sources;
@@ -98,10 +104,17 @@ export default function ContactHero({
         <h1 className={styles.heading}>{hero.heading}</h1>
         <p className={styles.lead}>{hero.lead}</p>
 
+        {children}
+
         <div className={styles.actions}>
           <a href={hero.primary.href} className={styles.primary}>
             {hero.primary.label}
           </a>
+          {hero.secondary ? (
+            <a href={hero.secondary.href} className={styles.secondary}>
+              {hero.secondary.label}
+            </a>
+          ) : null}
         </div>
       </div>
     </section>
