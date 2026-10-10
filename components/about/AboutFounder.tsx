@@ -1,70 +1,66 @@
 import Image from 'next/image';
 import Reveal from '@/components/ui/Reveal';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 import styles from './AboutFounder.module.css';
 
 /**
- * Frame 2 — founder perspective.
+ * Section 2 — Founder perspective (white ground).
  *
- * Light ground. Portrait on the left, copy on the right: mono eyebrow, heading,
- * four paragraphs on why wwisermind exists and why it works only with therapists.
- * Below the copy: the mono byline "SrikaantH · Co-founder, wwisermind".
+ * Reference: dominant tall portrait left; right: mono eyebrow, two-line heading,
+ * three substantial paragraphs, mono byline.
  *
- * Uses the existing Srikaanth-Founder-wwisermind image (700×700, 63 kB — within norms).
+ * Portrait — Srikaanth-Founder-wwisermind.webp (700×700, 63 kB)
  */
 export default function AboutFounder() {
   return (
     <section className={styles.section}>
-      <div className="container">
-        <Reveal className={styles.grid}>
-          <figure className={styles.portraitFrame} data-reveal="0">
-            <Image
-              src="/images/Srikaanth-Founder-wwisermind.webp"
-              alt="SrikaantH, co-founder of wwisermind"
-              width={700}
-              height={700}
-              className={styles.portrait}
-              sizes="(max-width: 640px) 80vw, (max-width: 1023px) 40vw, 320px"
-            />
-            <span className={styles.shine} aria-hidden="true" />
-          </figure>
+      <div className={`container ${styles.grid}`}>
+        {/* LEFT — portrait */}
+        <figure className={styles.portrait} data-reveal="0">
+          <Image
+            src="/images/Srikaanth-Founder-wwisermind.webp"
+            alt="SrikaantH — co-founder of wwisermind"
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 540px"
+            className={styles.portraitImg}
+          />
+        </figure>
 
-          <div className={styles.copy} data-reveal="1">
-            <p className={styles.eyebrow}>Founder Perspective</p>
-            <h2 className={styles.heading}>
-              We are the only studio built only for this work.
-            </h2>
+        {/* RIGHT — copy */}
+        <Reveal as="div" className={styles.copy}>
+          <p className={styles.eyebrow} data-reveal="0">A word from the founder</p>
 
-            <div className={styles.body}>
-              <p>
-                My nephew's autism therapy journey showed me what it takes for a family
-                in distress to find the right clinician. They searched online, read
-                through practice after practice, and nearly gave up. The practice that
-                finally helped them had a site that said plainly who they were and who
-                they helped. That was it. No jargon, no clever headlines — just clarity.
-              </p>
-              <p>
-                That experience is the reason wwisermind exists, and it is why we work
-                only with therapists and psychologists. This is not a niche we drifted
-                into. It is the only thing we do, because it is the thing we actually
-                understand. We know the words that make a prospective client feel seen,
-                the searches they run when they finally decide to ask for help, and the
-                first impression that earns a call.
-              </p>
-              <p>
-                We build in India and work in your timezone. We are open about both
-                because they work in your favour: revisions happen while you sleep, and
-                agency-grade work runs at a price a solo or group practice can justify.
-                No offshore mystery — our team and our process are on this page.
-              </p>
-              <p>
-                Every decision we make, from the headline on your homepage to the
-                directory listing a client finds at 11 pm, is made with one question
-                in mind: will this help the right person find this practice?
-              </p>
-            </div>
+          <ScrollReveal
+            text={"Why I built this\nfor therapists."}
+            className={styles.heading}
+          />
 
-            <p className={styles.byline}>SrikaantH · Co-founder, wwisermind</p>
+          <div className={styles.body} data-reveal="2">
+            <p>
+              I grew up watching what happens when good therapists stay invisible. People who
+              needed care found the wrong practitioners, or gave up searching altogether, because
+              the clinicians who could help them hadn&apos;t been found. That gap isn&apos;t a
+              marketing problem — it&apos;s a reach problem, and reach is something we know how
+              to solve.
+            </p>
+            <p>
+              wwisermind exists because mental health care deserves the same strategic
+              investment that every other field takes for granted. We bring the same craft to a
+              therapist&apos;s website and SEO profile that a corporate brand would spend
+              thousands on — and we do it for exactly one vertical, so our knowledge
+              compounds rather than scatters.
+            </p>
+            <p>
+              Every decision we make — the copy, the structure, the way your name surfaces in
+              AI tools — is built around one outcome: the right client landing on your page and
+              feeling, immediately, that they&apos;re already in the right place. That is what
+              we are here to do.
+            </p>
           </div>
+
+          <p className={styles.byline} data-reveal="2">
+            SrikaantH · Co-founder, wwisermind
+          </p>
         </Reveal>
       </div>
     </section>

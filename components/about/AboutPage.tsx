@@ -5,17 +5,11 @@ import AboutStory from './AboutStory';
 import AboutBelief from './AboutBelief';
 import AboutTeam from './AboutTeam';
 import AboutTestimonials from './AboutTestimonials';
+import AboutCta from './AboutCta';
 
 /**
- * The /about page: eight frames, top to bottom.
- *
- * Header, footer, the floating contact bar and the two yellow bars come from the root
- * layout. The footer's own "Ready to move faster?" block closes the page — nothing here
- * repeats it.
- *
- * Grounds alternate: hero (white) → founder (light) → mission (dark grey) → story
- * (light) → belief (dark grey) → team (light) → testimonials (grey). The footer CTA
- * is the closing beat.
+ * /about — eight sections matching the About-Page-Design reference.
+ * Header, footer, contact bar and yellow bars come from the root layout.
  */
 export default function AboutPage() {
   return (
@@ -27,6 +21,7 @@ export default function AboutPage() {
       <AboutBelief />
       <AboutTeam />
       <AboutTestimonials />
+      <AboutCta />
     </>
   );
 }

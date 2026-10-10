@@ -1,122 +1,93 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import Reveal from '@/components/ui/Reveal';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import styles from './AboutTeam.module.css';
 
 /**
- * Frame 6 — our team.
+ * Section 6 — Team (white ground).
  *
- * Light ground. Mono eyebrow "OUR TEAM", heading, supporting line, then three
- * member cards in a row. Each card: portrait photo, name, role, LinkedIn link.
+ * Three cards: a tinted gradient shell, a framed portrait with zoom hover, and a bar on
+ * the photo carrying name, role and a LinkedIn icon button.
  *
- * ⚠️ PLACEHOLDERS — see inline comments:
- *   - LinkedIn URLs: all three use "#" — supply real URLs.
- *   - Ashish photo: placeholder (wwisermind-built-in-India image) — supply a
- *     portrait at 1:1 ratio, ideally 480×480px or larger, WebP preferred.
- *   - Kmelia photo: placeholder (process isometric) — supply a portrait at 1:1
- *     ratio, ideally 480×480px or larger, WebP preferred.
+ * ⚠️ PLACEHOLDER — LinkedIn URLs are "#" until real profile URLs are supplied.
+ * ⚠️ PLACEHOLDER — Ashish and Kmelia portraits use slider images; replace with real portraits.
  */
-
-const TEAM = [
-  {
-    name: 'SrikaantH',
-    role: 'Co-founder',
-    /* Existing 700×700 WebP — 63 kB, within norms. */
-    photo: '/images/Srikaanth-Founder-wwisermind.webp',
-    photoAlt: 'SrikaantH, co-founder of wwisermind',
-    /* ⚠️ PLACEHOLDER: replace "#" with real LinkedIn URL */
-    linkedin: '#',
-  },
-  {
-    name: 'Ashish Kumar',
-    role: 'Co-founder',
-    /* ⚠️ PLACEHOLDER photo — supply a portrait at 1:1 ratio (480×480px min, WebP).
-       Using wwisermind-built-in-India as a stand-in; swap the src below once supplied. */
-    photo: '/images/wwisermind-built-in-India-for-world-therapists.webp',
-    photoAlt: 'Ashish Kumar, co-founder of wwisermind — placeholder portrait',
-    /* ⚠️ PLACEHOLDER: replace "#" with real LinkedIn URL */
-    linkedin: '#',
-  },
-  {
-    name: 'Kmelia McKenzie',
-    role: 'Head of Business Development',
-    /* ⚠️ PLACEHOLDER photo — supply a portrait at 1:1 ratio (480×480px min, WebP).
-       Using process isometric as a stand-in; swap the src below once supplied. */
-    photo: '/images/process-isometric.webp',
-    photoAlt: 'Kmelia McKenzie, Head of Business Development — placeholder portrait',
-    /* ⚠️ PLACEHOLDER: replace "#" with real LinkedIn URL */
-    linkedin: '#',
-  },
-];
 
 function LinkedInIcon() {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      width="16"
-      height="16"
-      aria-hidden="true"
-    >
-      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm1.39 9.94v-8.37H5.5v8.37h2.77z" />
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
     </svg>
   );
 }
+
+const team = [
+  {
+    name: 'SrikaantH',
+    role: 'Co-founder & Strategy Lead',
+    photo: '/images/Srikaanth-Founder-wwisermind.webp',
+    photoAlt: 'SrikaantH, co-founder of wwisermind',
+    linkedin: '#', // ⚠️ PLACEHOLDER
+  },
+  {
+    name: 'Ashish Kumar',
+    role: 'Design & Development',
+    photo: '/images/slider1.webp', // ⚠️ PLACEHOLDER — replace with Ashish's portrait
+    photoAlt: 'Ashish Kumar, design and development at wwisermind',
+    linkedin: '#', // ⚠️ PLACEHOLDER
+  },
+  {
+    name: 'Kmelia McKenzie',
+    role: 'Client Success & SEO',
+    photo: '/images/slider3.webp', // ⚠️ PLACEHOLDER — replace with Kmelia's portrait
+    photoAlt: 'Kmelia McKenzie, client success and SEO at wwisermind',
+    linkedin: '#', // ⚠️ PLACEHOLDER
+  },
+];
 
 export default function AboutTeam() {
   return (
     <section className={styles.section}>
       <div className="container">
-        <Reveal as="header" damping={220}>
-          <p className={styles.eyebrow} data-reveal="0">Our team</p>
+        <Reveal as="header" className={styles.header}>
+          <p className={styles.eyebrow} data-reveal="0">The team</p>
           <ScrollReveal
-            text="The people behind the work."
+            text={"The people behind\nthe studio."}
             className={styles.heading}
-            start={0.82}
-            end={0.4}
           />
-          <p className={styles.lede} data-reveal="2">
-            A small studio by design. Everyone here works on mental health only.
-          </p>
         </Reveal>
 
-        <Reveal className={styles.cards}>
-          {TEAM.map((member, index) => (
-            <article className={styles.card} key={member.name} data-reveal={String(index)}>
-              <figure className={styles.portraitFrame}>
+        <Reveal as="ul" className={styles.cards}>
+          {team.map((member, i) => (
+            <li key={member.name} className={styles.card} data-reveal={String(i)}>
+              {/* Framed portrait: consistent ratio, border + shadow, zoom on hover */}
+              <figure className={styles.portrait}>
                 <Image
                   src={member.photo}
                   alt={member.photoAlt}
                   fill
-                  sizes="(max-width: 640px) 80vw, (max-width: 1023px) 40vw, 360px"
-                  className={styles.portrait}
+                  sizes="(max-width: 640px) 90vw, (max-width: 1023px) 40vw, 380px"
+                  className={styles.portraitImg}
                 />
-                <span className={styles.shine} aria-hidden="true" />
-              </figure>
 
-              <div className={styles.meta}>
-                <p className={styles.name}>{member.name}</p>
-                <p className={styles.role}>{member.role}</p>
-                {member.linkedin !== '#' ? (
-                  <Link
+                {/* Name, role and the LinkedIn icon button share one bar on the photo */}
+                <figcaption className={styles.bar}>
+                  <span className={styles.who}>
+                    <span className={styles.name}>{member.name}</span>
+                    <span className={styles.role}>{member.role}</span>
+                  </span>
+                  <a
                     href={member.linkedin}
                     className={styles.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     aria-label={`${member.name} on LinkedIn`}
+                    rel="noopener noreferrer"
+                    target="_blank"
                   >
                     <LinkedInIcon />
-                    LinkedIn
-                  </Link>
-                ) : (
-                  <span className={styles.linkedinPlaceholder} aria-hidden="true">
-                    <LinkedInIcon />
-                    LinkedIn ↗
-                  </span>
-                )}
-              </div>
-            </article>
+                  </a>
+                </figcaption>
+              </figure>
+            </li>
           ))}
         </Reveal>
       </div>

@@ -1,125 +1,254 @@
-/* /about frame 3 — mission and vision.
-   Dark grey ground (#1a1a1a). Two columns + a wide image below.
-   Matches the dark band treatment from Audience.module.css. */
+/* /about frame 3 — mission/vision (soft blue tint ground).
+
+   Centred header, then two surfaced cards on the left and a photo on the right that fills
+   the full column height. The tint, the gradient hairline on each card and the yellow icon
+   chip keep the section from reading as empty. */
 
 .section {
-  padding-block: 112px 0;
-  background-color: #1a1a1a;
-  color: var(--color-white);
+  padding-block: 112px;
+  background: linear-gradient(180deg, #f1f6ff 0%, #ffffff 100%);
 }
 
-/* --- two-column grid -------------------------------------------------------- */
-.columns {
+.header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+.heading {
+  margin-top: 16px;
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: var(--fw-semibold);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  text-wrap: initial;
+}
+
+.grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
+  gap: 24px;
+  align-items: stretch; /* photo and card stack are the same height */
 }
 
-.column {
-  padding-top: 8px;
+/* ── cards ────────────────────────────────────────────────────────────── */
+.left {
+  display: flex;
 }
 
-/* Subheading at the section-heading scale, in yellow on the dark ground — matching
-   how the audience pages handle headings on dark. */
-.columnHead {
-  font-size: clamp(20px, 2vw, 26px);
-  font-weight: var(--fw-semibold);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  color: #fafb87; /* the dark-headline yellow from Controls.module.css */
-}
-
-.columnBody {
-  margin-top: 18px;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
-  max-width: 48ch;
-  text-wrap: pretty;
-}
-
-/* --- check list ------------------------------------------------------------ */
-.claims {
-  margin-top: 28px;
+.cards {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-}
-
-.claim {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  color: rgba(255, 255, 255, 0.72);
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
-}
-
-.check {
-  flex: none;
-  color: #fafb87;
-  font-size: 14px;
-  line-height: var(--lh-body);
-}
-
-/* --- wide image ------------------------------------------------------------ */
-.imageWrap {
-  margin-top: 80px;
-}
-
-.figure {
-  composes: frame from '../ui/MediaHover.module.css';
-  position: relative;
+  gap: 16px;
   width: 100%;
-  aspect-ratio: 16 / 7;
-  border-radius: 20px 20px 0 0;
-  background-color: #2a2a2a;
+}
+
+.card {
+  position: relative;
   overflow: hidden;
+  border-radius: 16px;
+  background: linear-gradient(160deg, #e6f0ff 0%, #f4f8ff 100%);
+  border: 1px solid rgba(20, 110, 245, 0.14);
+  transition: box-shadow 0.35s var(--ease);
 }
 
-.image {
+/* gradient hairline across the top */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-brand), #fafb87);
+}
+
+.cardOpen {
+  flex: 1; /* the open card takes the spare height so the stack matches the photo */
+  box-shadow: 0 16px 40px rgba(20, 110, 245, 0.12);
+}
+
+.cardHead {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 28px 32px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  color: var(--color-brand);
+  font: inherit;
+}
+
+.cardTitle {
+  font-size: clamp(24px, 2.4vw, 34px);
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+/* plus that turns into a cross when open, on a yellow chip */
+.cardIcon {
+  position: relative;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background-color: #fafb87;
+  transition: transform 0.3s var(--ease);
+}
+
+.cardIcon::before,
+.cardIcon::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 2px;
+  margin: -1px 0 0 -7px;
+  background-color: var(--color-brand);
+  border-radius: 2px;
+}
+
+.cardIcon::after {
+  transform: rotate(90deg);
+}
+
+.cardOpen .cardIcon {
+  transform: rotate(45deg);
+}
+
+/* ── panel ────────────────────────────────────────────────────────────── */
+.panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s var(--ease);
+}
+
+.cardOpen .panel {
+  grid-template-rows: 1fr;
+}
+
+.panelInner {
+  overflow: hidden;
+  min-height: 0;
+  margin-inline: 32px;
+}
+
+.cardOpen .panelInner {
+  padding-bottom: 32px;
+  border-top: 1px solid rgba(20, 110, 245, 0.16);
+}
+
+.panelHeading {
+  margin-top: 24px;
+  font-size: 20px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: #0a1240;
+}
+
+.panelBody {
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #2b3350;
+  max-width: 52ch;
+}
+
+.points {
+  margin-top: 18px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.points li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #0a1240;
+}
+
+.points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--color-brand);
+}
+
+/* ── photo — fills the column height edge to edge ─────────────────────── */
+.photo {
+  position: relative;
+  margin: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 460px;
+}
+
+.photoImg {
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
 }
 
-.shine {
-  composes: shine from '../ui/MediaHover.module.css';
+/* blue wash up the foot of the photo ties it to the cards */
+.photoGlow {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 40%;
+  background: linear-gradient(to top, rgba(20, 110, 245, 0.28), transparent);
+  pointer-events: none;
 }
 
-/* --- responsive ----------------------------------------------------------- */
+/* ── responsive ────────────────────────────────────────────────────────── */
 @media (max-width: 1279px) {
   .section {
-    padding-top: 88px;
-  }
-
-  .columns {
-    gap: 48px;
+    padding-block: 96px;
   }
 }
 
 @media (max-width: 1023px) {
-  .columns {
+  .grid {
     grid-template-columns: 1fr;
-    gap: 48px;
   }
 
-  .figure {
-    aspect-ratio: 16 / 9;
+  .photo {
+    min-height: 0;
+    aspect-ratio: 4 / 3;
   }
 }
 
 @media (max-width: 640px) {
   .section {
-    padding-top: 64px;
+    padding-block: 64px;
   }
 
-  .figure {
-    aspect-ratio: 4 / 3;
-    border-radius: 14px 14px 0 0;
+  .header {
+    margin-bottom: 36px;
   }
 
-  .imageWrap {
-    margin-top: 56px;
+  .cardHead {
+    padding: 22px 20px;
+  }
+
+  .panelInner {
+    margin-inline: 20px;
   }
 }

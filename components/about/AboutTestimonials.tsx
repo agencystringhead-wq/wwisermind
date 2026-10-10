@@ -8,42 +8,38 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 import styles from './AboutTestimonials.module.css';
 
 /**
- * Frame 7 — testimonials.
+ * Section 7 — Testimonials (grey ground).
  *
- * Light grey ground (#f5f5f5). Reuses the ServiceTestimonials layout exactly:
- * left column is eyebrow + heading + supporting line; right column is the quote
- * between two hairlines, stars, text, author row + arrows (hidden if only one).
- *
- * We have one verified testimonial (Matt Erdman). The carousel controls are
- * hidden when there is only one item.
+ * Adapted from ServiceTestimonials with the same carousel mechanics, without
+ * needing a service-specific `block` or `ground` prop.
  */
-const ITEMS = [testimonials['matt-erdman']];
+
+const items = Object.values(testimonials);
 
 export default function AboutTestimonials() {
   const [index, setIndex] = useState(0);
-  const current = ITEMS[index];
-  const many = ITEMS.length > 1;
+  const current = items[index];
+  const many = items.length > 1;
 
-  const step = (by: number) =>
-    setIndex((v) => (v + by + ITEMS.length) % ITEMS.length);
+  const step = (by: number) => setIndex((v) => (v + by + items.length) % items.length);
 
   return (
     <section className={styles.section}>
       <div className={`container ${styles.grid}`}>
+        {/* Left — heading */}
         <div>
-          <p className={styles.eyebrow}>Testimonials</p>
+          <p className={styles.eyebrow}>What therapists say</p>
           <ScrollReveal
-            text="What therapists say about working with us."
+            text={"Real results.\nReal words."}
             className={styles.heading}
-            start={0.82}
-            end={0.45}
           />
           <p className={styles.paragraph}>
-            We measure success by whether a practice stays with us. These are their
-            words.
+            We let the outcomes speak. These are the people we&apos;ve worked alongside —
+            in their own words.
           </p>
         </div>
 
+        {/* Right — quote */}
         <figure className={styles.quote} aria-live="polite">
           <span
             className={styles.stars}
@@ -59,7 +55,7 @@ export default function AboutTestimonials() {
           </span>
 
           <blockquote className={styles.text}>
-            <p>"{current.quote}"</p>
+            <p>&ldquo;{current.quote}&rdquo;</p>
           </blockquote>
 
           <div className={styles.foot}>
@@ -86,7 +82,7 @@ export default function AboutTestimonials() {
                   <ArrowLeftIcon />
                 </button>
                 <span className={styles.count}>
-                  {index + 1} / {ITEMS.length}
+                  {index + 1} / {items.length}
                 </span>
                 <button
                   type="button"

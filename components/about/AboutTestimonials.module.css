@@ -1,6 +1,5 @@
-/* /about frame 7 — testimonials.
-   Light grey ground. Same layout as ServiceTestimonials: left column + right quote.
-   Composed values from ServiceTestimonials.module.css where possible. */
+/* /about frame 7 — testimonials (grey ground).
+   Mirrors ServiceTestimonials.module.css layout. */
 
 .section {
   padding-block: 112px;
@@ -14,35 +13,37 @@
   align-items: start;
 }
 
-/* --- left column ----------------------------------------------------------- */
 .eyebrow {
-  composes: monoLabel from '../ui/Controls.module.css';
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
 }
 
 .heading {
   margin-top: 16px;
-  font-size: clamp(24px, 2.6vw, 34px);
+  font-size: clamp(24px, 2.8vw, 42px);
   font-weight: var(--fw-semibold);
-  line-height: 1.2;
-  letter-spacing: -0.025em;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-wrap: initial;
   max-width: 12em;
 }
 
 .paragraph {
   margin-top: 20px;
-  color: var(--color-muted);
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--color-body, var(--color-ink));
   max-width: 36ch;
-  text-wrap: pretty;
 }
 
-/* --- right — the quote ----------------------------------------------------- */
-/* Between two hairlines, as in ServiceTestimonials. */
+/* ── quote ────────────────────────────────────────────────────────────── */
 .quote {
   padding-block: 32px;
-  border-top: 1px solid var(--color-divider);
-  border-bottom: 1px solid var(--color-divider);
+  border-top: 1px solid var(--color-line, rgba(0, 0, 0, 0.1));
+  border-bottom: 1px solid var(--color-line, rgba(0, 0, 0, 0.1));
 }
 
 .stars {
@@ -57,7 +58,7 @@
 }
 
 .starOff {
-  color: var(--color-line);
+  color: var(--color-line, rgba(0, 0, 0, 0.1));
 }
 
 .text {
@@ -67,7 +68,7 @@
 .text p {
   max-width: 52ch;
   font-size: clamp(18px, 1.6vw, 22px);
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-medium, 500);
   line-height: 1.5;
   letter-spacing: -0.015em;
   text-wrap: pretty;
@@ -93,14 +94,12 @@
 
 .photo {
   grid-row: 1 / span 2;
-  width: 44px;
-  height: 44px;
   border-radius: 50%;
   object-fit: cover;
 }
 
 .name {
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-bold, 700);
 }
 
 .role {
@@ -108,7 +107,6 @@
   font-size: 14px;
 }
 
-/* --- controls (hidden when only one testimonial) --------------------------- */
 .controls {
   display: flex;
   align-items: center;
@@ -116,9 +114,23 @@
 }
 
 .control {
-  composes: control from '../sections/Problems.module.css';
   width: 36px;
   height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--color-line, rgba(0, 0, 0, 0.1));
+  background: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--dur) var(--ease),
+              border-color var(--dur) var(--ease);
+}
+
+.control:hover {
+  background-color: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-white);
 }
 
 .control svg {
@@ -136,10 +148,10 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* --- responsive ----------------------------------------------------------- */
+/* ── responsive ────────────────────────────────────────────────────────── */
 @media (max-width: 1279px) {
   .section {
-    padding-block: 88px;
+    padding-block: 96px;
   }
 
   .grid {

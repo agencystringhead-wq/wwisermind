@@ -1,82 +1,183 @@
-/* /about frame 1 — hero.
-   White ground, full container. The headline is the page's h1 at the audience-hero
-   scale; the wide image below it takes the full container at a 16:7 ratio. */
+/* /about frame 1 — hero (white ground).
+
+   Two-part layout:
+   · Text block: mono eyebrow + h1 left, paragraph right at 1280+, stacked below at 1023.
+   · Two images on a 63/37 grid: left wide + taller, right narrow + shorter, shared baseline.
+   · Yellow stat card overlaid bottom-right of the left image.
+   · Logo marquee below the images (handled by AboutMarquee). */
 
 .section {
   padding-top: 64px;
-  padding-bottom: 0;
-  background-color: var(--color-white);
+  padding-bottom: 0; /* marquee provides the bottom breathing room */
 }
 
-/* --- the text block -------------------------------------------------------- */
+/* ── text block ──────────────────────────────────────────────────────── */
+.textBlock {
+  margin-bottom: 72px;
+}
+
 .eyebrow {
-  composes: monoLabel from '../ui/Controls.module.css';
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brand);
 }
 
-.headlineWrap {
-  margin-top: 28px;
+.headlineRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  margin-top: 20px;
 }
 
-/* The audience-hero title scale: clamp from 36 at 640 to 64 at 1440. Semibold and
-   tightly tracked, as the AudienceHero.module.css title is. */
+.headlineCol {
+  /* keeps the headline away from the right gutter */
+}
+
 .headline {
   font-size: clamp(36px, 4.8vw, 64px);
   font-weight: var(--fw-semibold);
   line-height: 1.06;
   letter-spacing: -0.035em;
   text-wrap: initial;
-  max-width: 18em;
 }
 
 .paragraph {
-  max-width: 60ch;
-  margin-top: 28px;
-  color: var(--color-muted);
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
-  text-wrap: pretty;
+  margin-top: 12px;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--color-body, var(--color-ink));
+  max-width: 42ch;
 }
 
-/* --- the wide image ------------------------------------------------------- */
-.imageWrap {
-  margin-top: 64px;
+/* ── image pair ───────────────────────────────────────────────────────── */
+/* Real column tracks: 63 / 37. The wide left frame is also the taller one; the narrow
+   right frame sits on the same baseline and stops short of the left's top edge. */
+.images {
+  display: grid;
+  grid-template-columns: 63fr 37fr;
+  align-items: end;
+  gap: 24px;
 }
 
-/* 16:7 ratio, full container width, clipped at 24px radius. The figure is what clips
-   and what carries the hover, so it must be position:relative with overflow:hidden —
-   composed from MediaHover via the frame class on the figure itself. */
-.figure {
-  composes: frame from '../ui/MediaHover.module.css';
+/* Shared frame: overflow-hidden + hover zoom (MediaHover.module.css pattern) */
+.imgFrame {
   position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 7;
-  border-radius: 20px;
-  background-color: var(--color-surface);
+  overflow: hidden;
+  border-radius: 16px;
+  margin: 0;
 }
 
-.image {
+.imgFrame:hover .img {
+  transform: scale(1.04);
+}
+
+.img {
   object-fit: cover;
-  object-position: center;
+  transition: transform 0.55s var(--ease);
+  display: block;
 }
 
+/* The shine overlay */
 .shine {
-  composes: shine from '../ui/MediaHover.module.css';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.55s var(--ease);
+  pointer-events: none;
+  z-index: 1;
 }
 
-/* --- responsive ------------------------------------------------------------ */
+.imgFrame:hover .shine {
+  opacity: 1;
+}
+
+/* LEFT — wide, multiple people, the taller frame */
+.imgLeft {
+  aspect-ratio: 16 / 11;
+}
+
+/* RIGHT — narrow, one person, shorter than the left */
+.imgRight {
+  aspect-ratio: 1 / 1;
+}
+
+/* ── stat card ────────────────────────────────────────────────────────── */
+.stat {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  background-color: #fafb87;
+  color: #111;
+  border-radius: 8px;
+  padding: 20px 28px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 180px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.statValue {
+  font-size: 40px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  max-width: 14ch;
+}
+
+/* ── responsive ────────────────────────────────────────────────────────── */
 @media (max-width: 1279px) {
-  .section {
-    padding-top: 52px;
+  .headline {
+    font-size: clamp(32px, 4vw, 54px);
   }
 
-  .imageWrap {
-    margin-top: 52px;
-  }
 }
 
 @media (max-width: 1023px) {
-  .figure {
-    aspect-ratio: 16 / 9;
+  .headlineRow {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .paragraph {
+    margin-top: 0;
+    max-width: 56ch;
+  }
+
+  .images {
+    gap: 16px;
+  }
+
+  .imgLeft {
+    aspect-ratio: 4 / 3.6;
+  }
+
+  .imgRight {
+    aspect-ratio: 3 / 3.4;
+  }
+
+  .stat {
+    right: 16px;
+    padding: 16px 20px;
+  }
+
+  .statValue {
+    font-size: 32px;
   }
 }
 
@@ -85,12 +186,33 @@
     padding-top: 40px;
   }
 
-  .imageWrap {
-    margin-top: 40px;
+  .textBlock {
+    margin-bottom: 44px;
   }
 
-  .figure {
+  .images {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .imgLeft {
     aspect-ratio: 4 / 3;
-    border-radius: 14px;
+  }
+
+  .imgRight {
+    width: 80%;
+    justify-self: end;
+    aspect-ratio: 3 / 3.2;
+  }
+
+  .stat {
+    bottom: 16px;
+    right: 0;
+    padding: 14px 18px;
+    min-width: 140px;
+  }
+
+  .statValue {
+    font-size: 28px;
   }
 }
