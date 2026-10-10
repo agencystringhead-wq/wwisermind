@@ -16,8 +16,8 @@
 
 import type { ServiceIconName } from '@/components/ui/icons';
 
-/** True while the copy is a draft. Set false once every `confirm` below is answered. */
-export const SHOW_CONFIRM_MARKERS = true;
+/** True while the copy is a draft. Off for launch; set true to see which claims were unverified. */
+export const SHOW_CONFIRM_MARKERS = false;
 
 export type Confirm = { confirm?: string };
 
