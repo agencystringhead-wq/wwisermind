@@ -221,7 +221,7 @@ export const megaPanels: Record<string, MegaPanel> = {
         lead: 'Learn',
         title: 'The Words',
         links: [
-          { label: 'Blog', href: '/#blog', desc: 'Plain-English articles' },
+          { label: 'Blog', href: '/blog', desc: 'Plain-English articles' },
           { label: 'FAQ’s', href: '/faq', desc: 'Answered before you ask' },
         ],
       },
@@ -866,6 +866,7 @@ export const footerMain = {
     [
       { label: 'About', href: '/about' },
       { label: 'Our Process', href: '/process' },
+      { label: 'Blog', href: '/blog' },
       { label: 'Freebies', href: '#freebies' },
       { label: 'Tools', href: '#tools' },
     ],
