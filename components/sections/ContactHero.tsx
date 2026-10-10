@@ -23,21 +23,50 @@ import styles from './ContactHero.module.css';
  * then the content above both. The section still paints the flat navy underneath, so
  * before the poster arrives there is the colour, never a hole.
  */
-export default function ContactHero() {
-  const { tabs, hero } = contactPage;
-  const [source] = hero.background.sources;
+type HeroCopy = {
+  eyebrow: string;
+  heading: string;
+  lead: string;
+  primary: { label: string; href: string };
+};
+
+/**
+ * With no props it is the contact page's hero. Another page hands it its own `hero` copy and
+ * — optionally — `tabs={null}` to drop the pill strip, and `overlap={false}` when nothing
+ * rises over the hero's foot, which takes the 150px the mosaic needs back out of the padding.
+ * The clip, the veil and the stack are unchanged, so the two heroes cannot drift.
+ */
+export default function ContactHero({
+  hero = contactPage.hero,
+  tabs = contactPage.tabs,
+  overlap = true,
+}: {
+  hero?: HeroCopy;
+  tabs?: typeof contactPage.tabs | null;
+  overlap?: boolean;
+} = {}) {
+  const { background } = contactPage.hero;
+  const [source] = background.sources;
+  const sectionClass = [
+    styles.section,
+    overlap ? '' : styles.flush,
+    tabs ? '' : styles.noTabs,
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
-    <section className={styles.section}>
+    <section className={sectionClass}>
       <BackgroundVideo
         src={source.src}
         type={source.type}
-        poster={hero.background.poster}
+        poster={background.poster}
         className={styles.video}
       />
       <span className={styles.veil} aria-hidden="true" />
 
       <div className={`container ${styles.inner}`}>
+        {tabs ? (
         <nav className={styles.tabs} aria-label="Contact options">
           <ul className={styles.tabList}>
             {tabs.map((tab) => {
@@ -63,6 +92,7 @@ export default function ContactHero() {
             })}
           </ul>
         </nav>
+        ) : null}
 
         <p className={styles.eyebrow}>{hero.eyebrow}</p>
         <h1 className={styles.heading}>{hero.heading}</h1>

@@ -52,7 +52,7 @@ export default function Reveal({
   damping = DAMPING,
   children,
 }: {
-  as?: 'div' | 'section' | 'header' | 'article' | 'figure' | 'ul' | 'li';
+  as?: 'div' | 'section' | 'header' | 'article' | 'figure' | 'ul' | 'ol' | 'li';
   className?: string;
   /** A longer glide for a block that arrives on page load rather than on scroll. */
   damping?: number;

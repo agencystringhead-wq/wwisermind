@@ -21,6 +21,18 @@
   padding-block: 60px calc(56px + 150px);
 }
 
+/* No mosaic rises over this hero's foot: the padding is the frame's own, nothing more. The
+   doubled selector outranks `.section` and its breakpoint rule whatever order they land in. */
+.section.flush {
+  padding-block: 60px 88px;
+}
+
+/* Without the pill strip the eyebrow is the first thing in the stack, so the 64px that
+   separated it from the strip becomes a small lead-in under the header. */
+.noTabs .eyebrow {
+  margin-top: 28px;
+}
+
 /* --- the backdrop -------------------------------------------------------------- */
 /* Three layers, back to front: the clip, the veil, the content. */
 .video,
@@ -196,6 +208,14 @@
 
   .eyebrow {
     margin-top: 52px;
+  }
+
+  .section.flush {
+    padding-block: 52px 72px;
+  }
+
+  .noTabs .eyebrow {
+    margin-top: 24px;
   }
 }
 

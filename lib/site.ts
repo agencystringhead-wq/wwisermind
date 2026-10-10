@@ -212,7 +212,7 @@ export const megaPanels: Record<string, MegaPanel> = {
         title: 'The People',
         links: [
           { label: 'About Us', href: '/about', desc: 'The story behind wwisermind' },
-          { label: 'Our Process', href: '/#process', desc: 'Three steps, no mystery' },
+          { label: 'Our Process', href: '/process', desc: 'Three steps, no mystery' },
           { label: 'Reviews', href: '/#reviews', desc: 'What therapists say' },
         ],
       },
