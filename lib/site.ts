@@ -36,7 +36,7 @@ export const mainNav: NavItem[] = [
   { label: 'Services', href: '#services' },
   { label: 'Results', href: '/results' },
   { label: 'Who We Help', href: '#who-we-help' },
-  { label: 'Pricing', href: '#pricing' },
+  { label: 'Pricing', href: '/pricing' },
   { label: 'About', href: '/about' },
   { label: 'Freebies', href: '#freebies' },
   { label: 'Tools', href: '#tools' },
@@ -177,13 +177,13 @@ export const megaPanels: Record<string, MegaPanel> = {
       {
         lead: 'Build',
         title: 'Website Packages',
-        /* TODO: the service pages carry no pricing frame any more, so these land on the
-           page's top and the strip below promises a price the page does not show. Both
-           want a pricing page, or the strip wants new words. */
+        /* Every package has its own service page, so each link goes there; the same
+           packages, with their prices, are cards on /pricing (#<slug>). */
         links: [
           { label: 'One Week Website', href: serviceHref('one-week-website') },
           { label: 'Custom Website Design', href: serviceHref('custom-website-design') },
           { label: 'Website Hosting', href: serviceHref('website-hosting') },
+          { label: 'Website Care Plans', href: serviceHref('website-care-plans'), desc: 'Priced on its own page' },
         ],
       },
       {
@@ -201,8 +201,12 @@ export const megaPanels: Record<string, MegaPanel> = {
       eyebrow: 'Fair & Flexible',
       lead: 'No long-term contracts.',
       body: 'Simple plans you can cancel anytime.',
+      link: { label: 'Compare all packages', href: '/pricing' },
     },
-    strip: { text: 'Every price is on the page. No ‘speak to a coordinator.’' },
+    strip: {
+      text: 'Every price is on the page. No ‘speak to a coordinator.’',
+      link: { label: 'See full pricing', href: '/pricing' },
+    },
   },
 
   About: {
@@ -861,7 +865,7 @@ export const footerMain = {
       { label: 'Who We Help', href: '#who-we-help' },
       { label: 'Results', href: '/results' },
       { label: 'Reviews', href: '/reviews' },
-      { label: 'Pricing', href: '#pricing' },
+      { label: 'Pricing', href: '/pricing' },
     ],
     [
       { label: 'About', href: '/about' },
