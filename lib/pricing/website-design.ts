@@ -13,7 +13,7 @@ import {
 } from '@/lib/pricing/local-seo';
 import { ongoingListing } from '@/lib/pricing/ongoing-seo';
 import { oneTimeListing } from '@/lib/pricing/one-time-seo';
-import { serviceHref } from '@/lib/service-slugs';
+import { carePlansPath } from '@/lib/pricing/care-plans';
 
 /* ==========================================================================
    /pricing/website-design.
@@ -56,6 +56,14 @@ const afterTermFaq = '';
 const earlyExitTerms = '';
 /* TODO: write the ownership detail. Appended to the ownership FAQ answer; left out while empty. */
 const ownershipDetail = '';
+
+/** How the other pages list this one, so a price changed above changes there. */
+export const websiteDesignListing = {
+  name: 'One-Week Website',
+  price: `from ${money(monthlyPrice)}`,
+  unit: '/mo',
+  href: websiteDesignPath,
+};
 
 /** The offers for structured data, built from the same two prices. */
 export const offers = [
@@ -152,7 +160,7 @@ export const packages: LocalSeoPackage[] = [
       {
         label: 'Hosting & care',
         value: 'Optional add-on',
-        valueHref: serviceHref('website-care-plans'),
+        valueHref: carePlansPath,
       },
     ],
     cta: { label: 'Get started', href: '/contact?plan=website-full' },

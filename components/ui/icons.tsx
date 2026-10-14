@@ -220,6 +220,28 @@ export function ShieldIcon(props: IconProps) {
   );
 }
 
+/** The shield with a plus in place of the tick, for a plan that adds to another. */
+export function ShieldPlusIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M12 3 4.5 6v5c0 4.6 3.2 8.4 7.5 10 4.3-1.6 7.5-5.4 7.5-10V6z" />
+      <path d="M12 9v6M9 12h6" />
+    </Icon>
+  );
+}
+
+export function HandshakeIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="m11 17 2 2a1.4 1.4 0 0 0 2-2" />
+      <path d="m14 14 2.5 2.5a1.4 1.4 0 0 0 2-2l-3.8-3.8a2.8 2.8 0 0 0-4 0l-.7.7a1.4 1.4 0 0 1-2 0 1.4 1.4 0 0 1 0-2L10 5.5a5.6 5.6 0 0 1 4-1.5c1.2 0 2.3.4 3.2 1" />
+      <path d="m21 3 1 11h-2" />
+      <path d="M3 3 2 14l6.5 6.5a1.4 1.4 0 0 0 2-2" />
+      <path d="M3 4h8" />
+    </Icon>
+  );
+}
+
 export function BoltIcon(props: IconProps) {
   return (
     <Icon {...props}>

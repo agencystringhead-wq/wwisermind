@@ -111,7 +111,17 @@ export const fitCallout: FitCallout = {
 
 /* --- 4. packages --------------------------------------------------------------------- */
 
-export type PackageIcon = 'growth' | 'rocket' | 'map' | 'person' | 'users' | 'card' | 'calendar';
+export type PackageIcon =
+  | 'growth'
+  | 'rocket'
+  | 'map'
+  | 'person'
+  | 'users'
+  | 'card'
+  | 'calendar'
+  | 'shield'
+  | 'shieldPlus'
+  | 'handshake';
 
 /** A sentence made of plain text and links, for the small line under a plan grid. */
 export type LineSegment = { text: string } | { label: string; href: string };

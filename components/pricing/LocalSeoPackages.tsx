@@ -8,6 +8,9 @@ import {
   PersonIcon,
   PlusCircleIcon,
   RocketIcon,
+  ShieldIcon,
+  ShieldPlusIcon,
+  HandshakeIcon,
   UsersIcon,
 } from '@/components/ui/icons';
 import type { LineSegment, LocalSeoPackage, PackageIcon } from '@/lib/pricing/local-seo';
@@ -21,6 +24,9 @@ const packageIcons: Record<PackageIcon, typeof RocketIcon> = {
   users: UsersIcon,
   card: CreditCardIcon,
   calendar: CalendarIcon,
+  shield: ShieldIcon,
+  shieldPlus: ShieldPlusIcon,
+  handshake: HandshakeIcon,
 };
 
 const dollars = (price: number) => `$${price.toLocaleString('en-US')}`;
@@ -72,13 +78,14 @@ export default function LocalSeoPackages({
   packages: LocalSeoPackage[];
   every: { title: string; items: string[] };
   band?: { title: string; body: string; button: { label: string; href: string } };
-  /** Printed under the "every plan" row; left out while empty. */
-  terms?: string;
+  /** Printed under the "every plan" row, one small line each; left out while empty. */
+  terms?: string | string[];
   more?: LineSegment[];
   columns?: 2 | 3;
 }) {
   const reserveNote = packages.some((pkg) => pkg.priceNote);
-  const everyCols = every.items.length === 6 ? 3 : Math.min(every.items.length, 4);
+  const everyCols = every.items.length >= 5 ? 3 : Math.min(every.items.length, 4);
+  const termLines = (Array.isArray(terms) ? terms : terms ? [terms] : []).filter(Boolean);
 
   return (
     <section className={styles.sectionGrey} id={id}>
@@ -166,7 +173,11 @@ export default function LocalSeoPackages({
           </ul>
         </div>
 
-        {terms ? <p className={styles.terms}>{terms}</p> : null}
+        {termLines.map((line) => (
+          <p className={styles.terms} key={line}>
+            {line}
+          </p>
+        ))}
 
         {more && more.length > 0 ? (
           <p className={styles.moreOptions}>

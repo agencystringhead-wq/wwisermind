@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { ProcessStage } from '@/lib/pricing/local-seo';
 import styles from './LocalSeo.module.css';
 
@@ -9,12 +10,15 @@ export default function LocalSeoProcess({
   stages,
   tone = 'white',
   note,
+  link,
 }: {
-  copy: { eyebrow?: string; title: string; sub: string };
+  copy: { eyebrow?: string; title: string; sub?: string };
   stages: ProcessStage[];
   tone?: 'white' | 'grey';
   /** A line under the timeline. */
   note?: string;
+  /** A small line of text and a link under the timeline. */
+  link?: { text: string; label: string; href: string };
 }) {
   return (
     <section className={tone === 'grey' ? styles.sectionGrey : styles.section}>
@@ -22,7 +26,7 @@ export default function LocalSeoProcess({
         <header className={styles.head}>
           {copy.eyebrow ? <p className={styles.eyebrow}>{copy.eyebrow}</p> : null}
           <h2 className={styles.heading}>{copy.title}</h2>
-          <p className={styles.lede}>{copy.sub}</p>
+          {copy.sub ? <p className={styles.lede}>{copy.sub}</p> : null}
         </header>
 
         <ol
@@ -44,6 +48,14 @@ export default function LocalSeoProcess({
         </ol>
 
         {note ? <p className={styles.stagesNote}>{note}</p> : null}
+        {link ? (
+          <p className={styles.stagesNote}>
+            {link.text}{' '}
+            <Link href={link.href} className={styles.inlineLink}>
+              {link.label}
+            </Link>
+          </p>
+        ) : null}
       </div>
     </section>
   );

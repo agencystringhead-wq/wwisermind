@@ -7,17 +7,19 @@ export default function LocalSeoFit({
   copy,
   cards,
   callout,
+  tone = 'white',
 }: {
-  copy: { title: string; sub: string };
+  copy: { title: string; sub?: string };
   cards: FitCard[];
   callout: FitCallout;
+  tone?: 'white' | 'grey';
 }) {
   return (
-    <section className={styles.section}>
+    <section className={tone === 'grey' ? styles.sectionGrey : styles.section}>
       <div className="container">
         <header className={styles.head}>
           <h2 className={styles.heading}>{copy.title}</h2>
-          <p className={styles.lede}>{copy.sub}</p>
+          {copy.sub ? <p className={styles.lede}>{copy.sub}</p> : null}
         </header>
 
         <ul className={styles.fitGrid}>

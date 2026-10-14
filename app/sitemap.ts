@@ -9,7 +9,7 @@ export const dynamic = 'force-static';
 
 /** The top-level pages. Every one is a live route. Anchors such as the booking calendar
     (an in-page section of /contact, not a route of its own) are not pages and are not listed. */
-const PAGES = ['/', '/about', '/process', '/results', '/reviews', '/faq', '/pricing', '/pricing/local-seo', '/pricing/seo-audit', '/pricing/one-time-seo', '/pricing/seo', '/pricing/website-design', '/contact', '/blog'];
+const PAGES = ['/', '/about', '/process', '/results', '/reviews', '/faq', '/pricing', '/pricing/local-seo', '/pricing/seo-audit', '/pricing/one-time-seo', '/pricing/seo', '/pricing/website-design', '/pricing/care-plans', '/contact', '/blog'];
 
 /**
  * Every public page. A service page still flagged `draft` is left out, because it is sent

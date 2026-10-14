@@ -485,6 +485,33 @@
   color: var(--color-brand);
 }
 
+.terms + .terms {
+  margin-top: 8px;
+}
+
+.inlineLink {
+  font-weight: var(--fw-semibold);
+  text-decoration: underline;
+  text-decoration-color: var(--color-line);
+  text-underline-offset: 4px;
+  transition: color var(--dur) var(--ease);
+}
+
+.inlineLink:hover {
+  color: var(--color-brand);
+}
+
+.ctaButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.ctaGhost {
+  composes: buttonOutline from '../ui/Controls.module.css';
+}
+
 .stagesNote {
   max-width: 62ch;
   margin: 40px auto 0;
@@ -963,6 +990,15 @@
 
   .band .buttonBlue,
   .cta .buttonBlue {
+    width: 100%;
+  }
+
+  .ctaButtons {
+    flex-direction: column;
+    align-self: stretch;
+  }
+
+  .ctaGhost {
     width: 100%;
   }
 }

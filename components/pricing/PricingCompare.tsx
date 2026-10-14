@@ -13,17 +13,19 @@ export default function PricingCompare({
   copy,
   columns,
   rows,
+  tone = 'grey',
 }: {
   copy: { title: string; sub?: string };
   /** The heading of the criteria column, then one heading per option. */
   columns: string[];
   rows: CompareRow[];
+  tone?: 'white' | 'grey';
 }) {
   const [criteria, ...options] = columns;
   const last = options.length - 1;
 
   return (
-    <section className={local.sectionGrey}>
+    <section className={tone === 'white' ? local.section : local.sectionGrey}>
       <div className="container">
         <header className={local.head}>
           <h2 className={local.heading}>{copy.title}</h2>
