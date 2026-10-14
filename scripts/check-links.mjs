@@ -6,7 +6,7 @@ import { readdirSync, readFileSync, statSync, existsSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 
 const OUT = 'out';
-const ORIGIN = 'https://wwisermind.pages.dev';
+const ORIGIN = readFileSync(join('lib', 'site.ts'), 'utf8').match(/url: '(https:\/\/[^']+)'/)[1];
 
 const walk = (dir) =>
   readdirSync(dir).flatMap((name) => {
@@ -24,7 +24,12 @@ const urlOf = (file) => {
 const known = new Set(pages.map(urlOf));
 const assets = new Set(files.map((f) => '/' + relative(OUT, f).split(sep).join('/')));
 
-const OLD = [/^\/pricing\/[a-z-]+\/?$/, /^\/services\/[a-z-]+\/?$/];
+const OLD = new Set(
+  readFileSync(join('public', '_redirects'), 'utf8')
+    .split(/\r?\n/)
+    .filter((l) => l && !l.startsWith('#'))
+    .map((l) => l.trim().split(/\s+/)[0]),
+);
 const problems = [];
 const titles = new Map();
 const h1s = new Map();
@@ -53,17 +58,17 @@ for (const file of pages) {
     }
     const path = raw.split('#')[0].split('?')[0];
     if (!path.startsWith('/')) continue;
-    if (OLD.some((re) => re.test(path)) && !known.has(path.endsWith('/') ? path : path + '/'))
-      problems.push(`${url}: old URL ${raw}`);
+    if (OLD.has(path)) problems.push(`${url}: old URL ${raw}`);
     else if (assets.has(path)) continue;
     else if (!path.endsWith('/')) problems.push(`${url}: link without trailing slash ${raw}`);
     else if (!known.has(path)) problems.push(`${url}: link to missing page ${raw}`);
   }
 
   // Old addresses inside structured data and metadata.
-  for (const m of html.matchAll(/https:\/\/wwisermind\.pages\.dev(\/[^"\<\s]*)/g)) {
-    const path = m[1].split('#')[0];
-    if (/^\/(services|pricing)\/[a-z-]+/.test(path) && !known.has(path)) problems.push(`${url}: stale absolute URL ${m[0]}`);
+  const absolute = new RegExp(`${ORIGIN.replaceAll('.', '\\.')}(/[^"\\\\<\\s]*)`, 'g');
+  for (const m of html.matchAll(absolute)) {
+    const path = m[1].split('#')[0].split('?')[0];
+    if (OLD.has(path) || OLD.has(path.replace(/\/$/, ''))) problems.push(`${url}: stale absolute URL ${m[0]}`);
   }
 }
 

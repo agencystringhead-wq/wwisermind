@@ -38,7 +38,7 @@ export const seoAuditPath = routes.pricing.seoAudit;
 /* --- SEO ----------------------------------------------------------------------------- */
 
 export const seoAuditMeta = {
-  title: `SEO Audit for Therapists | ${dollars} Flat Fee | wwisermind`,
+  title: `SEO Audit Pricing for Therapists | ${dollars} Flat Fee | wwisermind`,
   description: `A one-time SEO audit for therapy practice websites. Technical, content, local and AI search reviewed by a specialist, with a prioritised plan and walkthrough call. ${dollars}.`,
 };
 

@@ -118,7 +118,7 @@ export const ongoingListing = {
 /* --- SEO ----------------------------------------------------------------------------- */
 
 export const ongoingSeoMeta = {
-  title: `Ongoing SEO, AEO & GEO for Therapists | Plans from $${lowestPrice}/mo | wwisermind`,
+  title: `Ongoing SEO, AEO & GEO Pricing for Therapists | Plans from $${lowestPrice}/mo | wwisermind`,
   description: `Monthly SEO and AI search optimisation for therapy practices. Get found on Google, in map results and in AI answers. Plans from $${lowestPrice} a month.`,
 };
 

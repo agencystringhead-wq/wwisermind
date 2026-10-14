@@ -41,18 +41,6 @@ const line = ({ name, path, description }: Entry) =>
 export function GET() {
   const sections: { title: string; entries: Entry[] }[] = [
     {
-      title: 'Main pages',
-      entries: [
-        { name: 'Home', path: routes.home, description: homeMeta.description },
-        { name: 'About', path: routes.about, description: aboutMeta.description },
-        { name: 'Our process', path: routes.process, description: processMeta.description },
-        { name: 'Results', path: routes.results, description: resultsMeta.description },
-        { name: 'Reviews', path: routes.reviews, description: reviewsMeta.description },
-        { name: 'FAQ', path: routes.faq, description: faqMeta.description },
-        { name: 'Contact', path: routes.contact, description: contactMeta.description },
-      ],
-    },
-    {
       title: 'Services',
       entries: [
         { name: 'All services', path: routes.services.hub, description: servicesMeta.description },
@@ -76,23 +64,32 @@ export function GET() {
         { name: 'SEO Audit', path: routes.pricing.seoAudit, description: seoAuditMeta.description },
         { name: 'One-Time SEO', path: routes.pricing.oneTimeSeo, description: oneTimeSeoMeta.description },
         { name: 'Ongoing SEO, AEO & GEO', path: routes.pricing.seo, description: ongoingSeoMeta.description },
-        { name: 'Local SEO Packages', path: routes.pricing.localSeo, description: localSeoMeta.description },
+        { name: 'Local SEO', path: routes.pricing.localSeo, description: localSeoMeta.description },
       ],
     },
     {
-      title: 'Who we help',
-      entries: AUDIENCE_SLUGS.flatMap((slug) => {
-        const audience = getAudience(slug);
-        return audience
-          ? [{ name: audience.name, path: routes.audience(slug), description: audience.seo.description }]
-          : [];
-      }),
-    },
-    {
-      title: 'Free tools',
+      title: 'Tools',
       entries: (megaPanels.Tools?.columns ?? [])
         .flatMap((column) => column.links)
         .map((link) => ({ name: link.label, path: link.href, description: link.desc })),
+    },
+    {
+      title: 'Company',
+      entries: [
+        { name: 'Home', path: routes.home, description: homeMeta.description },
+        { name: 'About', path: routes.about, description: aboutMeta.description },
+        { name: 'Our process', path: routes.process, description: processMeta.description },
+        { name: 'Results', path: routes.results, description: resultsMeta.description },
+        { name: 'Reviews', path: routes.reviews, description: reviewsMeta.description },
+        { name: 'FAQ', path: routes.faq, description: faqMeta.description },
+        { name: 'Contact', path: routes.contact, description: contactMeta.description },
+        ...AUDIENCE_SLUGS.flatMap((slug) => {
+          const audience = getAudience(slug);
+          return audience
+            ? [{ name: audience.name, path: routes.audience(slug), description: audience.seo.description }]
+            : [];
+        }),
+      ],
     },
   ];
 

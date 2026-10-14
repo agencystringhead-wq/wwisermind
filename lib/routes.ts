@@ -20,52 +20,50 @@ const hash = (path: Route, id: string) => `${path}#${id}` as const;
 const query = (path: Route, params: Record<string, string>) =>
   `${path}?${new URLSearchParams(params).toString()}` as const;
 
-/* --- the service pages: one flat keyword URL each ------------------------------------------ */
+/* --- the service pages: /services/<keyword>-for-therapists/ ------------------------------------- */
 
 /** Keyed by the slug the service has in lib/services.ts, which stays the identity of a service
     in the data. The value is where its page lives. */
 export const SERVICE_PATHS = {
-  'one-week-website': '/one-week-website-for-therapists/',
-  'custom-website-design': '/therapist-website-design/',
-  'website-hosting': '/therapist-website-hosting/',
-  'website-care-plans': '/therapist-website-maintenance/',
-  'local-seo': '/local-seo-for-therapists/',
-  'seo-audit': '/seo-audit-for-therapists/',
-  'one-time-seo': '/one-time-seo-for-therapists/',
-  'ongoing-seo': '/seo-for-therapists/',
-  copywriting: '/therapist-website-copywriting/',
-  'meta-ads': '/meta-ads-for-therapists/',
-  'ai-search-optimization': '/ai-search-optimization-for-therapists/',
-  'ai-website-design': '/ai-website-design-for-therapists/',
-  'ai-chatbot': '/ai-chatbot-for-therapists/',
+  'one-week-website': '/services/one-week-website-for-therapists/',
+  'custom-website-design': '/services/custom-website-design-for-therapists/',
+  'website-hosting': '/services/website-hosting-for-therapists/',
+  'website-care-plans': '/services/wordpress-care-plans-for-therapists/',
+  'local-seo': '/services/local-seo-for-therapists/',
+  'seo-audit': '/services/seo-audit-for-therapists/',
+  'one-time-seo': '/services/one-time-seo-for-therapists/',
+  'ongoing-seo': '/services/seo-for-therapists/',
+  copywriting: '/services/copywriting-for-therapists/',
+  'meta-ads': '/services/meta-ads-for-therapists/',
+  'ai-search-optimization': '/services/ai-search-optimization-for-therapists/',
+  'ai-website-design': '/services/ai-website-design-for-therapists/',
+  'ai-chatbot': '/services/ai-chatbot-for-therapists/',
 } as const satisfies Record<string, Route>;
 
 export type ServiceKey = keyof typeof SERVICE_PATHS;
 
-/** The service pages' folder names under app/, without the slashes. */
-export const SERVICE_PARAMS = Object.values(SERVICE_PATHS).map((path) => path.replaceAll('/', ''));
+/** The last folder of each service page, for generateStaticParams. */
+export const SERVICE_PARAMS = Object.values(SERVICE_PATHS).map((path) => path.split('/')[2]);
 
 /** The service whose page lives at this folder name, if any. */
 export const serviceKeyForParam = (param: string): ServiceKey | undefined =>
-  (Object.keys(SERVICE_PATHS) as ServiceKey[]).find(
-    (key) => SERVICE_PATHS[key].replaceAll('/', '') === param,
-  );
+  (Object.keys(SERVICE_PATHS) as ServiceKey[]).find((key) => SERVICE_PATHS[key].split('/')[2] === param);
 
-/* --- the pricing pages: the "packages" and "pricing" variants of the keyword URLs ---------- */
+/* --- the pricing pages: /pricing/<same slug>/, mirroring the service pages ------------------ */
 
 const pricing = {
   hub: '/pricing/',
-  hyperGrowth: '/therapist-marketing-packages/',
-  oneWeekWebsite: '/one-week-therapist-website/',
-  customWebsite: '/custom-therapist-website-design/',
-  carePlans: '/therapy-website-care-plans/',
-  seoAudit: '/seo-audit-pricing-for-therapists/',
-  oneTimeSeo: '/one-time-seo-pricing-for-therapists/',
-  seo: '/seo-packages-for-therapists/',
-  localSeo: '/local-seo-packages-for-therapists/',
+  hyperGrowth: '/pricing/hyper-growth-marketing-for-therapists/',
+  oneWeekWebsite: '/pricing/one-week-website-for-therapists/',
+  customWebsite: '/pricing/custom-website-design-for-therapists/',
+  carePlans: '/pricing/wordpress-care-plans-for-therapists/',
+  seoAudit: '/pricing/seo-audit-for-therapists/',
+  oneTimeSeo: '/pricing/one-time-seo-for-therapists/',
+  seo: '/pricing/seo-for-therapists/',
+  localSeo: '/pricing/local-seo-for-therapists/',
 } as const satisfies Record<string, Route>;
 
-/** Which pricing page prices which service, and back. A service with no pricing page of its own
+/** Which pricing page is each service's twin, and back. A service with no pricing page of its own
     has no entry. Each page links to the other with descriptive text. */
 export const SERVICE_PRICING = {
   'one-week-website': pricing.oneWeekWebsite,
@@ -96,6 +94,19 @@ export const routes = {
     hub: '/services/',
     /** The page for a service, from its slug in lib/services.ts. */
     page: (key: ServiceKey): Route => SERVICE_PATHS[key],
+    oneWeekWebsite: SERVICE_PATHS['one-week-website'],
+    customWebsite: SERVICE_PATHS['custom-website-design'],
+    hosting: SERVICE_PATHS['website-hosting'],
+    carePlans: SERVICE_PATHS['website-care-plans'],
+    localSeo: SERVICE_PATHS['local-seo'],
+    seoAudit: SERVICE_PATHS['seo-audit'],
+    oneTimeSeo: SERVICE_PATHS['one-time-seo'],
+    seo: SERVICE_PATHS['ongoing-seo'],
+    copywriting: SERVICE_PATHS.copywriting,
+    metaAds: SERVICE_PATHS['meta-ads'],
+    aiSearch: SERVICE_PATHS['ai-search-optimization'],
+    aiWebsite: SERVICE_PATHS['ai-website-design'],
+    aiChatbot: SERVICE_PATHS['ai-chatbot'],
   },
 
   pricing,

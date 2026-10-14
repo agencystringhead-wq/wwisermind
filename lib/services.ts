@@ -562,7 +562,7 @@ export const services: Service[] = [
       alt: 'The Timely Therapy website',
     },
     seo: {
-      title: 'One Week Website for therapists — wwisermind',
+      title: 'One Week Website for Therapists | wwisermind',
       description:
         'A therapist website designed, written and launched in seven days. Fixed scope, fixed price, HIPAA-aware forms, booking connected and an SEO foundation built in. Two reviews from you, the rest handled.',
     },
@@ -844,7 +844,7 @@ export const services: Service[] = [
       alt: 'The Evolve Therapy & Yoga website',
     },
     seo: {
-      title: 'Custom Website Design for therapy practices — wwisermind',
+      title: 'Custom Website Design for Therapists | wwisermind',
       description:
         'A therapy practice website designed from a blank page: a page for every clinician and location, copy written from interviews, HIPAA-aware forms, booking connected and an SEO foundation built in.',
     },
@@ -1093,7 +1093,7 @@ export const services: Service[] = [
       position: 'center 35%',
     },
     seo: {
-      title: 'Website Hosting for therapists — wwisermind',
+      title: 'Website Hosting for Therapists | wwisermind',
       description:
         'Managed hosting for therapist websites: a static build served from a global network, SSL and your domain included, every version kept, and support from the studio that built the site. Monthly, no contract.',
     },
@@ -1349,7 +1349,7 @@ export const services: Service[] = [
       position: 'center 35%',
     },
     seo: {
-      title: 'Website Care Plans for therapists — wwisermind',
+      title: 'Website Care Plans for Therapists | wwisermind',
       description:
         'A monthly care plan for your therapist website: edits done for you, software updated, every version backed up, forms and booking checked, and a reply within one business day. No contract.',
     },
@@ -1602,7 +1602,7 @@ export const services: Service[] = [
       position: 'center 35%',
     },
     seo: {
-      title: 'Local SEO for therapists — wwisermind',
+      title: 'Local SEO for Therapists | wwisermind',
       description:
         'Local SEO for therapy practices: Google Business Profile completed, directory listings made consistent, location and specialty pages that rank, and reviews asked for ethically. Show up on the map in your city.',
     },
@@ -1854,7 +1854,7 @@ export const services: Service[] = [
       position: 'center 35%',
     },
     seo: {
-      title: 'SEO Audit and Assessment for therapists — wwisermind',
+      title: 'SEO Audit and Assessment for Therapists | wwisermind',
       description:
         'A one-off written SEO assessment of your therapy practice: the website, Google Business Profile, directory listings, the searches clients use and the AI answers, with a fix list in order. Plain English, yours to act on.',
     },
@@ -2102,7 +2102,7 @@ export const services: Service[] = [
       position: 'center 35%',
     },
     seo: {
-      title: 'One Time SEO for therapists — wwisermind',
+      title: 'One Time SEO for Therapists | wwisermind',
       description:
         'A one-off SEO fix for your therapy practice website: titles, structure, structured data, indexing, mobile speed, Google Business Profile and listings, done once and written down. No monthly retainer.',
     },
@@ -2359,7 +2359,7 @@ export const services: Service[] = [
       position: 'center 35%',
     },
     seo: {
-      title: 'Ongoing SEO, AEO and GEO for therapists — wwisermind',
+      title: 'Ongoing SEO, AEO and GEO for Therapists | wwisermind',
       description:
         'Monthly SEO for therapy practices: pages written in your voice, local listings kept current, answer boxes and AI recommendations worked on, technical health checked, and a plain report each month. No contract.',
     },
@@ -2607,7 +2607,7 @@ export const services: Service[] = [
       position: 'center 35%',
     },
     seo: {
-      title: 'Copywriting for therapists — wwisermind',
+      title: 'Copywriting for Therapists | wwisermind',
       description:
         'Website and directory copy for therapy practices, written from one conversation in your voice: pages that speak to someone in distress, clinician profiles, fees and FAQs made plain, and titles written to be found.',
     },
@@ -2855,7 +2855,7 @@ export const services: Service[] = [
       position: 'center 35%',
     },
     seo: {
-      title: 'Meta Ads for therapists — wwisermind',
+      title: 'Meta Ads for Therapists | wwisermind',
       description:
         'Facebook and Instagram ads for therapy practices: a small area, your specialties, a budget you set, ads in your voice, a landing page that books, and tracking arranged so no health information reaches Meta.',
     },
@@ -3108,7 +3108,7 @@ export const services: Service[] = [
       position: 'center 35%',
     },
     seo: {
-      title: 'AI Search Optimization for therapists — wwisermind',
+      title: 'AI Search Optimization for Therapists | wwisermind',
       description:
         'Be the practice ChatGPT, Gemini and Perplexity name when a client asks for a therapist nearby: facts made consistent, structured data, pages written to be quoted, and the answer checked every month.',
     },
@@ -3356,7 +3356,7 @@ export const services: Service[] = [
       position: 'center 35%',
     },
     seo: {
-      title: 'AI Website Design for therapists — wwisermind',
+      title: 'AI Website Design for Therapists | wwisermind',
       description:
         'A therapist website drafted with AI tools and finished by people: every word reviewed, copy in your voice, HIPAA-aware forms, booking connected, and a foundation the AI tools clients ask can read accurately.',
     },
@@ -3609,7 +3609,7 @@ export const services: Service[] = [
       position: 'center 35%',
     },
     seo: {
-      title: 'AI Chatbot for therapists — wwisermind',
+      title: 'AI Chatbot for Therapists | wwisermind',
       description:
         'An AI chatbot for your therapy practice website: answers fees, insurance and availability from your own facts, books the consultation, hands over to you, handles crisis messages, and never gives clinical advice.',
     },

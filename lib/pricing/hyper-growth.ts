@@ -25,7 +25,7 @@ import {
 import { ongoingListing, ongoingSeoPath, plans as ongoingPlans } from '@/lib/pricing/ongoing-seo';
 
 /* ==========================================================================
-   /therapist-marketing-packages/: the all-in-one yearly plan.
+   /pricing/hyper-growth-marketing-for-therapists/: the all-in-one yearly plan.
 
    Four things in one plan: a custom website designed by hand, a WordPress care plan, ongoing
    marketing (SEO, AEO, GEO, local SEO, location pages, on-page and off-page work) and Meta
@@ -293,11 +293,11 @@ const launchMonthly = `${money(effectiveMonthly(launch))}/mo`;
 
 /* --- SEO ----------------------------------------------------------------------------- */
 
-const longTitle = `Hyper Growth Marketing for Therapists | Website + Care + Marketing from ${launchMonthly} | wwisermind`;
-const shortTitle = `Hyper Growth Marketing for Therapists | From ${launchMonthly} | wwisermind`;
+/* "{Service} Pricing for Therapists | {price hook} | wwisermind", like the other pricing pages. */
+const title = `Hyper Growth Marketing Pricing for Therapists | From ${launchMonthly} | wwisermind`;
 
 export const hyperGrowthMeta = {
-  title: longTitle.length <= 65 ? longTitle : shortTitle,
+  title,
   description: `A custom website, care plan, SEO, AI search, location pages and Meta ads for therapy practices, run by one team. Yearly plans from ${launchMonthly}.`,
 };
 

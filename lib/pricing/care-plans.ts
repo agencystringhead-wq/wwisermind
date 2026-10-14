@@ -13,7 +13,7 @@ import {
 } from '@/lib/pricing/local-seo';
 
 /* ==========================================================================
-   /therapy-website-care-plans/: WordPress care plans.
+   /pricing/wordpress-care-plans-for-therapists/: WordPress care plans.
 
    Same pattern as the other pricing data files: every word and figure on the page is read
    from here, and the components only render it. The three plans live in `matrix`, one
@@ -250,7 +250,7 @@ const lowestPrice = Math.min(...planDefs.map((plan) => plan.price));
 /* --- SEO ----------------------------------------------------------------------------- */
 
 export const carePlansMeta = {
-  title: `WordPress Care Plans for Therapists | From ${money(lowestPrice)}/mo | wwisermind`,
+  title: `WordPress Care Plans Pricing for Therapists | From ${money(lowestPrice)}/mo | wwisermind`,
   description: `WordPress hosting, updates, backups, security and support for therapy practice websites. Month-to-month plans from ${money(lowestPrice)}. Cancel any time.`,
 };
 

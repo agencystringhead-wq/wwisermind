@@ -42,7 +42,7 @@ export const oneTimeSeoPath = routes.pricing.oneTimeSeo;
 /* --- SEO ----------------------------------------------------------------------------- */
 
 export const oneTimeSeoMeta = {
-  title: 'One-Time SEO for Therapists | No Retainer | wwisermind',
+  title: 'One-Time SEO Pricing for Therapists | No Retainer | wwisermind',
   description: `A 90-day, done-for-you SEO project for therapy practices. Research, technical fixes, on-page SEO, Google Business Profile and a content roadmap. ${payments} payments of ${money(paymentAmount)}.`,
 };
 

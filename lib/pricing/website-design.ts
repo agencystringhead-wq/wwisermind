@@ -75,7 +75,7 @@ export const offers = [
 /* --- SEO ----------------------------------------------------------------------------- */
 
 export const websiteDesignMeta = {
-  title: `Therapist Website Design in One Week | From ${money(monthlyPrice)}/mo | wwisermind`,
+  title: `One-Week Website Pricing for Therapists | From ${money(monthlyPrice)}/mo | wwisermind`,
   description: `Custom websites for therapists and counselling practices, built in one week. Copy and SEO setup included. ${money(fullPrice)} one-time or ${money(monthlyPrice)} a month.`,
 };
 

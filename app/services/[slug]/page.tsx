@@ -13,19 +13,19 @@ import {
 import { getService } from '@/lib/services';
 import { absUrl, siteConfig } from '@/lib/site';
 
-/* One page per service, at a flat keyword URL (lib/routes.ts has the list). All of them are
+/* One page per service, at /services/<keyword>-for-therapists/ (lib/routes.ts has the list). All of them are
    rendered at build time: the site is a static export, so anything outside the list is a 404
    rather than a page built on request. */
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return SERVICE_PARAMS.map((service) => ({ service }));
+  return SERVICE_PARAMS.map((slug) => ({ slug }));
 }
 
-type Params = { params: Promise<{ service: string }> };
+type Params = { params: Promise<{ slug: string }> };
 
 async function load(params: Params['params']) {
-  const { service: param } = await params;
+  const { slug: param } = await params;
   const key = serviceKeyForParam(param);
   const service = key ? getService(key) : undefined;
   return key && service ? { key, service } : null;

@@ -123,8 +123,8 @@ export const pricingEntries: PricingEntry[] = [
     shortDescription: 'Updates, fixes and upkeep handled while you are in session.',
     startingPrice: null, // priced on its own page; never shown on /pricing
     priceUnit: '/mo',
-    /* The plans and prices live on /therapy-website-care-plans/ (a literal here: that data file imports
-       this one). The service page is still linked from the Pricing menu. */
+    /* The plans and prices live on /pricing/wordpress-care-plans-for-therapists/. The service page
+       is linked from the Services menu. */
     href: routes.pricing.carePlans,
     image: {
       src: '/images/services/pexels-4240571.webp',

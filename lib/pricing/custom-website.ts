@@ -61,7 +61,7 @@ export const offers = [
 /* --- SEO ----------------------------------------------------------------------------- */
 
 export const customWebsiteMeta = {
-  title: `Custom Website Design for Therapists | From ${money(customPrice)} | wwisermind`,
+  title: `Custom Website Design Pricing for Therapists | From ${money(customPrice)} | wwisermind`,
   description: `Hand-designed websites for therapists and group practices. Free discovery call, fixed quotes, 4 to 6 week builds. Custom sites from ${money(customPrice)}, group practice sites from ${money(groupPrice)}.`,
 };
 

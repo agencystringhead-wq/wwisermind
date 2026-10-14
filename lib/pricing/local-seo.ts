@@ -25,7 +25,7 @@ export const PRICE_CURRENCY = 'USD';
 export const localSeoPath = routes.pricing.localSeo;
 
 export const localSeoMeta = {
-  title: 'Local SEO Packages for Therapists | wwisermind',
+  title: 'Local SEO Pricing for Therapists | wwisermind',
   description:
     'Local SEO packages for therapists and group practices. Show up in local map results, get listed correctly in therapy directories, and turn searches into enquiries.',
 };
