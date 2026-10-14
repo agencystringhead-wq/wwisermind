@@ -1,0 +1,91 @@
+/* /pricing/custom-website. Only what the other pricing pages have no equivalent for: the
+   copywriting add-on, text on the left and a small price card on the right. The card's rows
+   are the shared package row classes. Nothing here animates. */
+
+.copyGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: 40px;
+  max-width: 1080px;
+  margin-inline: auto;
+}
+
+.copyText .heading {
+  margin-top: 16px;
+}
+
+.copyBody {
+  max-width: 52ch;
+  margin-top: 16px;
+  color: var(--color-muted);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.copyNote {
+  max-width: 52ch;
+  margin-top: 20px;
+  color: var(--color-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* The same shell as a plan card, with no tab and no dark treatment. */
+.copyCard {
+  padding: 32px 36px;
+  border-radius: 28px;
+  background-color: var(--color-surface);
+}
+
+.copyCardTitle {
+  font-size: 22px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.02em;
+}
+
+.copyRows {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.copyRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 18px;
+  border-top: 1px solid var(--color-divider);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.copyRow:last-child {
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.copyLabel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+}
+
+.copyValue {
+  font-weight: var(--fw-semibold);
+  text-align: right;
+}
+
+@media (min-width: 768px) {
+  .copyGrid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 64px;
+  }
+}
+
+@media (max-width: 640px) {
+  .copyCard {
+    padding: 24px;
+  }
+}

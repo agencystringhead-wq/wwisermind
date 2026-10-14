@@ -102,7 +102,12 @@ export const fitCards: FitCard[] = [
   },
 ];
 
-export type FitCallout = { title: string; body: string };
+export type FitCallout = {
+  title: string;
+  body: string;
+  /** A link under the body, such as to a neighbouring option. */
+  link?: { label: string; href: string };
+};
 
 export const fitCallout: FitCallout = {
   title: 'If all four sound familiar',
@@ -123,7 +128,8 @@ export type PackageIcon =
   | 'shieldPlus'
   | 'handshake'
   | 'speedometer'
-  | 'flag';
+  | 'flag'
+  | 'pen';
 
 /** A sentence made of plain text and links, for the small line under a plan grid. */
 export type LineSegment = { text: string } | { label: string; href: string };

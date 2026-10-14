@@ -301,6 +301,20 @@
     color: var(--color-muted);
   }
 
+  /* A table whose tinted option is not the last: its card lists that option first. */
+  .table.tableFirst tbody tr {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .table.tableFirst tbody th {
+    order: -2;
+  }
+
+  .table.tableFirst td.auditCol {
+    order: -1;
+  }
+
   .table td.auditCol::before {
     color: var(--color-brand);
   }

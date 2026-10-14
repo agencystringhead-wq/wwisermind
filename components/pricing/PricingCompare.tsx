@@ -14,15 +14,21 @@ export default function PricingCompare({
   columns,
   rows,
   tone = 'grey',
+  highlight,
+  highlightFirst = false,
 }: {
   copy: { title: string; sub?: string };
   /** The heading of the criteria column, then one heading per option. */
   columns: string[];
   rows: CompareRow[];
   tone?: 'white' | 'grey';
+  /** Which option is tinted, counting the options only. The last one when absent. */
+  highlight?: number;
+  /** Below 768px, list the tinted option first in each card. */
+  highlightFirst?: boolean;
 }) {
   const [criteria, ...options] = columns;
-  const last = options.length - 1;
+  const last = highlight ?? options.length - 1;
 
   return (
     <section className={tone === 'white' ? local.section : local.sectionGrey}>
@@ -32,7 +38,7 @@ export default function PricingCompare({
           {copy.sub ? <p className={local.lede}>{copy.sub}</p> : null}
         </header>
 
-        <table className={styles.table}>
+        <table className={`${styles.table} ${highlightFirst ? styles.tableFirst : ''}`}>
           <thead>
             <tr>
               <th scope="col">

@@ -187,6 +187,7 @@ export const megaPanels: Record<string, MegaPanel> = {
           { label: 'One-Week Website Pricing', href: '/pricing/website-design' },
           { label: 'WordPress Care Plans', href: '/pricing/care-plans', desc: 'WordPress sites only' },
           { label: 'Custom Website Design', href: serviceHref('custom-website-design') },
+          { label: 'Custom Website Pricing', href: '/pricing/custom-website' },
           { label: 'Website Hosting', href: serviceHref('website-hosting') },
           { label: 'Website Care Plans', href: serviceHref('website-care-plans'), desc: 'Priced on its own page' },
         ],

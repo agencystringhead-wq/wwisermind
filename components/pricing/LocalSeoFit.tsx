@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { serviceIcons } from '@/components/ui/icons';
 import type { FitCallout, FitCard } from '@/lib/pricing/local-seo';
 import styles from './LocalSeo.module.css';
@@ -43,6 +44,11 @@ export default function LocalSeoFit({
         <div className={styles.callout}>
           <h3 className={styles.calloutTitle}>{callout.title}</h3>
           <p className={styles.calloutBody}>{callout.body}</p>
+          {callout.link ? (
+            <Link href={callout.link.href} className={styles.calloutLink}>
+              {callout.link.label} <span aria-hidden="true">→</span>
+            </Link>
+          ) : null}
         </div>
       </div>
     </section>
