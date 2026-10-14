@@ -38,7 +38,7 @@ export { PRICE_CURRENCY };
 export const websiteDesignPath = '/pricing/website-design';
 
 const fullPrice = 2999;
-const monthlyPrice = 349;
+const monthlyPrice = 399;
 const termMonths = 12;
 export const monthlyTotal = monthlyPrice * termMonths;
 
