@@ -193,6 +193,7 @@ export const megaPanels: Record<string, MegaPanel> = {
           { label: 'Local SEO', href: serviceHref('local-seo') },
           { label: 'Local SEO Packages', href: '/pricing/local-seo' },
           { label: 'SEO Audit', href: serviceHref('seo-audit') },
+          { label: 'SEO Audit Pricing', href: '/pricing/seo-audit' },
           { label: 'One Time SEO', href: serviceHref('one-time-seo') },
           { label: 'Ongoing SEO / AEO / GEO', href: serviceHref('ongoing-seo') },
         ],

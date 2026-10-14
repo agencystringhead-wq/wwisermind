@@ -1,26 +1,29 @@
 import Link from 'next/link';
 import { CheckIcon } from '@/components/ui/icons';
-import { finalCta } from '@/lib/pricing/local-seo';
+import type { FinalCta } from '@/lib/pricing/local-seo';
 import styles from './LocalSeo.module.css';
 
-/** Frame 9: the closing call to action, with three plain promises under the button. */
-export default function LocalSeoCta() {
+/** Frame 9, shared: the closing call to action, with plain promises under the button when
+    the page has any. */
+export default function LocalSeoCta({ cta }: { cta: FinalCta }) {
   return (
     <section className={styles.cta}>
       <div className={`container ${styles.ctaInner}`}>
-        <h2 className={styles.ctaTitle}>{finalCta.title}</h2>
-        <p className={styles.ctaSub}>{finalCta.sub}</p>
-        <Link href={finalCta.button.href} className={styles.buttonBlue}>
-          {finalCta.button.label}
+        <h2 className={styles.ctaTitle}>{cta.title}</h2>
+        <p className={styles.ctaSub}>{cta.sub}</p>
+        <Link href={cta.button.href} className={styles.buttonBlue}>
+          {cta.button.label}
         </Link>
-        <ul className={styles.ctaItems}>
-          {finalCta.items.map((item) => (
-            <li key={item}>
-              <CheckIcon />
-              {item}
-            </li>
-          ))}
-        </ul>
+        {cta.items && cta.items.length > 0 ? (
+          <ul className={styles.ctaItems}>
+            {cta.items.map((item) => (
+              <li key={item}>
+                <CheckIcon />
+                {item}
+              </li>
+            ))}
+          </ul>
+        ) : null}
       </div>
     </section>
   );

@@ -1,19 +1,27 @@
 import { serviceIcons } from '@/components/ui/icons';
-import { fitCallout, fitCards, fitCopy } from '@/lib/pricing/local-seo';
+import type { FitCallout, FitCard } from '@/lib/pricing/local-seo';
 import styles from './LocalSeo.module.css';
 
-/** Frame 3: a 2x2 grid of check cards and the callout band under it. */
-export default function LocalSeoFit() {
+/** Frame 3, shared: a 2x2 grid of check cards and the callout band under it. */
+export default function LocalSeoFit({
+  copy,
+  cards,
+  callout,
+}: {
+  copy: { title: string; sub: string };
+  cards: FitCard[];
+  callout: FitCallout;
+}) {
   return (
     <section className={styles.section}>
       <div className="container">
         <header className={styles.head}>
-          <h2 className={styles.heading}>{fitCopy.title}</h2>
-          <p className={styles.lede}>{fitCopy.sub}</p>
+          <h2 className={styles.heading}>{copy.title}</h2>
+          <p className={styles.lede}>{copy.sub}</p>
         </header>
 
         <ul className={styles.fitGrid}>
-          {fitCards.map((card) => {
+          {cards.map((card) => {
             const Icon = serviceIcons[card.icon];
 
             return (
@@ -31,8 +39,8 @@ export default function LocalSeoFit() {
         </ul>
 
         <div className={styles.callout}>
-          <h3 className={styles.calloutTitle}>{fitCallout.title}</h3>
-          <p className={styles.calloutBody}>{fitCallout.body}</p>
+          <h3 className={styles.calloutTitle}>{callout.title}</h3>
+          <p className={styles.calloutBody}>{callout.body}</p>
         </div>
       </div>
     </section>

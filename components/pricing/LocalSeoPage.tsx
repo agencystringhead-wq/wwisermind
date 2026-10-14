@@ -1,10 +1,20 @@
 import { siteConfig } from '@/lib/site';
+import { getPricingEntry } from '@/lib/pricing';
 import {
   PRICE_CURRENCY,
+  fitCallout,
+  fitCards,
+  fitCopy,
+  finalCta,
+  localSeoFaqCopy,
   localSeoFaqs,
+  localSeoHero,
   localSeoMeta,
   localSeoPackages,
   localSeoPath,
+  processCopy,
+  processStages,
+  trustItems,
 } from '@/lib/pricing/local-seo';
 import LocalSeoBundle from './LocalSeoBundle';
 import LocalSeoCta from './LocalSeoCta';
@@ -71,15 +81,19 @@ export default function LocalSeoPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json(faqData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json(serviceData) }} />
-      <LocalSeoHero />
+      <LocalSeoHero
+        hero={localSeoHero}
+        trustItems={trustItems}
+        image={getPricingEntry('local-seo').image}
+      />
       <LocalSeoResults />
-      <LocalSeoFit />
+      <LocalSeoFit copy={fitCopy} cards={fitCards} callout={fitCallout} />
       <LocalSeoPackages />
-      <LocalSeoProcess />
+      <LocalSeoProcess copy={processCopy} stages={processStages} />
       <LocalSeoBundle />
       <LocalSeoProjects />
-      <LocalSeoCta />
-      <LocalSeoFaq />
+      <LocalSeoCta cta={finalCta} />
+      <LocalSeoFaq copy={localSeoFaqCopy} items={localSeoFaqs} />
     </>
   );
 }

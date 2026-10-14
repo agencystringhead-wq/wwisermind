@@ -32,6 +32,7 @@ export const localSeoMeta = {
 /* --- 1. hero ------------------------------------------------------------------------- */
 
 export const localSeoHero = {
+  eyebrow: 'Pricing / Local SEO',
   title: 'Local SEO packages for therapists and group practices',
   sub: 'When someone searches ‘therapist near me’, most of them never scroll past the map. We help your practice show up there, and look trustworthy when it does.',
   primary: { label: 'Get a free local visibility check', href: '/contact' },
@@ -101,7 +102,9 @@ export const fitCards: FitCard[] = [
   },
 ];
 
-export const fitCallout = {
+export type FitCallout = { title: string; body: string };
+
+export const fitCallout: FitCallout = {
   title: 'If all four sound familiar',
   body: 'Local SEO is probably the highest-leverage thing you can do this year. Our packages focus on getting you into the map results and turning those views into enquiries.',
 };
@@ -218,7 +221,9 @@ export const processCopy = {
   sub: 'A steady build, not a sprint',
 };
 
-export const processStages: { when: string; title: string; steps: string[] }[] = [
+export type ProcessStage = { when: string; title: string; steps: string[] };
+
+export const processStages: ProcessStage[] = [
   {
     when: 'Month 1',
     title: 'Foundation',
@@ -308,7 +313,15 @@ export const showRecognition = false;
 
 /* --- 9. final cta -------------------------------------------------------------------- */
 
-export const finalCta = {
+export type FinalCta = {
+  title: string;
+  sub: string;
+  button: { label: string; href: string };
+  /** Plain promises under the button; the row is left out when absent. */
+  items?: string[];
+};
+
+export const finalCta: FinalCta = {
   title: 'Every practice’s local market is different',
   sub: 'So we start with a look at yours, not a sales pitch.',
   button: { label: 'Book a free call', href: '/contact' },
@@ -324,7 +337,9 @@ export const localSeoFaqCopy = {
   sub: 'The things practices ask before they start.',
 };
 
-export const localSeoFaqs = [
+export type FaqItem = { title: string; body: string };
+
+export const localSeoFaqs: FaqItem[] = [
   {
     title: 'How long until I see results?',
     body: 'Most practices see better visibility within 1-2 months. Enquiries usually follow over the next few months as rankings settle. It depends a lot on how competitive your city is.',

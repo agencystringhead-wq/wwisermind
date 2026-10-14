@@ -1,29 +1,46 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getPricingEntry } from '@/lib/pricing';
-import { localSeoHero, trustItems } from '@/lib/pricing/local-seo';
 import SeeAllPrices from './SeeAllPrices';
 import styles from './LocalSeo.module.css';
 
-/** Frame 1. Nothing animates on entrance. The picture is the Local SEO package's own card
-    image from /pricing, loaded eagerly as the largest thing above the fold. The trust strip
-    is not rendered while the array is empty. */
-export default function LocalSeoHero() {
-  const { image } = getPricingEntry('local-seo');
+export type PricingHeroData = {
+  eyebrow: string;
+  title: string;
+  sub: string;
+  primary: { label: string; href: string };
+  secondary: { label: string; href: string };
+};
 
+/** Frame 1, shared by the /pricing sub-pages. Nothing animates on entrance. The picture is
+    the package's own card image from /pricing, loaded eagerly as the largest thing above the
+    fold. The trust strip is not rendered while the array is empty. The secondary link scrolls
+    to the section its href names. */
+export default function LocalSeoHero({
+  hero,
+  trustItems,
+  image,
+}: {
+  hero: PricingHeroData;
+  trustItems: string[];
+  image: { src: string; width: number; height: number; alt: string };
+}) {
   return (
     <section className={styles.hero}>
       <div className={`container ${styles.heroGrid}`}>
         <div>
-          <p className={styles.eyebrow}>Pricing / Local SEO</p>
-          <h1 className={styles.heroTitle}>{localSeoHero.title}</h1>
-          <p className={styles.heroSub}>{localSeoHero.sub}</p>
+          <p className={styles.eyebrow}>{hero.eyebrow}</p>
+          <h1 className={styles.heroTitle}>{hero.title}</h1>
+          <p className={styles.heroSub}>{hero.sub}</p>
 
           <div className={styles.heroActions}>
-            <Link href={localSeoHero.primary.href} className={styles.button}>
-              {localSeoHero.primary.label}
+            <Link href={hero.primary.href} className={styles.button}>
+              {hero.primary.label}
             </Link>
-            <SeeAllPrices className={styles.textLink} label={localSeoHero.secondary.label} />
+            <SeeAllPrices
+              className={styles.textLink}
+              label={hero.secondary.label}
+              target={hero.secondary.href.replace('#', '')}
+            />
           </div>
 
           {trustItems.length > 0 ? (

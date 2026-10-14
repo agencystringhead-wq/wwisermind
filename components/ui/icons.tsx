@@ -135,6 +135,24 @@ export function MapPinIcon(props: IconProps) {
   );
 }
 
+export function CodeIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" />
+    </Icon>
+  );
+}
+
+/** A magnifier with a tick in its lens: the SEO audit's badge. */
+export function SearchCheckIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="11" cy="11" r="7" />
+      <path d="m21 21-4.300-4.300M8 11l2.200 2.200L14.500 9" />
+    </Icon>
+  );
+}
+
 export function PlusCircleIcon(props: IconProps) {
   return (
     <Icon {...props}>
@@ -258,6 +276,8 @@ export const serviceIcons = {
   clock: ClockIcon,
   globe: GlobeIcon,
   mail: MailIcon,
+  pin: MapPinIcon,
+  code: CodeIcon,
 };
 
 export type ServiceIconName = keyof typeof serviceIcons;
