@@ -389,6 +389,11 @@
   background-color: var(--panel-tint);
 }
 
+.mlinkFeatured {
+  margin-bottom: 10px;
+  background-color: var(--panel-tint);
+}
+
 .mlinkTitle {
   display: flex;
   align-items: center;

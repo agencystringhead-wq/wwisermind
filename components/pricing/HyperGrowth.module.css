@@ -1,0 +1,160 @@
+/* /pricing/hyper-growth. Only what the other pricing pages have no equivalent for: the
+   "What's inside" columns that set each plan's parts against its price. Cards, timeline,
+   numbered cards and everything else are the shared classes. Nothing here animates. */
+
+.insideGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.insideCol {
+  display: flex;
+  flex-direction: column;
+  padding: 36px;
+  border-radius: 28px;
+  background-color: var(--color-surface);
+}
+
+.insideName {
+  font-size: 24px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.02em;
+}
+
+.insideItems {
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.insideItem {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 16px;
+  border-top: 1px solid var(--color-divider);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.insideItem:last-child {
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.insideLabel {
+  display: block;
+  font-weight: var(--fw-semibold);
+}
+
+.insideTier {
+  display: block;
+  margin-top: 2px;
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+.insideLink {
+  text-decoration: underline;
+  text-decoration-color: var(--color-line);
+  text-underline-offset: 4px;
+  transition: color var(--dur) var(--ease);
+}
+
+.insideLink:hover {
+  color: var(--color-brand);
+}
+
+.insidePrice {
+  flex: none;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+
+.insidePrice small {
+  color: var(--color-muted);
+  font-size: 13px;
+  font-weight: var(--fw-regular);
+}
+
+.subtotal {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.subtotalLabel {
+  color: var(--color-muted);
+  font-size: 15px;
+}
+
+.subtotalFigure {
+  font-size: 28px;
+  font-weight: var(--fw-bold);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.subtotalFigure small {
+  color: var(--color-muted);
+  font-size: 15px;
+  font-weight: var(--fw-regular);
+  letter-spacing: 0;
+}
+
+.unpriced {
+  margin: 8px 0 28px;
+  color: var(--color-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* The plan's own price: the one dark, highlighted block in the column. */
+.planPrice {
+  margin-top: auto;
+  padding: 24px 28px;
+  border-radius: 20px;
+  background-color: var(--color-ink);
+  color: var(--color-white);
+}
+
+.planPriceLabel {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 15px;
+}
+
+.planPriceFigure {
+  margin-top: 4px;
+  font-size: 40px;
+  font-weight: var(--fw-bold);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.planPriceFigure small {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 16px;
+  font-weight: var(--fw-regular);
+  letter-spacing: 0;
+}
+
+@media (max-width: 1023px) {
+  .insideGrid {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .insideCol {
+    padding: 28px 24px;
+  }
+}

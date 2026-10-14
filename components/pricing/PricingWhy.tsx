@@ -16,13 +16,15 @@ export default function PricingWhy({
   copy,
   cards,
   founder,
+  tone = 'grey',
 }: {
   copy: { eyebrow?: string; title: string };
   cards: { title: string; body: string }[];
   founder?: FounderNote | null;
+  tone?: 'white' | 'grey';
 }) {
   return (
-    <section className={local.sectionGrey}>
+    <section className={tone === 'white' ? local.section : local.sectionGrey}>
       <div className="container">
         <header className={local.head}>
           {copy.eyebrow ? <p className={local.eyebrow}>{copy.eyebrow}</p> : null}

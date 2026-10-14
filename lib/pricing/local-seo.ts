@@ -121,7 +121,9 @@ export type PackageIcon =
   | 'calendar'
   | 'shield'
   | 'shieldPlus'
-  | 'handshake';
+  | 'handshake'
+  | 'speedometer'
+  | 'flag';
 
 /** A sentence made of plain text and links, for the small line under a plan grid. */
 export type LineSegment = { text: string } | { label: string; href: string };

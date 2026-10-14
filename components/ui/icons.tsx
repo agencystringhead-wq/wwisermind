@@ -163,6 +163,17 @@ export function FlagIcon(props: IconProps) {
   );
 }
 
+/** A gauge with its needle swung to the right: the Accelerate plan badge. */
+export function SpeedometerIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M4.5 18a8.5 8.5 0 1 1 15 0" />
+      <path d="m12 14 4-5" />
+      <path d="M12 6v1.5M6.3 9.3l1 1M17.7 9.3l-1 1" />
+    </Icon>
+  );
+}
+
 export function CreditCardIcon(props: IconProps) {
   return (
     <Icon {...props}>

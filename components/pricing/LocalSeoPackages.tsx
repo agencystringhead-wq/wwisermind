@@ -3,6 +3,8 @@ import {
   CalendarIcon,
   CheckIcon,
   CreditCardIcon,
+  FlagIcon,
+  SpeedometerIcon,
   GrowthChartIcon,
   MapPinIcon,
   PersonIcon,
@@ -27,6 +29,8 @@ const packageIcons: Record<PackageIcon, typeof RocketIcon> = {
   shield: ShieldIcon,
   shieldPlus: ShieldPlusIcon,
   handshake: HandshakeIcon,
+  speedometer: SpeedometerIcon,
+  flag: FlagIcon,
 };
 
 const dollars = (price: number) => `$${price.toLocaleString('en-US')}`;

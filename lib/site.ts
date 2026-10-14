@@ -59,6 +59,8 @@ export type MegaLink = NavItem & {
   /** a paragraph under the description — only Who We Help uses one */
   body?: string;
   badge?: string;
+  /** Set apart from the links under it: a tinted row, used for the all-in-one plan. */
+  featured?: boolean;
 };
 
 export type MegaColumn = {
@@ -180,6 +182,7 @@ export const megaPanels: Record<string, MegaPanel> = {
         /* Every package has its own service page, so each link goes there; the same
            packages, with their prices, are cards on /pricing (#<slug>). */
         links: [
+          { label: 'Hyper Growth Marketing', href: '/pricing/hyper-growth', desc: 'Website, SEO, ads and more, in one plan', badge: 'All-in-one', featured: true },
           { label: 'One Week Website', href: serviceHref('one-week-website') },
           { label: 'One-Week Website Pricing', href: '/pricing/website-design' },
           { label: 'WordPress Care Plans', href: '/pricing/care-plans', desc: 'WordPress sites only' },

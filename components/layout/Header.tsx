@@ -37,7 +37,7 @@ function Column({ column, onNavigate }: { column: MegaColumn; onNavigate: () => 
         <Link
           key={link.label}
           href={link.href}
-          className={`${styles.mlink} ${link.body ? styles.mblock : ''}`}
+          className={`${styles.mlink} ${link.body ? styles.mblock : ''} ${link.featured ? styles.mlinkFeatured : ''}`}
           onClick={onNavigate}
         >
           <span className={styles.mlinkTitle}>
@@ -199,7 +199,7 @@ function MobileSection({
                 <Link
                   key={link.label}
                   href={link.href}
-                  className={styles.accLink}
+                  className={`${styles.accLink} ${link.featured ? styles.mlinkFeatured : ''}`}
                   onClick={onNavigate}
                 >
                   <span className={styles.mlinkTitle}>
