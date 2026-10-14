@@ -3,6 +3,8 @@ import { siteConfig } from '@/lib/site';
 import {
   PRICE_CURRENCY,
   auditOffer,
+  checkCards,
+  checksCopy,
   auditPrice,
   finalCta,
   pricingCopy,
@@ -25,9 +27,9 @@ import LocalSeoFaq from './LocalSeoFaq';
 import LocalSeoFit from './LocalSeoFit';
 import LocalSeoHero from './LocalSeoHero';
 import LocalSeoProcess from './LocalSeoProcess';
+import PricingChecks from './PricingChecks';
 import PricingOffer from './PricingOffer';
 import PricingUpsell from './PricingUpsell';
-import SeoAuditChecks from './SeoAuditChecks';
 import SeoAuditCompare from './SeoAuditCompare';
 
 /**
@@ -81,7 +83,7 @@ export default function SeoAuditPage() {
         image={getPricingEntry('seo-audit').image}
       />
       <LocalSeoFit copy={signsCopy} cards={signsCards} callout={signsCallout} />
-      <SeoAuditChecks />
+      <PricingChecks id="whats-checked" copy={checksCopy} cards={checkCards} tone="grey" />
       <PricingOffer copy={pricingCopy} offer={auditOffer} />
       <LocalSeoProcess copy={processCopy} stages={processStages} tone="grey" />
       <SeoAuditCompare />

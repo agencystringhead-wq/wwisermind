@@ -1,0 +1,187 @@
+/* /pricing/seo. Only what the other pricing pages have no equivalent for: the problem
+   section's text, the why-now cards and band, and the six numbered why-us cards. The hero,
+   plan cards, check grid, timeline, results, CTA and FAQ are those pages' own, applied from
+   LocalSeo.module.css and SeoAudit.module.css. Nothing here animates. */
+
+/* --- 2. the problem --------------------------------------------------------------------- */
+.problemHeading {
+  margin-top: 16px;
+}
+
+.problemBody {
+  max-width: 52ch;
+  margin-top: 20px;
+  font-size: 17px;
+}
+
+.problemButton {
+  margin-top: 32px;
+}
+
+/* --- 3. why now ------------------------------------------------------------------------ */
+.whyNowGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.whyNowCard {
+  padding: 36px 32px;
+  border-radius: 28px;
+  background-color: var(--color-white);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.whyNowTitle {
+  font-size: 26px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.whyNowBody {
+  margin-top: 12px;
+  color: var(--color-muted);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.labels li {
+  padding: 6px 12px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: var(--fw-medium);
+  line-height: 1.3;
+}
+
+.summary {
+  composes: dark from '../ui/Controls.module.css';
+  margin-top: 28px;
+  padding: 40px 48px;
+  border-radius: 20px;
+}
+
+.summaryLead {
+  color: var(--dark-headline);
+  font-size: 24px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+}
+
+.summaryBody {
+  max-width: 70ch;
+  margin-top: 10px;
+  color: var(--dark-body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+/* --- 7. why wwisermind: 3 columns from 1024px, 2 from 640px, 1 below --------------------- */
+.whyGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.whyCard {
+  padding: 32px 28px;
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+  background-color: var(--color-white);
+}
+
+.whyNumber {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--color-brand);
+  font-size: 36px;
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.whyTitle {
+  font-size: 20px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.whyBody {
+  margin-top: 8px;
+  color: var(--color-muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.founder {
+  max-width: 760px;
+  margin: 56px auto 0;
+  text-align: center;
+}
+
+.founderPhoto {
+  width: 88px;
+  height: 88px;
+  margin-inline: auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.founderQuote {
+  margin: 20px 0 0;
+  font-size: 20px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+.founderName {
+  margin-top: 16px;
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+@media (min-width: 640px) {
+  .whyGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .whyNowGrid,
+  .whyGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .whyNowCard {
+    padding: 28px 24px;
+  }
+
+  .summary {
+    padding: 28px 24px;
+  }
+
+  .problemButton {
+    width: 100%;
+  }
+}

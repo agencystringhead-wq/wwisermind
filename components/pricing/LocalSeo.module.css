@@ -95,6 +95,10 @@
   text-align: center;
 }
 
+.head .eyebrow {
+  margin-bottom: 16px;
+}
+
 .head .lede {
   max-width: 56ch;
   margin-top: 16px;
@@ -305,6 +309,45 @@
   padding-top: calc(14px * 1.4);
 }
 
+/* A plan with just a figure and a suffix has no label line above it, so the block does not
+   need the label's height. */
+.pkgPriceFlat {
+  min-height: 56px;
+}
+
+.buttonBlueFull {
+  composes: buttonBlue from '../ui/Controls.module.css';
+  width: 100%;
+  margin-top: 28px;
+}
+
+.moreOptions {
+  margin-top: 28px;
+  color: var(--color-muted);
+  font-size: 16px;
+  text-align: center;
+}
+
+.moreOptions a {
+  color: var(--color-ink);
+  font-weight: var(--fw-semibold);
+  text-decoration: underline;
+  text-decoration-color: var(--color-line);
+  text-underline-offset: 4px;
+}
+
+.moreOptions a:hover {
+  color: var(--color-brand);
+}
+
+.terms {
+  max-width: 70ch;
+  margin: 24px auto 0;
+  color: var(--color-muted);
+  font-size: 14px;
+  text-align: center;
+}
+
 .pkgPriceNote {
   color: var(--color-muted);
   font-size: 14px;
@@ -460,7 +503,7 @@
 
 .everyList {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--every-cols, 4), minmax(0, 1fr));
   gap: 16px 32px;
   margin: 28px 0 0;
   padding: 0;
@@ -518,7 +561,7 @@
 .stages {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--stage-count, 3), minmax(0, 1fr));
   gap: 40px;
   margin: 0;
   padding: 0;

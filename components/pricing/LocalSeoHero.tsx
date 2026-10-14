@@ -14,7 +14,7 @@ export type PricingHeroData = {
 /** Frame 1, shared by the /pricing sub-pages. Nothing animates on entrance. The picture is
     the package's own card image from /pricing, loaded eagerly as the largest thing above the
     fold. The trust strip is not rendered while the array is empty. The secondary link scrolls
-    to the section its href names. */
+    to the section its href names when that is an anchor, and is a plain link otherwise. */
 export default function LocalSeoHero({
   hero,
   trustItems,
@@ -36,11 +36,17 @@ export default function LocalSeoHero({
             <Link href={hero.primary.href} className={styles.button}>
               {hero.primary.label}
             </Link>
-            <SeeAllPrices
-              className={styles.textLink}
-              label={hero.secondary.label}
-              target={hero.secondary.href.replace('#', '')}
-            />
+            {hero.secondary.href.startsWith('#') ? (
+              <SeeAllPrices
+                className={styles.textLink}
+                label={hero.secondary.label}
+                target={hero.secondary.href.replace('#', '')}
+              />
+            ) : (
+              <Link href={hero.secondary.href} className={styles.textLink}>
+                {hero.secondary.label} <span aria-hidden="true">→</span>
+              </Link>
+            )}
           </div>
 
           {trustItems.length > 0 ? (

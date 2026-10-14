@@ -3,27 +3,27 @@ import {
   CheckIcon,
   GrowthChartIcon,
   MapPinIcon,
+  PersonIcon,
   PlusCircleIcon,
   RocketIcon,
+  UsersIcon,
 } from '@/components/ui/icons';
-import {
-  everyPackage,
-  localSeoPackages,
-  packagesCopy,
-  visibilityBand,
-  type LocalSeoPackage,
-  type PackageIcon,
-} from '@/lib/pricing/local-seo';
+import type { LineSegment, LocalSeoPackage, PackageIcon } from '@/lib/pricing/local-seo';
 import styles from './LocalSeo.module.css';
 
 const packageIcons: Record<PackageIcon, typeof RocketIcon> = {
   growth: GrowthChartIcon,
   rocket: RocketIcon,
   map: MapPinIcon,
+  person: PersonIcon,
+  users: UsersIcon,
 };
 
-/** The price block is always two lines (a label and a figure, or a figure and a note) at a
-    fixed height, so the section label and rows start at the same place on every card. */
+const dollars = (price: number) => `$${price.toLocaleString('en-US')}`;
+
+/** The price block is a label and a figure, or a figure and a note, at a fixed height, so the
+    section label and rows start at the same place on every card. A plan with only a figure and
+    a suffix has no label line and a shorter block. */
 function PriceBlock({ pkg }: { pkg: LocalSeoPackage }) {
   if (pkg.customPrice) {
     return (
@@ -35,29 +35,48 @@ function PriceBlock({ pkg }: { pkg: LocalSeoPackage }) {
   }
 
   return (
-    <div className={styles.pkgPrice}>
-      <p className={styles.pkgPriceNote}>{pkg.priceLabel}</p>
+    <div className={`${styles.pkgPrice} ${pkg.priceLabel ? '' : styles.pkgPriceFlat}`}>
+      {pkg.priceLabel ? <p className={styles.pkgPriceNote}>{pkg.priceLabel}</p> : null}
       <p className={styles.pkgPriceBig}>
-        {pkg.price !== undefined ? `$${pkg.price}` : null}
+        {pkg.price !== undefined ? dollars(pkg.price) : null}
         <small>{pkg.suffix}</small>
       </p>
     </div>
   );
 }
 
-/** Frame 4: three packages side by side (the featured one first on a phone), then what
-    every package includes and the visibility-check band. */
-export default function LocalSeoPackages() {
+/** The package grid, shared by the Local SEO and Ongoing SEO pages: three cards side by side
+    (the featured one first on a phone), then what every package includes and, when the page
+    has them, a visibility band, a terms line and a line of links to other options. */
+export default function LocalSeoPackages({
+  id = 'packages',
+  copy,
+  packages,
+  every,
+  band,
+  terms,
+  more,
+}: {
+  id?: string;
+  copy: { eyebrow?: string; title: string; sub: string };
+  packages: LocalSeoPackage[];
+  every: { title: string; items: string[] };
+  band?: { title: string; body: string; button: { label: string; href: string } };
+  /** Printed under the "every plan" row; left out while empty. */
+  terms?: string;
+  more?: LineSegment[];
+}) {
   return (
-    <section className={styles.sectionGrey} id="packages">
+    <section className={styles.sectionGrey} id={id}>
       <div className="container">
         <header className={styles.head}>
-          <h2 className={styles.heading}>{packagesCopy.title}</h2>
-          <p className={styles.lede}>{packagesCopy.sub}</p>
+          {copy.eyebrow ? <p className={styles.eyebrow}>{copy.eyebrow}</p> : null}
+          <h2 className={styles.heading}>{copy.title}</h2>
+          <p className={styles.lede}>{copy.sub}</p>
         </header>
 
         <ul className={styles.pkgGrid}>
-          {localSeoPackages.map((pkg) => {
+          {packages.map((pkg) => {
             const Badge = packageIcons[pkg.icon];
 
             return (
@@ -97,7 +116,10 @@ export default function LocalSeoPackages() {
                 </ul>
 
                 {pkg.cta ? (
-                  <Link href={pkg.cta.href} className={styles.buttonFull}>
+                  <Link
+                    href={pkg.cta.href}
+                    className={pkg.featured ? styles.buttonBlueFull : styles.buttonFull}
+                  >
                     {pkg.cta.label}
                   </Link>
                 ) : null}
@@ -107,9 +129,12 @@ export default function LocalSeoPackages() {
         </ul>
 
         <div className={styles.every}>
-          <h3 className={styles.everyTitle}>{packagesCopy.everyTitle}</h3>
-          <ul className={styles.everyList}>
-            {everyPackage.map((item) => (
+          <h3 className={styles.everyTitle}>{every.title}</h3>
+          <ul
+            className={styles.everyList}
+            style={{ '--every-cols': Math.min(every.items.length, 4) } as React.CSSProperties}
+          >
+            {every.items.map((item) => (
               <li key={item}>
                 <CheckIcon />
                 {item}
@@ -118,15 +143,33 @@ export default function LocalSeoPackages() {
           </ul>
         </div>
 
-        <div className={styles.band}>
-          <div>
-            <h3 className={styles.bandTitle}>{visibilityBand.title}</h3>
-            <p className={styles.bandBody}>{visibilityBand.body}</p>
+        {terms ? <p className={styles.terms}>{terms}</p> : null}
+
+        {more && more.length > 0 ? (
+          <p className={styles.moreOptions}>
+            {more.map((part, index) =>
+              'href' in part ? (
+                <Link href={part.href} key={index}>
+                  {part.label}
+                </Link>
+              ) : (
+                <span key={index}>{part.text}</span>
+              ),
+            )}
+          </p>
+        ) : null}
+
+        {band ? (
+          <div className={styles.band}>
+            <div>
+              <h3 className={styles.bandTitle}>{band.title}</h3>
+              <p className={styles.bandBody}>{band.body}</p>
+            </div>
+            <Link href={band.button.href} className={styles.buttonBlue}>
+              {band.button.label}
+            </Link>
           </div>
-          <Link href={visibilityBand.button.href} className={styles.buttonBlue}>
-            {visibilityBand.button.label}
-          </Link>
-        </div>
+        ) : null}
       </div>
     </section>
   );

@@ -2,6 +2,7 @@ import { siteConfig } from '@/lib/site';
 import { getPricingEntry } from '@/lib/pricing';
 import {
   PRICE_CURRENCY,
+  everyPackage,
   fitCallout,
   fitCards,
   fitCopy,
@@ -12,9 +13,14 @@ import {
   localSeoMeta,
   localSeoPackages,
   localSeoPath,
+  packagesCopy,
   processCopy,
+  resultCards,
+  resultsCopy,
+  showResults,
   processStages,
   trustItems,
+  visibilityBand,
 } from '@/lib/pricing/local-seo';
 import LocalSeoBundle from './LocalSeoBundle';
 import LocalSeoCta from './LocalSeoCta';
@@ -86,9 +92,14 @@ export default function LocalSeoPage() {
         trustItems={trustItems}
         image={getPricingEntry('local-seo').image}
       />
-      <LocalSeoResults />
+      <LocalSeoResults copy={resultsCopy} cards={resultCards} show={showResults} />
       <LocalSeoFit copy={fitCopy} cards={fitCards} callout={fitCallout} />
-      <LocalSeoPackages />
+      <LocalSeoPackages
+        copy={packagesCopy}
+        packages={localSeoPackages}
+        every={{ title: packagesCopy.everyTitle, items: everyPackage }}
+        band={visibilityBand}
+      />
       <LocalSeoProcess copy={processCopy} stages={processStages} />
       <LocalSeoBundle />
       <LocalSeoProjects />

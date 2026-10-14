@@ -205,6 +205,13 @@ export const processStages: ProcessStage[] = [
   },
 ];
 
+/** How the other SEO pages list this one, so a price changed here changes there. */
+export const oneTimeListing = {
+  name: 'One-Time SEO',
+  price: `${payments} x ${money(paymentAmount)}`,
+  href: oneTimeSeoPath,
+};
+
 /* --- 6. which option ----------------------------------------------------------------- */
 
 export type SeoOption = {
@@ -235,8 +242,8 @@ export const seoOptions: SeoOption[] = [
     current: false,
   },
   {
-    name: 'One-Time SEO',
-    price: `${payments} x ${money(paymentAmount)}`,
+    name: oneTimeListing.name,
+    price: oneTimeListing.price,
     unit: '',
     fit: 'You want it fixed properly, once, without a contract',
     current: true,

@@ -163,6 +163,26 @@ export function FlagIcon(props: IconProps) {
   );
 }
 
+export function PersonIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="12" cy="8" r="3.500" />
+      <path d="M5 20c0-3.900 3.100-6.500 7-6.500s7 2.600 7 6.500" />
+    </Icon>
+  );
+}
+
+export function UsersIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="9" cy="8.500" r="3" />
+      <path d="M3 19c0-3.300 2.700-5.500 6-5.500s6 2.200 6 5.500" />
+      <circle cx="17" cy="9" r="2.500" />
+      <path d="M17 13.500c2.400 0 4.500 1.700 4.500 4.500" />
+    </Icon>
+  );
+}
+
 export function PlusCircleIcon(props: IconProps) {
   return (
     <Icon {...props}>
