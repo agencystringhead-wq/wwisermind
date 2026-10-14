@@ -235,125 +235,216 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: stretch;
-  gap: 24px;
+  gap: 28px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
+/* White, no border, a soft shadow to lift it off the grey section. The top padding is the
+   same on every card, so the featured card's tab sits in the card's own margin and moves
+   nothing. */
 .pkg {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 32px;
-  border: 1px solid var(--color-line);
-  border-radius: 20px;
+  padding: 52px 36px 36px;
+  border-radius: 28px;
   background-color: var(--color-white);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-.pkgHighlight {
-  border-color: var(--color-brand);
-  box-shadow: 0 0 0 1px var(--color-brand), 0 16px 40px rgba(20, 110, 245, 0.1);
-}
-
-.pkg .pill {
-  align-self: flex-start;
-  margin-bottom: 16px;
+.pkgHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }
 
 .pkgName {
-  font-size: 26px;
+  font-size: 30px;
   font-weight: var(--fw-semibold);
-  line-height: 1.15;
-  letter-spacing: -0.025em;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
 }
 
+.badge {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: #e4effe;
+  color: var(--color-brand);
+}
+
+.badge svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Three lines at the body size: the longest description fills it, the shorter ones leave
+   the space, and the price line below starts at the same height on every card. */
 .pkgFor {
-  min-height: 3em;
-  margin-top: 8px;
+  min-height: 4.5em;
+  margin-top: 14px;
   color: var(--color-muted);
   font-size: 15px;
   line-height: 1.5;
 }
 
 .pkgPrice {
+  min-height: 100px;
   margin-top: 24px;
-  padding-block: 20px;
-  border-block: 1px solid var(--color-divider);
+}
+
+/* No "Starting at" line above a quote: the same height is left empty, so the figure lines up
+   with the other cards' prices. */
+.pkgPriceQuoted {
+  padding-top: calc(14px * 1.4);
 }
 
 .pkgPriceNote {
   color: var(--color-muted);
   font-size: 14px;
+  line-height: 1.4;
 }
 
 .pkgPriceBig {
-  font-size: 26px;
-  font-weight: var(--fw-semibold);
-  line-height: 1.15;
-  letter-spacing: -0.025em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  margin-top: 2px;
+  font-size: 44px;
+  font-weight: var(--fw-bold);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
 }
 
 .pkgPriceBig small {
-  margin-left: 6px;
   color: var(--color-muted);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: var(--fw-regular);
   letter-spacing: 0;
 }
 
+/* A quoted card's note sits under the figure, so it gets its space above, not below. */
+.pkgPriceBig + .pkgPriceNote {
+  margin-top: 6px;
+}
+
 .pkgLead {
-  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 24px;
+  margin-top: 20px;
   font-size: 15px;
   font-weight: var(--fw-semibold);
+}
+
+.pkgLead svg {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  color: var(--color-brand);
 }
 
 .pkgRows {
-  margin: 8px 0 0;
-}
-
-.pkgRow {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding-block: 14px;
-  border-bottom: 1px solid var(--color-line);
-}
-
-.pkgRow:last-child {
-  border-bottom: 0;
-}
-
-.pkgRow dt {
-  font-size: 15px;
-  line-height: 1.45;
-}
-
-.pkgRow dd {
-  margin: 0;
-  color: var(--color-brand);
-  font-size: 14px;
-  font-weight: var(--fw-semibold);
-}
-
-.factors {
-  margin: 8px 0 28px;
+  margin: 12px 0 0;
   padding: 0;
   list-style: none;
 }
 
-.factors li {
-  padding-block: 12px;
-  border-bottom: 1px solid var(--color-line);
+.pkgRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 18px;
+  border-top: 1px solid var(--color-line);
   font-size: 15px;
+  line-height: 1.4;
 }
 
-.factors li:last-child {
-  border-bottom: 0;
+.pkgRow:last-child {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.rowLabel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rowCheck {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: var(--color-brand);
+  color: var(--color-white);
+}
+
+.rowCheck svg {
+  width: 13px;
+  height: 13px;
+  stroke-width: 2.5;
+}
+
+.rowValue {
+  font-weight: var(--fw-semibold);
+  text-align: right;
 }
 
 .pkg .buttonFull {
-  margin-top: auto;
+  margin-top: 28px;
+}
+
+/* The featured card: near black, a yellow tab across the top edge, a white badge. */
+.pkgFeatured {
+  background-color: #111111;
+  color: var(--color-white);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.18);
+}
+
+.pkgFeatured .pkgFor,
+.pkgFeatured .pkgPriceNote,
+.pkgFeatured .pkgPriceBig small {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.pkgFeatured .badge {
+  background-color: var(--color-white);
+}
+
+.pkgFeatured .pkgLead svg {
+  color: var(--color-yellow);
+}
+
+.pkgFeatured .pkgRow {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.tab {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  height: 34px;
+  padding-inline: 22px;
+  border-radius: 0 0 14px 14px;
+  background-color: var(--color-yellow);
+  color: var(--color-ink);
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  transform: translateX(-50%);
 }
 
 .every {
@@ -706,6 +797,10 @@
     min-height: 0;
   }
 
+  .pkgFeatured {
+    order: -1;
+  }
+
   .bundleGrid {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -754,9 +849,12 @@
   }
 
   .fitCard,
-  .pkg,
   .bundleCard {
     padding: 24px;
+  }
+
+  .pkg {
+    padding: 52px 24px 28px;
   }
 
   .callout,

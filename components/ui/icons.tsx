@@ -105,6 +105,45 @@ export function CheckIcon(props: IconProps) {
   );
 }
 
+/** The pricing cards' package badges, and the circled plus before "everything in ..., plus". */
+export function GrowthChartIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M3 3v18h18" />
+      <path d="m7 15 4-4 3 3 6-7" />
+      <path d="M15 7h5v5" />
+    </Icon>
+  );
+}
+
+export function RocketIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M12 3c3.5 1.5 5.5 5 5.5 9l-2 3h-7l-2-3c0-4 2-7.500 5.500-9z" />
+      <circle cx="12" cy="10" r="1.500" />
+      <path d="m9.500 15-1.500 4 4-1.500M14.500 15l1.500 4-4-1.500" />
+    </Icon>
+  );
+}
+
+export function MapPinIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M12 21s-6.500-5.600-6.500-11a6.500 6.500 0 0 1 13 0c0 5.400-6.500 11-6.500 11z" />
+      <circle cx="12" cy="10" r="2.500" />
+    </Icon>
+  );
+}
+
+export function PlusCircleIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 8v8M8 12h8" />
+    </Icon>
+  );
+}
+
 /** The pillar and why-choose-us cards name one of these by string in lib/services.ts. */
 export function SearchIcon(props: IconProps) {
   return (

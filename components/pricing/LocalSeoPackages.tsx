@@ -1,46 +1,52 @@
 import Link from 'next/link';
-import { CheckIcon } from '@/components/ui/icons';
+import {
+  CheckIcon,
+  GrowthChartIcon,
+  MapPinIcon,
+  PlusCircleIcon,
+  RocketIcon,
+} from '@/components/ui/icons';
 import {
   everyPackage,
-  formatLocalPrice,
   localSeoPackages,
   packagesCopy,
   visibilityBand,
   type LocalSeoPackage,
+  type PackageIcon,
 } from '@/lib/pricing/local-seo';
 import styles from './LocalSeo.module.css';
 
+const packageIcons: Record<PackageIcon, typeof RocketIcon> = {
+  growth: GrowthChartIcon,
+  rocket: RocketIcon,
+  map: MapPinIcon,
+};
+
+/** The price block is always two lines (a label and a figure, or a figure and a note) at a
+    fixed height, so the section label and rows start at the same place on every card. */
 function PriceBlock({ pkg }: { pkg: LocalSeoPackage }) {
   if (pkg.customPrice) {
     return (
-      <div className={styles.pkgPrice}>
+      <div className={`${styles.pkgPrice} ${styles.pkgPriceQuoted}`}>
         <p className={styles.pkgPriceBig}>{pkg.customPrice.headline}</p>
         <p className={styles.pkgPriceNote}>{pkg.customPrice.sub}</p>
       </div>
     );
   }
 
-  const price = formatLocalPrice(pkg.price);
-
   return (
     <div className={styles.pkgPrice}>
-      {price ? (
-        <>
-          <p className={styles.pkgPriceNote}>Starting at</p>
-          <p className={styles.pkgPriceBig}>
-            {price}
-            <small>{pkg.priceUnit}</small>
-          </p>
-        </>
-      ) : (
-        <p className={styles.pkgPriceBig}>Price on request</p>
-      )}
+      <p className={styles.pkgPriceNote}>{pkg.priceLabel}</p>
+      <p className={styles.pkgPriceBig}>
+        {pkg.price !== undefined ? `$${pkg.price}` : null}
+        <small>{pkg.suffix}</small>
+      </p>
     </div>
   );
 }
 
-/** Frame 4: three packages side by side (stacked on a phone), the middle one highlighted,
-    then what every package includes and the visibility-check band. */
+/** Frame 4: three packages side by side (the featured one first on a phone), then what
+    every package includes and the visibility-check band. */
 export default function LocalSeoPackages() {
   return (
     <section className={styles.sectionGrey} id="packages">
@@ -51,47 +57,53 @@ export default function LocalSeoPackages() {
         </header>
 
         <ul className={styles.pkgGrid}>
-          {localSeoPackages.map((pkg) => (
-            <li
-              key={pkg.id}
-              className={`${styles.pkg} ${pkg.highlighted ? styles.pkgHighlight : ''}`}
-            >
-              {pkg.highlighted ? (
-                <span className={styles.pill}>{packagesCopy.popularTag}</span>
-              ) : null}
-              <h3 className={styles.pkgName}>{pkg.name}</h3>
-              <p className={styles.pkgFor}>{pkg.forWho}</p>
+          {localSeoPackages.map((pkg) => {
+            const Badge = packageIcons[pkg.icon];
 
-              <PriceBlock pkg={pkg} />
+            return (
+              <li
+                key={pkg.id}
+                className={`${styles.pkg} ${pkg.featured ? styles.pkgFeatured : ''}`}
+              >
+                {pkg.tag ? <span className={styles.tab}>{pkg.tag}</span> : null}
 
-              {pkg.lead ? <p className={styles.pkgLead}>{pkg.lead}</p> : null}
+                <div className={styles.pkgHead}>
+                  <h3 className={styles.pkgName}>{pkg.name}</h3>
+                  <span className={styles.badge}>
+                    <Badge />
+                  </span>
+                </div>
+                <p className={styles.pkgFor}>{pkg.description}</p>
 
-              {pkg.rows ? (
-                <dl className={styles.pkgRows}>
+                <PriceBlock pkg={pkg} />
+
+                <p className={styles.pkgLead}>
+                  {pkg.sectionPlus ? <PlusCircleIcon /> : null}
+                  {pkg.sectionLabel}
+                </p>
+
+                <ul className={styles.pkgRows}>
                   {pkg.rows.map((row) => (
-                    <div className={styles.pkgRow} key={row.label}>
-                      <dt>{row.label}</dt>
-                      <dd>{row.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-              ) : null}
-
-              {pkg.factors ? (
-                <ul className={styles.factors}>
-                  {pkg.factors.map((factor) => (
-                    <li key={factor}>{factor}</li>
+                    <li className={styles.pkgRow} key={row.label}>
+                      <span className={styles.rowLabel}>
+                        <span className={styles.rowCheck}>
+                          <CheckIcon />
+                        </span>
+                        {row.label}
+                      </span>
+                      {row.value ? <span className={styles.rowValue}>{row.value}</span> : null}
+                    </li>
                   ))}
                 </ul>
-              ) : null}
 
-              {pkg.cta ? (
-                <Link href={pkg.cta.href} className={styles.buttonFull}>
-                  {pkg.cta.label}
-                </Link>
-              ) : null}
-            </li>
-          ))}
+                {pkg.cta ? (
+                  <Link href={pkg.cta.href} className={styles.buttonFull}>
+                    {pkg.cta.label}
+                  </Link>
+                ) : null}
+              </li>
+            );
+          })}
         </ul>
 
         <div className={styles.every}>

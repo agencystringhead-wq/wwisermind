@@ -108,76 +108,92 @@ export const fitCallout = {
 
 /* --- 4. packages --------------------------------------------------------------------- */
 
-export type PackageRow = { label: string; value: string };
+export type PackageIcon = 'growth' | 'rocket' | 'map';
+
+export type PackageRow = {
+  label: string;
+  /** Absent on the multi-location card, whose rows are factors rather than inclusions. */
+  value?: string;
+};
 
 export type LocalSeoPackage = {
-  id: 'foundation' | 'growth' | 'group-practice';
-  /** Lowercase, always. */
+  id: 'fast-growth' | 'velocity' | 'multi-location';
   name: string;
-  forWho: string;
-  highlighted: boolean;
-  /** null until the owner supplies a number: the card then reads "Price on request". */
-  price: number | null;
-  priceUnit: string;
-  /** Used instead of the price line when the plan is quoted per practice. */
+  icon: PackageIcon;
+  description: string;
+  /** The dark card with the yellow tab. */
+  featured: boolean;
+  tag?: string;
+  /** A number for a priced card; absent for a quoted one. */
+  price?: number;
+  priceLabel?: string;
+  suffix?: string;
+  /** Replaces the price line on a quoted card. */
   customPrice?: { headline: string; sub: string };
-  lead?: string;
-  rows?: PackageRow[];
-  factors?: string[];
+  sectionLabel: string;
+  /** Draws a circled plus in front of the section label. */
+  sectionPlus?: boolean;
+  rows: PackageRow[];
   cta?: { label: string; href: string };
 };
 
 export const packagesCopy = {
   title: 'What’s included',
   sub: 'Built around how people actually find a therapist locally',
-  popularTag: 'most popular',
   everyTitle: 'Included in every package',
 };
 
 export const localSeoPackages: LocalSeoPackage[] = [
   {
-    id: 'foundation',
-    name: 'foundation',
-    forWho: 'Solo practitioners in one location',
-    highlighted: false,
-    price: null, // TODO: price
-    priceUnit: '/mo per location',
+    id: 'fast-growth',
+    name: 'Fast Growth',
+    icon: 'growth',
+    description: 'Ideal for: solo practitioners ready to grow in typical competition areas.',
+    featured: false,
+    price: 299,
+    priceLabel: 'Starting at',
+    suffix: '/mo per location',
+    sectionLabel: 'Package Details',
     rows: [
-      { label: 'Discovery & setup', value: 'Included' },
-      { label: 'Google Business Profile', value: 'Full optimisation' },
-      {
-        label:
-          'Therapy directory citations (Psychology Today, GoodTherapy, TherapyDen and more)',
-        value: 'Included',
-      },
-      { label: 'Profile posts', value: '2 per month' },
+      { label: 'Discovery & Setup', value: 'Included' },
+      { label: 'Google Business Profile', value: 'Full Optimization' },
+      { label: 'Therapy Directory Citations', value: 'Included' },
+      { label: 'GBP Posts', value: '2-3/month' },
     ],
   },
   {
-    id: 'growth',
-    name: 'growth',
-    forWho: 'Practices ready to grow in a competitive city',
-    highlighted: true,
-    price: null, // TODO: price
-    priceUnit: '/mo per location',
-    lead: 'Everything in foundation, plus:',
+    id: 'velocity',
+    name: 'Velocity',
+    icon: 'rocket',
+    description: 'Stronger local visibility with wider reach and privacy-safe review management.',
+    featured: true,
+    tag: 'Most popular',
+    price: 399,
+    priceLabel: 'Starting at',
+    suffix: '/mo per location',
+    sectionLabel: 'Everything in Fast Growth, plus:',
+    sectionPlus: true,
     rows: [
-      { label: 'Profile posts', value: '4 per month' },
-      { label: 'Bing Places & Apple Business Connect', value: 'Included' },
-      { label: 'Local service and specialty pages', value: 'Included' },
-      { label: 'Review monitoring & privacy-safe response guidance', value: 'Included' },
+      { label: 'GBP Posts', value: '4-6/month' },
+      { label: 'Bing & Apple Maps', value: 'Included' },
+      { label: 'Review Management', value: 'Included' },
     ],
   },
   {
-    id: 'group-practice',
-    name: 'group practice',
-    forWho: 'Multiple locations or clinicians? We’ll scope a plan around your footprint.',
-    highlighted: false,
-    price: null,
-    priceUnit: '',
-    customPrice: { headline: 'Custom quote', sub: 'Tailored to your practice' },
-    lead: 'Your plan depends on:',
-    factors: ['Number of locations', 'Number of clinicians', 'Local competition', 'Your growth goals'],
+    id: 'multi-location',
+    name: 'Multi-Location',
+    icon: 'map',
+    description:
+      'Several offices or clinicians? We’ll build a custom plan that scales with your practice.',
+    featured: false,
+    customPrice: { headline: 'Custom Quote', sub: 'Tailored to your footprint' },
+    sectionLabel: 'Your plan depends on',
+    rows: [
+      { label: 'Number of locations' },
+      { label: 'Number of clinicians' },
+      { label: 'Local competition' },
+      { label: 'Scope per location' },
+    ],
     cta: { label: 'Talk to us', href: '/contact' },
   },
 ];

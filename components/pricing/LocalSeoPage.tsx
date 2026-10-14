@@ -37,12 +37,18 @@ export default function LocalSeoPage() {
   };
 
   const offers = localSeoPackages
-    .filter((pkg) => pkg.price !== null)
+    .filter((pkg) => pkg.price !== undefined)
     .map((pkg) => ({
       '@type': 'Offer',
       name: pkg.name,
       price: pkg.price,
       priceCurrency: PRICE_CURRENCY,
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: pkg.price,
+        priceCurrency: PRICE_CURRENCY,
+        unitText: 'per location per month',
+      },
       url: `${url}#packages`,
     }));
 
