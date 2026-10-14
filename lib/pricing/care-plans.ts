@@ -150,7 +150,7 @@ const planDefs: PlanDef[] = [
     name: 'Essential',
     icon: 'shield',
     description: 'Ideal for: sites that rarely change and just need to stay safe and online.',
-    price: 99,
+    price: 110,
     sectionLabel: 'Package Details',
     rows: [
       { feature: 'hosting' },
@@ -168,7 +168,7 @@ const planDefs: PlanDef[] = [
     name: 'Plus',
     icon: 'shieldPlus',
     description: 'Ideal for: practices that update their site a few times a month.',
-    price: 149,
+    price: 199,
     featured: true,
     tag: 'Most popular',
     sectionLabel: 'Everything in Essential, plus:',
@@ -189,7 +189,7 @@ const planDefs: PlanDef[] = [
     name: 'Partner',
     icon: 'handshake',
     description: 'Ideal for: active practices that want a website team on call.',
-    price: 349,
+    price: 399,
     sectionLabel: 'Everything in Plus, plus:',
     sectionPlus: true,
     rows: [
@@ -255,7 +255,7 @@ export const carePlansMeta = {
 
 export const serviceName = 'WordPress care plans for therapists';
 export const serviceDescription =
-  'Managed WordPress hosting, core, theme and plugin updates, offsite backups, security monitoring and support time for therapy practice websites. Month to month, from $99 a month.';
+  'Managed WordPress hosting, core, theme and plugin updates, offsite backups, security monitoring and support time for therapy practice websites. Month to month, from $110 a month.';
 
 /* --- 1. hero ------------------------------------------------------------------------- */
 
