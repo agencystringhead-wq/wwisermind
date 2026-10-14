@@ -48,6 +48,7 @@ import LocalSeoPackages from './LocalSeoPackages';
 import LocalSeoProcess from './LocalSeoProcess';
 import PricingCompare from './PricingCompare';
 import PricingUpsell, { type UpsellPlan } from './PricingUpsell';
+import PricingCrumbs from './PricingCrumbs';
 
 /** Names, prices and links come from the website design and Ongoing SEO data files. */
 const upsellPlans: UpsellPlan[] = [
@@ -112,6 +113,7 @@ export default function CarePlansPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json(faqData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json(serviceData) }} />
       <LocalSeoHero hero={carePlansHero} trustItems={trustItems} image={heroImage} />
+      <PricingCrumbs label="WordPress Care Plans" path={carePlansPath} service="website-care-plans" />
       <LocalSeoFit copy={fitCopy} cards={fitCards} callout={fitCallout} tone="grey" />
       <LocalSeoProcess copy={processCopy} stages={processStages} link={processLink} />
       <LocalSeoPackages

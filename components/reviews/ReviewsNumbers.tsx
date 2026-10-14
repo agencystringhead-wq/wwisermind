@@ -1,3 +1,4 @@
+import { routes } from '@/lib/routes';
 import Image from 'next/image';
 import Link from 'next/link';
 import { caseStudies, resultsProjects } from '@/lib/services';
@@ -33,7 +34,7 @@ export default function ReviewsNumbers({ ground }: { ground: string }) {
         <Reveal as="ul" className={styles.numbers}>
           {studies.map((study, i) => (
             <li key={study.slug} data-reveal={String(i)}>
-              <Link href="/results" className={styles.numberCard}>
+              <Link href={routes.results} className={styles.numberCard}>
                 <span className={`${styles.numberImage} ${hover.frame}`}>
                   <Image
                     src={study.project.image}

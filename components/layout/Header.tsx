@@ -1,5 +1,7 @@
 'use client';
 
+import { routes } from '@/lib/routes';
+
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -29,7 +31,7 @@ function Column({ column, onNavigate }: { column: MegaColumn; onNavigate: () => 
     <div>
       {column.lead ? (
         <p className={styles.colLabel}>
-          <b>{column.lead}</b> / {column.title}
+          <b>{column.lead}</b>{column.title ? ` / ${column.title}` : null}
         </p>
       ) : null}
 
@@ -191,7 +193,7 @@ function MobileSection({
             <div key={column.title ?? index}>
               {column.lead ? (
                 <p className={styles.accGroup}>
-                  <b>{column.lead}</b> / {column.title}
+                  <b>{column.lead}</b>{column.title ? ` / ${column.title}` : null}
                 </p>
               ) : null}
 
@@ -322,7 +324,7 @@ export default function Header() {
         onMouseEnter={cancelClose}
       >
         <div className={`container ${styles.inner}`}>
-          <Link href="/" className={styles.brand} aria-label={`${siteConfig.name} home`}>
+          <Link href={routes.home} className={styles.brand} aria-label={`${siteConfig.name} home`}>
             <Image
               src="/images/wwisermind-official-logo.webp"
               alt={siteConfig.name}

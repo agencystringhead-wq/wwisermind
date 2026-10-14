@@ -32,7 +32,14 @@ type Frame = { render: (ground: Ground) => ReactNode; fixed?: Ground };
  * first frame under it is white; the FAQ is the homepage's, always white, and the frames
  * after it continue from there.
  */
-export default function ServicePage({ service }: { service: Service }) {
+export default function ServicePage({
+  service,
+  afterHero,
+}: {
+  service: Service;
+  /** Placed under the hero and its mosaic: the breadcrumb row. */
+  afterHero?: ReactNode;
+}) {
   const frames: Frame[] = [
     { render: (g) => <ServiceIntro service={service} ground={g} key="intro" /> },
   ];
@@ -90,6 +97,7 @@ export default function ServicePage({ service }: { service: Service }) {
           label={`${service.name} in pictures`}
         />
       ) : null}
+      {afterHero}
       {frames.map((frame) => {
         ground = frame.fixed ?? (ground === 'light' ? 'grey' : 'light');
         return frame.render(ground);

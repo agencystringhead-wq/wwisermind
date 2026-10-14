@@ -1,0 +1,45 @@
+# Cloudflare Pages redirects. Every old URL goes straight to its final address in one 301,
+# with and without the trailing slash. No chains: each destination is a real page in the build.
+
+/pricing/hyper-growth /therapist-marketing-packages/ 301
+/pricing/hyper-growth/ /therapist-marketing-packages/ 301
+/pricing/website-design /one-week-therapist-website/ 301
+/pricing/website-design/ /one-week-therapist-website/ 301
+/pricing/custom-website /custom-therapist-website-design/ 301
+/pricing/custom-website/ /custom-therapist-website-design/ 301
+/pricing/care-plans /therapy-website-care-plans/ 301
+/pricing/care-plans/ /therapy-website-care-plans/ 301
+/pricing/seo-audit /seo-audit-pricing-for-therapists/ 301
+/pricing/seo-audit/ /seo-audit-pricing-for-therapists/ 301
+/pricing/one-time-seo /one-time-seo-pricing-for-therapists/ 301
+/pricing/one-time-seo/ /one-time-seo-pricing-for-therapists/ 301
+/pricing/seo /seo-packages-for-therapists/ 301
+/pricing/seo/ /seo-packages-for-therapists/ 301
+/pricing/local-seo /local-seo-packages-for-therapists/ 301
+/pricing/local-seo/ /local-seo-packages-for-therapists/ 301
+/services/one-week-website /one-week-website-for-therapists/ 301
+/services/one-week-website/ /one-week-website-for-therapists/ 301
+/services/custom-website-design /therapist-website-design/ 301
+/services/custom-website-design/ /therapist-website-design/ 301
+/services/website-hosting /therapist-website-hosting/ 301
+/services/website-hosting/ /therapist-website-hosting/ 301
+/services/website-care-plans /therapist-website-maintenance/ 301
+/services/website-care-plans/ /therapist-website-maintenance/ 301
+/services/local-seo /local-seo-for-therapists/ 301
+/services/local-seo/ /local-seo-for-therapists/ 301
+/services/seo-audit /seo-audit-for-therapists/ 301
+/services/seo-audit/ /seo-audit-for-therapists/ 301
+/services/one-time-seo /one-time-seo-for-therapists/ 301
+/services/one-time-seo/ /one-time-seo-for-therapists/ 301
+/services/ongoing-seo /seo-for-therapists/ 301
+/services/ongoing-seo/ /seo-for-therapists/ 301
+/services/copywriting /therapist-website-copywriting/ 301
+/services/copywriting/ /therapist-website-copywriting/ 301
+/services/meta-ads /meta-ads-for-therapists/ 301
+/services/meta-ads/ /meta-ads-for-therapists/ 301
+/services/ai-search-optimization /ai-search-optimization-for-therapists/ 301
+/services/ai-search-optimization/ /ai-search-optimization-for-therapists/ 301
+/services/ai-website-design /ai-website-design-for-therapists/ 301
+/services/ai-website-design/ /ai-website-design-for-therapists/ 301
+/services/ai-chatbot /ai-chatbot-for-therapists/ 301
+/services/ai-chatbot/ /ai-chatbot-for-therapists/ 301

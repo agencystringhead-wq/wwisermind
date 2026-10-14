@@ -1,3 +1,4 @@
+import { routes } from '@/lib/routes';
 /* ==========================================================================
    /process — every word on the page lives here.
 
@@ -38,7 +39,7 @@ export const processPage = {
     heading: 'Three steps. No mystery.',
     /** Held to two lines at 64ch by the hero's own measure. */
     lead: 'One free call, an honest plan and a timeline you’ll know before anything starts. Then we build while you see clients.',
-    primary: { label: 'Book a free call', href: '/contact#book-a-call' },
+    primary: { label: 'Book a free call', href: routes.contactBook },
   },
 
   /* ---- 2. intro statement (light) ------------------------------------------------ */

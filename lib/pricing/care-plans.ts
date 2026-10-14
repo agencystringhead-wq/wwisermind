@@ -1,3 +1,4 @@
+import { routes } from '@/lib/routes';
 import type { PricingHeroData } from '@/components/pricing/LocalSeoHero';
 import { getPricingEntry } from '@/lib/pricing';
 import {
@@ -12,7 +13,7 @@ import {
 } from '@/lib/pricing/local-seo';
 
 /* ==========================================================================
-   /pricing/care-plans: WordPress care plans.
+   /therapy-website-care-plans/: WordPress care plans.
 
    Same pattern as the other pricing data files: every word and figure on the page is read
    from here, and the components only render it. The three plans live in `matrix`, one
@@ -30,7 +31,7 @@ import {
 
 export { PRICE_CURRENCY };
 
-export const carePlansPath = '/pricing/care-plans';
+export const carePlansPath = routes.pricing.carePlans;
 
 /* The one-time WordPress Evaluation & Tune-Up Fee. Required on every plan, on top of the
    monthly price. */
@@ -264,7 +265,7 @@ export const carePlansHero: PricingHeroData = {
   title: 'A website that just works, so you don’t have to think about it',
   sub: `Hosting, updates, backups, security and help with changes for your WordPress site, all handled for you. Plans from ${money(lowestPrice)} a month. Cancel any time.`,
   primary: { label: 'See plans', href: '#plans' },
-  secondary: { label: 'Book a 15-minute call', href: '/contact' },
+  secondary: { label: 'Book a 15-minute call', href: routes.contact },
 };
 
 /* The Website Care Plans card image from /pricing. */
@@ -336,7 +337,7 @@ export const processStages: ProcessStage[] = [
 export const processLink = {
   text: 'Not sure which plan fits?',
   label: 'Book a 15-minute call',
-  href: '/contact',
+  href: routes.contact,
 };
 
 /* --- 4. plans ------------------------------------------------------------------------ */
@@ -499,7 +500,7 @@ export const finalCta: FinalCta = {
   button: { label: 'See plans', href: '#plans' },
 };
 
-export const finalCtaSecondary = { label: 'Book a 15-minute call', href: '/contact' };
+export const finalCtaSecondary = { label: 'Book a 15-minute call', href: routes.contact };
 
 /** How the other pages list this one, so a price changed above changes there. */
 export const carePlansListing = {

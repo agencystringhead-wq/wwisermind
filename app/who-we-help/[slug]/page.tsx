@@ -1,8 +1,10 @@
+import { BreadcrumbJsonLd } from '@/components/ui/Breadcrumbs';
+import { routes } from '@/lib/routes';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import AudiencePage from '@/components/audiences/AudiencePage';
 import { AUDIENCE_SLUGS, getAudience } from '@/lib/audiences';
-import { siteConfig } from '@/lib/site';
+import { siteConfig, absUrl } from '@/lib/site';
 
 /* One page per slug, both rendered at build time — the site is a static export, so a
    slug outside the list is a 404 rather than a page built on request. */
@@ -22,7 +24,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: audience.seo.title,
     description: audience.seo.description,
-    alternates: { canonical: `${siteConfig.url}/who-we-help/${audience.slug}` },
+    alternates: { canonical: absUrl(routes.audience(audience.slug)) },
   };
 }
 
@@ -31,7 +33,7 @@ export default async function Page({ params }: Params) {
   const audience = getAudience(slug);
   if (!audience) notFound();
 
-  const url = `${siteConfig.url}/who-we-help/${audience.slug}`;
+  const url = absUrl(routes.audience(audience.slug));
 
   /* Schema.org WebPage, naming the audience it is written for and the studio behind it,
      as the service pages do. */
@@ -58,6 +60,12 @@ export default async function Page({ params }: Params) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <BreadcrumbJsonLd
+        trail={[
+          { label: 'Home', href: routes.home },
+          { label: audience.name, href: routes.audience(audience.slug) },
+        ]}
       />
       <AudiencePage audience={audience} />
     </>

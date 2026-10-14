@@ -1,3 +1,4 @@
+import { routes } from '@/lib/routes';
 import Image from 'next/image';
 import Link from 'next/link';
 import { formatDate, relatedPosts, type BlogPost } from '@/lib/blog';
@@ -20,7 +21,7 @@ const abs = (path: string) => `${siteConfig.url}${path}`;
  * page prints. No review or rating markup is written anywhere.
  */
 export default function BlogPostPage({ post }: { post: BlogPost }) {
-  const url = abs(`/blog/${post.slug}`);
+  const url = abs(routes.blogPost(post.slug));
   const more = relatedPosts(post, 3);
   const updated = post.updatedAt !== post.publishedAt;
 
@@ -49,13 +50,13 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: abs('/') },
-        { '@type': 'ListItem', position: 2, name: 'Blog', item: abs('/blog') },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: abs(routes.home) },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: abs(routes.blog) },
         {
           '@type': 'ListItem',
           position: 3,
           name: post.category,
-          item: abs(`/blog/category/${post.categorySlug}`),
+          item: abs(routes.blogCategory(post.categorySlug)),
         },
         { '@type': 'ListItem', position: 4, name: post.title, item: url },
       ],
@@ -75,11 +76,11 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
         <header className={styles.postHeader}>
           <div className="container">
             <nav className={styles.crumbs} aria-label="Breadcrumb">
-              <Link href="/">Home</Link>
+              <Link href={routes.home}>Home</Link>
               <span aria-hidden="true">/</span>
-              <Link href="/blog">Blog</Link>
+              <Link href={routes.blog}>Blog</Link>
               <span aria-hidden="true">/</span>
-              <Link href={`/blog/category/${post.categorySlug}`}>{post.category}</Link>
+              <Link href={routes.blogCategory(post.categorySlug)}>{post.category}</Link>
             </nav>
 
             <h1 className={styles.postTitle}>{post.title}</h1>

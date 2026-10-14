@@ -1,3 +1,4 @@
+import { routes } from '@/lib/routes';
 /* ==========================================================================
    Reviews — the one file every review and every score on the site comes from.
 
@@ -106,7 +107,7 @@ export const reviewsPage = {
         C  What it's like to work with us, from the people who have. */
     heading: 'Therapists tell it better than we do.',
     lead: 'Here’s what therapists say after working with us, in their own words.',
-    primary: { label: 'Book a free call', href: '/contact#book-a-call' },
+    primary: { label: 'Book a free call', href: routes.contactBook },
     google: { label: 'Read them on Google' },
   },
 
@@ -115,7 +116,7 @@ export const reviewsPage = {
     eyebrow: 'In their words',
     /** The link is drawn only when the featured review's practice has a case study. */
     projectLinkLabel: (practice: string) => `See the ${practice} project`,
-    projectLinkHref: '/results',
+    projectLinkHref: routes.results,
   },
 
   /* ---- 3. the wall (soft gray-blue tint) ---------------------------------------- */

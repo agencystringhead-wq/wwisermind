@@ -1,3 +1,4 @@
+import { routes } from '@/lib/routes';
 import type { PricingHeroData } from '@/components/pricing/LocalSeoHero';
 import { getPricingEntry } from '@/lib/pricing';
 import {
@@ -29,7 +30,7 @@ import { auditListing } from '@/lib/pricing/seo-audit';
 
 export { PRICE_CURRENCY };
 
-export const ongoingSeoPath = '/pricing/seo';
+export const ongoingSeoPath = routes.pricing.seo;
 
 /* --- the plans, first: everything else reads their prices ----------------------------- */
 
@@ -53,7 +54,7 @@ export const plans: LocalSeoPackage[] = [
       { label: 'AEO & GEO', value: 'Foundations' },
       { label: 'Reporting', value: 'Monthly snapshot' },
     ],
-    cta: { label: 'Get started', href: '/contact?plan=solo-practice' },
+    cta: { label: 'Get started', href: routes.withQuery(routes.contact, { plan: 'solo-practice' }) },
   },
   {
     id: 'growing-practice',
@@ -77,7 +78,7 @@ export const plans: LocalSeoPackage[] = [
       { label: 'Link building', value: 'Standard' },
       { label: 'Strategy call', value: 'Quarterly' },
     ],
-    cta: { label: 'Get started', href: '/contact?plan=growing-practice' },
+    cta: { label: 'Get started', href: routes.withQuery(routes.contact, { plan: 'growing-practice' }) },
   },
   {
     id: 'group-practice',
@@ -100,7 +101,7 @@ export const plans: LocalSeoPackage[] = [
       { label: 'Conversion review', value: 'Quarterly' },
       { label: 'Strategy call', value: 'Monthly' },
     ],
-    cta: { label: 'Get started', href: '/contact?plan=group-practice' },
+    cta: { label: 'Get started', href: routes.withQuery(routes.contact, { plan: 'group-practice' }) },
   },
 ];
 
@@ -128,7 +129,7 @@ export const ongoingSeoHero: PricingHeroData = {
   title: 'Get found on Google and in AI answers. Month after month.',
   sub: 'People look for a therapist on Google, in the map results, and more and more by asking ChatGPT. We handle the strategy and the work every month, so your practice shows up wherever they’re searching.',
   primary: { label: 'See plans', href: '#plans' },
-  secondary: { label: 'Get a free visibility check', href: '/contact' },
+  secondary: { label: 'Get a free visibility check', href: routes.contact },
 };
 
 /* TODO: replace with /images/hero-serp.webp, a search results and AI answer mockup. Until it
@@ -145,7 +146,7 @@ export const problem = {
   eyebrow: 'The problem',
   title: 'If you’re not on page one, someone else is getting the call',
   body: 'Most people searching for a therapist pick from the first few results they see. A beautiful website doesn’t help if it isn’t one of them. And it’s not about being a better clinician. It’s about being visible at the moment someone decides to reach out.',
-  button: { label: 'Show me where I rank', href: '/contact' },
+  button: { label: 'Show me where I rank', href: routes.contact },
 };
 
 /* TODO: replace with a real picture for this section. Until then it shows the SEO Audit
@@ -427,6 +428,6 @@ export const ongoingSeoFaqs: FaqItem[] = [
 export const finalCta: FinalCta = {
   title: 'Let’s get your practice found',
   sub: 'Book a free call. We’ll look at where you stand, who you’re competing with, and which plan makes sense. No pressure, the plan is yours either way.',
-  button: { label: 'Book a free call', href: '/contact' },
+  button: { label: 'Book a free call', href: routes.contact },
   items: ['Visibility check', 'Competitor comparison', 'Plan recommendation'],
 };

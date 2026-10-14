@@ -30,6 +30,7 @@ import OneTimeSeoOptions from './OneTimeSeoOptions';
 import OneTimeSeoPhases from './OneTimeSeoPhases';
 import PricingOffer from './PricingOffer';
 import PricingUpsell from './PricingUpsell';
+import PricingCrumbs from './PricingCrumbs';
 
 /**
  * /pricing/one-time-seo. The third of the /pricing sub-pages: the hero, check cards, offer
@@ -83,6 +84,7 @@ export default function OneTimeSeoPage() {
         trustItems={trustItems}
         image={getPricingEntry('one-time-seo').image}
       />
+      <PricingCrumbs label="One-Time SEO" path={oneTimeSeoPath} service="one-time-seo" />
       <LocalSeoFit copy={fitCopy} cards={fitCards} callout={fitCallout} />
       <OneTimeSeoPhases />
       <PricingOffer copy={pricingCopy} offer={oneTimeOffer} />

@@ -1,3 +1,4 @@
+import { routes } from '@/lib/routes';
 import Link from 'next/link';
 import styles from './AboutBelief.module.css';
 
@@ -58,7 +59,7 @@ export default function AboutBelief() {
           ))}
         </ul>
 
-        <Link href="/contact" className={styles.ctaBar}>
+        <Link href={routes.contact} className={styles.ctaBar}>
           <span>Ready to elevate your practice?</span>
           <span className={styles.ctaArrow} aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

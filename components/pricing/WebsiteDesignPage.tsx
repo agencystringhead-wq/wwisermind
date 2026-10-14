@@ -40,6 +40,7 @@ import LocalSeoProjects from './LocalSeoProjects';
 import PricingCompare from './PricingCompare';
 import PricingUpsell from './PricingUpsell';
 import PricingWhy from './PricingWhy';
+import PricingCrumbs from './PricingCrumbs';
 
 /**
  * /pricing/website-design. The fifth /pricing sub-page: the hero, check cards, package
@@ -98,6 +99,7 @@ export default function WebsiteDesignPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json(faqData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json(serviceData) }} />
       <LocalSeoHero hero={websiteDesignHero} trustItems={trustItems} image={heroImage} />
+      <PricingCrumbs label="One-Week Website" path={websiteDesignPath} service="one-week-website" />
       <LocalSeoFit copy={fitCopy} cards={fitCards} callout={fitCallout} />
       <LocalSeoPackages
         id="pricing"

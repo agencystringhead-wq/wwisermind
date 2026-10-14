@@ -1,5 +1,6 @@
+import { routes } from '@/lib/routes';
 import { getAllPosts } from '@/lib/blog';
-import { siteConfig } from '@/lib/site';
+import { siteConfig, absUrl } from '@/lib/site';
 
 /* Static export: this is written to /rss.xml at build time. */
 export const dynamic = 'force-static';
@@ -18,11 +19,11 @@ const rfc822 = (iso: string) => new Date(`${iso}T09:00:00Z`).toUTCString();
 /** The blog's feed: every post, newest first, with the excerpt as the description. */
 export function GET() {
   const posts = getAllPosts();
-  const feedUrl = `${siteConfig.url}/rss.xml`;
+  const feedUrl = absUrl(routes.rss);
 
   const items = posts
     .map((post) => {
-      const link = `${siteConfig.url}/blog/${post.slug}`;
+      const link = absUrl(routes.blogPost(post.slug));
       return `    <item>
       <title>${escape(post.title)}</title>
       <link>${link}</link>
@@ -38,7 +39,7 @@ export function GET() {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>wwisermind blog</title>
-    <link>${siteConfig.url}/blog</link>
+    <link>${absUrl(routes.blog)}</link>
     <description>Plain-English articles for therapists on websites, search and AI.</description>
     <language>en</language>
     <atom:link href="${feedUrl}" rel="self" type="application/rss+xml" />

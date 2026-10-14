@@ -1,3 +1,4 @@
+import { routes } from '@/lib/routes';
 import type { PricingHeroData } from '@/components/pricing/LocalSeoHero';
 import { getPricingEntry } from '@/lib/pricing';
 import { carePlansListing } from '@/lib/pricing/care-plans';
@@ -38,7 +39,7 @@ import {
 
 export { PRICE_CURRENCY };
 
-export const customWebsitePath = '/pricing/custom-website';
+export const customWebsitePath = routes.pricing.customWebsite;
 
 const money = (n: number) => `$${n.toLocaleString('en-US')}`;
 
@@ -157,7 +158,7 @@ export const packages: LocalSeoPackage[] = [
       { label: 'Training session', value: '1 hour, recorded' },
       { label: 'Copywriting', value: 'Add-on', valueHref: '#copywriting' },
     ],
-    cta: { label: 'Book a free discovery call', href: '/contact?plan=custom-website' },
+    cta: { label: 'Book a free discovery call', href: routes.withQuery(routes.contact, { plan: 'custom-website' }) },
   },
   {
     id: 'group-website',
@@ -177,7 +178,7 @@ export const packages: LocalSeoPackage[] = [
       { label: 'Timeline', value: '6 to 8 weeks' },
       { label: 'Copywriting', value: 'Add-on', valueHref: '#copywriting' },
     ],
-    cta: { label: 'Book a free discovery call', href: '/contact?plan=group-website' },
+    cta: { label: 'Book a free discovery call', href: routes.withQuery(routes.contact, { plan: 'group-website' }) },
   },
 ];
 
@@ -337,7 +338,7 @@ export const compareRows: { criteria: string; cells: string[] }[] = [
 export const projectsCopy = {
   title: 'Recent launches',
   sub: 'Websites we have built for therapy practices',
-  link: { label: 'See all work', href: '/results' },
+  link: { label: 'See all work', href: routes.results },
 };
 
 /** Read from the homepage's launches, so a figure changed there changes here. The section is
@@ -440,7 +441,7 @@ export const customWebsiteFaqs: FaqItem[] = [
 export const finalCta: FinalCta = {
   title: 'Let’s design something that feels like your practice',
   sub: 'Book a free discovery call. We’ll talk about your practice and send a fixed quote. No paid sessions, no pressure.',
-  button: { label: 'Book a free discovery call', href: '/contact' },
+  button: { label: 'Book a free discovery call', href: routes.contact },
 };
 
 /** How the other pages list this one, so a price changed above changes there. */

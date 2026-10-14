@@ -1,3 +1,4 @@
+import { routes } from '@/lib/routes';
 import { Fragment } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -95,7 +96,7 @@ export default function Footer() {
 
           {/* --- row 2: brand rail, link columns, schedule-a-call --------------- */}
           <div className={styles.brand}>
-            <Link href="/" className={styles.logoLink} aria-label={logo.alt}>
+            <Link href={routes.home} className={styles.logoLink} aria-label={logo.alt}>
               <Image
                 src={logo.src}
                 alt={logo.alt}

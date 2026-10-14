@@ -1,3 +1,4 @@
+import { routes } from '@/lib/routes';
 import type { ServiceIconName } from '@/components/ui/icons';
 import { homeIntro } from '@/lib/site';
 
@@ -21,7 +22,7 @@ export const PRICE_CURRENCY = 'USD';
 
 /* --- SEO ----------------------------------------------------------------------------- */
 
-export const localSeoPath = '/pricing/local-seo';
+export const localSeoPath = routes.pricing.localSeo;
 
 export const localSeoMeta = {
   title: 'Local SEO Packages for Therapists | wwisermind',
@@ -35,7 +36,7 @@ export const localSeoHero = {
   eyebrow: 'Pricing / Local SEO',
   title: 'Local SEO packages for therapists and group practices',
   sub: 'When someone searches ‘therapist near me’, most of them never scroll past the map. We help your practice show up there, and look trustworthy when it does.',
-  primary: { label: 'Get a free local visibility check', href: '/contact' },
+  primary: { label: 'Get a free local visibility check', href: routes.contact },
   secondary: { label: 'See packages', href: '#packages' },
 };
 
@@ -238,7 +239,7 @@ export const localSeoPackages: LocalSeoPackage[] = [
       { label: 'Local competition' },
       { label: 'Scope per location' },
     ],
-    cta: { label: 'Talk to us', href: '/contact' },
+    cta: { label: 'Talk to us', href: routes.contact },
   },
 ];
 
@@ -252,7 +253,7 @@ export const everyPackage: string[] = [
 export const visibilityBand = {
   title: 'Not sure where you stand?',
   body: 'We’ll check your map rankings against the practices near you and show you where the gaps are.',
-  button: { label: 'Get a free local visibility check', href: '/contact' },
+  button: { label: 'Get a free local visibility check', href: routes.contact },
 };
 
 /* --- 5. process ---------------------------------------------------------------------- */
@@ -316,7 +317,7 @@ export const bundle = {
     'Content for your specialties',
     'Paid search, if it makes sense for you',
   ],
-  button: { label: 'Talk to us', href: '/contact' },
+  button: { label: 'Talk to us', href: routes.contact },
 };
 
 export const bundleWhy: { title: string; body: string }[] = [
@@ -339,7 +340,7 @@ export const bundleWhy: { title: string; body: string }[] = [
 export const projectsCopy = {
   title: 'Recent work',
   sub: 'Practices we have built sites for',
-  link: { label: 'See all work', href: '/results' },
+  link: { label: 'See all work', href: routes.results },
 };
 
 /** Read from the homepage's launches, so a figure changed there changes here. Hidden if the
@@ -365,7 +366,7 @@ export type FinalCta = {
 export const finalCta: FinalCta = {
   title: 'Every practice’s local market is different',
   sub: 'So we start with a look at yours, not a sales pitch.',
-  button: { label: 'Book a free call', href: '/contact' },
+  button: { label: 'Book a free call', href: routes.contact },
   items: ['Local visibility check', 'A plain-English plan', 'Honest advice on whether it’s worth it for you'],
 };
 

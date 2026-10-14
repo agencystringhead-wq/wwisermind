@@ -1,3 +1,4 @@
+import { routes } from '@/lib/routes';
 import { serviceHref, type ServiceSlug } from '@/lib/service-slugs';
 
 /* ==========================================================================
@@ -122,9 +123,9 @@ export const pricingEntries: PricingEntry[] = [
     shortDescription: 'Updates, fixes and upkeep handled while you are in session.',
     startingPrice: null, // priced on its own page; never shown on /pricing
     priceUnit: '/mo',
-    /* The plans and prices live on /pricing/care-plans (a literal here: that data file imports
+    /* The plans and prices live on /therapy-website-care-plans/ (a literal here: that data file imports
        this one). The service page is still linked from the Pricing menu. */
-    href: '/pricing/care-plans',
+    href: routes.pricing.carePlans,
     image: {
       src: '/images/services/pexels-4240571.webp',
       width: 1400,

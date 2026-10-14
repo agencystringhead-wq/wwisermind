@@ -1,3 +1,5 @@
+import { routes } from '@/lib/routes';
+import { BreadcrumbJsonLd } from '@/components/ui/Breadcrumbs';
 import type { Metadata } from 'next';
 import ContactBooking from '@/components/sections/ContactBooking';
 import ContactConnect from '@/components/sections/ContactConnect';
@@ -6,11 +8,12 @@ import ContactGallery from '@/components/sections/ContactGallery';
 import ContactHero from '@/components/sections/ContactHero';
 import ContactLogos from '@/components/sections/ContactLogos';
 import ContactStudio from '@/components/sections/ContactStudio';
-import { contactPage } from '@/lib/site';
+import { absUrl, contactPage } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: contactPage.meta.title,
   description: contactPage.meta.description,
+  alternates: { canonical: absUrl(routes.contact) },
 };
 
 /* Header, footer, the floating contact bar and the two yellow rules all come from the root
@@ -20,6 +23,12 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <BreadcrumbJsonLd
+        trail={[
+          { label: 'Home', href: routes.home },
+          { label: 'Contact', href: routes.contact },
+        ]}
+      />
       <ContactHero />
       <ContactGallery />
       <ContactLogos />

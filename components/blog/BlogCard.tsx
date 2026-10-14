@@ -1,3 +1,4 @@
+import { routes } from '@/lib/routes';
 import Image from 'next/image';
 import Link from 'next/link';
 import { formatDate, type BlogPost } from '@/lib/blog';
@@ -12,7 +13,7 @@ import styles from './Blog.module.css';
 export default function BlogCard({ post, lead = false }: { post: BlogPost; lead?: boolean }) {
   return (
     <article className={lead ? styles.lead : styles.card}>
-      <Link href={`/blog/${post.slug}`} className={styles.cardLink}>
+      <Link href={routes.blogPost(post.slug)} className={styles.cardLink}>
         <span className={`${styles.cardImage} ${hover.frame}`}>
           <Image
             src={post.image}

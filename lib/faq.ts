@@ -1,3 +1,4 @@
+import { routes } from '@/lib/routes';
 /* ==========================================================================
    FAQ: every question and answer on /faq lives in this file.
 
@@ -223,7 +224,7 @@ export const faqPage = {
         C  Straight answers, no pitch. */
     heading: 'Plain answers to real questions.',
     lead: 'Real questions from therapists, answered plainly.',
-    primary: { label: 'Book a free call', href: '/contact#book-a-call' },
+    primary: { label: 'Book a free call', href: routes.contactBook },
     searchLabel: 'Search the FAQs',
     searchPlaceholder: 'Search the questions',
     clearLabel: 'Clear search',
@@ -237,7 +238,7 @@ export const faqPage = {
     empty: {
       line: (q: string) => `Nothing matches “${q}” yet. Try another word, or ask us directly.`,
       linkLabel: 'Ask us on the contact page',
-      linkHref: '/contact',
+      linkHref: routes.contact,
     },
   },
 
@@ -245,7 +246,7 @@ export const faqPage = {
     eyebrow: 'Still have a question?',
     heading: 'Ask us. You’ll get a plain answer.',
     body: 'Whether you hire us or not.',
-    primary: { label: 'Book a free call', href: '/contact#book-a-call' },
-    secondary: { label: 'Send a message', href: '/contact#contact-form' },
+    primary: { label: 'Book a free call', href: routes.contactBook },
+    secondary: { label: 'Send a message', href: routes.contactForm },
   },
 };

@@ -1,35 +1,36 @@
 import type { MetadataRoute } from 'next';
 import { AUDIENCE_SLUGS } from '@/lib/audience-slugs';
 import { getAllPosts, getCategories } from '@/lib/blog';
+import { STATIC_PAGES, SERVICE_PATHS, routes } from '@/lib/routes';
 import { services } from '@/lib/services';
-import { siteConfig } from '@/lib/site';
+import { absUrl } from '@/lib/site';
 
 /* Static export: this is written to /sitemap.xml at build time. */
 export const dynamic = 'force-static';
 
-/** The top-level pages. Every one is a live route. Anchors such as the booking calendar
-    (an in-page section of /contact, not a route of its own) are not pages and are not listed. */
-const PAGES = ['/', '/about', '/process', '/results', '/reviews', '/faq', '/pricing', '/pricing/local-seo', '/pricing/seo-audit', '/pricing/one-time-seo', '/pricing/seo', '/pricing/website-design', '/pricing/care-plans', '/pricing/hyper-growth', '/pricing/custom-website', '/contact', '/blog'];
+/** The day of this build, as a date. The pages are static, so a page's last change is the build
+    that last shipped it; blog posts carry their own updated date instead. */
+const builtOn = new Date().toISOString().slice(0, 10);
 
 /**
- * Every public page. A service page still flagged `draft` is left out, because it is sent
- * `noindex` and a sitemap must not list a page that asks not to be indexed. Blog posts carry
- * their own updated date as `lastModified`; the other pages carry none rather than a made-up
- * one.
+ * Every public page at its one canonical address, trailing slash included, and nothing that
+ * redirects: the old /pricing/<name> and /services/<slug> URLs are in public/_redirects, not here.
+ * A service page still flagged `draft` is left out, because it is sent `noindex` and a sitemap
+ * must not list a page that asks not to be indexed.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const url = (path: string) => `${siteConfig.url}${path === '/' ? '' : path}`;
+  const page = (path: string, lastModified: string = builtOn) => ({
+    url: absUrl(path),
+    lastModified,
+  });
 
   return [
-    ...PAGES.map((path) => ({ url: url(path) })),
+    ...STATIC_PAGES.map((path) => page(path)),
     ...services
       .filter((service) => !service.draft)
-      .map((service) => ({ url: url(`/services/${service.slug}`) })),
-    ...AUDIENCE_SLUGS.map((slug) => ({ url: url(`/who-we-help/${slug}`) })),
-    ...getCategories().map((category) => ({ url: url(`/blog/category/${category.slug}`) })),
-    ...getAllPosts().map((post) => ({
-      url: url(`/blog/${post.slug}`),
-      lastModified: post.updatedAt,
-    })),
+      .map((service) => page(SERVICE_PATHS[service.slug])),
+    ...AUDIENCE_SLUGS.map((slug) => page(routes.audience(slug))),
+    ...getCategories().map((category) => page(routes.blogCategory(category.slug))),
+    ...getAllPosts().map((post) => page(routes.blogPost(post.slug), post.updatedAt)),
   ];
 }

@@ -34,9 +34,10 @@ import PricingChecks from './PricingChecks';
 import PricingCompare from './PricingCompare';
 import PricingOffer from './PricingOffer';
 import PricingUpsell from './PricingUpsell';
+import PricingCrumbs from './PricingCrumbs';
 
 /**
- * /pricing/seo-audit. The sibling of /pricing/local-seo: the hero, check cards, timeline,
+ * /pricing/seo-audit. The sibling of /local-seo-packages-for-therapists/: the hero, check cards, timeline,
  * closing CTA and FAQ are that page's components fed from lib/pricing/seo-audit.ts.
  *
  * Structured data: FAQPage from the strings the accordion prints, and a Service with one
@@ -85,6 +86,7 @@ export default function SeoAuditPage() {
         trustItems={trustItems}
         image={getPricingEntry('seo-audit').image}
       />
+      <PricingCrumbs label="SEO Audit" path={seoAuditPath} service="seo-audit" />
       <LocalSeoFit copy={signsCopy} cards={signsCards} callout={signsCallout} />
       <PricingChecks id="whats-checked" copy={checksCopy} cards={checkCards} tone="grey" />
       <PricingOffer copy={pricingCopy} offer={auditOffer} />

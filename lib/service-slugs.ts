@@ -1,3 +1,5 @@
+import { routes } from '@/lib/routes';
+
 /* The list of services as slugs, and the one way to spell a link to one.
 
    On its own, with no imports, so both lib/site.ts (the nav) and lib/services.ts (the
@@ -24,8 +26,8 @@ export const SERVICE_SLUGS = [
 
 export type ServiceSlug = (typeof SERVICE_SLUGS)[number];
 
-/** `/services/<slug>`. A slug outside SERVICE_SLUGS is a type error, so the nav cannot
-    point at a page that does not exist. */
+/** The page for a service: a flat keyword URL from lib/routes.ts. A slug outside SERVICE_SLUGS
+    is a type error, so the nav cannot point at a page that does not exist. */
 export function serviceHref(slug: ServiceSlug): string {
-  return `/services/${slug}`;
+  return routes.services.page(slug);
 }

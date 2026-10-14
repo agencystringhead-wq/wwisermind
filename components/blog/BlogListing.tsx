@@ -1,3 +1,4 @@
+import { routes } from '@/lib/routes';
 import Link from 'next/link';
 import { getCategories, type BlogPost } from '@/lib/blog';
 import ContactHero from '@/components/sections/ContactHero';
@@ -14,7 +15,7 @@ function Topics({ current }: { current: string | null }) {
   return (
     <nav className={styles.topics} aria-label="Blog topics">
       <Link
-        href="/blog"
+        href={routes.blog}
         className={`${styles.topic} ${current === null ? styles.topicOn : ''}`}
         aria-current={current === null ? 'page' : undefined}
       >
@@ -23,7 +24,7 @@ function Topics({ current }: { current: string | null }) {
       {categories.map((category) => (
         <Link
           key={category.slug}
-          href={`/blog/category/${category.slug}`}
+          href={routes.blogCategory(category.slug)}
           className={`${styles.topic} ${current === category.slug ? styles.topicOn : ''}`}
           aria-current={current === category.slug ? 'page' : undefined}
         >
@@ -76,7 +77,7 @@ export default function BlogListing({
           eyebrow,
           heading,
           lead,
-          primary: { label: 'Book a free call', href: '/contact#book-a-call' },
+          primary: { label: 'Book a free call', href: routes.contactBook },
         }}
         tabs={null}
         overlap={false}

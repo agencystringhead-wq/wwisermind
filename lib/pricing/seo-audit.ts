@@ -1,3 +1,4 @@
+import { routes } from '@/lib/routes';
 import type { PricingHeroData } from '@/components/pricing/LocalSeoHero';
 import type { PricingOfferData } from '@/components/pricing/PricingOffer';
 import type { UpsellPlan } from '@/components/pricing/PricingUpsell';
@@ -32,7 +33,7 @@ export { PRICE_CURRENCY };
 export const auditPrice = 299;
 const dollars = `$${auditPrice}`;
 
-export const seoAuditPath = '/pricing/seo-audit';
+export const seoAuditPath = routes.pricing.seoAudit;
 
 /* --- SEO ----------------------------------------------------------------------------- */
 
@@ -44,7 +45,7 @@ export const seoAuditMeta = {
 /* --- 1. hero ------------------------------------------------------------------------- */
 
 /** Where the order buttons go. TODO: swap for the checkout or Cal.com link once it exists. */
-export const orderHref = '/contact?service=seo-audit';
+export const orderHref = routes.withQuery(routes.contact, { service: 'seo-audit' });
 
 export const seoAuditHero: PricingHeroData = {
   eyebrow: 'Pricing / SEO Audit',

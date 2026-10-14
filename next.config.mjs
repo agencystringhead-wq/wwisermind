@@ -5,6 +5,8 @@ const nextConfig = {
      Static export means no image optimizer at runtime — every source image is already
      converted to webp and sized by `npm run images`, so nothing is lost. */
   output: 'export',
+  /* Every URL ends in a slash, and the export writes folder/index.html for each page. */
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },

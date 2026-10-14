@@ -1,8 +1,9 @@
+import { routes } from '@/lib/routes';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import BlogPostPage from '@/components/blog/BlogPostPage';
 import { getAllPosts, getPost } from '@/lib/blog';
-import { siteConfig } from '@/lib/site';
+import { siteConfig, absUrl } from '@/lib/site';
 
 /* One page per post file, all built at export time. */
 export const dynamicParams = false;
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const post = getPost(slug);
   if (!post) return {};
 
-  const url = `${siteConfig.url}/blog/${post.slug}`;
+  const url = absUrl(routes.blogPost(post.slug));
   const image = `${siteConfig.url}${post.image}`;
 
   return {
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     keywords: post.tags,
     alternates: {
       canonical: url,
-      types: { 'application/rss+xml': `${siteConfig.url}/rss.xml` },
+      types: { 'application/rss+xml': absUrl(routes.rss) },
     },
     openGraph: {
       type: 'article',

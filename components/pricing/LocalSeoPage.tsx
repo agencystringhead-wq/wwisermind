@@ -33,6 +33,7 @@ import LocalSeoPackages from './LocalSeoPackages';
 import LocalSeoProcess from './LocalSeoProcess';
 import LocalSeoProjects from './LocalSeoProjects';
 import LocalSeoResults from './LocalSeoResults';
+import PricingCrumbs from './PricingCrumbs';
 
 /**
  * /pricing/local-seo. Header, footer and the floating bars come from the root layout.
@@ -94,6 +95,7 @@ export default function LocalSeoPage() {
         trustItems={trustItems}
         image={getPricingEntry('local-seo').image}
       />
+      <PricingCrumbs label="Local SEO Packages" path={localSeoPath} service="local-seo" />
       <LocalSeoResults copy={resultsCopy} cards={resultCards} show={showResults} />
       <LocalSeoFit copy={fitCopy} cards={fitCards} callout={fitCallout} />
       <LocalSeoPackages

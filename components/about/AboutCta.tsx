@@ -1,3 +1,4 @@
+import { routes } from '@/lib/routes';
 import Image from 'next/image';
 import Link from 'next/link';
 import Reveal from '@/components/ui/Reveal';
@@ -25,7 +26,7 @@ export default function AboutCta() {
             No templates. No guesswork. Strategy-led design and marketing built
             around your practice, your clients, your goals.
           </p>
-          <Link href="/contact" className={styles.button} data-reveal="2">
+          <Link href={routes.contact} className={styles.button} data-reveal="2">
             Book your free call
           </Link>
         </Reveal>

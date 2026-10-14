@@ -1,3 +1,6 @@
+import type { Metadata } from 'next';
+import { routes } from '@/lib/routes';
+import { absUrl } from '@/lib/site';
 import Faq from '@/components/sections/Faq';
 import Founder from '@/components/sections/Founder';
 import Freebies from '@/components/sections/Freebies';
@@ -10,6 +13,11 @@ import Problems from '@/components/sections/Problems';
 import Process from '@/components/sections/Process';
 import Services from '@/components/sections/Services';
 import WhyUs from '@/components/sections/WhyUs';
+
+/* The title and description come from the root layout; the homepage adds its own canonical. */
+export const metadata: Metadata = {
+  alternates: { canonical: absUrl(routes.home) },
+};
 
 export default function HomePage() {
   return (

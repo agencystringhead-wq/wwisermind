@@ -45,6 +45,7 @@ import LocalSeoPackages from './LocalSeoPackages';
 import LocalSeoProcess from './LocalSeoProcess';
 import LocalSeoResults from './LocalSeoResults';
 import PricingWhy from './PricingWhy';
+import PricingCrumbs from './PricingCrumbs';
 
 /**
  * /pricing/hyper-growth. The all-in-one yearly plan. The hero, check grid, package grid,
@@ -101,6 +102,7 @@ export default function HyperGrowthPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json(faqData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json(serviceData) }} />
       <LocalSeoHero hero={hyperGrowthHero} trustItems={trustItems} image={heroImage} />
+      <PricingCrumbs label="Hyper Growth Marketing" path={hyperGrowthPath} />
       <HyperGrowthPillars copy={pillarsCopy} cards={pillars} tone="grey" />
       <LocalSeoFit copy={fitCopy} cards={fitCards} callout={fitCallout} />
       <LocalSeoPackages

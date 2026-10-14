@@ -1,3 +1,4 @@
+import { routes } from '@/lib/routes';
 import type { PricingHeroData } from '@/components/pricing/LocalSeoHero';
 import type { UpsellPlan } from '@/components/pricing/PricingUpsell';
 import { getPricingEntry } from '@/lib/pricing';
@@ -35,7 +36,7 @@ import { carePlansPath } from '@/lib/pricing/care-plans';
 
 export { PRICE_CURRENCY };
 
-export const websiteDesignPath = '/pricing/website-design';
+export const websiteDesignPath = routes.pricing.oneWeekWebsite;
 
 const fullPrice = 2999;
 const monthlyPrice = 399;
@@ -163,7 +164,7 @@ export const packages: LocalSeoPackage[] = [
         valueHref: carePlansPath,
       },
     ],
-    cta: { label: 'Get started', href: '/contact?plan=website-full' },
+    cta: { label: 'Get started', href: routes.withQuery(routes.contact, { plan: 'website-full' }) },
   },
   {
     id: 'pay-monthly',
@@ -184,7 +185,7 @@ export const packages: LocalSeoPackage[] = [
       { label: 'Small content edits', value: `${editHours} per month` },
       { label: 'Priority support', value: 'Included' },
     ],
-    cta: { label: 'Get started', href: '/contact?plan=website-monthly' },
+    cta: { label: 'Get started', href: routes.withQuery(routes.contact, { plan: 'website-monthly' }) },
     ctaNote: afterTermNote,
   },
 ];
@@ -204,7 +205,7 @@ export const everyWebsite = {
 export const callBand = {
   title: 'Not sure which option fits?',
   body: 'Book a quick call and we’ll talk it through. No pressure either way.',
-  button: { label: 'Book a free call', href: '/contact' },
+  button: { label: 'Book a free call', href: routes.contact },
 };
 
 /* --- 4. process ---------------------------------------------------------------------- */
@@ -279,7 +280,7 @@ export const compareRows: { criteria: string; cells: string[] }[] = [
 export const projectsCopy = {
   title: 'Recent launches',
   sub: 'Websites we have built for therapy practices',
-  link: { label: 'See all work', href: '/results' },
+  link: { label: 'See all work', href: routes.results },
 };
 
 /** Read from the homepage's launches, so a figure changed there changes here. The section is
@@ -393,5 +394,5 @@ export const websiteDesignFaqs: FaqItem[] = allFaqs.filter((item) => item.body.t
 export const finalCta: FinalCta = {
   title: 'One week from now, your new site could be live',
   sub: 'Book a free call and we’ll walk you through exactly how it works.',
-  button: { label: 'Book a free call', href: '/contact' },
+  button: { label: 'Book a free call', href: routes.contact },
 };

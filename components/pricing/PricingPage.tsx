@@ -1,7 +1,9 @@
+import { routes } from '@/lib/routes';
 import ReviewsNumbers from '@/components/reviews/ReviewsNumbers';
 import section from '@/components/services/Section.module.css';
 import { PRICE_CURRENCY, pricingEntries, pricingFaqs } from '@/lib/pricing';
-import { siteConfig } from '@/lib/site';
+import { siteConfig, absUrl } from '@/lib/site';
+import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import PricingFaq from './PricingFaq';
 import PricingFeatured from './PricingFeatured';
 import PricingHero from './PricingHero';
@@ -52,7 +54,7 @@ export default function PricingPage() {
               },
             }
           : {}),
-        url: `${siteConfig.url}/pricing#${entry.id}`,
+        url: absUrl(routes.section(routes.pricing.hub, entry.id)),
       },
     }));
 
@@ -69,6 +71,12 @@ export default function PricingPage() {
         />
       ))}
       <PricingHero />
+      <Breadcrumbs
+        trail={[
+          { label: 'Home', href: routes.home },
+          { label: 'Pricing', href: routes.pricing.hub },
+        ]}
+      />
       <ReviewsNumbers ground={section.grey} />
       <PricingFeatured />
       <PricingPackages />

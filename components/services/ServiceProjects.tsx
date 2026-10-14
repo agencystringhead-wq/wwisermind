@@ -1,5 +1,6 @@
 'use client';
 
+import { routes } from '@/lib/routes';
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -192,7 +193,7 @@ export default function ServiceProjects({
                         </li>
                       ))}
                     </ul>
-                    <Link href={`/${study.project.href}`} className={styles.link}>
+                    <Link href={`${routes.home}${study.project.href}`} className={styles.link}>
                       See the project
                     </Link>
                   </div>

@@ -45,6 +45,7 @@ import LocalSeoProjects from './LocalSeoProjects';
 import PricingCompare from './PricingCompare';
 import PricingUpsell from './PricingUpsell';
 import PricingWhy from './PricingWhy';
+import PricingCrumbs from './PricingCrumbs';
 
 /**
  * /pricing/custom-website. The eighth /pricing sub-page: the hero, check cards, package
@@ -99,6 +100,7 @@ export default function CustomWebsitePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json(faqData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json(serviceData) }} />
       <LocalSeoHero hero={customWebsiteHero} trustItems={trustItems} image={heroImage} />
+      <PricingCrumbs label="Custom Website Design" path={customWebsitePath} service="custom-website-design" />
       <LocalSeoFit copy={fitCopy} cards={fitCards} callout={fitCallout} />
       <LocalSeoPackages
         id="pricing"

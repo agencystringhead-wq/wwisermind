@@ -1,3 +1,4 @@
+import { routes } from '@/lib/routes';
 import type { PricingHeroData } from '@/components/pricing/LocalSeoHero';
 import type { ServiceIconName } from '@/components/ui/icons';
 import { getPricingEntry } from '@/lib/pricing';
@@ -24,7 +25,7 @@ import {
 import { ongoingListing, ongoingSeoPath, plans as ongoingPlans } from '@/lib/pricing/ongoing-seo';
 
 /* ==========================================================================
-   /pricing/hyper-growth: the all-in-one yearly plan.
+   /therapist-marketing-packages/: the all-in-one yearly plan.
 
    Four things in one plan: a custom website designed by hand, a WordPress care plan, ongoing
    marketing (SEO, AEO, GEO, local SEO, location pages, on-page and off-page work) and Meta
@@ -49,7 +50,7 @@ import { ongoingListing, ongoingSeoPath, plans as ongoingPlans } from '@/lib/pri
 
 export { PRICE_CURRENCY };
 
-export const hyperGrowthPath = '/pricing/hyper-growth';
+export const hyperGrowthPath = routes.pricing.hyperGrowth;
 
 const money = (n: number) => `$${n.toLocaleString('en-US')}`;
 
@@ -310,7 +311,7 @@ export const hyperGrowthHero: PricingHeroData = {
   title: 'Your website, its care and your marketing, all in one plan',
   sub: 'A custom website designed by hand, looked after every month, and marketed properly with SEO, AI search, location pages and Meta ads. One team, one yearly plan. You focus on clients. We fill the calendar.',
   primary: { label: 'See plans', href: '#plans' },
-  secondary: { label: 'Book a free growth call', href: '/contact' },
+  secondary: { label: 'Book a free growth call', href: routes.contact },
   note: `Yearly plans from ${launchMonthly}`,
 };
 
@@ -663,7 +664,7 @@ export const hyperGrowthFaqs: FaqItem[] = allFaqs.filter((item) => item.body.tri
 export const finalCta: FinalCta = {
   title: 'One plan. One team. A fuller calendar.',
   sub: 'Book a free growth call. We’ll look at your practice, your market and your goals, and tell you honestly which plan fits, if any.',
-  button: { label: 'Book a free growth call', href: '/contact' },
+  button: { label: 'Book a free growth call', href: routes.contact },
   items: ['Practice & market review', 'Competitor snapshot', 'Recommended plan and Meta ad budget'],
 };
 

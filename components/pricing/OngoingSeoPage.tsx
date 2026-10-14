@@ -36,6 +36,7 @@ import OngoingSeoProblem from './OngoingSeoProblem';
 import OngoingSeoWhyNow from './OngoingSeoWhyNow';
 import PricingChecks from './PricingChecks';
 import PricingWhy from './PricingWhy';
+import PricingCrumbs from './PricingCrumbs';
 
 /**
  * /pricing/seo. The fourth /pricing sub-page: the hero, plan cards, check grid, roadmap,
@@ -93,6 +94,7 @@ export default function OngoingSeoPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json(faqData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json(serviceData) }} />
       <LocalSeoHero hero={ongoingSeoHero} trustItems={trustItems} image={heroImage} />
+      <PricingCrumbs label="Ongoing SEO, AEO & GEO" path={ongoingSeoPath} service="ongoing-seo" />
       <OngoingSeoProblem />
       <OngoingSeoWhyNow />
       <PricingChecks copy={includedCopy} cards={includedCards} tone="white" />

@@ -1,0 +1,67 @@
+/* The breadcrumb row under a pricing or service page's hero. A slim line of small muted text,
+   the current page last and unlinked, with a related link on the right that wraps below on a
+   phone. Nothing here animates. */
+.bar {
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding-block: 14px;
+}
+
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.crumbs li {
+  font-size: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.crumbs li + li::before {
+  content: '/';
+  color: var(--color-heading-muted);
+}
+
+.crumbs a {
+  font-size: inherit;
+  transition: color var(--dur) var(--ease);
+}
+
+.crumbs a:hover {
+  color: var(--color-brand);
+}
+
+.crumbs [aria-current='page'] {
+  color: var(--color-ink);
+}
+
+.related {
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+  text-decoration: underline;
+  text-decoration-color: var(--color-line);
+  text-underline-offset: 4px;
+  transition: color var(--dur) var(--ease);
+}
+
+.related:hover {
+  color: var(--color-brand);
+}

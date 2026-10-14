@@ -1,3 +1,4 @@
+import { routes } from '@/lib/routes';
 import type { PricingHeroData } from '@/components/pricing/LocalSeoHero';
 import type { PricingOfferData } from '@/components/pricing/PricingOffer';
 import type { UpsellPlan } from '@/components/pricing/PricingUpsell';
@@ -36,7 +37,7 @@ export const totalPrice = payments * paymentAmount;
 
 const money = (n: number) => `$${n.toLocaleString('en-US')}`;
 
-export const oneTimeSeoPath = '/pricing/one-time-seo';
+export const oneTimeSeoPath = routes.pricing.oneTimeSeo;
 
 /* --- SEO ----------------------------------------------------------------------------- */
 
@@ -51,7 +52,7 @@ export const offerDescription = `${payments} monthly payments of ${money(payment
 /* --- 1. hero ------------------------------------------------------------------------- */
 
 /** Where the get started buttons go. TODO: swap for the checkout link once it exists. */
-export const orderHref = '/contact?service=one-time-seo';
+export const orderHref = routes.withQuery(routes.contact, { service: 'one-time-seo' });
 
 export const oneTimeSeoHero: PricingHeroData = {
   eyebrow: 'Pricing / One-Time SEO',

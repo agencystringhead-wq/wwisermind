@@ -1,6 +1,7 @@
 import type { ContactIconName } from '@/components/ui/icons';
 import type { MapPlace } from '@/components/ui/WorldMap';
 import { audienceHref } from '@/lib/audience-slugs';
+import { routes } from '@/lib/routes';
 import { serviceHref } from '@/lib/service-slugs';
 import { reviews, reviewsSummary } from '@/lib/reviews';
 
@@ -19,11 +20,14 @@ export const siteConfig = {
   bookingUrl: '#book-a-call',
   /* A real route now, not an on-page anchor — the header's "Contact Us" is the way in to
      /contact from every page. The booking anchor above stays an in-page target. */
-  contactUrl: '/contact',
+  contactUrl: routes.contact,
   /** The booking anchor on the contact page, for a button on any other page: the anchor
       alone only resolves on /contact, where the calendar lives. */
-  bookingPage: '/contact#book-a-call',
+  bookingPage: routes.contactBook,
 };
+
+/** An absolute URL for a site path, for canonicals, Open Graph and structured data. */
+export const absUrl = (path: string) => `${siteConfig.url}${path}`;
 
 export const announcement = {
   label: 'New',
@@ -34,10 +38,10 @@ export const announcement = {
 
 export const mainNav: NavItem[] = [
   { label: 'Services', href: '#services' },
-  { label: 'Results', href: '/results' },
+  { label: 'Results', href: routes.results },
   { label: 'Who We Help', href: '#who-we-help' },
-  { label: 'Pricing', href: '/pricing' },
-  { label: 'About', href: '/about' },
+  { label: 'Pricing', href: routes.pricing.hub },
+  { label: 'About', href: routes.about },
   { label: 'Freebies', href: '#freebies' },
   { label: 'Tools', href: '#tools' },
 ];
@@ -175,35 +179,30 @@ export const megaPanels: Record<string, MegaPanel> = {
 
   Pricing: {
     id: 'pricing',
+    /* Only pricing pages are listed here, in three small groups. The services these packages
+       are built on live in the Services panel, so nothing is repeated. */
     columns: [
       {
-        lead: 'Build',
-        title: 'Website Packages',
-        /* Every package has its own service page, so each link goes there; the same
-           packages, with their prices, are cards on /pricing (#<slug>). */
+        lead: 'All-in-one',
         links: [
-          { label: 'Hyper Growth Marketing', href: '/pricing/hyper-growth', desc: 'Website, SEO, ads and more, in one plan', badge: 'All-in-one', featured: true },
-          { label: 'One Week Website', href: serviceHref('one-week-website') },
-          { label: 'One-Week Website Pricing', href: '/pricing/website-design' },
-          { label: 'WordPress Care Plans', href: '/pricing/care-plans', desc: 'WordPress sites only' },
-          { label: 'Custom Website Design', href: serviceHref('custom-website-design') },
-          { label: 'Custom Website Pricing', href: '/pricing/custom-website' },
-          { label: 'Website Hosting', href: serviceHref('website-hosting') },
-          { label: 'Website Care Plans', href: serviceHref('website-care-plans'), desc: 'Priced on its own page' },
+          { label: 'Hyper Growth Marketing', href: routes.pricing.hyperGrowth, desc: 'Website, SEO, ads and more, in one plan', badge: 'All-in-one', featured: true },
         ],
       },
       {
-        lead: 'Grow',
-        title: 'Marketing Packages',
+        lead: 'Websites',
         links: [
-          { label: 'SEO Audit', href: serviceHref('seo-audit') },
-          { label: 'SEO Audit Pricing', href: '/pricing/seo-audit' },
-          { label: 'One Time SEO', href: serviceHref('one-time-seo') },
-          { label: 'One-Time SEO Pricing', href: '/pricing/one-time-seo' },
-          { label: 'Ongoing SEO / AEO / GEO', href: serviceHref('ongoing-seo') },
-          { label: 'Ongoing SEO, AEO & GEO Pricing', href: '/pricing/seo' },
-          { label: 'Local SEO', href: serviceHref('local-seo') },
-          { label: 'Local SEO Packages', href: '/pricing/local-seo' },
+          { label: 'One-Week Website', href: routes.pricing.oneWeekWebsite },
+          { label: 'Custom Website Design', href: routes.pricing.customWebsite },
+          { label: 'WordPress Care Plans', href: routes.pricing.carePlans, desc: 'WordPress sites only' },
+        ],
+      },
+      {
+        lead: 'SEO',
+        links: [
+          { label: 'SEO Audit', href: routes.pricing.seoAudit },
+          { label: 'One-Time SEO', href: routes.pricing.oneTimeSeo },
+          { label: 'Ongoing SEO, AEO & GEO', href: routes.pricing.seo },
+          { label: 'Local SEO Packages', href: routes.pricing.localSeo },
         ],
       },
     ],
@@ -211,11 +210,11 @@ export const megaPanels: Record<string, MegaPanel> = {
       eyebrow: 'Fair & Flexible',
       lead: 'No long-term contracts.',
       body: 'Simple plans you can cancel anytime.',
-      link: { label: 'Compare all packages', href: '/pricing' },
+      link: { label: 'Compare all packages', href: routes.pricing.hub },
     },
     strip: {
       text: 'Every price is on the page. No ‘speak to a coordinator.’',
-      link: { label: 'See full pricing', href: '/pricing' },
+      link: { label: 'See all pricing', href: routes.pricing.hub },
     },
   },
 
@@ -226,24 +225,24 @@ export const megaPanels: Record<string, MegaPanel> = {
         lead: 'Studio',
         title: 'The People',
         links: [
-          { label: 'About Us', href: '/about', desc: 'The story behind wwisermind' },
-          { label: 'Our Process', href: '/process', desc: 'Three steps, no mystery' },
-          { label: 'Reviews', href: '/reviews', desc: 'What therapists say' },
+          { label: 'About Us', href: routes.about, desc: 'The story behind wwisermind' },
+          { label: 'Our Process', href: routes.process, desc: 'Three steps, no mystery' },
+          { label: 'Reviews', href: routes.reviews, desc: 'What therapists say' },
         ],
       },
       {
         lead: 'Learn',
         title: 'The Words',
         links: [
-          { label: 'Blog', href: '/blog', desc: 'Plain-English articles' },
-          { label: 'FAQ’s', href: '/faq', desc: 'Answered before you ask' },
+          { label: 'Blog', href: routes.blog, desc: 'Plain-English articles' },
+          { label: 'FAQ’s', href: routes.faq, desc: 'Answered before you ask' },
         ],
       },
     ],
     feature: {
       eyebrow: 'Founder’s Note',
       body: 'My nephew’s therapy journey inspired all of this. We understand what families search for — and how to help them find you.',
-      link: { label: 'Read the full story', href: '/#our-story' },
+      link: { label: 'Read the full story', href: routes.homeSection('our-story') },
       image: {
         src: '/images/srikaant.webp',
         width: 274,
@@ -261,15 +260,15 @@ export const megaPanels: Record<string, MegaPanel> = {
         lead: 'Check',
         title: 'Free Assessments',
         links: [
-          { label: 'AI Visibility Report', href: '/#ai-visibility-report', desc: 'Does ChatGPT know you exist?', badge: 'NEW' },
-          { label: 'Marketing Assessment', href: '/#marketing-assessment', desc: 'Where you stand today' },
-          { label: 'Local Map Assessment', href: '/#local-map-assessment', desc: 'Your Google Maps presence' },
+          { label: 'AI Visibility Report', href: routes.homeSection('ai-visibility-report'), desc: 'Does ChatGPT know you exist?', badge: 'NEW' },
+          { label: 'Marketing Assessment', href: routes.homeSection('marketing-assessment'), desc: 'Where you stand today' },
+          { label: 'Local Map Assessment', href: routes.homeSection('local-map-assessment'), desc: 'Your Google Maps presence' },
         ],
       },
       {
         lead: 'Open',
         title: 'Transparency',
-        links: [{ label: 'OpenBook', href: '/#openbook', desc: 'A look inside the studio' }],
+        links: [{ label: 'OpenBook', href: routes.homeSection('openbook'), desc: 'A look inside the studio' }],
       },
     ],
     feature: {
@@ -869,18 +868,18 @@ export const footerMain = {
       { label: 'Website Design', href: '#website-design' },
       { label: 'Online Marketing', href: '#marketing' },
       { label: 'AI Services', href: '#ai-services' },
-      { label: 'FAQs', href: '/faq' },
+      { label: 'FAQs', href: routes.faq },
     ],
     [
       { label: 'Who We Help', href: '#who-we-help' },
-      { label: 'Results', href: '/results' },
-      { label: 'Reviews', href: '/reviews' },
-      { label: 'Pricing', href: '/pricing' },
+      { label: 'Results', href: routes.results },
+      { label: 'Reviews', href: routes.reviews },
+      { label: 'Pricing', href: routes.pricing.hub },
     ],
     [
-      { label: 'About', href: '/about' },
-      { label: 'Our Process', href: '/process' },
-      { label: 'Blog', href: '/blog' },
+      { label: 'About', href: routes.about },
+      { label: 'Our Process', href: routes.process },
+      { label: 'Blog', href: routes.blog },
       { label: 'Freebies', href: '#freebies' },
       { label: 'Tools', href: '#tools' },
     ],
@@ -892,7 +891,7 @@ export const footerMain = {
     note: {
       lead: 'Websites and marketing that help families find the right therapist. Built with love in Pune, India at ',
       linkLabel: 'wwisermind',
-      href: '/',
+      href: routes.home,
       tail: '.',
     },
   },
@@ -921,10 +920,10 @@ export const footerMain = {
       /* Two of these are services with pages; the report and the assessment are tools,
          and their anchors wait for the tool pages. */
       items: [
-        { label: 'AI Visibility Report', href: '/#ai-visibility-report' },
+        { label: 'AI Visibility Report', href: routes.homeSection('ai-visibility-report') },
         { label: 'AI Search Optimization', href: serviceHref('ai-search-optimization') },
         { label: 'AI Chatbot', href: serviceHref('ai-chatbot') },
-        { label: 'Local Map Assessment', href: '/#local-map-assessment' },
+        { label: 'Local Map Assessment', href: routes.homeSection('local-map-assessment') },
       ],
     },
   ],
