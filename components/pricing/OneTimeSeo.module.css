@@ -1,0 +1,118 @@
+/* /pricing/one-time-seo. Only what the other two pricing pages have no equivalent for: the
+   phase cards' numbering and grid, and the options comparison. The card shell, rows, tab and
+   featured treatment are /pricing/local-seo's own classes, applied from LocalSeo.module.css.
+   Nothing here animates. */
+
+/* --- 3. phases: 3 columns from 1024px, stacked below ------------------------------------- */
+.phaseGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Doubled up so these win over the shared card's padding whatever order the sheets land in.
+   No tab on these cards, so no extra room at the top. */
+.phaseGrid .phaseCard {
+  padding: 36px 32px 28px;
+}
+
+.phaseNumber {
+  display: block;
+  margin-bottom: 16px;
+  color: var(--color-brand);
+  font-size: 44px;
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.phaseCard .phasePurpose {
+  min-height: 0;
+}
+
+/* --- 6. options: 3 columns from 1024px; on a phone the current one comes first ----------- */
+.optionGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.option {
+  align-items: flex-start;
+}
+
+.optionName {
+  font-size: 24px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.optionPrice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  margin-top: 16px;
+  font-size: 32px;
+  font-weight: var(--fw-bold);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.optionPrice small {
+  color: var(--color-muted);
+  font-size: 15px;
+  font-weight: var(--fw-regular);
+  letter-spacing: 0;
+}
+
+.optionFit {
+  margin-top: 16px;
+  color: var(--color-muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.optionLink {
+  margin-top: auto;
+  padding-top: 24px;
+  font-size: 15px;
+  font-weight: var(--fw-semibold);
+  transition: color var(--dur) var(--ease);
+}
+
+.optionLink:hover {
+  color: var(--color-brand);
+}
+
+.optionCurrent .optionFit,
+.optionCurrent .optionPrice small {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+@media (min-width: 1024px) {
+  .phaseGrid,
+  .optionGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1023px) {
+  .optionCurrent {
+    order: -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .phaseGrid .phaseCard {
+    padding: 28px 24px 24px;
+  }
+}

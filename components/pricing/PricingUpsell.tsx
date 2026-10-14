@@ -1,24 +1,31 @@
 import Link from 'next/link';
-import { upsellCopy, upsellPlans } from '@/lib/pricing/seo-audit';
 import local from './LocalSeo.module.css';
 import styles from './SeoAudit.module.css';
 
-/** Frame 7: a lighter take on the Local SEO bundle band, text on the left and one mini card
-    per Local SEO plan on the right. The plans come from lib/pricing/local-seo.ts. */
-export default function SeoAuditUpsell() {
-  if (upsellPlans.length === 0) return null;
+export type UpsellPlan = { name: string; line: string; href: string };
+
+/** A lighter take on the Local SEO bundle band: text on the left and one mini card per plan
+    on the right. Used by the SEO Audit page (two plans) and the One-Time SEO page (one). */
+export default function PricingUpsell({
+  copy,
+  plans,
+}: {
+  copy: { title: string; body: string };
+  plans: UpsellPlan[];
+}) {
+  if (plans.length === 0) return null;
 
   return (
     <section className={local.section}>
       <div className="container">
         <div className={styles.upsell}>
           <div>
-            <h2 className={local.heading}>{upsellCopy.title}</h2>
-            <p className={styles.upsellBody}>{upsellCopy.body}</p>
+            <h2 className={local.heading}>{copy.title}</h2>
+            <p className={styles.upsellBody}>{copy.body}</p>
           </div>
 
           <ul className={styles.upsellCards}>
-            {upsellPlans.map((plan) => (
+            {plans.map((plan) => (
               <li key={plan.name}>
                 <Link href={plan.href} className={styles.upsellCard}>
                   <span className={styles.upsellName}>{plan.name}</span>

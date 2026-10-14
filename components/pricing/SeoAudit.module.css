@@ -34,8 +34,18 @@
   min-height: 0;
 }
 
-.priceLeft .auditPrice {
+.priceBlock {
   margin-top: 28px;
+}
+
+.priceLeft .auditPrice {
+  margin-top: 2px;
+}
+
+.priceNote {
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 15px;
 }
 
 .turnaround {

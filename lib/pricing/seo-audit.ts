@@ -1,4 +1,6 @@
 import type { PricingHeroData } from '@/components/pricing/LocalSeoHero';
+import type { PricingOfferData } from '@/components/pricing/PricingOffer';
+import type { UpsellPlan } from '@/components/pricing/PricingUpsell';
 import {
   PRICE_CURRENCY,
   localSeoPackages,
@@ -155,16 +157,19 @@ export const pricingCopy = {
   sub: 'No retainer. No upsell required.',
 };
 
-export const auditOffer = {
+/* TODO: set the number of business days once confirmed. While this is empty the turnaround
+   line is not rendered. */
+const turnaroundDays = '';
+
+export const auditOffer: PricingOfferData = {
   name: 'Practice SEO Audit',
+  icon: 'searchCheck',
   description:
-    'A complete review of your website’s search health, with a prioritised plan you can act on.',
+    'A complete review of your website\u2019s search health, with a prioritised plan you can act on.',
   tag: 'Flat fee',
+  price: dollars,
   suffix: 'one-time',
-  /* TODO: set the number of business days once confirmed. While this is empty the
-     turnaround line is not rendered. */
-  turnaroundDays: '',
-  turnaroundLabel: (days: string) => `Delivered in ${days} business days`,
+  turnaround: turnaroundDays ? `Delivered in ${turnaroundDays} business days` : '',
   cta: { label: 'Order your audit', href: orderHref },
   note: 'Pay once. Keep the report.',
   sectionLabel: 'What you get',
@@ -176,6 +181,14 @@ export const auditOffer = {
     { label: 'AI search visibility check', value: 'Included' },
     { label: 'Walkthrough call', value: '30 minutes' },
   ],
+};
+
+/** How the other SEO pages list this one, so a price changed here changes there. */
+export const auditListing = {
+  name: 'SEO Audit',
+  price: dollars,
+  unit: 'one-time',
+  href: seoAuditPath,
 };
 
 /* --- 5. how it works ----------------------------------------------------------------- */
@@ -257,7 +270,7 @@ export const upsellCopy = {
 };
 
 /** Read from the Local SEO data, never retyped: a price changed there changes here. */
-export const upsellPlans = localSeoPackages.flatMap((pkg) =>
+export const upsellPlans: UpsellPlan[] = localSeoPackages.flatMap((pkg) =>
   pkg.price === undefined
     ? []
     : [{ name: pkg.name, line: `from $${pkg.price}${pkg.suffix ?? ''}`, href: localSeoPath }],

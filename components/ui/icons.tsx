@@ -153,6 +153,16 @@ export function SearchCheckIcon(props: IconProps) {
   );
 }
 
+/** A flag on a pole: the One-Time SEO badge (a foundation, planted once). */
+export function FlagIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M5 21V4" />
+      <path d="M5 4h11l-2 4 2 4H5" />
+    </Icon>
+  );
+}
+
 export function PlusCircleIcon(props: IconProps) {
   return (
     <Icon {...props}>

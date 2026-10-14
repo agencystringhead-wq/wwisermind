@@ -5,6 +5,7 @@ import {
   auditOffer,
   auditPrice,
   finalCta,
+  pricingCopy,
   processCopy,
   processStages,
   seoAuditFaqCopy,
@@ -16,16 +17,18 @@ import {
   signsCards,
   signsCopy,
   trustItems,
+  upsellCopy,
+  upsellPlans,
 } from '@/lib/pricing/seo-audit';
 import LocalSeoCta from './LocalSeoCta';
 import LocalSeoFaq from './LocalSeoFaq';
 import LocalSeoFit from './LocalSeoFit';
 import LocalSeoHero from './LocalSeoHero';
 import LocalSeoProcess from './LocalSeoProcess';
+import PricingOffer from './PricingOffer';
+import PricingUpsell from './PricingUpsell';
 import SeoAuditChecks from './SeoAuditChecks';
 import SeoAuditCompare from './SeoAuditCompare';
-import SeoAuditPricing from './SeoAuditPricing';
-import SeoAuditUpsell from './SeoAuditUpsell';
 
 /**
  * /pricing/seo-audit. The sibling of /pricing/local-seo: the hero, check cards, timeline,
@@ -79,10 +82,10 @@ export default function SeoAuditPage() {
       />
       <LocalSeoFit copy={signsCopy} cards={signsCards} callout={signsCallout} />
       <SeoAuditChecks />
-      <SeoAuditPricing />
+      <PricingOffer copy={pricingCopy} offer={auditOffer} />
       <LocalSeoProcess copy={processCopy} stages={processStages} tone="grey" />
       <SeoAuditCompare />
-      <SeoAuditUpsell />
+      <PricingUpsell copy={upsellCopy} plans={upsellPlans} />
       <LocalSeoCta cta={finalCta} />
       <LocalSeoFaq copy={seoAuditFaqCopy} items={seoAuditFaqs} />
     </>

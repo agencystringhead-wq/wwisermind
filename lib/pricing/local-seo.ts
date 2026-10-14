@@ -377,3 +377,16 @@ export function formatLocalPrice(price: number | null): string | null {
     maximumFractionDigits: 0,
   }).format(price);
 }
+
+/** How the other SEO pages list these packages: the lowest priced plan, so a price changed
+    above changes there. */
+const startingPlan = localSeoPackages
+  .filter((pkg) => pkg.price !== undefined)
+  .sort((a, b) => (a.price as number) - (b.price as number))[0];
+
+export const localSeoListing = {
+  name: 'Local SEO',
+  price: startingPlan ? `from $${startingPlan.price}` : '',
+  unit: startingPlan?.suffix ?? '',
+  href: localSeoPath,
+};
