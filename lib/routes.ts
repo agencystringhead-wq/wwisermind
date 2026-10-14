@@ -75,6 +75,24 @@ export const SERVICE_PRICING = {
   'ongoing-seo': pricing.seo,
 } as const satisfies Partial<Record<ServiceKey, Route>>;
 
+/* --- the freebies hub, the freebie pages and the two tools ---------------------------------- */
+
+/** Keyed by the slug in lib/freebies.ts: the folder the page lives in. The five downloads sit under
+    /freebies/, the two tools under /tools/. */
+export const FREEBIE_PATHS = {
+  'ai-visibility-report': '/tools/ai-visibility-report/',
+  'website-scorecard-for-therapists': '/tools/website-scorecard-for-therapists/',
+  'psychology-today-profile-kit-for-therapists':
+    '/freebies/psychology-today-profile-kit-for-therapists/',
+  'google-business-profile-checklist-for-therapists':
+    '/freebies/google-business-profile-checklist-for-therapists/',
+  'social-media-posts-for-therapists': '/freebies/social-media-posts-for-therapists/',
+  'business-card-template-for-therapists': '/freebies/business-card-template-for-therapists/',
+  'email-signature-for-therapists': '/freebies/email-signature-for-therapists/',
+} as const satisfies Record<string, Route>;
+
+export type FreebieKey = keyof typeof FREEBIE_PATHS;
+
 /* --- everything else ------------------------------------------------------------------- */
 
 export const routes = {
@@ -111,6 +129,24 @@ export const routes = {
 
   pricing,
 
+  freebies: {
+    hub: '/freebies/',
+    psychologyTodayKit: FREEBIE_PATHS['psychology-today-profile-kit-for-therapists'],
+    googleBusinessProfile: FREEBIE_PATHS['google-business-profile-checklist-for-therapists'],
+    socialMediaPosts: FREEBIE_PATHS['social-media-posts-for-therapists'],
+    businessCard: FREEBIE_PATHS['business-card-template-for-therapists'],
+    emailSignature: FREEBIE_PATHS['email-signature-for-therapists'],
+    page: (key: FreebieKey): Route => FREEBIE_PATHS[key],
+  },
+
+  tools: {
+    aiVisibilityReport: FREEBIE_PATHS['ai-visibility-report'],
+    websiteScorecard: FREEBIE_PATHS['website-scorecard-for-therapists'],
+  },
+
+  /** Not a page yet: the freebie forms link to it only once it exists (see lib/freebies.ts). */
+  privacyPolicy: '/privacy-policy/',
+
   /** `/blog/<slug>/` */
   blogPost: (slug: string): Route => `/blog/${slug}/`,
   /** `/blog/category/<slug>/` */
@@ -138,5 +174,6 @@ export const STATIC_PAGES: Route[] = [
   routes.contact,
   routes.blog,
   routes.services.hub,
+  routes.freebies.hub,
   ...Object.values(pricing),
 ];

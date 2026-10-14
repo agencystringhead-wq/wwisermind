@@ -7,6 +7,7 @@ import { metadata as processMeta } from '@/app/process/page';
 import { metadata as resultsMeta } from '@/app/results/page';
 import { metadata as reviewsMeta } from '@/app/reviews/page';
 import { metadata as servicesMeta } from '@/app/services/page';
+import { freebiePath, freebies, hubMeta, isLive } from '@/lib/freebies';
 import { AUDIENCE_SLUGS } from '@/lib/audience-slugs';
 import { getAudience } from '@/lib/audiences';
 import { carePlansMeta } from '@/lib/pricing/care-plans';
@@ -68,8 +69,21 @@ export function GET() {
       ],
     },
     {
+      title: 'Freebies',
+      entries: [
+        { name: 'Freebies', path: routes.freebies.hub, description: hubMeta.description },
+        ...freebies.filter(isLive).map((freebie) => ({
+          name: freebie.title,
+          path: freebiePath(freebie),
+          description: freebie.shortDescription,
+        })),
+      ],
+    },
+    {
       title: 'Tools',
+      /* The Free resources column is the Freebies section above, and its coming-soon pages stay out. */
       entries: (megaPanels.Tools?.columns ?? [])
+        .filter((column) => column.lead !== 'Free')
         .flatMap((column) => column.links)
         .map((link) => ({ name: link.label, path: link.href, description: link.desc })),
     },

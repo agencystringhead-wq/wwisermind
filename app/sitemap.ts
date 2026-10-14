@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next';
 import { AUDIENCE_SLUGS } from '@/lib/audience-slugs';
 import { getAllPosts, getCategories } from '@/lib/blog';
 import { STATIC_PAGES, SERVICE_PATHS, routes } from '@/lib/routes';
+import { freebiePath, freebies, isLive } from '@/lib/freebies';
 import { services } from '@/lib/services';
 import { absUrl } from '@/lib/site';
 
@@ -15,8 +16,8 @@ const builtOn = new Date().toISOString().slice(0, 10);
 /**
  * Every public page at its one canonical address, trailing slash included, and nothing that
  * redirects: the old /pricing/<name> and /services/<slug> URLs are in public/_redirects, not here.
- * A service page still flagged `draft` is left out, because it is sent `noindex` and a sitemap
- * must not list a page that asks not to be indexed.
+ * A service page still flagged `draft`, and a freebie still coming soon, are left out, because
+ * they are sent `noindex` and a sitemap must not list a page that asks not to be indexed.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const page = (path: string, lastModified: string = builtOn) => ({
@@ -29,6 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...services
       .filter((service) => !service.draft)
       .map((service) => page(SERVICE_PATHS[service.slug])),
+    ...freebies.filter(isLive).map((freebie) => page(freebiePath(freebie))),
     ...AUDIENCE_SLUGS.map((slug) => page(routes.audience(slug))),
     ...getCategories().map((category) => page(routes.blogCategory(category.slug))),
     ...getAllPosts().map((post) => page(routes.blogPost(post.slug), post.updatedAt)),

@@ -77,8 +77,8 @@ for (const [t, urls] of h1s) if (urls.length > 1) problems.push(`duplicate h1 "$
 
 // Redirects: every destination is a real page, no destination is itself an origin (no chains).
 const redirects = readFileSync(join('public', '_redirects'), 'utf8')
-  .split('\n')
-  .filter((l) => l && !l.startsWith('#'))
+  .split(/\r?\n/)
+  .filter((l) => l.trim() && !l.startsWith('#'))
   .map((l) => l.trim().split(/\s+/));
 const sources = new Set(redirects.map(([from]) => from));
 for (const [from, to, code] of redirects) {

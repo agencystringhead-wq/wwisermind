@@ -1,6 +1,7 @@
 import type { ContactIconName } from '@/components/ui/icons';
 import type { MapPlace } from '@/components/ui/WorldMap';
 import { audienceHref } from '@/lib/audience-slugs';
+import { freebiePath, freebies as freebieList } from '@/lib/freebies';
 import { routes } from '@/lib/routes';
 import { serviceHref } from '@/lib/service-slugs';
 import { reviews, reviewsSummary } from '@/lib/reviews';
@@ -42,7 +43,7 @@ export const mainNav: NavItem[] = [
   { label: 'Who We Help', href: '#who-we-help' },
   { label: 'Pricing', href: routes.pricing.hub },
   { label: 'About', href: routes.about },
-  { label: 'Freebies', href: '#freebies' },
+  { label: 'Freebies', href: routes.freebies.hub },
   { label: 'Tools', href: '#tools' },
 ];
 
@@ -269,6 +270,17 @@ export const megaPanels: Record<string, MegaPanel> = {
         lead: 'Open',
         title: 'Transparency',
         links: [{ label: 'OpenBook', href: routes.homeSection('openbook'), desc: 'A look inside the studio' }],
+      },
+      {
+        lead: 'Free',
+        title: 'Free Resources',
+        /* The same seven, in the same order, as the /freebies/ hub. */
+        links: freebieList.map((freebie) => ({
+          label: freebie.title,
+          href: freebiePath(freebie),
+          desc: freebie.typeLabel,
+          ...(freebie.status === 'comingSoon' ? { badge: 'Soon' } : {}),
+        })),
       },
     ],
     feature: {
@@ -880,7 +892,7 @@ export const footerMain = {
       { label: 'About', href: routes.about },
       { label: 'Our Process', href: routes.process },
       { label: 'Blog', href: routes.blog },
-      { label: 'Freebies', href: '#freebies' },
+      { label: 'Freebies', href: routes.freebies.hub },
       { label: 'Tools', href: '#tools' },
     ],
   ] as NavItem[][],
