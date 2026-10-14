@@ -1,6 +1,7 @@
 import { siteConfig } from '@/lib/site';
 import {
   PRICE_CURRENCY,
+  annualNotice,
   everyPlan,
   finalCta,
   finePrint,
@@ -16,6 +17,8 @@ import {
   insideCopy,
   offerUnitText,
   offers,
+  pillars,
+  pillarsCopy,
   plans,
   plansCopy,
   processCopy,
@@ -26,10 +29,14 @@ import {
   serviceName,
   showResults,
   trustItems,
+  visibilityCards,
+  visibilityCopy,
   whyCards,
   whyCopy,
 } from '@/lib/pricing/hyper-growth';
 import HyperGrowthInside from './HyperGrowthInside';
+import HyperGrowthPillars from './HyperGrowthPillars';
+import HyperGrowthVisibility from './HyperGrowthVisibility';
 import LocalSeoCta from './LocalSeoCta';
 import LocalSeoFaq from './LocalSeoFaq';
 import LocalSeoFit from './LocalSeoFit';
@@ -40,12 +47,13 @@ import LocalSeoResults from './LocalSeoResults';
 import PricingWhy from './PricingWhy';
 
 /**
- * /pricing/hyper-growth. The seventh /pricing sub-page: the hero, check cards, package grid,
- * timeline, numbered cards, results, FAQ and CTA are shared with the others, fed from
- * lib/pricing/hyper-growth.ts. The "What's inside" columns are new.
+ * /pricing/hyper-growth. The all-in-one yearly plan. The hero, check grid, package grid,
+ * timeline, numbered cards, results, FAQ and CTA are shared with the other pricing pages, fed
+ * from lib/pricing/hyper-growth.ts. The four bundle cards, the visibility cards and the
+ * "What's inside" columns are new.
  *
  * Structured data: FAQPage from the strings the accordion prints, and a Service with three
- * monthly Offers built from the same prices as the cards.
+ * yearly Offers built from the same prices as the cards.
  */
 export default function HyperGrowthPage() {
   const url = `${siteConfig.url}${hyperGrowthPath}`;
@@ -73,6 +81,7 @@ export default function HyperGrowthPage() {
     offers: offers.map((offer) => ({
       '@type': 'Offer',
       name: offer.name,
+      description: offer.description,
       price: offer.price,
       priceCurrency: PRICE_CURRENCY,
       priceSpecification: {
@@ -92,6 +101,7 @@ export default function HyperGrowthPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json(faqData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json(serviceData) }} />
       <LocalSeoHero hero={hyperGrowthHero} trustItems={trustItems} image={heroImage} />
+      <HyperGrowthPillars copy={pillarsCopy} cards={pillars} tone="grey" />
       <LocalSeoFit copy={fitCopy} cards={fitCards} callout={fitCallout} />
       <LocalSeoPackages
         id="plans"
@@ -99,10 +109,12 @@ export default function HyperGrowthPage() {
         packages={plans}
         every={everyPlan}
         terms={finePrint}
+        notice={annualNotice}
       />
-      <HyperGrowthInside copy={insideCopy} columns={inside} />
-      <LocalSeoProcess copy={processCopy} stages={processStages} tone="grey" />
-      <PricingWhy copy={whyCopy} cards={whyCards} tone="white" />
+      <HyperGrowthVisibility copy={visibilityCopy} cards={visibilityCards} tone="white" />
+      <HyperGrowthInside copy={insideCopy} columns={inside} tone="grey" />
+      <LocalSeoProcess copy={processCopy} stages={processStages} tone="white" />
+      <PricingWhy copy={whyCopy} cards={whyCards} tone="grey" />
       <LocalSeoResults copy={resultsCopy} cards={resultCards} show={showResults} />
       <LocalSeoFaq copy={hyperGrowthFaqCopy} items={hyperGrowthFaqs} />
       <LocalSeoCta cta={finalCta} />

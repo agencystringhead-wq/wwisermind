@@ -3,27 +3,20 @@ import type { InsideColumn } from '@/lib/pricing/hyper-growth';
 import local from './LocalSeo.module.css';
 import styles from './HyperGrowth.module.css';
 
-const money = (n: number) => `$${n.toLocaleString('en-US')}`;
-
-/** What each plan is built from: its standalone parts with their own monthly prices, the sum
-    of those priced parts, a line for what is not sold on its own, and the plan's price. Every
-    figure is computed in lib/pricing/hyper-growth.ts from the other pricing data files. A
-    column with no priced part shows no subtotal. Three columns from 1024px, stacked below. */
+/** What each plan is built from: its standalone products by name, each linked to its own page,
+    then the work done for you, and under them the plan's price. No subtotal or total is shown.
+    Three columns from 1024px, stacked below. */
 export default function HyperGrowthInside({
   copy,
   columns,
+  tone = 'white',
 }: {
-  copy: {
-    title: string;
-    sub: string;
-    separateLabel: string;
-    unpricedNote: string;
-    planLabel: string;
-  };
+  copy: { title: string; sub: string };
   columns: InsideColumn[];
+  tone?: 'white' | 'grey';
 }) {
   return (
-    <section className={local.section}>
+    <section className={tone === 'grey' ? local.sectionGrey : local.section}>
       <div className="container">
         <header className={local.head}>
           <h2 className={local.heading}>{copy.title}</h2>
@@ -35,43 +28,24 @@ export default function HyperGrowthInside({
             <li className={styles.insideCol} key={column.id}>
               <h3 className={styles.insideName}>{column.name}</h3>
 
-              {column.items.length > 0 ? (
-                <ul className={styles.insideItems}>
-                  {column.items.map((item) => (
-                    <li className={styles.insideItem} key={item.label}>
-                      <span>
-                        <Link href={item.href} className={`${styles.insideLabel} ${styles.insideLink}`}>
-                          {item.label}
+              <ul className={styles.insideItems}>
+                {column.items.map((item) => (
+                  <li className={styles.insideItem} key={item.label}>
+                    <span className={styles.insideLabel}>{item.label}</span>
+                    <span className={styles.insideDetail}>
+                      {item.href ? (
+                        <Link href={item.href} className={styles.insideLink}>
+                          {item.detail}
                         </Link>
-                        <span className={styles.insideTier}>{item.tier}</span>
-                      </span>
-                      <span className={styles.insidePrice}>
-                        {money(item.price)}
-                        <small>/mo</small>
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
+                      ) : (
+                        item.detail
+                      )}
+                    </span>
+                  </li>
+                ))}
+              </ul>
 
-              {column.items.length > 0 ? (
-                <div className={styles.subtotal}>
-                  <span className={styles.subtotalLabel}>{copy.separateLabel}</span>
-                  <span className={styles.subtotalFigure}>
-                    {money(column.subtotal)}
-                    <small>/mo</small>
-                  </span>
-                </div>
-              ) : null}
-              <p className={styles.unpriced}>{copy.unpricedNote}</p>
-
-              <div className={styles.planPrice}>
-                <p className={styles.planPriceLabel}>{copy.planLabel}</p>
-                <p className={styles.planPriceFigure}>
-                  {money(column.planPrice)}
-                  <small>/mo</small>
-                </p>
-              </div>
+              <p className={styles.planPrice}>{column.priceLine}</p>
             </li>
           ))}
         </ul>

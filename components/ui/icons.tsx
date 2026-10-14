@@ -212,6 +212,48 @@ export function PlusCircleIcon(props: IconProps) {
   );
 }
 
+/** A magnifier with a small sparkle: search, and AI search. */
+export function SearchSparkleIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="10.5" cy="10.5" r="6.5" />
+      <path d="m20 20-4.9-4.9" />
+      <path d="M10.5 7.5v6M7.5 10.5h6" />
+    </Icon>
+  );
+}
+
+/** A megaphone: ads. */
+export function MegaphoneIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="m3 11 14-6v14L3 13z" />
+      <path d="M7 13.5V18a2 2 0 0 0 4 0v-2.5" />
+      <path d="M20.5 9.5v5" />
+    </Icon>
+  );
+}
+
+/** A four-point sparkle: AI. */
+export function SparkleIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M12 3c.6 4.6 2.4 6.4 7 7-4.6.6-6.4 2.4-7 7-.6-4.6-2.4-6.4-7-7 4.6-.6 6.4-2.4 7-7z" />
+      <path d="M19 17v4M17 19h4" />
+    </Icon>
+  );
+}
+
+/** Stacked layers: on-page and off-page work. */
+export function LayersIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="m12 3 9 5-9 5-9-5z" />
+      <path d="m3 13 9 5 9-5" />
+    </Icon>
+  );
+}
+
 /** The pillar and why-choose-us cards name one of these by string in lib/services.ts. */
 export function SearchIcon(props: IconProps) {
   return (
@@ -350,6 +392,10 @@ export const serviceIcons = {
   mail: MailIcon,
   pin: MapPinIcon,
   code: CodeIcon,
+  searchSparkle: SearchSparkleIcon,
+  megaphone: MegaphoneIcon,
+  sparkle: SparkleIcon,
+  layers: LayersIcon,
 };
 
 export type ServiceIconName = keyof typeof serviceIcons;

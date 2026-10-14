@@ -42,6 +42,31 @@ const dollars = (price: number) => `$${price.toLocaleString('en-US')}`;
     a suffix has no label line and a shorter block; when any card in the grid has a line under
     its price, every flat block reserves room for it. */
 function PriceBlock({ pkg, reserveNote }: { pkg: LocalSeoPackage; reserveNote: boolean }) {
+  if (pkg.annual) {
+    const { annual } = pkg;
+    return (
+      <div className={`${styles.pkgPrice} ${styles.pkgPriceAnnual}`}>
+        <p className="sr-only">{annual.spoken}</p>
+        <p className={styles.pkgPriceList} aria-hidden="true">
+          <s>
+            {dollars(annual.listMonthly)}
+            {pkg.suffix}
+          </s>
+        </p>
+        <p className={styles.pkgPriceBig} aria-hidden="true">
+          {dollars(annual.effectiveMonthly)}
+          <small>{pkg.suffix}</small>
+        </p>
+        <p className={styles.pkgPriceBilled} aria-hidden="true">
+          {annual.billed}
+        </p>
+        <p className={styles.pkgSave} aria-hidden="true">
+          {annual.save}
+        </p>
+      </div>
+    );
+  }
+
   if (pkg.customPrice) {
     return (
       <div className={`${styles.pkgPrice} ${styles.pkgPriceQuoted}`}>
@@ -78,6 +103,7 @@ export default function LocalSeoPackages({
   terms,
   more,
   columns = 3,
+  notice,
 }: {
   id?: string;
   copy: { eyebrow?: string; title: string; sub: string };
@@ -88,6 +114,8 @@ export default function LocalSeoPackages({
   terms?: string | string[];
   more?: LineSegment[];
   columns?: 2 | 3;
+  /** A slim pill under the heading, such as "Available on yearly plans only". */
+  notice?: string;
 }) {
   const reserveNote = packages.some((pkg) => pkg.priceNote);
   const everyCols = every.items.length >= 5 ? 3 : Math.min(every.items.length, 4);
@@ -100,9 +128,19 @@ export default function LocalSeoPackages({
           {copy.eyebrow ? <p className={styles.eyebrow}>{copy.eyebrow}</p> : null}
           <h2 className={styles.heading}>{copy.title}</h2>
           <p className={styles.lede}>{copy.sub}</p>
+          {notice ? (
+            <p className={styles.notice}>
+              <CalendarIcon />
+              {notice}
+            </p>
+          ) : null}
         </header>
 
-        <ul className={`${styles.pkgGrid} ${columns === 2 ? styles.pkgGridTwo : ''}`}>
+        <ul
+          className={`${styles.pkgGrid} ${columns === 2 ? styles.pkgGridTwo : ''} ${
+            packages.some((pkg) => pkg.annual) ? styles.pkgGridAnnual : ''
+          }`}
+        >
           {packages.map((pkg) => {
             const Badge = packageIcons[pkg.icon];
 

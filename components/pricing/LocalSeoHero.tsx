@@ -9,6 +9,8 @@ export type PricingHeroData = {
   sub: string;
   primary: { label: string; href: string };
   secondary: { label: string; href: string };
+  /** A small line under the buttons. */
+  note?: string;
 };
 
 /** Frame 1, shared by the /pricing sub-pages. Nothing animates on entrance. The picture is
@@ -48,6 +50,8 @@ export default function LocalSeoHero({
               </Link>
             )}
           </div>
+
+          {hero.note ? <p className={styles.heroNote}>{hero.note}</p> : null}
 
           {trustItems.length > 0 ? (
             <ul className={styles.trust}>
