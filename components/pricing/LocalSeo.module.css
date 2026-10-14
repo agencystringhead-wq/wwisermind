@@ -1,0 +1,771 @@
+/* /pricing/local-seo. Built from the /pricing page's own pieces: the hero, the eyebrow and
+   heading, the pill buttons and the card shell are composed from Pricing.module.css and
+   Controls.module.css, so the two pages cannot drift. Only what /pricing has no equivalent
+   for is drawn here. Nothing on this page animates on entrance. */
+
+/* --- shared, composed from /pricing --------------------------------------------------- */
+.eyebrow {
+  composes: eyebrow from './Pricing.module.css';
+}
+
+.heading {
+  composes: heading from './Pricing.module.css';
+}
+
+.lede {
+  composes: lede from './Pricing.module.css';
+}
+
+.button {
+  composes: button from './Pricing.module.css';
+}
+
+.buttonFull {
+  composes: buttonFull from './Pricing.module.css';
+}
+
+.buttonBlue {
+  composes: buttonBlue from '../ui/Controls.module.css';
+}
+
+.textLink {
+  composes: textLink from './Pricing.module.css';
+}
+
+.cardLink {
+  composes: cardLink from './Pricing.module.css';
+}
+
+.pill {
+  composes: pill from './Pricing.module.css';
+}
+
+.hero {
+  composes: hero from './Pricing.module.css';
+}
+
+.heroGrid {
+  composes: heroGrid from './Pricing.module.css';
+}
+
+.heroTitle {
+  composes: heroTitle from './Pricing.module.css';
+}
+
+.heroSub {
+  composes: heroSub from './Pricing.module.css';
+}
+
+.heroActions {
+  composes: heroActions from './Pricing.module.css';
+}
+
+.trust {
+  composes: trust from './Pricing.module.css';
+}
+
+.heroMedia {
+  composes: heroMedia from './Pricing.module.css';
+}
+
+.heroImage {
+  composes: heroImage from './Pricing.module.css';
+}
+
+/* --- section shells -------------------------------------------------------------------- */
+.section,
+.sectionGrey {
+  padding-block: 112px;
+  scroll-margin-top: var(--header-height);
+}
+
+.section {
+  background-color: var(--color-white);
+}
+
+.sectionGrey {
+  background-color: var(--color-surface);
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 56px;
+  text-align: center;
+}
+
+.head .lede {
+  max-width: 56ch;
+  margin-top: 16px;
+}
+
+.headRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 32px;
+  margin-bottom: 40px;
+}
+
+.headRow .lede {
+  margin-top: 12px;
+}
+
+/* --- 2. results ------------------------------------------------------------------------ */
+.resultGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.resultCard {
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+  background-color: var(--color-white);
+}
+
+.resultLogo {
+  display: block;
+  width: auto;
+  max-width: 140px;
+  height: 36px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.resultHeadline {
+  margin-top: 24px;
+  font-size: 22px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.resultQuote {
+  margin: 14px 0 0;
+  color: var(--color-muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.resultPerson {
+  margin: 20px 0 0;
+  font-size: 14px;
+  font-weight: var(--fw-semibold);
+}
+
+/* --- 3. is local seo right for you ------------------------------------------------------ */
+.fitGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fitCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 28px;
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+  background-color: var(--color-white);
+}
+
+.fitIcon {
+  composes: tile from '../ui/Controls.module.css';
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+}
+
+.fitIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.fitTitle {
+  font-size: 18px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+.fitBody {
+  margin-top: 6px;
+  color: var(--color-muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.callout {
+  margin-top: 24px;
+  padding: 36px 40px;
+  border-radius: 20px;
+  background-color: var(--color-surface);
+}
+
+.calloutTitle {
+  font-size: 22px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.02em;
+}
+
+.calloutBody {
+  max-width: 70ch;
+  margin-top: 10px;
+  color: var(--color-muted);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* --- 4. packages ------------------------------------------------------------------------ */
+.pkgGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pkg {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+  background-color: var(--color-white);
+}
+
+.pkgHighlight {
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 1px var(--color-brand), 0 16px 40px rgba(20, 110, 245, 0.1);
+}
+
+.pkg .pill {
+  align-self: flex-start;
+  margin-bottom: 16px;
+}
+
+.pkgName {
+  font-size: 26px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.pkgFor {
+  min-height: 3em;
+  margin-top: 8px;
+  color: var(--color-muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.pkgPrice {
+  margin-top: 24px;
+  padding-block: 20px;
+  border-block: 1px solid var(--color-divider);
+}
+
+.pkgPriceNote {
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+.pkgPriceBig {
+  font-size: 26px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.pkgPriceBig small {
+  margin-left: 6px;
+  color: var(--color-muted);
+  font-size: 14px;
+  font-weight: var(--fw-regular);
+  letter-spacing: 0;
+}
+
+.pkgLead {
+  margin-top: 24px;
+  font-size: 15px;
+  font-weight: var(--fw-semibold);
+}
+
+.pkgRows {
+  margin: 8px 0 0;
+}
+
+.pkgRow {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-block: 14px;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.pkgRow:last-child {
+  border-bottom: 0;
+}
+
+.pkgRow dt {
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.pkgRow dd {
+  margin: 0;
+  color: var(--color-brand);
+  font-size: 14px;
+  font-weight: var(--fw-semibold);
+}
+
+.factors {
+  margin: 8px 0 28px;
+  padding: 0;
+  list-style: none;
+}
+
+.factors li {
+  padding-block: 12px;
+  border-bottom: 1px solid var(--color-line);
+  font-size: 15px;
+}
+
+.factors li:last-child {
+  border-bottom: 0;
+}
+
+.pkg .buttonFull {
+  margin-top: auto;
+}
+
+.every {
+  margin-top: 64px;
+  text-align: center;
+}
+
+.everyTitle {
+  font-size: 20px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.02em;
+}
+
+.everyList {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px 32px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.everyList li,
+.ctaItems li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.everyList svg,
+.ctaItems svg,
+.bundleList svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  color: var(--color-brand);
+}
+
+.band {
+  composes: dark from '../ui/Controls.module.css';
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px 40px;
+  margin-top: 64px;
+  padding: 40px 48px;
+  border-radius: 20px;
+}
+
+.bandTitle {
+  color: var(--color-white);
+  font-size: 26px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.025em;
+}
+
+.bandBody {
+  max-width: 52ch;
+  margin-top: 8px;
+  color: var(--dark-body);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+/* --- 5. process ------------------------------------------------------------------------- */
+.stages {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* The connecting line runs through the dots, from the first to the last. */
+.stages::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 0;
+  height: 1px;
+  background-color: var(--color-divider);
+}
+
+.stage {
+  position: relative;
+  padding-top: 36px;
+}
+
+.stageDot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 13px;
+  height: 13px;
+  border: 3px solid var(--color-white);
+  border-radius: 50%;
+  background-color: var(--color-brand);
+  box-shadow: 0 0 0 1px var(--color-brand);
+}
+
+.stageTitle {
+  margin-top: 10px;
+  font-size: 26px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.025em;
+}
+
+.stageSteps {
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stageSteps li {
+  position: relative;
+  padding: 10px 0 10px 20px;
+  border-top: 1px solid var(--color-line);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.stageSteps li::before {
+  content: '';
+  position: absolute;
+  top: 19px;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-brand);
+}
+
+/* --- 6. bundle -------------------------------------------------------------------------- */
+.bundleGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 64px;
+}
+
+.bundleCard {
+  composes: dark from '../ui/Controls.module.css';
+  padding: 40px;
+  border-radius: 24px;
+}
+
+.bundleName {
+  color: var(--color-white);
+  font-size: 30px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.03em;
+}
+
+.bundlePrice {
+  margin-top: 12px;
+  color: var(--dark-headline);
+  font-size: 20px;
+  font-weight: var(--fw-semibold);
+}
+
+.bundlePrice small {
+  margin-left: 6px;
+  color: var(--dark-quiet);
+  font-size: 14px;
+  font-weight: var(--fw-regular);
+}
+
+.bundleLead {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--dark-line);
+  color: var(--dark-body);
+  font-size: 15px;
+}
+
+.bundleList {
+  margin: 12px 0 32px;
+  padding: 0;
+  list-style: none;
+}
+
+.bundleList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding-block: 7px;
+  color: var(--color-white);
+  font-size: 16px;
+}
+
+.bundleList svg {
+  color: var(--dark-headline);
+}
+
+.whyTitle {
+  font-size: 22px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.02em;
+}
+
+.whyList {
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.whyList li {
+  padding-block: 20px;
+  border-top: 1px solid var(--color-divider);
+}
+
+.whyItemTitle {
+  font-size: 18px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.015em;
+}
+
+.whyItemBody {
+  margin-top: 4px;
+  color: var(--color-muted);
+  font-size: 15px;
+}
+
+/* --- 7. relevant projects --------------------------------------------------------------- */
+.projectGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project {
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+  background-color: var(--color-white);
+}
+
+.projectImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.projectBody {
+  padding: 22px 24px 24px;
+}
+
+.projectName {
+  font-size: 19px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.02em;
+}
+
+.projectStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 24px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+.projectStats b {
+  color: var(--color-ink);
+  font-weight: var(--fw-semibold);
+}
+
+/* --- 9. final cta ----------------------------------------------------------------------- */
+.cta {
+  composes: dark from '../ui/Controls.module.css';
+  padding-block: 112px;
+}
+
+.ctaInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ctaTitle {
+  max-width: 20ch;
+  color: var(--dark-headline);
+  font-size: clamp(30px, 3.6vw, 50px);
+  font-weight: var(--fw-semibold);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.ctaSub {
+  margin: 16px 0 36px;
+  color: var(--dark-body);
+  font-size: 17px;
+}
+
+.ctaItems {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 40px;
+  margin: 48px 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-white);
+  text-align: left;
+}
+
+.ctaItems svg {
+  color: var(--dark-headline);
+}
+
+/* --- responsive -------------------------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .section,
+  .sectionGrey,
+  .cta {
+    padding-block: 88px;
+  }
+
+  .everyList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1023px) {
+  .pkgGrid,
+  .resultGrid {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+    margin-inline: auto;
+  }
+
+  .pkgFor {
+    min-height: 0;
+  }
+
+  .bundleGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* The stages stack, and the line turns to run down the left through the dots. */
+  .stages {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .stages::before {
+    top: 6px;
+    bottom: 0;
+    left: 6px;
+    right: auto;
+    width: 1px;
+    height: auto;
+  }
+
+  .stage {
+    padding: 0 0 0 36px;
+  }
+}
+
+@media (max-width: 767px) {
+  .fitGrid,
+  .projectGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .section,
+  .sectionGrey,
+  .cta {
+    padding-block: 64px;
+  }
+
+  .head {
+    margin-bottom: 40px;
+  }
+
+  .everyList {
+    grid-template-columns: 1fr;
+  }
+
+  .fitCard,
+  .pkg,
+  .bundleCard {
+    padding: 24px;
+  }
+
+  .callout,
+  .band {
+    padding: 28px 24px;
+  }
+
+  .band .buttonBlue,
+  .cta .buttonBlue {
+    width: 100%;
+  }
+}

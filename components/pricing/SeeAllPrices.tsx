@@ -4,7 +4,14 @@ import type { MouseEvent } from 'react';
 
 /** "See all prices ↓": smooth-scrolls to #packages, and jumps instead when the visitor has
     asked for reduced motion. The href stays a real anchor, so it works without script. */
-export default function SeeAllPrices({ className }: { className: string }) {
+export default function SeeAllPrices({
+  className,
+  label = 'See all prices',
+}: {
+  className: string;
+  /** The link's words; the arrow is added here. */
+  label?: string;
+}) {
   const onClick = (event: MouseEvent<HTMLAnchorElement>) => {
     const target = document.getElementById('packages');
     if (!target) return;
@@ -17,7 +24,7 @@ export default function SeeAllPrices({ className }: { className: string }) {
 
   return (
     <a href="#packages" className={className} onClick={onClick}>
-      See all prices <span aria-hidden="true">↓</span>
+      {label} <span aria-hidden="true">↓</span>
     </a>
   );
 }
