@@ -444,8 +444,53 @@
   text-align: right;
 }
 
-.pkg .buttonFull {
-  margin-top: 28px;
+/* The button sits at the foot of the card, so a short card and a long one end level; the rows
+   leave a gap above it. */
+.pkgRows:not(:last-child) {
+  margin-bottom: 28px;
+}
+
+.pkg .buttonFull,
+.pkg .buttonBlueFull {
+  margin-top: auto;
+}
+
+.pkgCtaNote {
+  margin-top: 12px;
+  color: var(--color-muted);
+  font-size: 14px;
+  text-align: center;
+}
+
+.pkgPriceFoot {
+  margin-top: 8px;
+  color: var(--color-muted);
+  font-size: 15px;
+}
+
+.pkgPriceFlatNoted {
+  min-height: 88px;
+}
+
+.rowLink {
+  font-weight: var(--fw-semibold);
+  text-align: right;
+  text-decoration: underline;
+  text-decoration-color: var(--color-line);
+  text-underline-offset: 4px;
+  transition: color var(--dur) var(--ease);
+}
+
+.rowLink:hover {
+  color: var(--color-brand);
+}
+
+.stagesNote {
+  max-width: 62ch;
+  margin: 40px auto 0;
+  color: var(--color-muted);
+  font-size: 15px;
+  text-align: center;
 }
 
 /* The featured card: near black, a yellow tab across the top edge, a white badge. */
@@ -457,6 +502,8 @@
 
 .pkgFeatured .pkgFor,
 .pkgFeatured .pkgPriceNote,
+.pkgFeatured .pkgPriceFoot,
+.pkgFeatured .pkgCtaNote,
 .pkgFeatured .pkgPriceBig small {
   color: rgba(255, 255, 255, 0.72);
 }
@@ -816,6 +863,15 @@
 }
 
 /* --- responsive -------------------------------------------------------------------------- */
+/* A pair of cards: two columns from 1024px, kept narrow so they do not stretch. */
+@media (min-width: 1024px) {
+  .pkgGridTwo {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 960px;
+    margin-inline: auto;
+  }
+}
+
 @media (max-width: 1279px) {
   .section,
   .sectionGrey,

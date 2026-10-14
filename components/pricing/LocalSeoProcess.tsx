@@ -8,10 +8,13 @@ export default function LocalSeoProcess({
   copy,
   stages,
   tone = 'white',
+  note,
 }: {
   copy: { eyebrow?: string; title: string; sub: string };
   stages: ProcessStage[];
   tone?: 'white' | 'grey';
+  /** A line under the timeline. */
+  note?: string;
 }) {
   return (
     <section className={tone === 'grey' ? styles.sectionGrey : styles.section}>
@@ -39,6 +42,8 @@ export default function LocalSeoProcess({
             </li>
           ))}
         </ol>
+
+        {note ? <p className={styles.stagesNote}>{note}</p> : null}
       </div>
     </section>
   );

@@ -163,6 +163,15 @@ export function FlagIcon(props: IconProps) {
   );
 }
 
+export function CreditCardIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <rect x="3" y="5.500" width="18" height="13" rx="2.500" />
+      <path d="M3 10h18M7 15h3" />
+    </Icon>
+  );
+}
+
 export function PersonIcon(props: IconProps) {
   return (
     <Icon {...props}>

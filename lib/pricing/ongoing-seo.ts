@@ -106,6 +106,14 @@ export const plans: LocalSeoPackage[] = [
 
 const lowestPrice = Math.min(...plans.flatMap((plan) => (plan.price === undefined ? [] : [plan.price])));
 
+/** How the other pages list this one, so a price changed above changes there. */
+export const ongoingListing = {
+  name: 'Ongoing SEO',
+  price: `from $${lowestPrice.toLocaleString('en-US')}`,
+  unit: '/mo',
+  href: ongoingSeoPath,
+};
+
 /* --- SEO ----------------------------------------------------------------------------- */
 
 export const ongoingSeoMeta = {

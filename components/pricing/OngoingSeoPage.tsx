@@ -4,6 +4,7 @@ import {
   contractTerms,
   everyPlan,
   finalCta,
+  founderNote,
   heroImage,
   includedCards,
   includedCopy,
@@ -18,9 +19,12 @@ import {
   resultsCopy,
   roadmapCopy,
   roadmapStages,
+  showFounderNote,
   showResults,
   startSmall,
   trustItems,
+  whyCards,
+  whyCopy,
 } from '@/lib/pricing/ongoing-seo';
 import LocalSeoCta from './LocalSeoCta';
 import LocalSeoFaq from './LocalSeoFaq';
@@ -29,9 +33,9 @@ import LocalSeoPackages from './LocalSeoPackages';
 import LocalSeoProcess from './LocalSeoProcess';
 import LocalSeoResults from './LocalSeoResults';
 import OngoingSeoProblem from './OngoingSeoProblem';
-import OngoingSeoWhy from './OngoingSeoWhy';
 import OngoingSeoWhyNow from './OngoingSeoWhyNow';
 import PricingChecks from './PricingChecks';
+import PricingWhy from './PricingWhy';
 
 /**
  * /pricing/seo. The fourth /pricing sub-page: the hero, plan cards, check grid, roadmap,
@@ -101,7 +105,11 @@ export default function OngoingSeoPage() {
         more={startSmall}
       />
       <LocalSeoProcess copy={roadmapCopy} stages={roadmapStages} />
-      <OngoingSeoWhy />
+      <PricingWhy
+        copy={whyCopy}
+        cards={whyCards}
+        founder={showFounderNote ? founderNote : null}
+      />
       <LocalSeoResults copy={resultsCopy} cards={resultCards} show={showResults} />
       <LocalSeoFaq copy={ongoingSeoFaqCopy} items={ongoingSeoFaqs} />
       <LocalSeoCta cta={finalCta} />

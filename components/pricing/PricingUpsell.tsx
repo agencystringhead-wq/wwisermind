@@ -9,14 +9,16 @@ export type UpsellPlan = { name: string; line: string; href: string };
 export default function PricingUpsell({
   copy,
   plans,
+  tone = 'white',
 }: {
   copy: { title: string; body: string };
   plans: UpsellPlan[];
+  tone?: 'white' | 'grey';
 }) {
   if (plans.length === 0) return null;
 
   return (
-    <section className={local.section}>
+    <section className={tone === 'grey' ? local.sectionGrey : local.section}>
       <div className="container">
         <div className={styles.upsell}>
           <div>

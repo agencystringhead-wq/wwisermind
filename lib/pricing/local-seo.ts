@@ -111,7 +111,7 @@ export const fitCallout: FitCallout = {
 
 /* --- 4. packages --------------------------------------------------------------------- */
 
-export type PackageIcon = 'growth' | 'rocket' | 'map' | 'person' | 'users';
+export type PackageIcon = 'growth' | 'rocket' | 'map' | 'person' | 'users' | 'card' | 'calendar';
 
 /** A sentence made of plain text and links, for the small line under a plan grid. */
 export type LineSegment = { text: string } | { label: string; href: string };
@@ -120,6 +120,8 @@ export type PackageRow = {
   label: string;
   /** Absent on the multi-location card, whose rows are factors rather than inclusions. */
   value?: string;
+  /** Makes the value a link, such as "optional add-on" pointing at the care plans page. */
+  valueHref?: string;
 };
 
 export type LocalSeoPackage = {
@@ -134,6 +136,8 @@ export type LocalSeoPackage = {
   price?: number;
   priceLabel?: string;
   suffix?: string;
+  /** A small line under the price, such as "12-month commitment". */
+  priceNote?: string;
   /** Replaces the price line on a quoted card. */
   customPrice?: { headline: string; sub: string };
   sectionLabel: string;
@@ -141,6 +145,8 @@ export type LocalSeoPackage = {
   sectionPlus?: boolean;
   rows: PackageRow[];
   cta?: { label: string; href: string };
+  /** A small line under the button; left out while empty. */
+  ctaNote?: string;
 };
 
 export const packagesCopy = {

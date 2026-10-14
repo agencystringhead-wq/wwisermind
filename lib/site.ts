@@ -181,6 +181,7 @@ export const megaPanels: Record<string, MegaPanel> = {
            packages, with their prices, are cards on /pricing (#<slug>). */
         links: [
           { label: 'One Week Website', href: serviceHref('one-week-website') },
+          { label: 'One-Week Website Pricing', href: '/pricing/website-design' },
           { label: 'Custom Website Design', href: serviceHref('custom-website-design') },
           { label: 'Website Hosting', href: serviceHref('website-hosting') },
           { label: 'Website Care Plans', href: serviceHref('website-care-plans'), desc: 'Priced on its own page' },

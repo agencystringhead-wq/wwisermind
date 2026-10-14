@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import {
+  CalendarIcon,
   CheckIcon,
+  CreditCardIcon,
   GrowthChartIcon,
   MapPinIcon,
   PersonIcon,
@@ -17,14 +19,17 @@ const packageIcons: Record<PackageIcon, typeof RocketIcon> = {
   map: MapPinIcon,
   person: PersonIcon,
   users: UsersIcon,
+  card: CreditCardIcon,
+  calendar: CalendarIcon,
 };
 
 const dollars = (price: number) => `$${price.toLocaleString('en-US')}`;
 
 /** The price block is a label and a figure, or a figure and a note, at a fixed height, so the
     section label and rows start at the same place on every card. A plan with only a figure and
-    a suffix has no label line and a shorter block. */
-function PriceBlock({ pkg }: { pkg: LocalSeoPackage }) {
+    a suffix has no label line and a shorter block; when any card in the grid has a line under
+    its price, every flat block reserves room for it. */
+function PriceBlock({ pkg, reserveNote }: { pkg: LocalSeoPackage; reserveNote: boolean }) {
   if (pkg.customPrice) {
     return (
       <div className={`${styles.pkgPrice} ${styles.pkgPriceQuoted}`}>
@@ -34,20 +39,24 @@ function PriceBlock({ pkg }: { pkg: LocalSeoPackage }) {
     );
   }
 
+  const flat = pkg.priceLabel ? '' : reserveNote ? styles.pkgPriceFlatNoted : styles.pkgPriceFlat;
+
   return (
-    <div className={`${styles.pkgPrice} ${pkg.priceLabel ? '' : styles.pkgPriceFlat}`}>
+    <div className={`${styles.pkgPrice} ${flat}`}>
       {pkg.priceLabel ? <p className={styles.pkgPriceNote}>{pkg.priceLabel}</p> : null}
       <p className={styles.pkgPriceBig}>
         {pkg.price !== undefined ? dollars(pkg.price) : null}
         <small>{pkg.suffix}</small>
       </p>
+      {pkg.priceNote ? <p className={styles.pkgPriceFoot}>{pkg.priceNote}</p> : null}
     </div>
   );
 }
 
-/** The package grid, shared by the Local SEO and Ongoing SEO pages: three cards side by side
-    (the featured one first on a phone), then what every package includes and, when the page
-    has them, a visibility band, a terms line and a line of links to other options. */
+/** The package grid, shared by the Local SEO, Ongoing SEO and website pages: cards side by
+    side (the featured one first on a phone), then what every package includes and, when the
+    page has them, a terms line, a line of links to other options and a visibility band.
+    `columns` is 3 for the usual grid, or 2 for a pair that should not stretch too wide. */
 export default function LocalSeoPackages({
   id = 'packages',
   copy,
@@ -56,6 +65,7 @@ export default function LocalSeoPackages({
   band,
   terms,
   more,
+  columns = 3,
 }: {
   id?: string;
   copy: { eyebrow?: string; title: string; sub: string };
@@ -65,7 +75,11 @@ export default function LocalSeoPackages({
   /** Printed under the "every plan" row; left out while empty. */
   terms?: string;
   more?: LineSegment[];
+  columns?: 2 | 3;
 }) {
+  const reserveNote = packages.some((pkg) => pkg.priceNote);
+  const everyCols = every.items.length === 6 ? 3 : Math.min(every.items.length, 4);
+
   return (
     <section className={styles.sectionGrey} id={id}>
       <div className="container">
@@ -75,7 +89,7 @@ export default function LocalSeoPackages({
           <p className={styles.lede}>{copy.sub}</p>
         </header>
 
-        <ul className={styles.pkgGrid}>
+        <ul className={`${styles.pkgGrid} ${columns === 2 ? styles.pkgGridTwo : ''}`}>
           {packages.map((pkg) => {
             const Badge = packageIcons[pkg.icon];
 
@@ -94,7 +108,7 @@ export default function LocalSeoPackages({
                 </div>
                 <p className={styles.pkgFor}>{pkg.description}</p>
 
-                <PriceBlock pkg={pkg} />
+                <PriceBlock pkg={pkg} reserveNote={reserveNote} />
 
                 <p className={styles.pkgLead}>
                   {pkg.sectionPlus ? <PlusCircleIcon /> : null}
@@ -110,7 +124,15 @@ export default function LocalSeoPackages({
                         </span>
                         {row.label}
                       </span>
-                      {row.value ? <span className={styles.rowValue}>{row.value}</span> : null}
+                      {row.value ? (
+                        row.valueHref ? (
+                          <Link href={row.valueHref} className={styles.rowLink}>
+                            {row.value}
+                          </Link>
+                        ) : (
+                          <span className={styles.rowValue}>{row.value}</span>
+                        )
+                      ) : null}
                     </li>
                   ))}
                 </ul>
@@ -123,6 +145,7 @@ export default function LocalSeoPackages({
                     {pkg.cta.label}
                   </Link>
                 ) : null}
+                {pkg.ctaNote ? <p className={styles.pkgCtaNote}>{pkg.ctaNote}</p> : null}
               </li>
             );
           })}
@@ -132,7 +155,7 @@ export default function LocalSeoPackages({
           <h3 className={styles.everyTitle}>{every.title}</h3>
           <ul
             className={styles.everyList}
-            style={{ '--every-cols': Math.min(every.items.length, 4) } as React.CSSProperties}
+            style={{ '--every-cols': everyCols } as React.CSSProperties}
           >
             {every.items.map((item) => (
               <li key={item}>

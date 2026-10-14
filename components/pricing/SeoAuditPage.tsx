@@ -5,6 +5,9 @@ import {
   auditOffer,
   checkCards,
   checksCopy,
+  compareColumns,
+  compareCopy,
+  compareRows,
   auditPrice,
   finalCta,
   pricingCopy,
@@ -28,9 +31,9 @@ import LocalSeoFit from './LocalSeoFit';
 import LocalSeoHero from './LocalSeoHero';
 import LocalSeoProcess from './LocalSeoProcess';
 import PricingChecks from './PricingChecks';
+import PricingCompare from './PricingCompare';
 import PricingOffer from './PricingOffer';
 import PricingUpsell from './PricingUpsell';
-import SeoAuditCompare from './SeoAuditCompare';
 
 /**
  * /pricing/seo-audit. The sibling of /pricing/local-seo: the hero, check cards, timeline,
@@ -86,7 +89,11 @@ export default function SeoAuditPage() {
       <PricingChecks id="whats-checked" copy={checksCopy} cards={checkCards} tone="grey" />
       <PricingOffer copy={pricingCopy} offer={auditOffer} />
       <LocalSeoProcess copy={processCopy} stages={processStages} tone="grey" />
-      <SeoAuditCompare />
+      <PricingCompare
+        copy={compareCopy}
+        columns={[...compareColumns]}
+        rows={compareRows.map((row) => ({ criteria: row.criteria, cells: [row.free, row.audit] }))}
+      />
       <PricingUpsell copy={upsellCopy} plans={upsellPlans} />
       <LocalSeoCta cta={finalCta} />
       <LocalSeoFaq copy={seoAuditFaqCopy} items={seoAuditFaqs} />

@@ -19,6 +19,8 @@ import {
   resultsCopy,
   showResults,
   processStages,
+  projectsCopy,
+  relevantProjects,
   trustItems,
   visibilityBand,
 } from '@/lib/pricing/local-seo';
@@ -102,7 +104,7 @@ export default function LocalSeoPage() {
       />
       <LocalSeoProcess copy={processCopy} stages={processStages} />
       <LocalSeoBundle />
-      <LocalSeoProjects />
+      <LocalSeoProjects copy={projectsCopy} projects={relevantProjects} />
       <LocalSeoCta cta={finalCta} />
       <LocalSeoFaq copy={localSeoFaqCopy} items={localSeoFaqs} />
     </>
