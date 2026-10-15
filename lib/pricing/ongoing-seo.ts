@@ -428,6 +428,6 @@ export const ongoingSeoFaqs: FaqItem[] = [
 export const finalCta: FinalCta = {
   title: 'Let’s get your practice found',
   sub: 'Book a free call. We’ll look at where you stand, who you’re competing with, and which plan makes sense. No pressure, the plan is yours either way.',
-  button: { label: 'Book a free call', href: routes.contact },
+  button: { label: 'Book a free call', href: routes.contactBook },
   items: ['Visibility check', 'Competitor comparison', 'Plan recommendation'],
 };

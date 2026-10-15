@@ -394,5 +394,5 @@ export const websiteDesignFaqs: FaqItem[] = allFaqs.filter((item) => item.body.t
 export const finalCta: FinalCta = {
   title: 'One week from now, your new site could be live',
   sub: 'Book a free call and we’ll walk you through exactly how it works.',
-  button: { label: 'Book a free call', href: routes.contact },
+  button: { label: 'Book a free call', href: routes.contactBook },
 };

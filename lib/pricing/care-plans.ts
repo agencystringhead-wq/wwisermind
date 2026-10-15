@@ -265,7 +265,7 @@ export const carePlansHero: PricingHeroData = {
   title: 'A website that just works, so you don’t have to think about it',
   sub: `Hosting, updates, backups, security and help with changes for your WordPress site, all handled for you. Plans from ${money(lowestPrice)} a month. Cancel any time.`,
   primary: { label: 'See plans', href: '#plans' },
-  secondary: { label: 'Book a 15-minute call', href: routes.contact },
+  secondary: { label: 'Book a 15-minute call', href: routes.contactBook },
 };
 
 /* The Website Care Plans card image from /pricing. */

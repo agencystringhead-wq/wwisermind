@@ -829,6 +829,20 @@ export const contactBar = {
   ],
 };
 
+/** Pages that close on a call to action of their own, so the footer's is left out. The pricing
+    hub and the individual freebie and tool pages end on no such section, so they keep it. */
+export const footerCtaHiddenPaths: string[] = [
+  routes.pricing.hyperGrowth,
+  routes.pricing.oneWeekWebsite,
+  routes.pricing.customWebsite,
+  routes.pricing.carePlans,
+  routes.pricing.seoAudit,
+  routes.pricing.oneTimeSeo,
+  routes.pricing.seo,
+  routes.pricing.localSeo,
+  routes.freebies.hub,
+];
+
 export const footerCta = {
   /** The backdrop is drawn in CSS now — see the concentric rings in Footer.module.css. */
   /** Three fixed lines, as in both reference frames. */

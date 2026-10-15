@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { footerCta, footerMain } from '@/lib/site';
 import CtaBadge from './CtaBadge';
+import FooterCtaGate from './FooterCtaGate';
 import FooterClocks from './FooterClocks';
 import FooterDotText from './FooterDotText';
 import FooterTabs from './FooterTabs';
@@ -19,7 +20,7 @@ function CalendarIcon() {
   );
 }
 
-export default function Footer() {
+export default function Footer({ hideCta = false }: { hideCta?: boolean }) {
   const { headingLines, bodyLines, badge } = footerCta;
   const {
     tagline,
@@ -38,6 +39,7 @@ export default function Footer() {
 
   return (
     <footer>
+      <FooterCtaGate hide={hideCta}>
       <section className={styles.cta}>
         <span className={styles.ripples} aria-hidden="true">
           {Array.from({ length: 6 }, (_, index) => (
@@ -81,6 +83,7 @@ export default function Footer() {
           </Link>
         </div>
       </section>
+      </FooterCtaGate>
 
       <section className={styles.main}>
         <div className={`container ${styles.grid}`}>

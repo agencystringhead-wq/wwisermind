@@ -441,7 +441,7 @@ export const customWebsiteFaqs: FaqItem[] = [
 export const finalCta: FinalCta = {
   title: 'Let’s design something that feels like your practice',
   sub: 'Book a free discovery call. We’ll talk about your practice and send a fixed quote. No paid sessions, no pressure.',
-  button: { label: 'Book a free discovery call', href: routes.contact },
+  button: { label: 'Book a free discovery call', href: routes.contactBook },
 };
 
 /** How the other pages list this one, so a price changed above changes there. */

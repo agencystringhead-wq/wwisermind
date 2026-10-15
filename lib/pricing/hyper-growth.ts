@@ -664,7 +664,7 @@ export const hyperGrowthFaqs: FaqItem[] = allFaqs.filter((item) => item.body.tri
 export const finalCta: FinalCta = {
   title: 'One plan. One team. A fuller calendar.',
   sub: 'Book a free growth call. We’ll look at your practice, your market and your goals, and tell you honestly which plan fits, if any.',
-  button: { label: 'Book a free growth call', href: routes.contact },
+  button: { label: 'Book a free growth call', href: routes.contactBook },
   items: ['Practice & market review', 'Competitor snapshot', 'Recommended plan and Meta ad budget'],
 };
 

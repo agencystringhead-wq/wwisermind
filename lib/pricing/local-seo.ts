@@ -366,7 +366,7 @@ export type FinalCta = {
 export const finalCta: FinalCta = {
   title: 'Every practice’s local market is different',
   sub: 'So we start with a look at yours, not a sales pitch.',
-  button: { label: 'Book a free call', href: routes.contact },
+  button: { label: 'Book a free call', href: routes.contactBook },
   items: ['Local visibility check', 'A plain-English plan', 'Honest advice on whether it’s worth it for you'],
 };
 
