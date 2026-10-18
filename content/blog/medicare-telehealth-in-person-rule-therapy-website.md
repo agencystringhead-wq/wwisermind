@@ -8,10 +8,8 @@ publishedAt: 2026-10-19
 updatedAt: 2026-10-19
 author: SrikaantH
 featured: false
-image: /images/blog/wordpress-squarespace-or-custom-therapy-website.webp
+image: /images/blog/medicare-telehealth-in-person-rule-therapy-website.webp
 imageAlt: Armchair by a sunny window with a laptop resting on a side table.
-imagePlaceholder: true
-imageTodo: TODO: hero image. Replace with an Unsplash photo re-encoded to WebP q90 (60 to 115KB) at /images/blog/medicare-telehealth-in-person-rule-therapy-website.webp, then set imageCredit and imageCreditUrl.
 takeaways:
 - Medicare clients can keep getting mental health care by video from home. That part is permanent.
 - The in-person visit requirement now applies only after December 31, 2027, per CMS's October 2026 FAQ.

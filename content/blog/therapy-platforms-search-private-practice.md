@@ -8,10 +8,8 @@ publishedAt: 2026-10-19
 updatedAt: 2026-10-19
 author: SrikaantH
 featured: false
-image: /images/blog/ymyl-eeat-therapy-website.webp
+image: /images/blog/therapy-platforms-search-private-practice.webp
 imageAlt: Small wooden sign outside a therapy office on a quiet street.
-imagePlaceholder: true
-imageTodo: TODO: hero image. Replace with an Unsplash photo re-encoded to WebP q90 (60 to 115KB) at /images/blog/therapy-platforms-search-private-practice.webp, then set imageCredit and imageCreditUrl.
 takeaways:
 - Big platforms now take a large share of broad therapist searches, and some solo clinicians have watched referrals drop year after year.
 - Your edge is what a platform can't fake: a real office, a real person, a specific specialty, a local network.
