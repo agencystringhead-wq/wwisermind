@@ -124,6 +124,18 @@
     visibility var(--dur) var(--ease);
 }
 
+/* The number rides on the phone label from tablet width up, where tel: links often do
+   nothing and a visitor needs to read the number to dial it. */
+.wide {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .wide {
+    display: inline;
+  }
+}
+
 .item:hover .tip,
 .item:focus-visible .tip {
   opacity: 1;

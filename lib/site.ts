@@ -25,6 +25,15 @@ export const siteConfig = {
   /** The booking anchor on the contact page, for a button on any other page: the anchor
       alone only resolves on /contact, where the calendar lives. */
   bookingPage: routes.contactBook,
+  /** One number for the phone, the WhatsApp chat and the footer. Nothing else in the repo
+      spells it out. */
+  contact: {
+    phoneDisplay: '+91-91754 14055',
+    phoneTel: '+919175414055',
+    /** Digits only: wa.me wants no plus sign and no dashes. */
+    whatsapp: '919175414055',
+    whatsappMessage: "Hi wwisermind, I'd like to know more about your services for my practice.",
+  },
   /** The Cal.com event every booking button and the contact page's calendar open. */
   booking: {
     calLink: 'wwisermind/30min',
@@ -816,12 +825,19 @@ export const contactBar = {
     {
       id: 'book',
       icon: 'calendar' as const,
-      /* TODO: awaiting the real number */
       href: '#book',
       label: 'Book a free call · 30 min',
       aria: 'Book a free call, 30 minutes',
     },
-    { id: 'phone', icon: 'phone' as const, href: '#', label: 'Call us', aria: 'Call us' },
+    {
+      id: 'phone',
+      icon: 'phone' as const,
+      href: `tel:${siteConfig.contact.phoneTel}`,
+      label: 'Call us',
+      /** Shown after the label on screens wide enough that tel: links tend to do nothing. */
+      labelWide: `: ${siteConfig.contact.phoneDisplay}`,
+      aria: `Call wwisermind on ${siteConfig.contact.phoneDisplay}`,
+    },
     {
       id: 'email',
       icon: 'envelope' as const,
@@ -832,9 +848,10 @@ export const contactBar = {
     {
       id: 'whatsapp',
       icon: 'whatsapp' as const,
-      href: '#',
-      label: 'WhatsApp',
-      aria: 'Message us on WhatsApp',
+      href: `https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(siteConfig.contact.whatsappMessage)}`,
+      external: true,
+      label: 'WhatsApp us',
+      aria: 'Chat with wwisermind on WhatsApp',
       accent: true,
     },
   ],
@@ -989,7 +1006,11 @@ export const footerMain = {
       value: 'USA  /  Australia  /  Ireland  /  Dubai',
     },
     email: { label: 'Email', value: 'admin@wwisermind.com', href: 'mailto:admin@wwisermind.com' },
-    hotline: { label: 'Hotline', value: '+91-91754 14055', href: 'tel:+919175414055' },
+    hotline: {
+      label: 'Hotline',
+      value: siteConfig.contact.phoneDisplay,
+      href: `tel:${siteConfig.contact.phoneTel}`,
+    },
     hours: { label: 'Office hours', value: 'Monday-Friday / 8:30AM - 5PM' },
   },
 

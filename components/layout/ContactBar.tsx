@@ -94,6 +94,8 @@ export default function ContactBar() {
       {contactBar.items.map((item) => {
         const Icon = ICONS[item.icon];
         const accent = 'accent' in item && item.accent;
+        const external = 'external' in item && item.external;
+        const labelWide = 'labelWide' in item ? item.labelWide : null;
 
         return (
           <CtaLink
@@ -101,12 +103,14 @@ export default function ContactBar() {
             href={item.href}
             className={`${styles.item} ${accent ? styles.accent : ''}`}
             aria-label={item.aria}
+            {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
           >
             <Icon />
             {/* aria-hidden because the label duplicates the aria-label above it — a reader
                 would otherwise announce the same thing twice. */}
             <span className={styles.tip} aria-hidden="true">
               {item.label}
+              {labelWide ? <span className={styles.wide}>{labelWide}</span> : null}
             </span>
           </CtaLink>
         );
