@@ -191,3 +191,9 @@ ol {
     scroll-behavior: auto !important;
   }
 }
+
+/* Cal's popup listener only recognises a click whose target is an HTML element, and an SVG
+   is not one. Icons inside a booking button must let the click land on the button itself. */
+[data-cal-link] svg {
+  pointer-events: none;
+}
