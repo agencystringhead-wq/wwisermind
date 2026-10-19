@@ -43,6 +43,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
+      site: siteConfig.twitterHandle,
       title: post.seoTitle,
       description: post.description,
       images: [image],

@@ -30,6 +30,16 @@ export const metadata: Metadata = {
   title: `${siteConfig.name} — Growth Partner`,
   description:
     'Wisermind helps ambitious brands grow with strategy, design and performance marketing.',
+  twitter: { card: 'summary_large_image', site: siteConfig.twitterHandle },
+};
+
+/* Site-wide Organization, so every page tells search engines where the profiles are. */
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: siteConfig.name,
+  url: siteConfig.url,
+  sameAs: siteConfig.social.map((item) => item.href),
 };
 
 export default function RootLayout({
@@ -38,6 +48,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <TopBar />
         <Header />
         <main>{children}</main>

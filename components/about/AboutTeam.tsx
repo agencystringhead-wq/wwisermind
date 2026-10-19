@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { siteConfig } from '@/lib/site';
 import Reveal from '@/components/ui/Reveal';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import styles from './AboutTeam.module.css';
@@ -27,7 +28,7 @@ const team = [
     role: 'Co-founder & Strategy Lead',
     photo: '/images/Srikaanth-Founder-wwisermind.webp',
     photoAlt: 'SrikaantH, co-founder of wwisermind',
-    linkedin: '#', // ⚠️ PLACEHOLDER
+    linkedin: siteConfig.social.find((item) => item.id === 'linkedin')?.href ?? '#',
   },
   {
     name: 'Ashish Kumar',

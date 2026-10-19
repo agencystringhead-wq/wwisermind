@@ -25,6 +25,15 @@ export const siteConfig = {
   /** The booking anchor on the contact page, for a button on any other page: the anchor
       alone only resolves on /contact, where the calendar lives. */
   bookingPage: routes.contactBook,
+  /** The four profiles, in the order they are shown. The footer, the contact page and the
+      Organization schema all read this list. */
+  social: [
+    { id: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/srikaanth-wwisermind/' },
+    { id: 'facebook', label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61595638287227' },
+    { id: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/wwisermind/' },
+    { id: 'x', label: 'X', href: 'https://x.com/wwisermind' },
+  ] as const,
+  twitterHandle: '@wwisermind',
   /** One number for the phone, the WhatsApp chat and the footer. Nothing else in the repo
       spells it out. */
   contact: {
@@ -907,13 +916,6 @@ export const footerMain = {
     height: 244,
     alt: siteConfig.name,
   },
-
-  /** Icon files already in /public/icons — square PNGs with alpha, drawn as flat marks. */
-  social: [
-    { label: 'Instagram', href: 'https://instagram.com/', icon: '/icons/instagram.png' },
-    { label: 'LinkedIn', href: 'https://linkedin.com/', icon: '/icons/linkedin.png' },
-    { label: 'X', href: 'https://x.com/', icon: '/icons/x.png' },
-  ],
 
   /** Three link columns, one per grid column. The reference is a 3 x 3 block; the third column
       carries a fourth link, Our Process. */

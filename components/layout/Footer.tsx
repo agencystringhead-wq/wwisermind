@@ -2,6 +2,7 @@ import { routes } from '@/lib/routes';
 import { Fragment } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import SocialLinks from '@/components/SocialLinks';
 import CtaLink from '@/components/booking/CtaLink';
 import { footerCta, footerMain } from '@/lib/site';
 import CtaBadge from './CtaBadge';
@@ -26,7 +27,6 @@ export default function Footer({ hideCta = false }: { hideCta?: boolean }) {
   const {
     tagline,
     logo,
-    social,
     navColumns,
     cta,
     tabs,
@@ -110,19 +110,7 @@ export default function Footer({ hideCta = false }: { hideCta?: boolean }) {
               />
             </Link>
 
-            <nav className={styles.social} aria-label="Social">
-              {social.map((item) => (
-                <a
-                  href={item.href}
-                  key={item.label}
-                  className={styles.socialLink}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Image src={item.icon} alt={item.label} width={40} height={40} />
-                </a>
-              ))}
-            </nav>
+            <SocialLinks className={styles.social} linkClassName={styles.socialLink} />
           </div>
 
           <nav className={styles.navColumns} aria-label="Footer">

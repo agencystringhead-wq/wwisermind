@@ -335,12 +335,32 @@
 
 .socialLink {
   display: block;
+  color: var(--color-white);
   transition: opacity var(--dur) var(--ease);
 }
 
-.socialLink img {
+.socialLink svg {
+  display: block;
   width: 20px;
   height: 20px;
+}
+
+/* A finger needs 44px. The icons stay 20px and the link grows around them, so the row keeps
+   its look and only the hit area widens. */
+@media (max-width: 768px) {
+  .social {
+    gap: 0;
+    margin-top: 16px;
+    margin-left: -12px;
+  }
+
+  .socialLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+  }
 }
 
 .socialLink:hover {
