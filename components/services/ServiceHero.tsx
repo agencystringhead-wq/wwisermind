@@ -1,3 +1,4 @@
+import CtaLink from '@/components/booking/CtaLink';
 import { contactPage, siteConfig } from '@/lib/site';
 import type { Service } from '@/lib/services';
 import BackgroundVideo from '@/components/ui/BackgroundVideo';
@@ -52,9 +53,9 @@ export default function ServiceHero({
         <h1 className={styles.heading}>{service.name}</h1>
         <p className={styles.outcome}>{service.heroOutcome}</p>
 
-        <a href={siteConfig.bookingPage} className={styles.button}>
+        <CtaLink href={siteConfig.bookingPage} className={styles.button}>
           Book a free call
-        </a>
+        </CtaLink>
       </div>
     </section>
   );

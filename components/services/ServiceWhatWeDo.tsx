@@ -9,6 +9,7 @@ import {
   type KeyboardEvent,
 } from 'react';
 import Image from 'next/image';
+import BookCallButton from '@/components/booking/BookCallButton';
 import type { Service } from '@/lib/services';
 import { CheckIcon } from '@/components/ui/icons';
 import ScrollReveal from '@/components/ui/ScrollReveal';
@@ -273,9 +274,15 @@ export default function ServiceWhatWeDo({
                         </ul>
 
                         {tab.cta ? (
-                          <a href={tab.cta.href} className={styles.button}>
-                            {tab.cta.label}
-                          </a>
+                          tab.cta.type === 'book' ? (
+                            <BookCallButton href={tab.cta.href} className={styles.button}>
+                              {tab.cta.label}
+                            </BookCallButton>
+                          ) : (
+                            <a href={tab.cta.href} className={styles.button}>
+                              {tab.cta.label}
+                            </a>
+                          )
                         ) : null}
                       </div>
                     </div>

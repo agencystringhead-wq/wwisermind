@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import CtaLink from '@/components/booking/CtaLink';
 import { CheckIcon } from '@/components/ui/icons';
 import type { FinalCta } from '@/lib/pricing/local-seo';
 import styles from './LocalSeo.module.css';
@@ -19,13 +19,13 @@ export default function LocalSeoCta({
         <h2 className={styles.ctaTitle}>{cta.title}</h2>
         <p className={styles.ctaSub}>{cta.sub}</p>
         <div className={styles.ctaButtons}>
-          <Link href={cta.button.href} className={styles.buttonBlue}>
+          <CtaLink href={cta.button.href} className={styles.buttonBlue}>
             {cta.button.label}
-          </Link>
+          </CtaLink>
           {secondary ? (
-            <Link href={secondary.href} className={styles.ctaGhost}>
+            <CtaLink href={secondary.href} className={styles.ctaGhost}>
               {secondary.label}
-            </Link>
+            </CtaLink>
           ) : null}
         </div>
         {cta.items && cta.items.length > 0 ? (

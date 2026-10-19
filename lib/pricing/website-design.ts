@@ -205,7 +205,7 @@ export const everyWebsite = {
 export const callBand = {
   title: 'Not sure which option fits?',
   body: 'Book a quick call and we’ll talk it through. No pressure either way.',
-  button: { label: 'Book a free call', href: routes.contact },
+  button: { label: 'Book a free call', href: routes.contactBook },
 };
 
 /* --- 4. process ---------------------------------------------------------------------- */

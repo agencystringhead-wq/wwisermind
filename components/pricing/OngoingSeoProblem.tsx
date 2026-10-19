@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import CtaLink from '@/components/booking/CtaLink';
 import { problem, problemImage } from '@/lib/pricing/ongoing-seo';
 import local from './LocalSeo.module.css';
 import styles from './OngoingSeo.module.css';
@@ -14,9 +14,9 @@ export default function OngoingSeoProblem() {
           <p className={local.eyebrow}>{problem.eyebrow}</p>
           <h2 className={`${local.heading} ${styles.problemHeading}`}>{problem.title}</h2>
           <p className={`${local.lede} ${styles.problemBody}`}>{problem.body}</p>
-          <Link href={problem.button.href} className={`${local.button} ${styles.problemButton}`}>
+          <CtaLink href={problem.button.href} className={`${local.button} ${styles.problemButton}`}>
             {problem.button.label}
-          </Link>
+          </CtaLink>
         </div>
 
         <div className={local.heroMedia}>

@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useState } from 'react';
 import Image from 'next/image';
+import CtaLink from '@/components/booking/CtaLink';
 import type { Audience } from '@/lib/audiences';
 import Reveal from '@/components/ui/Reveal';
 import ScrollReveal from '@/components/ui/ScrollReveal';
@@ -131,9 +132,9 @@ export default function AudienceProcess({ audience }: { audience: Audience }) {
           <p className={styles.note} data-reveal="0">
             {note}
           </p>
-          <a href={cta.href} className={styles.button} data-reveal="0">
+          <CtaLink href={cta.href} className={styles.button} data-reveal="0">
             {cta.label}
-          </a>
+          </CtaLink>
         </Reveal>
       </div>
     </section>

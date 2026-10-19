@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import CtaLink from '@/components/booking/CtaLink';
 import type { ProcessStage } from '@/lib/pricing/local-seo';
 import styles from './LocalSeo.module.css';
 
@@ -51,9 +51,9 @@ export default function LocalSeoProcess({
         {link ? (
           <p className={styles.stagesNote}>
             {link.text}{' '}
-            <Link href={link.href} className={styles.inlineLink}>
+            <CtaLink href={link.href} className={styles.inlineLink}>
               {link.label}
-            </Link>
+            </CtaLink>
           </p>
         ) : null}
       </div>

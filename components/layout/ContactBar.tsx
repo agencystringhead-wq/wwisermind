@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import CtaLink from '@/components/booking/CtaLink';
 import { contactBar } from '@/lib/site';
 import styles from './ContactBar.module.css';
 
@@ -96,7 +96,7 @@ export default function ContactBar() {
         const accent = 'accent' in item && item.accent;
 
         return (
-          <Link
+          <CtaLink
             key={item.id}
             href={item.href}
             className={`${styles.item} ${accent ? styles.accent : ''}`}
@@ -108,7 +108,7 @@ export default function ContactBar() {
             <span className={styles.tip} aria-hidden="true">
               {item.label}
             </span>
-          </Link>
+          </CtaLink>
         );
       })}
     </div>

@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import CtaLink from '@/components/booking/CtaLink';
 import { CheckIcon, serviceIcons } from '@/components/ui/icons';
 import {
   featuredBenefits,
@@ -76,9 +76,9 @@ export default function PricingFeatured() {
               ))}
             </ul>
 
-            <Link href={siteConfig.bookingPage} className={styles.buttonFull}>
+            <CtaLink href={siteConfig.bookingPage} className={styles.buttonFull}>
               Book Your Free Call
-            </Link>
+            </CtaLink>
           </aside>
         </div>
 

@@ -311,7 +311,7 @@ export const hyperGrowthHero: PricingHeroData = {
   title: 'Your website, its care and your marketing, all in one plan',
   sub: 'A custom website designed by hand, looked after every month, and marketed properly with SEO, AI search, location pages and Meta ads. One team, one yearly plan. You focus on clients. We fill the calendar.',
   primary: { label: 'See plans', href: '#plans' },
-  secondary: { label: 'Book a free growth call', href: routes.contact },
+  secondary: { label: 'Book a free growth call', href: routes.contactBook },
   note: `Yearly plans from ${launchMonthly}`,
 };
 

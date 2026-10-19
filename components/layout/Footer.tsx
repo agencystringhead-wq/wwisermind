@@ -2,6 +2,7 @@ import { routes } from '@/lib/routes';
 import { Fragment } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import CtaLink from '@/components/booking/CtaLink';
 import { footerCta, footerMain } from '@/lib/site';
 import CtaBadge from './CtaBadge';
 import FooterCtaGate from './FooterCtaGate';
@@ -78,9 +79,9 @@ export default function Footer({ hideCta = false }: { hideCta?: boolean }) {
             ))}
           </p>
 
-          <Link href={badge.href} className={styles.pill}>
+          <CtaLink href={badge.href} className={styles.pill}>
             {badge.pillLabel}
-          </Link>
+          </CtaLink>
         </div>
       </section>
       </FooterCtaGate>
@@ -137,10 +138,10 @@ export default function Footer({ hideCta = false }: { hideCta?: boolean }) {
           </nav>
 
           <div className={styles.ctaBlock}>
-            <Link href={cta.href} className={styles.ctaButton}>
+            <CtaLink href={cta.href} className={styles.ctaButton}>
               <CalendarIcon />
               {cta.label}
-            </Link>
+            </CtaLink>
 
             <p className={styles.ctaNote}>
               {cta.note.lead}
