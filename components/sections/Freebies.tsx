@@ -1,6 +1,7 @@
 import { freebies } from '@/lib/site';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import styles from './Freebies.module.css';
+import BackgroundVideo from '@/components/ui/BackgroundVideo';
 
 export default function Freebies() {
   const { badge, headingLead, headingRest, background, items } = freebies;
@@ -31,20 +32,12 @@ export default function Freebies() {
             </div>
           </div>
 
-          <video
+          <BackgroundVideo
             className={styles.photo}
             poster={background.poster}
-            aria-label={background.alt}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-          >
-            {background.sources.map((source) => (
-              <source key={source.src} src={source.src} type={source.type} />
-            ))}
-          </video>
+            label={background.alt}
+            sources={background.sources}
+          />
         </div>
       </div>
     </section>

@@ -325,7 +325,7 @@ export default function FooterDotText({ text }: { text: string }) {
 
       dotRadius = fontSize * DOT_EM;
       reach = Math.max(REACH_MIN, fontSize * REACH_EM);
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, 1.5);
 
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.font = `${style.fontWeight} ${fontSize}px ${style.fontFamily}`;

@@ -4,6 +4,7 @@ import { practice } from '@/lib/site';
 import CountUp from '@/components/ui/CountUp';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import styles from './Practice.module.css';
+import BackgroundVideo from '@/components/ui/BackgroundVideo';
 
 /* The project's own arrow — no icon package here, and this is the same glyph the built
    widget has always used, so the two cards stay one family. */
@@ -136,19 +137,11 @@ export default function Practice() {
               </div>
 
               <div className={styles.photo}>
-                <video
+                <BackgroundVideo
                   poster={row.background.poster}
-                  aria-label={row.background.alt}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                >
-                  {row.background.sources.map((source) => (
-                    <source key={source.src} src={source.src} type={source.type} />
-                  ))}
-                </video>
+                  label={row.background.alt}
+                  sources={row.background.sources}
+                />
               </div>
             </div>
             );

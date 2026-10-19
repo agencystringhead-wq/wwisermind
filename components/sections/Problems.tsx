@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { problems } from '@/lib/site';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import styles from './Problems.module.css';
+import BackgroundVideo from '@/components/ui/BackgroundVideo';
 
 function ArrowIcon({ direction }: { direction: 'left' | 'right' }) {
   return (
@@ -112,19 +113,7 @@ export default function Problems() {
                       className={styles.still}
                     />
                   ) : (
-                    <video
-                      poster={card.background.poster}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
-                      aria-hidden="true"
-                    >
-                      {card.background.sources.map((source) => (
-                        <source key={source.src} src={source.src} type={source.type} />
-                      ))}
-                    </video>
+                    <BackgroundVideo poster={card.background.poster} sources={card.background.sources} />
                   )}
                   <span className={styles.overlay} aria-hidden="true" />
                   <p className={styles.title}>{card.title}</p>

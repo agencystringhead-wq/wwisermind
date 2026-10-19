@@ -4,6 +4,7 @@ import { useId, useState } from 'react';
 import Link from 'next/link';
 import { faq } from '@/lib/site';
 import styles from './Faq.module.css';
+import BackgroundVideo from '@/components/ui/BackgroundVideo';
 
 export type FaqItem = { question: string; answer: string };
 
@@ -75,20 +76,12 @@ export default function Faq({ items = faq.items }: { items?: FaqItem[] } = {}) {
               {support.linkLabel}
             </a>
 
-            <video
+            <BackgroundVideo
               className={styles.photo}
               poster={background.poster}
-              aria-label={background.alt}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-            >
-              {background.sources.map((source) => (
-                <source key={source.src} src={source.src} type={source.type} />
-              ))}
-            </video>
+              label={background.alt}
+              sources={background.sources}
+            />
           </aside>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { processSection } from '@/lib/site';
 import GradientDrift from '@/components/ui/GradientDrift';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import styles from './Process.module.css';
+import BackgroundVideo from '@/components/ui/BackgroundVideo';
 
 /** The design places this at its natural size, flush with the viewport's right edge. */
 function ArrowPattern() {
@@ -110,19 +111,11 @@ export default function Process() {
 
         <div className={styles.launch}>
           <div className={styles.launchImage}>
-            <video
+            <BackgroundVideo
               poster={launchBackground.poster}
-              aria-label={launchBackground.alt}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-            >
-              {launchBackground.sources.map((source) => (
-                <source key={source.src} src={source.src} type={source.type} />
-              ))}
-            </video>
+              label={launchBackground.alt}
+              sources={launchBackground.sources}
+            />
           </div>
 
           <div className={styles.launchCard}>

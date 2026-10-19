@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { heroBanner } from '@/lib/site';
 import styles from './HeroBanner.module.css';
+import BackgroundVideo from '@/components/ui/BackgroundVideo';
 
 function Star() {
   return (
@@ -27,20 +28,12 @@ export default function HeroBanner() {
   return (
     <section className={styles.section}>
       <div className={styles.banner}>
-        <video
+        <BackgroundVideo
           className={styles.video}
           poster={background.poster}
-          autoPlay
-          muted
-          loop
-          playsInline
+          sources={background.sources}
           preload="auto"
-          aria-hidden="true"
-        >
-          {background.sources.map((source) => (
-            <source key={source.src} src={source.src} type={source.type} />
-          ))}
-        </video>
+        />
 
         <div className={styles.inner}>
           <div className={styles.textWrap}>

@@ -131,6 +131,23 @@ export default function ScrollReveal({
       });
     };
 
+    let observer: IntersectionObserver | null = null;
+    let listening = false;
+
+    const listen = () => {
+      if (listening) return;
+      listening = true;
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+    };
+
+    const unlisten = () => {
+      if (!listening) return;
+      listening = false;
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+
     const start = () => {
       if (reduced.matches) {
         /* motion off: the sentence is simply read, in full contrast, and nothing listens */
@@ -140,15 +157,27 @@ export default function ScrollReveal({
       }
 
       apply();
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll, { passive: true });
+      /* Only a heading that is on screen has anything to track: far above it reads 1 and far
+         below it reads 0, and `apply` on the way out lands exactly there. Without this every
+         heading on the page woke on every scroll frame and read its own rect. */
+      observer = new IntersectionObserver(([entry]) => {
+        if (entry?.isIntersecting) {
+          listen();
+          apply();
+        } else {
+          unlisten();
+          apply();
+        }
+      });
+      observer.observe(container);
     };
 
     const stop = () => {
       if (frame) cancelAnimationFrame(frame);
       queued = false;
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
+      observer?.disconnect();
+      observer = null;
+      unlisten();
     };
 
     const onPreferenceChange = () => {
