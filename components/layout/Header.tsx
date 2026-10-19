@@ -5,6 +5,7 @@ import { routes } from '@/lib/routes';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import CtaLink from '@/components/booking/CtaLink';
 import { mainNav, megaPanels, siteConfig, type MegaColumn, type MegaPanel } from '@/lib/site';
 import styles from './Header.module.css';
 
@@ -128,9 +129,9 @@ function Mega({
         <div className={`container ${styles.stripInner}`}>
           <span>{strip.text}</span>
           {strip.link ? (
-            <Link href={strip.link.href} className={styles.stripLink} onClick={onNavigate}>
+            <CtaLink href={strip.link.href} className={styles.stripLink} onClick={onNavigate}>
               {strip.link.label} <span aria-hidden="true">→</span>
-            </Link>
+            </CtaLink>
           ) : null}
         </div>
       </div>
@@ -376,9 +377,9 @@ export default function Header() {
             <Link href={siteConfig.contactUrl} className={styles.contact}>
               Contact Us
             </Link>
-            <Link href={siteConfig.bookingUrl} className={styles.cta}>
+            <CtaLink href={siteConfig.bookingUrl} className={styles.cta}>
               Book Your Free Call
-            </Link>
+            </CtaLink>
           </div>
 
           <button
@@ -434,13 +435,13 @@ export default function Header() {
               })}
 
               <div className={styles.panelActions}>
-                <Link
+                <CtaLink
                   href={siteConfig.bookingUrl}
                   className={styles.cta}
                   onClick={() => setOpen(false)}
                 >
                   Book Your Free Call
-                </Link>
+                </CtaLink>
                 <Link
                   href={siteConfig.contactUrl}
                   className={styles.panelContact}

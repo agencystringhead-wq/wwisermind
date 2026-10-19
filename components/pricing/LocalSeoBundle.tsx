@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import CtaLink from '@/components/booking/CtaLink';
 import { CheckIcon } from '@/components/ui/icons';
 import { bundle, bundleCopy, bundleWhy, formatLocalPrice } from '@/lib/pricing/local-seo';
 import styles from './LocalSeo.module.css';
@@ -35,9 +35,9 @@ export default function LocalSeoBundle() {
                 </li>
               ))}
             </ul>
-            <Link href={bundle.button.href} className={styles.buttonBlue}>
+            <CtaLink href={bundle.button.href} className={styles.buttonBlue}>
               {bundle.button.label}
-            </Link>
+            </CtaLink>
           </div>
 
           <div>

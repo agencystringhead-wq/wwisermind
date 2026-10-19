@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import CtaLink from '@/components/booking/CtaLink';
 import { getPricingEntry } from '@/lib/pricing';
 import { siteConfig } from '@/lib/site';
 import SeeAllPrices from './SeeAllPrices';
@@ -29,9 +29,9 @@ export default function PricingHero() {
           </p>
 
           <div className={styles.heroActions}>
-            <Link href={siteConfig.bookingPage} className={styles.button}>
+            <CtaLink href={siteConfig.bookingPage} className={styles.button}>
               Book Your Free Call
-            </Link>
+            </CtaLink>
             <SeeAllPrices className={styles.textLink} />
           </div>
 

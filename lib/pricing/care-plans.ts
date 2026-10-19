@@ -337,7 +337,7 @@ export const processStages: ProcessStage[] = [
 export const processLink = {
   text: 'Not sure which plan fits?',
   label: 'Book a 15-minute call',
-  href: routes.contact,
+  href: routes.contactBook,
 };
 
 /* --- 4. plans ------------------------------------------------------------------------ */
@@ -500,7 +500,7 @@ export const finalCta: FinalCta = {
   button: { label: 'See plans', href: '#plans' },
 };
 
-export const finalCtaSecondary = { label: 'Book a 15-minute call', href: routes.contact };
+export const finalCtaSecondary = { label: 'Book a 15-minute call', href: routes.contactBook };
 
 /** How the other pages list this one, so a price changed above changes there. */
 export const carePlansListing = {

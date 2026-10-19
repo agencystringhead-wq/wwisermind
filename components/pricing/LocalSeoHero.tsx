@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import CtaLink from '@/components/booking/CtaLink';
 import SeeAllPrices from './SeeAllPrices';
 import styles from './LocalSeo.module.css';
 
@@ -35,9 +35,9 @@ export default function LocalSeoHero({
           <p className={styles.heroSub}>{hero.sub}</p>
 
           <div className={styles.heroActions}>
-            <Link href={hero.primary.href} className={styles.button}>
+            <CtaLink href={hero.primary.href} className={styles.button}>
               {hero.primary.label}
-            </Link>
+            </CtaLink>
             {hero.secondary.href.startsWith('#') ? (
               <SeeAllPrices
                 className={styles.textLink}
@@ -45,9 +45,9 @@ export default function LocalSeoHero({
                 target={hero.secondary.href.replace('#', '')}
               />
             ) : (
-              <Link href={hero.secondary.href} className={styles.textLink}>
+              <CtaLink href={hero.secondary.href} className={styles.textLink}>
                 {hero.secondary.label} <span aria-hidden="true">→</span>
-              </Link>
+              </CtaLink>
             )}
           </div>
 

@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import CtaLink from '@/components/booking/CtaLink';
 import { faqPage } from '@/lib/faq';
 import Reveal from '@/components/ui/Reveal';
 import section from '@/components/services/Section.module.css';
@@ -26,12 +26,12 @@ export default function FaqAsk() {
             {ask.body}
           </p>
           <div className={styles.askActions} data-reveal="3">
-            <Link href={ask.primary.href} className={styles.askPrimary}>
+            <CtaLink href={ask.primary.href} className={styles.askPrimary}>
               {ask.primary.label}
-            </Link>
-            <Link href={ask.secondary.href} className={styles.askSecondary}>
+            </CtaLink>
+            <CtaLink href={ask.secondary.href} className={styles.askSecondary}>
               {ask.secondary.label}
-            </Link>
+            </CtaLink>
           </div>
         </Reveal>
       </div>

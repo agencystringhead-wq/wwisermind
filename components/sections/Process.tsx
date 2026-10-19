@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import CtaLink from '@/components/booking/CtaLink';
 import { processSection } from '@/lib/site';
 import GradientDrift from '@/components/ui/GradientDrift';
 import ScrollReveal from '@/components/ui/ScrollReveal';
@@ -43,10 +43,10 @@ export default function Process() {
   const { badge, headingLead, headingRest, cta, steps, launchBackground } = processSection;
 
   const ctaLink = (
-    <Link href={cta.href} className={styles.link}>
+    <CtaLink href={cta.href} className={styles.link}>
       <LinkArrow />
       <span className={styles.linkText}>{cta.label}</span>
-    </Link>
+    </CtaLink>
   );
 
   return (

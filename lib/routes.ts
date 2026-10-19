@@ -103,7 +103,7 @@ export const routes = {
   reviews: '/reviews/',
   faq: '/faq/',
   contact: '/contact/',
-  contactBook: '/contact/#book-a-call',
+  contactBook: '/contact/#book',
   contactForm: '/contact/#contact-form',
   blog: '/blog/',
   rss: '/rss.xml',

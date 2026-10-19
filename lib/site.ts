@@ -18,13 +18,24 @@ export const siteConfig = {
      canonical there would point search engines at a page that 404s. Switch back to
      https://wwisermind.com when the domain moves onto Pages. */
   url: 'https://wwisermind.pages.dev',
-  bookingUrl: '#book-a-call',
+  bookingUrl: '#book',
   /* A real route now, not an on-page anchor — the header's "Contact Us" is the way in to
      /contact from every page. The booking anchor above stays an in-page target. */
   contactUrl: routes.contact,
   /** The booking anchor on the contact page, for a button on any other page: the anchor
       alone only resolves on /contact, where the calendar lives. */
   bookingPage: routes.contactBook,
+  /** The Cal.com event every booking button and the contact page's calendar open. */
+  booking: {
+    calLink: 'wwisermind/30min',
+    namespace: '30min',
+    origin: 'https://app.cal.com',
+    durationLabel: '30 min free session',
+    layout: 'month_view',
+    useSlotsViewOnSmallScreen: 'true',
+    hideEventTypeDetails: false,
+    forwardQueryParams: true,
+  },
 };
 
 /** An absolute URL for a site path, for canonicals, Open Graph and structured data. */
@@ -139,7 +150,7 @@ export const megaPanels: Record<string, MegaPanel> = {
     },
     strip: {
       text: 'Not sure where to start? One free call, an honest plan.',
-      link: { label: 'Book a free strategy call', href: '#book-a-call' },
+      link: { label: 'Book a free strategy call', href: '#book' },
     },
   },
 
@@ -601,7 +612,7 @@ export const processSection = {
     "No mystery, no chasing, no tech headaches. One free call, an honest plan, and a clear timeline you'll know before anything starts —",
   headingRest:
     ' while you stay in session, we handle the build, the SEO, and everything after launch, with updates in plain English at every step.',
-  cta: { label: 'Book your free strategy session', href: '#book-a-call' },
+  cta: { label: 'Book your free strategy session', href: '#book' },
   steps: [
     {
       title: 'Step 1 — Strategy call',
@@ -806,7 +817,7 @@ export const contactBar = {
       id: 'book',
       icon: 'calendar' as const,
       /* TODO: awaiting the real number */
-      href: '#book-a-call',
+      href: '#book',
       label: 'Book a free call · 30 min',
       aria: 'Book a free call, 30 minutes',
     },
@@ -857,7 +868,7 @@ export const footerCta = {
   badge: {
     lines: ['Work', 'with us'],
     pillLabel: 'Work with us',
-    href: '#book-a-call',
+    href: '#book',
   },
 };
 
@@ -913,7 +924,7 @@ export const footerMain = {
 
   cta: {
     label: 'Schedule a call',
-    href: '#book-a-call',
+    href: '#book',
     note: {
       lead: 'Websites and marketing that help families find the right therapist. Built with love in Pune, India at ',
       linkLabel: 'wwisermind',
@@ -1062,7 +1073,7 @@ export const contactPage = {
   /** The in-page targets every button, card and tab on this page points at. */
   anchors: {
     connect: 'connect',
-    booking: 'book-a-call',
+    booking: 'book',
     form: 'contact-form',
   },
 
@@ -1071,7 +1082,7 @@ export const contactPage = {
      ticket desk's address, and wherever the FAQ ends up living. */
   tabs: [
     { label: 'Contact Us', href: '#connect', current: true },
-    { label: 'Book a Call', href: '#book-a-call' },
+    { label: 'Book a Call', href: '#book' },
     { label: 'Submit a Ticket', href: '#', external: true },
     { label: 'FAQs', href: '#', external: true },
   ] satisfies ContactTab[],
@@ -1080,7 +1091,7 @@ export const contactPage = {
     eyebrow: 'Contact wwisermind',
     heading: 'Let’s find out if we’re the right fit',
     lead: 'One free 30-minute call, in your timezone. We’ll look at your website and visibility together, and you’ll leave with an honest plan — whether you hire us or not.',
-    primary: { label: 'Book a free call', href: '#book-a-call' },
+    primary: { label: 'Book a free call', href: '#book' },
     /** The hero's backdrop, in the shape the homepage's background media takes. The poster
         is the clip's first frame, pulled from the file itself, and is what shows before the
         video loads and for anyone who has asked for reduced motion. The section paints the
@@ -1148,7 +1159,7 @@ export const contactPage = {
       {
         title: 'Book a free call',
         body: 'One free 30-minute video call, in your timezone. An honest read on what’s worth fixing.',
-        href: '#book-a-call',
+        href: '#book',
         linkLabel: 'Pick a time',
         icon: 'calendar',
       },
@@ -1180,11 +1191,6 @@ export const contactPage = {
 
   booking: {
     label: 'Pick a time',
-    /** The frame is sized by ratio, so dropping a real embed in cannot change the page. */
-    placeholder: {
-      title: 'Booking calendar',
-      note: 'Cal.com embed goes here',
-    },
   },
 
   form: {

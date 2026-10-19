@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
+import CtaLink from '@/components/booking/CtaLink';
 
 type Props = {
   lines: string[];
@@ -118,7 +118,7 @@ export default function CtaBadge({ lines, href, className }: Props) {
   }, []);
 
   return (
-    <Link
+    <CtaLink
       ref={ref}
       href={href}
       className={className}
@@ -127,6 +127,6 @@ export default function CtaBadge({ lines, href, className }: Props) {
       {lines.map((line) => (
         <span key={line}>{line}</span>
       ))}
-    </Link>
+    </CtaLink>
   );
 }

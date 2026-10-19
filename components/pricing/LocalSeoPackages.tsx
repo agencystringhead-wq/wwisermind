@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import CtaLink from '@/components/booking/CtaLink';
 import {
   CalendarIcon,
   CheckIcon,
@@ -177,9 +177,9 @@ export default function LocalSeoPackages({
                       </span>
                       {row.value ? (
                         row.valueHref ? (
-                          <Link href={row.valueHref} className={styles.rowLink}>
+                          <CtaLink href={row.valueHref} className={styles.rowLink}>
                             {row.value}
-                          </Link>
+                          </CtaLink>
                         ) : (
                           <span className={styles.rowValue}>{row.value}</span>
                         )
@@ -189,12 +189,12 @@ export default function LocalSeoPackages({
                 </ul>
 
                 {pkg.cta ? (
-                  <Link
+                  <CtaLink
                     href={pkg.cta.href}
                     className={pkg.featured ? styles.buttonBlueFull : styles.buttonFull}
                   >
                     {pkg.cta.label}
-                  </Link>
+                  </CtaLink>
                 ) : null}
                 {pkg.ctaNote ? <p className={styles.pkgCtaNote}>{pkg.ctaNote}</p> : null}
               </li>
@@ -227,9 +227,9 @@ export default function LocalSeoPackages({
           <p className={styles.moreOptions}>
             {more.map((part, index) =>
               'href' in part ? (
-                <Link href={part.href} key={index}>
+                <CtaLink href={part.href} key={index}>
                   {part.label}
-                </Link>
+                </CtaLink>
               ) : (
                 <span key={index}>{part.text}</span>
               ),
@@ -243,9 +243,9 @@ export default function LocalSeoPackages({
               <h3 className={styles.bandTitle}>{band.title}</h3>
               <p className={styles.bandBody}>{band.body}</p>
             </div>
-            <Link href={band.button.href} className={styles.buttonBlue}>
+            <CtaLink href={band.button.href} className={styles.buttonBlue}>
               {band.button.label}
-            </Link>
+            </CtaLink>
           </div>
         ) : null}
       </div>

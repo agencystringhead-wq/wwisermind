@@ -2,7 +2,7 @@
 
 import { useId, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import CtaLink from '@/components/booking/CtaLink';
 import { CheckIcon } from '@/components/ui/icons';
 import {
   pricingEntries,
@@ -39,16 +39,16 @@ function PackageCard({ entry }: { entry: PricingEntry }) {
         {entry.showPrice ? (
           <>
             <PricingLine entry={entry} className={styles.priceRow} />
-            <Link href={entry.href} className={styles.cardLink}>
+            <CtaLink href={entry.href} className={styles.cardLink}>
               Learn more <span aria-hidden="true">→</span>
-            </Link>
+            </CtaLink>
           </>
         ) : (
           <>
             <p className={styles.careText}>Plans and pricing live on their own page</p>
-            <Link href={entry.href} className={styles.cardLink}>
+            <CtaLink href={entry.href} className={styles.cardLink}>
               See care plans <span aria-hidden="true">→</span>
-            </Link>
+            </CtaLink>
           </>
         )}
 
@@ -112,9 +112,9 @@ export default function PricingPackages() {
 
         <div className={styles.notSure}>
           <p>Not sure which one fits? One free call, an honest plan.</p>
-          <Link href={siteConfig.bookingPage} className={styles.textLink}>
+          <CtaLink href={siteConfig.bookingPage} className={styles.textLink}>
             Book a free strategy call <span aria-hidden="true">→</span>
-          </Link>
+          </CtaLink>
         </div>
       </div>
     </section>
