@@ -335,7 +335,7 @@
 
 .socialLink {
   display: block;
-  color: var(--color-white);
+  color: var(--color-ink);
   transition: opacity var(--dur) var(--ease);
 }
 
