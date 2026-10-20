@@ -156,7 +156,7 @@ export const freebies: Freebie[] = [
       },
       {
         title: 'What do I actually get?',
-        body: 'A 10-page PDF: four fill-in templates for your statement, plain-word descriptions of common therapy approaches, photo and headline tips, and a checklist to run before you publish.',
+        body: 'A 10-page PDF: four fill-in templates for your statement, simple descriptions of common therapy approaches, photo and headline tips, and a checklist to run before you publish.',
       },
       {
         title: 'How do I use the templates?',
