@@ -1110,18 +1110,18 @@ export const services: Service[] = [
 
     gallery: {
       tall: {
-        src: '/images/services/pexels-4240571.webp',
-        alt: 'A woman writing at a desk beside a laptop and coffee',
-        position: 'center 35%',
+        src: '/images/services/website-care-plans/care-hero-therapist-in-session.webp',
+        alt: 'A therapist listening fully in session, her phone face down beside her',
+        position: 'center 30%',
       },
       mid: {
-        src: '/images/services/pexels-8473781.webp',
-        alt: 'Hands typing on a laptop beside a mug and folders',
-        position: 'center 35%',
+        src: '/images/services/website-care-plans/care-hero-fee-card-update.webp',
+        alt: 'A fee card and appointment card being updated with a pen on a practice desk',
+        position: 'center center',
       },
       wide: {
-        src: '/images/services/pexels-4474047.webp',
-        alt: 'A woman smiling at her laptop while writing a note',
+        src: '/images/services/website-care-plans/care-hero-new-clinician-first-day.webp',
+        alt: 'A group practice owner welcoming a new clinician on her first day',
         position: 'center 35%',
       },
       accent: 'You email. It is handled.',
@@ -1166,9 +1166,9 @@ export const services: Service[] = [
         {
           label: 'Edits',
           image: {
-            src: '/images/services/pexels-4240571.webp',
-            alt: 'A woman writing at a desk beside a laptop and coffee',
-            position: 'center 35%',
+            src: '/images/services/website-care-plans/care-edits-email-after-last-session.webp',
+            alt: 'A therapist emailing a quick change from her phone after her last session',
+            position: 'center 30%',
           },
           heading: 'Send the change. It is live by your next morning.',
           paragraph:
@@ -1183,8 +1183,8 @@ export const services: Service[] = [
         {
           label: 'Upkeep',
           image: {
-            src: '/images/services/pexels-8473781.webp',
-            alt: 'Hands typing on a laptop beside a mug and folders',
+            src: '/images/services/website-care-plans/care-upkeep-developer-checklist.webp',
+            alt: 'A developer checking updates and version history at a calm studio desk',
             position: 'center 35%',
           },
           heading: 'Updates applied, every version kept.',
@@ -1200,9 +1200,9 @@ export const services: Service[] = [
         {
           label: 'Checks',
           image: {
-            src: '/images/services/pexels-4474047.webp',
-            alt: 'A woman smiling at her laptop while writing a note',
-            position: 'center 35%',
+            src: '/images/services/website-care-plans/care-checks-booking-on-phone.webp',
+            alt: 'A hand tapping the booking button on a therapist website on a phone',
+            position: 'center center',
           },
           heading: 'The form still sends. The booking link still books.',
           paragraph:
@@ -1248,9 +1248,9 @@ export const services: Service[] = [
     whyChooseUs: {
       heading: 'Care from the people who built the site',
       image: {
-        src: '/images/services/pexels-12912110.webp',
-        alt: 'Hands writing in a notebook at a desk',
-        position: 'center 30%',
+        src: '/images/services/website-care-plans/care-studio-team-review.webp',
+        alt: 'Two people from the studio reviewing a practice website together on a monitor',
+        position: 'center 35%',
       },
       cards: [
         {
@@ -1284,8 +1284,8 @@ export const services: Service[] = [
     process: {
       heading: 'How a change gets made',
       image: {
-        src: '/images/services/pexels-7606041.webp',
-        alt: 'A woman gesturing while talking to her laptop',
+        src: '/images/services/website-care-plans/care-change-live-by-morning.webp',
+        alt: 'A therapist smiling at his laptop with his morning coffee',
         position: 'center 30%',
       },
       rows: [
@@ -1345,8 +1345,8 @@ export const services: Service[] = [
     ],
     relatedSlugs: ['website-hosting', 'ongoing-seo', 'copywriting'],
     tileImage: {
-      src: '/images/services/pexels-8473781.webp',
-      alt: 'Hands typing on a laptop beside a mug and folders',
+      src: '/images/services/website-care-plans/care-hero-therapist-in-session.webp',
+      alt: 'A therapist listening fully in session',
       position: 'center 35%',
     },
     seo: {
