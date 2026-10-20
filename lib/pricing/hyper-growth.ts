@@ -203,7 +203,7 @@ const planDefs: PlanDef[] = [
     name: 'Lead',
     icon: 'flag',
     description: 'Ideal for: group practices that want to lead their area or specialty.',
-    monthlyPrice: 2499,
+    monthlyPrice: 2495,
     sectionLabel: 'Everything in Accelerate, plus:',
     sectionPlus: true,
     rows: compact([
