@@ -1366,19 +1366,19 @@ export const services: Service[] = [
 
     gallery: {
       tall: {
-        src: '/images/services/pexels-3800149.webp',
-        alt: 'A man on a city street holding his phone',
+        src: '/images/services/local-seo/local-seo-hero-searching-nearby.webp',
+        alt: 'A woman on a leafy street checking a map on her phone for a therapist nearby',
         position: 'center 35%',
       },
       mid: {
-        src: '/images/services/pexels-5647596.webp',
-        alt: 'A hand holding a phone on a city street',
-        position: 'center 35%',
+        src: '/images/services/local-seo/local-seo-hero-map-pins.webp',
+        alt: 'A phone showing a local map with one location pin highlighted',
+        position: 'center center',
       },
       wide: {
-        src: '/images/services/pexels-3836820.webp',
-        alt: 'A man in a suit reading his phone while a tram passes',
-        position: 'center 35%',
+        src: '/images/services/local-seo/local-seo-hero-practice-on-main-street.webp',
+        alt: 'A small therapy practice on a main street with neighbours walking past',
+        position: 'center 50%',
       },
       accent: 'Found in your city. Not on page two.',
     },
@@ -1422,8 +1422,8 @@ export const services: Service[] = [
         {
           label: 'The profile',
           image: {
-            src: '/images/services/pexels-3800149.webp',
-            alt: 'A man on a city street holding his phone',
+            src: '/images/services/local-seo/local-seo-profile-photos.webp',
+            alt: 'A practice owner photographing her therapy room for her business profile',
             position: 'center 35%',
           },
           heading: 'A Google Business Profile that is actually finished.',
@@ -1439,9 +1439,9 @@ export const services: Service[] = [
         {
           label: 'The listings',
           image: {
-            src: '/images/services/pexels-5647596.webp',
-            alt: 'A hand holding a phone on a city street',
-            position: 'center 35%',
+            src: '/images/services/local-seo/local-seo-matching-listings.webp',
+            alt: 'Matching listing cards lined up, with an old mismatched one crossed out',
+            position: 'center center',
           },
           heading: 'Every directory saying the same thing.',
           paragraph:
@@ -1456,9 +1456,9 @@ export const services: Service[] = [
         {
           label: 'The pages and the reviews',
           image: {
-            src: '/images/services/pexels-3836820.webp',
-            alt: 'A man in a suit reading his phone while a tram passes',
-            position: 'center 35%',
+            src: '/images/services/local-seo/local-seo-second-location.webp',
+            alt: 'A therapist outside the door of his practice second location',
+            position: 'center 30%',
           },
           heading: 'Pages about your place, and reviews asked for properly.',
           paragraph:
@@ -1504,9 +1504,9 @@ export const services: Service[] = [
     whyChooseUs: {
       heading: 'Local search, from people who only do it for practices',
       image: {
-        src: '/images/services/pexels-7129718.webp',
-        alt: 'A man on a balcony reading his phone',
-        position: 'center 30%',
+        src: '/images/services/local-seo/local-seo-report-in-cafe.webp',
+        alt: 'A therapist in a cafe reviewing her local search report on a tablet',
+        position: 'center 35%',
       },
       cards: [
         {
@@ -1535,9 +1535,9 @@ export const services: Service[] = [
     process: {
       heading: 'How local search gets put in order',
       image: {
-        src: '/images/services/pexels-6874262.webp',
-        alt: 'A woman standing in a living room reading a tablet',
-        position: 'center 30%',
+        src: '/images/services/local-seo/local-seo-locations-planning-call.webp',
+        alt: 'A practice manager on a call beside a map of the practice office locations',
+        position: 'center 35%',
       },
       rows: [
         {
@@ -1598,8 +1598,8 @@ export const services: Service[] = [
     ],
     relatedSlugs: ['seo-audit', 'ongoing-seo', 'ai-search-optimization'],
     tileImage: {
-      src: '/images/services/pexels-5647596.webp',
-      alt: 'A hand holding a phone on a city street',
+      src: '/images/services/local-seo/local-seo-hero-map-pins.webp',
+      alt: 'A phone showing a local map with one location pin highlighted',
       position: 'center 35%',
     },
     seo: {
