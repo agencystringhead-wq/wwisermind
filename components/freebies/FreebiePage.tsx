@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import local from '@/components/pricing/LocalSeo.module.css';
 import LocalSeoFaq from '@/components/pricing/LocalSeoFaq';
+import CtaLink from '@/components/booking/CtaLink';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import { CheckIcon } from '@/components/ui/icons';
 import {
@@ -126,9 +127,9 @@ export default function FreebiePage({ freebie }: { freebie: Freebie }) {
                   <a href={freebie.assetUrl} className={styles.assetButton} download>
                     {freebie.assetLabel}
                   </a>
-                  <Link href={freebie.direct.secondaryHref} className={styles.directLink}>
+                  <CtaLink href={freebie.direct.secondaryHref} className={styles.directLink}>
                     {freebie.direct.secondaryLabel}
-                  </Link>
+                  </CtaLink>
                 </div>
               ) : (
                 <FreebieForm mode={soon ? 'notify' : 'gated'} {...formProps} />
