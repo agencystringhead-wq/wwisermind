@@ -861,19 +861,19 @@ export const services: Service[] = [
 
     gallery: {
       tall: {
-        src: '/images/services/pexels-6913727.webp',
-        alt: 'A laptop on a wooden desk among potted plants',
+        src: '/images/services/website-hosting/hosting-hero-locking-up-at-dusk.webp',
+        alt: 'A therapist locking her practice door at dusk, relaxed at the end of the day',
         position: 'center 35%',
       },
       mid: {
-        src: '/images/services/pexels-6889204.webp',
-        alt: 'Hands typing on a laptop beside a mug of coffee',
-        position: 'center 35%',
+        src: '/images/services/website-hosting/hosting-hero-global-network.webp',
+        alt: 'Earth at night with city lights linked by fine arcs, a global network',
+        position: 'center center',
       },
       wide: {
-        src: '/images/services/pexels-8036934.webp',
-        alt: 'A person under a blue duvet looking at a phone at night',
-        position: 'center 35%',
+        src: '/images/services/website-hosting/hosting-hero-evening-train-phone.webp',
+        alt: 'A young man on an evening train scrolling on his phone as the city passes',
+        position: 'center 40%',
       },
       accent: 'Online at 11pm. Fast on a phone.',
     },
@@ -917,8 +917,8 @@ export const services: Service[] = [
         {
           label: 'Stay up',
           image: {
-            src: '/images/services/pexels-6913727.webp',
-            alt: 'A laptop on a wooden desk among potted plants',
+            src: '/images/services/website-hosting/hosting-stay-up-late-night-kitchen.webp',
+            alt: 'A man at his kitchen table late at night, looking at his phone under a warm lamp',
             position: 'center 35%',
           },
           heading: 'Online at 11pm, without a server to fall over.',
@@ -934,9 +934,9 @@ export const services: Service[] = [
         {
           label: 'Stay safe',
           image: {
-            src: '/images/services/pexels-6889204.webp',
-            alt: 'Hands typing on a laptop beside a mug of coffee',
-            position: 'center 35%',
+            src: '/images/services/website-hosting/hosting-stay-safe-practice-door.webp',
+            alt: 'The front door of a therapy practice with a brass lock in morning light',
+            position: 'center center',
           },
           heading: 'Nothing to log in to, nothing to patch.',
           paragraph:
@@ -951,9 +951,9 @@ export const services: Service[] = [
         {
           label: 'Stay in good hands',
           image: {
-            src: '/images/services/pexels-8036934.webp',
-            alt: 'A person under a blue duvet looking at a phone at night',
-            position: 'center 35%',
+            src: '/images/services/website-hosting/hosting-good-hands-reply-between-sessions.webp',
+            alt: 'A therapist in his practice hallway smiling at a reply on his phone between sessions',
+            position: 'center 30%',
           },
           heading: 'Run by the people who built the site.',
           paragraph:
@@ -999,9 +999,9 @@ export const services: Service[] = [
     whyChooseUs: {
       heading: 'Hosting from the people who built the site',
       image: {
-        src: '/images/services/pexels-8296985.webp',
-        alt: 'A hand on a laptop beside a coffee cup and folders',
-        position: 'center 30%',
+        src: '/images/services/website-hosting/hosting-studio-developer-at-night.webp',
+        alt: 'A developer at a quiet studio desk at night with a site on her monitors',
+        position: 'center 35%',
       },
       cards: [
         {
@@ -1035,9 +1035,9 @@ export const services: Service[] = [
     process: {
       heading: 'How hosting works, from launch day on',
       image: {
-        src: '/images/services/pexels-8296985.webp',
-        alt: 'A hand on a laptop beside a coffee cup and folders',
-        position: 'center 30%',
+        src: '/images/services/website-hosting/hosting-launch-day-laptop.webp',
+        alt: 'A newly launched therapist website on a laptop beside fresh flowers',
+        position: 'center center',
       },
       rows: [
         {
@@ -1089,8 +1089,8 @@ export const services: Service[] = [
     ],
     relatedSlugs: ['website-care-plans', 'one-week-website', 'custom-website-design'],
     tileImage: {
-      src: '/images/services/pexels-6889204.webp',
-      alt: 'Hands typing on a laptop beside a mug of coffee',
+      src: '/images/services/website-hosting/hosting-hero-locking-up-at-dusk.webp',
+      alt: 'A therapist locking her practice door at dusk',
       position: 'center 35%',
     },
     seo: {
