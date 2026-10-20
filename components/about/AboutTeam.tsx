@@ -11,7 +11,6 @@ import styles from './AboutTeam.module.css';
  * the photo carrying name, role and a LinkedIn icon button.
  *
  * ⚠️ PLACEHOLDER — LinkedIn URLs are "#" until real profile URLs are supplied.
- * ⚠️ PLACEHOLDER — Ashish and Kmelia portraits use slider images; replace with real portraits.
  */
 
 function LinkedInIcon() {
@@ -33,14 +32,14 @@ const team = [
   {
     name: 'Ashish Kumar',
     role: 'Design & Development',
-    photo: '/images/slider1.webp', // ⚠️ PLACEHOLDER — replace with Ashish's portrait
+    photo: '/images/ashish-kumar-wwisermind.webp',
     photoAlt: 'Ashish Kumar, design and development at wwisermind',
     linkedin: '#', // ⚠️ PLACEHOLDER
   },
   {
     name: 'Kmelia McKenzie',
     role: 'Client Success & SEO',
-    photo: '/images/slider3.webp', // ⚠️ PLACEHOLDER — replace with Kmelia's portrait
+    photo: '/images/kmelia-mckenzie-wwisermind.webp',
     photoAlt: 'Kmelia McKenzie, client success and SEO at wwisermind',
     linkedin: '#', // ⚠️ PLACEHOLDER
   },
