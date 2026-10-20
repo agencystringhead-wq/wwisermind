@@ -1619,18 +1619,18 @@ export const services: Service[] = [
 
     gallery: {
       tall: {
-        src: '/images/services/pexels-5196821.webp',
-        alt: 'A woman writing notes at a desk with a laptop and folders',
-        position: 'center 35%',
+        src: '/images/services/seo-audit/seo-audit-hero-reading-report.webp',
+        alt: 'A practice owner in his armchair reading a printed website assessment',
+        position: 'center 30%',
       },
       mid: {
-        src: '/images/services/pexels-7129624.webp',
-        alt: 'A tablet in a hand, showing a page of text',
-        position: 'center 35%',
+        src: '/images/services/seo-audit/seo-audit-hero-magnifying-glass.webp',
+        alt: 'A magnifying glass over a printed page layout, one section circled in red',
+        position: 'center center',
       },
       wide: {
-        src: '/images/services/pexels-4458257.webp',
-        alt: 'A woman resting her head in her hands in front of a laptop',
+        src: '/images/services/seo-audit/seo-audit-hero-why-not-found.webp',
+        alt: 'A therapist at her kitchen table wondering why her practice is not found online',
         position: 'center 35%',
       },
       accent: 'What is wrong, and what to fix first.',
@@ -1675,8 +1675,8 @@ export const services: Service[] = [
         {
           label: 'Can you be found?',
           image: {
-            src: '/images/services/pexels-5196821.webp',
-            alt: 'A woman writing notes at a desk with a laptop and folders',
+            src: '/images/services/seo-audit/seo-audit-technical-crawl.webp',
+            alt: 'An SEO specialist checking a map of a site pages for problems on her monitor',
             position: 'center 35%',
           },
           heading: 'Whether Google can read the site at all.',
@@ -1692,9 +1692,9 @@ export const services: Service[] = [
         {
           label: 'Who is found instead?',
           image: {
-            src: '/images/services/pexels-7129624.webp',
-            alt: 'A tablet in a hand, showing a page of text',
-            position: 'center 35%',
+            src: '/images/services/seo-audit/seo-audit-competitor-map.webp',
+            alt: 'A city map with pins marking the practices that win local searches',
+            position: 'center center',
           },
           heading: 'The searches that matter, and who wins them today.',
           paragraph:
@@ -1709,9 +1709,9 @@ export const services: Service[] = [
         {
           label: 'What to fix first?',
           image: {
-            src: '/images/services/pexels-4458257.webp',
-            alt: 'A woman resting her head in her hands in front of a laptop',
-            position: 'center 35%',
+            src: '/images/services/seo-audit/seo-audit-fix-list.webp',
+            alt: 'A short numbered fix list on a clipboard with the first item ticked',
+            position: 'center center',
           },
           heading: 'A fix list in order, not a hundred findings.',
           paragraph:
@@ -1761,9 +1761,9 @@ export const services: Service[] = [
     whyChooseUs: {
       heading: 'An assessment written to be acted on',
       image: {
-        src: '/images/services/pexels-19342306.webp',
-        alt: 'A woman writing in a notebook by candlelight',
-        position: 'center 30%',
+        src: '/images/services/seo-audit/seo-audit-writing-the-report.webp',
+        alt: 'A consultant writing clear notes into an assessment report at dusk',
+        position: 'center 35%',
       },
       cards: [
         {
@@ -1792,8 +1792,8 @@ export const services: Service[] = [
     process: {
       heading: 'From your web address to a fix list',
       image: {
-        src: '/images/services/pexels-4031821.webp',
-        alt: 'A woman on a video call at a laptop by a window',
+        src: '/images/services/seo-audit/seo-audit-walkthrough-call.webp',
+        alt: 'A therapist taking notes on a video call as her assessment is walked through',
         position: 'center 30%',
       },
       rows: [
@@ -1850,8 +1850,8 @@ export const services: Service[] = [
     ],
     relatedSlugs: ['one-time-seo', 'local-seo', 'ongoing-seo'],
     tileImage: {
-      src: '/images/services/pexels-7129624.webp',
-      alt: 'A tablet in a hand, showing a page of text',
+      src: '/images/services/seo-audit/seo-audit-hero-magnifying-glass.webp',
+      alt: 'A magnifying glass over a printed page layout',
       position: 'center 35%',
     },
     seo: {
