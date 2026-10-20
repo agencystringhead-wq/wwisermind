@@ -1871,19 +1871,19 @@ export const services: Service[] = [
 
     gallery: {
       tall: {
-        src: '/images/services/pexels-7964254.webp',
-        alt: 'Hands typing on a laptop beside a cup of coffee',
-        position: 'center 35%',
+        src: '/images/services/one-time-seo/one-time-seo-hero-restored-steps.webp',
+        alt: 'A therapist walking up the restored stone steps to her practice door',
+        position: 'center 40%',
       },
       mid: {
-        src: '/images/services/pexels-5447949.webp',
-        alt: 'A person typing on a laptop with a takeaway coffee in hand',
-        position: 'center 35%',
+        src: '/images/services/one-time-seo/one-time-seo-hero-toolkit.webp',
+        alt: 'A laptop beside a spirit level, screwdriver and tape measure laid out neatly',
+        position: 'center center',
       },
       wide: {
-        src: '/images/services/pexels-1586996.webp',
-        alt: 'A man at a tidy desk with a laptop and a lamp',
-        position: 'center 35%',
+        src: '/images/services/one-time-seo/one-time-seo-hero-renovated-room.webp',
+        alt: 'A freshly renovated therapy room on completion day, ladder folded in the corner',
+        position: 'center 50%',
       },
       accent: 'Fixed once. Written down.',
     },
@@ -1927,9 +1927,9 @@ export const services: Service[] = [
         {
           label: 'Technical',
           image: {
-            src: '/images/services/pexels-7964254.webp',
-            alt: 'Hands typing on a laptop beside a cup of coffee',
-            position: 'center 35%',
+            src: '/images/services/one-time-seo/one-time-seo-technical-speed-test.webp',
+            alt: 'A developer holding up a phone to test how fast a therapist site loads',
+            position: 'center 30%',
           },
           heading: 'The site made readable to Google.',
           paragraph:
@@ -1944,9 +1944,9 @@ export const services: Service[] = [
         {
           label: 'On the page',
           image: {
-            src: '/images/services/pexels-5447949.webp',
-            alt: 'A person typing on a laptop with a takeaway coffee in hand',
-            position: 'center 35%',
+            src: '/images/services/one-time-seo/one-time-seo-on-page-folders.webp',
+            alt: 'Hands sliding labelled tabs into a row of folders, one page in each',
+            position: 'center center',
           },
           heading: 'Every page about one thing, and titled for it.',
           paragraph:
@@ -1961,9 +1961,9 @@ export const services: Service[] = [
         {
           label: 'Off the site',
           image: {
-            src: '/images/services/pexels-1586996.webp',
-            alt: 'A man at a tidy desk with a laptop and a lamp',
-            position: 'center 35%',
+            src: '/images/services/one-time-seo/one-time-seo-listings-in-line.webp',
+            alt: 'A practice manager ticking off listings as she brings them into line',
+            position: 'center 30%',
           },
           heading: 'The profile and the listings brought into line.',
           paragraph:
@@ -2009,9 +2009,9 @@ export const services: Service[] = [
     whyChooseUs: {
       heading: 'A fixed piece of work, done properly',
       image: {
-        src: '/images/services/pexels-4065625.webp',
-        alt: 'A woman at a desk among plants',
-        position: 'center 30%',
+        src: '/images/services/one-time-seo/one-time-seo-fixed-timeline.webp',
+        alt: 'A wall planner with one fixed block of weeks highlighted and ticked',
+        position: 'center center',
       },
       cards: [
         {
@@ -2040,8 +2040,8 @@ export const services: Service[] = [
     process: {
       heading: 'How the foundation gets fixed',
       image: {
-        src: '/images/services/pexels-4458602.webp',
-        alt: 'A woman seen from behind at a desk with a laptop and plants',
+        src: '/images/services/one-time-seo/one-time-seo-before-after-call.webp',
+        alt: 'A therapist on a video call seeing a before and after of his site',
         position: 'center 30%',
       },
       rows: [
@@ -2098,8 +2098,8 @@ export const services: Service[] = [
     ],
     relatedSlugs: ['seo-audit', 'ongoing-seo', 'website-care-plans'],
     tileImage: {
-      src: '/images/services/pexels-5447949.webp',
-      alt: 'A person typing on a laptop with a takeaway coffee in hand',
+      src: '/images/services/one-time-seo/one-time-seo-hero-toolkit.webp',
+      alt: 'A laptop beside a spirit level, screwdriver and tape measure',
       position: 'center 35%',
     },
     seo: {
