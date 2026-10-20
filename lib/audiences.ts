@@ -354,17 +354,16 @@ export const audiences: Audience[] = [
       paragraph:
         'A solo practice runs on one person’s credibility. The site is where a client decides whether that person is right for them, usually at night, usually on a phone, before they ever write to you.',
       photos: {
-        /* The homepage’s solo-practice still. A purpose-shot replacement wants ≈ 9:10. */
+        /* Made for this page (public/images/who-we-help/solo-practices/), 4:5. */
         left: {
-          src: '/images/solopractice.webp',
-          alt: 'A solo practitioner holding a tablet in her office',
-          position: 'center 30%',
+          src: '/images/who-we-help/solo-practices/solo-practices-hero-therapist-in-doorway.webp',
+          alt: 'A solo practice therapist standing in the doorway of her own therapy room',
+          position: 'center 25%',
         },
-        /* The homepage’s process photograph. Wants ≈ 9:10. */
         right: {
-          src: '/images/launch-and-grow.webp',
-          alt: 'A therapist sitting in her practice with a notebook',
-          position: 'center 40%',
+          src: '/images/who-we-help/solo-practices/solo-practices-hero-her-own-room.webp',
+          alt: 'A solo therapist office with one armchair, a lamp and afternoon sun',
+          position: 'center 50%',
         },
       },
     },
@@ -424,16 +423,16 @@ export const audiences: Audience[] = [
       paragraph:
         'A solo practitioner’s marketing happens in the gaps: ten minutes between clients, an evening after notes. The site has to do its job without those minutes.',
       photos: [
-        /* The homepage’s therapist photograph, then a Pexels stand-in. Each ≈ 16:10. */
+        /* Made for this page: the gap between clients, and the evening after notes. */
         {
-          src: '/images/wwisermind-built-for-mental-therapist-only.webp',
-          alt: 'A therapist in a mustard blazer listening to a client across from her',
-          position: '58% 40%',
+          src: '/images/who-we-help/solo-practices/solo-practices-enquiry-between-clients.webp',
+          alt: 'A therapist between clients smiling at a new enquiry on his phone',
+          position: 'center 30%',
         },
         {
-          src: '/images/services/pexels-6255877.webp',
-          alt: 'A psychologist and a client talking on a sofa',
-          position: 'center 40%',
+          src: '/images/who-we-help/solo-practices/solo-practices-evening-after-notes.webp',
+          alt: 'A therapist closing her laptop after evening notes, the day done',
+          position: 'center 35%',
         },
       ],
       caption:
