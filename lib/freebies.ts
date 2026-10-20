@@ -11,7 +11,7 @@ import { routes, type FreebieKey, type Route } from '@/lib/routes';
    freebie form posts to FORM_ENDPOINT. While that is empty the form shows its success state
    without sending anything.
 
-   PLACEHOLDERS to fill in (each marked TODO below): the form endpoint, the two PDF files, the two
+   PLACEHOLDERS to fill in (each marked TODO below): the form endpoint, the two
    Canva links, the preview images, and the privacy policy page.
 
    Nothing here is a download count, rating, testimonial or statistic. No em dashes or en dashes.
@@ -21,8 +21,7 @@ import { routes, type FreebieKey, type Route } from '@/lib/routes';
    the form shows its success state without sending anything. */
 export const FORM_ENDPOINT = '';
 
-/* The Psychology Today kit is in public/freebies/. TODO: the Google Business Profile checklist PDF
-   still needs adding under its name; until it exists that page's download button leads to a 404. */
+/* Both PDFs live in public/freebies/. */
 const PT_KIT_PDF = '/freebies/psychology-today-profile-kit-for-therapists.pdf';
 const GBP_CHECKLIST_PDF = '/freebies/google-business-profile-checklist-for-therapists.pdf';
 
@@ -185,7 +184,7 @@ export const freebies: Freebie[] = [
     shortDescription:
       'The therapy-specific details most practices miss on their Google Business Profile.',
     longDescription:
-      'A one-page checklist covering the therapy-specific details most practices miss on their Google Business Profile.',
+      'A printable checklist covering the therapy-specific details most practices miss on their Google Business Profile, from setup to monthly upkeep.',
     typeLabel: 'Checklist',
     type: 'download',
     gated: true,
@@ -198,7 +197,13 @@ export const freebies: Freebie[] = [
       href: routes.pricing.localSeo,
     },
     icon: 'pin',
-    previewImage: null,
+    askPhone: true,
+    previewImage: {
+      src: '/images/freebies/google-business-profile-checklist-preview.webp',
+      width: 1200,
+      height: 1000,
+      alt: 'Pages from the Google Business Profile Checklist: the cover, the name and category checklist and the review reply templates',
+    },
     whatsInside: [
       'Practice name and category rules',
       'Telehealth-only practices: what’s allowed',
@@ -208,8 +213,32 @@ export const freebies: Freebie[] = [
     ],
     faq: [
       {
+        title: 'Is this affiliated with Google?',
+        body: 'No. It’s an independent guide from wwisermind. Google and Google Business Profile are trademarks of Google LLC.',
+      },
+      {
+        title: 'What do I actually get?',
+        body: 'A 7-page PDF: four checklists covering your name, categories, photos, hours, reviews and upkeep, three review replies that never confirm someone is a client, and a fill-in template for your business description.',
+      },
+      {
+        title: 'I only see clients online. Can I still have a profile?',
+        body: 'Usually not. Google’s guidelines need a real place where you meet people in person. The checklist explains what to do instead, and why a home address or virtual office can get a profile suspended.',
+      },
+      {
+        title: 'Does it work for group practices?',
+        body: 'Yes. It covers how the practice profile and individual clinician profiles fit together, and what to keep the same across all of them.',
+      },
+      {
+        title: 'Will this get me more clients?',
+        body: 'No checklist can promise that. What it does is help you avoid the mistakes that get therapy profiles suspended or ignored, and keep the details people check before they call accurate.',
+      },
+      {
         title: 'Does this work outside the US?',
         body: 'Yes. Google Business Profile works the same way in most countries, including Ireland, Australia and Canada.',
+      },
+      {
+        title: 'Is it really free?',
+        body: 'Yes. Enter your first name and email and the download appears straight away. The phone number and the tips box are optional.',
       },
     ],
   },
