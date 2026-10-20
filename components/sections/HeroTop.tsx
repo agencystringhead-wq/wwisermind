@@ -37,8 +37,7 @@ export default function HeroTop() {
           <div className={styles.colGuide}>
             <span className={styles.badge}>{guide.badge}</span>
             <h2 className={styles.guideTitle}>
-              {guide.title}{' '}
-              <span className={styles.guideEdition}>{guide.titleEdition}</span>
+              {guide.title}
             </h2>
           </div>
 

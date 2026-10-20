@@ -12,7 +12,7 @@ export type NavItem = {
 };
 
 export const siteConfig = {
-  name: 'Wisermind',
+  name: 'wwisermind',
   /* The origin the canonical URLs, sitemap and structured data point at. The site is live on
      the real domain, so this is the one address search engines should index. */
   url: 'https://wwisermind.com',
@@ -59,9 +59,10 @@ export const absUrl = (path: string) => `${siteConfig.url}${path}`;
 
 export const announcement = {
   label: 'New',
-  text: 'We are accepting new clients for month of September 26 .',
-  linkLabel: 'Read',
-  href: '#announcement',
+  text: 'Black Friday offers on websites and SEO for therapists.',
+  linkLabel: 'See offers',
+  /* The pricing hub for now; point it at a dedicated offers page when there is one. */
+  href: routes.pricing.hub,
 };
 
 export const mainNav: NavItem[] = [
@@ -202,7 +203,7 @@ export const megaPanels: Record<string, MegaPanel> = {
       eyebrow: 'Our Promise',
       lead: 'Only therapists. Every project. No exceptions.',
     },
-    strip: { text: 'Serving practices across the US, UK, and Australia — in your timezone.' },
+    strip: { text: 'Serving practices across the US, Australia, and Ireland, in your timezone.' },
   },
 
   Pricing: {
@@ -331,11 +332,9 @@ export const heroTop = {
   },
   guide: {
     badge: 'Free Guide',
-    title: 'The AI Visibility Guide for Therapists',
-    /** Set on its own line under the title — see .guideEdition. */
-    titleEdition: '(2026 Edition)',
+    title: 'The 2027 Full-Caseload Plan: Turn Website Visitors Into Booked Clients Before January',
     description:
-      'How to show up when clients ask ChatGPT and Google AI for a therapist near them. Plus the 12 AI tools that save practices 10+ hours a week, without becoming a "content creator."',
+      "Most therapy websites don't have a traffic problem. They have a booking problem. A 4-week plan to fix the leaks, explain your fees clearly, and get found on Google and AI before the new-year rush.",
     linkLabel: 'Get the Free Guide',
     href: '#free-guide',
   },
@@ -746,10 +745,8 @@ export const freebies = {
   },
   items: [
     {
-      title: 'The AI Visibility Guide for Therapists',
-      note: ' (2026 Edition)',
-      body:
-        'Find out how to show up when clients ask ChatGPT, Gemini, or Google AI for a therapist near them, before your competitors do.',
+      title: 'The 2027 Full-Caseload Plan: Turn Website Visitors Into Booked Clients Before January',
+      body: 'A 4-week, one-hour-a-week plan to turn quiet website visitors into booked consultations.',
     },
     {
       title: '30 Days of Social Content for Therapists',
@@ -817,7 +814,7 @@ export const faq = {
     linkLabel: 'Email Us',
     href: 'mailto:admin@wwisermind.com',
   },
-  link: { label: 'See Full Directory List', href: '#faq' },
+  link: { label: 'See all FAQs', href: routes.faq },
 };
 
 /** The floating contact bar, pinned to every page from the root layout. `icon` names one of

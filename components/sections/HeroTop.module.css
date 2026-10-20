@@ -147,10 +147,6 @@
 /* The edition always takes its own line. Done here rather than by squeezing the column, so
    the break is deliberate at every width — and the line above it still wraps on its own when
    the column gets narrow. */
-.guideEdition {
-  display: block;
-}
-
 /* col 3 */
 .detailText {
   font-size: 12px;

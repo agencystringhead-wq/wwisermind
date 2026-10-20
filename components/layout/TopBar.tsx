@@ -6,7 +6,7 @@ export default function TopBar() {
     <div className={styles.topbar}>
       <div className={`container ${styles.inner}`}>
         <p className={styles.text}>
-          <span className={styles.label}>{announcement.label} :</span>{' '}
+          <span className={styles.label}>{announcement.label}:</span>{' '}
           {announcement.text}{' '}
           <a className={styles.link} href={announcement.href}>
             {announcement.linkLabel}

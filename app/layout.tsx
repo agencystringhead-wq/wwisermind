@@ -27,9 +27,11 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  /* Relative URLs in any page's metadata resolve against the production domain. */
+  metadataBase: new URL(siteConfig.url),
   title: `${siteConfig.name} — Growth Partner`,
   description:
-    'Wisermind helps ambitious brands grow with strategy, design and performance marketing.',
+    'wwisermind helps ambitious brands grow with strategy, design and performance marketing.',
   twitter: { card: 'summary_large_image', site: siteConfig.twitterHandle },
 };
 

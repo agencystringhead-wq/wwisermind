@@ -24,7 +24,6 @@ export default function Freebies() {
                 <article className={styles.item} key={item.title}>
                   <h3 className={styles.itemTitle}>
                     {item.title}
-                    {item.note ? <span className={styles.itemNote}>{item.note}</span> : null}
                   </h3>
                   <p className={styles.itemBody}>{item.body}</p>
                 </article>

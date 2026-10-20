@@ -14,8 +14,12 @@ import Process from '@/components/sections/Process';
 import Services from '@/components/sections/Services';
 import WhyUs from '@/components/sections/WhyUs';
 
-/* The title and description come from the root layout; the homepage adds its own canonical. */
+/* The homepage carries its own title and description; the root layout's are the fallback for pages
+   that set none. */
 export const metadata: Metadata = {
+  title: 'Therapist Websites & Marketing | wwisermind',
+  description:
+    'Calm, credible websites, SEO and AI visibility built only for therapists and psychologists. Be found, be trusted, stay booked.',
   alternates: { canonical: absUrl(routes.home) },
 };
 
