@@ -43,8 +43,13 @@ export const customWebsitePath = routes.pricing.customWebsite;
 
 const money = (n: number) => `$${n.toLocaleString('en-US')}`;
 
-const customPrice = 4499;
-const groupPrice = 6499;
+const customPrice = 4495;
+const groupPrice = 6495;
+
+/* How long each build takes. Read by both plan cards, the comparison table, the meta description
+   and the Hyper Growth page's "Your first year" timeline, so a change here moves them all. */
+const customTimeline = '10 to 12 weeks';
+const groupTimeline = '16 to 18 weeks';
 
 /* TODO: confirm the copywriter's rates. Both feed the copywriting card and the FAQ. */
 const copyPerPage = 149;
@@ -62,7 +67,7 @@ export const offers = [
 
 export const customWebsiteMeta = {
   title: `Custom Website Design Pricing for Therapists | From ${money(customPrice)} | wwisermind`,
-  description: `Hand-designed websites for therapists and group practices. Free discovery call, fixed quotes, 4 to 6 week builds. Custom sites from ${money(customPrice)}, group practice sites from ${money(groupPrice)}.`,
+  description: `Hand-designed websites for therapists and group practices. Free discovery call, fixed quotes, 10 to 18 week builds. Custom sites from ${money(customPrice)}, group practice sites from ${money(groupPrice)}.`,
 };
 
 export const serviceName = 'Custom website design for therapists';
@@ -151,11 +156,11 @@ export const packages: LocalSeoPackage[] = [
       { label: 'Pages', value: 'Up to 10' },
       { label: 'Design revisions', value: '2 rounds' },
       { label: 'Build revisions', value: '2 rounds' },
-      { label: 'Timeline', value: '4 to 6 weeks' },
+      { label: 'Timeline', value: customTimeline },
       { label: 'Booking & contact forms', value: 'Included' },
       { label: 'On-page SEO setup', value: 'Included' },
       { label: 'Care after launch', value: '60 days included' },
-      { label: 'Training session', value: '1 hour, recorded' },
+      { label: 'Training session', value: '1 hour, live' },
       { label: 'Copywriting', value: 'Add-on', valueHref: '#copywriting' },
     ],
     cta: { label: 'Book a free discovery call', href: routes.withQuery(routes.contact, { plan: 'custom-website' }) },
@@ -175,7 +180,7 @@ export const packages: LocalSeoPackage[] = [
       { label: 'Clinician directory', value: 'With filters (specialty, location, availability)' },
       { label: 'Multiple locations', value: 'Included' },
       { label: 'Booking integrations', value: 'Included' },
-      { label: 'Timeline', value: '6 to 8 weeks' },
+      { label: 'Timeline', value: groupTimeline },
       { label: 'Copywriting', value: 'Add-on', valueHref: '#copywriting' },
     ],
     cta: { label: 'Book a free discovery call', href: routes.withQuery(routes.contact, { plan: 'group-website' }) },
@@ -253,7 +258,7 @@ export const processStages: ProcessStage[] = [
   {
     when: 'Step 6',
     title: 'Launch & training',
-    steps: ['We go live, then walk you through editing your site on a recorded call'],
+    steps: ['We go live, then walk you through editing your site on a live call'],
   },
 ];
 
@@ -300,7 +305,7 @@ export const compareRows: { criteria: string; cells: string[] }[] = [
   },
   {
     criteria: 'Timeline',
-    cells: [oneWeekRow('Build time') ?? seePage, '4 to 6 weeks', '6 to 8 weeks'],
+    cells: [oneWeekRow('Build time') ?? seePage, customTimeline, groupTimeline],
   },
   {
     criteria: 'Pages',
@@ -424,7 +429,7 @@ export const customWebsiteFaqs: FaqItem[] = [
   },
   {
     title: 'Will I be able to edit my site?',
-    body: 'Yes. We’ll show you how on a recorded training call, so you can update text, photos and blog posts yourself.',
+    body: 'Yes. We’ll show you how on a live training call, so you can update text, photos and blog posts yourself.',
   },
   {
     title: 'Can you redesign my existing site?',

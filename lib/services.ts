@@ -715,7 +715,7 @@ export const services: Service[] = [
       },
       {
         title: 'Launch, a walkthrough and thirty days of fixes',
-        body: 'A recorded walkthrough of how to edit text and add a clinician yourself, and a month after launch in which anything that is not right is fixed at no cost.',
+        body: 'A live walkthrough of how to edit text and add a clinician yourself, and a month after launch in which anything that is not right is fixed at no cost.',
       },
     ],
 
@@ -790,7 +790,7 @@ export const services: Service[] = [
         },
         {
           title: 'Launch and after',
-          body: 'The site goes live on the agreed day, with a recorded walkthrough and thirty days of fixes. Hosting and a care plan carry on from there if you want them to.',
+          body: 'The site goes live on the agreed day, with a live walkthrough and thirty days of fixes. Hosting and a care plan carry on from there if you want them to.',
         },
       ],
     },

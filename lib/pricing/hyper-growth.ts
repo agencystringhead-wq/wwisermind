@@ -504,7 +504,7 @@ const timelineNote =
 
 export const processStages: ProcessStage[] = [
   {
-    when: 'Months 1-2',
+    when: 'Months 1-4',
     title: 'Foundation',
     steps: [
       'Strategy and goals',
@@ -514,7 +514,7 @@ export const processStages: ProcessStage[] = [
     ],
   },
   {
-    when: 'Months 2-4',
+    when: 'Months 3-6',
     title: 'Momentum',
     steps: [
       'Meta ads go live and get tuned',
@@ -524,7 +524,7 @@ export const processStages: ProcessStage[] = [
     ],
   },
   {
-    when: 'Months 4-12',
+    when: 'Months 6-12',
     title: 'Growth',
     steps: [
       'More location pages and content',
@@ -598,7 +598,7 @@ const allFaqs: FaqItem[] = [
   },
   {
     title: 'Can I pay monthly?',
-    body: "Yes. All Hyper Growth plans are billed monthly. There's a 12-month minimum term, because we design and build your custom website in the first two months. After that, you can stay month to month and cancel with 30 days' notice.",
+    body: "Yes. All Hyper Growth plans are billed monthly. There's a 12-month minimum term, because we design and build your custom website in the first three to four months. After that, you can stay month to month and cancel with 30 days' notice.",
   },
   {
     title: 'Do I get a new website?',
