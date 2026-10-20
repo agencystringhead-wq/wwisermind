@@ -47,6 +47,8 @@ export type Freebie = {
   type: FreebieType;
   /** Asks for a name and email before showing the download or the Canva link. */
   gated: boolean;
+  /** Also shows an optional phone field on the form. */
+  askPhone?: boolean;
   /** A coming-soon freebie has a page that takes an email for a heads-up, is not in the sitemap or
       llms.txt and is sent noindex. */
   status: 'live' | 'comingSoon';
@@ -127,6 +129,7 @@ export const freebies: Freebie[] = [
     typeLabel: 'PDF + templates',
     type: 'download',
     gated: true,
+    askPhone: true,
     status: 'live',
     assetUrl: PT_KIT_PDF,
     assetLabel: 'Download the kit',
@@ -373,6 +376,8 @@ export const pageCopy = {
 export const formCopy = {
   nameLabel: 'First name',
   emailLabel: 'Email',
+  phoneLabel: 'Phone',
+  phoneHint: 'optional',
   consent: 'Send me occasional tips from wwisermind. Unsubscribe any time.',
   submit: 'Send it to me',
   notifySubmit: 'Let me know',
@@ -382,6 +387,7 @@ export const formCopy = {
   linkNotReady: 'Your link is on its way by email. It isn’t ready to show here yet.',
   error: 'Something went wrong. Please try again, or email us.',
   privacy: 'We use your email to send you this. We don’t share it.',
+  privacyWithPhone: 'We use your details to send you this and, if you add a phone number, to follow up. We don’t share them.',
   privacyLinkLabel: 'Privacy policy',
 };
 

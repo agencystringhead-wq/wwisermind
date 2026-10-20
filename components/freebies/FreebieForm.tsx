@@ -7,6 +7,8 @@ import styles from './Freebies.module.css';
 type Copy = {
   nameLabel: string;
   emailLabel: string;
+  phoneLabel: string;
+  phoneHint: string;
   consent: string;
   submit: string;
   notifySubmit: string;
@@ -16,6 +18,7 @@ type Copy = {
   linkNotReady: string;
   error: string;
   privacy: string;
+  privacyWithPhone: string;
   privacyLinkLabel: string;
 };
 
@@ -36,6 +39,7 @@ export default function FreebieForm({
   endpoint,
   privacyHref,
   copy,
+  askPhone = false,
 }: {
   freebie: string;
   mode: 'gated' | 'notify';
@@ -44,8 +48,11 @@ export default function FreebieForm({
   endpoint: string;
   privacyHref: string | null;
   copy: Copy;
+  askPhone?: boolean;
 }) {
   const [status, setStatus] = useState<Status>('idle');
+  /* Field ids from the freebie's title, made safe for an id (no spaces). */
+  const idBase = freebie.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -53,6 +60,7 @@ export default function FreebieForm({
     const payload = {
       firstName: String(form.get('firstName') ?? ''),
       email: String(form.get('email') ?? ''),
+      phone: String(form.get('phone') ?? ''),
       marketingConsent: form.get('marketingConsent') === 'on',
       freebie: String(form.get('freebie') ?? freebie),
     };
@@ -100,12 +108,12 @@ export default function FreebieForm({
       <input type="hidden" name="freebie" value={freebie} />
 
       <p className={styles.field}>
-        <label className={styles.label} htmlFor={`${freebie}-name`}>
+        <label className={styles.label} htmlFor={`${idBase}-name`}>
           {copy.nameLabel}
         </label>
         <input
           className={styles.input}
-          id={`${freebie}-name`}
+          id={`${idBase}-name`}
           name="firstName"
           type="text"
           autoComplete="given-name"
@@ -114,18 +122,34 @@ export default function FreebieForm({
       </p>
 
       <p className={styles.field}>
-        <label className={styles.label} htmlFor={`${freebie}-email`}>
+        <label className={styles.label} htmlFor={`${idBase}-email`}>
           {copy.emailLabel}
         </label>
         <input
           className={styles.input}
-          id={`${freebie}-email`}
+          id={`${idBase}-email`}
           name="email"
           type="email"
           autoComplete="email"
           required
         />
       </p>
+
+      {askPhone ? (
+        <p className={styles.field}>
+          <label className={styles.label} htmlFor={`${idBase}-phone`}>
+            {copy.phoneLabel} <span className={styles.hint}>({copy.phoneHint})</span>
+          </label>
+          <input
+            className={styles.input}
+            id={`${idBase}-phone`}
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            inputMode="tel"
+          />
+        </p>
+      ) : null}
 
       <label className={styles.consent}>
         <input type="checkbox" name="marketingConsent" />
@@ -147,7 +171,7 @@ export default function FreebieForm({
       ) : null}
 
       <p className={styles.privacy}>
-        {copy.privacy}
+        {askPhone ? copy.privacyWithPhone : copy.privacy}
         {privacyHref ? (
           <>
             {' '}

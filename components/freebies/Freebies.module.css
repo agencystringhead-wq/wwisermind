@@ -211,6 +211,13 @@
   font-weight: var(--fw-medium);
 }
 
+/* The "(optional)" beside a label, as on the contact form. */
+.hint {
+  margin-left: 2px;
+  color: var(--color-muted);
+  font-weight: var(--fw-regular);
+}
+
 .input {
   height: 52px;
   width: 100%;

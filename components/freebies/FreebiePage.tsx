@@ -51,6 +51,7 @@ export default function FreebiePage({ freebie }: { freebie: Freebie }) {
     copy: formCopy,
     assetUrl: freebie.assetUrl,
     assetLabel: freebie.assetLabel,
+    askPhone: freebie.askPhone ?? false,
   };
 
   return (
