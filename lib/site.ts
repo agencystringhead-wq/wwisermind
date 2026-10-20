@@ -264,7 +264,7 @@ export const megaPanels: Record<string, MegaPanel> = {
         lead: 'Learn',
         title: 'The Words',
         links: [
-          { label: 'Blog', href: routes.blog, desc: 'Plain-English articles' },
+          { label: 'Blog', href: routes.blog, desc: 'Practical articles for practices' },
           { label: 'FAQ’s', href: routes.faq, desc: 'Answered before you ask' },
         ],
       },
@@ -629,7 +629,7 @@ export const processSection = {
   headingLead:
     "No mystery, no chasing, no tech headaches. One free call, an honest plan, and a clear timeline you'll know before anything starts —",
   headingRest:
-    ' while you stay in session, we handle the build, the SEO, and everything after launch, with updates in plain English at every step.',
+    ' while you stay in session, we handle the build, the SEO, and everything after launch, with a clear update at every step.',
   cta: { label: 'Book your free strategy session', href: '#book' },
   steps: [
     {

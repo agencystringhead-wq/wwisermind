@@ -50,7 +50,7 @@ export const privacyPolicy: LegalDoc = {
     'How wwisermind collects, uses and protects your information when you visit our site, book a call or work with us.',
   lastUpdated: LAST_UPDATED,
   intro:
-    "This policy explains what information wwisermind collects, why we collect it, and what we do with it. wwisermind is a brand of Stringhead Technologies Private Limited, a company registered in India. When this policy says \"we\", \"us\" or \"our\", it means Stringhead Technologies Private Limited trading as wwisermind. We've tried to write it in plain English. If anything is unclear, email us and we'll explain.",
+    "This policy explains what information wwisermind collects, why we collect it, and what we do with it. wwisermind is a brand of Stringhead Technologies Private Limited, a company registered in India. When this policy says \"we\", \"us\" or \"our\", it means Stringhead Technologies Private Limited trading as wwisermind. If anything here is unclear, email us and we'll explain.",
   sections: [
     {
       id: 'who-we-are',

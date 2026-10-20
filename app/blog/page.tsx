@@ -8,7 +8,7 @@ import { siteConfig, absUrl } from '@/lib/site';
 export const metadata: Metadata = {
   title: 'Blog for therapists: websites, search and AI | wwisermind',
   description:
-    'Plain-English articles for therapists on choosing a website platform, getting found, building trust with Google, and using AI with care.',
+    'Practical articles for therapists on choosing a website platform, getting found, building trust with Google, and using AI with care.',
   alternates: {
     canonical: absUrl(routes.blog),
     types: { 'application/rss+xml': absUrl(routes.rss) },
@@ -26,7 +26,7 @@ export default function Page() {
       />
     <BlogListing
       eyebrow="Blog"
-      heading="Plain-English articles for therapists."
+      heading="Practical articles for therapists."
       lead="Websites, search and AI, explained without the jargon."
       posts={getAllPosts()}
       leadPost={getLeadPost()}

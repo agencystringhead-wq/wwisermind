@@ -40,7 +40,7 @@ export function GET() {
   <channel>
     <title>wwisermind blog</title>
     <link>${absUrl(routes.blog)}</link>
-    <description>Plain-English articles for therapists on websites, search and AI.</description>
+    <description>Practical articles for therapists on websites, search and AI.</description>
     <language>en</language>
     <atom:link href="${feedUrl}" rel="self" type="application/rss+xml" />
 ${items}

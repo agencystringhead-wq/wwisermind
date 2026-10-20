@@ -87,7 +87,7 @@ Pages for specific searches, like "EMDR therapist in Seattle", usually start sho
     question: 'Can you guarantee page one on Google?',
     answer: `No, and nobody honest can. Google decides rankings, not us.
 
-What we can do is the work that moves them: a clear page for each specialty, a complete Google profile, fast mobile pages, and plain-English updates on what changed and what's moving. If an agency guarantees a ranking, ask them how.`,
+What we can do is the work that moves them: a clear page for each specialty, a complete Google profile, fast mobile pages, and clear updates on what changed and what's moving. If an agency guarantees a ranking, ask them how.`,
   },
   {
     id: 'chatgpt-recommend-therapist',

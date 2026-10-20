@@ -467,7 +467,7 @@ export const services: Service[] = [
         },
         {
           icon: 'chat',
-          title: 'Plain English, every step',
+          title: 'Clear updates, every step',
           body: 'Two reviews, both explained, and no jargon in between.',
         },
       ],
@@ -988,7 +988,7 @@ export const services: Service[] = [
       },
       {
         title: 'Support you can email',
-        body: 'A studio address that reaches a person who knows your site. A reply within one business day, and a plain English note of what was done.',
+        body: 'A studio address that reaches a person who knows your site. A reply within one business day, and a short note of what was done.',
       },
       {
         title: 'A monthly plan, no contract',
@@ -1011,7 +1011,7 @@ export const services: Service[] = [
         },
         {
           icon: 'chat',
-          title: 'Support in plain English',
+          title: 'Support you can email',
           body: 'Email the studio that built your site. A reply within one business day, from someone who knows it.',
         },
         {
@@ -1046,7 +1046,7 @@ export const services: Service[] = [
         },
         {
           title: 'Watched, not just left',
-          body: 'Every deploy is a versioned commit. If anything is wrong, the previous version is put back in minutes, and you hear what happened in plain English.',
+          body: 'Every deploy is a versioned commit. If anything is wrong, the previous version is put back in minutes, and you hear what happened.',
         },
         {
           title: 'Billed monthly, stopped when you say',
@@ -1129,7 +1129,7 @@ export const services: Service[] = [
 
     intro: {
       paragraph:
-        'A website is not finished at launch. Fees change, a clinician joins, a new group starts on Thursdays, and the software underneath gets updates. A care plan is a monthly arrangement in which we make those changes for you, keep the site fast, secure and backed up, and tell you in plain English what was done. You email; it is handled.',
+        'A website is not finished at launch. Fees change, a clinician joins, a new group starts on Thursdays, and the software underneath gets updates. A care plan is a monthly arrangement in which we make those changes for you, keep the site fast, secure and backed up, and tell you what was done. You email; it is handled.',
       capabilities: [
         'Edits done for you',
         'New pages when needed',
@@ -1241,7 +1241,7 @@ export const services: Service[] = [
       },
       {
         title: 'Support you can email',
-        body: 'A studio address that reaches a person who knows your site. A reply within one business day, and a plain English note of what changed and when.',
+        body: 'A studio address that reaches a person who knows your site. A reply within one business day, and a short note of what changed and when.',
       },
     ],
 
@@ -1265,7 +1265,7 @@ export const services: Service[] = [
         },
         {
           icon: 'chat',
-          title: 'Plain English, always',
+          title: 'Clear updates, always',
           body: 'No ticket numbers, no changelogs. A sentence about what changed, and when.',
         },
         {
@@ -1522,7 +1522,7 @@ export const services: Service[] = [
         {
           icon: 'chat',
           title: 'A note, not a dashboard',
-          body: 'Each month, two minutes of plain English on what changed and what is next.',
+          body: 'Each month, a two-minute note on what changed and what is next.',
         },
         {
           icon: 'clock',
@@ -1638,7 +1638,7 @@ export const services: Service[] = [
 
     intro: {
       paragraph:
-        'Before anyone spends a month on SEO, it is worth knowing what is actually wrong. An assessment is a one-off, written review of your website, your Google Business Profile and your directory listings, checked against what a client in your area types when they look for a therapist like you. You get a report in plain English: what is working, what is costing you clients, and what to fix first, in order. It is yours whether you hire us for the fixes, do them yourself, or hand it to someone else.',
+        'Before anyone spends a month on SEO, it is worth knowing what is actually wrong. An assessment is a one-off, written review of your website, your Google Business Profile and your directory listings, checked against what a client in your area types when they look for a therapist like you. You get a written report: what is working, what is costing you clients, and what to fix first, in order. It is yours whether you hire us for the fixes, do them yourself, or hand it to someone else.',
       capabilities: [
         'The site checked technically',
         'Every page’s titles reviewed',
@@ -1664,7 +1664,7 @@ export const services: Service[] = [
       },
       {
         icon: 'chat',
-        title: 'Plain English, and honest',
+        title: 'Clear, and honest',
         body: 'If your site is fine and the problem is elsewhere, the report says so. If the site needs rebuilding, it says that too, and why.',
       },
     ],
@@ -1715,10 +1715,10 @@ export const services: Service[] = [
           },
           heading: 'A fix list in order, not a hundred findings.',
           paragraph:
-            'The report ends with the handful of things that matter, in the order to do them, written in plain English and yours to act on with us or without.',
+            'The report ends with the handful of things that matter, in the order to do them, written clearly and yours to act on with us or without.',
           claims: [
             'Ordered by what matters',
-            'Plain English',
+            'Written clearly',
             'Yours, whoever does the work',
             'A call to walk through it',
           ],
@@ -1807,7 +1807,7 @@ export const services: Service[] = [
         },
         {
           title: 'The report',
-          body: 'A written report in plain English: what is working, what is costing you clients, and the fix list in order.',
+          body: 'A written report: what is working, what is costing you clients, and the fix list in order.',
         },
         {
           title: 'The call',
@@ -1857,7 +1857,7 @@ export const services: Service[] = [
     seo: {
       title: 'SEO Audit and Assessment for Therapists | wwisermind',
       description:
-        'A one-off written SEO assessment of your therapy practice: the website, Google Business Profile, directory listings, the searches clients use and the AI answers, with a fix list in order. Plain English, yours to act on.',
+        'A one-off written SEO assessment of your therapy practice: the website, Google Business Profile, directory listings, the searches clients use and the AI answers, with a fix list in order. Written clearly, yours to act on.',
     },
   },
 
@@ -2115,7 +2115,7 @@ export const services: Service[] = [
     name: 'Ongoing SEO / AEO / GEO',
     category: 'Online Marketing',
     heroOutcome:
-      'Google, Maps and the AI answers worked on every month, with a plain-English note on what changed.',
+      'Google, Maps and the AI answers worked on every month, with a short note on what changed.',
 
     gallery: {
       tall: {
@@ -2311,7 +2311,7 @@ export const services: Service[] = [
         },
         {
           title: 'The note',
-          body: 'At the end of the month, what was done, what moved, and what is next. Two minutes of plain English.',
+          body: 'At the end of the month, what was done, what moved, and what is next. A two-minute read.',
         },
       ],
     },
@@ -2900,7 +2900,7 @@ export const services: Service[] = [
         'Directory profiles aligned',
         'The sources AI reads, fixed',
         'The answer tracked monthly',
-        'Reported in plain English',
+        'Reported in a short monthly note',
       ],
     },
 

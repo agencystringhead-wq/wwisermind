@@ -418,7 +418,7 @@ export const everyPlan = {
     'Google Business Profile management',
     'Privacy-safe enquiry tracking',
     'One team, one point of contact',
-    'Plain-English reporting',
+    'Clear reporting',
     'No access to client data, ever',
   ],
 };
@@ -571,7 +571,7 @@ export const whyCards: { title: string; body: string }[] = [
   },
   {
     title: 'Honest reporting',
-    body: 'Enquiries and where they came from, explained in plain English',
+    body: 'Enquiries and where they came from, explained clearly',
   },
   {
     title: 'You own it all',

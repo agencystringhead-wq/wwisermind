@@ -34,7 +34,7 @@ export const processPage = {
     eyebrow: 'Our process',
     /** Three options were drafted; A is the working one until the owner picks.
         A  Three steps. No mystery.                         (the About dropdown's own line)
-        B  From first call to launch, in plain English.     (HOME: updates in plain English)
+        B  From first call to launch, no jargon.            (HOME: a clear update at every step)
         C  You stay in session. We handle the rest.         (HOME: while you stay in session) */
     heading: 'Three steps. No mystery.',
     /** Held to two lines at 64ch by the hero's own measure. */
@@ -46,7 +46,7 @@ export const processPage = {
   intro: {
     /** HOME headingLead + headingRest, tightened to one sentence pair. */
     statement:
-      'No mystery, no chasing, no tech headaches. One free call, an honest plan, and a clear timeline before anything starts, with updates in plain English the whole way.',
+      'No mystery, no chasing, no tech headaches. One free call, an honest plan, and a clear timeline before anything starts, with clear updates the whole way.',
   },
 
   /* ---- 3. the three steps -------------------------------------------------------- */
@@ -228,8 +228,8 @@ export const processPage = {
     cards: [
       {
         icon: 'chat' as ServiceIconName,
-        title: 'Updates in plain English',
-        /* HOME: "updates in plain English at every step"; OWW: "no jargon in between". */
+        title: 'Clear updates',
+        /* HOME: "a clear update at every step"; OWW: "no jargon in between". */
         body: 'No jargon, no acronyms to look up. When something happens, we tell you what it is, what it means and what’s next.',
       },
       {

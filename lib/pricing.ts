@@ -180,7 +180,7 @@ export const pricingEntries: PricingEntry[] = [
     // TODO: check these draft lines
     includes: [
       'Review of your site and search presence',
-      'Plain-English written findings',
+      'Written findings',
       'A short list of what to fix first',
     ],
     showPrice: true,
@@ -226,7 +226,7 @@ export const pricingEntries: PricingEntry[] = [
     includes: [
       'Monthly content and page improvements',
       'Search and AI answer visibility work',
-      'Plain-English progress notes',
+      'Progress notes',
       'No long-term contract',
     ],
     showPrice: true,
@@ -281,7 +281,7 @@ export const featuredBenefits = [
 
 /* --- FAQ ----------------------------------------------------------------- */
 
-/* TODO: owner to review every answer below. Drafted in plain English and deliberately
+/* TODO: owner to review every answer below. Drafted without jargon and deliberately
    free of figures and timelines; add them here only once the prices are in. Shape matches
    the numbered accordion's items, and the same strings feed the FAQPage structured data. */
 export const pricingFaqs = [

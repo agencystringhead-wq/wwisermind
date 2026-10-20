@@ -235,7 +235,7 @@ export const includedCards: FitCard[] = [
   {
     icon: 'mail',
     title: 'Reporting',
-    body: 'Plain-English updates on rankings, traffic and enquiries, not a wall of numbers',
+    body: 'Clear updates on rankings, traffic and enquiries, not a wall of numbers',
   },
 ];
 
@@ -253,7 +253,7 @@ export const everyPlan = {
     'Custom 90-day strategy',
     'Keyword research & mapping',
     'Google Business Profile management',
-    'Plain-English monthly updates',
+    'Clear monthly updates',
     'No access to client data, ever',
     'You own everything we build',
   ],
@@ -346,7 +346,7 @@ export const whyCards: { title: string; body: string }[] = [
     body: 'We never need access to client records, and we never ask clients for reviews',
   },
   {
-    title: 'Plain-English reporting',
+    title: 'Clear reporting',
     body: 'You’ll know what we did and why it matters, without needing to learn SEO',
   },
   {

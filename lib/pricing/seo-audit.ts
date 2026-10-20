@@ -281,7 +281,7 @@ export const upsellPlans: UpsellPlan[] = localSeoPackages.flatMap((pkg) =>
 
 export const finalCta: FinalCta = {
   title: 'Know exactly what’s holding your site back',
-  sub: 'One flat fee. A plan in plain English. No obligation after.',
+  sub: 'One flat fee. A clear plan. No obligation after.',
   button: { label: `Order your audit for ${dollars}`, href: orderHref },
 };
 
