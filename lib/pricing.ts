@@ -56,10 +56,10 @@ export const pricingEntries: PricingEntry[] = [
     priceUnit: 'one-time',
     href: serviceHref('one-week-website'),
     image: {
-      src: '/images/wwisermind-built-for-mental-therapist-only.webp',
-      width: 1200,
-      height: 800,
-      alt: 'A therapist in session, the kind of practice the One Week Website is built for',
+      src: '/images/pricing/pricing-one-week-website.webp',
+      width: 1500,
+      height: 1000,
+      alt: 'A newly launched therapist website on a laptop beside a week planner with the last day starred',
     },
     // TODO: check these draft lines
     includes: [
@@ -79,10 +79,10 @@ export const pricingEntries: PricingEntry[] = [
     priceUnit: 'one-time',
     href: serviceHref('custom-website-design'),
     image: {
-      src: '/images/services/pexels-7495649.webp',
-      width: 1400,
-      height: 933,
-      alt: 'A designer working on a website layout',
+      src: '/images/pricing/pricing-custom-website-design.webp',
+      width: 1500,
+      height: 1000,
+      alt: 'A designer and a practice owner choosing between custom page proofs and swatches',
     },
     // TODO: check these draft lines
     includes: [
@@ -102,10 +102,10 @@ export const pricingEntries: PricingEntry[] = [
     priceUnit: '/mo',
     href: serviceHref('website-hosting'),
     image: {
-      src: '/images/services/pexels-6913727.webp',
-      width: 1400,
-      height: 933,
-      alt: 'A laptop showing a website on a desk',
+      src: '/images/pricing/pricing-website-hosting.webp',
+      width: 1500,
+      height: 1000,
+      alt: 'A practice website left running on the reception laptop after hours, a small green status light on',
     },
     // TODO: check these draft lines
     includes: [
@@ -127,10 +127,10 @@ export const pricingEntries: PricingEntry[] = [
        is linked from the Services menu. */
     href: routes.pricing.carePlans,
     image: {
-      src: '/images/services/pexels-4240571.webp',
-      width: 1400,
-      height: 933,
-      alt: 'A person reviewing a website on a laptop',
+      src: '/images/pricing/pricing-website-care-plans.webp',
+      width: 1500,
+      height: 1000,
+      alt: 'A therapist relaxing with tea and a book while her site is looked after',
     },
     // TODO: check these draft lines
     includes: [
@@ -149,10 +149,10 @@ export const pricingEntries: PricingEntry[] = [
     priceUnit: '/mo',
     href: serviceHref('local-seo'),
     image: {
-      src: '/images/services/pexels-3800149.webp',
-      width: 1400,
-      height: 933,
-      alt: 'A phone showing a map search',
+      src: '/images/pricing/pricing-local-seo.webp',
+      width: 1500,
+      height: 1000,
+      alt: 'A therapist outside his practice holding up a map with his practice at the top',
     },
     // TODO: check these draft lines
     includes: [
@@ -172,10 +172,10 @@ export const pricingEntries: PricingEntry[] = [
     priceUnit: 'one-time',
     href: serviceHref('seo-audit'),
     image: {
-      src: '/images/services/pexels-5196821.webp',
-      width: 1400,
-      height: 1082,
-      alt: 'A person reading a report at a desk',
+      src: '/images/pricing/pricing-seo-audit.webp',
+      width: 1500,
+      height: 1000,
+      alt: 'A printed site assessment with green, amber and red rows under a magnifying glass',
     },
     // TODO: check these draft lines
     includes: [
@@ -194,10 +194,10 @@ export const pricingEntries: PricingEntry[] = [
     priceUnit: 'one-time',
     href: serviceHref('one-time-seo'),
     image: {
-      src: '/images/services/pexels-7964254.webp',
-      width: 1400,
-      height: 933,
-      alt: 'A person working through a checklist on a laptop',
+      src: '/images/pricing/pricing-one-time-seo.webp',
+      width: 1500,
+      height: 1000,
+      alt: 'Hands closing a toolbox beside a fully ticked checklist, the job done once',
     },
     // TODO: check these draft lines
     includes: [
@@ -217,10 +217,10 @@ export const pricingEntries: PricingEntry[] = [
     priceUnit: '/mo',
     href: serviceHref('ongoing-seo'),
     image: {
-      src: '/images/services/pexels-4152788.webp',
-      width: 1400,
-      height: 933,
-      alt: 'A person reviewing search results on a laptop',
+      src: '/images/pricing/pricing-ongoing-seo.webp',
+      width: 1500,
+      height: 1000,
+      alt: 'Four pots on a windowsill showing the same plant growing month by month',
     },
     // TODO: check these draft lines
     includes: [

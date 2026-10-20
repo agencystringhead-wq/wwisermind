@@ -1,7 +1,6 @@
 import { routes } from '@/lib/routes';
 import type { PricingHeroData } from '@/components/pricing/LocalSeoHero';
 import type { ServiceIconName } from '@/components/ui/icons';
-import { getPricingEntry } from '@/lib/pricing';
 import { carePlansListing, carePlansPath, plans as carePlans } from '@/lib/pricing/care-plans';
 import {
   customWebsiteListing,
@@ -301,9 +300,13 @@ export const hyperGrowthHero: PricingHeroData = {
   note: `Plans from ${launchMonthly}`,
 };
 
-/* TODO: replace with a composite visual (a website, a map listing, a Meta ad and an AI answer
-   together). Until it exists the hero shows the Ongoing SEO card image from /pricing. */
-export const heroImage = getPricingEntry('ongoing-seo').image;
+/* Made for this page: a busy, calm group practice, the fuller calendar the plan is for. */
+export const heroImage = {
+  src: '/images/pricing/pricing-hyper-growth-hero.webp',
+  width: 1500,
+  height: 1000,
+  alt: 'A thriving group practice reception on a calm, busy morning',
+};
 
 /* TODO: fill in with real trust points once the owner has confirmed them. While the array
    is empty the strip is not rendered at all. */

@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import CtaLink from '@/components/booking/CtaLink';
-import { getPricingEntry } from '@/lib/pricing';
 import { siteConfig } from '@/lib/site';
 import SeeAllPrices from './SeeAllPrices';
 import styles from './Pricing.module.css';
@@ -11,12 +10,17 @@ const trust = [
   'Every price on the page',
 ];
 
-/** Frame 1. Two columns and nothing animates on entrance. The picture is the One Week
-    Website's own: the repo holds no screenshot of a finished site, so the closest existing
-    image stands in until one is made. It loads eagerly, being the largest thing above the
-    fold. */
+/** Frame 1. Two columns and nothing animates on entrance. The picture was made for this
+    page: one clear price sheet, nothing hidden. It loads eagerly, being the largest thing
+    above the fold. */
+const image = {
+  src: '/images/pricing/pricing-overview-hero.webp',
+  width: 1500,
+  height: 1000,
+  alt: 'A single clear pricing sheet on a therapist desk, nothing hidden',
+};
+
 export default function PricingHero() {
-  const { image } = getPricingEntry('one-week-website');
 
   return (
     <section className={styles.hero}>

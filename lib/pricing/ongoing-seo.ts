@@ -132,8 +132,7 @@ export const ongoingSeoHero: PricingHeroData = {
   secondary: { label: 'Get a free visibility check', href: routes.contact },
 };
 
-/* TODO: replace with /images/hero-serp.webp, a search results and AI answer mockup. Until it
-   exists the hero shows this package's card image from /pricing. */
+/* The hero shows this package's card image from /pricing, made for it. */
 export const heroImage = getPricingEntry('ongoing-seo').image;
 
 /* TODO: fill in with real trust points once the owner has confirmed them. While the array
@@ -149,9 +148,13 @@ export const problem = {
   button: { label: 'Show me where I rank', href: routes.contact },
 };
 
-/* TODO: replace with a real picture for this section. Until then it shows the SEO Audit
-   card's image from /pricing. */
-export const problemImage = getPricingEntry('seo-audit').image;
+/* Made for this section: a skilled therapist looking at a calendar with too many gaps. */
+export const problemImage = {
+  src: '/images/pricing/pricing-ongoing-seo-problem.webp',
+  width: 1020,
+  height: 680,
+  alt: 'A therapist looking at a mostly empty week of bookings on her laptop',
+};
 
 /* --- 3. why now ---------------------------------------------------------------------- */
 
