@@ -3373,18 +3373,18 @@ export const services: Service[] = [
 
     gallery: {
       tall: {
-        src: '/images/services/pexels-4031707.webp',
-        alt: 'A person waving at a laptop on a video call',
-        position: 'center 35%',
+        src: '/images/services/ai-chatbot/ai-chatbot-hero-answer-at-11pm.webp',
+        alt: 'A woman on her window seat late at night getting an answer from a practice chat',
+        position: 'center 30%',
       },
       mid: {
-        src: '/images/services/pexels-9159663.webp',
-        alt: 'A woman pointing at her laptop screen while talking',
-        position: 'center 35%',
+        src: '/images/services/ai-chatbot/ai-chatbot-hero-chat-to-booking.webp',
+        alt: 'A phone chat with a practice that ends in a booking card with a time chosen',
+        position: 'center center',
       },
       wide: {
-        src: '/images/services/pexels-4476608.webp',
-        alt: 'A woman in glasses talking on a headset at a computer',
+        src: '/images/services/ai-chatbot/ai-chatbot-hero-bookings-by-morning.webp',
+        alt: 'A therapist arriving in the morning to new consultation bookings on his laptop',
         position: 'center 35%',
       },
       accent: 'Answers at 11pm. Bookings by 9.',
@@ -3429,9 +3429,9 @@ export const services: Service[] = [
         {
           label: 'What it says',
           image: {
-            src: '/images/services/pexels-4031707.webp',
-            alt: 'A person waving at a laptop on a video call',
-            position: 'center 35%',
+            src: '/images/services/ai-chatbot/ai-chatbot-what-it-says.webp',
+            alt: 'A man asking about insurance and fees in the chat on a practice website',
+            position: 'center 30%',
           },
           heading: 'The questions in your inbox, answered from your facts.',
           paragraph:
@@ -3446,9 +3446,9 @@ export const services: Service[] = [
         {
           label: 'What it will not',
           image: {
-            src: '/images/services/pexels-9159663.webp',
-            alt: 'A woman pointing at her laptop screen while talking',
-            position: 'center 35%',
+            src: '/images/services/ai-chatbot/ai-chatbot-support-card.webp',
+            alt: 'A chat that shows a gentle support card pointing to a help line',
+            position: 'center center',
           },
           heading: 'No clinical advice, and a crisis line before anything else.',
           paragraph:
@@ -3463,9 +3463,9 @@ export const services: Service[] = [
         {
           label: 'Where it sends people',
           image: {
-            src: '/images/services/pexels-4476608.webp',
-            alt: 'A woman in glasses talking on a headset at a computer',
-            position: 'center 35%',
+            src: '/images/services/ai-chatbot/ai-chatbot-booking-confirmed.webp',
+            alt: 'A young woman on a park bench smiling at her booking confirmation',
+            position: 'center 30%',
           },
           heading: 'A consultation booked, or a question in your inbox.',
           paragraph:
@@ -3511,9 +3511,9 @@ export const services: Service[] = [
     whyChooseUs: {
       heading: 'A chatbot set up the way a practice needs it',
       image: {
-        src: '/images/services/pexels-9004759.webp',
-        alt: 'A woman on a sofa reading her phone',
-        position: 'center 30%',
+        src: '/images/services/ai-chatbot/ai-chatbot-practice-facts-sheet.webp',
+        alt: 'A practice owner and a consultant writing up the facts the chatbot may use',
+        position: 'center 35%',
       },
       cards: [
         {
@@ -3542,9 +3542,9 @@ export const services: Service[] = [
     process: {
       heading: 'How the chatbot gets set up',
       image: {
-        src: '/images/services/pexels-7195318.webp',
-        alt: 'A laptop on a video call beside a hand taking notes',
-        position: 'center 30%',
+        src: '/images/services/ai-chatbot/ai-chatbot-setup-approved-topics.webp',
+        alt: 'A chatbot setup screen with approved topics switched on and one blocked',
+        position: 'center center',
       },
       rows: [
         {
@@ -3605,8 +3605,8 @@ export const services: Service[] = [
     ],
     relatedSlugs: ['ai-website-design', 'website-care-plans', 'meta-ads'],
     tileImage: {
-      src: '/images/services/pexels-9159663.webp',
-      alt: 'A woman pointing at her laptop screen while talking',
+      src: '/images/services/ai-chatbot/ai-chatbot-hero-chat-to-booking.webp',
+      alt: 'A phone chat with a practice that ends in a booking card',
       position: 'center 35%',
     },
     seo: {
