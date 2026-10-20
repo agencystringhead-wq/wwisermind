@@ -1,4 +1,6 @@
 import type { ReactNode } from 'react';
+import CtaLink from '@/components/booking/CtaLink';
+import { routes } from '@/lib/routes';
 import { contactPage } from '@/lib/site';
 import { ExternalLinkIcon } from '@/components/ui/icons';
 import BackgroundVideo from '@/components/ui/BackgroundVideo';
@@ -107,9 +109,17 @@ export default function ContactHero({
         {children}
 
         <div className={styles.actions}>
-          <a href={hero.primary.href} className={styles.primary}>
-            {hero.primary.label}
-          </a>
+          {/* The full booking address opens the popup. The contact page's own `#book` stays a plain
+              anchor: it scrolls to the inline calendar on that page. */}
+          {hero.primary.href === routes.contactBook ? (
+            <CtaLink href={hero.primary.href} className={styles.primary}>
+              {hero.primary.label}
+            </CtaLink>
+          ) : (
+            <a href={hero.primary.href} className={styles.primary}>
+              {hero.primary.label}
+            </a>
+          )}
           {hero.secondary ? (
             <a href={hero.secondary.href} className={styles.secondary}>
               {hero.secondary.label}

@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import CtaLink from '@/components/booking/CtaLink';
 import { BreadcrumbJsonLd } from '@/components/ui/Breadcrumbs';
 import { routes } from '@/lib/routes';
 import { sitemapGroups, type SitemapLink } from '@/lib/sitemap';
@@ -14,9 +14,9 @@ function Links({ links }: { links: SitemapLink[] }) {
     <ul className={styles.list}>
       {links.map((item) => (
         <li key={item.href}>
-          <Link href={item.href} className={styles.link}>
+          <CtaLink href={item.href} className={styles.link}>
             {item.label}
-          </Link>
+          </CtaLink>
           {item.children && item.children.length > 0 ? (
             <Links links={item.children} />
           ) : null}
