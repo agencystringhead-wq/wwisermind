@@ -88,3 +88,39 @@
 /ai-website-design-for-therapists/ /services/ai-website-design-for-therapists/ 301
 /ai-chatbot-for-therapists /services/ai-chatbot-for-therapists/ 301
 /ai-chatbot-for-therapists/ /services/ai-chatbot-for-therapists/ 301
+
+# The old WordPress addresses, for the move to wwisermind.com. Specific pages first, then the
+# section catch-alls, because the first matching rule wins. /therapist-website-design is
+# already redirected above to the same page, so it is not repeated here.
+/contact-us /contact/ 301
+/contact-us/ /contact/ 301
+/solutions/website-advertisement/one-week-website /services/one-week-website-for-therapists/ 301
+/solutions/website-advertisement/one-week-website/ /services/one-week-website-for-therapists/ 301
+/solutions/website-advertisement/custom-website-design /services/custom-website-design-for-therapists/ 301
+/solutions/website-advertisement/custom-website-design/ /services/custom-website-design-for-therapists/ 301
+/solutions/website-advertisement/website-care-plans /services/wordpress-care-plans-for-therapists/ 301
+/solutions/website-advertisement/website-care-plans/ /services/wordpress-care-plans-for-therapists/ 301
+/solutions/website-advertisement/meta-ads /services/meta-ads-for-therapists/ 301
+/solutions/website-advertisement/meta-ads/ /services/meta-ads-for-therapists/ 301
+/solutions/online-marketing/seo-services /services/seo-for-therapists/ 301
+/solutions/online-marketing/seo-services/ /services/seo-for-therapists/ 301
+/solutions/online-marketing/google-business-profile-optimization /services/local-seo-for-therapists/ 301
+/solutions/online-marketing/google-business-profile-optimization/ /services/local-seo-for-therapists/ 301
+/solutions/online-marketing/copyrighting /services/copywriting-for-therapists/ 301
+/solutions/online-marketing/copyrighting/ /services/copywriting-for-therapists/ 301
+/solutions/online-marketing/ai-chatbot /services/ai-chatbot-for-therapists/ 301
+/solutions/online-marketing/ai-chatbot/ /services/ai-chatbot-for-therapists/ 301
+/solutions/* /services/ 301
+/explore/faqs /faq/ 301
+/explore/faqs/ /faq/ 301
+/explore/testimonials /reviews/ 301
+/explore/testimonials/ /reviews/ 301
+/explore/freebies/email-signature /freebies/email-signature-for-therapists/ 301
+/explore/freebies/email-signature/ /freebies/email-signature-for-therapists/ 301
+/explore/freebies/business-card /freebies/business-card-template-for-therapists/ 301
+/explore/freebies/business-card/ /freebies/business-card-template-for-therapists/ 301
+/explore/freebies/social-media-template /freebies/social-media-posts-for-therapists/ 301
+/explore/freebies/social-media-template/ /freebies/social-media-posts-for-therapists/ 301
+/explore/freebies/* /freebies/ 301
+/explore /blog/ 301
+/explore/ /blog/ 301

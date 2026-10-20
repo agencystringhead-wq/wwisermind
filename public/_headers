@@ -1,8 +1,9 @@
 # Cloudflare Pages headers.
-# The pages.dev address and preview deployments serve the same build as wwisermind.com.
-# Keep them out of search results so only the real domain is indexed.
-https://:project.pages.dev/*
+# The pages.dev address and its preview deployments serve the same build as wwisermind.com.
+# Keep them out of search results so only the real domain is indexed. wwisermind.com itself
+# gets no noindex.
+https://wwisermind.pages.dev/*
   X-Robots-Tag: noindex
 
-https://:version.:project.pages.dev/*
+https://:version.wwisermind.pages.dev/*
   X-Robots-Tag: noindex
