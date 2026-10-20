@@ -302,13 +302,21 @@ export const megaPanels: Record<string, MegaPanel> = {
       {
         lead: 'Free',
         title: 'Free Resources',
-        /* The same list, in the same order, as the /freebies/ hub. */
-        links: freebieList.map((freebie) => ({
-          label: freebie.title,
-          href: freebiePath(freebie),
-          desc: freebie.typeLabel,
-          ...(freebie.status === 'comingSoon' ? { badge: 'Soon' } : {}),
-        })),
+        /* The same list, in the same order, as the /freebies/ hub, then the helpline directory: the
+           panel has three columns, so the directory sits at the end of this one. */
+        links: [
+          ...freebieList.map((freebie) => ({
+            label: freebie.title,
+            href: freebiePath(freebie),
+            desc: freebie.typeLabel,
+            ...(freebie.status === 'comingSoon' ? { badge: 'Soon' } : {}),
+          })),
+          {
+            label: 'Crisis Resources by State',
+            href: routes.tools.crisisResources,
+            desc: 'Free helpline directory',
+          },
+        ],
       },
     ],
     feature: {
@@ -976,6 +984,7 @@ export const footerMain = {
         { label: 'AI Search Optimization', href: serviceHref('ai-search-optimization') },
         { label: 'AI Chatbot', href: serviceHref('ai-chatbot') },
         { label: 'Local Map Assessment', href: routes.homeSection('local-map-assessment') },
+        { label: 'Crisis Resources by State', href: routes.tools.crisisResources },
       ],
     },
   ],

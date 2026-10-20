@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "images": "node scripts/convert-images.mjs",
-    "guide:pdf": "node scripts/guides/full-caseload-plan/build-pdf.mjs"
+    "guide:pdf": "node scripts/guides/full-caseload-plan/build-pdf.mjs",
+    "predev": "node scripts/build-crisis-data.mjs",
+    "prebuild": "node scripts/build-crisis-data.mjs"
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",

@@ -5,7 +5,13 @@ import { useId, useRef, useState, type KeyboardEvent } from 'react';
 import { CheckIcon } from './icons';
 import styles from './Accordion.module.css';
 
-export type AccordionItem = { title: string; body: string; link?: { label: string; href: string } };
+export type AccordionItem = {
+  title: string;
+  body: string;
+  /** A short numbered list under the body, for how-to rows. */
+  steps?: string[];
+  link?: { label: string; href: string };
+};
 
 /**
  * One list of disclosures, one open at a time.
@@ -116,6 +122,13 @@ export default function Accordion({
                 aria-labelledby={buttonId}
               >
                 <p className={styles.body}>{item.body}</p>
+                {item.steps && item.steps.length > 0 ? (
+                  <ol className={styles.steps}>
+                    {item.steps.map((step) => (
+                      <li key={step}>{step}</li>
+                    ))}
+                  </ol>
+                ) : null}
                 {item.link ? (
                   <Link href={item.link.href} className={styles.bodyLink}>
                     {item.link.label}

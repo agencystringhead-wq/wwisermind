@@ -7,6 +7,7 @@ import { metadata as processMeta } from '@/app/process/page';
 import { metadata as resultsMeta } from '@/app/results/page';
 import { metadata as reviewsMeta } from '@/app/reviews/page';
 import { metadata as servicesMeta } from '@/app/services/page';
+import { metadata as crisisMeta } from '@/app/tools/crisis-resources/page';
 import { freebiePath, freebies, hubMeta, isLive } from '@/lib/freebies';
 import { AUDIENCE_SLUGS } from '@/lib/audience-slugs';
 import { getAudience } from '@/lib/audiences';
@@ -85,7 +86,14 @@ export function GET() {
       entries: (megaPanels.Tools?.columns ?? [])
         .filter((column) => column.lead !== 'Free')
         .flatMap((column) => column.links)
-        .map((link) => ({ name: link.label, path: link.href, description: link.desc })),
+        .map((link) => ({ name: link.label, path: link.href, description: link.desc }))
+        .concat([
+          {
+            name: 'Crisis Resources by State',
+            path: routes.tools.crisisResources,
+            description: crisisMeta.description ?? '',
+          },
+        ]),
     },
     {
       title: 'Company',

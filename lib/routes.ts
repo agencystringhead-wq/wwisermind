@@ -144,6 +144,9 @@ export const routes = {
   tools: {
     aiVisibilityReport: FREEBIE_PATHS['ai-visibility-report'],
     websiteScorecard: FREEBIE_PATHS['website-scorecard-for-therapists'],
+    /** The public helpline directory, and the install page for the help now widget. */
+    crisisResources: '/tools/crisis-resources/',
+    helpNowWidget: '/tools/crisis-resources/help-now-widget/',
   },
 
   /* The footer's bottom row. The legal pages share one template (components/legal/LegalPage.tsx)
@@ -160,6 +163,8 @@ export const routes = {
   blogPost: (slug: string): Route => `/blog/${slug}/`,
   /** `/blog/category/<slug>/` */
   blogCategory: (slug: string): Route => `/blog/category/${slug}/`,
+  /** `/tools/crisis-resources/<state>/`, the state's full lowercase name. */
+  crisisState: (slug: string): Route => `/tools/crisis-resources/${slug}/`,
   /** `/who-we-help/<slug>/` */
   audience: (slug: string): Route => `/who-we-help/${slug}/`,
 

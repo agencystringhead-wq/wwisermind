@@ -7,3 +7,13 @@ https://wwisermind.pages.dev/*
 
 https://:version.wwisermind.pages.dev/*
   X-Robots-Tag: noindex
+
+# The help now widget and its data are loaded by therapists' own websites, so they allow any
+# origin to read them. One hour of caching keeps updates reaching sites within the hour.
+/data/crisis-resources.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+
+/widget/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
