@@ -13,11 +13,9 @@ export type NavItem = {
 
 export const siteConfig = {
   name: 'Wisermind',
-  /* The origin the canonical URLs and the service pages' structured data point at. The
-     Pages address for now: wwisermind.com still serves the old WordPress site, so a
-     canonical there would point search engines at a page that 404s. Switch back to
-     https://wwisermind.com when the domain moves onto Pages. */
-  url: 'https://wwisermind.pages.dev',
+  /* The origin the canonical URLs, sitemap and structured data point at. The site is live on
+     the real domain, so this is the one address search engines should index. */
+  url: 'https://wwisermind.com',
   bookingUrl: '#book',
   /* A real route now, not an on-page anchor — the header's "Contact Us" is the way in to
      /contact from every page. The booking anchor above stays an in-page target. */
