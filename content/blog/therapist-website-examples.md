@@ -5,8 +5,8 @@ category: Website platforms
 publishedAt: 2026-10-21
 updatedAt: 2026-10-21
 author: SrikaantH
-image: /images/blog/therapist-website-examples/shore-therapy-center.webp
-imageAlt: The Shore Therapy Center for Wellness homepage, headed "Therapy for Burnout in Chicago & Online"
+image: /images/blog/featured/therapist-website-examples.webp
+imageAlt: A desk with a laptop, tablet and phone showing three calm therapist website layouts
 ---
 Most "best therapist websites" lists focus on color palettes and pretty photos. Those matter a little. But the websites that actually fill caseloads tend to share less glamorous traits: they say clearly who they help, they're honest about fees, and they make booking easy for someone who's nervous.
 

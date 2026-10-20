@@ -5,8 +5,8 @@ category: Running your practice
 publishedAt: 2026-10-21
 updatedAt: 2026-10-21
 author: SrikaantH
-image: /images/blog/blog-small-practice-big-platforms.webp
-imageAlt: A small, warm therapy practice between two large glass towers
+image: /images/blog/featured/how-to-get-more-therapy-clients.webp
+imageAlt: A warm, empty therapy office in morning light with the door slightly open
 ---
 If your caseload has thinned out this year, you're in good company. In the [2026 Clinician Well-Being Study](https://www.simplepractice.com/resource/2026-clinician-well-being-study/) from SimplePractice and Heard, clinicians named marketing and client acquisition as the most stressful part of running a practice, ahead of taxes and documentation.
 

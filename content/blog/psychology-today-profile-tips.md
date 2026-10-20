@@ -5,8 +5,8 @@ category: Search and trust
 publishedAt: 2026-10-21
 updatedAt: 2026-10-21
 author: SrikaantH
-image: /images/blog/blog-ymyl-eeat-credentials.webp
-imageAlt: A therapist straightening her framed licence on the wall of her office
+image: /images/blog/featured/psychology-today-profile-tips.webp
+imageAlt: A therapist arranging a headshot beside a directory profile layout on a laptop
 ---
 For years, a Psychology Today profile was the easiest way for a therapist to get found. For many, it still is. But over the past couple of years, therapists in forums and consultation groups have described their inquiries slowing down, sometimes sharply, and they're understandably asking what changed and what they can do about it.
 
