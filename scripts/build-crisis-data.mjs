@@ -3,7 +3,9 @@
 
    Copies the file to public/data/crisis-resources.json and drops every entry marked
    `needsCheck: true` (national and state), so nothing unverified is ever public. The copy is
-   generated, so it is gitignored. Runs before `dev` and `build` (see package.json). */
+   generated but COMMITTED: Cloudflare's build did not run the `prebuild` hook, so a gitignored copy
+   never shipped. Runs before `dev` and `build` (see package.json), so a local build refreshes it;
+   commit the result whenever lib/crisis-resources.json changes. */
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
