@@ -155,20 +155,10 @@ export type LocalSeoPackage = {
   price?: number;
   priceLabel?: string;
   suffix?: string;
-  /** A yearly price: the list monthly price struck through, the yearly price spread over 12
-      months, what it is billed at, and the saving. Replaces the plain price block. */
-  annual?: {
-    listMonthly: number;
-    effectiveMonthly: number;
-    annualPrice: number;
-    savings: number;
-    /** "Billed $14,999 yearly" */
-    billed: string;
-    /** "Save $2,989 a year" */
-    save: string;
-    /** The whole price said in one sentence, for a screen reader. */
-    spoken: string;
-  };
+  /** The whole price said in one sentence, for a screen reader ("$1,250 per month, billed
+      monthly"). When set, the printed figure and note are hidden from assistive technology so
+      the price is not read twice. */
+  spoken?: string;
   /** A small line under the price, such as "12-month commitment". */
   priceNote?: string;
   /** Replaces the price line on a quoted card. */

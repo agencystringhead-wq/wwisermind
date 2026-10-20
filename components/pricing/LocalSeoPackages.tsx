@@ -42,31 +42,6 @@ const dollars = (price: number) => `$${price.toLocaleString('en-US')}`;
     a suffix has no label line and a shorter block; when any card in the grid has a line under
     its price, every flat block reserves room for it. */
 function PriceBlock({ pkg, reserveNote }: { pkg: LocalSeoPackage; reserveNote: boolean }) {
-  if (pkg.annual) {
-    const { annual } = pkg;
-    return (
-      <div className={`${styles.pkgPrice} ${styles.pkgPriceAnnual}`}>
-        <p className="sr-only">{annual.spoken}</p>
-        <p className={styles.pkgPriceList} aria-hidden="true">
-          <s>
-            {dollars(annual.listMonthly)}
-            {pkg.suffix}
-          </s>
-        </p>
-        <p className={styles.pkgPriceBig} aria-hidden="true">
-          {dollars(annual.effectiveMonthly)}
-          <small>{pkg.suffix}</small>
-        </p>
-        <p className={styles.pkgPriceBilled} aria-hidden="true">
-          {annual.billed}
-        </p>
-        <p className={styles.pkgSave} aria-hidden="true">
-          {annual.save}
-        </p>
-      </div>
-    );
-  }
-
   if (pkg.customPrice) {
     return (
       <div className={`${styles.pkgPrice} ${styles.pkgPriceQuoted}`}>
@@ -78,14 +53,22 @@ function PriceBlock({ pkg, reserveNote }: { pkg: LocalSeoPackage; reserveNote: b
 
   const flat = pkg.priceLabel ? '' : reserveNote ? styles.pkgPriceFlatNoted : styles.pkgPriceFlat;
 
+  /* With a spoken sentence the printed figure and note are hidden from a screen reader. */
+  const hidden = pkg.spoken ? true : undefined;
+
   return (
     <div className={`${styles.pkgPrice} ${flat}`}>
+      {pkg.spoken ? <p className="sr-only">{pkg.spoken}</p> : null}
       {pkg.priceLabel ? <p className={styles.pkgPriceNote}>{pkg.priceLabel}</p> : null}
-      <p className={styles.pkgPriceBig}>
+      <p className={styles.pkgPriceBig} aria-hidden={hidden}>
         {pkg.price !== undefined ? dollars(pkg.price) : null}
         <small>{pkg.suffix}</small>
       </p>
-      {pkg.priceNote ? <p className={styles.pkgPriceFoot}>{pkg.priceNote}</p> : null}
+      {pkg.priceNote ? (
+        <p className={styles.pkgPriceFoot} aria-hidden={hidden}>
+          {pkg.priceNote}
+        </p>
+      ) : null}
     </div>
   );
 }
@@ -114,7 +97,7 @@ export default function LocalSeoPackages({
   terms?: string | string[];
   more?: LineSegment[];
   columns?: 2 | 3;
-  /** A slim pill under the heading, such as "Available on yearly plans only". */
+  /** A slim pill under the heading, such as "Billed monthly". */
   notice?: string;
 }) {
   const reserveNote = packages.some((pkg) => pkg.priceNote);
@@ -138,7 +121,7 @@ export default function LocalSeoPackages({
 
         <ul
           className={`${styles.pkgGrid} ${columns === 2 ? styles.pkgGridTwo : ''} ${
-            packages.some((pkg) => pkg.annual) ? styles.pkgGridAnnual : ''
+            packages.some((pkg) => pkg.spoken) ? styles.pkgGridEven : ''
           }`}
         >
           {packages.map((pkg) => {

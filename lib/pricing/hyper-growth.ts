@@ -25,16 +25,16 @@ import {
 import { ongoingListing, ongoingSeoPath, plans as ongoingPlans } from '@/lib/pricing/ongoing-seo';
 
 /* ==========================================================================
-   /pricing/hyper-growth-marketing-for-therapists/: the all-in-one yearly plan.
+   /pricing/hyper-growth-marketing-for-therapists/: the all-in-one monthly plan.
 
    Four things in one plan: a custom website designed by hand, a WordPress care plan, ongoing
    marketing (SEO, AEO, GEO, local SEO, location pages, on-page and off-page work) and Meta
-   ads management. Billed yearly only.
+   ads management. Billed monthly, with a 12-month minimum term.
 
    Same pattern as the other pricing data files: every word and figure on the page is read
-   from here, and the components only render it. Each plan stores its list monthly price and
-   its yearly price; the effective monthly price and the yearly saving are computed from them
-   and never typed.
+   from here, and the components only render it. Each plan stores its monthly price; everything
+   printed from it (the card, the screen-reader sentence, the structured data and the "built
+   from" line) is computed from that one number and never typed.
 
    Product names, tiers, links and the website timelines are read from the custom website,
    care plans, Local SEO and Ongoing SEO data files. A reference that cannot be found there
@@ -62,7 +62,8 @@ const COPY_LEAD = 'Included, up to 10 pages';
    above. */
 const COPY_FAQ =
   'Copywriting for up to 10 pages is included on Lead. On Launch and Accelerate it is available as an add-on. Our copywriter interviews you and writes pages that sound like you.';
-/* TODO: what happens at the end of the year. The question is left out while this is empty. */
+/* TODO: what happens at the end of the 12-month term. The question is left out while this is
+   empty. */
 const RENEWAL_TERMS = '';
 /* TODO: how cancelling works. The question is left out while this is empty. */
 const CANCELLATION_TERMS = '';
@@ -113,8 +114,8 @@ type PlanDef = {
   name: string;
   icon: 'rocket' | 'speedometer' | 'flag';
   description: string;
-  listMonthly: number;
-  annualPrice: number;
+  /** Dollars a month, billed monthly. */
+  monthlyPrice: number;
   featured?: boolean;
   tag?: string;
   sectionLabel: string;
@@ -130,8 +131,7 @@ const planDefs: PlanDef[] = [
     name: 'Launch',
     icon: 'rocket',
     description: 'Ideal for: solo and small practices ready to grow beyond referrals.',
-    listMonthly: 1499,
-    annualPrice: 14999,
+    monthlyPrice: 1250,
     sectionLabel: 'Package Details',
     rows: compact([
       refRow('Website', customSite, ', designed by hand'),
@@ -162,8 +162,7 @@ const planDefs: PlanDef[] = [
     name: 'Accelerate',
     icon: 'speedometer',
     description: 'Ideal for: growing practices adding clinicians or competing in a busy city.',
-    listMonthly: 2499,
-    annualPrice: 24999,
+    monthlyPrice: 1995,
     featured: true,
     tag: 'Most popular',
     sectionLabel: 'Everything in Launch, plus:',
@@ -204,8 +203,7 @@ const planDefs: PlanDef[] = [
     name: 'Lead',
     icon: 'flag',
     description: 'Ideal for: group practices that want to lead their area or specialty.',
-    listMonthly: 3499,
-    annualPrice: 34999,
+    monthlyPrice: 2499,
     sectionLabel: 'Everything in Accelerate, plus:',
     sectionPlus: true,
     rows: compact([
@@ -244,16 +242,9 @@ const planDefs: PlanDef[] = [
 /** The words around the price on each card, so the components print no copy of their own. */
 export const priceCopy = {
   perMonth: '/mo',
-  billed: (annualPrice: number) => `Billed ${money(annualPrice)} yearly`,
-  save: (savings: number) => `Save ${money(savings)} a year`,
-  usually: (listMonthly: number, effective: number) =>
-    `Usually ${money(listMonthly)} per month, now ${money(effective)} per month billed yearly`,
+  billed: 'Billed monthly. 12-month minimum term.',
+  spoken: (monthlyPrice: number) => `${money(monthlyPrice)} per month, billed monthly`,
 };
-
-/** The yearly price spread over 12 months, and what the yearly price saves against paying the
-    list monthly price for 12 months. Both computed, never typed. */
-const effectiveMonthly = (plan: PlanDef) => Math.round(plan.annualPrice / 12);
-const annualSavings = (plan: PlanDef) => plan.listMonthly * 12 - plan.annualPrice;
 
 /** The cards, in the shape the shared package grid takes. */
 export const plans: LocalSeoPackage[] = planDefs.map((plan) => ({
@@ -263,33 +254,28 @@ export const plans: LocalSeoPackage[] = planDefs.map((plan) => ({
   description: plan.description,
   featured: Boolean(plan.featured),
   tag: plan.tag,
-  price: effectiveMonthly(plan),
-  suffix: '/mo',
-  annual: {
-    listMonthly: plan.listMonthly,
-    effectiveMonthly: effectiveMonthly(plan),
-    annualPrice: plan.annualPrice,
-    savings: annualSavings(plan),
-    billed: priceCopy.billed(plan.annualPrice),
-    save: priceCopy.save(annualSavings(plan)),
-    spoken: priceCopy.usually(plan.listMonthly, effectiveMonthly(plan)),
-  },
+  price: plan.monthlyPrice,
+  suffix: priceCopy.perMonth,
+  priceNote: priceCopy.billed,
+  spoken: priceCopy.spoken(plan.monthlyPrice),
   sectionLabel: plan.sectionLabel,
   sectionPlus: plan.sectionPlus,
   rows: plan.rows,
   cta: { label: 'Get started', href: `/contact?plan=hyper-${plan.id}` },
 }));
 
-/** The Offers for structured data: the yearly price, per year. */
+/** The Offers for structured data: the monthly price, billed monthly. */
 export const offers = planDefs.map((plan) => ({
   name: plan.name,
-  price: plan.annualPrice,
-  description: `Yearly plan: a custom website, a care plan, SEO, AI search, location pages and Meta ads for therapy practices, run by one team.`,
+  price: plan.monthlyPrice,
+  description: `Monthly plan with a 12-month minimum term: a custom website, a care plan, SEO, AI search, location pages and Meta ads for therapy practices, run by one team.`,
 }));
-export const offerUnitText = 'per year';
+export const offerUnitText = 'per month';
+/** ISO 8601 duration of one billing period, for the Offers. */
+export const offerBillingDuration = 'P1M';
 
 const launch = planDefs[0];
-const launchMonthly = `${money(effectiveMonthly(launch))}/mo`;
+const launchMonthly = `${money(launch.monthlyPrice)}/mo`;
 
 /* --- SEO ----------------------------------------------------------------------------- */
 
@@ -298,21 +284,21 @@ const title = `Hyper Growth Marketing Pricing for Therapists | From ${launchMont
 
 export const hyperGrowthMeta = {
   title,
-  description: `A custom website, care plan, SEO, AI search, location pages and Meta ads for therapy practices, run by one team. Yearly plans from ${launchMonthly}.`,
+  description: `A custom website, care plan, SEO, AI search, location pages and Meta ads for therapy practices, run by one team. Monthly plans from ${launchMonthly}.`,
 };
 
 export const serviceName = 'Hyper Growth Marketing for therapists';
-export const serviceDescription = `An all-in-one yearly plan for therapy practices: a custom website designed by hand, a WordPress care plan, SEO, AI search, local SEO, location pages and Meta ads, run by one team. Yearly plans from ${launchMonthly}.`;
+export const serviceDescription = `An all-in-one monthly plan for therapy practices: a custom website designed by hand, a WordPress care plan, SEO, AI search, local SEO, location pages and Meta ads, run by one team. Monthly plans from ${launchMonthly}.`;
 
 /* --- 1. hero ------------------------------------------------------------------------- */
 
 export const hyperGrowthHero: PricingHeroData = {
   eyebrow: 'Hyper Growth Marketing',
   title: 'Your website, its care and your marketing, all in one plan',
-  sub: 'A custom website designed by hand, looked after every month, and marketed properly with SEO, AI search, location pages and Meta ads. One team, one yearly plan. You focus on clients. We fill the calendar.',
+  sub: 'A custom website designed by hand, looked after every month, and marketed properly with SEO, AI search, location pages and Meta ads. One team, one monthly plan. You focus on clients. We fill the calendar.',
   primary: { label: 'See plans', href: '#plans' },
   secondary: { label: 'Book a free growth call', href: routes.contactBook },
-  note: `Yearly plans from ${launchMonthly}`,
+  note: `Plans from ${launchMonthly}`,
 };
 
 /* TODO: replace with a composite visual (a website, a map listing, a Meta ad and an AI answer
@@ -390,7 +376,7 @@ export const fitCards: FitCard[] = [
   {
     icon: 'clipboard',
     title: 'You want one clear number',
-    body: 'A single yearly price and one team accountable for results',
+    body: 'A single monthly price and one team accountable for results',
   },
 ];
 
@@ -407,7 +393,8 @@ export const plansCopy = {
   sub: 'Every plan includes a custom website, a care plan, ongoing marketing and Meta ads. Higher plans go deeper on each.',
 };
 
-export const annualNotice = 'Available on yearly plans only. Pay once a year and save.';
+export const billingNotice =
+  'Billed monthly, with a 12-month minimum term because your custom website is built in the first months.';
 
 export const everyPlan = {
   title: 'Included in every plan',
@@ -424,7 +411,7 @@ export const everyPlan = {
 };
 
 export const finePrint: string[] = [
-  'Plans are billed yearly, upfront. Monthly prices shown are the yearly price divided by 12.',
+  "Plans are billed monthly in advance, with a 12-month minimum term. After 12 months, continue month to month and cancel with 30 days' notice.",
   'Ad spend is paid directly to Meta and isn’t included in the plan price.',
 ];
 
@@ -490,7 +477,7 @@ export type InsideColumn = {
   name: string;
   featured: boolean;
   items: { label: string; detail: string; href?: string }[];
-  /** "Hyper Growth: $1,250/mo, billed yearly", from the computed price. */
+  /** "Hyper Growth: $1,250/mo, billed monthly", from the plan's price. */
   priceLine: string;
 };
 
@@ -499,7 +486,7 @@ export const inside: InsideColumn[] = planDefs.map((plan) => ({
   name: plan.name,
   featured: Boolean(plan.featured),
   items: plan.products,
-  priceLine: `Hyper Growth: ${money(effectiveMonthly(plan))}/mo, billed yearly`,
+  priceLine: `Hyper Growth: ${money(plan.monthlyPrice)}/mo, billed monthly`,
 }));
 
 /* --- 7. process ---------------------------------------------------------------------- */
@@ -602,8 +589,6 @@ export const hyperGrowthFaqCopy = {
   sub: 'The things practices ask before they start.',
 };
 
-const launchSavings = money(annualSavings(launch));
-
 const named = (ref: Ref | null, fallback: string) => ref?.name ?? fallback;
 
 const allFaqs: FaqItem[] = [
@@ -613,7 +598,7 @@ const allFaqs: FaqItem[] = [
   },
   {
     title: 'Can I pay monthly?',
-    body: `Hyper Growth is available on yearly plans only. Paying for the year upfront is what lets us design your custom website and commit a team to your practice, and it saves you ${launchSavings} or more compared with the usual monthly price.`,
+    body: "Yes. All Hyper Growth plans are billed monthly. There's a 12-month minimum term, because we design and build your custom website in the first two months. After that, you can stay month to month and cancel with 30 days' notice.",
   },
   {
     title: 'Do I get a new website?',
@@ -641,8 +626,8 @@ const allFaqs: FaqItem[] = [
     body: 'We never need access to client records. We keep ad pixels off pages where people submit contact or booking details, and we only use tracking that tells us where enquiries came from, not who someone is.',
   },
   {
-    title: 'Can I upgrade during the year?',
-    body: 'Yes. Upgrade any time and we’ll credit what’s left on your current plan toward the new one. Changes to a lower plan take effect at renewal.',
+    title: 'Can I change plans?',
+    body: 'Yes. You can move up a plan at any time and the new price starts from your next bill. Moving down is possible after your first 12 months.',
   },
   { title: 'What happens at the end of the year?', body: RENEWAL_TERMS },
   { title: 'What if I need to cancel?', body: CANCELLATION_TERMS },
@@ -671,7 +656,7 @@ export const finalCta: FinalCta = {
 /** How the other pages list this one, so a price changed above changes there. */
 export const hyperGrowthListing = {
   name: 'Hyper Growth Marketing',
-  price: `from ${money(effectiveMonthly(launch))}`,
-  unit: '/mo, billed yearly',
+  price: `from ${money(launch.monthlyPrice)}`,
+  unit: '/mo, billed monthly',
   href: hyperGrowthPath,
 };

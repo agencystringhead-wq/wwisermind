@@ -1,7 +1,7 @@
 import { siteConfig } from '@/lib/site';
 import {
   PRICE_CURRENCY,
-  annualNotice,
+  billingNotice,
   everyPlan,
   finalCta,
   finePrint,
@@ -15,6 +15,7 @@ import {
   hyperGrowthPath,
   inside,
   insideCopy,
+  offerBillingDuration,
   offerUnitText,
   offers,
   pillars,
@@ -48,13 +49,13 @@ import PricingWhy from './PricingWhy';
 import PricingCrumbs from './PricingCrumbs';
 
 /**
- * /pricing/hyper-growth. The all-in-one yearly plan. The hero, check grid, package grid,
+ * /pricing/hyper-growth. The all-in-one monthly plan. The hero, check grid, package grid,
  * timeline, numbered cards, results, FAQ and CTA are shared with the other pricing pages, fed
  * from lib/pricing/hyper-growth.ts. The four bundle cards, the visibility cards and the
  * "What's inside" columns are new.
  *
  * Structured data: FAQPage from the strings the accordion prints, and a Service with three
- * yearly Offers built from the same prices as the cards.
+ * monthly Offers built from the same prices as the cards.
  */
 export default function HyperGrowthPage() {
   const url = `${siteConfig.url}${hyperGrowthPath}`;
@@ -90,6 +91,7 @@ export default function HyperGrowthPage() {
         price: offer.price,
         priceCurrency: PRICE_CURRENCY,
         unitText: offerUnitText,
+        billingDuration: offerBillingDuration,
       },
       url: `${url}#plans`,
     })),
@@ -111,7 +113,7 @@ export default function HyperGrowthPage() {
         packages={plans}
         every={everyPlan}
         terms={finePrint}
-        notice={annualNotice}
+        notice={billingNotice}
       />
       <HyperGrowthVisibility copy={visibilityCopy} cards={visibilityCards} tone="white" />
       <HyperGrowthInside copy={insideCopy} columns={inside} tone="grey" />

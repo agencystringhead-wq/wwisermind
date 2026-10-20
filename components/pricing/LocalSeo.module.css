@@ -506,56 +506,13 @@
   font-size: 15px;
 }
 
-/* A yearly price: four lines at fixed heights, so the figure and the pill sit at the same
-   place on every card. */
-/* Four lines of description are reserved above a yearly price, so the price block starts at the
-   same place on every card even when one description is shorter. */
+/* Four lines of description are reserved above the price on a grid whose cards say their price
+   in a sentence (Hyper Growth), so the price block starts at the same place on every card even
+   when one description is shorter. */
 @media (min-width: 1024px) {
-  .pkgGridAnnual .pkgFor {
+  .pkgGridEven .pkgFor {
     min-height: 6em;
   }
-}
-
-.pkgPriceAnnual {
-  min-height: 150px;
-}
-
-.pkgPriceList {
-  height: 22px;
-  color: var(--color-muted);
-  font-size: 15px;
-  line-height: 22px;
-  opacity: 0.8;
-}
-
-.pkgPriceList s {
-  text-decoration-thickness: 1px;
-}
-
-.pkgPriceAnnual .pkgPriceBig {
-  margin-top: 0;
-  height: 50px;
-}
-
-.pkgPriceBilled {
-  height: 20px;
-  margin-top: 4px;
-  color: var(--color-muted);
-  font-size: 14px;
-  line-height: 20px;
-}
-
-.pkgSave {
-  display: inline-block;
-  height: 28px;
-  margin-top: 10px;
-  padding-inline: 12px;
-  border-radius: var(--radius-pill);
-  background-color: var(--color-yellow);
-  color: var(--color-ink);
-  font-size: 13px;
-  font-weight: var(--fw-semibold);
-  line-height: 28px;
 }
 
 .notice {
@@ -622,8 +579,6 @@
 
 .pkgFeatured .pkgFor,
 .pkgFeatured .pkgPriceNote,
-.pkgFeatured .pkgPriceList,
-.pkgFeatured .pkgPriceBilled,
 .pkgFeatured .pkgPriceFoot,
 .pkgFeatured .pkgCtaNote,
 .pkgFeatured .pkgPriceBig small {

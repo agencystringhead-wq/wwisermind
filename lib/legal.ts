@@ -253,8 +253,7 @@ export const termsAndConditions: LegalDoc = {
           list: [
             'One-time projects: paid as set out in your proposal, usually a deposit to book your slot and the balance before launch.',
             'Monthly plans: billed in advance each month.',
-            'Annual plans (for example Hyper Growth Marketing): billed yearly in advance.',
-            'Plans with a set commitment (for example the One-Week Website on the 12-month monthly option): you agree to pay for the full commitment period.',
+            'Plans with a minimum term (for example Hyper Growth Marketing, 12 months, or the One-Week Website on the 12-month monthly option): billed monthly, and you agree to pay for the full minimum term.',
           ],
         },
         "Invoices are due within 7 days. If a payment is more than 14 days late we may pause work until it's settled.",
@@ -264,7 +263,7 @@ export const termsAndConditions: LegalDoc = {
       id: 'cancelling',
       heading: '6. Contracts and cancelling',
       body: [
-        "Most monthly plans have no long-term contract. You can cancel with 30 days' written notice by emailing admin@wwisermind.com. The exceptions are plans that say they have a fixed term or are paid annually; those run for the term you signed up for. Fees already paid for work we've started or months already begun aren't refundable, unless the law says otherwise.",
+        "Most monthly plans have no long-term contract. You can cancel with 30 days' written notice by emailing admin@wwisermind.com. The exceptions are plans that say they have a fixed or minimum term; those run for the term you signed up for. Fees already paid for work we've started or months already begun aren't refundable, unless the law says otherwise.",
       ],
     },
     {
