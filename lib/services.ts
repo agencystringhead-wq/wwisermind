@@ -3125,19 +3125,19 @@ export const services: Service[] = [
 
     gallery: {
       tall: {
-        src: '/images/services/pexels-4099096.webp',
-        alt: 'A woman with a coffee talking at her laptop in a kitchen',
-        position: 'center 35%',
+        src: '/images/services/ai-website-design/ai-website-hero-designer-refining.webp',
+        alt: 'A designer refining one AI-drafted layout by hand on a drawing tablet',
+        position: 'center 30%',
       },
       mid: {
-        src: '/images/services/pexels-28461053.webp',
-        alt: 'A desk with a monitor, plants and a lamp in a home office',
-        position: 'center 35%',
+        src: '/images/services/ai-website-design/ai-website-hero-draft-vs-finished.webp',
+        alt: 'An AI first draft beside the same page finished with hand edits',
+        position: 'center center',
       },
       wide: {
-        src: '/images/services/pexels-4476606.webp',
-        alt: 'A woman wearing a headset smiling at a computer',
-        position: 'center 35%',
+        src: '/images/services/ai-website-design/ai-website-hero-layout-options.webp',
+        alt: 'A studio monitor showing six generated layout options beside a sketchbook',
+        position: 'center 45%',
       },
       accent: 'Drafted by AI. Finished by people.',
     },
@@ -3181,9 +3181,9 @@ export const services: Service[] = [
         {
           label: 'Generated',
           image: {
-            src: '/images/services/pexels-4099096.webp',
-            alt: 'A woman with a coffee talking at her laptop in a kitchen',
-            position: 'center 35%',
+            src: '/images/services/ai-website-design/ai-website-generated-drafts.webp',
+            alt: 'A grid of first page drafts appearing on a laptop in minutes',
+            position: 'center center',
           },
           heading: 'First drafts in minutes, so the time goes on what matters.',
           paragraph:
@@ -3198,9 +3198,9 @@ export const services: Service[] = [
         {
           label: 'Reviewed',
           image: {
-            src: '/images/services/pexels-28461053.webp',
-            alt: 'A desk with a monitor, plants and a lamp in a home office',
-            position: 'center 35%',
+            src: '/images/services/ai-website-design/ai-website-human-review.webp',
+            alt: 'A senior designer marking up a page draft on his monitor',
+            position: 'center 30%',
           },
           heading: 'Every word and every screen, read and rewritten by a person.',
           paragraph:
@@ -3215,9 +3215,9 @@ export const services: Service[] = [
         {
           label: 'Built for AI',
           image: {
-            src: '/images/services/pexels-4476606.webp',
-            alt: 'A woman wearing a headset smiling at a computer',
-            position: 'center 35%',
+            src: '/images/services/ai-website-design/ai-website-structured-blueprint.webp',
+            alt: 'A practice web page drawn as a clear structured blueprint on a tablet',
+            position: 'center center',
           },
           heading: 'Made to be read correctly by the tools clients ask.',
           paragraph:
@@ -3263,9 +3263,9 @@ export const services: Service[] = [
     whyChooseUs: {
       heading: 'AI used openly, by people who build only for practices',
       image: {
-        src: '/images/services/pexels-4846437.webp',
-        alt: 'An armchair and potted plants by a window',
-        position: 'center 30%',
+        src: '/images/services/ai-website-design/ai-website-showing-the-draft.webp',
+        alt: 'A designer showing a therapist the AI draft beside the finished page',
+        position: 'center 35%',
       },
       cards: [
         {
@@ -3294,8 +3294,8 @@ export const services: Service[] = [
     process: {
       heading: 'Four steps, two of them yours',
       image: {
-        src: '/images/services/pexels-12912121.webp',
-        alt: 'A woman waving at her laptop in a sunny room',
+        src: '/images/services/ai-website-design/ai-website-therapist-review.webp',
+        alt: 'A therapist in her armchair reviewing her new site on a tablet',
         position: 'center 30%',
       },
       rows: [
@@ -3352,8 +3352,8 @@ export const services: Service[] = [
     ],
     relatedSlugs: ['one-week-website', 'ai-search-optimization', 'ai-chatbot'],
     tileImage: {
-      src: '/images/services/pexels-28461053.webp',
-      alt: 'A desk with a monitor, plants and a lamp in a home office',
+      src: '/images/services/ai-website-design/ai-website-hero-draft-vs-finished.webp',
+      alt: 'An AI first draft beside the same page finished by hand',
       position: 'center 35%',
     },
     seo: {
