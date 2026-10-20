@@ -1,0 +1,95 @@
+/* /sitemap/ — a light hero and the groups in columns.
+
+   Columns: 4 desktop, 2 tablet, 1 mobile. Group headings semibold 600. The links are plain
+   text with the site's link hover (ink to brand blue). */
+
+.hero {
+  padding-block: 72px 48px;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.title {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-heading);
+}
+
+.sub {
+  margin-top: 16px;
+  color: var(--color-muted);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.body {
+  padding-block: 56px 120px;
+}
+
+.columns {
+  column-count: 4;
+  column-gap: 48px;
+}
+
+.group {
+  break-inside: avoid;
+  margin-bottom: 40px;
+}
+
+.heading {
+  margin-bottom: 14px;
+  font-size: 17px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.01em;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* The blog's newest posts sit one step in under the Blog link. */
+.list .list {
+  gap: 7px;
+  margin-top: 9px;
+  padding-left: 14px;
+  border-left: 1px solid var(--color-line);
+}
+
+.link {
+  color: var(--color-muted);
+  font-size: 15px;
+  line-height: 1.4;
+  transition: color var(--dur) var(--ease);
+}
+
+.list .list .link {
+  font-size: 14px;
+}
+
+.link:hover {
+  color: var(--color-brand);
+}
+
+@media (max-width: 1099px) {
+  .columns {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 639px) {
+  .hero {
+    padding-block: 48px 36px;
+  }
+
+  .body {
+    padding-block: 36px 80px;
+  }
+
+  .columns {
+    column-count: 1;
+  }
+}

@@ -144,8 +144,15 @@ export const routes = {
     websiteScorecard: FREEBIE_PATHS['website-scorecard-for-therapists'],
   },
 
-  /** Not a page yet: the freebie forms link to it only once it exists (see lib/freebies.ts). */
+  /* The footer's bottom row. The legal pages share one template (components/legal/LegalPage.tsx)
+     and read their words from lib/legal.ts. */
   privacyPolicy: '/privacy-policy/',
+  termsAndConditions: '/terms-and-conditions/',
+  cookiePolicy: '/cookie-policy/',
+  refer: '/refer-wwisermind/',
+  sitemap: '/sitemap/',
+  /** The machine-readable one, written by app/sitemap.ts. */
+  sitemapXml: '/sitemap.xml',
 
   /** `/blog/<slug>/` */
   blogPost: (slug: string): Route => `/blog/${slug}/`,

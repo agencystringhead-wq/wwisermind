@@ -1037,11 +1037,11 @@ export const footerMain = {
     copyright: 'wwisermind © 2026.',
     rights: 'All rights reserved.',
     links: [
-      { label: 'Privacy Policy', href: '#privacy' },
-      { label: 'Terms & Conditions', href: '#terms' },
-      { label: 'Cookie Policy', href: '#cookies' },
-      { label: 'Refer wwisermind', href: '#refer' },
-      { label: 'Sitemap', href: '#sitemap' },
+      { label: 'Privacy Policy', href: routes.privacyPolicy },
+      { label: 'Terms & Conditions', href: routes.termsAndConditions },
+      { label: 'Cookie Policy', href: routes.cookiePolicy },
+      { label: 'Refer wwisermind', href: routes.refer },
+      { label: 'Sitemap', href: routes.sitemap },
     ],
   },
 

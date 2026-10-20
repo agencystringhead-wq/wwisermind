@@ -31,9 +31,8 @@ const GBP_CHECKLIST_PDF = '/freebies/google-business-profile-checklist-for-thera
 const SOCIAL_CANVA_TEMPLATE_LINK = '';
 const BUSINESS_CARD_CANVA_LINK = '';
 
-/** There is no /privacy-policy/ page yet, so the privacy line is plain text. Set this to the page
-    once it exists and the line becomes a link. */
-export const privacyPolicyHref: Route | null = null; // TODO: routes.privacyPolicy
+/** The privacy line under each freebie form links here. */
+export const privacyPolicyHref: Route | null = routes.privacyPolicy;
 
 export type FreebieType = 'download' | 'canva' | 'code' | 'tool' | 'quiz';
 
