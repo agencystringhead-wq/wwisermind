@@ -1130,27 +1130,26 @@ export const contactPage = {
      (1510x513): a 612-wide tile the full height, a 360-wide middle split 148 over 353, a
      518-wide right split 318 over 181, 13px gaps. Three photographs and two flat tiles.
 
-     The photographs are the homepage's own — no picture was shot for this. Two of them are
-     cropped harder than they were made for (see `position`), so if purpose-shot images are
-     supplied later, the tiles want: tall ≈ 6:5, mid 1:1, wide ≈ 8:5. */
+     The tall and wide photographs were made for this page; the middle one is the founder's
+     portrait. The tiles want: tall ≈ 6:5, mid 1:1, wide ≈ 8:5. */
   gallery: {
     photos: {
+      /* Made for this page (public/images/contact/), 5:4 at 1400x1120. */
       tall: {
-        src: '/images/wwisermind-built-for-mental-therapist-only.webp',
-        alt: 'A therapist in a mustard blazer listening to a client across from her',
-        /* 3:2 into a near-square frame: cover trims a fifth off each side, so the crop is
-           held where the two faces are. */
-        position: '58% 40%',
+        src: '/images/contact/contact-first-call-therapist.webp',
+        alt: 'A smiling therapist at her desk on a video call, a notebook and mug beside her laptop',
+        position: '45% 35%',
       },
       mid: {
         src: founder.portrait.src,
         alt: founder.portrait.alt,
         position: founder.portrait.position,
       },
+      /* Made for this page, 27:16 at 1400x830. */
       wide: {
-        src: '/images/wwisermind-built-in-India-for-world-therapists.webp',
-        alt: 'Three colleagues in business dress outside an office, giving a thumbs up',
-        position: 'center 30%',
+        src: '/images/contact/contact-waiting-room-open-door.webp',
+        alt: 'A calm therapy practice waiting room in morning light, the front door slightly open',
+        position: 'center 55%',
       },
     },
     accent: 'Only therapists. Every project.',
