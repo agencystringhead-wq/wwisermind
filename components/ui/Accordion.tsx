@@ -1,10 +1,11 @@
 'use client';
 
+import Link from 'next/link';
 import { useId, useRef, useState, type KeyboardEvent } from 'react';
 import { CheckIcon } from './icons';
 import styles from './Accordion.module.css';
 
-export type AccordionItem = { title: string; body: string };
+export type AccordionItem = { title: string; body: string; link?: { label: string; href: string } };
 
 /**
  * One list of disclosures, one open at a time.
@@ -115,6 +116,11 @@ export default function Accordion({
                 aria-labelledby={buttonId}
               >
                 <p className={styles.body}>{item.body}</p>
+                {item.link ? (
+                  <Link href={item.link.href} className={styles.bodyLink}>
+                    {item.link.label}
+                  </Link>
+                ) : null}
               </div>
             ) : null}
           </div>

@@ -369,7 +369,7 @@ export const localSeoFaqCopy = {
   sub: 'The things practices ask before they start.',
 };
 
-export type FaqItem = { title: string; body: string };
+export type FaqItem = { title: string; body: string; link?: { label: string; href: string } };
 
 export const localSeoFaqs: FaqItem[] = [
   {

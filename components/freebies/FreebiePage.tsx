@@ -12,19 +12,23 @@ import {
   pageCopy,
   privacyPolicyHref,
   signatureCopy,
+  signatureGuide,
   type Freebie,
 } from '@/lib/freebies';
 import { routes } from '@/lib/routes';
 import EmailSignature from './EmailSignature';
 import FreebieForm from './FreebieForm';
+import SignatureGuide from './SignatureGuide';
 import styles from './Freebies.module.css';
 
 /**
  * The one page every freebie shares, read from lib/freebies.ts: a text hero, a breadcrumb row, then
  * two columns (what is inside and a note on the left; a preview and the get-it box on the right),
  * the related service band and a small FAQ. Below 1024px the columns stack with the get-it box
- * straight after "What's inside". The get-it box is the email form for a gated freebie, the
- * signature tool for the code freebie, and a "tell me when it's ready" form for a coming-soon one.
+ * straight after "What's inside". The get-it box is the email form for a gated freebie and a
+ * "tell me when it's ready" form for a coming-soon one. The code freebie is the signature
+ * generator: it takes the full width in one box, with a short guide under it, and no columns.
+ * A freebie can set its own H1 and the line under it (`heading`, `sub`).
  */
 export default function FreebiePage({ freebie }: { freebie: Freebie }) {
   const soon = freebie.status === 'comingSoon';
@@ -63,8 +67,8 @@ export default function FreebiePage({ freebie }: { freebie: Freebie }) {
       <section className={local.section}>
         <div className={`container ${styles.pageHero}`}>
           <p className={local.eyebrow}>{soon ? 'Coming soon' : eyebrowFor(freebie)}</p>
-          <h1 className={local.heroTitle}>{freebie.title}</h1>
-          <p className={`${local.heroSub} ${styles.lede}`}>{freebie.longDescription}</p>
+          <h1 className={local.heroTitle}>{freebie.heading ?? freebie.title}</h1>
+          <p className={`${local.heroSub} ${styles.lede}`}>{freebie.sub ?? freebie.longDescription}</p>
         </div>
       </section>
 
@@ -78,6 +82,11 @@ export default function FreebiePage({ freebie }: { freebie: Freebie }) {
 
       <section className={local.section}>
         <div className="container">
+          {isCode ? (
+            <div className={`${styles.box} ${styles.boxWide}`}>
+              <EmailSignature copy={signatureCopy} />
+            </div>
+          ) : (
           <div className={styles.main}>
             <div className={styles.inside}>
               {freebie.whatsInside.length > 0 ? (
@@ -96,30 +105,27 @@ export default function FreebiePage({ freebie }: { freebie: Freebie }) {
               {freebie.pageNote ? <p className={styles.note}>{freebie.pageNote}</p> : null}
             </div>
 
-            {isCode ? null : (
-              <div className={styles.preview}>
-                {freebie.previewImage ? (
-                  <Image
-                    src={freebie.previewImage.src}
-                    alt={freebie.previewImage.alt}
-                    width={freebie.previewImage.width}
-                    height={freebie.previewImage.height}
-                    className={styles.previewImage}
-                  />
-                ) : (
-                  <div className={styles.previewSlot}>{pageCopy.previewPlaceholder}</div>
-                )}
-              </div>
-            )}
-
-            <div className={`${styles.box} ${isCode ? styles.boxOnly : ''}`}>
-              {isCode ? (
-                <EmailSignature copy={signatureCopy} />
+            <div className={styles.preview}>
+              {freebie.previewImage ? (
+                <Image
+                  src={freebie.previewImage.src}
+                  alt={freebie.previewImage.alt}
+                  width={freebie.previewImage.width}
+                  height={freebie.previewImage.height}
+                  className={styles.previewImage}
+                />
               ) : (
-                <FreebieForm mode={soon ? 'notify' : 'gated'} {...formProps} />
+                <div className={styles.previewSlot}>{pageCopy.previewPlaceholder}</div>
               )}
             </div>
+
+            <div className={styles.box}>
+              <FreebieForm mode={soon ? 'notify' : 'gated'} {...formProps} />
+            </div>
           </div>
+          )}
+
+          {isCode ? <SignatureGuide guide={signatureGuide} /> : null}
 
           <div className={styles.relatedWrap}>
             <div className={local.band}>

@@ -61,7 +61,15 @@ export type Freebie = {
   previewImage: { src: string; width: number; height: number; alt: string } | null;
   whatsInside: string[];
   pageNote?: string;
-  faq: { title: string; body: string }[];
+  /** The page's own title and description, where the hub card's title ("Email Signature for
+      Therapists") is not what the page should say in search results. Replaces the shared
+      "{Title} | Free for Therapists | wwisermind" pattern and the short description. */
+  seo?: { title: string; description: string };
+  /** The page's H1 and the line under it, where they differ from `title` and `longDescription`. */
+  heading?: string;
+  sub?: string;
+  /** An answer can end in one link; the FAQPage data carries the answer text alone. */
+  faq: { title: string; body: string; link?: { label: string; href: string } }[];
 };
 
 const canvaNote =
@@ -318,15 +326,15 @@ export const freebies: Freebie[] = [
     slug: 'email-signature-for-therapists',
     title: 'Email Signature for Therapists',
     shortDescription:
-      'A professional email signature for therapists. Copy the code and paste it in.',
+      'Build a clean, professional email signature for your practice in two minutes. Free, no sign-up.',
     longDescription:
-      'A clean, professional email signature built for therapists. Copy the code, swap in your details, and paste it into your email.',
-    typeLabel: 'Copy-paste code',
+      'Fill in your details, pick a style, and copy it straight into your email. Free, no sign-up.',
+    typeLabel: 'Signature generator',
     type: 'code',
     gated: false,
     status: 'live',
     assetUrl: '',
-    assetLabel: 'Copy code',
+    assetLabel: 'Copy signature',
     relatedService: {
       text: 'Want ongoing help with your website?',
       label: 'See WordPress Care Plans pricing',
@@ -334,16 +342,47 @@ export const freebies: Freebie[] = [
     },
     icon: 'mail',
     previewImage: null,
-    whatsInside: [
-      'A live preview you can edit the look of',
-      'Clean, table-based code that works in most email apps',
-      'Optional logo or photo, confidentiality line and emergency line',
-      'Setup steps for Gmail, Outlook and Apple Mail',
-    ],
+    /* The generator is the page, so there is no "What's inside" list beside it. */
+    whatsInside: [],
+    seo: {
+      title: 'Free Email Signature Generator for Therapists | wwisermind',
+      description:
+        'Build a clean, professional email signature for your therapy practice in two minutes. Free, no sign-up. Works in Gmail, Outlook and Apple Mail.',
+    },
+    heading: 'Email Signature Generator for Therapists',
+    sub: 'Fill in your details, pick a style, and copy it straight into your email. Free, no sign-up.',
     faq: [
       {
         title: 'Is it really free?',
-        body: 'Yes. The code is yours to use. If you’d like us to set it up for you, just get in touch.',
+        body: 'Yes. The generator is free, there is nothing to sign up for, and the signature you build is yours to use however you like. Everything you type stays in your browser, so we never see your details. If you would rather have someone else set it up, we’re happy to help.',
+      },
+      {
+        title: 'Do I need to put my license number in my email signature?',
+        body: 'Not always, but some licensing boards expect it on professional communications, so check the rules for your state or country. If yours does, add it in the license line. Where it is optional, a short line such as “Licensed in California” is a common middle ground. If you’re unsure, your board or professional association can tell you.',
+      },
+      {
+        title: 'Should a therapist email signature have a confidentiality notice?',
+        body: 'Many therapists add one, and it costs you nothing. A short notice tells anyone who receives a message by mistake what to do next. It does not replace secure ways of sharing anything sensitive, so use it alongside them. Your insurer or board may suggest their own wording, so check before you settle on yours.',
+      },
+      {
+        title: 'Why add a crisis or emergency line?',
+        body: 'Email is not watched around the clock, and someone in distress may write to you when you can’t reply. One line pointing to a crisis service means they see where to turn even if you’re not there. Choose the country that matches your clients, and check the number is right for your area.',
+      },
+      {
+        title: 'Why doesn’t my photo show up?',
+        body: 'Email apps only show images that live at a web address, so pasted or uploaded images are usually stripped out. Use an image that is already on your website and paste its full address into the image field. Some apps also hide images until the reader allows them, so a new recipient may see a blank space at first. If it still doesn’t appear, check that the address opens the image on its own in your browser.',
+      },
+      {
+        title: 'Will it work on my phone?',
+        body: 'Yes, for the people reading your emails. The signature is built from simple tables, which phone mail apps display well and shrink to fit a narrow screen. Setting it up is easier on a computer, because the Gmail, Outlook and Apple Mail phone apps keep their own signature settings, and these often take plain text only.',
+      },
+      {
+        title: 'Can you set it up for me?',
+        body: 'Yes. Tell us which email app you use and which style you like, and we’ll take it from there.',
+        link: {
+          label: 'Ask us to install it',
+          href: routes.withQuery(routes.contact, { freebie: 'email-signature' }),
+        },
       },
     ],
   },
@@ -360,7 +399,7 @@ export const isLive = (freebie: Freebie) => freebie.status === 'live';
 /** The words on a hub card's link. */
 export function ctaLabel(freebie: Freebie): string {
   if (freebie.status === 'comingSoon') return 'Get notified';
-  if (freebie.type === 'code') return 'Get the code';
+  if (freebie.type === 'code') return 'Build yours';
   if (freebie.type === 'tool' || freebie.type === 'quiz') return 'Try it';
   return 'Get it free';
 }
@@ -423,21 +462,72 @@ export const formCopy = {
 /* --- the email signature page ---------------------------------------------------------- */
 
 export const signatureCopy = {
-  previewTitle: 'Preview',
-  options: {
-    logo: 'Add a logo or photo',
-    emergency: 'Add an emergency line',
-    confidentiality: 'Add a confidentiality notice',
+  formTitle: 'Build your signature',
+  privacy: 'Nothing you type is saved or sent anywhere. It all stays in your browser.',
+  optional: 'optional',
+  style: {
+    legend: '1. Pick a style',
+    options: [
+      { id: 'classic', label: 'Classic', note: 'A clean text stack' },
+      { id: 'photo', label: 'With photo', note: 'Image left, details right' },
+      { id: 'card', label: 'Card', note: 'A soft tinted block' },
+      { id: 'minimal', label: 'Minimal', note: 'Name, one line, one link' },
+    ],
   },
-  codeTitle: 'Code',
-  copy: 'Copy code',
+  details: {
+    legend: '2. Your details',
+    name: 'Full name',
+    credentials: 'Credentials',
+    credentialsHint: 'e.g. LCSW, PhD',
+    pronouns: 'Pronouns',
+    title: 'Title',
+    practice: 'Practice name',
+    phone: 'Phone',
+    website: 'Website',
+    bookingUrl: 'Booking link',
+    bookingLabel: 'Button label',
+    license: 'License line',
+    licenseHint: 'e.g. Licensed in California, LMFT #12345',
+  },
+  image: {
+    legend: '3. Photo or logo',
+    url: 'Image URL',
+    help: 'Use an image already on your website. Uploaded or pasted images get stripped by most email apps.',
+    unused: 'The Classic and Minimal styles have no image. Pick With photo or Card to add one.',
+    shape: 'Image shape',
+    round: 'Round headshot',
+    square: 'Square logo',
+  },
+  colour: {
+    legend: '4. Accent colour',
+    custom: 'Custom colour',
+    customHint: 'e.g. #146ef5',
+    invalid: 'Enter a colour like #146ef5.',
+    light: 'That colour is light and may be hard to read on a white background.',
+  },
+  notices: {
+    legend: '5. Notices',
+    confidentiality: 'Confidentiality notice',
+    confidentialityText: 'Notice text',
+    health: 'Ask people not to share health details by email',
+    emergency: 'Emergency line',
+    country: 'Country',
+    help: 'These are common additions, not legal advice. Check the wording against your board or insurer.',
+  },
+  preview: {
+    title: 'Preview',
+    needsImage: 'Add an image URL to show your photo or logo here.',
+    empty: 'Fill in a few details to see your signature here.',
+  },
+  copySignature: 'Copy signature',
+  copyCode: 'Copy HTML code',
   copied: 'Copied',
-  copyFormatted: 'Copy signature',
-  copiedFormatted: 'Copied',
-  placeholdersNote:
-    'Swap each [placeholder] for your own details. Anything in square brackets is yours to replace.',
+  copiedAnnouncement: 'Copied to your clipboard.',
+  copyFailed: 'Your browser blocked copying. Select the preview, or open View code and copy from there.',
+  viewCode: 'View code',
   stepsTitle: 'Set it up',
   outlookNote: 'Outlook can be fussy with formatting. If something looks off, we’re happy to help.',
+  outlookHelpLabel: 'Ask us to install it',
   steps: [
     {
       id: 'gmail',
@@ -452,11 +542,25 @@ export const signatureCopy = {
     {
       id: 'outlook',
       label: 'Outlook',
-      steps: [
-        'Open File, then Options, then Mail, then Signatures.',
-        'Click New and give the signature a name.',
-        'Click Copy signature above, then paste it into the editor.',
-        'Click OK to save.',
+      groups: [
+        {
+          label: 'New Outlook and Outlook on the web',
+          steps: [
+            'Click the gear for Settings, then Accounts, then Signatures.',
+            'Click New signature and give it a name.',
+            'Click Copy signature above, then paste it into the editor.',
+            'Choose when to use it, then click Save.',
+          ],
+        },
+        {
+          label: 'Classic Outlook for desktop',
+          steps: [
+            'Open File, then Options, then Mail, then Signatures.',
+            'Click New and give the signature a name.',
+            'Click Copy signature above, then paste it into the editor.',
+            'Click OK to save.',
+          ],
+        },
       ],
     },
     {
@@ -464,16 +568,55 @@ export const signatureCopy = {
       label: 'Apple Mail',
       steps: [
         'Open Mail, then Settings, then Signatures.',
-        'Click the plus to add a signature.',
-        'Untick “Always match my default message font”.',
+        'Pick your email account, then click the plus to add a signature.',
         'Click Copy signature above, then paste it into the box.',
+        'Untick “Always match my default message font”, or Mail will drop the formatting.',
       ],
     },
-  ],
+  ] as {
+    id: string;
+    label: string;
+    steps?: string[];
+    groups?: { label: string; steps: string[] }[];
+  }[],
   help: {
     title: 'Need help setting it up?',
     body: 'We’ll install it for you.',
     button: 'Ask us to install it',
     href: routes.withQuery(routes.contact, { freebie: 'email-signature' }),
   },
+};
+
+/** The short guide under the generator. */
+export const signatureGuide = {
+  eyebrow: 'Guide',
+  title: 'What to include in a therapist email signature',
+  intro:
+    'A good signature does one job. It tells the reader who you are and how to reach you, without getting in the way of the message. Here is what most therapists find worth including.',
+  items: [
+    {
+      title: 'Your name and credentials',
+      body: 'Your full name and the letters after it, such as Dr. Maya Ellis, PsyD. Clients and colleagues should see at a glance who is writing and how you’re qualified.',
+    },
+    {
+      title: 'License type and number',
+      body: 'Some boards expect your license on professional communications, so check yours. If it isn’t required, a line such as “Licensed in California” can be enough.',
+    },
+    {
+      title: 'One booking link',
+      body: 'Choose the one next step you want a new client to take and link it once. Several links make the choice harder, so give people one clear way to book.',
+    },
+    {
+      title: 'A confidentiality notice',
+      body: 'A short line asking anyone who receives a message by mistake to tell you and delete it. It’s a courtesy, and it shows you take privacy seriously.',
+    },
+    {
+      title: 'An emergency line',
+      body: 'Email isn’t monitored around the clock. One line pointing to a crisis service means a person in distress still sees where to turn.',
+    },
+    {
+      title: 'Keep it short',
+      body: 'Skip quotes, long taglines and signatures made of a single image. Short signatures read well on a phone and still work when an email app blocks images.',
+    },
+  ],
 };
