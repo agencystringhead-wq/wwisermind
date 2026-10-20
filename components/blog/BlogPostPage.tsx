@@ -1,16 +1,19 @@
 import { routes } from '@/lib/routes';
 import Image from 'next/image';
 import Link from 'next/link';
-import { formatDate, relatedPosts, type BlogPost } from '@/lib/blog';
+import { formatDate, relatedPosts, type BlogPost, type Inline } from '@/lib/blog';
 import { siteConfig } from '@/lib/site';
 import Reveal from '@/components/ui/Reveal';
 import section from '@/components/services/Section.module.css';
 import BlogCard from './BlogCard';
-import PostBody from './PostBody';
+import PostBody, { renderInline } from './PostBody';
 import styles from './Blog.module.css';
 
 /** An absolute address for a path on this site, for the structured data. */
 const abs = (path: string) => `${siteConfig.url}${path}`;
+
+/** The plain words of an answer, for the FAQPage data. */
+const plain = (content: Inline[]) => content.map((part) => part.text).join('');
 
 /**
  * One article. Light all the way down: the header with the breadcrumb, byline and plain tag
@@ -18,7 +21,8 @@ const abs = (path: string) => `${siteConfig.url}${path}`;
  * the sources); then up to three more articles on the soft tint, above the footer's CTA.
  *
  * The page carries BlogPosting and BreadcrumbList JSON-LD, built from the same fields the
- * page prints. No review or rating markup is written anywhere.
+ * page prints, and FAQPage JSON-LD when the post ends with a "Frequently asked questions"
+ * section, drawn between the body and the sources. No review or rating markup is written anywhere.
  */
 export default function BlogPostPage({ post }: { post: BlogPost }) {
   const url = abs(routes.blogPost(post.slug));
@@ -61,6 +65,19 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
         { '@type': 'ListItem', position: 4, name: post.title, item: url },
       ],
     },
+    ...(post.faq.length > 0
+      ? [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: post.faq.map((item) => ({
+              '@type': 'Question',
+              name: item.question,
+              acceptedAnswer: { '@type': 'Answer', text: plain(item.answer) },
+            })),
+          },
+        ]
+      : []),
   ];
 
   return (
@@ -154,6 +171,22 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
           ) : null}
 
           <PostBody blocks={post.body} />
+
+          {post.faq.length > 0 ? (
+            <section className={`${styles.faq} ${styles.prose}`} aria-labelledby="faq-heading">
+              <h2 className={styles.h2} id="faq-heading">
+                Frequently asked questions
+              </h2>
+              <div className={styles.faqList}>
+                {post.faq.map((item) => (
+                  <details className={styles.faqItem} key={item.question}>
+                    <summary>{item.question}</summary>
+                    <p>{renderInline(item.answer)}</p>
+                  </details>
+                ))}
+              </div>
+            </section>
+          ) : null}
 
           {post.sources.length > 0 ? (
             <section className={styles.sources} aria-labelledby="sources-heading">

@@ -53,6 +53,9 @@ export type BlogPost = {
   takeaways: string[];
   sources: BlogSource[];
   body: Block[];
+  /** A closing "Frequently asked questions" section, kept apart from the body so the page can
+      draw it as an FAQ and write FAQPage data from the same words. Empty when a post has none. */
+  faq: FaqItem[];
   /** Whole minutes, from the word count of the body at 220 words a minute. */
   readingMinutes: number;
 };
@@ -62,26 +65,34 @@ export type BlogPost = {
 export type Inline =
   | { type: 'text'; text: string }
   | { type: 'strong'; text: string }
+  | { type: 'em'; text: string }
   | { type: 'link'; text: string; href: string };
+
+export type FaqItem = { question: string; answer: Inline[] };
 
 export type Block =
   | { type: 'h2'; id: string; text: string }
+  | { type: 'h3'; text: string }
   | { type: 'p'; content: Inline[] }
+  | { type: 'img'; alt: string; src: string }
+  | { type: 'quote'; blocks: Block[] }
+  | { type: 'checklist'; items: Inline[][] }
   | { type: 'ul'; items: Inline[][] }
   | { type: 'ol'; items: Inline[][] }
   | { type: 'note'; title: string; blocks: Block[] };
 
-/** `**bold**` and `[text](url)`: the only inline marks the posts use. */
+/** `**bold**`, `*italic*` and `[text](url)`: the only inline marks the posts use. */
 export function parseInline(source: string): Inline[] {
   const out: Inline[] = [];
-  const pattern = /\*\*([^*]+)\*\*|\[([^\]]+)\]\(([^)\s]+)\)/g;
+  const pattern = /\*\*([^*]+)\*\*|\*([^*]+)\*|\[([^\]]+)\]\(([^)\s]+)\)/g;
   let last = 0;
   let match: RegExpExecArray | null;
 
   while ((match = pattern.exec(source))) {
     if (match.index > last) out.push({ type: 'text', text: source.slice(last, match.index) });
     if (match[1] !== undefined) out.push({ type: 'strong', text: match[1] });
-    else out.push({ type: 'link', text: match[2], href: match[3] });
+    else if (match[2] !== undefined) out.push({ type: 'em', text: match[2] });
+    else out.push({ type: 'link', text: match[3], href: match[4] });
     last = match.index + match[0].length;
   }
   if (last < source.length) out.push({ type: 'text', text: source.slice(last) });
@@ -96,8 +107,9 @@ const slugify = (text: string) =>
     .replace(/^-+|-+$/g, '');
 
 /**
- * Blocks, in the subset the posts use: `## ` headings, paragraphs, `- ` bullet lists,
- * `1. ` numbered lists, and `:::note Title` … `:::` callouts holding more of the same.
+ * Blocks, in the subset the posts use: `## ` and `### ` headings, paragraphs, `- ` bullet lists,
+ * `- [ ] ` checklists, `1. ` numbered lists, `> ` quotes, `![alt](/path)` images, and
+ * `:::note Title` … `:::` callouts holding more of the same.
  * Anything else is a paragraph, so an unsupported mark shows as plain text, never vanishes.
  */
 export function parseBlocks(lines: string[]): Block[] {
@@ -105,7 +117,12 @@ export function parseBlocks(lines: string[]): Block[] {
   let i = 0;
 
   const isSpecial = (line: string) =>
-    /^## /.test(line) || /^- /.test(line) || /^\d+\. /.test(line) || /^:::/.test(line);
+    /^#{2,3} /.test(line) ||
+    /^- /.test(line) ||
+    /^\d+\. /.test(line) ||
+    /^:::/.test(line) ||
+    /^>/.test(line) ||
+    /^!\[/.test(line);
 
   while (i < lines.length) {
     const line = lines[i];
@@ -119,6 +136,39 @@ export function parseBlocks(lines: string[]): Block[] {
       const text = line.slice(3).trim();
       blocks.push({ type: 'h2', id: slugify(text), text });
       i += 1;
+      continue;
+    }
+
+    if (line.startsWith('### ')) {
+      blocks.push({ type: 'h3', text: line.slice(4).trim() });
+      i += 1;
+      continue;
+    }
+
+    const image = /^!\[([^\]]*)\]\(([^)\s]+)\)\s*$/.exec(line);
+    if (image) {
+      blocks.push({ type: 'img', alt: image[1], src: image[2] });
+      i += 1;
+      continue;
+    }
+
+    if (line.startsWith('>')) {
+      const inner: string[] = [];
+      while (i < lines.length && lines[i].startsWith('>')) {
+        inner.push(lines[i].replace(/^>\s?/, ''));
+        i += 1;
+      }
+      blocks.push({ type: 'quote', blocks: parseBlocks(inner) });
+      continue;
+    }
+
+    if (/^- \[ \] /.test(line)) {
+      const items: Inline[][] = [];
+      while (i < lines.length && /^- \[ \] /.test(lines[i])) {
+        items.push(parseInline(lines[i].slice(6).trim()));
+        i += 1;
+      }
+      blocks.push({ type: 'checklist', items });
       continue;
     }
 
@@ -167,6 +217,33 @@ export function parseBlocks(lines: string[]): Block[] {
 }
 
 /* --- the file ----------------------------------------------------------------------- */
+
+const FAQ_HEADING = '## Frequently asked questions';
+
+/** `### Question` followed by the answer's paragraph(s), under the closing FAQ heading. */
+function parseFaq(lines: string[]): FaqItem[] {
+  const items: FaqItem[] = [];
+  let question: string | null = null;
+  let answer: string[] = [];
+
+  const flush = () => {
+    if (question && answer.length > 0) {
+      items.push({ question, answer: parseInline(answer.join(' ')) });
+    }
+    answer = [];
+  };
+
+  for (const line of lines) {
+    if (line.startsWith('### ')) {
+      flush();
+      question = line.slice(4).trim();
+    } else if (line.trim() !== '' && question) {
+      answer.push(line.trim());
+    }
+  }
+  flush();
+  return items;
+}
 
 const REQUIRED = [
   'title',
@@ -235,8 +312,11 @@ function parseFile(file: string): BlogPost {
     return { label: entry.slice(0, cut).trim(), url: entry.slice(cut + 3).trim() };
   });
 
-  const body = parseBlocks(lines.slice(divider + 1));
-  const words = lines.slice(divider + 1).join(' ').split(/\s+/).filter(Boolean).length;
+  const bodyLines = lines.slice(divider + 1);
+  const faqAt = bodyLines.findIndex((line) => line.trim() === FAQ_HEADING);
+  const body = parseBlocks(faqAt === -1 ? bodyLines : bodyLines.slice(0, faqAt));
+  const faq = faqAt === -1 ? [] : parseFaq(bodyLines.slice(faqAt + 1));
+  const words = bodyLines.join(' ').split(/\s+/).filter(Boolean).length;
 
   return {
     slug,
@@ -262,6 +342,7 @@ function parseFile(file: string): BlogPost {
     takeaways: list('takeaways'),
     sources,
     body,
+    faq,
     readingMinutes: Math.max(1, Math.ceil(words / 220)),
   };
 }
