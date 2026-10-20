@@ -2872,19 +2872,19 @@ export const services: Service[] = [
 
     gallery: {
       tall: {
-        src: '/images/services/pexels-6669811.webp',
-        alt: 'A woman in a dark room lit by her phone',
-        position: 'center 35%',
+        src: '/images/services/ai-search-optimization/ai-search-hero-voice-assistant-bus.webp',
+        alt: 'A young woman on a night bus quietly asking a voice assistant for a therapist',
+        position: 'center 30%',
       },
       mid: {
-        src: '/images/services/pexels-1497856.webp',
-        alt: 'A woman holding her phone by a window',
-        position: 'center 35%',
+        src: '/images/services/ai-search-optimization/ai-search-hero-sources-to-answer.webp',
+        alt: 'Threads of light from many sources converging into one bright answer',
+        position: 'center center',
       },
       wide: {
-        src: '/images/services/pexels-6009077.webp',
-        alt: 'A man in a jacket looking at his phone outdoors',
-        position: 'center 35%',
+        src: '/images/services/ai-search-optimization/ai-search-hero-kitchen-question.webp',
+        alt: 'A father cooking dinner, asking a question out loud to a speaker on the counter',
+        position: 'center 40%',
       },
       accent: 'Named by the AI. Not left out.',
     },
@@ -2928,9 +2928,9 @@ export const services: Service[] = [
         {
           label: 'The facts',
           image: {
-            src: '/images/services/pexels-6669811.webp',
-            alt: 'A woman in a dark room lit by her phone',
-            position: 'center 35%',
+            src: '/images/services/ai-search-optimization/ai-search-facts-match-everywhere.webp',
+            alt: 'A practice owner checking that her details match on her phone and laptop',
+            position: 'center 30%',
           },
           heading: 'One set of facts, everywhere the tools look.',
           paragraph:
@@ -2945,9 +2945,9 @@ export const services: Service[] = [
         {
           label: 'The pages',
           image: {
-            src: '/images/services/pexels-1497856.webp',
-            alt: 'A woman holding her phone by a window',
-            position: 'center 35%',
+            src: '/images/services/ai-search-optimization/ai-search-quotable-sentence.webp',
+            alt: 'A therapist FAQ page with one clear sentence highlighted as a quote',
+            position: 'center center',
           },
           heading: 'Written so a machine can quote you accurately.',
           paragraph:
@@ -2962,9 +2962,9 @@ export const services: Service[] = [
         {
           label: 'The check',
           image: {
-            src: '/images/services/pexels-6009077.webp',
-            alt: 'A man in a jacket looking at his phone outdoors',
-            position: 'center 35%',
+            src: '/images/services/ai-search-optimization/ai-search-monthly-check-grid.webp',
+            alt: 'A monthly grid of AI tool checks, the newest one being ticked',
+            position: 'center center',
           },
           heading: 'The same questions, asked every month.',
           paragraph:
@@ -3010,9 +3010,9 @@ export const services: Service[] = [
     whyChooseUs: {
       heading: 'AI visibility from people who put it in the foundations',
       image: {
-        src: '/images/services/pexels-4377192.webp',
-        alt: 'A white chair by a sunlit window with dried flowers',
-        position: 'center 30%',
+        src: '/images/services/ai-search-optimization/ai-search-built-into-foundations.webp',
+        alt: 'A new building foundation set level and true at golden hour',
+        position: 'center 50%',
       },
       cards: [
         {
@@ -3041,9 +3041,9 @@ export const services: Service[] = [
     process: {
       heading: 'From a baseline to a monthly check',
       image: {
-        src: '/images/services/pexels-6874262.webp',
-        alt: 'A woman standing in a living room reading a tablet',
-        position: 'center 30%',
+        src: '/images/services/ai-search-optimization/ai-search-baseline-whiteboard.webp',
+        alt: 'Two people from the studio drawing a baseline and monthly progress on a whiteboard',
+        position: 'center 35%',
       },
       rows: [
         {
@@ -3104,8 +3104,8 @@ export const services: Service[] = [
     ],
     relatedSlugs: ['ongoing-seo', 'local-seo', 'ai-chatbot'],
     tileImage: {
-      src: '/images/services/pexels-1497856.webp',
-      alt: 'A woman holding her phone by a window',
+      src: '/images/services/ai-search-optimization/ai-search-hero-sources-to-answer.webp',
+      alt: 'Threads of light from many sources converging into one answer',
       position: 'center 35%',
     },
     seo: {
