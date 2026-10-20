@@ -293,7 +293,7 @@ function inline(items: Item[], style: string): string[] {
   if (items.length === 1) return [`<div style="${font}${style}">${items[0].html}</div>`];
   const wrapCss = { never: 'white-space:nowrap;', 'if-needed': 'word-break:break-word;overflow-wrap:anywhere;' };
   const cells = items.flatMap((item, index) => [
-    ...(index ? [`<td style="${font}${cellStyle}padding:0 8px;white-space:nowrap;">|</td>`] : []),
+    ...(index ? [`<td style="${font}${cellStyle}padding:0 6px;white-space:nowrap;">|</td>`] : []),
     `<td valign="top" style="${font}${cellStyle}padding:0;${wrapCss[item.wrap]}">${item.html}</td>`,
   ]);
   return [

@@ -920,7 +920,7 @@
 
   /* A little less padding, so a phone-width signature has the room an inbox would give it. */
   .genPreview {
-    padding: 16px;
+    padding: 12px;
   }
 
   .card {
