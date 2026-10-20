@@ -3,13 +3,9 @@ import { routes } from '@/lib/routes';
 /* ==========================================================================
    /refer-wwisermind/: the referral page's copy, all in one place. The words are the owner's.
 
-   Two things in the source copy were left to confirm, and are not guessed here:
-
-   - The reward amounts. The two reward cards say a thank you and a welcome discount will be
-     confirmed, with no figure. Put the real offers in `referRewards` when they are decided.
-   - The form endpoint. Like the freebie form (lib/freebies.ts) the form posts JSON to
-     REFER_ENDPOINT, and while that is empty nothing is sent and the success message shows
-     straight away. Point it at the form service when there is one.
+   One thing is still open: the form endpoint. Like the freebie form (lib/freebies.ts) the form
+   posts JSON to REFER_ENDPOINT, and while that is empty nothing is sent and the success
+   message shows straight away. Point it at the form service when there is one.
 
    Nothing here is a number the owner has not given. No em dashes or en dashes.
    ========================================================================== */
@@ -44,18 +40,18 @@ export const referSteps = [
   },
   {
     title: 'You both get a thank you.',
-    body: 'When they sign up and pay their first invoice, you get your reward and they get a welcome discount.',
+    body: "They get 10% off their first project. Once they've paid their first $1,000 with us, you get your reward.",
   },
 ];
 
 export const referRewards = [
   {
     title: 'For you',
-    body: 'A thank you from us when your referral becomes a client. We confirm the details when you send it.',
+    body: "$250 paid to you, or $300 credit on your wwisermind plan if you're already a client. Your choice.",
   },
   {
     title: 'For them',
-    body: 'A welcome discount on their first project. We confirm the details when we reach out.',
+    body: '10% off their first project with us.',
   },
   {
     title: 'No limit',
@@ -70,11 +66,11 @@ export const referFaq = [
   },
   {
     title: 'When do I get the reward?',
-    body: 'Within 30 days of the referred practice paying their first invoice.',
+    body: 'Within 30 days of their first $1,000 being paid. Cash goes out by PayPal or Wise; credit is added to your next invoice.',
   },
   {
     title: 'What counts as a successful referral?',
-    body: "A practice we weren't already talking to, who becomes a paying client within 6 months of your referral.",
+    body: "A practice we weren't already talking to, who becomes a client within 6 months of your referral and spends at least $1,000 with us.",
   },
   {
     title: 'Will you spam the person I refer?',

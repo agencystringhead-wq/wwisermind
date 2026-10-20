@@ -331,22 +331,39 @@ export const termsAndConditions: LegalDoc = {
       ],
     },
     {
+      id: 'referral-program',
+      heading: '16. Referral program',
+      body: [
+        'If you refer a practice to us through our Refer wwisermind page, these rules apply.',
+        {
+          list: [
+            "A referral counts when the practice wasn't already talking to us, becomes a client within 6 months of your referral, and pays at least $1,000 with us.",
+            "Your reward is $250 paid to you, or $300 credit on your wwisermind plan if you're already a client. We pay it within 30 days of the referred practice reaching $1,000 in payments.",
+            'Cash rewards are sent by PayPal or Wise. Any transfer fees or taxes on your side are yours to handle.',
+            'The practice you refer gets 10% off their first project.',
+            "One reward per new client. Self-referrals and referrals of existing clients don't qualify.",
+            'We may change or end the program at any time. Referrals already submitted will be honoured under the rules in place when you sent them.',
+          ],
+        },
+      ],
+    },
+    {
       id: 'governing-law',
-      heading: '16. Governing law',
+      heading: '17. Governing law',
       body: [
         "These terms are governed by the laws of India. If a dispute comes up, we'll first try to sort it out by talking. If that doesn't work, the courts of Pune, Maharashtra will have jurisdiction.",
       ],
     },
     {
       id: 'changes',
-      heading: '17. Changes',
+      heading: '18. Changes',
       body: [
         'We may update these terms from time to time. The version on this page on the day you sign a proposal applies to that engagement.',
       ],
     },
     {
       id: 'contact',
-      heading: '18. Contact',
+      heading: '19. Contact',
       body: [
         'Stringhead Technologies Private Limited (wwisermind), 1st Floor, Indialand Global Tech Park, Hinjawadi Rd, Phase 1, Pune, India. admin@wwisermind.com, +91-91754 14055.',
       ],
