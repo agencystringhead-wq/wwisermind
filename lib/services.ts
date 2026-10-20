@@ -580,19 +580,19 @@ export const services: Service[] = [
 
     gallery: {
       tall: {
-        src: '/images/services/pexels-7495649.webp',
-        alt: 'Three colleagues talking across a table with laptops open',
+        src: '/images/services/custom-website-design/custom-website-hero-group-practice-team.webp',
+        alt: 'A group practice team chatting over coffee in their bright reception before the day starts',
         position: 'center 35%',
       },
       mid: {
-        src: '/images/services/pexels-3184360.webp',
-        alt: 'A team gathered around a wooden table with laptops and papers',
-        position: 'center 35%',
+        src: '/images/services/custom-website-design/custom-website-hero-design-sketches.webp',
+        alt: 'Hand-drawn page sketches, colour swatches and fabric samples on a desk',
+        position: 'center center',
       },
       wide: {
-        src: '/images/services/pexels-7988669.webp',
-        alt: 'Five colleagues around a table looking at a tablet together',
-        position: 'center 35%',
+        src: '/images/services/custom-website-design/custom-website-hero-group-practice-reception.webp',
+        alt: 'A calm group practice reception with a hallway leading to the therapy rooms',
+        position: 'center 50%',
       },
       accent: 'Designed around your practice. Not a template.',
     },
@@ -636,8 +636,8 @@ export const services: Service[] = [
         {
           label: 'Structure around the practice',
           image: {
-            src: '/images/services/pexels-7495649.webp',
-            alt: 'Three colleagues talking across a table with laptops open',
+            src: '/images/services/custom-website-design/custom-website-site-map-wall.webp',
+            alt: 'A practice owner and a colleague arranging cards into a site map on the office wall',
             position: 'center 35%',
           },
           heading: 'One page for everything a client might search for.',
@@ -653,9 +653,9 @@ export const services: Service[] = [
         {
           label: 'Design from a blank page',
           image: {
-            src: '/images/services/pexels-3184360.webp',
-            alt: 'A team gathered around a wooden table with laptops and papers',
-            position: 'center 35%',
+            src: '/images/services/custom-website-design/custom-website-design-review.webp',
+            alt: 'A practice owner comparing printed page designs and colour swatches on a table',
+            position: 'center 40%',
           },
           heading: 'Designed to look like your practice, not like ours.',
           paragraph:
@@ -670,8 +670,8 @@ export const services: Service[] = [
         {
           label: 'Written from interviews',
           image: {
-            src: '/images/services/pexels-7988669.webp',
-            alt: 'Five colleagues around a table looking at a tablet together',
+            src: '/images/services/custom-website-design/custom-website-clinician-interview.webp',
+            alt: 'A clinician talking in an armchair while an interviewer takes notes',
             position: 'center 35%',
           },
           heading: 'Copy that sounds like the people in the room.',
@@ -722,8 +722,8 @@ export const services: Service[] = [
     whyChooseUs: {
       heading: 'Built by people who only build for practices',
       image: {
-        src: '/images/services/pexels-12903018.webp',
-        alt: 'A woman laughing at a desk in a bright office',
+        src: '/images/services/custom-website-design/custom-website-practice-founder.webp',
+        alt: 'A practice founder laughing at her desk with a mug at the end of the day',
         position: 'center 30%',
       },
       cards: [
@@ -767,9 +767,9 @@ export const services: Service[] = [
     process: {
       heading: 'Five steps, and you see every one of them coming',
       image: {
-        src: '/images/services/pexels-4458602.webp',
-        alt: 'A woman seen from behind at a desk with a laptop and plants',
-        position: 'center 30%',
+        src: '/images/services/custom-website-design/custom-website-team-reviewing-design.webp',
+        alt: 'Two therapists from one practice reviewing a page design on a large monitor',
+        position: 'center 35%',
       },
       rows: [
         {
