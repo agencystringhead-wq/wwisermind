@@ -1,6 +1,11 @@
 import data from '@/lib/crisis-resources.json';
 
 /* ==========================================================================
+   EDITING THE DATA: after you change lib/crisis-resources.json, run `npm run crisis:data` and commit
+   BOTH lib/crisis-resources.json and public/data/crisis-resources.json. The second is the copy the
+   help now widget fetches from outside sites, and it is generated from the first. `npm run build`
+   fails (scripts/check-crisis-data.mjs) if the two have drifted, so stale data cannot ship.
+
    Crisis Resources by State: the types and helpers over lib/crisis-resources.json.
 
    The JSON is the single source of truth. This site's pages read it through these helpers, and

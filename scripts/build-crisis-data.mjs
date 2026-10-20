@@ -1,34 +1,24 @@
 /* Publishes lib/crisis-resources.json for outside sites: the help now widget fetches it from
    https://wwisermind.com/data/crisis-resources.json.
 
-   Copies the file to public/data/crisis-resources.json and drops every entry marked
-   `needsCheck: true` (national and state), so nothing unverified is ever public. The copy is
-   generated but COMMITTED: Cloudflare's build did not run the `prebuild` hook, so a gitignored copy
-   never shipped. Runs before `dev` and `build` (see package.json), so a local build refreshes it;
-   commit the result whenever lib/crisis-resources.json changes. */
+   Writes public/data/crisis-resources.json with every `needsCheck: true` entry removed (the rule
+   lives in crisis-data-shared.mjs). The copy is generated but COMMITTED, because Cloudflare's build
+   did not run npm pre-hooks and a gitignored copy never shipped. `npm run build` checks that the
+   committed copy matches (check-crisis-data.mjs) and fails if it does not.
+
+   After editing lib/crisis-resources.json, run `npm run crisis:data` and commit both files.
+   `npm run dev` runs this first, so a dev session keeps the copy fresh too. */
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { publicPath, serialize, sourcePath, toPublished } from './crisis-data-shared.mjs';
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const source = path.join(root, 'lib/crisis-resources.json');
-const target = path.join(root, 'public/data/crisis-resources.json');
+const data = JSON.parse(await readFile(sourcePath, 'utf8'));
+const published = toPublished(data);
 
-const data = JSON.parse(await readFile(source, 'utf8'));
-const checked = (list) => list.filter((entry) => entry.needsCheck !== true);
+await mkdir(path.dirname(publicPath), { recursive: true });
+await writeFile(publicPath, serialize(published));
 
-const published = {
-  updated: data.updated,
-  national: checked(data.national),
-  states: Object.fromEntries(
-    Object.entries(data.states).map(([code, list]) => [code, checked(list)]),
-  ),
-};
-
-await mkdir(path.dirname(target), { recursive: true });
-await writeFile(target, `${JSON.stringify(published)}\n`);
-
-const dropped = data.national.length - published.national.length;
+const held = data.national.length - published.national.length;
 console.log(
-  `crisis data: ${published.national.length} national resources published, ${dropped} held back (needsCheck)`,
+  `crisis data: ${published.national.length} national resources published, ${held} held back (needsCheck)`,
 );
