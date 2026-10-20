@@ -2376,19 +2376,19 @@ export const services: Service[] = [
 
     gallery: {
       tall: {
-        src: '/images/services/pexels-7176027.webp',
-        alt: 'A therapist gesturing while talking with a client',
-        position: 'center 35%',
+        src: '/images/services/copywriting/copywriting-hero-writing-longhand.webp',
+        alt: 'A copywriter at a sunny window table pausing to find the right word',
+        position: 'center 30%',
       },
       mid: {
-        src: '/images/services/pexels-5336965.webp',
-        alt: 'A man in an armchair listening to his psychologist',
-        position: 'center 35%',
+        src: '/images/services/copywriting/copywriting-hero-edited-page.webp',
+        alt: 'A printed page of website copy with phrases underlined and margin notes',
+        position: 'center center',
       },
       wide: {
-        src: '/images/services/pexels-6255877.webp',
-        alt: 'A psychologist and a client talking on a sofa',
-        position: 'center 35%',
+        src: '/images/services/copywriting/copywriting-hero-writing-desk.webp',
+        alt: 'A writing desk with headphones on an interview transcript, a notebook and a laptop',
+        position: 'center 50%',
       },
       accent: 'Sounds like you. Speaks to them.',
     },
@@ -2432,8 +2432,8 @@ export const services: Service[] = [
         {
           label: 'Speak to the client',
           image: {
-            src: '/images/services/pexels-7176027.webp',
-            alt: 'A therapist gesturing while talking with a client',
+            src: '/images/services/copywriting/copywriting-reader-at-2am.webp',
+            alt: 'A woman reading a therapist website in bed late at night, her hand on her chest',
             position: 'center 35%',
           },
           heading: 'Written for the person reading at 2am.',
@@ -2449,9 +2449,9 @@ export const services: Service[] = [
         {
           label: 'Sound like you',
           image: {
-            src: '/images/services/pexels-5336965.webp',
-            alt: 'A man in an armchair listening to his psychologist',
-            position: 'center 35%',
+            src: '/images/services/copywriting/copywriting-recorded-interview.webp',
+            alt: 'A phone recording the interview while a therapist talks in her office',
+            position: 'center center',
           },
           heading: 'Written from your interview, not a template.',
           paragraph:
@@ -2466,9 +2466,9 @@ export const services: Service[] = [
         {
           label: 'Be found',
           image: {
-            src: '/images/services/pexels-6255877.webp',
-            alt: 'A psychologist and a client talking on a sofa',
-            position: 'center 35%',
+            src: '/images/services/copywriting/copywriting-structured-page.webp',
+            alt: 'Hands typing a clearly structured page with one heading and short paragraphs',
+            position: 'center center',
           },
           heading: 'Plain copy is what Google and AI read best.',
           paragraph:
@@ -2514,8 +2514,8 @@ export const services: Service[] = [
     whyChooseUs: {
       heading: 'Words from people who only write for practices',
       image: {
-        src: '/images/services/pexels-18809829.webp',
-        alt: 'A woman in a pink blazer smiling on a porch',
+        src: '/images/services/copywriting/copywriting-reading-draft-aloud.webp',
+        alt: 'A copywriter reading a draft aloud at his desk to hear how it sounds',
         position: 'center 30%',
       },
       cards: [
@@ -2545,8 +2545,8 @@ export const services: Service[] = [
     process: {
       heading: 'From one conversation to every page',
       image: {
-        src: '/images/services/pexels-14797769.webp',
-        alt: 'A woman in an armchair with a pen, talking',
+        src: '/images/services/copywriting/copywriting-therapist-reads-her-page.webp',
+        alt: 'A therapist on her sofa smiling as she reads the draft of her About page',
         position: 'center 30%',
       },
       rows: [
@@ -2603,8 +2603,8 @@ export const services: Service[] = [
     ],
     relatedSlugs: ['custom-website-design', 'one-week-website', 'ongoing-seo'],
     tileImage: {
-      src: '/images/services/pexels-5336965.webp',
-      alt: 'A man in an armchair listening to his psychologist',
+      src: '/images/services/copywriting/copywriting-hero-edited-page.webp',
+      alt: 'A printed page of website copy with phrases underlined',
       position: 'center 35%',
     },
     seo: {
