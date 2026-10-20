@@ -8,11 +8,8 @@ publishedAt: 2026-10-11
 updatedAt: 2026-10-11
 author: SrikaantH
 featured: false
-image: /images/blog/wordpress-squarespace-or-custom-therapy-website.webp
-imageAlt: Closed laptop and a potted plant on a wooden table by a window
-imagePlaceholder: true
-imageCredit: Dell on Unsplash
-imageCreditUrl: https://unsplash.com/photos/silver-laptop-on-brown-wooden-table-uWFFw7leQNI
+image: /images/blog/blog-builder-wordpress-custom.webp
+imageAlt: Three model houses: a kit house, a modular house and a hand-built one
 takeaways:
 - The best platform is the one someone will still be maintaining in two years.
 - Builders are quick to start but limit structure, technical control and what you can take with you.

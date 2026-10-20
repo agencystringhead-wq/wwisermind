@@ -8,11 +8,8 @@ publishedAt: 2026-10-11
 updatedAt: 2026-10-11
 author: SrikaantH
 featured: false
-image: /images/blog/ai-chatbot-therapy-website.webp
-imageAlt: Phone resting screen-off on a wooden table beside a cup of tea
-imagePlaceholder: true
-imageCredit: Craig Massie on Unsplash
-imageCreditUrl: https://unsplash.com/photos/white-mug-and-smartphone-on-wooden-table-smHU38If1Kg
+image: /images/blog/blog-ai-chatbot-boundary.webp
+imageAlt: A phone showing a practice chat that stops at a clear boundary, beside a cup of tea
 takeaways:
 - A website chatbot is a logistics tool: hours, fees, insurance, availability and how to book.
 - It should never answer clinical questions, ask about symptoms or try to assess risk.

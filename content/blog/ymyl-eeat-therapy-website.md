@@ -8,11 +8,8 @@ publishedAt: 2026-10-11
 updatedAt: 2026-10-11
 author: SrikaantH
 featured: false
-image: /images/blog/ymyl-eeat-therapy-website.webp
-imageAlt: Wooden door slightly open to warm light
-imagePlaceholder: true
-imageCredit: Sonia Dauer on Unsplash
-imageCreditUrl: https://unsplash.com/photos/a-door-with-a-light-shining-through-it-QK-nZjdqJls
+image: /images/blog/blog-ymyl-eeat-credentials.webp
+imageAlt: A therapist straightening her framed licence on the wall of her office
 takeaways:
 - YMYL stands for Your Money or Your Life, Google's label for topics that can affect health, safety or finances.
 - Mental health is in that group, so Google looks for stronger signs of who wrote a page and whether to trust it.

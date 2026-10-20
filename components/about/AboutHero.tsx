@@ -17,8 +17,8 @@ import styles from './AboutHero.module.css';
  * ⚠️ PLACEHOLDER — replace statValue / statLabel with a real practice count once available.
  *
  * IMAGE NOTES:
- *   Left  — wwisermind-built-in-India-for-world-therapists.webp (team / office shot, 113 kB)
- *   Right — about-therapist-working.webp (AI-generated, therapist at desk, 44 kB)
+ *   Left  — about/about-hero-pune-studio.webp (the Pune studio, no staff shown)
+ *   Right — about/about-hero-update-by-morning.webp (a US therapist reading an overnight update)
  *   Prompt used: "A mental health therapist, a professional woman, sitting at a minimal
  *   clean desk reviewing handwritten clinical notes, warm focused expression, soft diffused
  *   window light, dark navy blue background wall, very subtle blue accent, minimalist office
@@ -57,8 +57,8 @@ export default function AboutHero() {
           {/* LEFT — wider, taller, stat card overlay */}
           <figure className={`${styles.imgFrame} ${styles.imgLeft}`} data-reveal="0">
             <Image
-              src="/images/wwisermind-built-in-India-for-world-therapists.webp"
-              alt="The wwisermind team — built in India for therapists around the world"
+              src="/images/about/about-hero-pune-studio.webp"
+              alt="A bright design studio in Pune, India, with therapist site designs on its screens"
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1023px) 60vw, 720px"
               className={styles.img}
@@ -76,8 +76,8 @@ export default function AboutHero() {
           {/* RIGHT — narrower, shorter, offset lower */}
           <figure className={`${styles.imgFrame} ${styles.imgRight}`} data-reveal="1">
             <Image
-              src="/images/about-therapist-working.webp"
-              alt="A therapist reviewing clinical notes at a minimal desk"
+              src="/images/about/about-hero-update-by-morning.webp"
+              alt="A therapist in the US reading an overnight update with her morning coffee"
               fill
               sizes="(max-width: 640px) 80vw, (max-width: 1023px) 38vw, 440px"
               className={styles.img}

@@ -8,8 +8,8 @@ publishedAt: 2026-10-19
 updatedAt: 2026-10-19
 author: SrikaantH
 featured: false
-image: /images/blog/therapy-platforms-search-private-practice.webp
-imageAlt: Small wooden sign outside a therapy office on a quiet street.
+image: /images/blog/blog-small-practice-big-platforms.webp
+imageAlt: A small, warm therapy practice between two large glass towers
 takeaways:
 - Big platforms now take a large share of broad therapist searches, and some solo clinicians have watched referrals drop year after year.
 - Your edge is what a platform can't fake: a real office, a real person, a specific specialty, a local network.

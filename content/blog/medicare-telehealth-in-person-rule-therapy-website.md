@@ -8,8 +8,8 @@ publishedAt: 2026-10-19
 updatedAt: 2026-10-19
 author: SrikaantH
 featured: false
-image: /images/blog/medicare-telehealth-in-person-rule-therapy-website.webp
-imageAlt: Armchair by a sunny window with a laptop resting on a side table.
+image: /images/blog/blog-medicare-telehealth-at-home.webp
+imageAlt: An older man in his armchair at home in a video therapy session
 takeaways:
 - Medicare clients can keep getting mental health care by video from home. That part is permanent.
 - The in-person visit requirement now applies only after December 31, 2027, per CMS's October 2026 FAQ.

@@ -34,8 +34,8 @@ export default function AboutCta() {
         {/* RIGHT — photo */}
         <figure className={styles.photo} data-reveal="1">
           <Image
-            src="/images/launch-and-grow.webp"
-            alt="A therapist confident in their practice growth"
+            src="/images/about/about-cta-practice-owner.webp"
+            alt="A practice owner standing confidently in the hallway of her thriving practice"
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 580px"
             className={styles.photoImg}

@@ -49,8 +49,8 @@ export default function AboutMission() {
 
           <figure className={styles.photo} data-reveal="2">
             <Image
-              src="/images/wwisermind-built-for-mental-therapist-only.webp"
-              alt="A therapist and a client in a calm therapy session"
+              src="/images/about/about-mission-first-meeting.webp"
+              alt="A therapist welcoming a new client at the door of his practice"
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 640px"
               className={styles.photoImg}

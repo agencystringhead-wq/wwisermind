@@ -8,8 +8,8 @@ publishedAt: 2026-10-19
 updatedAt: 2026-10-19
 author: SrikaantH
 featured: true
-image: /images/blog/ai-therapy-laws-therapist-website.webp
-imageAlt: Open notebook and pen beside a closed laptop on a desk.
+image: /images/blog/blog-ai-therapy-laws.webp
+imageAlt: A legal binder with one passage highlighted beside a therapist website on a laptop
 takeaways:
 - At least seven states now restrict AI therapy, and more bills are coming.
 - The laws mostly target companies selling chatbots as therapy. But they shape what your own website should say too.
