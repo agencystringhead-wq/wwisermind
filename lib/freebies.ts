@@ -21,8 +21,8 @@ import { routes, type FreebieKey, type Route } from '@/lib/routes';
    the form shows its success state without sending anything. */
 export const FORM_ENDPOINT = '';
 
-/* TODO: add the two PDFs to public/freebies/ under these names. Until the files exist the download
-   buttons on a gated page's success state lead to a 404. */
+/* The Psychology Today kit is in public/freebies/. TODO: the Google Business Profile checklist PDF
+   still needs adding under its name; until it exists that page's download button leads to a 404. */
 const PT_KIT_PDF = '/freebies/psychology-today-profile-kit-for-therapists.pdf';
 const GBP_CHECKLIST_PDF = '/freebies/google-business-profile-checklist-for-therapists.pdf';
 
@@ -136,7 +136,12 @@ export const freebies: Freebie[] = [
       href: routes.pricing.customWebsite,
     },
     icon: 'pen',
-    previewImage: null,
+    previewImage: {
+      src: '/images/freebies/psychology-today-profile-kit-preview.webp',
+      width: 1200,
+      height: 1000,
+      alt: 'Pages from the Psychology Today Profile Kit: the cover, the opening paragraph templates and the publish checklist',
+    },
     whatsInside: [
       'Intro paragraph templates',
       'Specialty and approach section templates',
@@ -148,6 +153,26 @@ export const freebies: Freebie[] = [
       {
         title: 'Is this affiliated with Psychology Today?',
         body: 'No. It’s an independent guide from wwisermind to help you write a stronger profile.',
+      },
+      {
+        title: 'What do I actually get?',
+        body: 'A 10-page PDF: four fill-in templates for your statement, plain-word descriptions of common therapy approaches, photo and headline tips, and a checklist to run before you publish.',
+      },
+      {
+        title: 'How do I use the templates?',
+        body: 'Copy a template into a document, replace everything in the yellow brackets with your own words, then paste the result into your profile. Read it out loud once before you publish.',
+      },
+      {
+        title: 'Will this get me more clients?',
+        body: 'No guide can promise that. What it does is help your profile say clearly who you help, how, and what happens when someone reaches out, which is what people look for when they choose.',
+      },
+      {
+        title: 'Can I use it for other directories?',
+        body: 'Yes. The same templates work for other therapist directories, your Google Business Profile description and the About page on your own website.',
+      },
+      {
+        title: 'Is it really free?',
+        body: 'Yes. Enter your first name and email and the download appears straight away. Ticking the tips box is optional.',
       },
     ],
   },

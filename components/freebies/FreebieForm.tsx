@@ -87,7 +87,8 @@ export default function FreebieForm({
             ) : (
               <p className={styles.doneTitle}>{copy.linkNotReady}</p>
             )}
-            <p className={styles.doneNote}>{copy.emailedCopy}</p>
+            {/* Only claim an email copy once the form actually sends somewhere. */}
+            {endpoint ? <p className={styles.doneNote}>{copy.emailedCopy}</p> : null}
           </>
         )}
       </div>
