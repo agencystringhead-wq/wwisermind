@@ -21,7 +21,9 @@ import { routes, type FreebieKey, type Route } from '@/lib/routes';
    the form shows its success state without sending anything. */
 export const FORM_ENDPOINT = '';
 
-/* Both PDFs live in public/freebies/. */
+/* The 2027 Full-Caseload Plan is built by scripts/guides/full-caseload-plan/build-pdf.mjs into
+   public/guides/. The other two PDFs live in public/freebies/. */
+const FULL_CASELOAD_PLAN_PDF = '/guides/wwisermind-2027-full-caseload-plan.pdf';
 const PT_KIT_PDF = '/freebies/psychology-today-profile-kit-for-therapists.pdf';
 const GBP_CHECKLIST_PDF = '/freebies/google-business-profile-checklist-for-therapists.pdf';
 
@@ -65,6 +67,8 @@ export type Freebie = {
       Therapists") is not what the page should say in search results. Replaces the shared
       "{Title} | Free for Therapists | wwisermind" pattern and the short description. */
   seo?: { title: string; description: string };
+  /** A download with no form: the page shows the download button and a link straight away. */
+  direct?: { secondaryLabel: string; secondaryHref: Route };
   /** The page's H1 and the line under it, where they differ from `title` and `longDescription`. */
   heading?: string;
   sub?: string;
@@ -76,6 +80,50 @@ const canvaNote =
   'You’ll need a free Canva account. Clicking the link creates your own copy, so you can edit freely.';
 
 export const freebies: Freebie[] = [
+  {
+    slug: '2027-full-caseload-plan-for-therapists',
+    title: '2027 Full-Caseload Plan',
+    shortDescription:
+      'A four-week, one-hour-a-week plan to turn quiet website visitors into booked consultations.',
+    longDescription:
+      'Turn website visitors into booked clients before January. A calm, four-week plan for therapists, counselors and psychologists.',
+    typeLabel: 'PDF guide',
+    type: 'download',
+    gated: false,
+    direct: { secondaryLabel: 'Or book a free 30-minute call', secondaryHref: routes.contactBook },
+    status: 'live',
+    assetUrl: FULL_CASELOAD_PLAN_PDF,
+    assetLabel: 'Download the free guide (PDF)',
+    relatedService: {
+      text: 'Want us to put the plan to work on your website?',
+      label: 'See pricing',
+      href: routes.pricing.hub,
+    },
+    icon: 'clipboard',
+    previewImage: {
+      src: '/images/full-caseload-plan-cover.webp',
+      width: 900,
+      height: 1165,
+      alt: 'Cover of The 2027 Full-Caseload Plan, a free four-week guide for therapists from wwisermind',
+    },
+    whatsInside: [
+      'Why inquiries feel slower in 2026',
+      'The leaks: where visitors drop off',
+      'Talking about fees without scaring people off',
+      'Make booking the easy part',
+      'Get found on Google and AI tools',
+      'Trust without testimonials, the ethical way',
+      'Your four-week, pre-January plan',
+    ],
+    seo: {
+      title: 'The 2027 Full-Caseload Plan for Therapists | wwisermind',
+      description:
+        'A free four-week plan to turn therapy website visitors into booked clients before January. Fees, booking, Google and AI visibility, and ethical trust building.',
+    },
+    heading: 'The 2027 Full-Caseload Plan',
+    sub: 'Turn website visitors into booked clients before January. A calm, four-week plan for therapists, counselors and psychologists.',
+    faq: [],
+  },
   {
     slug: 'ai-visibility-report',
     title: 'AI Visibility Report',

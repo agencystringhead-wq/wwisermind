@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { freebies } from '@/lib/site';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import styles from './Freebies.module.css';
@@ -23,7 +24,13 @@ export default function Freebies() {
               {items.map((item) => (
                 <article className={styles.item} key={item.title}>
                   <h3 className={styles.itemTitle}>
-                    {item.title}
+                    {item.href ? (
+                      <Link href={item.href} className={styles.itemLink}>
+                        {item.title}
+                      </Link>
+                    ) : (
+                      item.title
+                    )}
                   </h3>
                   <p className={styles.itemBody}>{item.body}</p>
                 </article>

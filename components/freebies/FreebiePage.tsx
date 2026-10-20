@@ -28,7 +28,8 @@ import styles from './Freebies.module.css';
  * straight after "What's inside". The get-it box is the email form for a gated freebie and a
  * "tell me when it's ready" form for a coming-soon one. The code freebie is the signature
  * generator: it takes the full width in one box, with a short guide under it, and no columns.
- * A freebie can set its own H1 and the line under it (`heading`, `sub`).
+ * A freebie can set its own H1 and the line under it (`heading`, `sub`). A `direct` freebie has no
+ * form: its get-it box is the download button and a second link.
  */
 export default function FreebiePage({ freebie }: { freebie: Freebie }) {
   const soon = freebie.status === 'comingSoon';
@@ -120,7 +121,18 @@ export default function FreebiePage({ freebie }: { freebie: Freebie }) {
             </div>
 
             <div className={styles.box}>
-              <FreebieForm mode={soon ? 'notify' : 'gated'} {...formProps} />
+              {freebie.direct ? (
+                <div className={styles.direct}>
+                  <a href={freebie.assetUrl} className={styles.assetButton} download>
+                    {freebie.assetLabel}
+                  </a>
+                  <Link href={freebie.direct.secondaryHref} className={styles.directLink}>
+                    {freebie.direct.secondaryLabel}
+                  </Link>
+                </div>
+              ) : (
+                <FreebieForm mode={soon ? 'notify' : 'gated'} {...formProps} />
+              )}
             </div>
           </div>
           )}

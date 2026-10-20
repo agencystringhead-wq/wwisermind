@@ -80,6 +80,7 @@ export const SERVICE_PRICING = {
 /** Keyed by the slug in lib/freebies.ts: the folder the page lives in. The five downloads sit under
     /freebies/, the two tools under /tools/. */
 export const FREEBIE_PATHS = {
+  '2027-full-caseload-plan-for-therapists': '/freebies/2027-full-caseload-plan-for-therapists/',
   'ai-visibility-report': '/tools/ai-visibility-report/',
   'website-scorecard-for-therapists': '/tools/website-scorecard-for-therapists/',
   'psychology-today-profile-kit-for-therapists':
@@ -131,6 +132,7 @@ export const routes = {
 
   freebies: {
     hub: '/freebies/',
+    fullCaseloadPlan: FREEBIE_PATHS['2027-full-caseload-plan-for-therapists'],
     psychologyTodayKit: FREEBIE_PATHS['psychology-today-profile-kit-for-therapists'],
     googleBusinessProfile: FREEBIE_PATHS['google-business-profile-checklist-for-therapists'],
     socialMediaPosts: FREEBIE_PATHS['social-media-posts-for-therapists'],

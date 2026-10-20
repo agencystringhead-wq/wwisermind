@@ -69,6 +69,19 @@
   letter-spacing: -0.01em;
 }
 
+.itemLink {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.itemLink:hover,
+.itemLink:focus-visible {
+  text-decoration-color: currentColor;
+}
+
 .itemBody {
   font-size: 13px;
   font-weight: var(--fw-regular);

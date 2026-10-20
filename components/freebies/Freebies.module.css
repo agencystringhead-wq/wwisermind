@@ -301,6 +301,21 @@
   width: 100%;
 }
 
+/* A direct download: the button, then a quiet second link under it. */
+.direct {
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+}
+
+.directLink {
+  color: var(--color-brand);
+  font-size: 15px;
+  font-weight: var(--fw-medium);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* --- the email signature tool ------------------------------------------------------------ */
 .sig {
   display: grid;

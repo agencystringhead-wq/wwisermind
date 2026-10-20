@@ -302,7 +302,7 @@ export const megaPanels: Record<string, MegaPanel> = {
       {
         lead: 'Free',
         title: 'Free Resources',
-        /* The same seven, in the same order, as the /freebies/ hub. */
+        /* The same list, in the same order, as the /freebies/ hub. */
         links: freebieList.map((freebie) => ({
           label: freebie.title,
           href: freebiePath(freebie),
@@ -336,7 +336,7 @@ export const heroTop = {
     description:
       "Most therapy websites don't have a traffic problem. They have a booking problem. A 4-week plan to fix the leaks, explain your fees clearly, and get found on Google and AI before the new-year rush.",
     linkLabel: 'Get the Free Guide',
-    href: '#free-guide',
+    href: routes.freebies.fullCaseloadPlan,
   },
 };
 
@@ -745,8 +745,9 @@ export const freebies = {
   },
   items: [
     {
-      title: 'The 2027 Full-Caseload Plan: Turn Website Visitors Into Booked Clients Before January',
-      body: 'A 4-week, one-hour-a-week plan to turn quiet website visitors into booked consultations.',
+      title: 'The 2027 Full-Caseload Plan',
+      body: 'A four-week, one-hour-a-week plan to turn quiet website visitors into booked consultations.',
+      href: routes.freebies.fullCaseloadPlan,
     },
     {
       title: '30 Days of Social Content for Therapists',
