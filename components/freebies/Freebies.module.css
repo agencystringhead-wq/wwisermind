@@ -867,13 +867,20 @@
     padding: 40px;
   }
 
-  /* Form on the left; the preview and the copy buttons in a 540px column on the right. */
+  /* Form on the left; the preview and the copy buttons in a 420px column on the right. This is the
+     narrowest laptop width, where a wider preview would squeeze the form to about 300px. */
   .gen {
-    grid-template-columns: minmax(0, 1fr) 540px;
-    column-gap: 48px;
+    grid-template-columns: minmax(0, 1fr) 420px;
+    column-gap: 32px;
   }
 
-  /* The preview stays in view while the form scrolls, clear of the 104px sticky header. */
+  /* The preview stays in view while the form scrolls, clear of the 104px sticky header. The column
+     itself has to be as tall as the form: a sticky box can only travel inside its parent, and the
+     grid's align-items: start would shrink that parent to the preview's own height. */
+  .genAside {
+    align-self: stretch;
+  }
+
   .stick {
     position: sticky;
     top: calc(var(--header-height) + 24px);
@@ -902,6 +909,14 @@
   .box {
     grid-column: 2;
     grid-row: 2;
+  }
+}
+
+@media (min-width: 1280px) {
+  /* Wide enough for the form to keep about 570px: the preview column opens up to 540px. */
+  .gen {
+    grid-template-columns: minmax(0, 1fr) 540px;
+    column-gap: 48px;
   }
 }
 
