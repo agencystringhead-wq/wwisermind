@@ -307,22 +307,22 @@ export const services: Service[] = [
     heroOutcome:
       'Your practice online in seven days, designed, written and launched while you stay in session.',
 
-    /* The homepage's photographs, as the contact mosaic uses them — nothing was shot for
-       this page. Purpose-shot images want: tall ≈ 6:5, mid 1:1, wide ≈ 8:5. */
+    /* Images made for this page (public/images/services/one-week-website/). The mid slot
+       stays the real Timely Therapy build. Slots want: tall ≈ 6:5, mid 1:1, wide ≈ 8:5. */
     gallery: {
       tall: {
-        src: '/images/wwisermind-built-for-mental-therapist-only.webp',
-        alt: 'A therapist in a mustard blazer listening to a client across from her',
-        position: '58% 40%',
+        src: '/images/services/one-week-website/one-week-website-hero-therapist-opening-laptop.webp',
+        alt: 'A therapist opening her laptop at her desk on a bright morning in her practice',
+        position: 'center 35%',
       },
       mid: {
         src: '/images/Timely-Therapy-Case-Studies-wwisermind.webp',
         alt: 'The Timely Therapy website on a laptop',
       },
       wide: {
-        src: '/images/launch-and-grow.webp',
-        alt: 'A therapist sitting in her practice with a notebook',
-        position: 'center 40%',
+        src: '/images/services/one-week-website/one-week-website-hero-therapy-room-ready.webp',
+        alt: 'A calm therapy room with two armchairs, a plant and morning light, ready for a first client',
+        position: 'center 55%',
       },
       accent: 'Live in seven days. Not seven months.',
     },
@@ -368,9 +368,9 @@ export const services: Service[] = [
         {
           label: 'Design that sounds like you',
           image: {
-            src: '/images/wwisermind-built-for-mental-therapist-only.webp',
-            alt: 'A therapist in a mustard blazer listening to a client across from her',
-            position: '58% 40%',
+            src: '/images/services/one-week-website/one-week-website-design-strategy-call.webp',
+            alt: 'A therapist on a video call at his desk, with notes from the conversation beside him',
+            position: 'center 40%',
           },
           heading: 'Pages that read the way your practice feels.',
           paragraph:
@@ -385,8 +385,8 @@ export const services: Service[] = [
         {
           label: 'Built to be found',
           image: {
-            src: '/images/Built-for-clients-how-searches-next.webp',
-            alt: 'A woman looking at her phone at a cafe table',
+            src: '/images/services/one-week-website/one-week-website-found-late-night-search.webp',
+            alt: 'A woman on her sofa late at night, searching on her phone by lamplight',
             position: 'center 40%',
           },
           heading: 'Indexable on the day it goes live.',
@@ -402,8 +402,8 @@ export const services: Service[] = [
         {
           label: 'Launched in seven days',
           image: {
-            src: '/images/launch-and-grow.webp',
-            alt: 'A therapist sitting in her practice with a notebook',
+            src: '/images/services/one-week-website/one-week-website-launch-day-planner.webp',
+            alt: 'A therapist smiling at her laptop, her planner open with the launch day circled',
             position: 'center 40%',
           },
           heading: 'A launch date you can put in the diary.',
@@ -450,9 +450,9 @@ export const services: Service[] = [
     whyChooseUs: {
       heading: 'A fixed week, and a process built around it',
       image: {
-        src: '/images/solopractice.webp',
-        alt: 'A solo practitioner holding a tablet in her office',
-        position: 'center 30%',
+        src: '/images/services/one-week-website/one-week-website-solo-therapist-tablet.webp',
+        alt: 'A solo practice therapist reviewing her new site on a tablet by her office window',
+        position: 'center 25%',
       },
       cards: [
         {
@@ -495,9 +495,9 @@ export const services: Service[] = [
     process: {
       heading: 'Four steps, and you only show up for two of them',
       image: {
-        src: '/images/grouppractice.webp',
-        alt: 'A group practice team together outside their office',
-        position: 'center 30%',
+        src: '/images/services/one-week-website/one-week-website-review-between-sessions.webp',
+        alt: 'A therapist with a coffee between sessions, reviewing his site on a laptop',
+        position: 'center 35%',
       },
       rows: [
         {
