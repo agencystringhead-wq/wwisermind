@@ -2119,18 +2119,18 @@ export const services: Service[] = [
 
     gallery: {
       tall: {
-        src: '/images/services/pexels-4152788.webp',
-        alt: 'A woman on the phone at a desk surrounded by plants',
-        position: 'center 35%',
+        src: '/images/services/ongoing-seo/ongoing-seo-hero-tending-plants.webp',
+        alt: 'A therapist watering the thriving plants on her practice windowsill',
+        position: 'center 30%',
       },
       mid: {
-        src: '/images/services/pexels-3059747.webp',
-        alt: 'A woman writing in a notebook in front of a computer',
-        position: 'center 35%',
+        src: '/images/services/ongoing-seo/ongoing-seo-hero-monthly-note.webp',
+        alt: 'A one-page monthly progress note with a rising chart beside a calendar page',
+        position: 'center center',
       },
       wide: {
-        src: '/images/services/pexels-6159189.webp',
-        alt: 'A hand writing in a notebook at a table',
+        src: '/images/services/ongoing-seo/ongoing-seo-hero-asking-ai.webp',
+        alt: 'A man in an armchair on a rainy evening asking an AI assistant on his laptop',
         position: 'center 35%',
       },
       accent: 'Google, Maps and AI. Every month.',
@@ -2175,9 +2175,9 @@ export const services: Service[] = [
         {
           label: 'Search',
           image: {
-            src: '/images/services/pexels-4152788.webp',
-            alt: 'A woman on the phone at a desk surrounded by plants',
-            position: 'center 35%',
+            src: '/images/services/ongoing-seo/ongoing-seo-search-reviewing-article.webp',
+            alt: 'A therapist checking a draft specialty article for clinical accuracy',
+            position: 'center 30%',
           },
           heading: 'Pages a client would search for, written every month.',
           paragraph:
@@ -2192,9 +2192,9 @@ export const services: Service[] = [
         {
           label: 'Answers',
           image: {
-            src: '/images/services/pexels-3059747.webp',
-            alt: 'A woman writing in a notebook in front of a computer',
-            position: 'center 35%',
+            src: '/images/services/ongoing-seo/ongoing-seo-answers-answer-card.webp',
+            alt: 'A phone showing a practice in the answer card at the top of a search',
+            position: 'center center',
           },
           heading: 'Showing up in the answer, not just the list.',
           paragraph:
@@ -2209,9 +2209,9 @@ export const services: Service[] = [
         {
           label: 'AI',
           image: {
-            src: '/images/services/pexels-6159189.webp',
-            alt: 'A hand writing in a notebook at a table',
-            position: 'center 35%',
+            src: '/images/services/ongoing-seo/ongoing-seo-ai-chat-reply.webp',
+            alt: 'An AI chat reply on a laptop recommending a therapy practice',
+            position: 'center center',
           },
           heading: 'Being the practice the AI tools name.',
           paragraph:
@@ -2265,8 +2265,8 @@ export const services: Service[] = [
     whyChooseUs: {
       heading: 'Monthly work you can actually see',
       image: {
-        src: '/images/services/pexels-12912121.webp',
-        alt: 'A woman waving at her laptop in a sunny room',
+        src: '/images/services/ongoing-seo/ongoing-seo-monthly-update-email.webp',
+        alt: 'A therapist reading her short monthly update on her phone by the window',
         position: 'center 30%',
       },
       cards: [
@@ -2296,9 +2296,9 @@ export const services: Service[] = [
     process: {
       heading: 'What a month looks like',
       image: {
-        src: '/images/services/pexels-9708512.webp',
-        alt: 'A man reading on a sofa in a plant-filled room',
-        position: 'center 30%',
+        src: '/images/services/ongoing-seo/ongoing-seo-month-plan-board.webp',
+        alt: 'A four-week content plan pinned on a studio wall',
+        position: 'center center',
       },
       rows: [
         {
@@ -2355,8 +2355,8 @@ export const services: Service[] = [
     ],
     relatedSlugs: ['local-seo', 'ai-search-optimization', 'copywriting'],
     tileImage: {
-      src: '/images/services/pexels-3059747.webp',
-      alt: 'A woman writing in a notebook in front of a computer',
+      src: '/images/services/ongoing-seo/ongoing-seo-hero-monthly-note.webp',
+      alt: 'A one-page monthly progress note with a rising chart',
       position: 'center 35%',
     },
     seo: {
