@@ -167,17 +167,16 @@ export const audiences: Audience[] = [
       paragraph:
         'Group practices come to us with one full calendar and several half-empty ones. The website is usually why: it was built when the practice was one person, and it still reads that way.',
       photos: {
-        /* The homepage’s group-practice still. A purpose-shot replacement wants ≈ 9:10. */
+        /* Made for this page (public/images/who-we-help/group-practices/), 4:5. */
         left: {
-          src: '/images/grouppractice.webp',
-          alt: 'A group practice team together outside their office',
+          src: '/images/who-we-help/group-practices/group-practices-hero-team-on-steps.webp',
+          alt: 'A group practice team of five clinicians together on the steps of their practice',
           position: 'center 30%',
         },
-        /* Pexels stand-in. Wants ≈ 9:10, a team in a practice setting. */
         right: {
-          src: '/images/services/pexels-7988669.webp',
-          alt: 'Five colleagues around a table looking at a tablet together',
-          position: 'center 40%',
+          src: '/images/who-we-help/group-practices/group-practices-hero-team-huddle.webp',
+          alt: 'A group practice morning huddle, the founder listening as her team leads',
+          position: 'center 35%',
         },
       },
     },
@@ -238,16 +237,16 @@ export const audiences: Audience[] = [
       paragraph:
         'A group practice is a scheduling problem before it is a marketing problem. Who has openings, who takes which insurance, who sees teenagers. The site has to answer those before a client emails to ask.',
       photos: [
-        /* Pexels stand-ins. Each wants ≈ 16:10: a team meeting, and a session. */
+        /* Made for this page: the shared schedule, and a clinician in session. */
         {
-          src: '/images/services/pexels-3184360.webp',
-          alt: 'A team gathered around a wooden table with laptops and papers',
+          src: '/images/who-we-help/group-practices/group-practices-schedule-at-front-desk.webp',
+          alt: 'A practice manager at the front desk with every clinician schedule on one screen',
           position: 'center 35%',
         },
         {
-          src: '/images/services/pexels-7176027.webp',
-          alt: 'A therapist gesturing while talking with a client',
-          position: 'center 40%',
+          src: '/images/who-we-help/group-practices/group-practices-clinician-in-session.webp',
+          alt: 'A clinician from the group listening to a client in his own therapy room',
+          position: 'center 35%',
         },
       ],
       caption:
