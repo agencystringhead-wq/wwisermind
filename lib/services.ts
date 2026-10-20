@@ -2624,19 +2624,19 @@ export const services: Service[] = [
 
     gallery: {
       tall: {
-        src: '/images/services/pexels-920382.webp',
-        alt: 'A woman on a sofa smiling at her phone with a laptop on her lap',
-        position: 'center 35%',
+        src: '/images/services/meta-ads/meta-ads-hero-parent-scrolling.webp',
+        alt: 'A father on the sofa late in the evening, pausing on something in his feed',
+        position: 'center 30%',
       },
       mid: {
-        src: '/images/services/pexels-5311713.webp',
-        alt: 'A woman on a couch reading her phone',
-        position: 'center 35%',
+        src: '/images/services/meta-ads/meta-ads-hero-ad-in-feed.webp',
+        alt: 'A phone showing a calm practice ad in a social feed',
+        position: 'center center',
       },
       wide: {
-        src: '/images/services/pexels-6594304.webp',
-        alt: 'A woman lying down looking at her phone',
-        position: 'center 35%',
+        src: '/images/services/meta-ads/meta-ads-hero-local-town.webp',
+        alt: 'A leafy suburban town at golden hour, the area a practice serves',
+        position: 'center 50%',
       },
       accent: 'The right families. Your area.',
     },
@@ -2680,8 +2680,8 @@ export const services: Service[] = [
         {
           label: 'The audience',
           image: {
-            src: '/images/services/pexels-920382.webp',
-            alt: 'A woman on a sofa smiling at her phone with a laptop on her lap',
+            src: '/images/services/meta-ads/meta-ads-audience-radius.webp',
+            alt: 'A marketer setting a small radius around nearby towns on a map',
             position: 'center 35%',
           },
           heading: 'A small area, and the people most likely to be looking.',
@@ -2697,8 +2697,8 @@ export const services: Service[] = [
         {
           label: 'The ad',
           image: {
-            src: '/images/services/pexels-5311713.webp',
-            alt: 'A woman on a couch reading her phone',
+            src: '/images/services/meta-ads/meta-ads-ad-variations.webp',
+            alt: 'A designer comparing three calm ad versions side by side',
             position: 'center 35%',
           },
           heading: 'Calm words, in your voice, in several versions.',
@@ -2714,9 +2714,9 @@ export const services: Service[] = [
         {
           label: 'The page',
           image: {
-            src: '/images/services/pexels-6594304.webp',
-            alt: 'A woman lying down looking at her phone',
-            position: 'center 35%',
+            src: '/images/services/meta-ads/meta-ads-landing-page-request.webp',
+            alt: 'A mother filling in a consultation request on a simple landing page',
+            position: 'center 30%',
           },
           heading: 'One page, built to turn the click into a consultation.',
           paragraph:
@@ -2762,9 +2762,9 @@ export const services: Service[] = [
     whyChooseUs: {
       heading: 'Ads run the way a practice would want them run',
       image: {
-        src: '/images/services/pexels-5217850.webp',
-        alt: 'Two women talking in a plant-filled room',
-        position: 'center 30%',
+        src: '/images/services/meta-ads/meta-ads-privacy-first-plan.webp',
+        alt: 'A practice owner and a consultant going through a privacy-first ad plan',
+        position: 'center 35%',
       },
       cards: [
         {
@@ -2793,8 +2793,8 @@ export const services: Service[] = [
     process: {
       heading: 'How a campaign gets set up and run',
       image: {
-        src: '/images/services/pexels-12903018.webp',
-        alt: 'A woman laughing at a desk in a bright office',
+        src: '/images/services/meta-ads/meta-ads-monthly-report.webp',
+        alt: 'A therapist in his hallway reviewing a monthly campaign report on a tablet',
         position: 'center 30%',
       },
       rows: [
@@ -2851,8 +2851,8 @@ export const services: Service[] = [
     ],
     relatedSlugs: ['copywriting', 'local-seo', 'ai-chatbot'],
     tileImage: {
-      src: '/images/services/pexels-5311713.webp',
-      alt: 'A woman on a couch reading her phone',
+      src: '/images/services/meta-ads/meta-ads-hero-ad-in-feed.webp',
+      alt: 'A phone showing a calm practice ad in a social feed',
       position: 'center 35%',
     },
     seo: {
