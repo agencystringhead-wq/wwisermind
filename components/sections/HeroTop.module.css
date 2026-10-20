@@ -213,3 +213,16 @@
     height: 120px;
   }
 }
+
+/* Desktop: the guide title ran right up to the description beside it. A gutter on the
+   guide column plus a narrower measure sets it on three even lines with clear space. */
+@media (min-width: 1024px) {
+  .colGuide {
+    padding-right: 40px;
+  }
+
+  .guideTitle {
+    max-width: 300px;
+    text-wrap: balance;
+  }
+}
