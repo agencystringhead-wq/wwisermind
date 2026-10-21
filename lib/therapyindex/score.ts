@@ -27,7 +27,7 @@ import type { Practice } from './types';
      visibility = min(1, activity / best activity)
      reviews    = ln(reviewCount + 1) / ln(most reviews + 1)       (no reviews = 0)
 
-   Step 3, blend:   combined = (1 - REVIEW_WEIGHT) * visibility + REVIEW_WEIGHT * reviews     (90% / 10%)
+   Step 3, blend:   combined = (1 - REVIEW_WEIGHT) * visibility + REVIEW_WEIGHT * reviews     (75% / 25%)
    The score shown is combined scaled so the best independent practice = 100.
 
    National chain locations (isChain) are scored on the same scale (capped at 100) but never set the leader or

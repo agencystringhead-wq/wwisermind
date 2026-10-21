@@ -110,7 +110,7 @@ export const MAP_BELOW_PACK_MAX_RANK = 10;
 /** Points for an organic position, per search. Index 0 = rank 1. Deliberately smaller than the map pack. */
 export const ORGANIC_POINTS = [4, 3, 2.5, 2, 1.5, 1];
 /** Share of the final score that comes from review strength (the rest is map + organic + AI). */
-export const REVIEW_WEIGHT = 0.1;
+export const REVIEW_WEIGHT = 0.25;
 
 /** Bonus for each AI answer (one prompt on one engine) that names the practice. */
 export const AI_MENTION_POINTS = 3;
