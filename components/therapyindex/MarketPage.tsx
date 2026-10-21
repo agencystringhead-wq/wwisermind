@@ -126,8 +126,7 @@ export default function MarketPage({ view }: { view: MarketView }) {
       />
       <JsonLd data={itemList} />
 
-      <header className={`${m.top} ${ti.lines}`}>
-        <div className={ti.headerBg} aria-hidden="true" />
+      <header className={`${m.top}`}>
         <div className={ti.frame}>
           <div className={m.topBody}>
             <SectionLabel n="TI">{city.name}, {state.name}</SectionLabel>
@@ -159,7 +158,7 @@ export default function MarketPage({ view }: { view: MarketView }) {
       </nav>
 
       {/* 01 overview */}
-      <section id="overview" className={`${ti.section} ${ti.lines}`}>
+      <section id="overview" className={`${ti.section}`}>
         <div className={ti.frame}>
           <SectionHead n="01" label="overview" title={`The ${city.name} snapshot`} />
           <div className={m.wwhh}>
@@ -228,7 +227,7 @@ export default function MarketPage({ view }: { view: MarketView }) {
       </section>
 
       {/* 02 map */}
-      <section id="map" className={`${ti.section} ${ti.lines}`}>
+      <section id="map" className={`${ti.section}`}>
         <div className={ti.frame}>
           <SectionHead n="02" label="map" title="Where the practices are" lede="Every practice with a map listing, sized by score and coloured by type." />
           {points.length > 0 ? <MarketMap points={points} bounds={bounds} /> : <p>No map positions are available for this snapshot.</p>}
@@ -236,7 +235,7 @@ export default function MarketPage({ view }: { view: MarketView }) {
       </section>
 
       {/* 03 map pack */}
-      <section id="map-pack" className={`${ti.section} ${ti.lines}`}>
+      <section id="map-pack" className={`${ti.section}`}>
         <div className={ti.frame}>
           <SectionHead
             n="03"
@@ -283,7 +282,7 @@ export default function MarketPage({ view }: { view: MarketView }) {
       </section>
 
       {/* 04 rank grid */}
-      <section id="rank-grid" className={`${ti.section} ${ti.lines}`}>
+      <section id="rank-grid" className={`${ti.section}`}>
         <div className={ti.frame}>
           <SectionHead
             n="04"
@@ -296,7 +295,7 @@ export default function MarketPage({ view }: { view: MarketView }) {
       </section>
 
       {/* 05 website race */}
-      <section id="website-race" className={`${ti.section} ${ti.lines}`}>
+      <section id="website-race" className={`${ti.section}`}>
         <div className={ti.frame}>
           <SectionHead n="05" label="the website race" title="Who takes the first page of Google" wide />
           <div className={m.headline}>
@@ -351,7 +350,7 @@ export default function MarketPage({ view }: { view: MarketView }) {
       </section>
 
       {/* 06 AI assistants */}
-      <section id="ai" className={`${ti.section} ${ti.lines}`}>
+      <section id="ai" className={`${ti.section}`}>
         <div className={ti.frame}>
           <SectionHead
             n="06"
@@ -426,7 +425,7 @@ export default function MarketPage({ view }: { view: MarketView }) {
       </section>
 
       {/* 07 directory */}
-      <section id="directory" className={`${ti.section} ${ti.lines}`}>
+      <section id="directory" className={`${ti.section}`}>
         <div className={ti.frame}>
           <SectionHead n="07" label="full directory" title={`All ${view.practices.length} practices`} lede="Click a column to sort. Every practice links to its own profile and website." />
           <DirectoryTable rows={directoryRows} />
@@ -434,13 +433,10 @@ export default function MarketPage({ view }: { view: MarketView }) {
       </section>
 
       {/* 08 call to action */}
-      <section id="next" className={`${ti.section} ${ti.dark} ${ti.lines}`}>
+      <section id="next" className={`${ti.section} ${ti.band}`}>
         <div className={ti.frame}>
-          <div className={ti.split}>
-            <div className={ti.rail}>
-              <SectionLabel n="08">next step</SectionLabel>
-            </div>
-            <div className={m.cta}>
+          <div className={m.cta}>
+<SectionLabel n="08">next step</SectionLabel>
               <h2 className={m.ctaTitle}>Where does your practice stand in {city.name}?</h2>
               <p className={ti.lede}>
                 Book a free 30-minute visibility review. We will go through your map, website and AI results together and point to what to look at first.
@@ -450,7 +446,6 @@ export default function MarketPage({ view }: { view: MarketView }) {
               </div>
               <Disclaimer />
             </div>
-          </div>
         </div>
       </section>
     </>

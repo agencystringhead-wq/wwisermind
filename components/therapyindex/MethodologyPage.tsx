@@ -29,8 +29,7 @@ export default function MethodologyPage() {
         ]}
       />
 
-      <header className={`${m.top} ${ti.lines}`}>
-        <div className={ti.headerBg} aria-hidden="true" />
+      <header className={`${m.top}`}>
         <div className={ti.frame}>
           <div className={m.topBody}>
             <SectionLabel n="TI">methodology</SectionLabel>
@@ -42,7 +41,7 @@ export default function MethodologyPage() {
         </div>
       </header>
 
-      <section id="sources" className={`${ti.section} ${ti.lines}`}>
+      <section id="sources" className={`${ti.section}`}>
         <div className={ti.frame}>
           <SectionHead n="01" label="sources" title="Where the data comes from" />
           <div className={m.prose}>
@@ -57,7 +56,7 @@ export default function MethodologyPage() {
         </div>
       </section>
 
-      <section id="searches" className={`${ti.section} ${ti.lines}`}>
+      <section id="searches" className={`${ti.section}`}>
         <div className={ti.frame}>
           <SectionHead n="02" label="searches" title="Searches we track" lede="Every city gets the same searches." />
           <div className={m.prose}>
@@ -77,7 +76,7 @@ export default function MethodologyPage() {
         </div>
       </section>
 
-      <section id="score" className={`${ti.section} ${ti.lines}`}>
+      <section id="score" className={`${ti.section}`}>
         <div className={ti.frame}>
           <SectionHead n="03" label="the score" title="How the score is worked out" lede="Each practice gets one number from 0 to 100. The best practice in a city is 100 and everyone else is measured against it." />
           <div className={m.prose}>
@@ -112,7 +111,7 @@ export default function MethodologyPage() {
         </div>
       </section>
 
-      <section id="eligibility" className={`${ti.section} ${ti.lines}`}>
+      <section id="eligibility" className={`${ti.section}`}>
         <div className={ti.frame}>
           <SectionHead n="04" label="who is ranked" title="Eligibility" />
           <div className={m.prose}>
@@ -128,7 +127,7 @@ export default function MethodologyPage() {
         </div>
       </section>
 
-      <section id="snapshots" className={`${ti.section} ${ti.lines}`}>
+      <section id="snapshots" className={`${ti.section}`}>
         <div className={ti.frame}>
           <SectionHead n="05" label="snapshots" title="Snapshot dates" lede="Each city is measured as a snapshot. A snapshot is a fixed set of data, not a live feed." />
           <div className={`${ti.tableWrap} ${m.snapList}`}>
@@ -151,13 +150,10 @@ export default function MethodologyPage() {
         </div>
       </section>
 
-      <section id="removal" className={`${ti.section} ${ti.dark} ${ti.lines}`}>
+      <section id="removal" className={`${ti.section} ${ti.band}`}>
         <div className={ti.frame}>
-          <div className={ti.split}>
-            <div className={ti.rail}>
-              <SectionLabel n="06">removal</SectionLabel>
-            </div>
-            <div className={m.cta}>
+          <div className={m.cta}>
+<SectionLabel n="06">removal</SectionLabel>
               <h2 className={m.ctaTitle}>Asking to be removed</h2>
               <p className={ti.lede}>
                 Email <a href={CONTACT_MAILTO} className={ti.link}>{CONTACT_EMAIL}</a> with the practice name and city and we will take it out of the index. Spotted something wrong? Tell us and we will check it.
@@ -167,7 +163,6 @@ export default function MethodologyPage() {
               </div>
               <Disclaimer />
             </div>
-          </div>
         </div>
       </section>
     </>

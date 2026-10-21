@@ -5,7 +5,7 @@ import styles from './hub.module.css';
 
 export type FaqRow = { question: string; answer: ReactNode };
 
-/** The hub's FAQ: Oberon's two-column grid of question cells, each opening in place. One open at a time. */
+/** The hub's FAQ: one list of questions, each opening in place. One open at a time. */
 export default function TiFaq({ items }: { items: FaqRow[] }) {
   const [open, setOpen] = useState<number | null>(null);
   const baseId = useId();

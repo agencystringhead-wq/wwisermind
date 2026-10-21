@@ -42,15 +42,14 @@ export function SectionHead({
   );
 }
 
-type Tone = 'dark' | 'light' | 'accent' | 'ghostDark';
+type Tone = 'dark' | 'light' | 'accent';
 const toneClass: Record<Tone, string> = {
   dark: styles.btnDark,
   light: styles.btnLight,
   accent: styles.btnAccent,
-  ghostDark: styles.btnGhostDark,
 };
 
-/** A square mono button. Goes through CtaLink, so a link to the booking target opens the Cal.com pop-up. */
+/** The site's pill button. Goes through CtaLink, so a link to the booking target opens the Cal.com pop-up. */
 export function TiButton({ tone = 'dark', className, ...props }: ComponentProps<typeof CtaLink> & { tone?: Tone }) {
   return <CtaLink {...props} className={`${styles.btn} ${toneClass[tone]} ${className ?? ''}`} />;
 }

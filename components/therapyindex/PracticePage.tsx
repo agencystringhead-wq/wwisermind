@@ -44,8 +44,7 @@ export default function PracticePage({ view, practice: p }: { view: MarketView; 
         ]}
       />
 
-      <header className={`${m.top} ${ti.lines}`}>
-        <div className={ti.headerBg} aria-hidden="true" />
+      <header className={`${m.top}`}>
         <div className={ti.frame}>
           <div className={m.topBody}>
             <SectionLabel n="TI">{city.name} profile</SectionLabel>
@@ -69,7 +68,7 @@ export default function PracticePage({ view, practice: p }: { view: MarketView; 
       </header>
 
       {/* 01 score */}
-      <section id="score" className={`${ti.section} ${ti.lines}`}>
+      <section id="score" className={`${ti.section}`}>
         <div className={ti.frame}>
           <SectionHead n="01" label="score" title="Where this practice stands" />
           <div className={m.profileFacts}>
@@ -98,7 +97,7 @@ export default function PracticePage({ view, practice: p }: { view: MarketView; 
       </section>
 
       {/* 02 searches */}
-      <section id="searches" className={`${ti.section} ${ti.lines}`}>
+      <section id="searches" className={`${ti.section}`}>
         <div className={ti.frame}>
           <SectionHead n="02" label="searches" title="Position for each search" lede={`Where this practice appeared in Google Maps and in Google search for the ${snapshot.keywords.length} searches we track.`} />
           <div className={ti.tableWrap}>
@@ -129,7 +128,7 @@ export default function PracticePage({ view, practice: p }: { view: MarketView; 
       </section>
 
       {/* 03 AI */}
-      <section id="ai" className={`${ti.section} ${ti.lines}`}>
+      <section id="ai" className={`${ti.section}`}>
         <div className={ti.frame}>
           <SectionHead n="03" label="ai assistants" title="ChatGPT and Claude" />
           <div className={m.aiStats}>
@@ -151,7 +150,7 @@ export default function PracticePage({ view, practice: p }: { view: MarketView; 
       </section>
 
       {/* 04 site speed */}
-      <section id="speed" className={`${ti.section} ${ti.lines}`}>
+      <section id="speed" className={`${ti.section}`}>
         <div className={ti.frame}>
           <SectionHead n="04" label="site speed" title="Website speed and access" lede="A Lighthouse check of the home page on a phone. It is shown here for information and does not change the score." />
           {p.lighthouse ? (
@@ -167,7 +166,7 @@ export default function PracticePage({ view, practice: p }: { view: MarketView; 
       </section>
 
       {/* 05 links and next step */}
-      <section id="links" className={`${ti.section} ${ti.lines}`}>
+      <section id="links" className={`${ti.section}`}>
         <div className={ti.frame}>
           <SectionHead n="05" label="links" title="Visit this practice" />
           <div className={m.links}>
@@ -188,13 +187,10 @@ export default function PracticePage({ view, practice: p }: { view: MarketView; 
         </div>
       </section>
 
-      <section id="next" className={`${ti.section} ${ti.dark} ${ti.lines}`}>
+      <section id="next" className={`${ti.section} ${ti.band}`}>
         <div className={ti.frame}>
-          <div className={ti.split}>
-            <div className={ti.rail}>
-              <SectionLabel n="06">is this you?</SectionLabel>
-            </div>
-            <div className={m.cta}>
+          <div className={m.cta}>
+<SectionLabel n="06">is this you?</SectionLabel>
               <h2 className={m.ctaTitle}>Is this your practice?</h2>
               <p className={ti.lede}>Get a free walkthrough of what this means. 30 minutes, no obligation.</p>
               <div>
@@ -202,7 +198,6 @@ export default function PracticePage({ view, practice: p }: { view: MarketView; 
               </div>
               <Disclaimer />
             </div>
-          </div>
         </div>
       </section>
     </>

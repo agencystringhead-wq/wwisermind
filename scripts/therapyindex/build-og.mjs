@@ -1,5 +1,5 @@
 /**
- * Builds the Therapy Index share images (1200 x 630 JPEG) from the generated background images and a title:
+ * Builds the Therapy Index share images (1200 x 630 JPEG), light style with a title and no imagery:
  *   public/images/therapyindex/og/{hub,methodology,profile,city-<slug>}.jpg
  * Run with: node scripts/therapyindex/build-og.mjs
  *
@@ -28,44 +28,35 @@ const cities = fs
   .sort((a, b) => order.indexOf(a.market.slug) - order.indexOf(b.market.slug))
   .map((s) => ({ name: s.market.city, slug: s.market.city.toLowerCase().replace(/[^a-z0-9]+/g, '-') }));
 
-/** light = cream background art with dark text; dark = near-black art with white text */
 const cards = [
-  { file: 'hub', bg: 'hub-hero.webp', tone: 'light', position: 'right bottom', label: 'Therapy Index', title: 'Who therapy patients actually find', sub: `${cities.map((c) => c.name).join(', ')}`.replace(/, ([^,]*)$/, ' and $1') },
-  ...cities.map((c) => ({ file: `city-${c.slug}`, bg: `city-${c.slug}.webp`, tone: 'dark', position: 'center top', label: 'Therapy Index', title: `${c.name} therapist rankings`, sub: 'Who patients find on Google and in AI answers' })),
-  { file: 'methodology', bg: 'header.webp', tone: 'light', position: 'right bottom', label: 'Therapy Index', title: 'How the Therapy Index works', sub: 'Sources, scoring and eligibility' },
-  { file: 'profile', bg: 'closing.webp', tone: 'light', position: 'center bottom', label: 'Therapy Index', title: 'Practice profile', sub: 'Google Maps, Google search and AI visibility' },
+  { file: 'hub', title: 'Who therapy patients actually find', sub: `${cities.map((c) => c.name).join(', ')}`.replace(/, ([^,]*)$/, ' and $1') },
+  ...cities.map((c) => ({ file: `city-${c.slug}`, title: `${c.name} therapist rankings`, sub: 'Who patients find on Google and in AI answers' })),
+  { file: 'methodology', title: 'How the Therapy Index works', sub: 'Sources, scoring and eligibility' },
+  { file: 'profile', title: 'Practice profile', sub: 'Google Maps, Google search and AI visibility' },
 ];
 
-const html = (card) => {
-  const bg = pathToFileURL(path.join(IMG, card.bg)).href;
-  const dark = card.tone === 'dark';
-  const ink = dark ? '#f6f4ef' : '#0c0c0c';
-  const muted = dark ? '#a9a59c' : '#5d5b57';
-  const veil = dark
-    ? 'linear-gradient(90deg, rgba(3,4,9,0.82) 0%, rgba(3,4,9,0.35) 60%, rgba(3,4,9,0) 100%)'
-    : 'linear-gradient(90deg, rgba(244,241,235,0.96) 0%, rgba(244,241,235,0.7) 45%, rgba(244,241,235,0) 80%)';
-  return `<!doctype html><html><head><meta charset="utf-8">
+/** Light style, as on the site: white ground, a soft grey band along the foot, black title, brand-blue wordmark. No imagery. */
+const html = (card) => `<!doctype html><html><head><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&family=JetBrains+Mono&display=block" rel="stylesheet">
 <style>
   * { margin: 0; box-sizing: border-box; }
-  body { width: 1200px; height: 630px; position: relative; overflow: hidden; background: ${dark ? '#030409' : '#f4f1eb'}; font-family: Inter, 'Segoe UI', Arial, sans-serif; color: ${ink}; }
-  .bg { position: absolute; inset: 0; background: url('${bg}') ${card.position} / cover no-repeat; }
-  .veil { position: absolute; inset: 0; background: ${veil}; }
+  body { width: 1200px; height: 630px; position: relative; overflow: hidden; background: #ffffff; font-family: Inter, 'Segoe UI', Arial, sans-serif; color: #0c0c0c; }
+  .band { position: absolute; left: 0; right: 0; bottom: 0; height: 150px; background: #f5f5f5; }
   .wrap { position: absolute; inset: 0; padding: 64px 72px; display: flex; flex-direction: column; justify-content: space-between; }
-  .chip { display: inline-flex; font-family: 'JetBrains Mono', monospace; font-size: 20px; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1; }
-  .chip b { background: #146ef5; color: #fff; padding: 11px 12px; font-weight: 400; }
-  .chip span { background: ${dark ? 'rgba(255,255,255,0.14)' : '#e6e1d8'}; color: ${ink}; padding: 11px 16px; }
-  h1 { font-size: 78px; font-weight: 600; letter-spacing: -0.045em; line-height: 0.98; max-width: 760px; }
-  p { margin-top: 22px; font-size: 28px; color: ${muted}; max-width: 700px; line-height: 1.3; letter-spacing: -0.01em; }
-  .foot { font-family: 'JetBrains Mono', monospace; font-size: 20px; letter-spacing: 0.04em; text-transform: uppercase; color: ${muted}; }
+  .brand { display: flex; align-items: baseline; gap: 14px; }
+  .brand b { font-size: 34px; font-weight: 600; letter-spacing: -0.03em; }
+  .brand span { font-size: 22px; color: #5a5a5a; }
+  h1 { font-size: 80px; font-weight: 600; letter-spacing: -0.045em; line-height: 1; max-width: 900px; }
+  p { margin-top: 22px; font-size: 30px; color: #5a5a5a; max-width: 800px; line-height: 1.3; letter-spacing: -0.01em; }
+  .foot { display: flex; justify-content: space-between; align-items: center; font-size: 24px; color: #5a5a5a; }
+  .foot i { font-style: normal; color: #146ef5; font-weight: 600; }
 </style></head><body>
-<div class="bg"></div><div class="veil"></div>
+<div class="band"></div>
 <div class="wrap">
-  <div class="chip"><b>TI</b><span>${card.label}</span></div>
+  <div class="brand"><b>Therapy Index</b><span>by wwisermind</span></div>
   <div><h1>${card.title}</h1><p>${card.sub}</p></div>
-  <div class="foot">wwisermind.com</div>
+  <div class="foot"><span>wwisermind.com/therapyindex</span><i>Independent research</i></div>
 </div></body></html>`;
-};
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1200, height: 630 } });

@@ -1,26 +1,23 @@
-/* City reports, practice profiles and the methodology page. The same fonts, colours and numbered chips
-   as the hub (ti.module.css), but denser: tables, grids and lists. */
+/* City reports, practice profiles and the methodology page. Same system as the hub (ti.module.css): white and light grey bands,
+   20px cards with the soft shadow, hairlines, no patterns. Denser than the hub where the data needs it: tables, grids, lists. */
 
 /* ---- page header ----------------------------------------------------------------------------------- */
 
 .top {
-  position: relative;
-  padding-block: clamp(36px, 5vw, 72px) clamp(28px, 4vw, 48px);
-  border-bottom: 1px solid var(--ti-line);
-  overflow: hidden;
+  padding-block: clamp(40px, 5vw, 80px) clamp(32px, 4vw, 56px);
 }
 
 .topBody {
-  position: relative;
   display: grid;
-  gap: 22px;
+  gap: 20px;
+  justify-items: start;
 }
 
 .h1 {
-  font-size: clamp(34px, 5vw, 64px);
-  line-height: 0.98;
-  letter-spacing: -0.05em;
-  max-width: 20ch;
+  font-size: clamp(32px, 4.4vw, 52px);
+  line-height: 1.06;
+  letter-spacing: -0.04em;
+  max-width: 22ch;
 }
 
 .dek {
@@ -35,18 +32,18 @@
   gap: 8px 22px;
   font-family: var(--ti-mono);
   font-size: var(--ti-label);
-  letter-spacing: var(--ti-label-ls);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--ti-muted);
+  color: var(--ti-faint);
 }
 
 /* "On this page" */
 .toc {
   position: sticky;
-  top: var(--header-height, 104px);
+  top: var(--ti-header-h, 68px);
   z-index: 5;
-  border-bottom: 1px solid var(--ti-line);
-  background: color-mix(in srgb, var(--ti-bg) 94%, transparent);
+  border-block: 1px solid var(--ti-line);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(8px);
 }
 
@@ -55,7 +52,7 @@
   gap: 4px;
   align-items: center;
   overflow-x: auto;
-  padding-block: 10px;
+  padding-block: 8px;
   scrollbar-width: none;
 }
 
@@ -66,62 +63,77 @@
 .tocTitle {
   flex: none;
   margin-right: 10px;
-  font-family: var(--ti-mono);
-  font-size: 11px;
-  letter-spacing: var(--ti-label-ls);
-  text-transform: uppercase;
-  color: var(--ti-faint);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ti-ink);
 }
 
 .tocLink {
   flex: none;
-  padding: 7px 10px;
-  font-family: var(--ti-mono);
-  font-size: 11.5px;
-  letter-spacing: var(--ti-label-ls);
-  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 14px;
   color: var(--ti-muted);
-  border: 1px solid transparent;
-  transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+  transition: color var(--dur) var(--ease), background-color var(--dur) var(--ease);
 }
 
 .tocLink:hover {
   color: var(--ti-ink);
-  border-color: var(--ti-line-strong);
-  background: var(--ti-surface);
+  background: var(--ti-band);
 }
 
 .tocLink b {
   margin-right: 6px;
   color: var(--ti-accent);
+  font-family: var(--ti-mono);
+  font-size: 12px;
   font-weight: 400;
+}
+
+/* ---- shared card grids -------------------------------------------------------------------------------- */
+
+.wwhh,
+.packs,
+.races,
+.aiStats,
+.profileFacts,
+.lighthouse {
+  display: grid;
+  gap: 20px;
+}
+
+.wwhhItem,
+.pack,
+.race,
+.aiStat,
+.fact,
+.lhItem {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  padding: var(--ti-card-pad);
+  border-radius: var(--ti-radius);
+  background: var(--ti-card);
+  box-shadow: var(--ti-shadow);
+}
+
+/* on a white section the cards sit on a quiet fill instead of a shadow */
+.wwhhItem,
+.aiStat,
+.fact,
+.lhItem {
+  background: var(--ti-band);
+  box-shadow: none;
 }
 
 /* ---- 01 overview ------------------------------------------------------------------------------------ */
 
 .wwhh {
-  display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-top: 1px solid var(--ti-line);
-  border-left: 1px solid var(--ti-line);
-}
-
-.wwhhItem {
-  display: grid;
-  gap: 10px;
-  align-content: start;
-  padding: var(--ti-cell-pad);
-  border-right: 1px solid var(--ti-line);
-  border-bottom: 1px solid var(--ti-line);
-  background: var(--ti-surface);
 }
 
 .wwhhItem h3 {
-  font-family: var(--ti-mono);
-  font-size: 12px;
-  font-weight: 500 !important;
-  letter-spacing: var(--ti-label-ls);
-  text-transform: uppercase;
+  font-size: 16px;
   color: var(--ti-accent);
 }
 
@@ -158,23 +170,21 @@
 
 .boxTitle {
   margin-bottom: 14px;
-  font-family: var(--ti-mono);
-  font-size: var(--ti-label);
-  font-weight: 500 !important;
-  letter-spacing: var(--ti-label-ls);
-  text-transform: uppercase;
+  font-size: 18px;
 }
 
 .snap {
-  border: 1px solid var(--ti-line-strong);
-  background: var(--ti-surface);
+  border-radius: var(--ti-radius);
+  background: var(--ti-card);
+  box-shadow: var(--ti-shadow);
+  padding: 8px 22px;
 }
 
 .snapRow {
   display: grid;
-  grid-template-columns: 9.5rem minmax(0, 1fr);
+  grid-template-columns: 9rem minmax(0, 1fr);
   gap: 12px;
-  padding: 11px 16px;
+  padding: 12px 0;
   border-bottom: 1px solid var(--ti-line);
   font-size: 14px;
 }
@@ -184,15 +194,12 @@
 }
 
 .snapRow dt {
-  font-family: var(--ti-mono);
-  font-size: 11px;
-  letter-spacing: var(--ti-label-ls);
-  text-transform: uppercase;
-  color: var(--ti-muted);
-  padding-top: 2px;
+  font-size: 13px;
+  color: var(--ti-faint);
 }
 
 .snapRow dd {
+  margin: 0;
   font-size: 14px;
   overflow-wrap: anywhere;
 }
@@ -224,8 +231,7 @@
 }
 
 .topName a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  color: var(--ti-accent);
 }
 
 .topSub {
@@ -240,11 +246,12 @@
   display: inline-grid;
   place-items: center;
   min-width: 46px;
-  padding: 6px 8px;
+  padding: 5px 10px;
+  border-radius: 999px;
   background: var(--ti-ink);
   color: #fff;
-  font-family: var(--ti-mono);
   font-size: 13px;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
 
@@ -252,9 +259,8 @@
   background: transparent;
   border: 1px solid var(--ti-line-strong);
   color: var(--ti-muted);
-  font-size: 11px;
-  letter-spacing: var(--ti-label-ls);
-  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 /* ---- 02 map ------------------------------------------------------------------------------------------- */
@@ -262,8 +268,9 @@
 .mapShell {
   position: relative;
   height: clamp(340px, 52vw, 560px);
-  border: 1px solid var(--ti-line-strong);
-  background: #e9e6df;
+  border-radius: var(--ti-radius);
+  background: var(--ti-band);
+  box-shadow: inset 0 0 0 1px var(--ti-line);
   overflow: hidden;
 }
 
@@ -283,13 +290,8 @@
   place-items: center;
   padding: 24px;
   text-align: center;
-  font-family: var(--ti-mono);
-  font-size: 12px;
-  letter-spacing: var(--ti-label-ls);
-  text-transform: uppercase;
-  color: var(--ti-muted);
-  background-image: radial-gradient(circle at center, rgba(12, 12, 12, 0.18) 0.9px, transparent 1.3px);
-  background-size: 9px 9px;
+  font-size: 14px;
+  color: var(--ti-faint);
 }
 
 .legend {
@@ -297,10 +299,7 @@
   flex-wrap: wrap;
   gap: 8px 22px;
   margin-top: 14px;
-  font-family: var(--ti-mono);
-  font-size: 11.5px;
-  letter-spacing: var(--ti-label-ls);
-  text-transform: uppercase;
+  font-size: 13px;
   color: var(--ti-muted);
 }
 
@@ -326,35 +325,19 @@
 /* ---- 03 map pack ---------------------------------------------------------------------------------------- */
 
 .packs {
-  display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--ti-line);
-  border-left: 1px solid var(--ti-line);
-}
-
-.pack {
-  display: grid;
-  gap: 12px;
-  align-content: start;
-  padding: var(--ti-cell-pad);
-  border-right: 1px solid var(--ti-line);
-  border-bottom: 1px solid var(--ti-line);
-  background: var(--ti-surface);
 }
 
 .packTitle {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  font-family: var(--ti-mono);
-  font-size: 12px;
-  font-weight: 500 !important;
-  letter-spacing: var(--ti-label-ls);
-  text-transform: uppercase;
+  font-size: 16px;
 }
 
 .packTitle small {
-  font-size: 10.5px;
+  font-size: 12px;
+  font-weight: 400;
   color: var(--ti-faint);
 }
 
@@ -377,21 +360,22 @@
   place-items: center;
   width: 1.6rem;
   height: 1.6rem;
+  border-radius: 50%;
   background: var(--ti-ink);
   color: #fff;
-  font-family: var(--ti-mono);
-  font-size: 11px;
-  font-weight: 400;
+  font-size: 12px;
+  font-weight: 600;
 }
 
-.packItem a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
+.packItem a:hover,
+.raceItem a:hover,
+.dirName a:hover {
+  color: var(--ti-accent);
 }
 
 .packSub {
   display: block;
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--ti-muted);
 }
 
@@ -412,29 +396,32 @@
 .toggle {
   display: inline-flex;
   margin-bottom: 18px;
-  border: 1px solid var(--ti-ink);
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--ti-band);
 }
 
 .toggleBtn {
-  padding: 10px 16px;
-  font-family: var(--ti-mono);
-  font-size: 12px;
-  letter-spacing: var(--ti-label-ls);
-  text-transform: uppercase;
-  background: var(--ti-surface);
-  transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ti-muted);
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 
 .toggleBtn[aria-pressed='true'] {
-  background: var(--ti-ink);
-  color: #fff;
+  background: var(--ti-card);
+  color: var(--ti-ink);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .gridWrap {
   overflow: auto;
   max-height: 640px;
   border: 1px solid var(--ti-line);
-  background: var(--ti-surface);
+  border-radius: 16px;
+  background: var(--ti-card);
 }
 
 .rankTable {
@@ -456,17 +443,14 @@
   position: sticky;
   top: 0;
   z-index: 2;
-  background: var(--ti-surface);
-  font-family: var(--ti-mono);
-  font-size: 10.5px;
-  font-weight: 400;
-  letter-spacing: var(--ti-label-ls);
-  text-transform: uppercase;
-  color: var(--ti-muted);
+  background: var(--ti-card);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ti-faint);
   text-align: center;
   max-width: 7.5rem;
   white-space: normal;
-  line-height: 1.2;
+  line-height: 1.25;
   vertical-align: bottom;
 }
 
@@ -474,7 +458,7 @@
   position: sticky;
   left: 0;
   z-index: 1;
-  background: var(--ti-surface);
+  background: var(--ti-card);
   text-align: left;
   max-width: 17rem;
   overflow: hidden;
@@ -489,8 +473,7 @@
 
 .rankTable td.cellRank {
   text-align: center;
-  font-family: var(--ti-mono);
-  font-size: 12px;
+  font-size: 13px;
   font-variant-numeric: tabular-nums;
 }
 
@@ -498,7 +481,7 @@
 .b2 { background: color-mix(in srgb, var(--ti-accent) 55%, #fff); color: #fff; }
 .b3 { background: color-mix(in srgb, var(--ti-accent) 28%, #fff); }
 .b4 { background: color-mix(in srgb, var(--ti-accent) 14%, #fff); }
-.b5 { background: #efece6; color: var(--ti-muted); }
+.b5 { background: var(--ti-band); color: var(--ti-muted); }
 .b0 { color: var(--ti-faint); }
 
 .bands {
@@ -506,10 +489,7 @@
   flex-wrap: wrap;
   gap: 6px 14px;
   margin-top: 12px;
-  font-family: var(--ti-mono);
-  font-size: 11px;
-  letter-spacing: var(--ti-label-ls);
-  text-transform: uppercase;
+  font-size: 13px;
   color: var(--ti-muted);
 }
 
@@ -522,6 +502,7 @@
 .bands i {
   width: 14px;
   height: 14px;
+  border-radius: 4px;
   display: inline-block;
   border: 1px solid var(--ti-line);
 }
@@ -539,10 +520,10 @@
 }
 
 .headlineFigure {
-  font-size: clamp(54px, 9vw, 120px);
-  line-height: 0.85;
+  font-size: clamp(54px, 8vw, 96px);
+  line-height: 0.9;
   font-weight: var(--ti-fw-heading);
-  letter-spacing: -0.06em;
+  letter-spacing: -0.05em;
   color: var(--ti-accent);
   font-variant-numeric: tabular-nums;
 }
@@ -567,26 +548,12 @@
 }
 
 .races {
-  display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--ti-line);
-  border-left: 1px solid var(--ti-line);
-}
-
-.race {
-  display: grid;
-  gap: 12px;
-  align-content: start;
-  padding: var(--ti-cell-pad);
-  border-right: 1px solid var(--ti-line);
-  border-bottom: 1px solid var(--ti-line);
-  background: var(--ti-surface);
 }
 
 .raceList {
   display: grid;
   gap: 9px;
-  counter-reset: race;
 }
 
 .raceItem {
@@ -594,21 +561,16 @@
   grid-template-columns: 1.4rem minmax(0, 1fr);
   gap: 8px;
   align-items: start;
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.3;
 }
 
 .raceItem b {
   font-family: var(--ti-mono);
-  font-size: 11.5px;
+  font-size: 12px;
   font-weight: 400;
   color: var(--ti-faint);
   padding-top: 2px;
-}
-
-.raceItem a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 
 .raceDomain {
@@ -620,10 +582,7 @@
 }
 
 .notTested {
-  font-family: var(--ti-mono);
-  font-size: 11px;
-  letter-spacing: var(--ti-label-ls);
-  text-transform: uppercase;
+  font-size: 13px;
   color: var(--ti-faint);
 }
 
@@ -642,35 +601,20 @@
 /* ---- 06 AI assistants --------------------------------------------------------------------------------------- */
 
 .aiStats {
-  display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-bottom: 28px;
-  border-top: 1px solid var(--ti-line);
-  border-left: 1px solid var(--ti-line);
-}
-
-.aiStat {
-  display: grid;
-  gap: 6px;
-  padding: var(--ti-cell-pad);
-  border-right: 1px solid var(--ti-line);
-  border-bottom: 1px solid var(--ti-line);
-  background: var(--ti-surface);
 }
 
 .aiStat strong {
-  font-size: clamp(30px, 4vw, 48px);
+  font-size: clamp(30px, 4vw, 44px);
   line-height: 1;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.04em;
   font-weight: var(--ti-fw-heading);
   font-variant-numeric: tabular-nums;
 }
 
 .aiStat span {
-  font-family: var(--ti-mono);
-  font-size: 11.5px;
-  letter-spacing: var(--ti-label-ls);
-  text-transform: uppercase;
+  font-size: 14px;
   color: var(--ti-muted);
 }
 
@@ -696,7 +640,6 @@
 .subTitle {
   margin-bottom: 12px;
   font-size: 20px;
-  letter-spacing: -0.03em;
 }
 
 .questions {
@@ -714,8 +657,7 @@
 }
 
 .questions li::before {
-  content: '>';
-  font-family: var(--ti-mono);
+  content: '•';
   color: var(--ti-accent);
 }
 
@@ -730,12 +672,12 @@
   gap: 4px 14px;
   padding: 12px 2px;
   border-bottom: 1px solid var(--ti-line);
-  font-size: 14.5px;
+  font-size: 15px;
 }
 
 .inst small {
   grid-column: 1 / -1;
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--ti-muted);
 }
 
@@ -743,8 +685,6 @@
 
 .dirTable th button {
   font: inherit;
-  letter-spacing: inherit;
-  text-transform: inherit;
   color: inherit;
   display: inline-flex;
   gap: 5px;
@@ -767,18 +707,14 @@
   max-height: 760px;
   overflow: auto;
   border: 1px solid var(--ti-line);
-  background: var(--ti-surface);
+  border-radius: 16px;
+  background: var(--ti-card);
 }
 
 .dirName {
   font-weight: 600;
   letter-spacing: -0.02em;
   min-width: 13rem;
-}
-
-.dirName a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 
 .dirLoc {
@@ -792,52 +728,36 @@
   color: var(--ti-muted);
 }
 
-/* ---- 08 call to action band --------------------------------------------------------------------------------------- */
+/* ---- closing call to action --------------------------------------------------------------------------------------- */
 
 .cta {
   display: grid;
   gap: 18px;
+  justify-items: start;
   max-width: 62ch;
 }
 
 .ctaTitle {
   font-size: var(--ti-h2);
-  line-height: 1;
-  letter-spacing: -0.05em;
+  line-height: 1.1;
 }
 
 /* ---- practice profile ------------------------------------------------------------------------------------------------ */
 
 .profileFacts {
-  display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-top: 1px solid var(--ti-line);
-  border-left: 1px solid var(--ti-line);
-}
-
-.fact {
-  display: grid;
-  gap: 8px;
-  align-content: start;
-  padding: var(--ti-cell-pad);
-  border-right: 1px solid var(--ti-line);
-  border-bottom: 1px solid var(--ti-line);
-  background: var(--ti-surface);
 }
 
 .fact strong {
-  font-size: clamp(28px, 3.4vw, 42px);
+  font-size: clamp(28px, 3.4vw, 40px);
   line-height: 1;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.04em;
   font-weight: var(--ti-fw-heading);
   font-variant-numeric: tabular-nums;
 }
 
 .fact span {
-  font-family: var(--ti-mono);
-  font-size: 11.5px;
-  letter-spacing: var(--ti-label-ls);
-  text-transform: uppercase;
+  font-size: 14px;
   color: var(--ti-muted);
 }
 
@@ -859,33 +779,18 @@
 }
 
 .lighthouse {
-  display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--ti-line);
-  border-left: 1px solid var(--ti-line);
-}
-
-.lhItem {
-  display: grid;
-  gap: 8px;
-  padding: var(--ti-cell-pad);
-  border-right: 1px solid var(--ti-line);
-  border-bottom: 1px solid var(--ti-line);
-  background: var(--ti-surface);
 }
 
 .lhItem strong {
-  font-size: clamp(30px, 4vw, 48px);
+  font-size: clamp(30px, 4vw, 44px);
   line-height: 1;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.04em;
   font-weight: var(--ti-fw-heading);
 }
 
 .lhItem span {
-  font-family: var(--ti-mono);
-  font-size: 11.5px;
-  letter-spacing: var(--ti-label-ls);
-  text-transform: uppercase;
+  font-size: 14px;
   color: var(--ti-muted);
 }
 
@@ -917,14 +822,14 @@
   display: grid;
   gap: 14px;
   max-width: 60ch;
-  padding: var(--ti-cell-pad);
-  border: 1px solid var(--ti-line-strong);
-  background: var(--ti-surface);
+  padding: var(--ti-card-pad);
+  border-radius: var(--ti-radius);
+  background: var(--ti-card);
+  box-shadow: var(--ti-shadow);
 }
 
 .walk h3 {
   font-size: 22px;
-  letter-spacing: -0.03em;
 }
 
 /* ---- methodology --------------------------------------------------------------------------------------------------------- */
@@ -947,7 +852,7 @@
 }
 
 .prose a {
-  color: var(--ti-ink);
+  color: var(--ti-accent);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -963,8 +868,7 @@
 }
 
 .bullets li::before {
-  content: '>';
-  font-family: var(--ti-mono);
+  content: '•';
   color: var(--ti-accent);
   flex: none;
 }
@@ -976,7 +880,7 @@
 .weights td:last-child {
   text-align: right;
   font-variant-numeric: tabular-nums;
-  font-family: var(--ti-mono);
+  font-weight: 600;
 }
 
 .snapList {
@@ -989,7 +893,7 @@
 .dirTable td.dirName {
   position: sticky;
   left: 0;
-  background: var(--ti-surface);
+  background: var(--ti-card);
   border-right: 1px solid var(--ti-line);
 }
 
@@ -1002,7 +906,7 @@
 }
 
 .dirTable tbody tr:hover td.dirName {
-  background: #faf8f4;
+  background: #fafaf9;
 }
 
 /* ---- phones: every control is at least 44px, and tables scroll inside their container ----------------------------- */
