@@ -446,6 +446,67 @@
   letter-spacing: 0.09em;
 }
 
+/* Badge colours. White text on each: blue 4.59:1, red 5.56:1, orange 5.2:1, green 5.38:1 (all above the 4.5:1 AA floor). */
+.badgeOrange {
+  background-color: #bd5100;
+}
+
+.badgeGreen {
+  background-color: #177a45;
+}
+
+/* A badge that sits on its own line above the title */
+.mlinkTitleStacked {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.mlinkLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.badgeAbove {
+  align-self: flex-start;
+}
+
+/* The red NEW on the main nav: out of flow, over the label's top-right corner, so the nav's width and height do not move. */
+.navLabel {
+  position: relative;
+  display: inline-block;
+}
+
+.navBadge,
+.accNew {
+  padding: 2px 6px;
+  border-radius: 5px;
+  background-color: #c9261b;
+  color: var(--color-white);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.09em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.navBadge {
+  position: absolute;
+  top: -11px;
+  left: 100%;
+  margin-left: -6px;
+  pointer-events: none;
+}
+
+/* In the mobile menu there is room beside the word, so it sits there. */
+.accLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
 /* --- a column that is a block of prose rather than a list ------------------ */
 .mblock {
   margin-inline: -13px;

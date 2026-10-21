@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import CtaLink from '@/components/booking/CtaLink';
-import { mainNav, megaPanels, siteConfig, type MegaColumn, type MegaPanel } from '@/lib/site';
+import { mainNav, megaPanels, siteConfig, type MegaColumn, type MegaLink, type MegaPanel } from '@/lib/site';
 import styles from './Header.module.css';
 
 /** Long enough for the cursor to travel from a nav item down into the panel under it. */
@@ -26,6 +26,13 @@ function Plus({ className }: { className: string }) {
   );
 }
 
+/** A menu link's badge. Blue by default; `badgeTone` picks orange or green, and `badgeAbove` sets it on its own line over the title. */
+function LinkBadge({ link }: { link: MegaLink }) {
+  if (!link.badge) return null;
+  const tone = link.badgeTone === 'orange' ? styles.badgeOrange : link.badgeTone === 'green' ? styles.badgeGreen : '';
+  return <span className={`${styles.badge} ${tone} ${link.badgeAbove ? styles.badgeAbove : ''}`}>{link.badge}</span>;
+}
+
 /* --- one column of links, or one self-titled block ------------------------- */
 function Column({ column, onNavigate }: { column: MegaColumn; onNavigate: () => void }) {
   return (
@@ -43,9 +50,12 @@ function Column({ column, onNavigate }: { column: MegaColumn; onNavigate: () => 
           className={`${styles.mlink} ${link.body ? styles.mblock : ''} ${link.featured ? styles.mlinkFeatured : ''}`}
           onClick={onNavigate}
         >
-          <span className={styles.mlinkTitle}>
-            {link.label}
-            {link.badge ? <span className={styles.badge}>{link.badge}</span> : null}
+          <span className={`${styles.mlinkTitle} ${link.badgeAbove ? styles.mlinkTitleStacked : ''}`}>
+            {link.badgeAbove ? <LinkBadge link={link} /> : null}
+            <span className={styles.mlinkLabel}>
+              {link.label}
+              {link.badgeAbove ? null : <LinkBadge link={link} />}
+            </span>
             {/* with no description the arrow has nowhere else to sit */}
             {link.desc ? null : (
               <span className={styles.arrow} aria-hidden="true">
@@ -143,12 +153,14 @@ function Mega({
 /* --- one accordion inside the existing mobile panel ------------------------ */
 function MobileSection({
   label,
+  badge,
   panel,
   open,
   onToggle,
   onNavigate,
 }: {
   label: string;
+  badge?: string;
   panel: MegaPanel;
   open: boolean;
   onToggle: () => void;
@@ -181,7 +193,10 @@ function MobileSection({
         aria-controls={`mobile-${panel.id}`}
         onClick={onToggle}
       >
-        {label}
+        <span className={styles.accLabel}>
+          {label}
+          {badge ? <span className={styles.accNew}>{badge}</span> : null}
+        </span>
         <Plus className={styles.accPlus} />
       </button>
 
@@ -206,9 +221,12 @@ function MobileSection({
                   className={`${styles.accLink} ${link.featured ? styles.mlinkFeatured : ''}`}
                   onClick={onNavigate}
                 >
-                  <span className={styles.mlinkTitle}>
-                    {link.label}
-                    {link.badge ? <span className={styles.badge}>{link.badge}</span> : null}
+                  <span className={`${styles.mlinkTitle} ${link.badgeAbove ? styles.mlinkTitleStacked : ''}`}>
+                    {link.badgeAbove ? <LinkBadge link={link} /> : null}
+                    <span className={styles.mlinkLabel}>
+                      {link.label}
+                      {link.badgeAbove ? null : <LinkBadge link={link} />}
+                    </span>
                   </span>
                   {link.desc ? <span className={styles.mlinkDesc}>{link.desc}</span> : null}
                 </Link>
@@ -362,7 +380,10 @@ export default function Header() {
                           openId === panel.id ? closeAll() : openPanel(panel.id)
                         }
                       >
-                        {item.label}
+                        <span className={styles.navLabel}>
+                          {item.label}
+                          {item.badge ? <span className={styles.navBadge}>{item.badge}</span> : null}
+                        </span>
                         <Plus className={styles.navPlus} />
                       </button>
                     ) : (
@@ -371,7 +392,10 @@ export default function Header() {
                         className={styles.navLink}
                         onMouseEnter={scheduleClose}
                       >
-                        {item.label}
+                        <span className={styles.navLabel}>
+                          {item.label}
+                          {item.badge ? <span className={styles.navBadge}>{item.badge}</span> : null}
+                        </span>
                       </Link>
                     )}
                   </li>
@@ -424,6 +448,7 @@ export default function Header() {
                   <MobileSection
                     key={item.label}
                     label={item.label}
+                    badge={item.badge}
                     panel={panel}
                     open={accOpen.includes(panel.id)}
                     onToggle={() => toggleAcc(panel.id)}

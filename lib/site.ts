@@ -9,6 +9,8 @@ import { reviews, reviewsSummary } from '@/lib/reviews';
 export type NavItem = {
   label: string;
   href: string;
+  /** A small red pill above the label's top-right corner on the desktop nav, and beside it in the mobile menu. */
+  badge?: string;
 };
 
 export const siteConfig = {
@@ -72,7 +74,7 @@ export const mainNav: NavItem[] = [
   { label: 'Pricing', href: routes.pricing.hub },
   { label: 'About', href: routes.about },
   { label: 'Freebies', href: routes.freebies.hub },
-  { label: 'Tools', href: '#tools' },
+  { label: 'Tools', href: '#tools', badge: 'NEW' },
 ];
 
 /* ==========================================================================
@@ -92,6 +94,10 @@ export type MegaLink = NavItem & {
   /** a paragraph under the description — only Who We Help uses one */
   body?: string;
   badge?: string;
+  /** The badge's colour: blue unless set. Blue is for "Soon"; orange and green are for the two notes above a title. */
+  badgeTone?: 'orange' | 'green';
+  /** Put the badge on its own line above the title instead of beside it. */
+  badgeAbove?: boolean;
   /** Set apart from the links under it: a tinted row, used for the all-in-one plan. */
   featured?: boolean;
 };
@@ -191,7 +197,7 @@ export const megaPanels: Record<string, MegaPanel> = {
     feature: {
       eyebrow: 'Most Popular',
       lead: 'The One Week Website',
-      body: 'Your practice online in seven days. Design, build, HIPAA-aware forms, and launch — all handled while you stay in session.',
+      body: 'Your practice online in seven days. Design, build, HIPAA-aware forms, and launch. All handled while you stay in session.',
       link: { label: 'See how it works', href: serviceHref('one-week-website') },
       image: {
         src: '/images/Timely-Therapy-Case-Studies-wwisermind.webp',
@@ -227,7 +233,7 @@ export const megaPanels: Record<string, MegaPanel> = {
             label: 'Solo Practices',
             href: audienceHref('solo-practices'),
             desc: 'Your voice, your specialty',
-            body: 'A site that carries your credibility while you’re in session — your specialty stated plainly, your availability current, and enquiries that arrive ready to answer.',
+            body: 'A site that carries your credibility while you’re in session. Your specialty stated plainly, your availability current, and enquiries that arrive ready to answer.',
           },
         ],
       },
@@ -305,7 +311,7 @@ export const megaPanels: Record<string, MegaPanel> = {
     ],
     feature: {
       eyebrow: 'Founder’s Note',
-      body: 'My nephew’s therapy journey inspired all of this. We understand what families search for — and how to help them find you.',
+      body: 'My nephew’s therapy journey inspired all of this. We understand what families search for, and how to help them find you.',
       link: { label: 'Read the full story', href: routes.homeSection('our-story') },
       image: {
         src: '/images/srikaant.webp',
@@ -375,18 +381,17 @@ export const megaPanels: Record<string, MegaPanel> = {
         lead: 'Check',
         title: 'Free Assessments',
         links: [
-          { label: 'AI Visibility Report', href: routes.homeSection('ai-visibility-report'), desc: 'Does ChatGPT know you exist?', badge: 'NEW' },
-          { label: 'Marketing Assessment', href: routes.homeSection('marketing-assessment'), desc: 'Where you stand today' },
           { label: 'Local Map Assessment', href: routes.homeSection('local-map-assessment'), desc: 'Your Google Maps presence' },
           ...scorecardLink,
+          { label: 'Marketing Assessment', href: routes.homeSection('marketing-assessment'), desc: 'Where you stand today' },
+          { label: 'AI Visibility Report', href: routes.homeSection('ai-visibility-report'), desc: 'Does ChatGPT know you exist?', badge: 'Soon' },
         ],
       },
       {
         lead: 'Open',
         title: 'Transparency',
         links: [
-          { label: 'OpenBook', href: routes.homeSection('openbook'), desc: 'A look inside the studio' },
-          { label: 'Therapy Index', href: routes.therapyIndex.hub, desc: 'Who patients find in your city' },
+          { label: 'Therapy Index', href: routes.therapyIndex.hub, desc: 'Who patients find in your city', badge: 'LIVE DATA', badgeTone: 'orange', badgeAbove: true },
         ],
       },
       {
@@ -397,14 +402,18 @@ export const megaPanels: Record<string, MegaPanel> = {
             label: 'Crisis Resources by State',
             href: routes.tools.crisisResources,
             desc: 'Free helpline directory',
+            badge: 'IMPORTANT',
+            badgeTone: 'green',
+            badgeAbove: true,
           },
         ],
       },
     ],
     feature: {
       eyebrow: 'Try This First',
-      lead: 'AI Visibility Report',
-      body: 'Find out if ChatGPT, Gemini, and Perplexity recommend your practice — before your competitors do.',
+      lead: 'Therapy Index',
+      body: 'See who patients actually find in Houston, Austin and Denver, on Google Maps, Google search and AI answers.',
+      link: { label: 'Open the Therapy Index', href: routes.therapyIndex.hub },
     },
     strip: { text: 'All tools are free. No credit card, no strings.' },
   },
