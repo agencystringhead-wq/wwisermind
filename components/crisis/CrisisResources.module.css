@@ -201,6 +201,30 @@
 }
 
 /* The two local-help cards under the state list, or under its placeholder line. */
+.areaTitle {
+  margin-top: 36px;
+  font-size: 22px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.areaName {
+  margin-top: 32px;
+  color: var(--color-muted);
+  font-size: 16px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.35;
+}
+
+.areaTitle + .grid {
+  margin-top: 16px;
+}
+
+.areaName + .grid {
+  margin-top: 12px;
+}
+
 .grid.localHelp {
   margin-top: 24px;
 }

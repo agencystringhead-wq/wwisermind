@@ -6,7 +6,7 @@ import local from '@/components/pricing/LocalSeo.module.css';
 import LocalSeoFaq from '@/components/pricing/LocalSeoFaq';
 import Accordion from '@/components/ui/Accordion';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
-import { STATE_NAMES } from '@/lib/crisis-resources';
+import { getStatesWithCounties, STATE_NAMES } from '@/lib/crisis-resources';
 import { routes } from '@/lib/routes';
 import { absUrl } from '@/lib/site';
 import styles from '@/components/crisis/HelpNowWidget.module.css';
@@ -117,7 +117,7 @@ export default function Page() {
       />
 
       <div className={`container ${styles.content}`}>
-        <HelpNowGenerator states={states} />
+        <HelpNowGenerator states={states} countyStates={getStatesWithCounties()} />
 
         <section className={styles.section} aria-labelledby="widget-guides">
           <h2 className={styles.sectionTitle} id="widget-guides">

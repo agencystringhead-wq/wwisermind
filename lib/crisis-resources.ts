@@ -28,13 +28,18 @@ export type CrisisCategory =
   | 'substance-use'
   | 'maternal'
   | 'eating-disorders'
-  | 'support';
+  | 'support'
+  /** Not a helpline: a link to where a state publishes its county crisis lines. */
+  | 'lookup';
 
 export type CrisisResource = {
   /** kebab-case */
   id: string;
   name: string;
   category: CrisisCategory;
+  /** Where inside a state it applies, such as "Harris County (Houston)". It starts with the county's name,
+      because the help now widget matches data-county against the start of it. No `area`: statewide. */
+  area?: string;
   /** Who it is for, short. */
   audience: string;
   /** Display format. */
@@ -47,7 +52,10 @@ export type CrisisResource = {
   textHref?: string;
   tty?: string;
   chatUrl?: string;
-  hours: string;
+  /** The words on the chat button, where "Chat online" is wrong (a lookup page). */
+  chatLabel?: string;
+  /** Absent when the source gives none, such as a lookup page: nothing is shown rather than a guess. */
+  hours?: string;
   languages?: string;
   notes?: string;
   /** The official URL used to verify the entry. */
@@ -179,6 +187,39 @@ export function getLocalHelp(): LocalHelpResource[] {
 /** A state's own resources, by two-letter code in any case. Empty when there are none. */
 export function getStateResources(code: string): CrisisResource[] {
   return publishable(crisisData.states[code.toUpperCase()] ?? []);
+}
+
+export type StateGroups = {
+  /** Resources with no `area`, other than the lookup page. */
+  statewide: CrisisResource[];
+  /** The page that finds a county's own crisis line, when the state has one. */
+  lookup?: CrisisResource;
+  /** County resources grouped by `area`, the areas in alphabetical order. */
+  byArea: { area: string; items: CrisisResource[] }[];
+};
+
+/** A state's checked resources split into statewide, the lookup page and county groups. */
+export function getStateGroups(code: string): StateGroups {
+  const all = getStateResources(code);
+  const byArea = new Map<string, CrisisResource[]>();
+  for (const resource of all) {
+    if (!resource.area) continue;
+    byArea.set(resource.area, [...(byArea.get(resource.area) ?? []), resource]);
+  }
+  return {
+    statewide: all.filter((resource) => !resource.area && resource.category !== 'lookup'),
+    lookup: all.find((resource) => !resource.area && resource.category === 'lookup'),
+    byArea: [...byArea.entries()]
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([area, items]) => ({ area, items })),
+  };
+}
+
+/** Codes of the states with county-level entries: the ones whose widget code takes a county. */
+export function getStatesWithCounties(): string[] {
+  return Object.keys(crisisData.states).filter((code) =>
+    getStateResources(code).some((resource) => resource.area),
+  );
 }
 
 /** The states that have at least one resource to show, in alphabetical order by name. */

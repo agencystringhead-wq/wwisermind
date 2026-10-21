@@ -87,7 +87,7 @@
     var item = el('li', 'card');
     item.appendChild(el('p', 'name', r.name));
     item.appendChild(el('p', 'who', r.audience));
-    item.appendChild(el('p', 'hours', 'Hours: ' + r.hours));
+    if (r.hours) item.appendChild(el('p', 'hours', 'Hours: ' + r.hours));
     [r.tty, r.languages, r.notes].forEach(function (line) {
       if (line) item.appendChild(el('p', 'more', line));
     });
@@ -97,7 +97,8 @@
     var chat = safeHref(r.chatUrl, 'https://');
     if (call && r.call) actions.appendChild(button('Call ' + r.call, call, 'Call ' + r.call + ': ' + r.name));
     if (text && r.text) actions.appendChild(button(r.text, text, r.text + ': ' + r.name));
-    if (chat) actions.appendChild(button('Chat online', chat, 'Chat online: ' + r.name + ' (opens in a new tab)', true));
+    var chatLabel = r.chatLabel || 'Chat online';
+    if (chat) actions.appendChild(button(chatLabel, chat, chatLabel + ': ' + r.name + ' (opens in a new tab)', true));
     if (actions.childNodes.length) item.appendChild(actions);
     return item;
   }
@@ -134,7 +135,19 @@
     var checked = function (list) {
       return (Array.isArray(list) ? list : []).filter(function (r) { return r && r.needsCheck !== true; });
     };
-    var own = /^[A-Z]{2}$/.test(state) && data.states ? checked(data.states[state]) : [];
+    var stateList = /^[A-Z]{2}$/.test(state) && data.states ? checked(data.states[state]) : [];
+    /* A state's entries are statewide (no area), county entries (an area, which starts with the county's
+       name) and at most one lookup page. data-state alone shows the statewide ones and the lookup link;
+       adding data-county shows the statewide ones and the entries whose area starts with that county,
+       and the lookup link only if none matched. A county is never listed unless it was asked for. */
+    var county = (host.getAttribute('data-county') || '').trim().toLowerCase();
+    var statewide = stateList.filter(function (r) { return !r.area && r.category !== 'lookup'; });
+    var lookup = stateList.filter(function (r) { return !r.area && r.category === 'lookup'; });
+    var local = county ? stateList.filter(function (r) {
+      return typeof r.area === 'string' && r.area.toLowerCase().indexOf(county) === 0;
+    }) : [];
+    var own = statewide.concat(local);
+    if (!local.length) own = own.concat(lookup);
     var national = checked(data.national);
     if (compact) national = national.filter(function (r) { return COMPACT_IDS.indexOf(r.id) !== -1; });
     var emergency = national.filter(function (r) { return r.id === 'emergency-911'; })[0];

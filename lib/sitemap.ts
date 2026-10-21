@@ -1,5 +1,6 @@
 import { audiences } from '@/lib/audiences';
 import { getAllPosts, getCategories } from '@/lib/blog';
+import { getStatesWithData } from '@/lib/crisis-resources';
 import { freebiePath, freebies, isLive } from '@/lib/freebies';
 import { routes, SERVICE_PATHS } from '@/lib/routes';
 import { services, type ServiceCategory } from '@/lib/services';
@@ -146,6 +147,7 @@ export function sitemapEntries(): SitemapEntry[] {
   sitemapGroups().forEach((group) => walk(group.links));
 
   add(routes.sitemap);
+  getStatesWithData().forEach((state) => add(routes.crisisState(state.slug)));
   getCategories().forEach((category) => add(routes.blogCategory(category.slug)));
   /* After the loop on purpose: the human page lists the newest posts with no date, and the XML
      file wants each post's own updated date, so the entry is replaced here. */

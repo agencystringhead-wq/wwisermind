@@ -6,6 +6,8 @@ import styles from './HelpNowWidget.module.css';
 type Props = {
   /** Two-letter code and name of every state and DC, in alphabetical order. */
   states: { code: string; name: string }[];
+  /** Codes of the states that have county-level data, which are the ones that take a county. */
+  countyStates?: string[];
 };
 
 const SCRIPT_URL = 'https://wwisermind.com/widget/help-now.js';
@@ -24,8 +26,9 @@ const escapeAttr = (value: string) =>
  * data, and the code box shows the snippet a practice pastes into its site. Nothing is saved or
  * sent anywhere: the choices stay in this page.
  */
-export default function HelpNowGenerator({ states }: Props) {
+export default function HelpNowGenerator({ states, countyStates = [] }: Props) {
   const [state, setState] = useState('');
+  const [county, setCounty] = useState('');
   const [color, setColor] = useState(DEFAULT_COLOR);
   const [compact, setCompact] = useState(false);
   const [heading, setHeading] = useState('');
@@ -34,9 +37,13 @@ export default function HelpNowGenerator({ states }: Props) {
   const ready = useRef<Promise<void> | null>(null);
   const id = useId();
 
+  /* The county only counts for a state that has county data; switching state drops it from the code. */
+  const countyValue = countyStates.includes(state) ? county.trim() : '';
+
   const attrs = [
     'class="wwiser-help-now"',
     ...(state ? [`data-state="${state}"`] : []),
+    ...(countyValue ? [`data-county="${escapeAttr(countyValue)}"`] : []),
     `data-color="${color}"`,
     ...(compact ? ['data-compact="true"'] : []),
     ...(heading.trim() ? [`data-heading="${escapeAttr(heading.trim())}"`] : []),
@@ -67,6 +74,7 @@ export default function HelpNowGenerator({ states }: Props) {
       const div = document.createElement('div');
       div.className = 'wwiser-help-now';
       if (state) div.setAttribute('data-state', state);
+      if (countyValue) div.setAttribute('data-county', countyValue);
       div.setAttribute('data-color', color);
       if (compact) div.setAttribute('data-compact', 'true');
       if (heading.trim()) div.setAttribute('data-heading', heading.trim());
@@ -79,7 +87,7 @@ export default function HelpNowGenerator({ states }: Props) {
     return () => {
       cancelled = true;
     };
-  }, [state, color, compact, heading]);
+  }, [state, countyValue, color, compact, heading]);
 
   async function copy() {
     try {
@@ -112,6 +120,25 @@ export default function HelpNowGenerator({ states }: Props) {
             States without local data show national resources only.
           </p>
         </div>
+
+        {countyStates.includes(state) ? (
+          <div className={styles.field}>
+            <label htmlFor={`${id}-county`}>County</label>
+            <input
+              id={`${id}-county`}
+              type="text"
+              value={county}
+              maxLength={60}
+              placeholder="Harris"
+              onChange={(event) => setCounty(event.target.value)}
+              autoComplete="off"
+            />
+            <p className={styles.hint}>
+              e.g. Harris, Dallas, Travis. Leave it empty to show the statewide lines and a link to
+              each county&apos;s own crisis line.
+            </p>
+          </div>
+        ) : null}
 
         <div className={styles.field}>
           <label htmlFor={`${id}-color`}>Accent colour</label>

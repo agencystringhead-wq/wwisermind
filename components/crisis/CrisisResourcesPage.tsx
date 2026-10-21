@@ -5,12 +5,13 @@ import {
   formatVerifiedDate,
   getListedNationalResources,
   getLocalHelp,
-  getStateResources,
+  getStateGroups,
   getStatesWithData,
   safeHref,
   type CrisisResource,
   type CrisisState,
   type LocalHelpResource,
+  type StateGroups,
 } from '@/lib/crisis-resources';
 import { routes } from '@/lib/routes';
 import { footerMain } from '@/lib/site';
@@ -49,7 +50,15 @@ function EmergencyBanner() {
   );
 }
 
-function ResourceCard({ resource }: { resource: CrisisResource }) {
+type CardHeading = 'h3' | 'h4' | 'h5';
+
+function ResourceCard({
+  resource,
+  level: Title = 'h3',
+}: {
+  resource: CrisisResource;
+  level?: CardHeading;
+}) {
   const { name } = resource;
   const details = [resource.tty, resource.languages, resource.notes].filter(Boolean) as string[];
   const callHref = safeHref(resource.callHref, 'tel:');
@@ -60,11 +69,13 @@ function ResourceCard({ resource }: { resource: CrisisResource }) {
 
   return (
     <li className={styles.card}>
-      <h3 className={styles.cardTitle}>{name}</h3>
+      <Title className={styles.cardTitle}>{name}</Title>
       <p className={styles.audience}>{resource.audience}</p>
-      <p className={styles.hours}>
-        <span className={styles.hoursLabel}>Hours</span> {resource.hours}
-      </p>
+      {resource.hours ? (
+        <p className={styles.hours}>
+          <span className={styles.hoursLabel}>Hours</span> {resource.hours}
+        </p>
+      ) : null}
       {details.length > 0 ? (
         <ul className={styles.details}>
           {details.map((line) => (
@@ -103,9 +114,9 @@ function ResourceCard({ resource }: { resource: CrisisResource }) {
                 href={chatUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`Chat online: ${name} (opens in a new tab)`}
+                aria-label={`${resource.chatLabel ?? 'Chat online'}: ${name} (opens in a new tab)`}
               >
-                Chat online
+                {resource.chatLabel ?? 'Chat online'}
               </a>
             </li>
           ) : null}
@@ -117,6 +128,70 @@ function ResourceCard({ resource }: { resource: CrisisResource }) {
         </a>
       ) : null}
     </li>
+  );
+}
+
+/** The card at the top of "By county": where the state publishes every county's own crisis line. */
+function LookupCard({ resource }: { resource: CrisisResource }) {
+  const href = safeHref(resource.chatUrl, 'https://');
+  return (
+    <li className={styles.card}>
+      <h4 className={styles.cardTitle}>{`Don't see your county? ${resource.name}`}</h4>
+      <p className={styles.audience}>{resource.audience}</p>
+      {href ? (
+        <ul className={styles.actions} aria-label={`Ways to reach ${resource.name}`}>
+          <li>
+            <a className={styles.button} href={href} target="_blank" rel="noopener noreferrer">
+              {resource.chatLabel ?? resource.name}
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+          </li>
+        </ul>
+      ) : null}
+    </li>
+  );
+}
+
+/** A state's own resources: the statewide ones first, then "By county" with the lookup page at its top
+    and a group for each area, then (drawn by the page) the national list. */
+function StateResources({ groups }: { groups: StateGroups }) {
+  const { statewide, lookup, byArea } = groups;
+  const hasCounties = Boolean(lookup) || byArea.length > 0;
+
+  return (
+    <>
+      {statewide.length > 0 ? (
+        <>
+          {hasCounties ? <h3 className={styles.areaTitle}>Statewide</h3> : null}
+          <ul className={styles.grid}>
+            {statewide.map((resource) => (
+              <ResourceCard resource={resource} level={hasCounties ? 'h4' : 'h3'} key={resource.id} />
+            ))}
+          </ul>
+        </>
+      ) : null}
+
+      {hasCounties ? (
+        <>
+          <h3 className={styles.areaTitle}>By county</h3>
+          {lookup ? (
+            <ul className={styles.grid}>
+              <LookupCard resource={lookup} />
+            </ul>
+          ) : null}
+          {byArea.map((group) => (
+            <div key={group.area}>
+              <h4 className={styles.areaName}>{group.area}</h4>
+              <ul className={styles.grid}>
+                {group.items.map((resource) => (
+                  <ResourceCard resource={resource} level="h5" key={resource.id} />
+                ))}
+              </ul>
+            </div>
+          ))}
+        </>
+      ) : null}
+    </>
   );
 }
 
@@ -214,7 +289,7 @@ function Footnote() {
 }
 
 export default function CrisisResourcesPage({ state }: { state?: CrisisState }) {
-  const stateResources = state ? getStateResources(state.code) : [];
+  const stateGroups = state ? getStateGroups(state.code) : null;
   const states = getStatesWithData();
   const localHelp = getLocalHelp();
   const listed = getListedNationalResources();
@@ -261,11 +336,7 @@ export default function CrisisResourcesPage({ state }: { state?: CrisisState }) 
             <h2 className={styles.groupTitle} id="crisis-state">
               {state.name} resources
             </h2>
-            <ul className={styles.grid}>
-              {stateResources.map((resource) => (
-                <ResourceCard resource={resource} key={resource.id} />
-              ))}
-            </ul>
+            {stateGroups ? <StateResources groups={stateGroups} /> : null}
           </section>
         ) : null}
 
