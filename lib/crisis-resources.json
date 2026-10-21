@@ -209,6 +209,78 @@
     }
   ],
   "states": {
+    "CA": [
+      {
+        "id": "ca-peer-warmline",
+        "name": "California Peer-Run Warm Line",
+        "category": "support",
+        "audience": "Anyone in California who wants peer support",
+        "call": "1-855-845-7415",
+        "callHref": "tel:18558457415",
+        "chatUrl": "https://www.mentalhealthsf.org/peer-run-warmline/",
+        "hours": "24/7",
+        "notes": "Peer support for anyone in California. Not a crisis line.",
+        "source": "https://www.mentalhealthsf.org/peer-run-warmline/",
+        "verified": "2026-10-21",
+        "needsCheck": false
+      },
+      {
+        "id": "ca-la-county-help-line",
+        "name": "LA County Help Line (Dept. of Mental Health)",
+        "category": "crisis",
+        "area": "Los Angeles County",
+        "audience": "Anyone in a mental health crisis in this area",
+        "call": "1-800-854-7771",
+        "callHref": "tel:18008547771",
+        "hours": "24/7",
+        "notes": "Press 1 for crisis and mental health, 2 for substance use, 3 for veterans.",
+        "source": "https://dmh.lacounty.gov",
+        "verified": "2026-10-21",
+        "needsCheck": false
+      },
+      {
+        "id": "ca-san-diego-acl",
+        "name": "San Diego Access & Crisis Line",
+        "category": "crisis",
+        "area": "San Diego County",
+        "audience": "Anyone in a mental health crisis in this area",
+        "call": "1-888-724-7240",
+        "callHref": "tel:18887247240",
+        "hours": "24/7",
+        "notes": "San Diego's local 988 partner. 200+ languages.",
+        "source": "https://www.sandiegocounty.gov/hhsa/programs/bhs/ACL.html",
+        "verified": "2026-10-21",
+        "needsCheck": false
+      }
+    ],
+    "FL": [
+      {
+        "id": "fl-dv-hotline",
+        "name": "Florida Domestic Violence Hotline",
+        "category": "violence",
+        "audience": "People affected by domestic violence",
+        "call": "1-800-500-1119",
+        "callHref": "tel:18005001119",
+        "tty": "TDD 1-800-621-4202",
+        "hours": "24/7",
+        "languages": "English, Spanish, Creole",
+        "source": "https://www.myflfamilies.com/services/abuse/domestic-violence/get-help",
+        "verified": "2026-10-21",
+        "needsCheck": false
+      },
+      {
+        "id": "fl-abuse-hotline",
+        "name": "Florida Abuse Hotline",
+        "category": "violence",
+        "audience": "Report abuse, neglect or exploitation of a child or vulnerable adult, or human trafficking",
+        "call": "1-800-962-2873",
+        "callHref": "tel:18009622873",
+        "hours": "24/7",
+        "source": "https://www.myflfamilies.com/contact-us",
+        "verified": "2026-10-21",
+        "needsCheck": false
+      }
+    ],
     "IL": [
       {
         "id": "il-warm-line",
@@ -263,6 +335,37 @@
         "hours": "24/7",
         "languages": "240+ languages",
         "source": "https://the-network.org/illinois-domestic-violence-hotline/",
+        "verified": "2026-10-21",
+        "needsCheck": false
+      }
+    ],
+    "NY": [
+      {
+        "id": "ny-hopeline",
+        "name": "NY HOPEline",
+        "category": "substance-use",
+        "audience": "Substance use and gambling support and referrals",
+        "call": "1-877-846-7369",
+        "callHref": "tel:18778467369",
+        "text": "Text HOPENY to 467369",
+        "textHref": "sms:467369",
+        "hours": "24/7",
+        "source": "https://oasas.ny.gov/hopeline",
+        "verified": "2026-10-21",
+        "needsCheck": false
+      },
+      {
+        "id": "ny-dv-hotline",
+        "name": "NYS Domestic and Sexual Violence Hotline",
+        "category": "violence",
+        "audience": "People affected by domestic or sexual violence",
+        "call": "1-800-942-6906",
+        "callHref": "tel:18009426906",
+        "text": "Text 844-997-2121",
+        "textHref": "sms:18449972121",
+        "chatUrl": "https://opdv.ny.gov",
+        "hours": "24/7",
+        "source": "https://opdv.ny.gov/contact-opdv",
         "verified": "2026-10-21",
         "needsCheck": false
       }
