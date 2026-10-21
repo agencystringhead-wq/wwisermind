@@ -145,16 +145,20 @@ function NationalSections({ headingLevel }: { headingLevel: 'h2' | 'h3' }) {
 function ForTherapists() {
   return (
     <section className={styles.therapists} aria-labelledby="crisis-therapists">
-      <h2 className={styles.therapistsTitle} id="crisis-therapists">
-        For therapists
-      </h2>
-      <p className={styles.therapistsBody}>
-        You can add these resources to your own practice website for free with the help now widget.
-        We keep the numbers current, so you do not have to.
-      </p>
-      <Link href={routes.tools.helpNowWidget} className={styles.therapistsButton}>
-        Add the help now widget to your site
-      </Link>
+      <div className="container">
+        <div className={styles.therapistsInner}>
+          <h2 className={styles.therapistsTitle} id="crisis-therapists">
+            For therapists
+          </h2>
+          <p className={styles.therapistsBody}>
+            You can add these resources to your own practice website for free with the help now
+            widget. We keep the numbers current, so you do not have to.
+          </p>
+          <Link href={routes.tools.helpNowWidget} className={styles.therapistsButton}>
+            Add the help now widget to your site
+          </Link>
+        </div>
+      </div>
     </section>
   );
 }
@@ -198,7 +202,7 @@ export default function CrisisResourcesPage({ state }: { state?: CrisisState }) 
 
       <Breadcrumbs trail={trail} />
 
-      <div className={`container ${styles.content}`}>
+      <div className={`container ${styles.content} ${state ? '' : styles.contentBeforeBand}`}>
         {state ? (
           <section className={styles.group} aria-labelledby="crisis-state">
             <h2 className={styles.groupTitle} id="crisis-state">
@@ -238,10 +242,17 @@ export default function CrisisResourcesPage({ state }: { state?: CrisisState }) 
           </section>
         )}
 
-        {state ? null : <ForTherapists />}
-
-        <Footnote />
+        {state ? <Footnote /> : null}
       </div>
+
+      {state ? null : (
+        <>
+          <ForTherapists />
+          <div className={`container ${styles.afterBand}`}>
+            <Footnote />
+          </div>
+        </>
+      )}
     </>
   );
 }

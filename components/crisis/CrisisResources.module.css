@@ -88,6 +88,20 @@
   padding-block: 24px 80px;
 }
 
+/* On the main page the band follows, so the content closes with 64px of page background above it. */
+.contentBeforeBand {
+  padding-bottom: 64px;
+}
+
+/* The last-verified note sits on the page background below the band, then 80px above the footer. */
+.afterBand {
+  padding-block: 48px 80px;
+}
+
+.afterBand .footnote {
+  margin-top: 0;
+}
+
 /* --- a group of resources ------------------------------------------------------------------- */
 .group {
   margin-top: 48px;
@@ -248,13 +262,19 @@
   text-underline-offset: 4px;
 }
 
+/* "For therapists": a full-width band in the site's brand blue, edge to edge, with its content centred
+   in the normal content width. White on the brand blue is 4.6:1, so the body text stays pure white
+   (a softer white would fall under 4.5:1). Nothing animates. */
 .therapists {
-  /* The site's dark ground (#1d166a, the contact hero's), so the card reads as its own block even
-     beside a dark footer. Its custom properties (--dark-body and the rest) come with it. */
-  composes: dark from '../ui/Controls.module.css';
-  margin-top: 64px;
-  padding: 40px;
-  border-radius: 20px;
+  padding-block: 72px;
+  background-color: var(--color-brand);
+  color: var(--color-white);
+}
+
+.therapistsInner {
+  max-width: 62ch;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .therapists .therapistsTitle {
@@ -266,14 +286,15 @@
 }
 
 .therapists .therapistsBody {
-  max-width: 62ch;
   margin-top: 12px;
-  color: var(--dark-body);
+  color: var(--color-white);
   font-size: 17px;
   line-height: 1.6;
+  text-wrap: balance;
 }
 
-/* The brand yellow with ink on it (19.6:1), a full-size pill. Hover flips to white. */
+/* The brand yellow with ink on it (19.6:1) and 4.3:1 against the blue, a full-size pill. Hover flips
+   to white. */
 .therapists .therapistsButton {
   display: inline-flex;
   min-height: 48px;
@@ -315,12 +336,6 @@
   line-height: 1.6;
 }
 
-/* After the dark card the note keeps a clear stretch of the page background, then the page's own
-   bottom padding, so the card is never against the footer. */
-.therapists + .footnote {
-  margin-top: 64px;
-}
-
 .footnote a {
   color: var(--color-ink);
   text-decoration: underline;
@@ -329,11 +344,14 @@
 
 @media (max-width: 767px) {
   .therapists {
-    margin-top: 40px;
-    padding: 28px;
+    padding-block: 48px;
   }
 
-  .therapists + .footnote {
-    margin-top: 40px;
+  .contentBeforeBand {
+    padding-bottom: 40px;
+  }
+
+  .afterBand {
+    padding-block: 40px 64px;
   }
 }
