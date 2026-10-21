@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import CtaLink from '@/components/booking/CtaLink';
 import { routes } from '@/lib/routes';
@@ -26,20 +27,47 @@ function RingMark({ className }: { className?: string }) {
 }
 
 /**
- * The Therapy Index's own header, used in place of the main site header on every /therapyindex page: a floating pill with the
- * wordmark on the left and one "Explore" button, which opens a full-screen menu (cities, how it works, getting help).
- * The menu traps focus, closes on Escape or ×, and hands focus back to the button.
+ * The Therapy Index's own header, used in place of the main site header on its pages: a floating pill with the wordmark, the three
+ * cities, a "Free consultation" button and an "Explore" button that opens a full-screen menu. Past the hero the pill shrinks a little
+ * and turns more translucent. The menu traps focus, closes on Escape or ×, and hands focus back to the button.
  */
 export default function TiHeader({ cities }: { cities: HeaderCity[] }) {
+  const pathname = usePathname() ?? '';
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const button = useRef<HTMLButtonElement>(null);
   const menu = useRef<HTMLDivElement>(null);
   const close = useRef<HTMLButtonElement>(null);
+
+  // On a city report or a practice profile, that city is the current one.
+  const current = cities.find((c) => pathname.startsWith(c.href));
 
   const closeMenu = useCallback(() => {
     setOpen(false);
     button.current?.focus();
   }, []);
+
+  // "Past the hero": most of the way down the hub's hero, or a short scroll on every other page.
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const hero = document.getElementById('intro');
+      const threshold = hero ? hero.offsetHeight * 0.6 : 48;
+      setScrolled(window.scrollY > threshold);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, [pathname]);
 
   // Lock page scroll and move focus into the menu while it is open.
   useEffect(() => {
@@ -81,28 +109,54 @@ export default function TiHeader({ cities }: { cities: HeaderCity[] }) {
 
   return (
     <header className={styles.header}>
-      <div className={styles.pill}>
+      <div className={`${styles.pill} ${scrolled ? styles.pillScrolled : ''}`}>
         <Link href={hub} prefetch={false} className={styles.brand} aria-label="Therapy Index home">
           <RingMark className={styles.ring} />
           <span className={styles.wordmark}>therapy index.</span>
         </Link>
-        <button
-          ref={button}
-          type="button"
-          className={styles.explore}
-          aria-haspopup="dialog"
-          aria-expanded={open}
-          aria-controls="ti-menu"
-          onClick={() => setOpen(true)}
-        >
-          Explore
-          <svg viewBox="0 0 16 16" className={styles.exploreIcon} aria-hidden="true">
-            <circle cx="3.5" cy="3.5" r="1.6" />
-            <circle cx="12.5" cy="3.5" r="1.6" />
-            <circle cx="3.5" cy="12.5" r="1.6" />
-            <circle cx="12.5" cy="12.5" r="1.6" />
-          </svg>
-        </button>
+
+        <span className={styles.divider} aria-hidden="true" />
+
+        <nav className={styles.cities} aria-label="Cities">
+          {cities.map((c) => (
+            <Link
+              key={c.slug}
+              href={c.href}
+              prefetch={false}
+              className={`${styles.city} ${current?.slug === c.slug ? styles.cityCurrent : ''}`}
+              aria-current={current?.slug === c.slug ? (pathname === c.href ? 'page' : 'true') : undefined}
+            >
+              {c.name}
+            </Link>
+          ))}
+        </nav>
+
+        <span className={styles.divider} aria-hidden="true" />
+
+        <div className={styles.actions}>
+          <CtaLink href={routes.contactBook} className={styles.consult}>
+            <span className={styles.consultLong}>Free consultation</span>
+            <span className={styles.consultShort}>Book</span>
+          </CtaLink>
+          <button
+            ref={button}
+            type="button"
+            className={styles.explore}
+            aria-haspopup="dialog"
+            aria-expanded={open}
+            aria-controls="ti-menu"
+            aria-label="Explore"
+            onClick={() => setOpen(true)}
+          >
+            <span className={styles.exploreLabel}>Explore</span>
+            <svg viewBox="0 0 16 16" className={styles.exploreIcon} aria-hidden="true">
+              <circle cx="3.5" cy="3.5" r="1.6" />
+              <circle cx="12.5" cy="3.5" r="1.6" />
+              <circle cx="3.5" cy="12.5" r="1.6" />
+              <circle cx="12.5" cy="12.5" r="1.6" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       <div

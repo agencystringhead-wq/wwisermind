@@ -8,6 +8,7 @@ import { routes } from '@/lib/routes';
 import { CONTACT_EMAIL, CONTACT_MAILTO, FOUNDER_PHOTO, SEARCH_GROUPS, SOURCES } from '@/lib/therapyindex/config';
 import { displayName, getHubStats, getMarketViews, searchLabel } from '@/lib/therapyindex/data';
 import HeroSearch from './HeroSearch';
+import MobileCityTabs from './MobileCityTabs';
 import HeroVideo from './HeroVideo';
 import MarketsSection, { type MarketCardData } from './MarketsSection';
 import { Disclaimer, ReviewButton, SectionHead, TiButton } from './Primitives';
@@ -147,6 +148,8 @@ export default function Hub() {
           </div>
         </div>
       </section>
+
+      <MobileCityTabs />
 
       {/* 02 markets we've mapped */}
       <section id="markets" className={`${ti.section} ${ti.bandTint}`}>

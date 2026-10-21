@@ -973,6 +973,12 @@ export const footerCtaHiddenPaths: string[] = [
 /** Every Therapy Index page ends on a call to action of its own, so the footer's is left out. */
 export const isTherapyIndexPage = (pathname: string): boolean => /^\/therapyindex(\/|$)/.test(pathname);
 
+/** The Therapy Index's own header and footer replace the site's on its pages and on the tool pages that carry its research
+    branding. Every other page keeps the site's header, footer and floating contact bar. */
+export const tiChromeToolPaths: string[] = ['/tools/website-scorecard-for-therapists', '/tools/ai-visibility-report'];
+export const usesTiChrome = (pathname: string): boolean =>
+  isTherapyIndexPage(pathname) || tiChromeToolPaths.includes(pathname.replace(/\/+$/, ''));
+
 export const isCrisisResourcesPage = (pathname: string): boolean => {
   const trim = (path: string) => path.replace(/\/+$/, '');
   const here = trim(pathname);

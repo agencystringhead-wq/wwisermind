@@ -215,3 +215,42 @@
     transition: none;
   }
 }
+
+/* ---- city tabs under the hero: phones only ---------------------------------------------------------------------- */
+
+.cityTabs {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .cityTabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    margin: 0 var(--container-gutter) 8px;
+    padding: 4px;
+    border-radius: 999px;
+    background: #e9eefb;
+  }
+
+  .cityTab {
+    display: grid;
+    place-items: center;
+    min-height: 44px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy, #112962);
+    transition: background-color 0.2s var(--ease);
+  }
+
+  .cityTab:hover,
+  .cityTab:active {
+    background: #ffffff;
+  }
+
+  .cityTab:focus-visible {
+    outline: 2px solid #146ef5;
+    outline-offset: 2px;
+  }
+}

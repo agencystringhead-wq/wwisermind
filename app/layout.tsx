@@ -63,11 +63,13 @@ export default function RootLayout({
           <Header />
         </SiteHeaderGate>
         <main>{children}</main>
-        <Footer />
-        <CrisisGate>
-          <BottomBar />
-          <ContactBar />
-        </CrisisGate>
+        <SiteHeaderGate>
+          <Footer />
+          <CrisisGate>
+            <BottomBar />
+            <ContactBar />
+          </CrisisGate>
+        </SiteHeaderGate>
       </body>
     </html>
   );

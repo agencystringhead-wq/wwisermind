@@ -1,0 +1,274 @@
+/* The Therapy Index footer: deep navy (the hero headline's navy), light text, quiet dividers. Every text colour here clears WCAG AA on #112962. */
+
+.footer {
+  --f-bg: #112962;
+  --f-text: #eef2fc;
+  --f-muted: #b9c4e0;
+  --f-label: #9bc0ff;
+  --f-line: rgba(255, 255, 255, 0.16);
+  background: var(--f-bg);
+  color: var(--f-text);
+  padding-block: clamp(56px, 7vw, 96px) 32px;
+}
+
+.frame {
+  width: 100%;
+  max-width: calc(var(--container-width) + var(--container-gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--container-gutter);
+}
+
+.footer a:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---- top: what the index is, and the four columns ---------------------------------------------------------- */
+
+.top {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 2fr);
+  gap: clamp(32px, 6vw, 96px);
+  padding-bottom: clamp(40px, 5vw, 64px);
+  border-bottom: 1px solid var(--f-line);
+}
+
+.brandBlock {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  color: #ffffff;
+}
+
+.ring {
+  width: 28px;
+  height: 28px;
+  flex: none;
+}
+
+.wordmark {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.lede {
+  max-width: 30ch;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--f-text);
+}
+
+.updated {
+  font-size: 14px;
+  color: var(--f-muted);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 32px clamp(20px, 3vw, 48px);
+}
+
+.column ul {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.colTitle {
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--f-line);
+  font-family: var(--ti-mono, var(--font-mono));
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--f-muted);
+}
+
+.colTitle span {
+  color: var(--f-label);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--f-text);
+  transition: color 0.2s var(--ease);
+}
+
+.link:hover {
+  color: var(--f-label);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ---- research property --------------------------------------------------------------------------------------- */
+
+.property {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px clamp(16px, 2.4vw, 32px);
+  padding-block: clamp(28px, 4vw, 44px);
+  border-bottom: 1px solid var(--f-line);
+}
+
+.propertyText {
+  font-size: 16px;
+  color: var(--f-text);
+}
+
+.logoLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.logo {
+  width: auto;
+  height: 30px;
+}
+
+.propertyLine {
+  flex-basis: 100%;
+  font-size: 15px;
+  color: var(--f-muted);
+}
+
+@media (min-width: 900px) {
+  .propertyLine {
+    flex-basis: auto;
+    margin-left: auto;
+  }
+}
+
+/* ---- disclaimer ------------------------------------------------------------------------------------------------ */
+
+.disclaimer {
+  padding-block: clamp(24px, 3vw, 32px);
+  padding-right: clamp(0px, 18vw, 280px);
+  border-bottom: 1px solid var(--f-line);
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--f-muted);
+}
+
+.disclaimer strong {
+  color: var(--f-text);
+  font-weight: 600;
+}
+
+.disclaimer a {
+  color: var(--f-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---- bottom row ------------------------------------------------------------------------------------------------- */
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 28px;
+  padding-top: 20px;
+  font-size: 14px;
+}
+
+.copy {
+  color: var(--f-muted);
+}
+
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legal a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--f-text);
+}
+
+.legal a:hover {
+  color: var(--f-label);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.social {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.socialLink {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--f-text);
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.socialLink:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.socialLink svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ---- tablet and phone: two columns, then one ---------------------------------------------------------------------- */
+
+@media (max-width: 960px) {
+  .top {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .social {
+    margin-left: 0;
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 440px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+
+  .legal {
+    flex-direction: column;
+    flex-basis: 100%;
+  }
+}
