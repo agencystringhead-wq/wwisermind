@@ -1,0 +1,123 @@
+[
+  {
+    "provider": "chatgpt",
+    "model": "gpt-5.6-luna",
+    "prompt": "Who is the best therapist in Denver, Colorado?",
+    "text": "There isn’t one objectively “best” therapist in Denver—the best choice depends on what you’re seeking, such as anxiety, trauma, depression, couples counseling, ADHD, substance use, or LGBTQ+-affirming care.\n\nA good Denver therapist should:\n\n- Be licensed in Colorado (LPC, LCSW, LMFT, or psychologist)\n- Have specific experience with your concern\n- Accept your insurance or clearly list fees\n- Offer a consultation call\n- Make you feel understood and comfortable after 1–3 sessions\n- Use an approach supported by evidence, such as CBT, EMDR, DBT, or emotionally focused therapy, when appropriate\n\nTo narrow it down, tell me:\n\n1. What would you like help with?\n2. Individual, couples, or family therapy?\n3. In-person, telehealth, or either?\n4. Insurance or self-pay?\n5. Any preferences—gender, age, LGBTQ+ affirming, faith-based, culturally specific, etc.?\n\nWith those details, I can recommend a short list rather than guessing at a single “best” therapist.",
+    "citations": [],
+    "matchedPractices": [],
+    "extractedNames": []
+  },
+  {
+    "provider": "chatgpt",
+    "model": "gpt-5.6-luna",
+    "prompt": "Recommend an anxiety therapist in Denver, Colorado",
+    "text": "A good starting point is **Denver Anxiety Center**—look for a clinician who specializes in **CBT (cognitive behavioral therapy), exposure therapy, panic disorder, or OCD**, depending on your symptoms. Before booking, confirm:\n\n- They’re licensed in Colorado (LPC, LCSW, LMFT, or psychologist)\n- They accept your insurance or offer a clear self-pay rate\n- They have experience with your specific concern\n- They offer in-person appointments in Denver or telehealth\n\nYou can also compare available clinicians through **Psychology Today’s Denver anxiety-therapist directory** and filter by insurance, specialty, gender, and appointment format.\n\nWhen contacting a therapist, you might write:\n\n> “I’m looking for therapy for anxiety and would prefer CBT. Do you have experience treating generalized anxiety/panic, and are you accepting new clients?”\n\nIf you tell me your **insurance, preferred neighborhood, in-person vs. telehealth, and whether this is generalized anxiety, panic, social anxiety, or OCD**, I can narrow the recommendation.",
+    "citations": [],
+    "matchedPractices": [],
+    "extractedNames": [
+      "Denver Anxiety Center",
+      "Psychology Today"
+    ]
+  },
+  {
+    "provider": "chatgpt",
+    "model": "gpt-5.6-luna",
+    "prompt": "Best couples counselor in Denver, Colorado",
+    "text": "There isn’t one objectively “best” couples counselor in Denver—the best fit depends on your goals, insurance, availability, and preferred approach. **My strongest starting points from the current listings are:**\n\n1. **Marley Vebares, LMFT** — Denver  \n   Best for couples wanting **Emotionally Focused Therapy (EFT)** to address recurring conflict cycles, disconnection, anxiety, or burnout. ([psychologytoday.com](https://www.psychologytoday.com/us/therapists/co/denver?category=couples-counseling&utm_source=openai))\n\n2. **Jennifer Bugg Wright, PsyD** — Denver/Aurora area  \n   A psychologist who lists **Gottman Method** work along with CBT, ACT, and somatic approaches; potentially a good choice for communication and conflict issues. ([psychologytoday.com](https://www.psychologytoday.com/us/therapists/co/denver?category=couples-counseling&utm_source=openai))\n\n3. **Lucy Introcaso, LCSW, CST** — Denver  \n   Strong option for **sex therapy, intimacy, LGBTQ+ relationships, consensual non-monogamy, and kink-affirming care**. ([psychologytoday.com](https://www.psychologytoday.com/us/therapists/co/denver?category=couples-counseling&utm_source=openai))\n\n4. **Christina Haxton, LMFT** — Denver  \n   Offers a practical, direct approach and combines couples work with executive/life-stress expertise—useful when work pressure, stress, or major transitions are affecting the relationship. ([psychologytoday.com](https://www.psychologytoday.com/us/therapists/co/denver?category=couples-counseling&utm_source=openai))\n\n5. **The Therapy Collective** — Denver  \n   Best if you want a **practice that can match you with a therapist and check insurance**, rather than contacting individual clinicians yourself. ([thetherapycollective.com](https://thetherapycollective.com/?utm_source=openai))\n\n6. **Mike Nicastro Counseling** — South Denver/telehealth  \n   Offers **in-person couples counseling, Colorado telehealth, and premarital counseling**. ([mikenicastrocounseling.com](https://www.mikenicastrocounseling.com/couples-counseling/?utm_source=openai))\n\n### My quick recommendation\n\n- **General communication/conflict:** Jennifer Bugg Wright or Marley Vebares  \n- **Feeling emotionally disconnected or stuck in the same fight:** Marley Vebares  \n- **Infidelity or rebuilding trust:** Look specifically for a therapist experienced in affair recovery and EFT/Gottman  \n- **Sex/intimacy or LGBTQ+/ENM concerns:** Lucy Introcaso  \n- **Premarital counseling:** Mike Nicastro  \n- **Need insurance help:** The Therapy Collective  \n\nBefore booking, ask:\n\n> “What percentage of your practice is couples therapy, and which evidence-based method do you use—Gottman, EFT, or another approach? Do you have experience with our specific issue, and do you accept our insurance?”\n\nA good therapist should be **balanced rather than taking sides**, have substantial couples-specific experience, and help you identify a clear treatment plan after the first few sessions. Psychology Today’s Denver couples directory is also useful for filtering by insurance, specialty, LGBTQ+ affirmation, and availability. ([psychologytoday.com](https://www.psychologytoday.com/us/therapists/co/denver?category=couples-counseling&utm_source=openai))",
+    "citations": [
+      "https://www.psychologytoday.com/us/therapists/co/denver?category=couples-counseling&utm_source=openai",
+      "https://thetherapycollective.com/?utm_source=openai",
+      "https://www.mikenicastrocounseling.com/couples-counseling/?utm_source=openai"
+    ],
+    "matchedPractices": [
+      "Creative Care and Wellness, PLLC - Haley March, LCSW"
+    ],
+    "extractedNames": [
+      "Marley Vebares, LMFT",
+      "Bugg Wright, PsyD",
+      "Lucy Introcaso, LCSW",
+      "Christina Haxton, LMFT",
+      "The Therapy Collective",
+      "Mike Nicastro Counseling"
+    ]
+  },
+  {
+    "provider": "claude",
+    "model": "claude-sonnet-5-5",
+    "prompt": "Who is the best therapist in Denver, Colorado?",
+    "text": "There isn't one \"best\" therapist in Denver. The right fit depends on your needs, and I'd be wary of any source that names a single winner. Let me check for current resources to help you search.\nNo source can say who the single best therapist in Denver is. Ratings sites reflect a handful of reviews, and the best therapist is the one who fits your needs. These directories can help you narrow it down.\n\n**Where to search**\n- **SonderMind** lists \n2,924 therapists in Colorado who accept most major insurance plans\n, which helps if cost is a concern.\n- **TherapyDen** lets you \ntake a quick survey to find therapists that match your needs\n. Many of its listings are marked as verified.\n- **Healthgrades** shows patient ratings. It lists counselors such as \nMelanie McGinn, LCSW, rated 5.0 from 113 ratings\n, and Nicola Stockberger, LMFT, has 308 ratings.\n- **Zocdoc** lets you \nsearch for Denver therapists who accept your insurance for video visits\n.\n- **Yelp** has local reviews. The Individual & Relationship Therapy Center was ranked first with \n4.9 stars from 21 reviews\n.\n- **GoodTherapy** is another directory with Denver listings.\n\n**How to choose**\n1. **Define what you need.** Anxiety, trauma, couples work, ADHD, and grief all call for different specialties. For example, some Denver therapists focus on EMDR for trauma, while others focus on ADHD or relationships.\n2. **Check licensure.** Look for LPC, LCSW, LMFT, PsyD, or PhD credentials. You can verify a license through Colorado's Department of Regulatory Agencies (DORA).\n3. **Confirm practicalities.** Check insurance, cost, availability, and whether sessions are in person or online.\n4. **Book a consultation.** Many therapists offer a free 15-minute call. Fit and feeling heard matter more than reviews.\n5. **Be willing to switch.** If it doesn't feel right after a few sessions, trying someone else is normal.\n\nIf you tell me what you're looking for (issue, budget, insurance, in-person or online, any preferences about a therapist's background), I can help you narrow the search. If you're in crisis, you can call or text **988** (Suicide & Crisis Lifeline) anytime.",
+    "citations": [
+      "https://www.sondermind.com/provider-directory/sta-co/cty-denver",
+      "https://www.therapyden.com/therapists/us/co/denver/p2",
+      "https://www.healthgrades.com/counseling-directory/co-colorado/denver",
+      "https://www.zocdoc.com/therapist-counselors/denver-228319pm",
+      "https://www.yelp.com/search?find_desc=Therapist&find_loc=Denver%2C+CO"
+    ],
+    "matchedPractices": [
+      "Denver Therapists"
+    ],
+    "extractedNames": [
+      "Melanie McGinn, LCSW",
+      "Nicola Stockberger, LMFT"
+    ]
+  },
+  {
+    "provider": "claude",
+    "model": "claude-sonnet-5-5",
+    "prompt": "Recommend an anxiety therapist in Denver, Colorado",
+    "text": "I'll search for current information on anxiety therapists in Denver.\nI can't say which therapist is best for you, since fit matters a lot, but here are some well-regarded options in Denver, grouped by what they offer.\n\n**Specialized anxiety and OCD practices**\n- **Anxiety Solutions of Denver** is \na team of Denver therapists specializing in adults and children with anxiety and OCD.\n This is a good option if you suspect OCD or want a practice focused on anxiety.\n- **CBTDenver / National Social Anxiety Center (Denver)** is led by Dr. Antonia Pieracci, who \nspecializes in cognitive-behavioral therapy for individuals with anxiety disorders, mood disorders, insomnia\n and other problems. \nThey offer in-person sessions at their Denver office, and teletherapy in Colorado and all PsyPACT participating states.\n\n- **Birch Psychology** \nspecializes in anxiety therapy in Denver, CO\n and lists several psychologists, including Dr. Andrea Gladstone, Dr. Gabrielle Eberstein, and Dr. Hannah Schriber.\n\n**Individual therapists**\n- **Lindsay Cade, MA, LPC** is \nexperienced in supporting folks with Generalized Anxiety Disorder (GAD), Obsessive Compulsive Disorder (OCD), mood disorders, social anxiety, and trauma related anxiety symptoms\n. She uses \nEMDR, Internal Family Systems (IFS), Somatic interventions, as well as has training in exposure therapy.\n\n- **Sharon Hester, MS, LPC, LAC** offers \nQueer-affirming therapy\n and uses \nAcceptance and Commitment Therapy (ACT) and Functional Analytic Psychotherapy (FAP).\n\n- **Dr. Lauren Gorog** is \na trained health psychologist who believes in a holistic approach to mental healthcare\n, with a mind-body approach.\n\n**Larger group practice**\n- **Better Life Colorado** has \nmore than 40 therapists\n, and \noffers online and in-person anxiety counseling in Denver's Capitol Hill, Lakewood, Westminster, and throughout Colorado.\n A large practice may mean shorter waits.\n\n**Directories for browsing**\n- **Psychology Today** (psychologytoday.com) lets you filter by insurance, specialty, and gender.\n- **TherapyDen** and **GoodTherapy** are other directories to browse.\n- **Yelp** has reviews for local practices such as Lindsay Hanson, LCSW, and Thrive Counseling.\n\n**Tips for choosing**\n- **Look for evidence-based approaches.** CBT and exposure-based therapy have strong research support for anxiety. ACT and EMDR (for trauma-related anxiety) are also common.\n- **Check insurance and cost.** Ask about in-network status, sliding-scale fees, and whether they offer telehealth.\n- **Try a consultation call.** Most therapists offer a free 15-minute call. Fit with your therapist matters as much as their credentials.\n- **Verify the license** through the Colorado Department of Regulatory Agencies (DORA).\n\nIf you tell me your insurance, whether you prefer in-person or virtual sessions, and any specific concerns (social anxiety, panic, OCD, trauma), I can help narrow these down.\n\nIf you're in crisis, you can call or text **988** (Suicide & Crisis Lifeline), or text **TALK to 38255** for Colorado Crisis Services.",
+    "citations": [
+      "https://effectivetherapysolutions.com/",
+      "https://nationalsocialanxietycenter.com/regional-clinics/denver/",
+      "https://www.birchpsychology.com/anxiety",
+      "https://www.rootedacorncounseling.com/anxiety-therapy-denver",
+      "https://goroghealth.com/anxiety-disorders/",
+      "https://betterlifecolorado.com/anxiety-therapy/"
+    ],
+    "matchedPractices": [
+      "Denver Therapists",
+      "Creative Care and Wellness, PLLC - Haley March, LCSW",
+      "Anxiety Solutions of Denver"
+    ],
+    "extractedNames": [
+      "Dr. Antonia Pieracci",
+      "Birch Psychology",
+      "Dr. Andrea Gladstone",
+      "Dr. Gabrielle Eberstein",
+      "Dr. Hannah Schriber",
+      "Dr. Lauren Gorog",
+      "Psychology Today",
+      "Lindsay Hanson, LCSW"
+    ]
+  },
+  {
+    "provider": "claude",
+    "model": "claude-sonnet-5-5",
+    "prompt": "Best couples counselor in Denver, Colorado",
+    "text": "I'll search for current information on top-rated couples counselors in Denver.\nThere isn't one objectively \"best\" couples counselor, since fit matters a lot. These Denver practices came up repeatedly in my search, grouped by what they're known for.\n\n**Highly rated on Yelp (as of October 2026)**\n- \nIndividual & Relationship Therapy Center has a 4.9 rating from 21 reviews\n.\n- \nSophia L. O'Connor Therapy (Cherry Creek) has a 5.0 rating from 13 reviews\n.\n- \nColorado Couples and Family Therapy (Greenwood Village) has a 4.7 rating from 23 reviews\n.\n\n**Evidence-based approaches**\n- **My Denver Therapy** says its couples work is \nbuilt on The Gottman Method and Emotionally Focused Therapy (EFT)\n. It serves \nDenver, Greenwood Village, Lone Tree, and Arvada, in person and via telehealth\n.\n- **Colorado Relationship Recovery** has therapists who are \nall trained in Relational Life Therapy (RLT), and Lana is certified in Emotionally Focused Therapy (EFT)\n. One review roundup says they \nspecialize in helping couples rebuild trust after infidelity, premarital counseling, substance use, and couples therapy\n.\n\n**Specialized options**\n- **Birch Psychology** offers discernment counseling, \na specialized form of couples therapy for couples uncertain about the future of their relationship, helping partners decide whether to work toward repair or move toward separation\n.\n- **Modern Love Counseling** says its team \nspecializes in Enhancement Couples Therapy, Sexual Wellness Therapy, and Relationship & Dating Counseling\n. One review site notes that it \ndoes not accept insurance\n.\n- **Couples Counseling of Denver**, led by Cara Allan, offers \nindividual and couples therapy, sex therapy, and premarital counseling\n.\n\n**Directories for browsing therapists**\n- Psychology Today and TherapyDen both let you filter Denver therapists by specialty, insurance, and availability. Psychology Today also shows peer endorsements.\n\n**Tips for choosing**\n1. **Ask about training.** Look for Gottman, EFT, or RLT training, or an LMFT license.\n2. **Use the first session as a fit check.** As one practice puts it, \nthe first session is about finding the right fit\n.\n3. **Check insurance and format.** Some practices are out-of-network only, and many offer telehealth.\n4. **Match the specialty to your situation**, such as infidelity, premarital, intimacy, or deciding whether to stay together.\n\nIf you tell me your situation, budget, or whether you want in-person or online sessions, I can narrow this down.",
+    "citations": [
+      "https://www.yelp.com/search?find_desc=Couples+Counseling&find_loc=Denver%2C+CO",
+      "https://mydenvertherapy.com/couples-counseling-denver-co/",
+      "https://www.coloradorelationshiprecovery.com/",
+      "https://bestmarriagecounselorsdenver.com/",
+      "https://www.birchpsychology.com/couples-therapy",
+      "https://modernlovecounseling.com/"
+    ],
+    "matchedPractices": [
+      "Denver Therapists",
+      "Denver Therapy",
+      "Colorado Relationship Recovery",
+      "Modern Love Counseling",
+      "Colorado Couples & Family Therapy",
+      "My Denver Therapy"
+    ],
+    "extractedNames": [
+      "My Denver Therapy",
+      "Colorado Relationship Recovery",
+      "Birch Psychology",
+      "Modern Love Counseling",
+      "Couples Counseling of Denver"
+    ]
+  }
+]

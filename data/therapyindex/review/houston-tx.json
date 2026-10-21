@@ -1,0 +1,58 @@
+[
+  {
+    "domain": "christiancounselinghouston.com",
+    "title": "Counselors",
+    "url": "https://www.christiancounselinghouston.com/counselors",
+    "searches": [
+      {
+        "keyword": "counselor",
+        "rank": 5
+      }
+    ],
+    "tag": "local-no-map",
+    "overridden": false,
+    "promotedTo": null
+  },
+  {
+    "domain": "greaterhoustoncounselingservices.com",
+    "title": "Greater Houston Counseling Services: Home",
+    "url": "https://greaterhoustoncounselingservices.com/",
+    "searches": [
+      {
+        "keyword": "couples counseling",
+        "rank": 3
+      }
+    ],
+    "tag": "local-no-map",
+    "overridden": false,
+    "promotedTo": null
+  },
+  {
+    "domain": "houstondbtcenter.com",
+    "title": "Hello Trauma Therapy",
+    "url": "https://houstondbtcenter.com/hello-trauma-therapy/",
+    "searches": [
+      {
+        "keyword": "trauma therapist",
+        "rank": 1
+      }
+    ],
+    "tag": "local-no-map",
+    "overridden": false,
+    "promotedTo": null
+  },
+  {
+    "domain": "kelsey-seybold.com",
+    "title": "Behavioral Medicine In Houston, TX",
+    "url": "https://www.kelsey-seybold.com/medical-services-and-specialties/behavioral-medicine",
+    "searches": [
+      {
+        "keyword": "psychologist",
+        "rank": 5
+      }
+    ],
+    "tag": "local-no-map",
+    "overridden": false,
+    "promotedTo": null
+  }
+]

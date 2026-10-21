@@ -384,7 +384,10 @@ export const megaPanels: Record<string, MegaPanel> = {
       {
         lead: 'Open',
         title: 'Transparency',
-        links: [{ label: 'OpenBook', href: routes.homeSection('openbook'), desc: 'A look inside the studio' }],
+        links: [
+          { label: 'OpenBook', href: routes.homeSection('openbook'), desc: 'A look inside the studio' },
+          { label: 'Therapy Index', href: routes.therapyIndex.hub, desc: 'Who patients find in your city' },
+        ],
       },
       {
         lead: 'Care',
@@ -967,6 +970,9 @@ export const footerCtaHiddenPaths: string[] = [
     so the page leaves out the announcement bar, the footer's call to action, the floating contact bar
     and the closing colour band, and keeps the header and the footer's links. The help now widget page
     is for therapists, not for someone in crisis, so it keeps all of them. */
+/** Every Therapy Index page ends on a call to action of its own, so the footer's is left out. */
+export const isTherapyIndexPage = (pathname: string): boolean => /^\/therapyindex(\/|$)/.test(pathname);
+
 export const isCrisisResourcesPage = (pathname: string): boolean => {
   const trim = (path: string) => path.replace(/\/+$/, '');
   const here = trim(pathname);
@@ -1077,6 +1083,7 @@ export const footerMain = {
         { label: 'AI Chatbot', href: serviceHref('ai-chatbot') },
         { label: 'Local Map Assessment', href: routes.homeSection('local-map-assessment') },
         { label: 'Crisis Resources by State', href: routes.tools.crisisResources },
+        { label: 'Therapy Index', href: routes.therapyIndex.hub },
       ],
     },
   ],

@@ -4,6 +4,8 @@ import { getStatesWithData } from '@/lib/crisis-resources';
 import { freebiePath, freebies, isLive } from '@/lib/freebies';
 import { routes, SERVICE_PATHS } from '@/lib/routes';
 import { services, type ServiceCategory } from '@/lib/services';
+import { INDEXABLE } from '@/lib/therapyindex/config';
+import { getMarketViews, indexableProfiles } from '@/lib/therapyindex/data';
 
 /* ==========================================================================
    The one list behind both sitemaps: the human page at /sitemap/ (grouped links) and the XML
@@ -113,6 +115,20 @@ export function sitemapGroups(): SitemapGroup[] {
         link('Refer wwisermind', routes.refer),
       ],
     },
+    /* The Therapy Index pages are noindex until INDEXABLE (lib/therapyindex/config.ts) is flipped, and a sitemap
+       must not list a page that asks not to be indexed, so the group appears with the flag. */
+    ...(INDEXABLE
+      ? [
+          {
+            title: 'Therapy Index',
+            links: [
+              link('Therapy Index', routes.therapyIndex.hub),
+              link('Therapy Index methodology', routes.therapyIndex.methodology),
+              ...getMarketViews().map((view) => link(`${view.city.name} therapist rankings`, view.path)),
+            ],
+          },
+        ]
+      : []),
     {
       title: 'Legal',
       links: [
@@ -148,6 +164,9 @@ export function sitemapEntries(): SitemapEntry[] {
 
   add(routes.sitemap);
   getStatesWithData().forEach((state) => add(routes.crisisState(state.slug)));
+  /* Practice profiles have no place on the human page; the indexable ones (see PROFILE_INDEX_MIN_SCORE) go in the XML file with
+     the rest of the Therapy Index. The others stay live but are noindex and left out. */
+  if (INDEXABLE) indexableProfiles().forEach((p) => add(routes.therapyIndex.practice(p.state, p.city, p.practice)));
   getCategories().forEach((category) => add(routes.blogCategory(category.slug)));
   /* After the loop on purpose: the human page lists the newest posts with no date, and the XML
      file wants each post's own updated date, so the entry is replaced here. */

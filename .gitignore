@@ -16,3 +16,7 @@ scratch/
 /images/
 /design-references/
 
+
+# Therapy Index: raw DataForSEO responses are cached locally only (snapshots in data/therapyindex/*.json are committed)
+data/therapyindex/raw/
+data/therapyindex/smoke/

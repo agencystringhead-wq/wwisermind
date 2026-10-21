@@ -1,0 +1,94 @@
+[
+  {
+    "domain": "brunolepore.com",
+    "title": "EMDR THERAPY – Counseling Austin",
+    "url": "https://brunolepore.com/portfolio-items/emdr/",
+    "searches": [
+      {
+        "keyword": "EMDR therapist",
+        "rank": 3
+      }
+    ],
+    "tag": "local-no-map",
+    "overridden": false,
+    "promotedTo": null
+  },
+  {
+    "domain": "deepeddypsychotherapy.com",
+    "title": "Welcome to Deep Eddy Psychotherapy! | Therapy Practice ...",
+    "url": "https://deepeddypsychotherapy.com/",
+    "searches": [
+      {
+        "keyword": "depression therapist",
+        "rank": 5
+      }
+    ],
+    "tag": "local-no-map",
+    "overridden": false,
+    "promotedTo": null
+  },
+  {
+    "domain": "ensembletherapy.com",
+    "title": "Ensemble Therapy - Children's Therapy Austin TX",
+    "url": "https://www.ensembletherapy.com/",
+    "searches": [
+      {
+        "keyword": "child therapist",
+        "rank": 4
+      }
+    ],
+    "tag": "local-no-map",
+    "overridden": false,
+    "promotedTo": null
+  },
+  {
+    "domain": "soundsofsaving.org",
+    "title": "Austin, TX",
+    "url": "https://www.soundsofsaving.org/locations/austin-tx",
+    "searches": [
+      {
+        "keyword": "counselor",
+        "rank": 2
+      }
+    ],
+    "tag": "other",
+    "overridden": true,
+    "promotedTo": null
+  },
+  {
+    "domain": "therapylab.com",
+    "title": "Expert Psychologist and CBT Therapists in Austin",
+    "url": "https://www.therapylab.com/locations/austin-therapists",
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 3
+      },
+      {
+        "keyword": "psychologist",
+        "rank": 1
+      }
+    ],
+    "tag": "other",
+    "overridden": true,
+    "promotedTo": null
+  },
+  {
+    "domain": "timothycenter.com",
+    "title": "Couples Counseling Austin & Georgetown, TX",
+    "url": "https://timothycenter.com/couples-counseling/",
+    "searches": [
+      {
+        "keyword": "couples counseling",
+        "rank": 4
+      },
+      {
+        "keyword": "marriage counselor",
+        "rank": 5
+      }
+    ],
+    "tag": "local-no-map",
+    "overridden": false,
+    "promotedTo": null
+  }
+]

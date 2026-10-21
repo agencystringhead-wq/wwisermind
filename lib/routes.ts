@@ -168,6 +168,14 @@ export const routes = {
   /** `/who-we-help/<slug>/` */
   audience: (slug: string): Route => `/who-we-help/${slug}/`,
 
+  /** The Therapy Index: the hub, the methodology page, a city report and a practice profile. */
+  therapyIndex: {
+    hub: '/therapyindex/',
+    methodology: '/therapyindex/methodology/',
+    market: (state: string, city: string): Route => `/therapyindex/${state}/${city}/`,
+    practice: (state: string, city: string, practice: string): Route => `/therapyindex/${state}/${city}/${practice}/`,
+  },
+
   /** A section of the homepage: `/#our-story`. */
   homeSection: (id: string) => hash('/', id),
   /** A section of a page: `/pricing/#local-seo`. */

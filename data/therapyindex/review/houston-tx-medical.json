@@ -1,0 +1,26 @@
+[
+  {
+    "name": "PsychPlus Heights Clinic - Psychiatrist and Therapist",
+    "reason": "manual decision"
+  },
+  {
+    "name": "Texas Ketamine & Wellness Center",
+    "reason": "interventional treatment (ketamine)"
+  },
+  {
+    "name": "Houston Mind & Brain",
+    "reason": "manual decision"
+  },
+  {
+    "name": "The Mind & Body Clinic",
+    "reason": "psychiatry only (no therapy or counseling terms)"
+  },
+  {
+    "name": "One Behavioral Health",
+    "reason": "manual decision"
+  },
+  {
+    "name": "Texas Psychiatry Group",
+    "reason": "manual decision"
+  }
+]
