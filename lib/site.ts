@@ -117,6 +117,20 @@ export type MegaPanel = {
   strip: { text: string; link?: NavItem };
 };
 
+/** The Website Scorecard's link for the Tools menu, from its entry in lib/freebies.ts: its title, its
+    subtitle ("Quiz") and the "Soon" badge while it is not live. Empty if the entry is ever removed. */
+const scorecard = freebieList.find((freebie) => freebie.slug === 'website-scorecard-for-therapists');
+const scorecardLink = scorecard
+  ? [
+      {
+        label: scorecard.title,
+        href: freebiePath(scorecard),
+        desc: scorecard.typeLabel,
+        ...(scorecard.status === 'comingSoon' ? { badge: 'Soon' } : {}),
+      },
+    ]
+  : [];
+
 export const megaPanels: Record<string, MegaPanel> = {
   Services: {
     id: 'services',
@@ -292,6 +306,7 @@ export const megaPanels: Record<string, MegaPanel> = {
           { label: 'AI Visibility Report', href: routes.homeSection('ai-visibility-report'), desc: 'Does ChatGPT know you exist?', badge: 'NEW' },
           { label: 'Marketing Assessment', href: routes.homeSection('marketing-assessment'), desc: 'Where you stand today' },
           { label: 'Local Map Assessment', href: routes.homeSection('local-map-assessment'), desc: 'Your Google Maps presence' },
+          ...scorecardLink,
         ],
       },
       {
@@ -300,17 +315,9 @@ export const megaPanels: Record<string, MegaPanel> = {
         links: [{ label: 'OpenBook', href: routes.homeSection('openbook'), desc: 'A look inside the studio' }],
       },
       {
-        lead: 'Free',
-        title: 'Free Resources',
-        /* The same list, in the same order, as the /freebies/ hub, then the helpline directory: the
-           panel has three columns, so the directory sits at the end of this one. */
+        lead: 'Care',
+        title: 'For Your Clients',
         links: [
-          ...freebieList.map((freebie) => ({
-            label: freebie.title,
-            href: freebiePath(freebie),
-            desc: freebie.typeLabel,
-            ...(freebie.status === 'comingSoon' ? { badge: 'Soon' } : {}),
-          })),
           {
             label: 'Crisis Resources by State',
             href: routes.tools.crisisResources,
