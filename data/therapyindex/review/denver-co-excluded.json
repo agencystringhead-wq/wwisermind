@@ -1,0 +1,238 @@
+[
+  {
+    "title": "Therapydia Denver",
+    "category": "Physical therapy clinic",
+    "additionalCategories": [
+      "Physical therapist",
+      "Sports medicine clinic"
+    ],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 25
+      }
+    ]
+  },
+  {
+    "title": "Sol Massage Co.",
+    "category": "Massage therapist",
+    "additionalCategories": [
+      "Massage spa",
+      "Reiki therapist",
+      "Sports massage therapist",
+      "Wellness center"
+    ],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 27
+      }
+    ]
+  },
+  {
+    "title": "Body Bliss Massage",
+    "category": "Massage therapist",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 40
+      }
+    ]
+  },
+  {
+    "title": "Sage Works Massage",
+    "category": "Massage therapist",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 55
+      }
+    ]
+  },
+  {
+    "title": "Atlas Physical Therapy",
+    "category": "Physical therapist",
+    "additionalCategories": [
+      "Orthopedic clinic",
+      "Physical therapy clinic"
+    ],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 66
+      }
+    ]
+  },
+  {
+    "title": "ProTherapy Mobile PT",
+    "category": "Physical therapist",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 80
+      }
+    ]
+  },
+  {
+    "title": "SensAbilities Pediatric Occupational Therapy",
+    "category": "Occupational therapist",
+    "additionalCategories": [
+      "Pediatric clinic"
+    ],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 82
+      },
+      {
+        "keyword": "child therapist",
+        "rank": 25
+      }
+    ]
+  },
+  {
+    "title": "Moonbow Healing Work",
+    "category": "Massage therapist",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 92
+      }
+    ]
+  },
+  {
+    "title": "Sulis Massage",
+    "category": "Massage therapist",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 98
+      }
+    ]
+  },
+  {
+    "title": "Rino Sports Massage",
+    "category": "Massage therapist",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 100
+      }
+    ]
+  },
+  {
+    "title": "Colorado Professional Counselors",
+    "category": "State government office",
+    "additionalCategories": [
+      "License bureau"
+    ],
+    "searches": [
+      {
+        "keyword": "counselor",
+        "rank": 65
+      }
+    ]
+  },
+  {
+    "title": "Bluebell ABA Therapy",
+    "category": "Applied behavior analysis therapist",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "child therapist",
+        "rank": 19
+      }
+    ]
+  },
+  {
+    "title": "Care Options For Kids",
+    "category": "Home health care service",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "child therapist",
+        "rank": 41
+      }
+    ]
+  },
+  {
+    "title": "Able Stars ABA Therapy Denver",
+    "category": "Applied behavior analysis therapist",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "child therapist",
+        "rank": 59
+      }
+    ]
+  },
+  {
+    "title": "Amazing Care Pediatric Outpatient Therapy formerly Summit Pediatric Therapy",
+    "category": "Speech pathologist",
+    "additionalCategories": [
+      "Home health care service",
+      "Indoor playground",
+      "Occupational therapist",
+      "Physical therapist",
+      "Physical therapy clinic"
+    ],
+    "searches": [
+      {
+        "keyword": "child therapist",
+        "rank": 70
+      }
+    ]
+  },
+  {
+    "title": "Child & Family Play Therapy Center",
+    "category": "Therapists",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "child therapist",
+        "rank": 80
+      }
+    ]
+  },
+  {
+    "title": "Colorado Psychologist Exmnrs",
+    "category": "State government office",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "psychologist",
+        "rank": 65
+      }
+    ]
+  },
+  {
+    "title": "Psychological Insight & Assessment",
+    "category": "Forensic consultant",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "psychologist",
+        "rank": 90
+      }
+    ]
+  },
+  {
+    "title": "Heartlight Center Inc",
+    "category": "Non-profit organization",
+    "additionalCategories": [
+      "Support group"
+    ],
+    "searches": [
+      {
+        "keyword": "grief counseling",
+        "rank": 82
+      }
+    ]
+  }
+]

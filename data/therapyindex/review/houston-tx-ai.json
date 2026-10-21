@@ -1,0 +1,108 @@
+[
+  {
+    "provider": "chatgpt",
+    "model": "gpt-5.6-luna",
+    "prompt": "Who is the best therapist in Houston, Texas?",
+    "text": "There isn’t one objectively “best” therapist in Houston—the right choice depends on your needs, insurance, budget, preferred approach, and whether you want in-person or telehealth care.\n\n**Good Houston starting points:**\n\n- **The Menninger Clinic** — strong option for complex or severe mental-health concerns, including trauma, mood disorders, and difficult-to-treat conditions.\n- **Baylor Psychiatry and Behavioral Sciences** — useful if you may need coordinated therapy, psychiatric evaluation, or medication management.\n- **University of Houston Psychological Services Clinic** — often more affordable; services may be provided by supervised graduate clinicians.\n- **Psychology Today’s Houston directory** — lets you filter by specialty, insurance, gender, location, and therapy type.\n- **Your insurance company’s directory** — best first step if keeping costs low or using benefits is important.\n\nWhen choosing, look for a **Texas-licensed LPC, LCSW, LMFT, or psychologist** who specifically treats your concern. Before booking, ask:\n\n1. “Do you regularly treat my issue?”\n2. “Do you accept my insurance, and what will I owe?”\n3. “What is your cancellation policy?”\n4. “What therapy approach do you use?”\n5. “How soon can I start?”\n\nIf you tell me your **main concern**—for example anxiety, depression, trauma, couples therapy, ADHD, grief, or substance use—plus your insurance and preferred Houston area, I can narrow the options much more meaningfully. If you’re in immediate danger or thinking about suicide, call or text **988** in the U.S.; call **911** for immediate physical danger.",
+    "citations": [],
+    "matchedPractices": [],
+    "extractedNames": [
+      "The Menninger Clinic",
+      "Baylor Psychiatry and Behavioral Sciences",
+      "University of Houston Psychological Services Clinic"
+    ]
+  },
+  {
+    "provider": "chatgpt",
+    "model": "gpt-5.6-luna",
+    "prompt": "Recommend an anxiety therapist in Houston, Texas",
+    "text": "For anxiety in Houston, I’d look for a **licensed LPC, LCSW, or psychologist who specializes in CBT (cognitive behavioral therapy)**—and, if relevant, exposure-based therapy for panic, OCD, or phobias.\n\nGood places to find a suitable Houston therapist:\n\n- **Psychology Today’s Houston directory** — filter for *anxiety*, *CBT*, your insurance, gender preference, and in-person/telehealth.\n- **ADAA “Find a Therapist” directory** — useful for anxiety and panic-focused clinicians.\n- **UTHealth Houston Behavioral Sciences** or **Baylor Psychiatry** — good options if you want a larger medical system or psychiatric consultation.\n- **Open Path Collective** — worth checking if cost is a concern.\n\nWhen contacting a therapist, ask:\n\n> “Do you regularly treat anxiety using CBT? What is your experience with panic attacks, generalized anxiety, or OCD? Do you accept my insurance, and what is your fee?”\n\nI’d shortlist someone who offers a brief phone consultation, explains a concrete treatment plan, and has appointments reasonably soon. If you tell me your **insurance, preferred Houston area, budget, and whether you want in-person or online therapy**, I can help narrow the search.",
+    "citations": [],
+    "matchedPractices": [],
+    "extractedNames": [
+      "UTHealth Houston Behavioral Sciences",
+      "Baylor Psychiatry"
+    ]
+  },
+  {
+    "provider": "chatgpt",
+    "model": "gpt-5.6-luna",
+    "prompt": "Best couples counselor in Houston, Texas",
+    "text": "There isn’t one universally “best” couples counselor in Houston—the right fit depends on your goals, budget, location, and whether you prefer approaches such as **Gottman Method**, **Emotionally Focused Therapy (EFT)**, or **Discernment Counseling**.\n\nFor a strong Houston search, prioritize a therapist who:\n\n- Is **licensed in Texas** (LPC, LMFT, LCSW, or psychologist)\n- Has substantial experience specifically with couples\n- Uses a structured couples approach such as **Gottman Method or EFT**\n- Offers a brief consultation before booking\n- Has experience with your concerns—infidelity, communication, divorce decisions, sexuality, blended families, or LGBTQ+ relationships\n\nGood places to find currently practicing Houston clinicians include the **Gottman Referral Network**, **ICEEFT therapist directory**, **AAMFT therapist directory**, and **Psychology Today’s Houston couples-therapy listings**. I’d compare three therapists and ask:\n\n> “How many couples do you see each week, what method do you use, and how do you handle high-conflict or infidelity cases?”\n\nIf you tell me your **Houston area/neighborhood, insurance or budget, in-person vs. telehealth, and the main issue**, I can help narrow the search to the best-fit options.",
+    "citations": [],
+    "matchedPractices": [],
+    "extractedNames": []
+  },
+  {
+    "provider": "claude",
+    "model": "claude-sonnet-5-5",
+    "prompt": "Who is the best therapist in Houston, Texas?",
+    "text": "There isn't a single \"best\" therapist in Houston. The right one depends on what you need and who you click with. I'll search for current information on how to find top-rated options.\nNo source I found names one \"best\" therapist in Houston, and I wouldn't trust one if it did. The best fit depends on your needs, your insurance, and whether you click with the person. The directories do show some highly rated options.\n\n**Highly rated on review sites**\n- **Healthgrades:** \nYanieke Gayle, Jerrie Smith, and Svetlana Rangel (all LPCs) have 5.0 ratings, and Crystal Perdue, LPC has a 4.9 from 162 ratings.\n\n- **Yelp:** \nShana Clark, MA, LPC (Galleria/Uptown) has a 5.0 from 14 reviews.\n \nMichelle Shahbazyan, MS, MA, MFT has 4.8 from 65 reviews.\n\n- **Zocdoc:** \nPablo Reyna, LPC has a 5.0 from 13 reviews and offers virtual sessions. Nancy Kirby, LPC has 4.96 from 26 reviews.\n\n\n**Specialists**\n- **OCD:** Houston OCD Counseling \nhas a 5.0 rating on Yelp.\n\n- **LGBTQ+ affirming care:** TherapyDen lists several affirming therapists, including \nRyan Pescaia, MS, LPC.\n\n- **Trauma:** \nDr. Angelica Rivera, DPC, LPC is a trauma therapist listed on TherapyDen.\n\n\n**Choosing one**\n1. **Know what you need.** Anxiety, trauma, couples work, and teens each call for different training, such as EMDR, CBT, or Imago.\n2. **Check insurance and cost.** \nSonderMind lists therapists who accept most major insurance plans.\n Some Zocdoc providers are out-of-pocket only, so read the listing before booking.\n3. **Consider virtual sessions.** \nOnline therapy removes the commute in Houston traffic and can offer more flexible scheduling.\n\n4. **Verify the license.** You can look up any therapist on the Texas state licensing board's website.\n5. **Try a consultation call.** Many therapists offer a free 15-minute call, and rapport is one of the strongest predictors of good outcomes.\n\nReview counts are often small, so a 5.0 from 2 reviews is weaker evidence than a 4.8 from 60. I can't vouch for any individual's quality.\n\nIf you tell me what you're looking for (issue, insurance, location, in-person or virtual), I can help narrow the list. If you're in crisis, call or text 988 (the Suicide & Crisis Lifeline) rather than waiting for an appointment.",
+    "citations": [
+      "https://www.healthgrades.com/counseling-directory/tx-texas/houston",
+      "https://www.yelp.com/search?find_desc=therapist&find_loc=Houston%2C+TX",
+      "https://www.yelp.com/search?find_desc=therapists&find_loc=Houston%2C+TX",
+      "https://www.zocdoc.com/therapist-counselors/houston-215108pm",
+      "https://www.yelp.com/search?find_desc=Psychotherapist&find_loc=Houston%2C+TX",
+      "https://www.therapyden.com/therapists/us/tx/houston",
+      "https://www.sondermind.com/provider-directory/sta-tx/cty-houston"
+    ],
+    "matchedPractices": [],
+    "extractedNames": [
+      "Crystal Perdue, LPC",
+      "Pablo Reyna, LPC",
+      "Nancy Kirby, LPC",
+      "Dr. Angelica Rivera"
+    ]
+  },
+  {
+    "provider": "claude",
+    "model": "claude-sonnet-5-5",
+    "prompt": "Recommend an anxiety therapist in Houston, Texas",
+    "text": "I'll search for current options for anxiety therapists in Houston.\nI can't vouch for any individual therapist's quality, but these Houston practices and directories look like good places to start.\n\n**Practices that specialize in anxiety**\n\n- **OCD & Anxiety Treatment of Houston (OATH Therapy)** specializes in \nevidence-based therapy for OCD and anxiety\n. \nThey offer in-person sessions in the Greater Houston area and virtual therapy for clients throughout Texas.\n \nThey also offer a free consultation.\n\n\n- **Houston Therapy** (4646 Wild Indigo St #150, 77027) treats \ngeneralized anxiety, panic disorder, social anxiety, OCD, and phobias using evidence-based approaches like CBT and EMDR, for adults, teens, and children.\n You can reach them at \n713-936-2561 or info@houston-therapy.com\n. They are a private-pay practice.\n\n- **Eddins Counseling Group** has \ntwo Houston locations, in Montrose and the Heights, plus virtual therapy.\n Their therapists use \ncognitive behavioral therapy, acceptance and commitment therapy, and exposure therapy for OCD.\n\n\n- **Psychology Houston** has providers who are \nexperts in treating anxiety disorders using cognitive behavioral therapy (CBT)\n. They are at \n7660 Woodway, Suite 599, Houston, TX 77063\n, phone 713-914-9944.\n\n- **Trauma and Anxiety Clinic of Houston** is \na University of Houston-based clinic dedicated to evidence-based assessment and treatment of anxiety and related disorders.\n University clinics often cost less.\n\n**Higher level of care**\n\n- **The Lovett Center** offers \nIntensive Outpatient, Outpatient, and Partial Hospitalization programs\n. This may suit you better if your anxiety is severe and weekly therapy doesn't feel like enough.\n\n**Directories for browsing and filtering**\n\n- **Psychology Today** and **TherapyDen** let you filter Houston therapists by anxiety, insurance, and telehealth availability. TherapyDen lists clinicians like \nMadeline Vaughn, LCSW, who specializes in anxiety, OCD, perfectionism, and life transitions.\n\n\n**Tips for choosing**\n\n- For anxiety, look for therapists trained in CBT, exposure therapy, or ACT. \nCBT has been identified by research as the most effective approach for anxiety disorders.\n\n- If you suspect OCD or panic disorder, look for a specialist in ERP (exposure and response prevention).\n- Check whether they take your insurance, since some practices are private-pay only.\n- Many offer free 15-minute consultations, which are a good way to check the fit.\n\nIf you tell me your neighborhood, insurance, whether you prefer in-person or online sessions, and what kind of anxiety you're dealing with (panic, social, generalized, OCD), I can help narrow the list.\n\nIf you're in crisis, you can call or text **988** (Suicide & Crisis Lifeline) at any time.",
+    "citations": [
+      "https://www.oaththerapy.com/",
+      "https://www.houston-therapy.com/anxiety",
+      "https://eddinscounseling.com/specialty/anxiety-treatment-houston/",
+      "https://www.houstonfamilypsychology.com/blog/2024/4/9/10-best-therapy-providers-in-houston-for-anxiety",
+      "https://thelovettcenter.com/treatments/mental-health/anxiety/",
+      "https://www.therapyden.com/therapists/us/tx/houston/anxiety"
+    ],
+    "matchedPractices": [
+      "Houston Therapy",
+      "Psychology Houston, PC",
+      "The Lovett Center"
+    ],
+    "extractedNames": [
+      "Houston Therapy",
+      "Eddins Counseling Group",
+      "Psychology Houston",
+      "Trauma and Anxiety Clinic of Houston",
+      "The Lovett Center",
+      "Madeline Vaughn, LCSW"
+    ]
+  },
+  {
+    "provider": "claude",
+    "model": "claude-sonnet-5-5",
+    "prompt": "Best couples counselor in Houston, Texas",
+    "text": "I'll search for current information on couples counselors in Houston.\nThere isn't a single \"best\" couples counselor in Houston, since the right fit depends on your issues, budget, and style preferences. Here are some well-reviewed options from my search.\n\n**Highly rated on Yelp**\n- **Michelle Shahbazyan, MS, MA, MFT** has \n4.8 stars across 65 reviews, with one client noting she has a \"unique and special approach to couples counseling.\"\n That's a much larger review base than most of the others listed.\n- **Renee Lederman, MPA, MA, LPC** is described in a review as \n\"well respected in the Imago Relationships Community\"\n for her marriage counseling.\n- **The Marriage You Want** has \n5.0 stars (6 reviews), with a client praising their pre-marital counseling.\n\n\n**Highly rated on Zocdoc**\n- **Rebecca (Becky) Stidham, LCSW** has \na 4.81 rating from 109 reviews\n and her practice \nspecializes in individual and couples therapy.\n Zocdoc lets you filter by insurance, but check the listing's notes, as one practice there says it is out-of-pocket only.\n\n**Premium or specialized options**\n- **Houston Relationship Therapy (Dr. Viviana Coles, DMFT, LMFT-S, CST)** is a \nnationally recognized Doctor of Marriage & Family Therapy and Certified Sex Therapist with over 20 years of experience.\n It is pricey: \n$695 per 50-minute session with Dr. Coles, or from $175 with supervised associates.\n\n- **Eddins Counseling & Therapy Group** offers \nin-person therapy in the Montrose and Heights neighborhoods, plus virtual therapy.\n\n- **The Couples Center** offers online counseling and \nworkshops and retreats\n in addition to therapy.\n\n**Directories to browse and filter**\n- Psychology Today, \nwhere you can browse couples therapists who specialize in relationship issues and filter by therapy type and specialty\n\n- TherapyDen, GoodTherapy, and Thriveworks\n\n**Tips for choosing**\n- **Credentials:** \nCouples therapy is often led by licensed marriage and family therapists (LMFTs)\n, though LPCs, LCSWs, and psychologists can also be excellent.\n- **Method:** Ask about their approach (Gottman, Emotionally Focused Therapy, Imago, etc.) and how much of their practice is couples work.\n- **Logistics:** Check insurance acceptance, session cost, and whether they offer in-person or online sessions.\n- **Fit:** Many therapists offer a free 15-minute consultation. Both partners should feel comfortable with the person.\n\nIf you tell me your neighborhood, budget, insurance, or the issues you're working on (communication, infidelity, premarital, intimacy), I can narrow these down.",
+    "citations": [
+      "https://www.yelp.com/search?find_desc=Couples+Counseling&find_loc=Houston%2C+TX",
+      "https://www.zocdoc.com/doctors/couples-counseling-houston",
+      "https://houstonrelationshiptherapy.com/",
+      "https://eddinscounseling.com/specialty/couples-therapy-houston/",
+      "https://thecouplescenter.org/locations/online-couples-counseling-in-houston/",
+      "https://www.psychologytoday.com/us/therapists/tx/houston?category=couples-counseling",
+      "https://thriveworks.com/houston-therapy/couples-marriage-counseling/"
+    ],
+    "matchedPractices": [
+      "Houston Relationship Therapy"
+    ],
+    "extractedNames": [
+      "Houston Relationship Therapy",
+      "Dr. Viviana Coles",
+      "Eddins Counseling & Therapy Group"
+    ]
+  }
+]

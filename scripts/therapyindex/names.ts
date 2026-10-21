@@ -42,13 +42,13 @@ export function sameName(a: string, b: string): boolean {
 
 /* ---- What to drop ---- */
 
-const REGULATORS = /\b(council|board|commission|department|licensing|association|society|federation|bureau|agency|government|nami|samhsa|lifeline|hotline|executive)\b/i;
+const REGULATORS = /^national\b|\blicensed\b|\b(council|board|commission|department|licensing|association|society|federation|bureau|agency|government|nami|samhsa|lifeline|hotline|executive)\b/i;
 const MODALITY_WORDS = new Set([
   'emdr', 'eft', 'cbt', 'dbt', 'act', 'ifs', 'erp', 'cpt', 'gottman', 'imago', 'emotionally', 'focused', 'cognitive', 'behavioral',
   'behavioural', 'behavior', 'dialectical', 'acceptance', 'commitment', 'internal', 'systems', 'psychodynamic', 'somatic',
   'experiencing', 'exposure', 'response', 'prevention', 'narrative', 'solution', 'brief', 'mindfulness', 'processing',
   'trauma', 'anxiety', 'depression', 'grief', 'couples', 'couple', 'marriage', 'relationship', 'family', 'individual', 'child',
-  'method', 'approach', 'training', 'certified', 'specialist', 'specialists', 'treatment', 'program', 'based', 'informed',
+  'method', 'approach', 'discernment', 'training', 'certified', 'specialist', 'specialists', 'treatment', 'program', 'based', 'informed',
 ]);
 
 function isRegulator(name: string): boolean {
@@ -106,7 +106,9 @@ export function extractFromAnswer(text: string): Found[] {
     for (const raw of phrases) {
       for (const part of raw.replace(/[*_`]+/g, '').split(/\s+\/\s+/)) {
         const phrase = part.split(/\s[-–—]\s|:|\(/)[0].trim();
-        if (BUSINESS_WORDS.test(phrase) && looksLikeProperName(phrase) && !orgs.includes(phrase)) orgs.push(phrase);
+        // "The Menninger Clinic": a leading "The" is part of the name, not a sentence opener.
+        const bare = phrase.replace(/^the\s+/i, '');
+        if (BUSINESS_WORDS.test(bare) && looksLikeProperName(bare) && !orgs.includes(phrase)) orgs.push(phrase);
       }
     }
     const ok = (n: string) => !isRegulator(n) && !isModality(n) && !isBrand(n) && entityKey(n).length >= 4;
