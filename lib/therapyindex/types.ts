@@ -32,6 +32,10 @@ export type Practice = {
       for Lighthouse and never a top-10 or leader slot; shown with a "national chain" label. */
   isChain: boolean;
   chainName: string | null;
+  /** False for a practice found only through organic results and AI answers (no Google Maps listing in the results). */
+  hasMapListing: boolean;
+  /** Named clinicians attached to this practice by AI answers. */
+  people: string[];
 };
 
 /** 'local-no-map': looks like a single practice's own site but is not in the Maps results. A
@@ -40,13 +44,22 @@ export type OrganicKind = 'local practice' | 'directory' | 'local-no-map' | 'oth
 /** Tags an override can force onto a domain (see overrides.ts). */
 export type OverrideTag = 'directory' | 'local-no-map' | 'other';
 
+/** A practice or clinician that AI answers recommended but that matches nothing in Maps and no organic result. Near-duplicate
+    spellings are merged into one entry; not scored and not in practices[]. */
 export type AiOnlyMention = {
-  /** Name as written in the answer; no matching Maps listing was found. */
+  /** The most complete spelling seen. */
   name: string;
-  provider: AiProvider;
-  /** DataForSEO model name that produced the answer. */
-  model: string;
-  prompt: string;
+  /** Clinicians named alongside the practice. */
+  people: string[];
+  mentions: { provider: AiProvider; model: string; prompt: string }[];
+};
+
+/** A Maps listing dropped because its Google category is not mental-health related. */
+export type ExcludedMapsResult = {
+  title: string;
+  category: string | null;
+  additionalCategories: string[];
+  searches: { keyword: string; rank: number }[];
 };
 
 export type ReviewEntry = {
@@ -57,6 +70,8 @@ export type ReviewEntry = {
   /** Tag in the snapshot: 'local-no-map' unless an override changed it. */
   tag: OrganicKind;
   overridden: boolean;
+  /** Slug of the practice this domain was promoted to (an AI-named practice with no Maps listing), if any. */
+  promotedTo: string | null;
 };
 
 /** One result of the Google local pack that appears inside the organic SERP. */
@@ -83,8 +98,8 @@ export type AiReviewEntry = {
   citations: string[];
   /** Practices from Maps that the answer named. */
   matchedPractices: string[];
-  /** Names kept in aiOnlyMentions[] from this answer. */
-  aiOnlyNames: string[];
+  /** Every practice or person name extracted from the answer (after dropping regulators, modalities, directories, chains). */
+  extractedNames: string[];
 };
 
 export type OrganicTopEntry = {
@@ -116,6 +131,8 @@ export type Snapshot = {
     practicesNamedByAi: number;
     /** Practices that are locations of a national chain (isChain). */
     chainLocations: number;
+    /** Practices with no Maps listing, promoted from organic results because AI named them. */
+    unlistedPractices: number;
   };
   practices: Practice[];
   /** Names the AI engines recommended that matched nothing in Maps. Not scored, not in practices[]. */

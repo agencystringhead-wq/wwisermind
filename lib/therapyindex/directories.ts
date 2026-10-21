@@ -28,6 +28,10 @@ export const DIRECTORY_DOMAINS: Record<string, string> = {
   'brightside.com': 'Brightside',
   'vitals.com': 'Vitals',
   'webmd.com': 'WebMD',
+  'psychhub.com': 'PsychHub',
+  'findmycenter.org': 'Find My Center',
+  'theravive.com': 'Theravive',
+  'findatherapist.com': 'FindATherapist',
   'facebook.com': 'Facebook',
   'linkedin.com': 'LinkedIn',
 };
@@ -60,10 +64,11 @@ export function classifyDomain(
   practiceDomains: Set<string>,
   title: string,
   url: string,
+  snippet: string,
   market: Market,
 ): { kind: OrganicKind; candidate: boolean; overridden: boolean } {
   const known = !!directoryName(domain) || (!!domain && practiceDomains.has(domain));
-  const candidate = !known && looksLikeSinglePractice(domain, title, url, market);
+  const candidate = !known && looksLikeSinglePractice(domain, title, url, snippet, market);
   const override = domain ? DOMAIN_OVERRIDES[domain] : undefined;
   if (override) return { kind: override, candidate, overridden: true };
   if (directoryName(domain)) return { kind: 'directory', candidate, overridden: false };
@@ -87,7 +92,7 @@ export const NOT_A_PRACTICE_DOMAINS = [
   'cvs.com', 'walgreens.com', 'goodrx.com', 'nimh.nih.gov', 'samhsa.gov',
 ];
 /** Words that mark an institution rather than one practice, matched anywhere in the domain. */
-const INSTITUTION_WORDS = /(hospital|medicalcenter|medical|healthsystem|healthcare|health-system|university|college|school)/;
+const INSTITUTION_WORDS = /(hospital|medicalcenter|medical|healthsystem|healthcare|health-system|university|college|school|church|ministr|parish|synagogue|mosque|ymca|hospice)/;
 /** Titles of roundups and articles. */
 const ARTICLE_TITLE = /\b(best|top\s*\d*|\d+\s+(best|top)|list of|near me|how to|guide|reviews?|vs\.?|cost of|what is)\b/i;
 
@@ -110,11 +115,15 @@ export function mentionsMarket(text: string, market: Market): boolean {
 }
 
 /** Directories never reach this check (they are tagged first). Only a local-no-map guess has to look local. */
-export function looksLikeSinglePractice(domain: string | null, title: string, url: string, market: Market): boolean {
+/** A therapy term must appear in the title or snippet (so a bare "Austin, TX" page or an unrelated business does not qualify). */
+const THERAPY_TERM = /\b(therap(?:y|ies|ist|ists)|counsel(?:ing|ling|or|ors)|psycholog(?:y|ist|ists)|psychotherap\w*|LPC|LCSW|LMFT)\b/i;
+
+export function looksLikeSinglePractice(domain: string | null, title: string, url: string, snippet: string, market: Market): boolean {
   if (!domain) return false;
   if (/\.(gov|edu|mil)$/.test(domain) || /\.(gov|edu|mil)\.[a-z]{2}$/.test(domain)) return false;
   if (NOT_A_PRACTICE_DOMAINS.some((d) => domain === d || domain.endsWith(`.${d}`))) return false;
   if (INSTITUTION_WORDS.test(domain)) return false;
   if (ARTICLE_TITLE.test(title)) return false;
-  return mentionsMarket(`${title} ${url}`, market);
+  // Both are required: a mention of the market (city, suburb or state) and a therapy term.
+  return mentionsMarket(`${title} ${url} ${snippet}`, market) && THERAPY_TERM.test(`${title} ${snippet}`);
 }

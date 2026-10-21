@@ -1,15 +1,21 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { CHAINS, chainFor } from '../../lib/therapyindex/chains';
-import { classifyDomain, DIRECTORY_DOMAINS, directoryName, normaliseDomain } from '../../lib/therapyindex/directories';
+import { isMentalHealthCategory } from '../../lib/therapyindex/categories';
+import { chainFor } from '../../lib/therapyindex/chains';
+import { classifyDomain, directoryName, normaliseDomain } from '../../lib/therapyindex/directories';
 import { AI_MODELS, AI_PROMPTS, KEYWORDS, MARKETS, ORGANIC_TOP_N, type Market } from '../../lib/therapyindex/markets';
 import { visibilityScores } from '../../lib/therapyindex/score';
-import type { AiOnlyMention, AiProvider, AiReviewEntry, LocalPackEntry, OrganicTopEntry, Practice, ReviewEntry, Snapshot } from '../../lib/therapyindex/types';
+import type {
+  AiOnlyMention, AiProvider, AiReviewEntry, ExcludedMapsResult, LocalPackEntry, OrganicTopEntry, Practice, ReviewEntry, Snapshot,
+} from '../../lib/therapyindex/types';
+import { entityKey, extractFromAnswer, mergeEntities, nameKey, sameName, type RawMention } from './names';
 import { DATA_DIR, latestRawDate, RawStore, slugify, type RawReader } from './store';
 
-/* Turns the cached raw responses into one snapshot (data/therapyindex/<market>.json) and a review list of
-   organic results guessed to be single practices (data/therapyindex/review/<market>.json).
+/* Turns the cached raw responses into one snapshot (data/therapyindex/<market>.json) plus review files:
+     review/<market>.json           organic results guessed to be single practices (confirm or flip via overrides.ts)
+     review/<market>-ai.json        every raw AI answer with what was extracted from it
+     review/<market>-excluded.json  Maps listings dropped for a non-mental-health category
    buildResult is pure (reads only through `raw`), so it can be re-run for free any time. */
 
 export function fillPrompt(prompt: string, market: Market): string {
@@ -24,11 +30,6 @@ export function organicQuery(keyword: string, market: Market): string {
 /** Cache key for an AI answer. Includes the prompt text and model so changing either never reuses a stale answer. */
 export function aiKey(promptIndex: number, prompt: string, model: string): string {
   return `p${promptIndex}-${crypto.createHash('sha1').update(`${model}|${prompt}`).digest('hex').slice(0, 8)}`;
-}
-
-const NAME_NOISE = /\b(llc|pllc|pc|p\.c|inc|ltd|the|and)\b/g;
-function nameKey(name: string): string {
-  return name.toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9 ]+/g, ' ').replace(NAME_NOISE, ' ').replace(/\s+/g, ' ').trim();
 }
 
 type Draft = Practice & { _domain: string | null };
@@ -53,20 +54,30 @@ function emptyPractice(name: string): Draft {
     slug: '', name, address: null, city: null, phone: null, website: null, mapsCid: null, category: null,
     rating: null, reviewCount: null, mapRankBySearch: {}, organicRankBySearch: {},
     aiMentions: { chatgpt: 0, claude: 0, prompts: [] }, lighthouse: null, visibilityScore: 0,
-    isDirectory: false, isChain: false, chainName: null, _domain: null,
+    isDirectory: false, isChain: false, chainName: null, hasMapListing: true, people: [], _domain: null,
   };
 }
 
-/** Practices found in Google Maps, de-duplicated by CID and then by website domain. Domains of
-    directories are never used to merge (many unrelated therapists share psychologytoday.com). */
-export function mapsPractices(market: Market, raw: RawReader, keywords: string[] = KEYWORDS): Draft[] {
+/** Practices found in Google Maps, de-duplicated by CID and then by website domain. Only mental-health categories are
+    kept (primary or additional); the rest come back in `excluded`. A listing with no category data at all is kept.
+    Domains of directories are never used to merge (many unrelated therapists share psychologytoday.com). */
+export function mapsPractices(raw: RawReader, keywords: string[]): { drafts: Draft[]; excluded: ExcludedMapsResult[] } {
   const drafts: Draft[] = [];
+  const excluded = new Map<string, ExcludedMapsResult>();
   const byCid = new Map<string, Draft>();
   const byDomain = new Map<string, Draft>();
   for (const kw of keywords) {
     for (const item of resultItems(raw.read('maps', kw))) {
       if (item.type !== 'maps_search' || !item.title) continue;
       const rank: number = item.rank_group;
+      const categories: string[] = [item.category, ...(item.additional_categories ?? [])].filter(Boolean);
+      if (categories.length > 0 && !isMentalHealthCategory(categories)) {
+        const key = String(item.cid ?? item.title);
+        const e: ExcludedMapsResult = excluded.get(key) ?? { title: item.title, category: item.category ?? null, additionalCategories: item.additional_categories ?? [], searches: [] };
+        e.searches.push({ keyword: kw, rank });
+        excluded.set(key, e);
+        continue;
+      }
       const cid: string | null = item.cid ? String(item.cid) : null;
       const domain = normaliseDomain(item.url ?? item.domain);
       const mergeable = domain && !directoryName(domain) ? domain : null;
@@ -90,59 +101,28 @@ export function mapsPractices(market: Market, raw: RawReader, keywords: string[]
       if (mergeable) byDomain.set(mergeable, d);
     }
   }
-  return drafts;
+  return { drafts, excluded: [...excluded.values()] };
 }
 
 export type BuildOptions = { keywords?: string[]; promptIndexes?: number[] };
-export type BuildResult = { snapshot: Snapshot; review: ReviewEntry[]; aiReview: AiReviewEntry[] };
+export type PromotedPractice = { name: string; domain: string; slug: string; people: string[]; aiMentions: number };
+export type BuildResult = {
+  snapshot: Snapshot;
+  review: ReviewEntry[];
+  aiReview: AiReviewEntry[];
+  excluded: ExcludedMapsResult[];
+  promoted: PromotedPractice[];
+};
 
 export function buildSnapshot(market: Market, date: string, raw: RawReader, opts: BuildOptions = {}): Snapshot {
   return buildResult(market, date, raw, opts).snapshot;
 }
 
-/* ---- Names an AI answer recommends. Deliberately strict: a missed name is cheaper than junk, and every
-   answer is saved in review/<market>-ai.json so misses can be found by hand. ---- */
-
-const BUSINESS_WORDS = /(counsel|therap|psych|wellness|associates|center|centre|group|practice|clinic|health|mind|behavior|family|institute|services|recovery|healing)/i;
-const CREDENTIAL = String.raw`(?:Ph\.?D\.?|Psy\.?D\.?|LCSW(?:-C)?|LPC(?:-S)?|LMFT|LCPC|LMHC|LPCC|LMSW|M\.?D\.?|NCC)`;
-const SMALL_WORDS = new Set(['a', 'an', 'the', 'of', 'and', '&', 'in', 'for', 'to', 'at', 'on', 'by', 'with']);
-const LEADING_STOPS = /^(for|before|if|your|you|when|what|how|look|check|ask|try|consider|other|directories|credentials|logistics|fit|specialty|best|a|an|the|this|these|there|many|most|some|use|find|verify|tell|call)\b/i;
-
-function looksLikeProperName(phrase: string): boolean {
-  const words = phrase.split(/\s+/).filter(Boolean);
-  if (words.length < 2 || words.length > 8) return false;
-  if (LEADING_STOPS.test(phrase) || /\bor\b/i.test(phrase)) return false;
-  const significant = words.filter((w) => !SMALL_WORDS.has(w.toLowerCase()));
-  const capitalised = significant.filter((w) => /^[A-Z0-9]/.test(w)).length;
-  return significant.length > 0 && capitalised / significant.length >= 0.6;
-}
-
-/** Brand names that must never become an AI-only practice: directories and chains. */
-const BRAND_KEYS = [...Object.values(DIRECTORY_DOMAINS), ...CHAINS.map((c) => c.name)].map(nameKey).filter((k) => k.length >= 4);
-function isBrand(key: string): boolean {
-  return BRAND_KEYS.some((b) => key === b || key.includes(b) || b.includes(key));
-}
-
-export function candidateNames(text: string): string[] {
-  const found: string[] = [];
-  // 1. "Name, credential" (Steven Dixon, Psy.D.) and "Dr. Name".
-  const person = new RegExp(String.raw`\b((?:Dr\.\s+)?[A-Z][A-Za-z'’-]+(?:\s+[A-Z]\.?)?\s+[A-Z][A-Za-z'’-]+),?\s+(${CREDENTIAL})`, 'g');
-  for (const m of text.matchAll(person)) found.push(`${m[1]}, ${m[2]}`);
-  for (const m of text.matchAll(/\bDr\.\s+([A-Z][A-Za-z'’-]+(?:\s+[A-Z][A-Za-z'’-]+){1,2})/g)) found.push(`Dr. ${m[1]}`);
-  // 2. Practice names: **bold** phrases and numbered-list items that look like proper business names.
-  const phrases: string[] = [];
-  for (const m of text.matchAll(/\*\*([^*\n]{3,90})\*\*/g)) phrases.push(m[1]);
-  for (const m of text.matchAll(/^\s*\d+\.\s+([^\n]{3,120})/gm)) phrases.push(m[1].replace(/\*\*/g, ''));
-  for (const raw of phrases) {
-    const phrase = raw.replace(/[*_`]+/g, '').split(/\s[-–—]\s|:|\(/)[0].trim();
-    if (BUSINESS_WORDS.test(phrase) && looksLikeProperName(phrase)) found.push(phrase);
-  }
-  return [...new Set(found.map((n) => n.replace(/\s+/g, ' ').trim()))].filter((n) => !isBrand(nameKey(n)));
-}
+const domainLabel = (domain: string) => domain.replace(/^www\./, '').split('.')[0].replace(/[^a-z0-9]/g, '');
 
 export function buildResult(market: Market, date: string, raw: RawReader, opts: BuildOptions = {}): BuildResult {
   const keywords = opts.keywords ?? KEYWORDS;
-  const drafts = mapsPractices(market, raw, keywords);
+  const { drafts, excluded } = mapsPractices(raw, keywords);
 
   // Fill gaps from Google My Business lookups (cached under the CID).
   for (const d of drafts) {
@@ -177,7 +157,7 @@ export function buildResult(market: Market, date: string, raw: RawReader, opts: 
     const top: OrganicTopEntry[] = [];
     for (const item of organic.slice(0, ORGANIC_TOP_N)) {
       const domain = normaliseDomain(item.domain ?? item.url) ?? '';
-      const { kind, candidate, overridden } = classifyDomain(domain, practiceDomains, item.title ?? '', item.url ?? '', market);
+      const { kind, candidate, overridden } = classifyDomain(domain, practiceDomains, item.title ?? '', item.url ?? '', item.description ?? '', market);
       const rank: number = item.rank_group;
       let owner: Draft | undefined;
       if (kind === 'local practice') owner = byDomain.get(domain);
@@ -187,6 +167,7 @@ export function buildResult(market: Market, date: string, raw: RawReader, opts: 
         if (!owner) {
           owner = emptyPractice(name);
           owner.isDirectory = true;
+          owner.hasMapListing = false;
           owner.website = `https://${domain}`;
           owner._domain = domain;
           directories.set(name, owner);
@@ -197,7 +178,7 @@ export function buildResult(market: Market, date: string, raw: RawReader, opts: 
         if (prev === undefined || rank < prev) owner.organicRankBySearch[kw] = rank;
       }
       if (candidate && domain) {
-        const entry: ReviewEntry = reviewByDomain.get(domain) ?? { domain, title: item.title ?? '', url: item.url ?? '', searches: [], tag: kind, overridden };
+        const entry: ReviewEntry = reviewByDomain.get(domain) ?? { domain, title: item.title ?? '', url: item.url ?? '', searches: [], tag: kind, overridden, promotedTo: null };
         entry.searches.push({ keyword: kw, rank });
         reviewByDomain.set(domain, entry);
       }
@@ -209,11 +190,11 @@ export function buildResult(market: Market, date: string, raw: RawReader, opts: 
   // Lighthouse.
   for (const d of drafts) if (d._domain) d.lighthouse = lighthouseScores(raw.read('lighthouse', d._domain));
 
-  // AI mentions: a practice counts when its name (or website domain) appears in an answer.
+  // AI answers. A Maps practice counts as named when its name (or website domain) appears in an answer.
   const promptIdx = opts.promptIndexes ?? AI_PROMPTS.map((_, i) => i);
   const prompts = promptIdx.map((i) => fillPrompt(AI_PROMPTS[i], market));
-  const aiOnly: AiOnlyMention[] = [];
   const aiReview: AiReviewEntry[] = [];
+  const rawMentions: RawMention[] = [];
   for (const provider of ['chatgpt', 'claude'] as AiProvider[]) {
     prompts.forEach((prompt, n) => {
       const rawAnswer = raw.read(provider === 'chatgpt' ? 'ai-chatgpt' : 'ai-claude', aiKey(promptIdx[n], prompt, AI_MODELS[provider]));
@@ -234,30 +215,58 @@ export function buildResult(market: Market, date: string, raw: RawReader, opts: 
         d.aiMentions.prompts.push({ provider, prompt });
         matched.push(d.name);
       }
-
-      // Names the answer recommends that match nothing found in Maps (kept apart, never scored).
       const model: string = rawAnswer?.tasks?.[0]?.result?.[0]?.model_name ?? AI_MODELS[provider];
-      const seenHere = new Set<string>();
-      const onlyNames: string[] = [];
-      for (const name of candidateNames(text)) {
-        const key = nameKey(name);
-        if (key.length < 5 || seenHere.has(key)) continue;
-        const isKnown = [...drafts, ...directories.values()].some((d) => {
-          const dk = nameKey(d.name);
-          return dk.length >= 5 && (key.includes(dk) || dk.includes(key));
-        });
-        if (isKnown) continue;
-        seenHere.add(key);
-        onlyNames.push(name);
-        aiOnly.push({ name, provider, model, prompt });
-      }
+      const found = extractFromAnswer(text);
+      for (const f of found) rawMentions.push({ ...f, provider, model, prompt });
       const citations = [...new Set(sections.flatMap((sec: any) => (sec.annotations ?? []).map((a: any) => a.url).filter(Boolean)))] as string[];
-      aiReview.push({ provider, model, prompt, text, citations, matchedPractices: matched, aiOnlyNames: onlyNames });
+      aiReview.push({
+        provider, model, prompt, text, citations, matchedPractices: matched,
+        extractedNames: found.flatMap((f) => [f.name, ...f.people]),
+      });
     });
   }
 
+  // Merge near-duplicate names, then sort each entity: already in Maps / a directory (dropped), named by AI and
+  // found in organic results (promoted into practices[] without a Maps listing), or AI-only.
+  const knownNames = [...drafts, ...directories.values()].map((d) => d.name);
+  const promotedDrafts: Draft[] = [];
+  const aiOnly: AiOnlyMention[] = [];
+  for (const e of mergeEntities(rawMentions)) {
+    if (e.names.some((n) => knownNames.some((k) => sameName(n, k)))) continue;
+
+    const spaceless = entityKey(e.name).replace(/ /g, '');
+    const fullKey = nameKey(e.name);
+    const hit = [...reviewByDomain.values()].find((r) => {
+      if (r.tag !== 'local-no-map' || r.promotedTo) return false;
+      const label = domainLabel(r.domain);
+      const byDomainName = spaceless.length >= 5 && label.length >= 5 && (label.includes(spaceless) || spaceless.includes(label));
+      const byTitle = fullKey.split(' ').length >= 2 && nameKey(r.title).includes(fullKey);
+      return byDomainName || byTitle;
+    });
+    if (!hit) {
+      aiOnly.push({ name: e.name, people: e.people, mentions: e.mentions });
+      continue;
+    }
+    const d = emptyPractice(e.name);
+    d.hasMapListing = false;
+    d.website = hit.url || `https://${hit.domain}`;
+    d._domain = hit.domain;
+    d.people = e.people;
+    for (const s of hit.searches) {
+      const prev = d.organicRankBySearch[s.keyword];
+      if (prev === undefined || s.rank < prev) d.organicRankBySearch[s.keyword] = s.rank;
+    }
+    for (const m of e.mentions) {
+      d.aiMentions[m.provider] += 1;
+      d.aiMentions.prompts.push({ provider: m.provider, prompt: m.prompt });
+    }
+    d.lighthouse = lighthouseScores(raw.read('lighthouse', hit.domain));
+    hit.promotedTo = hit.domain; // replaced by the slug below
+    promotedDrafts.push(d);
+  }
+
   // Slugs, scores, ordering.
-  const all: Draft[] = [...drafts, ...directories.values()];
+  const all: Draft[] = [...drafts, ...promotedDrafts, ...directories.values()];
   const used = new Set<string>();
   for (const d of all) {
     // Collisions get a number, never the city again (names often contain it already).
@@ -267,6 +276,9 @@ export function buildResult(market: Market, date: string, raw: RawReader, opts: 
     used.add(slug);
     d.slug = slug;
   }
+  for (const r of reviewByDomain.values()) {
+    if (r.promotedTo) r.promotedTo = promotedDrafts.find((d) => d._domain === r.domain)?.slug ?? null;
+  }
   const scores = visibilityScores(all);
   all.forEach((d, i) => (d.visibilityScore = scores[i]));
 
@@ -274,7 +286,7 @@ export function buildResult(market: Market, date: string, raw: RawReader, opts: 
     for (const e of entries) {
       const owner =
         e.kind === 'directory' ? all.find((d) => d.isDirectory && d._domain === e.domain)
-        : e.kind === 'local practice' ? all.find((d) => !d.isDirectory && d._domain === e.domain)
+        : e.kind === 'local practice' || e.kind === 'local-no-map' ? all.find((d) => !d.isDirectory && d._domain === e.domain)
         : undefined;
       e.practiceSlug = owner ? owner.slug : null;
     }
@@ -320,6 +332,7 @@ export function buildResult(market: Market, date: string, raw: RawReader, opts: 
       directorySharePercent: slots.length ? Math.round((dirSlots / slots.length) * 1000) / 10 : 0,
       practicesNamedByAi: local.filter((p) => p.aiMentions.chatgpt + p.aiMentions.claude > 0).length,
       chainLocations: local.filter((p) => p.isChain).length,
+      unlistedPractices: local.filter((p) => !p.hasMapListing).length,
     },
     practices,
     aiOnlyMentions: aiOnly,
@@ -327,21 +340,26 @@ export function buildResult(market: Market, date: string, raw: RawReader, opts: 
     localPackBySearch,
   };
   const review = [...reviewByDomain.values()].sort((a, b) => a.domain.localeCompare(b.domain));
-  return { snapshot, review, aiReview };
+  const promoted: PromotedPractice[] = promotedDrafts.map((d) => ({
+    name: d.name, domain: d._domain!, slug: d.slug, people: d.people, aiMentions: d.aiMentions.prompts.length,
+  }));
+  return { snapshot, review, aiReview, excluded, promoted };
 }
 
-/** Writes the snapshot and its review list. `subdir` keeps smoke-test output apart from the real snapshots. */
-export function writeResult({ snapshot, review, aiReview }: BuildResult, subdir = ''): string[] {
+/** Writes the snapshot and its review files. `subdir` keeps smoke-test output apart from the real snapshots. */
+export function writeResult({ snapshot, review, aiReview, excluded }: BuildResult, subdir = ''): string[] {
   const dir = path.join(DATA_DIR, subdir);
   const reviewDir = path.join(DATA_DIR, subdir, 'review');
   fs.mkdirSync(reviewDir, { recursive: true });
-  const snapFile = path.join(dir, `${snapshot.market.slug}.json`);
-  const reviewFile = path.join(reviewDir, `${snapshot.market.slug}.json`);
-  fs.writeFileSync(snapFile, JSON.stringify(snapshot, null, 2) + '\n');
-  fs.writeFileSync(reviewFile, JSON.stringify(review, null, 2) + '\n');
-  const aiFile = path.join(reviewDir, `${snapshot.market.slug}-ai.json`);
-  fs.writeFileSync(aiFile, JSON.stringify(aiReview, null, 2) + '\n');
-  return [snapFile, reviewFile, aiFile];
+  const slug = snapshot.market.slug;
+  const files: [string, unknown][] = [
+    [path.join(dir, `${slug}.json`), snapshot],
+    [path.join(reviewDir, `${slug}.json`), review],
+    [path.join(reviewDir, `${slug}-ai.json`), aiReview],
+    [path.join(reviewDir, `${slug}-excluded.json`), excluded],
+  ];
+  for (const [file, data] of files) fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n');
+  return files.map(([file]) => file);
 }
 
 // CLI: tsx scripts/therapyindex/normalise.ts --market <slug> [--date YYYY-MM-DD]

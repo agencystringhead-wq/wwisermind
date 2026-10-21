@@ -1,0 +1,73 @@
+[
+  {
+    "title": "AUSTINDEEP Downtown",
+    "category": "Massage therapist",
+    "additionalCategories": [
+      "Physical therapy clinic",
+      "Wellness center"
+    ],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 1
+      }
+    ]
+  },
+  {
+    "title": "Learning Perch",
+    "category": "Applied behavior analysis therapist",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 10
+      }
+    ]
+  },
+  {
+    "title": "Ashley massage Therapist & Spa",
+    "category": "Massage spa",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 12
+      }
+    ]
+  },
+  {
+    "title": "Hannah spa and massage",
+    "category": "Massage therapist",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 19
+      }
+    ]
+  },
+  {
+    "title": "Christi Center",
+    "category": "Non-profit organization",
+    "additionalCategories": [
+      "Support group"
+    ],
+    "searches": [
+      {
+        "keyword": "grief counseling",
+        "rank": 11
+      }
+    ]
+  },
+  {
+    "title": "GOOD GRiEF",
+    "category": "Wellness program",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "grief counseling",
+        "rank": 19
+      }
+    ]
+  }
+]

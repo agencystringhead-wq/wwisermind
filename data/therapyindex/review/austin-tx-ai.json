@@ -14,14 +14,14 @@
     "matchedPractices": [
       "Grace Therapy and Wellness, PLLC - Downtown Location One"
     ],
-    "aiOnlyNames": [
+    "extractedNames": [
+      "Austin Center for CBT",
       "Dr. Tamara Bryan",
-      "Dr. Tamara Bryan / Austin Center for CBT",
       "Marsha Lowes Psychotherapy",
       "Austin Counseling & Trauma Specialists",
       "Just Mind Counseling",
-      "Just Mind",
-      "Texas Behavioral Health Executive Council"
+      "Grace Therapy & Wellness",
+      "Just Mind"
     ]
   },
   {
@@ -37,13 +37,15 @@
       "https://www.deannagraves.com/?utm_source=openai"
     ],
     "matchedPractices": [],
-    "aiOnlyNames": [
-      "Deanna Graves, LPC",
-      "Dr. Tamara Bryan",
+    "extractedNames": [
       "Austin Center for CBT",
+      "Dr. Tamara Bryan",
       "Anxiety Treatment Center of Austin",
       "Central Texas Anxiety and OCD Center",
       "Just Mind Counseling",
+      "Deanna Graves, LPC",
+      "Austin Center for CBT",
+      "Anxiety Treatment Center of Austin",
       "Just Mind"
     ]
   },
@@ -64,13 +66,12 @@
       "Austin STRONG: Relationship Building Center",
       "Horseshoe Counseling"
     ],
-    "aiOnlyNames": [
-      "Veronica Leal, LPC-S",
-      "Claudia Thompson, LMFT",
-      "Danae King, LPC",
+    "extractedNames": [
       "Westlake Couples Counseling, PLLC",
-      "Emotionally Focused Therapy",
-      "Enhancing Intimacy Counseling"
+      "Veronica Leal, LPC-S",
+      "Enhancing Intimacy Counseling",
+      "Claudia Thompson, LMFT",
+      "Danae King, LPC"
     ]
   },
   {
@@ -86,9 +87,10 @@
       "Carlisle Collective",
       "Bloom Therapy"
     ],
-    "aiOnlyNames": [
+    "extractedNames": [
       "Just Mind Counseling",
-      "Westlake Psychotherapy of Austin"
+      "Westlake Psychotherapy of Austin",
+      "Grace Therapy & Wellness"
     ]
   },
   {
@@ -106,13 +108,14 @@
     "matchedPractices": [
       "Bloom Therapy"
     ],
-    "aiOnlyNames": [
+    "extractedNames": [
+      "Just Mind Counseling",
       "Ron Grace, PsyD",
       "Garcia Puckett, LPC",
+      "Bloom Therapy",
+      "Anxiety Treatment Center of Austin",
       "Dr. Jill Racine",
-      "Dr. Ruba Fattouh",
-      "Just Mind Counseling",
-      "Anxiety Treatment Center of Austin"
+      "Dr. Ruba Fattouh"
     ]
   },
   {
@@ -132,11 +135,12 @@
     "matchedPractices": [
       "Bloom Therapy"
     ],
-    "aiOnlyNames": [
-      "Julie D. Lee, LCSW",
+    "extractedNames": [
       "Just Mind Counseling",
       "Relationship Counseling Center of Austin",
-      "Austin Family Counseling"
+      "Austin Family Counseling",
+      "Therapy Austin",
+      "Julie D. Lee, LCSW"
     ]
   }
 ]

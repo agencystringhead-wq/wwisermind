@@ -10,7 +10,8 @@
       }
     ],
     "tag": "local-no-map",
-    "overridden": false
+    "overridden": false,
+    "promotedTo": "anxiety-treatment-center-of-austin"
   },
   {
     "domain": "austincts.com",
@@ -27,7 +28,8 @@
       }
     ],
     "tag": "local-no-map",
-    "overridden": false
+    "overridden": false,
+    "promotedTo": "austin-counseling-trauma-specialists"
   },
   {
     "domain": "austinfamilycounseling.com",
@@ -40,20 +42,8 @@
       }
     ],
     "tag": "local-no-map",
-    "overridden": false
-  },
-  {
-    "domain": "austinpsychcare.com",
-    "title": "Austin PsychCare | Austin's Premier Mental Health Practice",
-    "url": "https://www.austinpsychcare.com/",
-    "searches": [
-      {
-        "keyword": "psychologist",
-        "rank": 4
-      }
-    ],
-    "tag": "local-no-map",
-    "overridden": false
+    "overridden": false,
+    "promotedTo": "austin-family-counseling"
   },
   {
     "domain": "autonomytherapyatx.com",
@@ -66,20 +56,8 @@
       }
     ],
     "tag": "local-no-map",
-    "overridden": false
-  },
-  {
-    "domain": "bannockburnchurch.com",
-    "title": "Free Grief Counseling | GriefShare in Austin, TX",
-    "url": "https://bannockburnchurch.com/free-griefshare-in-austin-tx/",
-    "searches": [
-      {
-        "keyword": "grief counseling",
-        "rank": 5
-      }
-    ],
-    "tag": "local-no-map",
-    "overridden": false
+    "overridden": false,
+    "promotedTo": null
   },
   {
     "domain": "brunolepore.com",
@@ -92,7 +70,22 @@
       }
     ],
     "tag": "local-no-map",
-    "overridden": false
+    "overridden": false,
+    "promotedTo": null
+  },
+  {
+    "domain": "deepeddypsychotherapy.com",
+    "title": "Welcome to Deep Eddy Psychotherapy! | Therapy Practice ...",
+    "url": "https://deepeddypsychotherapy.com/",
+    "searches": [
+      {
+        "keyword": "depression therapist",
+        "rank": 5
+      }
+    ],
+    "tag": "local-no-map",
+    "overridden": false,
+    "promotedTo": null
   },
   {
     "domain": "drjuliahoke.com",
@@ -105,7 +98,8 @@
       }
     ],
     "tag": "local-no-map",
-    "overridden": false
+    "overridden": false,
+    "promotedTo": null
   },
   {
     "domain": "ensembletherapy.com",
@@ -118,20 +112,8 @@
       }
     ],
     "tag": "local-no-map",
-    "overridden": false
-  },
-  {
-    "domain": "findmycenter.org",
-    "title": "Relationship Therapy Austin - The Center for Relationships",
-    "url": "https://www.findmycenter.org/",
-    "searches": [
-      {
-        "keyword": "marriage counselor",
-        "rank": 2
-      }
-    ],
-    "tag": "local-no-map",
-    "overridden": false
+    "overridden": false,
+    "promotedTo": null
   },
   {
     "domain": "gramercyclinic.com",
@@ -144,7 +126,8 @@
       }
     ],
     "tag": "local-no-map",
-    "overridden": false
+    "overridden": false,
+    "promotedTo": null
   },
   {
     "domain": "justmind.org",
@@ -165,7 +148,8 @@
       }
     ],
     "tag": "local-no-map",
-    "overridden": false
+    "overridden": false,
+    "promotedTo": "just-mind-counseling"
   },
   {
     "domain": "kindtherapyaustin.com",
@@ -178,7 +162,8 @@
       }
     ],
     "tag": "local-no-map",
-    "overridden": false
+    "overridden": false,
+    "promotedTo": null
   },
   {
     "domain": "kristajordan.com",
@@ -191,7 +176,8 @@
       }
     ],
     "tag": "local-no-map",
-    "overridden": false
+    "overridden": false,
+    "promotedTo": null
   },
   {
     "domain": "lifebulb.com",
@@ -204,7 +190,8 @@
       }
     ],
     "tag": "local-no-map",
-    "overridden": false
+    "overridden": false,
+    "promotedTo": null
   },
   {
     "domain": "luminarycounseling.com",
@@ -217,7 +204,8 @@
       }
     ],
     "tag": "local-no-map",
-    "overridden": false
+    "overridden": false,
+    "promotedTo": null
   },
   {
     "domain": "newleafcounseling.com",
@@ -230,20 +218,8 @@
       }
     ],
     "tag": "local-no-map",
-    "overridden": false
-  },
-  {
-    "domain": "psychhub.com",
-    "title": "Find Therapists in Austin, Texas",
-    "url": "https://psychhub.com/us/texas/austin",
-    "searches": [
-      {
-        "keyword": "therapist",
-        "rank": 2
-      }
-    ],
-    "tag": "local-no-map",
-    "overridden": false
+    "overridden": false,
+    "promotedTo": null
   },
   {
     "domain": "rootsbehavioralhealth.com",
@@ -256,7 +232,8 @@
       }
     ],
     "tag": "local-no-map",
-    "overridden": false
+    "overridden": false,
+    "promotedTo": null
   },
   {
     "domain": "soundsofsaving.org",
@@ -269,7 +246,8 @@
       }
     ],
     "tag": "local-no-map",
-    "overridden": false
+    "overridden": false,
+    "promotedTo": null
   },
   {
     "domain": "therapyaustin.com",
@@ -282,7 +260,8 @@
       }
     ],
     "tag": "local-no-map",
-    "overridden": false
+    "overridden": false,
+    "promotedTo": null
   },
   {
     "domain": "therapylab.com",
@@ -299,7 +278,8 @@
       }
     ],
     "tag": "local-no-map",
-    "overridden": false
+    "overridden": false,
+    "promotedTo": null
   },
   {
     "domain": "timothycenter.com",
@@ -316,6 +296,7 @@
       }
     ],
     "tag": "local-no-map",
-    "overridden": false
+    "overridden": false,
+    "promotedTo": null
   }
 ]
