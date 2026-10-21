@@ -12,7 +12,9 @@
     "predev": "node scripts/build-crisis-data.mjs",
     "crisis:data": "node scripts/build-crisis-data.mjs",
     "therapyindex:fetch": "tsx scripts/therapyindex/fetch.ts",
-    "therapyindex:normalise": "tsx scripts/therapyindex/normalise.ts"
+    "therapyindex:normalise": "tsx scripts/therapyindex/normalise.ts",
+    "therapyindex:review-export": "tsx scripts/therapyindex/review.ts export",
+    "therapyindex:review-apply": "tsx scripts/therapyindex/review.ts apply"
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",

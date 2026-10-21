@@ -53,6 +53,8 @@ const plan = smoke
 /** --only maps,organic,ai,gmb,lighthouse: restrict a run to those call kinds (names match kind prefixes; "ai" = both AI engines). */
 const only = opt('only')?.split(',').map((x) => x.trim()).filter(Boolean);
 const wanted = (kind: Kind) => !only || only.some((o) => kind === o || kind.startsWith(`${o}-`));
+/** --domains a.com,b.com: with --only lighthouse, scan just these sites (used to retry failed scans). */
+const onlyDomains = opt('domains')?.split(',').map((x) => x.trim()).filter(Boolean);
 const buildOpts: BuildOptions = { keywords: plan.keywords, promptIndexes: plan.promptIndexes };
 
 /** Assumed sizes for the calls that depend on earlier results, used only for the dry-run estimate. */
@@ -94,6 +96,16 @@ function phaseTwoCalls(m: Market, store: RawStore): Call[] {
     .snapshot.practices.filter((p) => !p.isDirectory)
     .sort((a, b) => Number(!isRankEligible(a)) - Number(!isRankEligible(b)));
   const calls: Call[] = [];
+  if (onlyDomains) {
+    for (const domain of onlyDomains) {
+      const p = prelim.find((x) => normaliseDomain(x.website) === domain);
+      calls.push({
+        kind: 'lighthouse', key: domain, endpoint: ENDPOINTS.lighthouse.path, label: `lighthouse ${domain}`,
+        task: { url: p?.website ?? `https://${domain}`, categories: ['performance', 'seo', 'accessibility'], for_mobile: true },
+      });
+    }
+    return calls;
+  }
   const gmbPool = prelim.filter((p) => p.mapsCid && (plan.gmbForce || !p.phone || !p.website || !p.category));
   const gmbTargets = plan.gmbForce
     ? gmbPool.slice(0, plan.gmbMax)

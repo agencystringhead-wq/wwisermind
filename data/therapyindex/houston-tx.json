@@ -32,7 +32,8 @@
     "practicesNamedByAi": 4,
     "chainLocations": 5,
     "unlistedPractices": 0,
-    "medicalPractices": 2,
+    "medicalPractices": 3,
+    "nonprofitPractices": 1,
     "fewReviewPractices": 248
   },
   "practices": [
@@ -80,6 +81,8 @@
         "Marriage or relationship counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -135,6 +138,8 @@
         "Wellness program"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -186,6 +191,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -235,6 +242,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -294,6 +303,8 @@
         "Career guidance service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -344,6 +355,8 @@
         "Mental health clinic"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -401,6 +414,8 @@
         "Social worker"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -452,6 +467,8 @@
         "Social worker"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -493,6 +510,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -551,6 +570,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -594,6 +615,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -632,6 +655,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -671,6 +696,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -714,7 +741,9 @@
         "Mental health clinic",
         "Psychotherapist"
       ],
-      "isMedical": false,
+      "isMedical": true,
+      "isNonprofit": false,
+      "manualDecision": "medical",
       "fewReviews": false
     },
     {
@@ -763,6 +792,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -812,6 +843,8 @@
         "Student career counseling office"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -857,6 +890,8 @@
         "Non-profit organization"
       ],
       "isMedical": false,
+      "isNonprofit": true,
+      "manualDecision": "nonprofit",
       "fewReviews": false
     },
     {
@@ -895,6 +930,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -939,6 +976,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -990,6 +1029,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1039,6 +1080,8 @@
         "Marriage or relationship counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1085,6 +1128,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1143,6 +1188,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1181,6 +1228,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1231,6 +1280,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1272,6 +1323,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1312,6 +1365,8 @@
         "Psychiatrist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1352,6 +1407,8 @@
         "Mental health clinic"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1393,6 +1450,8 @@
         "Social services organization"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1432,6 +1491,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1477,6 +1538,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1515,6 +1578,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1553,6 +1618,8 @@
         "Wellness center"
       ],
       "isMedical": true,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1596,6 +1663,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1638,6 +1707,8 @@
         "Marriage or relationship counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1678,6 +1749,8 @@
         "Health counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1716,6 +1789,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1755,6 +1830,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1802,6 +1879,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1840,6 +1919,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1873,6 +1954,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1925,6 +2008,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -1972,6 +2057,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2012,6 +2099,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2049,6 +2138,8 @@
         "Marriage or relationship counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2091,6 +2182,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2132,6 +2225,8 @@
         "Weight loss service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2171,6 +2266,8 @@
         "Walk-in clinic"
       ],
       "isMedical": true,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2220,6 +2317,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2262,6 +2361,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2299,6 +2400,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2345,6 +2448,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2386,6 +2491,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2431,6 +2538,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2466,6 +2575,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2507,6 +2618,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2547,6 +2660,8 @@
         "Marriage or relationship counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2582,6 +2697,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2617,6 +2734,8 @@
         "Family counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2662,6 +2781,8 @@
         "Wellness center"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2703,6 +2824,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -2746,6 +2869,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2779,6 +2904,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2822,6 +2949,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2857,6 +2986,8 @@
         "Psychoanalyst"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2902,6 +3033,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2951,6 +3084,8 @@
         "Child psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -2986,6 +3121,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -3025,6 +3162,8 @@
         "Mental health clinic"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3060,6 +3199,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3096,6 +3237,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3136,6 +3279,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3176,6 +3321,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3217,6 +3364,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3260,6 +3409,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3296,6 +3447,8 @@
         "Social worker"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3337,6 +3490,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3375,6 +3530,8 @@
         "Mental health clinic"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3417,6 +3574,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3451,6 +3610,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3485,6 +3646,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3526,6 +3689,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3568,6 +3733,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3602,6 +3769,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -3647,6 +3816,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3689,6 +3860,8 @@
         "Social worker"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3730,6 +3903,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3769,6 +3944,8 @@
         "Mental health clinic"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -3807,6 +3984,8 @@
         "Mental health clinic"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3848,6 +4027,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3885,6 +4066,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3921,6 +4104,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -3958,6 +4143,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -3993,6 +4180,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4028,6 +4217,8 @@
         "Family counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4073,6 +4264,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4111,6 +4304,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4146,6 +4341,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4181,6 +4378,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4221,6 +4420,8 @@
         "Speech pathologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4257,6 +4458,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4293,6 +4496,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4335,6 +4540,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4372,6 +4579,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4405,6 +4614,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4442,6 +4653,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4477,6 +4690,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4515,6 +4730,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4559,6 +4776,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -4593,6 +4812,8 @@
         "Child psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4629,6 +4850,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -4666,6 +4889,8 @@
         "Pediatric clinic"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4699,6 +4924,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4737,6 +4964,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4770,6 +4999,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -4804,6 +5035,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4841,6 +5074,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4879,6 +5114,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -4913,6 +5150,8 @@
         "Marriage or relationship counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4950,6 +5189,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -4988,6 +5229,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -5027,6 +5270,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -5063,6 +5308,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -5098,6 +5345,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -5138,6 +5387,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -5181,6 +5432,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -5218,6 +5471,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -5255,6 +5510,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -5289,6 +5546,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -5323,6 +5582,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -5358,6 +5619,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -5393,6 +5656,8 @@
         "Marriage or relationship counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -5431,6 +5696,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -5476,6 +5743,8 @@
         "Rehabilitation center"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -5514,6 +5783,8 @@
         "Support group"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -5550,6 +5821,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -5583,6 +5856,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -5619,6 +5894,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -5662,6 +5939,8 @@
         "Mental health clinic"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -5699,6 +5978,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -5741,6 +6022,8 @@
         "Family counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -5784,6 +6067,8 @@
         "Wellness center"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -5819,6 +6104,8 @@
         "Child psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -5854,6 +6141,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -5889,6 +6178,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -5926,6 +6217,8 @@
         "Applied behavior analysis therapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -5966,6 +6259,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6000,6 +6295,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -6035,6 +6332,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6068,6 +6367,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -6109,6 +6410,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6144,6 +6447,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6177,6 +6482,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6218,6 +6525,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -6254,6 +6563,8 @@
         "Medical clinic"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6288,6 +6599,8 @@
         "Service establishment"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6323,6 +6636,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6359,6 +6674,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -6393,6 +6710,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6440,6 +6759,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6473,6 +6794,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6517,6 +6840,8 @@
         "Sexologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6554,6 +6879,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6590,6 +6917,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6627,6 +6956,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6664,6 +6995,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6697,6 +7030,8 @@
         "Marriage or relationship counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6732,6 +7067,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6766,6 +7103,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6801,6 +7140,8 @@
         "Mental health clinic"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6839,6 +7180,8 @@
         "Social worker"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6873,6 +7216,8 @@
         "Non-profit organization"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6908,6 +7253,8 @@
         "Marriage or relationship counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6943,6 +7290,8 @@
         "Mental health clinic"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -6980,6 +7329,8 @@
         "Mental health clinic"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7017,6 +7368,8 @@
         "Family counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7054,6 +7407,8 @@
         "Psychiatrist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7087,6 +7442,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7122,6 +7479,8 @@
         "Mental health clinic"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7159,6 +7518,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7196,6 +7557,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7235,6 +7598,8 @@
         "Marriage or relationship counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7275,6 +7640,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7308,6 +7675,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7347,6 +7716,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7384,6 +7755,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7423,6 +7796,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7468,6 +7843,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7504,6 +7881,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7548,6 +7927,8 @@
         "Mental health clinic"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7587,6 +7968,8 @@
         "Psychiatrist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7621,6 +8004,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7657,6 +8042,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7697,6 +8084,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7740,6 +8129,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7777,6 +8168,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7811,6 +8204,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7845,6 +8240,8 @@
         "Doctor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7879,6 +8276,8 @@
         "Marriage or relationship counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7912,6 +8311,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7947,6 +8348,8 @@
         "Marriage or relationship counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -7981,6 +8384,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8014,6 +8419,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8047,6 +8454,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8084,6 +8493,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8117,6 +8528,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8151,6 +8564,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8185,6 +8600,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8219,6 +8636,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8254,6 +8673,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8291,6 +8712,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8325,6 +8748,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8358,6 +8783,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8395,6 +8822,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8428,6 +8857,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8463,6 +8894,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8498,6 +8931,8 @@
         "Family counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8531,6 +8966,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8565,6 +9002,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8608,6 +9047,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8645,6 +9086,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8687,6 +9130,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8724,6 +9169,8 @@
         "Marriage or relationship counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8758,6 +9205,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8798,6 +9247,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8844,6 +9295,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8878,6 +9331,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8921,6 +9376,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8954,6 +9411,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -8988,6 +9447,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9024,6 +9485,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9057,6 +9520,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9095,6 +9560,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9128,6 +9595,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9161,6 +9630,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9194,6 +9665,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9229,6 +9702,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9263,6 +9738,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9300,6 +9777,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9337,6 +9816,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9370,6 +9851,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9405,6 +9888,8 @@
         "Life coach"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9439,6 +9924,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9472,6 +9959,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9510,6 +9999,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9545,6 +10036,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9578,6 +10071,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9611,6 +10106,8 @@
         "Mental health clinic"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9644,6 +10141,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9679,6 +10178,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9712,6 +10213,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9746,6 +10249,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9794,6 +10299,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9828,6 +10335,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9861,6 +10370,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9897,6 +10408,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9933,6 +10446,8 @@
         "Mental health clinic"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9966,6 +10481,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -9999,6 +10516,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10033,6 +10552,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10067,6 +10588,8 @@
         "Family counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10102,6 +10625,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10138,6 +10663,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10177,6 +10704,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10213,6 +10742,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10252,6 +10783,8 @@
         "Wellness center"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10286,6 +10819,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10323,6 +10858,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10361,6 +10898,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10395,6 +10934,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10431,6 +10972,8 @@
         "Life coach"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10465,6 +11008,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10499,6 +11044,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10532,6 +11079,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10566,6 +11115,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10602,6 +11153,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10635,6 +11188,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10668,6 +11223,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10707,6 +11264,8 @@
         "Yoga instructor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10742,6 +11301,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10777,6 +11338,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10810,6 +11373,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10847,6 +11412,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10881,6 +11448,8 @@
         "Child psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10914,6 +11483,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10950,6 +11521,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -10995,6 +11568,8 @@
         "Social worker"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11030,6 +11605,8 @@
         "General practitioner"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11069,6 +11646,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11107,6 +11686,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11147,6 +11728,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11180,6 +11763,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11216,6 +11801,8 @@
         "Mental health clinic"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11249,6 +11836,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11282,6 +11871,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11318,6 +11909,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11353,6 +11946,8 @@
         "Doctor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11388,6 +11983,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11422,6 +12019,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11455,6 +12054,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11492,6 +12093,8 @@
         "Reiki therapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11527,6 +12130,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11565,6 +12170,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11598,6 +12205,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11631,6 +12240,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11668,6 +12279,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11702,6 +12315,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11736,6 +12351,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11771,6 +12388,8 @@
         "Marriage or relationship counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11805,6 +12424,8 @@
         "Business management consultant"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11838,6 +12459,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11874,6 +12497,8 @@
         "Social worker"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11909,6 +12534,8 @@
         "Family counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11942,6 +12569,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -11976,6 +12605,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12011,6 +12642,8 @@
         "Family counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12045,6 +12678,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12089,6 +12724,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12122,6 +12759,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12155,6 +12794,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12188,6 +12829,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12223,6 +12866,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12256,6 +12901,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12289,6 +12936,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12322,6 +12971,8 @@
         "Mental health clinic"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12355,6 +13006,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12388,6 +13041,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12421,6 +13076,8 @@
         "Family counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12455,6 +13112,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12488,6 +13147,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12521,6 +13182,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12554,6 +13217,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12588,6 +13253,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12621,6 +13288,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12655,6 +13324,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12690,6 +13361,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12723,6 +13396,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12757,6 +13432,8 @@
         "Practitioner service location"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12790,6 +13467,8 @@
         "Health counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12827,6 +13506,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12860,6 +13541,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12896,6 +13579,8 @@
         "Social worker"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12931,6 +13616,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12964,6 +13651,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -12997,6 +13686,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13031,6 +13722,8 @@
         "Child psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13065,6 +13758,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13099,6 +13794,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13132,6 +13829,8 @@
         "Marriage or relationship counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13170,6 +13869,8 @@
         "Marriage or relationship counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13203,6 +13904,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13239,6 +13942,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13272,6 +13977,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13305,6 +14012,8 @@
         "Family counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13338,6 +14047,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13374,6 +14085,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13407,6 +14120,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13440,6 +14155,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13476,6 +14193,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13509,6 +14228,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13542,6 +14263,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13575,6 +14298,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13608,6 +14333,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13644,6 +14371,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13678,6 +14407,8 @@
         "Mental health clinic"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13711,6 +14442,8 @@
         "Psychologist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13745,6 +14478,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13781,6 +14516,8 @@
         "Marriage or relationship counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13814,6 +14551,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13847,6 +14586,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13880,6 +14621,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13914,6 +14657,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13947,6 +14692,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -13980,6 +14727,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -14013,6 +14762,8 @@
         "Marriage or relationship counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -14051,6 +14802,8 @@
         "Wellness center"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -14086,6 +14839,8 @@
         "Psychotherapist"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -14134,6 +14889,8 @@
         "Social worker"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -14167,6 +14924,8 @@
         "Marriage or relationship counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -14200,6 +14959,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -14234,6 +14995,8 @@
         "Counselor"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -14268,6 +15031,8 @@
         "Mental health service"
       ],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": true
     },
     {
@@ -14299,6 +15064,8 @@
       "people": [],
       "categories": [],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -14330,6 +15097,8 @@
       "people": [],
       "categories": [],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -14361,6 +15130,8 @@
       "people": [],
       "categories": [],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -14397,6 +15168,8 @@
       "people": [],
       "categories": [],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -14429,6 +15202,8 @@
       "people": [],
       "categories": [],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     },
     {
@@ -14461,59 +15236,12 @@
       "people": [],
       "categories": [],
       "isMedical": false,
+      "isNonprofit": false,
+      "manualDecision": null,
       "fewReviews": false
     }
   ],
   "aiOnlyMentions": [
-    {
-      "name": "The Menninger Clinic",
-      "people": [],
-      "mentions": [
-        {
-          "provider": "chatgpt",
-          "model": "gpt-5.6-luna",
-          "prompt": "Who is the best therapist in Houston, Texas?"
-        }
-      ]
-    },
-    {
-      "name": "Baylor Psychiatry and Behavioral Sciences",
-      "people": [],
-      "mentions": [
-        {
-          "provider": "chatgpt",
-          "model": "gpt-5.6-luna",
-          "prompt": "Who is the best therapist in Houston, Texas?"
-        },
-        {
-          "provider": "chatgpt",
-          "model": "gpt-5.6-luna",
-          "prompt": "Recommend an anxiety therapist in Houston, Texas"
-        }
-      ]
-    },
-    {
-      "name": "University of Houston Psychological Services Clinic",
-      "people": [],
-      "mentions": [
-        {
-          "provider": "chatgpt",
-          "model": "gpt-5.6-luna",
-          "prompt": "Who is the best therapist in Houston, Texas?"
-        }
-      ]
-    },
-    {
-      "name": "UTHealth Houston Behavioral Sciences",
-      "people": [],
-      "mentions": [
-        {
-          "provider": "chatgpt",
-          "model": "gpt-5.6-luna",
-          "prompt": "Recommend an anxiety therapist in Houston, Texas"
-        }
-      ]
-    },
     {
       "name": "Crystal Perdue, LPC",
       "people": [],
@@ -14581,6 +15309,84 @@
       ]
     }
   ],
+  "aiInstitutionMentions": [
+    {
+      "name": "The Menninger Clinic",
+      "type": "hospital / health system",
+      "mentions": [
+        {
+          "provider": "chatgpt",
+          "model": "gpt-5.6-luna",
+          "prompt": "Who is the best therapist in Houston, Texas?"
+        }
+      ]
+    },
+    {
+      "name": "Baylor Psychiatry and Behavioral Sciences",
+      "type": "hospital / health system",
+      "mentions": [
+        {
+          "provider": "chatgpt",
+          "model": "gpt-5.6-luna",
+          "prompt": "Who is the best therapist in Houston, Texas?"
+        },
+        {
+          "provider": "chatgpt",
+          "model": "gpt-5.6-luna",
+          "prompt": "Recommend an anxiety therapist in Houston, Texas"
+        }
+      ]
+    },
+    {
+      "name": "University of Houston Psychological Services Clinic",
+      "type": "university",
+      "mentions": [
+        {
+          "provider": "chatgpt",
+          "model": "gpt-5.6-luna",
+          "prompt": "Who is the best therapist in Houston, Texas?"
+        }
+      ]
+    },
+    {
+      "name": "Psychology Today",
+      "type": "directory",
+      "mentions": [
+        {
+          "provider": "chatgpt",
+          "model": "gpt-5.6-luna",
+          "prompt": "Who is the best therapist in Houston, Texas?"
+        },
+        {
+          "provider": "chatgpt",
+          "model": "gpt-5.6-luna",
+          "prompt": "Recommend an anxiety therapist in Houston, Texas"
+        },
+        {
+          "provider": "chatgpt",
+          "model": "gpt-5.6-luna",
+          "prompt": "Best couples counselor in Houston, Texas"
+        },
+        {
+          "provider": "claude",
+          "model": "claude-sonnet-5-5",
+          "prompt": "Recommend an anxiety therapist in Houston, Texas"
+        }
+      ]
+    },
+    {
+      "name": "UTHealth Houston Behavioral Sciences",
+      "type": "hospital / health system",
+      "mentions": [
+        {
+          "provider": "chatgpt",
+          "model": "gpt-5.6-luna",
+          "prompt": "Recommend an anxiety therapist in Houston, Texas"
+        }
+      ]
+    }
+  ],
+  "organicNotTested": [],
   "organicTopBySearch": {
     "therapist": [
       {

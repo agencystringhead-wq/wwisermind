@@ -35,11 +35,11 @@ import type { Practice } from './types';
    the same scale (capped at 100) but never take a top-10 or leader slot; directories score 0. Lighthouse results are shown on the page but do not feed the score.
    ========================================================================== */
 
-type Scorable = Pick<Practice, 'mapRankBySearch' | 'organicRankBySearch' | 'aiMentions' | 'isDirectory' | 'isChain' | 'isMedical' | 'fewReviews' | 'reviewCount'>;
+type Scorable = Pick<Practice, 'mapRankBySearch' | 'organicRankBySearch' | 'aiMentions' | 'isDirectory' | 'isChain' | 'isMedical' | 'isNonprofit' | 'fewReviews' | 'reviewCount'>;
 
-/** Can take a top-10 or leader slot: not a directory, a national chain, a medical clinic, or a practice with too few reviews. */
-export function isRankEligible(p: Pick<Practice, 'isDirectory' | 'isChain' | 'isMedical' | 'fewReviews'>): boolean {
-  return !p.isDirectory && !p.isChain && !p.isMedical && !p.fewReviews;
+/** Can take a top-10 or leader slot: not a directory, a national chain, a medical clinic, a nonprofit, or a practice with too few reviews. */
+export function isRankEligible(p: Pick<Practice, 'isDirectory' | 'isChain' | 'isMedical' | 'isNonprofit' | 'fewReviews'>): boolean {
+  return !p.isDirectory && !p.isChain && !p.isMedical && !p.isNonprofit && !p.fewReviews;
 }
 
 export function mapPoints(rank: number): number {

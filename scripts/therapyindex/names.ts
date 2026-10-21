@@ -1,6 +1,7 @@
 import { CHAINS } from '../../lib/therapyindex/chains';
 import { DIRECTORY_DOMAINS } from '../../lib/therapyindex/directories';
-import type { AiProvider } from '../../lib/therapyindex/types';
+import { AI_NAME_EXCLUSIONS } from '../../lib/therapyindex/overrides';
+import type { AiProvider, InstitutionType } from '../../lib/therapyindex/types';
 
 /* Names in AI answers: extraction, filtering and merging. Deliberately strict (a missed name is cheaper than
    junk), and every raw answer is saved in review/<market>-ai.json so misses can be found by hand. */
@@ -42,7 +43,7 @@ export function sameName(a: string, b: string): boolean {
 
 /* ---- What to drop ---- */
 
-const REGULATORS = /^national\b|\blicensed\b|\b(council|board|commission|department|licensing|association|society|federation|bureau|agency|government|nami|samhsa|lifeline|hotline|executive)\b/i;
+const REGULATORS = /\blicensed\b|\b(council|board|commission|department|licensing|association|society|federation|bureau|agency|government|nami|samhsa|lifeline|hotline|executive)\b/i;
 const MODALITY_WORDS = new Set([
   'emdr', 'eft', 'cbt', 'dbt', 'act', 'ifs', 'erp', 'cpt', 'gottman', 'imago', 'emotionally', 'focused', 'cognitive', 'behavioral',
   'behavioural', 'behavior', 'dialectical', 'acceptance', 'commitment', 'internal', 'systems', 'psychodynamic', 'somatic',
@@ -62,10 +63,31 @@ function isModality(name: string): boolean {
   return raw.length > 0 && raw.every((w) => MODALITY_WORDS.has(w)) && words.every((w) => MODALITY_WORDS.has(w));
 }
 
-const BRAND_KEYS = [...Object.values(DIRECTORY_DOMAINS), ...CHAINS.map((c) => c.name)].map(nameKey).filter((k) => k.length >= 4);
-function isBrand(name: string): boolean {
+/** Names that are on the explicit exclusion list in overrides.ts. */
+function isExcluded(name: string): boolean {
+  return AI_NAME_EXCLUSIONS.some((x) => sameName(x, name) || nameKey(x) === nameKey(name));
+}
+
+/* ---- Institutions: recorded as a finding, never scored ---- */
+
+const DIRECTORY_BRANDS = Object.values(DIRECTORY_DOMAINS).map((name) => ({ name, key: nameKey(name) })).filter((b) => b.key.length >= 4);
+const CHAIN_BRANDS = CHAINS.map((c) => ({ name: c.name, key: nameKey(c.name) })).filter((b) => b.key.length >= 4);
+const UNIVERSITY = /(university|college|school of|\bUT Austin\b|texas state)/i;
+const HOSPITAL = /(hospital|medical cent(?:er|re)|health system|healthcare system|menninger|md anderson|memorial hermann|methodist|baylor|uthealth|ut southwestern|kelsey|mayo clinic|cleveland clinic|johns hopkins|dell medical|st\.? david|seton|ascension|kaiser|denver health|uchealth|national jewish|children['’]s)/i;
+
+const brandMatch = (brands: { name: string; key: string }[], key: string) =>
+  brands.find((b) => key === b.key || ` ${key} `.includes(` ${b.key} `) || ` ${b.key} `.includes(` ${key} `));
+
+/** Hospital, university, directory or chain. Directories and chains come back under their canonical brand name. */
+export function institutionOf(name: string): { type: InstitutionType; name: string } | null {
   const key = nameKey(name);
-  return BRAND_KEYS.some((b) => key === b || key.includes(b) || b.includes(key));
+  const dir = brandMatch(DIRECTORY_BRANDS, key);
+  if (dir) return { type: 'directory', name: dir.name };
+  const chain = brandMatch(CHAIN_BRANDS, key);
+  if (chain) return { type: 'chain', name: chain.name };
+  if (UNIVERSITY.test(name)) return { type: 'university', name };
+  if (HOSPITAL.test(name)) return { type: 'hospital / health system', name };
+  return null;
 }
 
 /* ---- Extraction ---- */
@@ -84,7 +106,7 @@ function looksLikeProperName(phrase: string): boolean {
   return significant.length > 0 && capitalised / significant.length >= 0.6;
 }
 
-export type Found = { name: string; people: string[] };
+export type Found = { name: string; people: string[]; institution?: { type: InstitutionType; name: string } };
 
 /** Practices and people named in one answer. A person who appears on the same line as a practice is attached to
     that practice instead of listed on their own. */
@@ -111,11 +133,14 @@ export function extractFromAnswer(text: string): Found[] {
         if (BUSINESS_WORDS.test(bare) && looksLikeProperName(bare) && !orgs.includes(phrase)) orgs.push(phrase);
       }
     }
-    const ok = (n: string) => !isRegulator(n) && !isModality(n) && !isBrand(n) && entityKey(n).length >= 4;
+    const ok = (n: string) => !isRegulator(n) && !isModality(n) && !isExcluded(n) && entityKey(n).length >= 4;
     const cleanOrgs = orgs.filter(ok);
     const cleanPeople = people.filter(ok);
     if (cleanOrgs.length) {
-      cleanOrgs.forEach((o, i) => out.push({ name: o, people: i === 0 ? cleanPeople : [] }));
+      cleanOrgs.forEach((o, i) => {
+        const institution = institutionOf(o) ?? undefined;
+        out.push({ name: institution && institution.type !== 'hospital / health system' && institution.type !== 'university' ? institution.name : o, people: i === 0 ? cleanPeople : [], institution });
+      });
     } else {
       for (const p of cleanPeople) out.push({ name: p, people: [] });
     }
@@ -134,6 +159,8 @@ export type Entity = {
   /** The entity's name and its attached people, used for matching. */
   names: string[];
   isPersonOnly: boolean;
+  /** Set when the name is a hospital, university, directory or chain. */
+  institution: { type: InstitutionType; name: string } | null;
 };
 
 const looksLikePerson = (n: string) => /^Dr\./.test(n) || new RegExp(String.raw`,\s*${CREDENTIAL}$`).test(n);
@@ -151,11 +178,12 @@ export function mergeEntities(mentions: RawMention[]): Entity[] {
   for (const m of mentions) {
     let e = entities.find((x) => x.names.some((n) => sameName(n, m.name)));
     if (!e) {
-      e = { name: m.name, people: [], mentions: [], names: [m.name], isPersonOnly: looksLikePerson(m.name) && m.people.length === 0 };
+      e = { name: m.name, people: [], mentions: [], names: [m.name], isPersonOnly: looksLikePerson(m.name) && m.people.length === 0, institution: m.institution ?? null };
       entities.push(e);
     } else if (!looksLikePerson(m.name)) {
       e.isPersonOnly = false;
     }
+    e.institution ??= m.institution ?? null;
     add(e, m);
   }
   // A person-only entity that is already attached to a practice joins that practice.

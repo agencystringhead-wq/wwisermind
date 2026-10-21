@@ -2,6 +2,9 @@ export type SearchRanks = Record<string, number>;
 
 export type AiProvider = 'chatgpt' | 'claude';
 
+/** A manual decision on one practice (see overrides.ts). */
+export type Decision = 'keep' | 'chain' | 'medical' | 'nonprofit' | 'exclude';
+
 export type Practice = {
   slug: string;
   name: string;
@@ -38,6 +41,10 @@ export type Practice = {
   categories: string[];
   /** Interventional psychiatry or psychiatry-only (see medical.ts). Kept in the directory, never top-10 or leader. */
   isMedical: boolean;
+  /** Nonprofit or community organisation. Kept in the directory, never top-10 or leader. */
+  isNonprofit: boolean;
+  /** The manual decision applied to this practice, if any. */
+  manualDecision: Decision | null;
   /** Fewer than MIN_REVIEWS_FOR_RANKING Google reviews. Kept with its real score, never top-10 or leader. */
   fewReviews: boolean;
   /** Named clinicians attached to this practice by AI answers. */
@@ -60,8 +67,19 @@ export type AiOnlyMention = {
   mentions: { provider: AiProvider; model: string; prompt: string }[];
 };
 
+export type InstitutionType = 'hospital / health system' | 'university' | 'directory' | 'chain';
+
+/** A hospital, university, directory or chain that AI answers recommended. Kept as a finding (not scored, not in practices[]). */
+export type AiInstitutionMention = {
+  name: string;
+  type: InstitutionType;
+  mentions: { provider: AiProvider; model: string; prompt: string }[];
+};
+
 /** A Maps listing dropped because its Google category is not mental-health related. */
 export type ExcludedMapsResult = {
+  /** Set for practices removed by a manual "exclude" decision; absent for category exclusions. */
+  reason?: string;
   title: string;
   category: string | null;
   additionalCategories: string[];
@@ -140,11 +158,16 @@ export type Snapshot = {
     /** Practices with no Maps listing, promoted from organic results because AI named them. */
     unlistedPractices: number;
     medicalPractices: number;
+    nonprofitPractices: number;
     fewReviewPractices: number;
   };
   practices: Practice[];
   /** Names the AI engines recommended that matched nothing in Maps. Not scored, not in practices[]. */
   aiOnlyMentions: AiOnlyMention[];
+  /** Hospitals, universities, directories and chains that AI answers named. */
+  aiInstitutionMentions: AiInstitutionMention[];
+  /** Keywords with no organic results (the search failed or returned nothing): shown as "not tested". */
+  organicNotTested: string[];
   organicTopBySearch: Record<string, OrganicTopEntry[]>;
   /** keyword -> the local pack shown on the organic results page. */
   localPackBySearch: Record<string, LocalPackEntry[]>;

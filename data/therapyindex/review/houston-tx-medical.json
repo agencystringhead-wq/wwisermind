@@ -6,5 +6,9 @@
   {
     "name": "The Mind & Body Clinic",
     "reason": "psychiatry only (no therapy or counseling terms)"
+  },
+  {
+    "name": "Texas Psychiatry Group",
+    "reason": "manual decision"
   }
 ]

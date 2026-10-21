@@ -4,11 +4,12 @@ import path from 'node:path';
 import { isMentalHealthCategory } from '../../lib/therapyindex/categories';
 import { chainFor } from '../../lib/therapyindex/chains';
 import { medicalReason } from '../../lib/therapyindex/medical';
-import { classifyDomain, directoryName, normaliseDomain } from '../../lib/therapyindex/directories';
+import { classifyDomain, directoryName, normaliseDomain, practiceKey } from '../../lib/therapyindex/directories';
+import { PRACTICE_DECISIONS } from '../../lib/therapyindex/overrides';
 import { AI_MODELS, AI_PROMPTS, KEYWORDS, MAPS_DEPTH, MARKETS, MIN_REVIEWS_FOR_RANKING, ORGANIC_TOP_N, type Market } from '../../lib/therapyindex/markets';
 import { visibilityScores } from '../../lib/therapyindex/score';
 import type {
-  AiOnlyMention, AiProvider, AiReviewEntry, ExcludedMapsResult, LocalPackEntry, OrganicTopEntry, Practice, ReviewEntry, Snapshot,
+  AiInstitutionMention, AiOnlyMention, AiProvider, AiReviewEntry, Decision, ExcludedMapsResult, LocalPackEntry, OrganicTopEntry, Practice, ReviewEntry, Snapshot,
 } from '../../lib/therapyindex/types';
 import { entityKey, extractFromAnswer, mergeEntities, nameKey, sameName, type RawMention } from './names';
 import { DATA_DIR, latestRawDate, RawStore, slugify, type RawReader } from './store';
@@ -61,7 +62,7 @@ function emptyPractice(name: string): Draft {
     rating: null, reviewCount: null, mapRankBySearch: {}, organicRankBySearch: {},
     aiMentions: { chatgpt: 0, claude: 0, prompts: [] }, lighthouse: null, visibilityScore: 0,
     isDirectory: false, isChain: false, chainName: null, hasMapListing: true, people: [], categories: [], isMedical: false,
-    fewReviews: false, _domain: null,
+    isNonprofit: false, manualDecision: null, fewReviews: false, _domain: null,
   };
 }
 
@@ -131,7 +132,7 @@ const domainLabel = (domain: string) => domain.replace(/^www\./, '').split('.')[
 
 export function buildResult(market: Market, date: string, raw: RawReader, opts: BuildOptions = {}): BuildResult {
   const keywords = opts.keywords ?? KEYWORDS;
-  const { drafts, excluded } = mapsPractices(raw, keywords);
+  let { drafts, excluded } = mapsPractices(raw, keywords);
 
   // Fill gaps from Google My Business lookups (cached under the CID).
   for (const d of drafts) {
@@ -149,13 +150,40 @@ export function buildResult(market: Market, date: string, raw: RawReader, opts: 
     d.isChain = !!chain;
     d.chainName = chain ? chain.name : null;
   }
-  const medical: { name: string; reason: string }[] = [];
   for (const d of drafts) {
-    const reason = medicalReason(d.name, d.categories);
-    d.isMedical = !!reason;
-    if (reason) medical.push({ name: d.name, reason });
+    d.isMedical = !!medicalReason(d.name, d.categories);
     d.fewReviews = (d.reviewCount ?? 0) < MIN_REVIEWS_FOR_RANKING;
   }
+
+  // Manual decisions (overrides.ts) win over the automatic tags.
+  const applyDecision = (d: Draft) => {
+    const key = practiceKey(d._domain, d.mapsCid);
+    const decision: Decision | null = (key && PRACTICE_DECISIONS[key]) || null;
+    d.manualDecision = decision;
+    if (decision === 'keep') {
+      d.isChain = false;
+      d.chainName = null;
+      d.isMedical = false;
+      d.isNonprofit = false;
+    }
+    if (decision === 'chain') {
+      d.isChain = true;
+      d.chainName ??= 'Chain (manual decision)';
+    }
+    if (decision === 'medical') d.isMedical = true;
+    if (decision === 'nonprofit') d.isNonprofit = true;
+  };
+  for (const d of drafts) applyDecision(d);
+  for (const d of drafts.filter((x) => x.manualDecision === 'exclude')) {
+    excluded.push({
+      reason: 'manual decision', title: d.name, category: d.category, additionalCategories: d.categories.slice(1),
+      searches: Object.entries(d.mapRankBySearch).map(([keyword, rank]) => ({ keyword, rank })),
+    });
+  }
+  drafts = drafts.filter((d) => d.manualDecision !== 'exclude');
+  const medical = drafts
+    .filter((d) => d.isMedical)
+    .map((d) => ({ name: d.name, reason: medicalReason(d.name, d.categories) ?? 'manual decision' }));
 
   const practiceDomains = new Set(drafts.map((d) => d._domain).filter((x): x is string => !!x && !directoryName(x)));
   const byDomain = new Map<string, Draft>();
@@ -247,7 +275,14 @@ export function buildResult(market: Market, date: string, raw: RawReader, opts: 
   const knownNames = [...drafts, ...directories.values()].map((d) => d.name);
   const promotedDrafts: Draft[] = [];
   const aiOnly: AiOnlyMention[] = [];
+  const aiInstitutions: AiInstitutionMention[] = [];
+  const mapsNames = drafts.map((d) => d.name);
   for (const e of mergeEntities(rawMentions)) {
+    // Hospitals, universities, directories and chains are a finding of their own (a Maps practice of the same name is already counted).
+    if (e.institution) {
+      if (!e.names.some((n) => mapsNames.some((k) => sameName(n, k)))) aiInstitutions.push({ name: e.name, type: e.institution.type, mentions: e.mentions });
+      continue;
+    }
     if (e.names.some((n) => knownNames.some((k) => sameName(n, k)))) continue;
 
     const spaceless = entityKey(e.name).replace(/ /g, '');
@@ -266,6 +301,8 @@ export function buildResult(market: Market, date: string, raw: RawReader, opts: 
     const d = emptyPractice(e.name);
     d.hasMapListing = false;
     d.fewReviews = true; // no Google reviews known
+    applyDecision(d);
+    if (d.manualDecision === 'exclude') continue;
     d.website = hit.url || `https://${hit.domain}`;
     d._domain = hit.domain;
     d.people = e.people;
@@ -351,10 +388,13 @@ export function buildResult(market: Market, date: string, raw: RawReader, opts: 
       chainLocations: local.filter((p) => p.isChain).length,
       unlistedPractices: local.filter((p) => !p.hasMapListing).length,
       medicalPractices: local.filter((p) => p.isMedical).length,
+      nonprofitPractices: local.filter((p) => p.isNonprofit).length,
       fewReviewPractices: local.filter((p) => p.fewReviews).length,
     },
     practices,
     aiOnlyMentions: aiOnly,
+    aiInstitutionMentions: aiInstitutions,
+    organicNotTested: keywords.filter((kw) => (organicTopBySearch[kw] ?? []).length === 0),
     organicTopBySearch,
     localPackBySearch,
   };

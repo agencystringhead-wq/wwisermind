@@ -558,5 +558,25 @@
         "rank": 93
       }
     ]
+  },
+  {
+    "reason": "manual decision",
+    "title": "Life Coach Austin",
+    "category": "Marriage or relationship counselor",
+    "additionalCategories": [
+      "Counselor",
+      "Family counselor",
+      "Life coach"
+    ],
+    "searches": [
+      {
+        "keyword": "couples counseling",
+        "rank": 41
+      },
+      {
+        "keyword": "marriage counselor",
+        "rank": 31
+      }
+    ]
   }
 ]

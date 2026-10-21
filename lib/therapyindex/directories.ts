@@ -1,5 +1,5 @@
 import { chainFor } from './chains';
-import { DOMAIN_OVERRIDES } from './overrides';
+import { DOMAIN_OVERRIDES, PRACTICE_DECISIONS } from './overrides';
 import type { Market } from './markets';
 import type { OrganicKind } from './types';
 
@@ -37,6 +37,13 @@ export const DIRECTORY_DOMAINS: Record<string, string> = {
   'linkedin.com': 'LinkedIn',
 };
 
+/** Key for a manual decision on a practice: its own website domain, or "cid:<CID>" when it has none or shares one with a directory
+    (many therapists link to a Psychology Today page, and chain branches share one domain). */
+export function practiceKey(domain: string | null, mapsCid: string | null): string | null {
+  if (domain && !directoryName(domain)) return domain;
+  return mapsCid ? `cid:${mapsCid}` : null;
+}
+
 export function normaliseDomain(urlOrDomain: string | null | undefined): string | null {
   if (!urlOrDomain) return null;
   let host = urlOrDomain.trim().toLowerCase();
@@ -71,6 +78,8 @@ export function classifyDomain(
   const known = !!directoryName(domain) || (!!domain && practiceDomains.has(domain));
   // A chain's own website is not a single local practice, even when its title mentions the city.
   const candidate = !known && !(domain && chainFor(domain, '')) && looksLikeSinglePractice(domain, title, url, snippet, market);
+  // A practice manually excluded from the snapshot is not a local practice outside Maps either.
+  if (domain && PRACTICE_DECISIONS[domain] === 'exclude') return { kind: 'other', candidate: false, overridden: true };
   const override = domain ? DOMAIN_OVERRIDES[domain] : undefined;
   if (override) return { kind: override, candidate, overridden: true };
   if (directoryName(domain)) return { kind: 'directory', candidate, overridden: false };
