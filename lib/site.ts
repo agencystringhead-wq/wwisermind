@@ -967,6 +967,9 @@ export const footerCtaHiddenPaths: string[] = [
     so the page leaves out the announcement bar, the footer's call to action, the floating contact bar
     and the closing colour band, and keeps the header and the footer's links. The help now widget page
     is for therapists, not for someone in crisis, so it keeps all of them. */
+/** Every Therapy Index page ends on a call to action of its own, so the footer's is left out. */
+export const isTherapyIndexPage = (pathname: string): boolean => /^\/therapyindex(\/|$)/.test(pathname);
+
 export const isCrisisResourcesPage = (pathname: string): boolean => {
   const trim = (path: string) => path.replace(/\/+$/, '');
   const here = trim(pathname);

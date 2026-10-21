@@ -1,0 +1,511 @@
+/* ==========================================================================
+   Therapy Index: the shared visual system.
+
+   Modelled on the Oberon template (oberon.framer.website): a warm paper ground, hairline column
+   guides, numbered section chips ("01 intro"), lowercase mono eyebrows, large light headings, and
+   square-cornered cells and buttons. Brand substitutions: the site's own Inter and JetBrains Mono,
+   our cream and our blue in place of Oberon's orange.
+
+   Every value you are likely to tune is a custom property in the `.root` block below. The hub,
+   city reports, practice profiles and methodology page all read the same ones.
+   ========================================================================== */
+
+.root {
+  /* colour */
+  --ti-bg: var(--color-cream); /* Oberon #f2f0ee */
+  --ti-surface: #ffffff;
+  --ti-ink: #0c0c0c;
+  --ti-dark: #181818; /* Oberon #202020 */
+  --ti-muted: #5d5b57; /* Oberon body #616060 */
+  --ti-faint: #98948c;
+  --ti-line: rgba(12, 12, 12, 0.13);
+  --ti-line-strong: rgba(12, 12, 12, 0.3);
+  --ti-chip: #e6e1d8;
+  --ti-accent: var(--color-brand); /* Oberon #ed4f00 */
+  --ti-accent-deep: var(--color-brand-dark);
+  --ti-on-dark: #f6f4ef;
+  --ti-on-dark-muted: #a9a59c;
+  --ti-line-dark: rgba(255, 255, 255, 0.16);
+
+  /* type: Inter for text, JetBrains Mono for labels (Oberon: Inter and Geist Mono) */
+  --ti-font: var(--font-sans);
+  --ti-mono: var(--font-mono);
+  --ti-fw-heading: 600; /* Oberon 500; the site rule here is semibold */
+  --ti-h1: clamp(40px, 6.2vw, 75px); /* Oberon 75px, tracking -5%, line-height .96 */
+  --ti-h1-lh: 0.98;
+  --ti-h2: clamp(32px, 4vw, 48px); /* Oberon 48px, tracking -5% */
+  --ti-h3: clamp(22px, 2.4vw, 28px);
+  --ti-stat: clamp(36px, 4.4vw, 56px); /* Oberon 42 to 48px figures */
+  --ti-tracking: -0.04em;
+  --ti-text: 16px; /* Oberon 16px, -3% tracking */
+  --ti-text-lh: 1.5;
+  --ti-label: 12px; /* Oberon 12px mono, uppercase */
+  --ti-label-ls: 0.04em;
+  --ti-lead: clamp(15px, 1.5vw, 18px);
+
+  /* space */
+  --ti-gutter: 32px; /* Oberon 32px page margin */
+  --ti-section-y: clamp(64px, 8vw, 104px);
+  --ti-cell-pad: 24px;
+  --ti-rail: 33.333%; /* the left rail; Oberon is 454px of 1376px */
+  --ti-anchor-offset: calc(var(--header-height, 104px) + 12px);
+
+  background: var(--ti-bg);
+  color: var(--ti-ink);
+  font-family: var(--ti-font);
+  font-size: var(--ti-text);
+  line-height: var(--ti-text-lh);
+  overflow-x: clip;
+}
+
+@media (max-width: 720px) {
+  .root {
+    --ti-gutter: 16px;
+    --ti-cell-pad: 18px;
+  }
+}
+
+.root p,
+.root li {
+  font-size: var(--ti-text);
+  line-height: var(--ti-text-lh);
+}
+
+.root h1,
+.root h2,
+.root h3,
+.root h4 {
+  font-family: var(--ti-font);
+  font-weight: var(--ti-fw-heading);
+  letter-spacing: var(--ti-tracking);
+  text-wrap: balance;
+}
+
+/* ---- frame and column guides ---------------------------------------------------------------- */
+
+.section {
+  position: relative;
+  padding-block: var(--ti-section-y);
+  scroll-margin-top: var(--ti-anchor-offset);
+}
+
+.dark {
+  background: var(--ti-dark);
+  color: var(--ti-on-dark);
+}
+
+.frame {
+  position: relative;
+  width: 100%;
+  max-width: 1520px;
+  margin-inline: auto;
+  padding-inline: var(--ti-gutter);
+}
+
+/* Five hairlines: the rail's edge and the four content columns. Decorative only. */
+.lines::before {
+  content: '';
+  position: absolute;
+  inset: 0 var(--ti-gutter);
+  pointer-events: none;
+  background-image: linear-gradient(var(--ti-line), var(--ti-line)), linear-gradient(var(--ti-line), var(--ti-line)),
+    linear-gradient(var(--ti-line), var(--ti-line)), linear-gradient(var(--ti-line), var(--ti-line)),
+    linear-gradient(var(--ti-line), var(--ti-line));
+  background-repeat: no-repeat;
+  background-size: 1px 100%;
+  background-position: 33.333% 0, 50% 0, 66.666% 0, 83.333% 0, 100% 0;
+}
+
+.dark .lines::before {
+  background-image: linear-gradient(var(--ti-line-dark), var(--ti-line-dark)), linear-gradient(var(--ti-line-dark), var(--ti-line-dark)),
+    linear-gradient(var(--ti-line-dark), var(--ti-line-dark)), linear-gradient(var(--ti-line-dark), var(--ti-line-dark)),
+    linear-gradient(var(--ti-line-dark), var(--ti-line-dark));
+}
+
+@media (max-width: 900px) {
+  .lines::before {
+    display: none;
+  }
+}
+
+/* rail + content */
+.split {
+  display: grid;
+  grid-template-columns: var(--ti-rail) minmax(0, 1fr);
+  position: relative;
+}
+
+.rail {
+  padding-right: var(--ti-cell-pad);
+}
+
+.main {
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .split {
+    grid-template-columns: 1fr;
+    row-gap: 28px;
+  }
+}
+
+/* ---- section label chip: "02 areas" --------------------------------------------------------- */
+
+.label {
+  display: inline-flex;
+  align-items: stretch;
+  font-family: var(--ti-mono);
+  font-size: var(--ti-label);
+  letter-spacing: var(--ti-label-ls);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.labelNum {
+  display: grid;
+  place-items: center;
+  min-width: 26px;
+  padding: 7px 6px;
+  background: var(--ti-accent);
+  color: #fff;
+}
+
+.labelText {
+  padding: 7px 10px;
+  background: var(--ti-chip);
+  color: var(--ti-ink);
+}
+
+.dark .labelText {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--ti-on-dark);
+}
+
+/* The chip sits in the left rail and the title in the content column, as in Oberon. `.headStacked` puts both in one column,
+   for a heading that lives inside the rail. */
+.head {
+  display: grid;
+  grid-template-columns: var(--ti-rail) minmax(0, 1fr);
+  align-items: start;
+  margin-bottom: clamp(36px, 5vw, 72px);
+}
+
+.headMain {
+  display: grid;
+  gap: 18px;
+  justify-items: start;
+}
+
+.headStacked {
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+
+@media (max-width: 900px) {
+  .head {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}
+
+.title {
+  font-size: var(--ti-h2);
+  line-height: 1;
+  max-width: 18ch;
+}
+
+.titleWide {
+  max-width: 26ch;
+}
+
+.eyebrow {
+  font-family: var(--ti-mono);
+  font-size: var(--ti-label);
+  letter-spacing: var(--ti-label-ls);
+  text-transform: uppercase;
+  color: var(--ti-muted);
+}
+
+.dark .eyebrow {
+  color: var(--ti-on-dark-muted);
+}
+
+.lede {
+  max-width: 56ch;
+  font-size: var(--ti-lead);
+  line-height: 1.45;
+  color: var(--ti-muted);
+}
+
+.dark .lede {
+  color: var(--ti-on-dark-muted);
+}
+
+.mono {
+  font-family: var(--ti-mono);
+  font-size: var(--ti-label);
+  letter-spacing: var(--ti-label-ls);
+  text-transform: uppercase;
+}
+
+/* ---- buttons: square, mono, full-width in a row ---------------------------------------------- */
+
+.btnRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 16px 28px;
+  border: 1px solid var(--ti-ink);
+  font-family: var(--ti-mono);
+  font-size: 13px;
+  letter-spacing: var(--ti-label-ls);
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.2;
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+.btnDark {
+  background: var(--ti-ink);
+  color: #fff;
+}
+
+.btnDark:hover {
+  background: var(--ti-accent);
+  border-color: var(--ti-accent);
+}
+
+.btnLight {
+  background: var(--ti-surface);
+  color: var(--ti-ink);
+}
+
+.btnLight:hover {
+  background: var(--ti-ink);
+  color: #fff;
+}
+
+.btnAccent {
+  background: var(--ti-accent);
+  border-color: var(--ti-accent);
+  color: #fff;
+}
+
+.btnAccent:hover {
+  background: var(--ti-accent-deep);
+  border-color: var(--ti-accent-deep);
+}
+
+.btnGhostDark {
+  border-color: var(--ti-line-dark);
+  color: var(--ti-on-dark);
+  background: transparent;
+}
+
+.btnGhostDark:hover {
+  background: var(--ti-on-dark);
+  color: var(--ti-ink);
+}
+
+@media (max-width: 560px) {
+  .btnRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- tags (labels on practices, search results) ----------------------------------------------- */
+
+.tag {
+  display: inline-block;
+  padding: 3px 7px;
+  border: 1px solid var(--ti-line-strong);
+  font-family: var(--ti-mono);
+  font-size: 10.5px;
+  letter-spacing: var(--ti-label-ls);
+  text-transform: uppercase;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: var(--ti-muted);
+  background: transparent;
+}
+
+.tagChain {
+  border-color: #b8860b;
+  color: #8a6508;
+}
+
+.tagMedical {
+  border-color: #b4443f;
+  color: #9c3631;
+}
+
+.tagNonprofit {
+  border-color: #2f7d5b;
+  color: #26664a;
+}
+
+.tagFew {
+  color: var(--ti-faint);
+}
+
+.tagLocal {
+  border-color: var(--ti-accent);
+  color: var(--ti-accent-deep);
+}
+
+.tagDirectory {
+  background: var(--ti-ink);
+  border-color: var(--ti-ink);
+  color: #fff;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+/* ---- tables ------------------------------------------------------------------------------------ */
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--ti-line);
+  background: var(--ti-surface);
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table th,
+.table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--ti-line);
+  text-align: left;
+  vertical-align: middle;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.table th {
+  position: sticky;
+  top: 0;
+  background: var(--ti-surface);
+  font-family: var(--ti-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: var(--ti-label-ls);
+  text-transform: uppercase;
+  color: var(--ti-muted);
+  white-space: nowrap;
+}
+
+.table tbody tr:hover td {
+  background: #faf8f4;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  text-align: right !important;
+}
+
+/* ---- the closing call to action band and the disclaimer ------------------------------------------ */
+
+.disclaimer {
+  border: 1px solid var(--ti-line-strong);
+  background: var(--ti-surface);
+  padding: 20px 22px;
+  max-width: 880px;
+}
+
+.disclaimer p {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ti-muted);
+}
+
+.disclaimer strong {
+  color: var(--ti-ink);
+  font-weight: 600;
+}
+
+.disclaimer a {
+  color: var(--ti-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.dark .disclaimer {
+  background: transparent;
+  border-color: var(--ti-line-dark);
+}
+
+.dark .disclaimer p,
+.dark .disclaimer a,
+.dark .disclaimer strong {
+  color: var(--ti-on-dark-muted);
+}
+
+/* the page frame for the data pages: a plain wrapper that keeps content off the viewport edge */
+.page {
+  padding-block: clamp(36px, 5vw, 64px) 0;
+}
+
+.crumbsOffset {
+  background: var(--ti-bg);
+}
+
+/* ---- the soft dot texture used behind heroes (a CSS stand-in for photographic backgrounds) ------ */
+
+.dots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle at center, rgba(12, 12, 12, 0.2) 0.9px, transparent 1.3px);
+  background-size: 9px 9px;
+  -webkit-mask-image: radial-gradient(120% 90% at 20% 105%, #000 0%, rgba(0, 0, 0, 0.55) 38%, transparent 68%);
+  mask-image: radial-gradient(120% 90% at 20% 105%, #000 0%, rgba(0, 0, 0, 0.55) 38%, transparent 68%);
+}
+
+.dark .dots {
+  background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.22) 0.9px, transparent 1.3px);
+}
+
+/* corner marks: the small brackets Oberon puts at the top left of stat cells */
+.mark {
+  position: relative;
+}
+
+.mark::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-top: 2px solid var(--ti-accent);
+  border-left: 2px solid var(--ti-accent);
+}
+
+/* an inline text link that keeps the page's ink */
+.link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--ti-line-strong);
+  transition: text-decoration-color 0.2s var(--ease);
+}
+
+.link:hover {
+  text-decoration-color: var(--ti-accent);
+}

@@ -61,7 +61,7 @@ function emptyPractice(name: string): Draft {
     slug: '', name, address: null, city: null, phone: null, website: null, mapsCid: null, category: null,
     rating: null, reviewCount: null, mapRankBySearch: {}, organicRankBySearch: {},
     aiMentions: { chatgpt: 0, claude: 0, prompts: [] }, lighthouse: null, visibilityScore: 0,
-    isDirectory: false, isChain: false, chainName: null, hasMapListing: true, people: [], categories: [], isMedical: false,
+    isDirectory: false, isChain: false, chainName: null, hasMapListing: true, people: [], categories: [], lat: null, lng: null, isMedical: false,
     isNonprofit: false, manualDecision: null, fewReviews: false, _domain: null,
   };
 }
@@ -103,6 +103,8 @@ export function mapsPractices(raw: RawReader, keywords: string[]): { drafts: Dra
       d.rating ??= item.rating?.value ?? null;
       d.reviewCount ??= item.rating?.votes_count ?? null;
       d._domain ??= domain;
+      d.lat ??= typeof item.latitude === 'number' ? item.latitude : null;
+      d.lng ??= typeof item.longitude === 'number' ? item.longitude : null;
       for (const c of categories) if (!d.categories.includes(c)) d.categories.push(c);
       const prev = d.mapRankBySearch[kw];
       if (prev === undefined || rank < prev) d.mapRankBySearch[kw] = rank;

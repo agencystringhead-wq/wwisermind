@@ -2,7 +2,7 @@
 
 import type { ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
-import { footerCtaHiddenPaths, isCrisisResourcesPage } from '@/lib/site';
+import { footerCtaHiddenPaths, isCrisisResourcesPage, isTherapyIndexPage } from '@/lib/site';
 
 const trim = (path: string) => path.replace(/\/+$/, '');
 
@@ -17,7 +17,7 @@ export default function FooterCtaGate({
   children: ReactNode;
 }) {
   const pathname = trim(usePathname() ?? '');
-  if (hide || isCrisisResourcesPage(pathname)) return null;
+  if (hide || isCrisisResourcesPage(pathname) || isTherapyIndexPage(pathname)) return null;
   if (footerCtaHiddenPaths.some((path) => trim(path) === pathname)) return null;
   return <>{children}</>;
 }

@@ -39,6 +39,9 @@ export type Practice = {
   hasMapListing: boolean;
   /** Google categories of the Maps listing (primary first, then additional). */
   categories: string[];
+  /** Map position of the listing (from the Maps results), null when the practice has no Maps listing. */
+  lat: number | null;
+  lng: number | null;
   /** Interventional psychiatry or psychiatry-only (see medical.ts). Kept in the directory, never top-10 or leader. */
   isMedical: boolean;
   /** Nonprofit or community organisation. Kept in the directory, never top-10 or leader. */

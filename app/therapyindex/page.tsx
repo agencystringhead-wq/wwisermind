@@ -1,37 +1,37 @@
 import type { Metadata } from 'next';
-import { isRankEligible } from '@/lib/therapyindex/score';
-import { getSnapshots } from '@/lib/therapyindex/snapshots';
+import Breadcrumbs from '@/components/ui/Breadcrumbs';
+import Hub, { joinNames } from '@/components/therapyindex/Hub';
+import { routes } from '@/lib/routes';
+import { absUrl } from '@/lib/site';
+import { BRAND } from '@/lib/therapyindex/config';
+import { getHubStats, getMarketViews } from '@/lib/therapyindex/data';
 
-/* Phase 1 placeholder: plain text only, to prove the snapshots load in the static build. */
-export const metadata: Metadata = {
-  title: 'Therapy Index',
-  robots: { index: false, follow: false },
-};
+const cities = () => joinNames(getMarketViews().map((m) => m.city.name));
+
+export function generateMetadata(): Metadata {
+  const stats = getHubStats();
+  const title = `Therapy Index: Who Therapy Patients Find in ${cities()} | ${BRAND}`;
+  const description = `${stats.practices.toLocaleString('en-US')} therapy practices in ${cities()}, measured the same way across Google Maps, Google search and AI answers. Snapshot of ${stats.date}.`;
+  const url = absUrl(routes.therapyIndex.hub);
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: { type: 'website', siteName: BRAND, title, description, url },
+    twitter: { card: 'summary', title, description },
+  };
+}
 
 export default function Page() {
-  const snapshots = getSnapshots();
   return (
-    <main style={{ padding: '4rem 1.5rem', maxWidth: 800, margin: '0 auto' }}>
-      <h1>Therapy Index (placeholder)</h1>
-      {snapshots.length === 0 && <p>No snapshots yet.</p>}
-      {snapshots.map((s) => {
-        const top = s.practices.filter(isRankEligible).slice(0, 10);
-        return (
-          <section key={s.market.slug}>
-            <h2>
-              {s.market.city}, {s.market.stateName} ({s.snapshotDate})
-            </h2>
-            <p>{s.summary.totalPractices} practices</p>
-            <ol>
-              {top.map((p) => (
-                <li key={p.slug}>
-                  {p.name}: {p.visibilityScore}
-                </li>
-              ))}
-            </ol>
-          </section>
-        );
-      })}
-    </main>
+    <>
+      <Breadcrumbs
+        trail={[
+          { label: 'Home', href: routes.home },
+          { label: 'Therapy Index', href: routes.therapyIndex.hub },
+        ]}
+      />
+      <Hub />
+    </>
   );
 }

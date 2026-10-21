@@ -80,6 +80,8 @@
         "Family counselor",
         "Marriage or relationship counselor"
       ],
+      "lat": 29.7543786,
+      "lng": -95.361335,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -137,6 +139,8 @@
         "Psychotherapist",
         "Wellness program"
       ],
+      "lat": 29.7731684,
+      "lng": -95.3721693,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -190,6 +194,8 @@
         "Psychologist",
         "Psychotherapist"
       ],
+      "lat": 29.759636699999998,
+      "lng": -95.3992316,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -241,6 +247,8 @@
         "Psychologist",
         "Psychotherapist"
       ],
+      "lat": 29.8114042,
+      "lng": -95.4377358,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -302,6 +310,8 @@
         "Social worker",
         "Career guidance service"
       ],
+      "lat": 29.7390363,
+      "lng": -95.38914199999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -354,6 +364,8 @@
         "Hypnotherapy service",
         "Mental health clinic"
       ],
+      "lat": 29.763651799999998,
+      "lng": -95.45942559999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -413,6 +425,8 @@
         "Biofeedback therapist",
         "Social worker"
       ],
+      "lat": 29.737929599999998,
+      "lng": -95.42766309999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -466,6 +480,8 @@
         "Psychotherapist",
         "Social worker"
       ],
+      "lat": 29.8118628,
+      "lng": -95.4217493,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -509,6 +525,8 @@
         "Mental health service",
         "Psychologist"
       ],
+      "lat": 29.6991211,
+      "lng": -95.409786,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -569,6 +587,8 @@
         "Neuropsychologist",
         "Psychotherapist"
       ],
+      "lat": 29.7286361,
+      "lng": -95.4544727,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -614,6 +634,8 @@
         "Psychologist",
         "Psychotherapist"
       ],
+      "lat": 29.7351027,
+      "lng": -95.3907395,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -654,6 +676,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7349353,
+      "lng": -95.39219639999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -695,6 +719,8 @@
         "Holistic medicine practitioner",
         "Psychotherapist"
       ],
+      "lat": 29.7600484,
+      "lng": -95.36554609999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -741,6 +767,8 @@
         "Mental health clinic",
         "Psychotherapist"
       ],
+      "lat": 29.7478628,
+      "lng": -95.4183058,
       "isMedical": true,
       "isNonprofit": false,
       "manualDecision": "medical",
@@ -791,6 +819,8 @@
         "Family counselor",
         "Psychotherapist"
       ],
+      "lat": 29.7438354,
+      "lng": -95.3899524,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -842,6 +872,8 @@
         "Psychologist",
         "Student career counseling office"
       ],
+      "lat": 29.7097259,
+      "lng": -95.4582054,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -889,6 +921,8 @@
         "Mental health service",
         "Non-profit organization"
       ],
+      "lat": 29.7665558,
+      "lng": -95.4109316,
       "isMedical": false,
       "isNonprofit": true,
       "manualDecision": "nonprofit",
@@ -929,6 +963,8 @@
         "Psychiatrist",
         "Psychotherapist"
       ],
+      "lat": 29.735502999999998,
+      "lng": -95.3907053,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -975,6 +1011,8 @@
         "Psychologist",
         "Mental health service"
       ],
+      "lat": 29.811814499999997,
+      "lng": -95.42101029999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1028,6 +1066,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.7340397,
+      "lng": -95.3930602,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1079,6 +1119,8 @@
         "Hypnotherapy service",
         "Marriage or relationship counselor"
       ],
+      "lat": 29.7379742,
+      "lng": -95.3730109,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1127,6 +1169,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.796654,
+      "lng": -95.5129709,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1187,6 +1231,8 @@
         "Psychiatrist",
         "Psychologist"
       ],
+      "lat": 29.7330212,
+      "lng": -95.4191216,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1227,6 +1273,8 @@
         "Mental health service",
         "Counselor"
       ],
+      "lat": 29.9398484,
+      "lng": -95.39265789999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1279,6 +1327,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.75516,
+      "lng": -95.39841349999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1322,6 +1372,8 @@
         "Marriage or relationship counselor",
         "Mental health service"
       ],
+      "lat": 29.987254099999998,
+      "lng": -95.162207,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1364,6 +1416,8 @@
         "Mental health clinic",
         "Psychiatrist"
       ],
+      "lat": 29.7863825,
+      "lng": -95.525424,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1406,6 +1460,8 @@
         "Psychiatrist",
         "Mental health clinic"
       ],
+      "lat": 29.776323599999998,
+      "lng": -95.4046485,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1449,6 +1505,8 @@
         "Non-profit organization",
         "Social services organization"
       ],
+      "lat": 29.7368205,
+      "lng": -95.3847869,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1490,6 +1548,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.6729728,
+      "lng": -95.4251889,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1537,6 +1597,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.7302505,
+      "lng": -95.44502539999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1577,6 +1639,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.754078999999997,
+      "lng": -95.3611085,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1617,6 +1681,8 @@
         "Pain management physician",
         "Wellness center"
       ],
+      "lat": 29.7484376,
+      "lng": -95.3669451,
       "isMedical": true,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1662,6 +1728,8 @@
         "Psychotherapist",
         "Mental health service"
       ],
+      "lat": 29.7320924,
+      "lng": -95.3965386,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1706,6 +1774,8 @@
         "Psychotherapist",
         "Marriage or relationship counselor"
       ],
+      "lat": 29.7536199,
+      "lng": -95.3985771,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1748,6 +1818,8 @@
         "Life coach",
         "Health counselor"
       ],
+      "lat": 29.776584999999997,
+      "lng": -95.4140394,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1788,6 +1860,8 @@
         "Psychotherapist",
         "Counselor"
       ],
+      "lat": 30.033272,
+      "lng": -95.5569629,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1829,6 +1903,8 @@
         "Counselor",
         "Psychotherapist"
       ],
+      "lat": 29.8185969,
+      "lng": -95.54450179999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1878,6 +1954,8 @@
         "Mental health clinic",
         "Psychologist"
       ],
+      "lat": 29.7454033,
+      "lng": -95.41043189999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1918,6 +1996,8 @@
         "Psychotherapist",
         "Mental health service"
       ],
+      "lat": 29.746124899999998,
+      "lng": -95.3995238,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -1953,6 +2033,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.689292299999998,
+      "lng": -95.5277127,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2007,6 +2089,8 @@
         "Psychologist",
         "Psychotherapist"
       ],
+      "lat": 29.806093299999997,
+      "lng": -95.40865409999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2056,6 +2140,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.725692799999997,
+      "lng": -95.43056879999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2098,6 +2184,8 @@
         "Psychiatrist",
         "Psychologist"
       ],
+      "lat": 29.802971799999998,
+      "lng": -95.3899316,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2137,6 +2225,8 @@
       "categories": [
         "Marriage or relationship counselor"
       ],
+      "lat": 29.9973805,
+      "lng": -95.26326089999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2181,6 +2271,8 @@
         "Psychoanalyst",
         "Psychologist"
       ],
+      "lat": 29.752360699999997,
+      "lng": -95.5038378,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2224,6 +2316,8 @@
         "Psychosocial therapist",
         "Weight loss service"
       ],
+      "lat": 30.0399028,
+      "lng": -95.5471938,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2265,6 +2359,8 @@
         "Forensic consultant",
         "Walk-in clinic"
       ],
+      "lat": 29.7314652,
+      "lng": -95.4103528,
       "isMedical": true,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2316,6 +2412,8 @@
         "Family counselor",
         "Psychotherapist"
       ],
+      "lat": 29.742625,
+      "lng": -95.3727723,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2360,6 +2458,8 @@
         "Psychologist",
         "Psychotherapist"
       ],
+      "lat": 29.7733681,
+      "lng": -95.23005839999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2399,6 +2499,8 @@
         "Neurophysiologist",
         "Psychologist"
       ],
+      "lat": 29.7326299,
+      "lng": -95.4183082,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2447,6 +2549,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.7528084,
+      "lng": -95.5034323,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2490,6 +2594,8 @@
         "Psychologist",
         "Psychotherapist"
       ],
+      "lat": 29.760585,
+      "lng": -95.6057598,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2537,6 +2643,8 @@
         "Mental health clinic",
         "Mental health service"
       ],
+      "lat": 29.732969599999997,
+      "lng": -95.4194012,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2574,6 +2682,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7829725,
+      "lng": -95.5280307,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2617,6 +2727,8 @@
         "Psychosocial therapist",
         "Psychotherapist"
       ],
+      "lat": 29.622743,
+      "lng": -95.60782789999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2659,6 +2771,8 @@
         "Family counselor",
         "Marriage or relationship counselor"
       ],
+      "lat": 29.796545799999997,
+      "lng": -95.3892722,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2696,6 +2810,8 @@
         "Mental health clinic",
         "Psychologist"
       ],
+      "lat": 29.7331181,
+      "lng": -95.4193265,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2733,6 +2849,8 @@
         "Mental health service",
         "Family counselor"
       ],
+      "lat": 29.7376932,
+      "lng": -95.4693209,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2780,6 +2898,8 @@
         "Psychotherapist",
         "Wellness center"
       ],
+      "lat": 29.7373737,
+      "lng": -95.3842768,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2823,6 +2943,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7348651,
+      "lng": -95.3917056,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2868,6 +2990,8 @@
         "Psychologist",
         "Psychotherapist"
       ],
+      "lat": 29.625331799999998,
+      "lng": -95.6171569,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2903,6 +3027,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.679492099999997,
+      "lng": -95.4208743,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2948,6 +3074,8 @@
         "Mental health clinic",
         "Mental health service"
       ],
+      "lat": 29.7799044,
+      "lng": -95.4578487,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -2985,6 +3113,8 @@
         "Neurophysiologist",
         "Psychoanalyst"
       ],
+      "lat": 29.8438381,
+      "lng": -95.5103585,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3032,6 +3162,8 @@
         "Marriage or relationship counselor",
         "Mental health service"
       ],
+      "lat": 29.8045607,
+      "lng": -95.4127522,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3083,6 +3215,8 @@
         "Psychotherapist",
         "Child psychotherapist"
       ],
+      "lat": 29.7321343,
+      "lng": -95.41334549999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3120,6 +3254,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7281451,
+      "lng": -95.3833423,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3161,6 +3297,8 @@
         "Marriage or relationship counselor",
         "Mental health clinic"
       ],
+      "lat": 29.7125517,
+      "lng": -95.4618907,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3198,6 +3336,8 @@
         "Marriage or relationship counselor",
         "Mental health service"
       ],
+      "lat": 29.814543999999998,
+      "lng": -95.44579999999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3236,6 +3376,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7605966,
+      "lng": -95.41786909999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3278,6 +3420,8 @@
         "Psychologist",
         "Psychotherapist"
       ],
+      "lat": 29.783641799999998,
+      "lng": -95.5945113,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3320,6 +3464,8 @@
         "Mental health service",
         "Psychologist"
       ],
+      "lat": 31.1689103,
+      "lng": -100.0768425,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3363,6 +3509,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.553033199999998,
+      "lng": -95.4149003,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3408,6 +3556,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.8010962,
+      "lng": -95.40111639999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3446,6 +3596,8 @@
         "Counselor",
         "Social worker"
       ],
+      "lat": 29.7960915,
+      "lng": -95.3909578,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3489,6 +3641,8 @@
         "Mental health clinic",
         "Psychotherapist"
       ],
+      "lat": 29.783390699999998,
+      "lng": -95.52011089999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3529,6 +3683,8 @@
       "categories": [
         "Mental health clinic"
       ],
+      "lat": 29.738156699999998,
+      "lng": -95.3750081,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3573,6 +3729,8 @@
         "Marriage or relationship counselor",
         "Counselor"
       ],
+      "lat": 29.738469499999997,
+      "lng": -95.4789413,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3609,6 +3767,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.717623699999997,
+      "lng": -95.4593663,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3645,6 +3805,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.961487899999998,
+      "lng": -95.5452341,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3688,6 +3850,8 @@
         "Psychologist",
         "Psychotherapist"
       ],
+      "lat": 29.7835929,
+      "lng": -95.57976149999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3732,6 +3896,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.735099199999997,
+      "lng": -95.390626,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3768,6 +3934,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.766086899999998,
+      "lng": -95.36448329999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3815,6 +3983,8 @@
         "Marriage or relationship counselor",
         "Psychotherapist"
       ],
+      "lat": 29.7280727,
+      "lng": -95.4442186,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3859,6 +4029,8 @@
         "Mental health service",
         "Social worker"
       ],
+      "lat": 29.811814499999997,
+      "lng": -95.42101029999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3902,6 +4074,8 @@
         "Mental health clinic",
         "Mental health service"
       ],
+      "lat": 29.7819143,
+      "lng": -95.434704,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3943,6 +4117,8 @@
         "Marriage or relationship counselor",
         "Mental health clinic"
       ],
+      "lat": 29.7602861,
+      "lng": -95.38944359999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -3983,6 +4159,8 @@
         "Mental health service",
         "Mental health clinic"
       ],
+      "lat": 29.766214899999998,
+      "lng": -95.3648839,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4026,6 +4204,8 @@
         "Mental health service",
         "Psychologist"
       ],
+      "lat": 30.448506,
+      "lng": -93.30997599999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4065,6 +4245,8 @@
         "Mental health clinic",
         "Psychologist"
       ],
+      "lat": 29.712606599999997,
+      "lng": -95.4619068,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4103,6 +4285,8 @@
         "Psychotherapist",
         "Mental health service"
       ],
+      "lat": 29.755483899999998,
+      "lng": -95.3664111,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4142,6 +4326,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.8080116,
+      "lng": -95.4369172,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4179,6 +4365,8 @@
         "Psychotherapist",
         "Mental health service"
       ],
+      "lat": 29.8114064,
+      "lng": -95.4241231,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4216,6 +4404,8 @@
         "Counselor",
         "Family counselor"
       ],
+      "lat": 29.679458699999998,
+      "lng": -95.4216927,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4263,6 +4453,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.7452582,
+      "lng": -95.38249499999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4303,6 +4495,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.796951,
+      "lng": -95.39739499999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4340,6 +4534,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7418849,
+      "lng": -95.3936209,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4377,6 +4573,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.677794799999997,
+      "lng": -95.47872319999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4419,6 +4617,8 @@
         "Psychoneurological specialized clinic",
         "Speech pathologist"
       ],
+      "lat": 29.750740699999998,
+      "lng": -95.4494861,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4457,6 +4657,8 @@
         "Marriage or relationship counselor",
         "Psychotherapist"
       ],
+      "lat": 29.782961399999998,
+      "lng": -95.52801989999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4495,6 +4697,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.745714099999997,
+      "lng": -95.3532474,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4539,6 +4743,8 @@
         "Psychologist",
         "Psychotherapist"
       ],
+      "lat": 29.8121604,
+      "lng": -95.4385765,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4578,6 +4784,8 @@
         "Psychotherapist",
         "Mental health service"
       ],
+      "lat": 29.733553999999998,
+      "lng": -95.3929361,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4613,6 +4821,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7459758,
+      "lng": -95.3661729,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4652,6 +4862,8 @@
         "Mental health service",
         "Psychologist"
       ],
+      "lat": 29.806841799999997,
+      "lng": -95.4534987,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4689,6 +4901,8 @@
         "Counselor",
         "Psychotherapist"
       ],
+      "lat": 29.732194399999997,
+      "lng": -95.414082,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4729,6 +4943,8 @@
         "Marriage or relationship counselor",
         "Psychotherapist"
       ],
+      "lat": 29.6785373,
+      "lng": -95.41845719999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4775,6 +4991,8 @@
         "Marriage or relationship counselor",
         "Mental health service"
       ],
+      "lat": 29.7668938,
+      "lng": -95.4213475,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4811,6 +5029,8 @@
         "Psychologist",
         "Child psychologist"
       ],
+      "lat": 29.7365283,
+      "lng": -95.4177988,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4849,6 +5069,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7491871,
+      "lng": -95.37279269999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4888,6 +5110,8 @@
         "Mental health service",
         "Pediatric clinic"
       ],
+      "lat": 29.8178664,
+      "lng": -95.4164551,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4923,6 +5147,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7717948,
+      "lng": -95.3825145,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4963,6 +5189,8 @@
         "Family counselor",
         "Psychotherapist"
       ],
+      "lat": 29.794356299999997,
+      "lng": -95.4094587,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -4998,6 +5226,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7604267,
+      "lng": -95.3698028,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5034,6 +5264,8 @@
         "Psychotherapist",
         "Mental health service"
       ],
+      "lat": 29.6310881,
+      "lng": -95.59941599999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5073,6 +5305,8 @@
         "Marriage or relationship counselor",
         "Psychologist"
       ],
+      "lat": 29.711689999999997,
+      "lng": -95.5130587,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5113,6 +5347,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.752757199999998,
+      "lng": -95.50341619999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5149,6 +5385,8 @@
       "categories": [
         "Marriage or relationship counselor"
       ],
+      "lat": 29.782299,
+      "lng": -95.529198,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5188,6 +5426,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.783351399999997,
+      "lng": -95.4909923,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5228,6 +5468,8 @@
         "Marriage or relationship counselor",
         "Psychotherapist"
       ],
+      "lat": 29.7717948,
+      "lng": -95.3825145,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5269,6 +5511,8 @@
         "Counselor",
         "Psychotherapist"
       ],
+      "lat": 29.7295165,
+      "lng": -95.4123664,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5307,6 +5551,8 @@
         "Marriage or relationship counselor",
         "Mental health service"
       ],
+      "lat": 29.7665267,
+      "lng": -95.5576672,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5344,6 +5590,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7538478,
+      "lng": -95.40583819999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5386,6 +5634,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.763589699999997,
+      "lng": -95.4601709,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5431,6 +5681,8 @@
         "Marriage or relationship counselor",
         "Psychotherapist"
       ],
+      "lat": 29.776702999999998,
+      "lng": -95.413225,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5470,6 +5722,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7617625,
+      "lng": -95.4211969,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5509,6 +5763,8 @@
         "Psychiatrist",
         "Psychotherapist"
       ],
+      "lat": 29.7322423,
+      "lng": -95.4135544,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5545,6 +5801,8 @@
         "Psychotherapist",
         "Counselor"
       ],
+      "lat": 29.7617788,
+      "lng": -95.42122049999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5581,6 +5839,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7340396,
+      "lng": -95.3930602,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5618,6 +5878,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7320924,
+      "lng": -95.3965357,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5655,6 +5917,8 @@
       "categories": [
         "Marriage or relationship counselor"
       ],
+      "lat": 29.6836226,
+      "lng": -95.371423,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5695,6 +5959,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7460822,
+      "lng": -95.36630009999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5742,6 +6008,8 @@
         "Addiction treatment center",
         "Rehabilitation center"
       ],
+      "lat": 29.789282099999998,
+      "lng": -95.3992325,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5782,6 +6050,8 @@
         "Mental health service",
         "Support group"
       ],
+      "lat": 29.7513287,
+      "lng": -95.45091579999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5820,6 +6090,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.8080337,
+      "lng": -95.43690939999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5855,6 +6127,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.733152399999998,
+      "lng": -95.41818789999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5893,6 +6167,8 @@
         "Mental health clinic",
         "Psychotherapist"
       ],
+      "lat": 29.714549899999998,
+      "lng": -95.49901729999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5938,6 +6214,8 @@
         "Family counselor",
         "Mental health clinic"
       ],
+      "lat": 29.734582099999997,
+      "lng": -95.4014371,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -5977,6 +6255,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.624342,
+      "lng": -95.61789499999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6021,6 +6301,8 @@
         "Mental health service",
         "Family counselor"
       ],
+      "lat": 29.7767274,
+      "lng": -95.41308769999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6066,6 +6348,8 @@
         "Psychotherapist",
         "Wellness center"
       ],
+      "lat": 29.732608499999998,
+      "lng": -95.41806129999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6103,6 +6387,8 @@
       "categories": [
         "Child psychologist"
       ],
+      "lat": 29.7035198,
+      "lng": -95.403019,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6140,6 +6426,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7600771,
+      "lng": -95.37011079999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6177,6 +6465,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.730444499999997,
+      "lng": -95.3871521,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6216,6 +6506,8 @@
         "Psychotherapist",
         "Applied behavior analysis therapist"
       ],
+      "lat": 29.7151592,
+      "lng": -95.4336981,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6258,6 +6550,8 @@
         "Marriage or relationship counselor",
         "Mental health service"
       ],
+      "lat": 29.7498881,
+      "lng": -95.3997347,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6294,6 +6588,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.736915999999997,
+      "lng": -95.4419929,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6331,6 +6627,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7340397,
+      "lng": -95.3930602,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6366,6 +6664,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.514364999999998,
+      "lng": -95.219188,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6409,6 +6709,8 @@
         "Mental health clinic",
         "Mental health service"
       ],
+      "lat": 29.7170359,
+      "lng": -95.4593228,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6446,6 +6748,8 @@
         "Psychotherapist",
         "Mental health service"
       ],
+      "lat": 29.7965329,
+      "lng": -95.3892789,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6481,6 +6785,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.732608499999998,
+      "lng": -95.41806129999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6524,6 +6830,8 @@
         "Psychotherapist",
         "Mental health service"
       ],
+      "lat": 29.8062059,
+      "lng": -95.4185463,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6562,6 +6870,8 @@
         "Child psychologist",
         "Medical clinic"
       ],
+      "lat": 29.708013299999998,
+      "lng": -95.4015951,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6598,6 +6908,8 @@
         "Marriage or relationship counselor",
         "Service establishment"
       ],
+      "lat": 29.836095,
+      "lng": -95.44617439999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6635,6 +6947,8 @@
         "Marriage or relationship counselor",
         "Psychotherapist"
       ],
+      "lat": 29.7355241,
+      "lng": -95.390649,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6673,6 +6987,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.8011619,
+      "lng": -95.4005667,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6709,6 +7025,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.823810599999998,
+      "lng": -95.41109519999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6758,6 +7076,8 @@
         "Mental health clinic",
         "Psychotherapist"
       ],
+      "lat": 29.760282699999998,
+      "lng": -95.38943499999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6793,6 +7113,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7107873,
+      "lng": -95.4006023,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6839,6 +7161,8 @@
         "Mental health service",
         "Sexologist"
       ],
+      "lat": 29.7340397,
+      "lng": -95.3930602,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6878,6 +7202,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7912631,
+      "lng": -95.39928499999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6916,6 +7242,8 @@
         "Marriage or relationship counselor",
         "Psychotherapist"
       ],
+      "lat": 29.797970099999997,
+      "lng": -95.3934888,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6955,6 +7283,8 @@
         "Marriage or relationship counselor",
         "Psychotherapist"
       ],
+      "lat": 29.763651799999998,
+      "lng": -95.45942559999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -6994,6 +7324,8 @@
         "Marriage or relationship counselor",
         "Psychotherapist"
       ],
+      "lat": 29.7170621,
+      "lng": -95.459391,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7029,6 +7361,8 @@
       "categories": [
         "Marriage or relationship counselor"
       ],
+      "lat": 29.717623699999997,
+      "lng": -95.4593663,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7066,6 +7400,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.802950799999998,
+      "lng": -95.40932079999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7102,6 +7438,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7354484,
+      "lng": -95.3907637,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7139,6 +7477,8 @@
         "EMDR psychotherapist",
         "Mental health clinic"
       ],
+      "lat": 29.816691499999997,
+      "lng": -95.36447299999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7179,6 +7519,8 @@
         "Mental health service",
         "Social worker"
       ],
+      "lat": 29.7263789,
+      "lng": -95.4305586,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7215,6 +7557,8 @@
         "Mental health service",
         "Non-profit organization"
       ],
+      "lat": 29.761091399999998,
+      "lng": -95.4644627,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7252,6 +7596,8 @@
         "Counselor",
         "Marriage or relationship counselor"
       ],
+      "lat": 29.782011999999998,
+      "lng": -95.46013599999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7289,6 +7635,8 @@
         "Family counselor",
         "Mental health clinic"
       ],
+      "lat": 29.9470474,
+      "lng": -95.6734728,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7328,6 +7676,8 @@
         "Counselor",
         "Mental health clinic"
       ],
+      "lat": 29.729112999999998,
+      "lng": -95.452643,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7367,6 +7717,8 @@
         "Psychotherapist",
         "Family counselor"
       ],
+      "lat": 29.7340397,
+      "lng": -95.3930602,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7406,6 +7758,8 @@
         "Mental health service",
         "Psychiatrist"
       ],
+      "lat": 29.750564599999997,
+      "lng": -95.3643594,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7441,6 +7795,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7484269,
+      "lng": -95.4735783,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7478,6 +7834,8 @@
         "Counselor",
         "Mental health clinic"
       ],
+      "lat": 29.783390699999998,
+      "lng": -95.52011089999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7517,6 +7875,8 @@
         "Counselor",
         "Mental health service"
       ],
+      "lat": 29.723333699999998,
+      "lng": -95.4018961,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7556,6 +7916,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.811352,
+      "lng": -95.439236,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7597,6 +7959,8 @@
         "Hypnotherapy service",
         "Marriage or relationship counselor"
       ],
+      "lat": 46.423669,
+      "lng": -129.9427086,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7639,6 +8003,8 @@
         "Marriage or relationship counselor",
         "Mental health service"
       ],
+      "lat": 29.7320924,
+      "lng": -95.3965386,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7674,6 +8040,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7338521,
+      "lng": -95.4628312,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7715,6 +8083,8 @@
         "Mental health clinic",
         "Mental health service"
       ],
+      "lat": 29.563067,
+      "lng": -95.28435859999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7754,6 +8124,8 @@
         "Psychologist",
         "Psychotherapist"
       ],
+      "lat": 29.7696205,
+      "lng": -95.5934442,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7795,6 +8167,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.725554499999998,
+      "lng": -95.4305591,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7842,6 +8216,8 @@
         "Mental health clinic",
         "Mental health service"
       ],
+      "lat": 29.732998799999997,
+      "lng": -95.4192614,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7880,6 +8256,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7608347,
+      "lng": -95.3974523,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7926,6 +8304,8 @@
         "Addiction treatment center",
         "Mental health clinic"
       ],
+      "lat": 29.7203238,
+      "lng": -95.34351869999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -7967,6 +8347,8 @@
         "Mental health service",
         "Psychiatrist"
       ],
+      "lat": 29.7164538,
+      "lng": -95.4523789,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8003,6 +8385,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7335504,
+      "lng": -95.3929383,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8041,6 +8425,8 @@
         "Family counselor",
         "Psychotherapist"
       ],
+      "lat": 29.8111051,
+      "lng": -95.4410146,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8083,6 +8469,8 @@
         "Psychotherapist",
         "Mental health service"
       ],
+      "lat": 29.8045607,
+      "lng": -95.4127522,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8128,6 +8516,8 @@
         "Mental health clinic",
         "Mental health service"
       ],
+      "lat": 29.7382213,
+      "lng": -95.3840476,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8167,6 +8557,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.811814499999997,
+      "lng": -95.42101029999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8203,6 +8595,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.782961399999998,
+      "lng": -95.52801989999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8239,6 +8633,8 @@
         "Psychotherapist",
         "Doctor"
       ],
+      "lat": 29.8114064,
+      "lng": -95.4241231,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8275,6 +8671,8 @@
         "Psychotherapist",
         "Marriage or relationship counselor"
       ],
+      "lat": 29.7304003,
+      "lng": -95.39510349999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8310,6 +8708,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7170661,
+      "lng": -95.45935759999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8347,6 +8747,8 @@
         "Family counselor",
         "Marriage or relationship counselor"
       ],
+      "lat": 29.779926999999997,
+      "lng": -95.45760899999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8383,6 +8785,8 @@
         "Mental health clinic",
         "Psychotherapist"
       ],
+      "lat": 29.7401666,
+      "lng": -95.4347683,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8418,6 +8822,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7335514,
+      "lng": -95.3929374,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8453,6 +8859,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.811814499999997,
+      "lng": -95.42101029999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8492,6 +8900,8 @@
         "Marriage or relationship counselor",
         "Psychotherapist"
       ],
+      "lat": 29.751305,
+      "lng": -95.504375,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8527,6 +8937,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7349434,
+      "lng": -95.3921476,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8563,6 +8975,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7151322,
+      "lng": -95.4336579,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8599,6 +9013,8 @@
         "Counselor",
         "Mental health service"
       ],
+      "lat": 30.034822,
+      "lng": -95.55813889999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8635,6 +9051,8 @@
         "Mental health clinic",
         "Counselor"
       ],
+      "lat": 29.7451887,
+      "lng": -95.3662717,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8672,6 +9090,8 @@
         "Family counselor",
         "Mental health service"
       ],
+      "lat": 29.709336,
+      "lng": -95.45899449999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8711,6 +9131,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.8049246,
+      "lng": -95.4516953,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8747,6 +9169,8 @@
         "Psychotherapist",
         "Psychologist"
       ],
+      "lat": 29.735099199999997,
+      "lng": -95.390626,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8782,6 +9206,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.8080116,
+      "lng": -95.4369172,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8821,6 +9247,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7808308,
+      "lng": -95.3970422,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8856,6 +9284,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7335514,
+      "lng": -95.3929374,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8893,6 +9323,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7912631,
+      "lng": -95.39928499999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8930,6 +9362,8 @@
         "Counselor",
         "Family counselor"
       ],
+      "lat": 29.779901199999998,
+      "lng": -95.45738879999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -8965,6 +9399,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.7617518,
+      "lng": -95.4212096,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9001,6 +9437,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7341557,
+      "lng": -95.39318689999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9046,6 +9484,8 @@
         "Family counselor",
         "Mental health service"
       ],
+      "lat": 29.7287179,
+      "lng": -95.39359859999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9085,6 +9525,8 @@
         "Addiction treatment center",
         "Mental health service"
       ],
+      "lat": 29.750701099999997,
+      "lng": -95.4493811,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9129,6 +9571,8 @@
         "Psychologist",
         "Psychotherapist"
       ],
+      "lat": 29.783273599999998,
+      "lng": -95.51849419999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9168,6 +9612,8 @@
         "Counselor",
         "Marriage or relationship counselor"
       ],
+      "lat": 29.7774862,
+      "lng": -95.6069813,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9204,6 +9650,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7355241,
+      "lng": -95.390649,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9246,6 +9694,8 @@
         "Marriage or relationship counselor",
         "Psychologist"
       ],
+      "lat": 29.7678178,
+      "lng": -95.37920199999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9294,6 +9744,8 @@
         "Psychosocial therapist",
         "Psychotherapist"
       ],
+      "lat": 29.7509521,
+      "lng": -95.4015831,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9330,6 +9782,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7335504,
+      "lng": -95.3929383,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9375,6 +9829,8 @@
         "Marriage or relationship counselor",
         "Psychotherapist"
       ],
+      "lat": 29.7602861,
+      "lng": -95.38944359999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9410,6 +9866,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7570454,
+      "lng": -95.3656991,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9446,6 +9904,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7330442,
+      "lng": -95.419251,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9484,6 +9944,8 @@
         "Counselor",
         "Mental health service"
       ],
+      "lat": 29.7376243,
+      "lng": -95.4423204,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9519,6 +9981,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.8113407,
+      "lng": -95.4381861,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9559,6 +10023,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.7617625,
+      "lng": -95.42119699999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9594,6 +10060,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.737440499999998,
+      "lng": -95.4418843,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9629,6 +10097,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.7808615,
+      "lng": -95.3970262,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9664,6 +10134,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.776702999999998,
+      "lng": -95.413225,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9701,6 +10173,8 @@
         "Consultant",
         "Counselor"
       ],
+      "lat": 29.539013699999998,
+      "lng": -95.1500554,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9737,6 +10211,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.752156499999998,
+      "lng": -95.4020025,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9776,6 +10252,8 @@
         "Mental health service",
         "Psychologist"
       ],
+      "lat": 29.706535499999998,
+      "lng": -95.4605078,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9815,6 +10293,8 @@
         "Counselor",
         "Psychotherapist"
       ],
+      "lat": 29.7143111,
+      "lng": -95.4538092,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9850,6 +10330,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7808615,
+      "lng": -95.3970262,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9887,6 +10369,8 @@
         "Counselor",
         "Life coach"
       ],
+      "lat": 29.796951,
+      "lng": -95.39739499999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9923,6 +10407,8 @@
         "Counselor",
         "Psychotherapist"
       ],
+      "lat": 29.7340396,
+      "lng": -95.3930602,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9958,6 +10444,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7321343,
+      "lng": -95.41334549999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -9998,6 +10486,8 @@
         "Mental health clinic",
         "Mental health service"
       ],
+      "lat": 29.761762599999997,
+      "lng": -95.4211969,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10035,6 +10525,8 @@
         "Child psychologist",
         "Psychotherapist"
       ],
+      "lat": 29.706535499999998,
+      "lng": -95.4605078,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10070,6 +10562,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.735099199999997,
+      "lng": -95.390626,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10105,6 +10599,8 @@
       "categories": [
         "Mental health clinic"
       ],
+      "lat": 29.817371899999998,
+      "lng": -95.4652086,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10140,6 +10636,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.736915999999997,
+      "lng": -95.4419929,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10177,6 +10675,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7354484,
+      "lng": -95.3907637,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10212,6 +10712,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.763643599999998,
+      "lng": -95.4588606,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10248,6 +10750,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.8119658,
+      "lng": -95.4414074,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10298,6 +10802,8 @@
         "Psychologist",
         "Psychotherapist"
       ],
+      "lat": 29.7348651,
+      "lng": -95.3917056,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10334,6 +10840,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.8113407,
+      "lng": -95.4381861,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10369,6 +10877,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.7808615,
+      "lng": -95.3970262,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10407,6 +10917,8 @@
         "EMDR psychotherapist",
         "Mental health service"
       ],
+      "lat": 29.725710099999997,
+      "lng": -95.4305732,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10445,6 +10957,8 @@
       "categories": [
         "Mental health clinic"
       ],
+      "lat": 29.7340397,
+      "lng": -95.3930602,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10480,6 +10994,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7834161,
+      "lng": -95.5096451,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10515,6 +11031,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.5684963,
+      "lng": -95.5718409,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10551,6 +11069,8 @@
         "Psychologist",
         "Mental health service"
       ],
+      "lat": 29.7173369,
+      "lng": -95.3793247,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10587,6 +11107,8 @@
         "Counselor",
         "Family counselor"
       ],
+      "lat": 29.7176346,
+      "lng": -95.45935,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10624,6 +11146,8 @@
         "Marriage or relationship counselor",
         "Psychotherapist"
       ],
+      "lat": 29.7718472,
+      "lng": -95.77499739999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10662,6 +11186,8 @@
         "Family counselor",
         "Mental health service"
       ],
+      "lat": 29.72486,
+      "lng": -95.4180509,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10703,6 +11229,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.75516,
+      "lng": -95.39841349999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10741,6 +11269,8 @@
         "Financial audit",
         "Psychotherapist"
       ],
+      "lat": 29.666269399999997,
+      "lng": -95.4589653,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10782,6 +11312,8 @@
         "Psychotherapist",
         "Wellness center"
       ],
+      "lat": 29.732969599999997,
+      "lng": -95.4194012,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10818,6 +11350,8 @@
         "Psychologist",
         "Psychotherapist"
       ],
+      "lat": 29.7923576,
+      "lng": -95.3986826,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10857,6 +11391,8 @@
         "Counselor",
         "Psychotherapist"
       ],
+      "lat": 29.7315631,
+      "lng": -95.40462149999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10897,6 +11433,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.796851,
+      "lng": -95.5133249,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10933,6 +11471,8 @@
         "Mental health clinic",
         "Counselor"
       ],
+      "lat": 29.749913199999998,
+      "lng": -95.45067519999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -10971,6 +11511,8 @@
         "Psychotherapist",
         "Life coach"
       ],
+      "lat": 29.796946,
+      "lng": -95.3982704,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11007,6 +11549,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.780851799999997,
+      "lng": -95.3970121,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11043,6 +11587,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7340396,
+      "lng": -95.3930602,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11078,6 +11624,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.733052999999998,
+      "lng": -95.419406,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11114,6 +11662,8 @@
         "Family counselor",
         "Counselor"
       ],
+      "lat": 29.8118178,
+      "lng": -95.42099859999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11152,6 +11702,8 @@
         "Family counselor",
         "Psychotherapist"
       ],
+      "lat": 29.763639899999998,
+      "lng": -95.4107519,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11187,6 +11739,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.811814499999997,
+      "lng": -95.42101029999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11222,6 +11776,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.7549434,
+      "lng": -95.4504714,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11263,6 +11819,8 @@
         "Mental health service",
         "Yoga instructor"
       ],
+      "lat": 29.7355308,
+      "lng": -95.39065869999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11300,6 +11858,8 @@
         "Financial consultant",
         "Psychotherapist"
       ],
+      "lat": 29.715131,
+      "lng": -95.433537,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11337,6 +11897,8 @@
         "Psychologist",
         "Mental health service"
       ],
+      "lat": 29.6793691,
+      "lng": -95.41974959999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11372,6 +11934,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.739022199999997,
+      "lng": -95.3891271,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11411,6 +11975,8 @@
         "Psychiatrist",
         "Psychologist"
       ],
+      "lat": 29.741540299999997,
+      "lng": -95.37616589999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11447,6 +12013,8 @@
       "categories": [
         "Child psychologist"
       ],
+      "lat": 29.7766749,
+      "lng": -95.4140111,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11482,6 +12050,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7750788,
+      "lng": -95.3875446,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11520,6 +12090,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.792357199999998,
+      "lng": -95.39868229999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11567,6 +12139,8 @@
         "Psychologist",
         "Social worker"
       ],
+      "lat": 29.7597234,
+      "lng": -95.3976495,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11604,6 +12178,8 @@
         "Counselor",
         "General practitioner"
       ],
+      "lat": 29.7635075,
+      "lng": -95.3562491,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11645,6 +12221,8 @@
         "Marriage or relationship counselor",
         "Mental health service"
       ],
+      "lat": 29.745267,
+      "lng": -95.3825167,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11685,6 +12263,8 @@
         "Psychotherapist",
         "Mental health service"
       ],
+      "lat": 29.749943899999998,
+      "lng": -95.3997316,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11727,6 +12307,8 @@
         "Marriage or relationship counselor",
         "Psychotherapist"
       ],
+      "lat": 29.723333699999998,
+      "lng": -95.4018961,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11762,6 +12344,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7617788,
+      "lng": -95.4212288,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11800,6 +12384,8 @@
       "categories": [
         "Mental health clinic"
       ],
+      "lat": 29.7382229,
+      "lng": -95.38402359999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11835,6 +12421,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.6739385,
+      "lng": -95.4126809,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11870,6 +12458,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7658202,
+      "lng": -95.37756929999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11908,6 +12498,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7452509,
+      "lng": -95.3825449,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11945,6 +12537,8 @@
         "Counselor",
         "Doctor"
       ],
+      "lat": 29.811487399999997,
+      "lng": -95.4242245,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -11982,6 +12576,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7570202,
+      "lng": -95.3471107,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12018,6 +12614,8 @@
         "Psychologist",
         "Psychotherapist"
       ],
+      "lat": 29.7923671,
+      "lng": -95.39868899999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12053,6 +12651,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7621774,
+      "lng": -95.3577281,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12092,6 +12692,8 @@
         "Psychotherapist",
         "Reiki therapist"
       ],
+      "lat": 29.811172,
+      "lng": -95.44111799999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12129,6 +12731,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7335504,
+      "lng": -95.3929383,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12169,6 +12773,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7993301,
+      "lng": -95.3980576,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12204,6 +12810,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.7349675,
+      "lng": -95.43234969999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12239,6 +12847,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7482017,
+      "lng": -95.4832332,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12278,6 +12888,8 @@
         "Family counselor",
         "Psychotherapist"
       ],
+      "lat": 29.735094999999998,
+      "lng": -95.39062299999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12314,6 +12926,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7349434,
+      "lng": -95.3921476,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12350,6 +12964,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.7602861,
+      "lng": -95.38944359999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12387,6 +13003,8 @@
         "Family counselor",
         "Marriage or relationship counselor"
       ],
+      "lat": 29.7375606,
+      "lng": -95.42461569999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12423,6 +13041,8 @@
         "Psychotherapist",
         "Business management consultant"
       ],
+      "lat": 29.7617788,
+      "lng": -95.42122049999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12458,6 +13078,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7808615,
+      "lng": -95.3970262,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12496,6 +13118,8 @@
         "Mental health service",
         "Social worker"
       ],
+      "lat": 29.7409005,
+      "lng": -95.3734853,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12533,6 +13157,8 @@
         "Counselor",
         "Family counselor"
       ],
+      "lat": 29.748026399999997,
+      "lng": -95.4668458,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12568,6 +13194,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.712606599999997,
+      "lng": -95.4619068,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12604,6 +13232,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.723321,
+      "lng": -95.4022291,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12641,6 +13271,8 @@
         "Counselor",
         "Family counselor"
       ],
+      "lat": 29.798208199999998,
+      "lng": -95.4162193,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12677,6 +13309,8 @@
         "Counselor",
         "Psychotherapist"
       ],
+      "lat": 29.7544425,
+      "lng": -95.4534149,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12723,6 +13357,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.735094,
+      "lng": -95.3905482,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12758,6 +13394,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7617788,
+      "lng": -95.42122049999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12793,6 +13431,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.8080116,
+      "lng": -95.4369172,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12828,6 +13468,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.733689799999997,
+      "lng": -95.42715299999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12865,6 +13507,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7600484,
+      "lng": -95.36554609999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12900,6 +13544,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7514948,
+      "lng": -95.45165759999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12935,6 +13581,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.7264204,
+      "lng": -95.4303364,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -12970,6 +13618,8 @@
       "categories": [
         "Mental health clinic"
       ],
+      "lat": 29.7514796,
+      "lng": -95.3288364,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13005,6 +13655,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7602861,
+      "lng": -95.38944359999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13040,6 +13692,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.722821699999997,
+      "lng": -95.4165963,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13075,6 +13729,8 @@
       "categories": [
         "Family counselor"
       ],
+      "lat": 29.7127296,
+      "lng": -95.4610881,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13111,6 +13767,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.7807532,
+      "lng": -95.45619909999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13146,6 +13804,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7551681,
+      "lng": -95.3409928,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13181,6 +13841,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7536199,
+      "lng": -95.3985771,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13216,6 +13878,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.743814099999998,
+      "lng": -95.3870591,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13252,6 +13916,8 @@
         "Psychologist",
         "Mental health service"
       ],
+      "lat": 29.767531299999998,
+      "lng": -95.3781233,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13287,6 +13953,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7600484,
+      "lng": -95.36554609999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13323,6 +13991,8 @@
         "Psychologist",
         "Counselor"
       ],
+      "lat": 29.7598247,
+      "lng": -95.36547499999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13360,6 +14030,8 @@
         "Counselor",
         "Mental health service"
       ],
+      "lat": 29.734913499999998,
+      "lng": -95.3922005,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13395,6 +14067,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7600484,
+      "lng": -95.36554609999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13431,6 +14105,8 @@
         "Psychologist",
         "Practitioner service location"
       ],
+      "lat": 29.7486738,
+      "lng": -95.3670894,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13466,6 +14142,8 @@
       "categories": [
         "Health counselor"
       ],
+      "lat": 29.754297899999997,
+      "lng": -95.3652347,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13505,6 +14183,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.735152499999998,
+      "lng": -95.3905223,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13540,6 +14220,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.752580799999997,
+      "lng": -95.3728354,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13578,6 +14260,8 @@
         "Psychotherapist",
         "Social worker"
       ],
+      "lat": 29.7315631,
+      "lng": -95.40462149999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13615,6 +14299,8 @@
         "Psychotherapist",
         "Mental health service"
       ],
+      "lat": 29.7381235,
+      "lng": -95.3866757,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13650,6 +14336,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7969609,
+      "lng": -95.39734999999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13685,6 +14373,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.8031164,
+      "lng": -95.40340409999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13721,6 +14411,8 @@
         "Psychologist",
         "Child psychologist"
       ],
+      "lat": 29.8116344,
+      "lng": -95.41921029999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13757,6 +14449,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7452509,
+      "lng": -95.3825449,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13793,6 +14487,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.754297899999997,
+      "lng": -95.3652347,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13828,6 +14524,8 @@
       "categories": [
         "Marriage or relationship counselor"
       ],
+      "lat": 29.7421071,
+      "lng": -95.3799311,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13868,6 +14566,8 @@
         "Life coach",
         "Marriage or relationship counselor"
       ],
+      "lat": 29.739294299999997,
+      "lng": -95.39448569999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13903,6 +14603,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7331181,
+      "lng": -95.4193265,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13941,6 +14643,8 @@
         "Marriage or relationship counselor",
         "Mental health service"
       ],
+      "lat": 29.7330212,
+      "lng": -95.4191216,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -13976,6 +14680,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.734432299999998,
+      "lng": -95.42291279999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14011,6 +14717,8 @@
       "categories": [
         "Family counselor"
       ],
+      "lat": 29.7385362,
+      "lng": -95.3614928,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14046,6 +14754,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7338421,
+      "lng": -95.42021749999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14084,6 +14794,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.735099199999997,
+      "lng": -95.390626,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14119,6 +14831,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7635185,
+      "lng": -95.3558496,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14154,6 +14868,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.760042,
+      "lng": -95.362112,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14192,6 +14908,8 @@
         "Family counselor",
         "Psychotherapist"
       ],
+      "lat": 29.7459086,
+      "lng": -95.39725709999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14227,6 +14945,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.780851799999997,
+      "lng": -95.3970121,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14262,6 +14982,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.760982799999997,
+      "lng": -95.3471015,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14297,6 +15019,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.7782229,
+      "lng": -95.3978806,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14332,6 +15056,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7127296,
+      "lng": -95.4610881,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14370,6 +15096,8 @@
         "Family counselor",
         "Psychologist"
       ],
+      "lat": 29.7542895,
+      "lng": -95.36541319999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14406,6 +15134,8 @@
       "categories": [
         "Mental health clinic"
       ],
+      "lat": 29.7568356,
+      "lng": -95.3643237,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14441,6 +15171,8 @@
       "categories": [
         "Psychologist"
       ],
+      "lat": 29.736407999999997,
+      "lng": -95.3891867,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14477,6 +15209,8 @@
         "Mental health service",
         "Psychotherapist"
       ],
+      "lat": 29.74526,
+      "lng": -95.3825378,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14515,6 +15249,8 @@
         "Doctor",
         "Marriage or relationship counselor"
       ],
+      "lat": 29.760529199999997,
+      "lng": -95.36279689999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14550,6 +15286,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.780851799999997,
+      "lng": -95.3970121,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14585,6 +15323,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.7467875,
+      "lng": -95.3910516,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14620,6 +15360,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.735112899999997,
+      "lng": -95.39052799999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14656,6 +15398,8 @@
       "categories": [
         "Psychotherapist"
       ],
+      "lat": 29.7308842,
+      "lng": -95.426276,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14691,6 +15435,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7067873,
+      "lng": -95.43994839999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14726,6 +15472,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.77,
+      "lng": -95.36999999999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14761,6 +15509,8 @@
       "categories": [
         "Marriage or relationship counselor"
       ],
+      "lat": 29.7766749,
+      "lng": -95.4140111,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14801,6 +15551,8 @@
         "Mental health service",
         "Wellness center"
       ],
+      "lat": 29.7438443,
+      "lng": -95.38995039999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14838,6 +15590,8 @@
         "Marriage or relationship counselor",
         "Psychotherapist"
       ],
+      "lat": 29.732608499999998,
+      "lng": -95.41806129999999,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14888,6 +15642,8 @@
         "Psychotherapist",
         "Social worker"
       ],
+      "lat": 29.775742299999997,
+      "lng": -95.3835672,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14923,6 +15679,8 @@
       "categories": [
         "Marriage or relationship counselor"
       ],
+      "lat": 29.738118099999998,
+      "lng": -95.3866728,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14958,6 +15716,8 @@
       "categories": [
         "Mental health service"
       ],
+      "lat": 29.7551906,
+      "lng": -95.3648517,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -14994,6 +15754,8 @@
       "categories": [
         "Counselor"
       ],
+      "lat": 29.783438099999998,
+      "lng": -95.3818835,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -15030,6 +15792,8 @@
         "Psychologist",
         "Mental health service"
       ],
+      "lat": 29.7336247,
+      "lng": -95.4227422,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -15063,6 +15827,8 @@
       "hasMapListing": false,
       "people": [],
       "categories": [],
+      "lat": null,
+      "lng": null,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -15096,6 +15862,8 @@
       "hasMapListing": false,
       "people": [],
       "categories": [],
+      "lat": null,
+      "lng": null,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -15129,6 +15897,8 @@
       "hasMapListing": false,
       "people": [],
       "categories": [],
+      "lat": null,
+      "lng": null,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -15167,6 +15937,8 @@
       "hasMapListing": false,
       "people": [],
       "categories": [],
+      "lat": null,
+      "lng": null,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -15201,6 +15973,8 @@
       "hasMapListing": false,
       "people": [],
       "categories": [],
+      "lat": null,
+      "lng": null,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
@@ -15235,6 +16009,8 @@
       "hasMapListing": false,
       "people": [],
       "categories": [],
+      "lat": null,
+      "lng": null,
       "isMedical": false,
       "isNonprofit": false,
       "manualDecision": null,
