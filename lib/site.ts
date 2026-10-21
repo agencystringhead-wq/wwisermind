@@ -79,8 +79,8 @@ export const mainNav: NavItem[] = [
    Mega menu panels.
 
    Keyed by the `mainNav` label they hang off, so the nav above stays a plain
-   list of links and nothing here changes what it renders. Five of the seven
-   items have a panel; Results and Freebies are ordinary links.
+   list of links and nothing here changes what it renders. Six of the seven
+   items have a panel; only Results is an ordinary link.
 
    Every panel is the same shape — columns of links, one featured card, a strip
    along the bottom — so the header draws them all from one component.
@@ -112,9 +112,12 @@ export type MegaPanel = {
     body?: string;
     link?: NavItem;
     /** Optional, and only on three of the five panels — the other two read better plain. */
-    image?: { src: string; width: number; height: number; alt: string };
+    image?: { src: string; width: number; height: number; alt: string; position?: string };
   };
   strip: { text: string; link?: NavItem };
+  /** A link closing the mobile accordion, for a panel whose nav item no longer links anywhere on its
+      own (the desktop dropdown has its strip link; the accordion shows only the columns). */
+  mobileLink?: NavItem;
 };
 
 /** The Website Scorecard's link for the Tools menu, from its entry in lib/freebies.ts: its title, its
@@ -130,6 +133,24 @@ const scorecardLink = scorecard
       },
     ]
   : [];
+
+/** A freebie's menu link, from its entry in lib/freebies.ts: title, type line and, while it is not
+    live, the "Soon" badge. */
+const freebieMenuLink = (freebie: (typeof freebieList)[number]): MegaLink => ({
+  label: freebie.title,
+  href: freebiePath(freebie),
+  desc: freebie.typeLabel,
+  ...(freebie.status === 'comingSoon' ? { badge: 'Soon' } : {}),
+});
+
+/** The links for these freebies, in the order given. A slug that is not in the data is skipped. */
+const freebieMenuLinks = (slugs: string[]): MegaLink[] =>
+  slugs.flatMap((slug) => {
+    const freebie = freebieList.find((entry) => entry.slug === slug);
+    return freebie ? [freebieMenuLink(freebie)] : [];
+  });
+
+const caseloadPlan = freebieList.find((freebie) => freebie.slug === '2027-full-caseload-plan-for-therapists');
 
 export const megaPanels: Record<string, MegaPanel> = {
   Services: {
@@ -294,6 +315,57 @@ export const megaPanels: Record<string, MegaPanel> = {
       },
     },
     strip: { text: 'Built in Pune, India. Honest about it from the first hello.' },
+  },
+
+  Freebies: {
+    id: 'freebies',
+    /* Every link is read from lib/freebies.ts, the data the /freebies/ page uses, so a freebie
+       renamed, retyped or marked "Soon" there changes here too. The two tools (AI Visibility
+       Report, Website Scorecard) live in the Tools menu. */
+    columns: [
+      {
+        lead: 'Learn',
+        title: 'Guides',
+        links: freebieMenuLinks([
+          '2027-full-caseload-plan-for-therapists',
+          'psychology-today-profile-kit-for-therapists',
+          'google-business-profile-checklist-for-therapists',
+        ]),
+      },
+      {
+        lead: 'Make',
+        title: 'Templates',
+        links: freebieMenuLinks([
+          'social-media-posts-for-therapists',
+          'business-card-template-for-therapists',
+          'email-signature-for-therapists',
+        ]),
+      },
+    ],
+    feature: {
+      eyebrow: 'Start Here',
+      lead: caseloadPlan?.heading ?? '2027 Full-Caseload Plan',
+      body: 'Turn website visitors into booked clients before January.',
+      link: { label: 'Get the free guide', href: routes.freebies.fullCaseloadPlan },
+      /* The guide's own cover, from its entry in lib/freebies.ts, shown from the top so the title
+         stays in the frame of this landscape slot. */
+      ...(caseloadPlan?.previewImage
+        ? {
+            image: {
+              src: caseloadPlan.previewImage.src,
+              width: caseloadPlan.previewImage.width,
+              height: caseloadPlan.previewImage.height,
+              alt: caseloadPlan.previewImage.alt,
+              position: 'center top',
+            },
+          }
+        : {}),
+    },
+    strip: {
+      text: 'Every freebie is free. No credit card.',
+      link: { label: 'See all freebies', href: routes.freebies.hub },
+    },
+    mobileLink: { label: 'See all freebies', href: routes.freebies.hub },
   },
 
   Tools: {

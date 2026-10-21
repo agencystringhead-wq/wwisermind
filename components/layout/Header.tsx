@@ -118,6 +118,7 @@ function Mega({
                 width={feature.image.width}
                 height={feature.image.height}
                 className={styles.featureImage}
+                style={feature.image.position ? { objectPosition: feature.image.position } : undefined}
                 loading="lazy"
               />
             </span>
@@ -214,6 +215,12 @@ function MobileSection({
               ))}
             </div>
           ))}
+
+          {panel.mobileLink ? (
+            <Link href={panel.mobileLink.href} className={styles.accLink} onClick={onNavigate}>
+              <span className={styles.mlinkTitle}>{panel.mobileLink.label}</span>
+            </Link>
+          ) : null}
         </div>
       </div>
     </div>
