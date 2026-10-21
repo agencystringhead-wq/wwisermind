@@ -10,7 +10,9 @@
     "images": "node scripts/convert-images.mjs",
     "guide:pdf": "node scripts/guides/full-caseload-plan/build-pdf.mjs",
     "predev": "node scripts/build-crisis-data.mjs",
-    "crisis:data": "node scripts/build-crisis-data.mjs"
+    "crisis:data": "node scripts/build-crisis-data.mjs",
+    "therapyindex:fetch": "tsx scripts/therapyindex/fetch.ts",
+    "therapyindex:normalise": "tsx scripts/therapyindex/normalise.ts"
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",
@@ -24,6 +26,7 @@
     "@types/react-dom": "^19.1.6",
     "playwright": "^1.64.1",
     "sharp": "^0.34.3",
+    "tsx": "^4.23.15",
     "typescript": "^5.7.2"
   }
 }
