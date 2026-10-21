@@ -29,12 +29,16 @@ export default function CountUp({
   to,
   duration = DURATION,
   className,
+  commas = false,
 }: {
   to: number;
   duration?: number;
   className?: string;
+  /** Group thousands with commas: 1182 reads 1,182. */
+  commas?: boolean;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
+  const show = (n: number) => (commas ? n.toLocaleString('en-US') : String(n));
 
   useLayoutEffect(() => {
     const node = ref.current;
@@ -52,7 +56,7 @@ export default function CountUp({
     const step = (now: number) => {
       if (!startedAt) startedAt = now;
       const t = Math.min(1, (now - startedAt) / duration);
-      node.textContent = String(Math.round(easeOut(t) * to));
+      node.textContent = show(Math.round(easeOut(t) * to));
       if (t < 1) frame = requestAnimationFrame(step);
     };
 
@@ -81,9 +85,9 @@ export default function CountUp({
     return () => {
       observer.disconnect();
       if (frame) cancelAnimationFrame(frame);
-      node.textContent = String(to);
+      node.textContent = show(to);
     };
-  }, [to, duration]);
+  }, [to, duration, commas]);
 
   return (
     <span
@@ -95,7 +99,7 @@ export default function CountUp({
          width itself belongs to the caller's stylesheet — this only says how many. */
       style={{ '--digits': String(Math.trunc(Math.abs(to))).length } as CSSProperties}
     >
-      {to}
+      {show(to)}
     </span>
   );
 }

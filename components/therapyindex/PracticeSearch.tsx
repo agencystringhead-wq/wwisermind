@@ -6,7 +6,7 @@ import CtaLink from '@/components/booking/CtaLink';
 import { routes } from '@/lib/routes';
 import styles from './search.module.css';
 
-type Row = { n: string; c: string; u: string; r: number };
+type Row = { n: string; f?: string; c: string; u: string; r: number };
 
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim();
 
@@ -27,7 +27,7 @@ export default function PracticeSearch() {
     loading.current ??= fetch('/therapyindex/search-index.json')
       .then((res) => res.json())
       .then((data: Row[]) => {
-        rows.current = data.map((r) => ({ ...r, k: norm(r.n) }));
+        rows.current = data.map((r) => ({ ...r, k: norm(r.f ?? r.n) }));
       })
       .catch(() => {
         loading.current = null;
@@ -40,7 +40,7 @@ export default function PracticeSearch() {
     if (!terms.length || !rows.current) return setResults([]);
     const hits = rows.current
       .filter((r) => terms.every((t) => r.k.includes(t)))
-      .sort((a, b) => Number(b.k.startsWith(terms[0])) - Number(a.k.startsWith(terms[0])) || (a.r || 999) - (b.r || 999));
+      .sort((a, b) => Number(norm(b.n).startsWith(terms[0])) - Number(norm(a.n).startsWith(terms[0])) || (a.r || 999) - (b.r || 999));
     setResults(hits.slice(0, 6));
   };
 

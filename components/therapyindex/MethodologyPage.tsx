@@ -150,7 +150,7 @@ export default function MethodologyPage() {
         </div>
       </section>
 
-      <section id="removal" className={`${ti.section} ${ti.band}`}>
+      <section id="removal" className={`${ti.section} ${ti.bandTint}`}>
         <div className={ti.frame}>
           <div className={m.cta}>
 <SectionLabel n="06">removal</SectionLabel>

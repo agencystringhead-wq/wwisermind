@@ -207,3 +207,17 @@ export function mapTopThree(view: MarketView, keyword: string): Practice[] {
 }
 
 export type { OrganicTopEntry };
+
+/** Legal forms dropped from the end of a name segment: "Luminary Counseling, PLLC" reads "Luminary Counseling". */
+const LEGAL_SUFFIX = /,?\s+(PLLC|LLC|LLP|LTD\.?|Inc\.?|P\.?C\.?)\.?$/i;
+
+/**
+ * The short name shown on cards, lists and headings. Keeps the part before the first " - ", " | " or dash, so
+ * "Grace Therapy and Wellness, PLLC - Downtown Location One" reads "Grace Therapy and Wellness", and drops a trailing
+ * legal form. Never returns an empty string. The profile page keeps the full name under its heading.
+ */
+export function displayName(name: string): string {
+  const first = name.split(/\s[-–—|]\s/)[0].trim();
+  const short = first.replace(LEGAL_SUFFIX, '').replace(LEGAL_SUFFIX, '').trim();
+  return short.length >= 2 ? short : name;
+}

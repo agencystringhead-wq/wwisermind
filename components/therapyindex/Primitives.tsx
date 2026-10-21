@@ -42,11 +42,12 @@ export function SectionHead({
   );
 }
 
-type Tone = 'dark' | 'light' | 'accent';
+type Tone = 'dark' | 'light' | 'accent' | 'white';
 const toneClass: Record<Tone, string> = {
   dark: styles.btnDark,
   light: styles.btnLight,
   accent: styles.btnAccent,
+  white: styles.btnWhite,
 };
 
 /** The site's pill button. Goes through CtaLink, so a link to the booking target opens the Cal.com pop-up. */

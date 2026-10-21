@@ -3,7 +3,7 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import { routes } from '@/lib/routes';
 import { absUrl } from '@/lib/site';
 import {
-  bestMapRank, hasProfile, mapTopThree, practiceKind, practiceLabels, scoreText, searchLabel, type MarketView,
+  bestMapRank, displayName, hasProfile, mapTopThree, practiceKind, practiceLabels, scoreText, searchLabel, type MarketView,
 } from '@/lib/therapyindex/data';
 import type { OrganicKind, Practice } from '@/lib/therapyindex/types';
 import DirectoryTable, { type DirectoryRow } from './DirectoryTable';
@@ -56,12 +56,12 @@ export default function MarketPage({ view }: { view: MarketView }) {
   /* --- 02 map points --- */
   const located = view.practices.filter((p): p is Practice & { lat: number; lng: number } => p.lat !== null && p.lng !== null);
   const points: MapPoint[] = located.map((p) => ({
-    name: p.name,
+    name: displayName(p.name),
     lat: p.lat,
     lng: p.lng,
     score: p.visibilityScore,
     kind: practiceKind(p),
-    detail: `${KIND_TYPE_LABEL[practiceKind(p)]} · score ${scoreText(p.visibilityScore)} · ${ratingText(p)}`,
+    detail: `${KIND_TYPE_LABEL[practiceKind(p)]} Â· score ${scoreText(p.visibilityScore)} Â· ${ratingText(p)}`,
     href: profile(p),
   }));
   const bounds = points.length ? trimmedBounds(points) : ([[0, 0], [0, 0]] as [[number, number], [number, number]]);
@@ -70,7 +70,7 @@ export default function MarketPage({ view }: { view: MarketView }) {
   const rankRows: RankRow[] = view.practices
     .filter((p) => Object.values(p.mapRankBySearch).some((r) => r <= 20) || Object.keys(p.organicRankBySearch).length > 0)
     .slice(0, 40)
-    .map((p) => ({ slug: p.slug, name: p.name, href: profile(p), score: p.visibilityScore, map: p.mapRankBySearch, organic: p.organicRankBySearch }));
+    .map((p) => ({ slug: p.slug, name: displayName(p.name), href: profile(p), score: p.visibilityScore, map: p.mapRankBySearch, organic: p.organicRankBySearch }));
 
   /* --- 05 website race --- */
   const dirCounts = view.directories
@@ -89,7 +89,7 @@ export default function MarketPage({ view }: { view: MarketView }) {
   /* --- 07 directory --- */
   const directoryRows: DirectoryRow[] = view.practices.map((p) => ({
     slug: p.slug,
-    name: p.name,
+    name: displayName(p.name),
     href: profile(p),
     location: p.address ?? p.city ?? city.name,
     rating: p.rating,
@@ -110,7 +110,7 @@ export default function MarketPage({ view }: { view: MarketView }) {
     itemListElement: top10.map((p, i) => ({
       '@type': 'ListItem',
       position: i + 1,
-      name: p.name,
+      name: displayName(p.name),
       url: absUrl(routes.therapyIndex.practice(state.slug, city.slug, p.slug)),
     })),
   };
@@ -199,8 +199,8 @@ export default function MarketPage({ view }: { view: MarketView }) {
                     <li key={p.slug} className={m.topItem}>
                       <span className={m.topRank}>{String(i + 1).padStart(2, '0')}</span>
                       <span className={m.topName}>
-                        {href ? <Link href={href}>{p.name}</Link> : p.name}
-                        <span className={m.topSub}>{[p.city, ratingText(p)].filter(Boolean).join(' · ')}</span>
+                        {href ? <Link href={href}>{displayName(p.name)}</Link> : displayName(p.name)}
+                        <span className={m.topSub}>{[p.city, ratingText(p)].filter(Boolean).join(' Â· ')}</span>
                       </span>
                       <span className={m.score}>{p.visibilityScore}</span>
                     </li>
@@ -235,7 +235,7 @@ export default function MarketPage({ view }: { view: MarketView }) {
       </section>
 
       {/* 03 map pack */}
-      <section id="map-pack" className={`${ti.section}`}>
+      <section id="map-pack" className={`${ti.section} ${ti.bandCream}`}>
         <div className={ti.frame}>
           <SectionHead
             n="03"
@@ -249,7 +249,7 @@ export default function MarketPage({ view }: { view: MarketView }) {
               const fromPack = pack.length > 0;
               const entries = fromPack
                 ? pack.map((e) => ({ position: e.position, name: e.title, practice: e.practiceSlug ? bySlug.get(e.practiceSlug) : undefined, rating: e.rating, reviews: e.reviewCount }))
-                : mapTopThree(view, k).map((p) => ({ position: p.mapRankBySearch[k], name: p.name, practice: p, rating: p.rating, reviews: p.reviewCount }));
+                : mapTopThree(view, k).map((p) => ({ position: p.mapRankBySearch[k], name: displayName(p.name), practice: p, rating: p.rating, reviews: p.reviewCount }));
               return (
                 <div key={k} className={m.pack}>
                   <h3 className={m.packTitle}>
@@ -295,7 +295,7 @@ export default function MarketPage({ view }: { view: MarketView }) {
       </section>
 
       {/* 05 website race */}
-      <section id="website-race" className={`${ti.section}`}>
+      <section id="website-race" className={`${ti.section} ${ti.bandTint}`}>
         <div className={ti.frame}>
           <SectionHead n="05" label="the website race" title="Who takes the first page of Google" wide />
           <div className={m.headline}>
@@ -329,7 +329,7 @@ export default function MarketPage({ view }: { view: MarketView }) {
                               <span className={`${ti.tag} ${kind.className}`}>{kind.text}</span>
                               <span className={m.raceDomain}>
                                 {internal ? (
-                                  <Link href={internal}>{practice?.name ?? e.domain}</Link>
+                                  <Link href={internal}>{practice ? displayName(practice.name) : e.domain}</Link>
                                 ) : e.kind === 'local-no-map' ? (
                                   <a href={e.url} target="_blank" rel="noopener">{e.domain}</a>
                                 ) : (
@@ -350,7 +350,7 @@ export default function MarketPage({ view }: { view: MarketView }) {
       </section>
 
       {/* 06 AI assistants */}
-      <section id="ai" className={`${ti.section}`}>
+      <section id="ai" className={`${ti.section} ${ti.bandCream}`}>
         <div className={ti.frame}>
           <SectionHead
             n="06"
@@ -383,7 +383,7 @@ export default function MarketPage({ view }: { view: MarketView }) {
                         const href = profile(p);
                         return (
                           <tr key={p.slug}>
-                            <td>{href ? <Link href={href}>{p.name}</Link> : p.name}</td>
+                            <td>{href ? <Link href={href}>{displayName(p.name)}</Link> : displayName(p.name)}</td>
                             <td className={ti.num}>{p.aiMentions.chatgpt}</td>
                             <td className={ti.num}>{p.aiMentions.claude}</td>
                           </tr>
@@ -433,7 +433,7 @@ export default function MarketPage({ view }: { view: MarketView }) {
       </section>
 
       {/* 08 call to action */}
-      <section id="next" className={`${ti.section} ${ti.band}`}>
+      <section id="next" className={`${ti.section} ${ti.bandTint}`}>
         <div className={ti.frame}>
           <div className={m.cta}>
 <SectionLabel n="08">next step</SectionLabel>

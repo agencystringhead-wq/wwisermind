@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import { routes } from '@/lib/routes';
 import { LOW_VISIBILITY_BELOW } from '@/lib/therapyindex/config';
-import { bestMapRank, cleanUrl, mapsUrl, practiceLabels, scoreText, searchLabel, type MarketView } from '@/lib/therapyindex/data';
+import { bestMapRank, cleanUrl, displayName, mapsUrl, practiceLabels, scoreText, searchLabel, type MarketView } from '@/lib/therapyindex/data';
 import { MIN_REVIEWS_FOR_RANKING } from '@/lib/therapyindex/markets';
 import type { Practice } from '@/lib/therapyindex/types';
 import { Disclaimer, SectionHead, SectionLabel, TiButton } from './Primitives';
@@ -40,7 +40,7 @@ export default function PracticePage({ view, practice: p }: { view: MarketView; 
           { label: 'Home', href: routes.home },
           { label: 'Therapy Index', href: routes.therapyIndex.hub },
           { label: city.name, href: view.path },
-          { label: p.name, href: routes.therapyIndex.practice(state.slug, city.slug, p.slug) },
+          { label: displayName(p.name), href: routes.therapyIndex.practice(state.slug, city.slug, p.slug) },
         ]}
       />
 
@@ -48,7 +48,8 @@ export default function PracticePage({ view, practice: p }: { view: MarketView; 
         <div className={ti.frame}>
           <div className={m.topBody}>
             <SectionLabel n="TI">{city.name} profile</SectionLabel>
-            <h1 className={m.h1} style={{ maxWidth: '24ch' }}>{p.name}</h1>
+            <h1 className={m.h1} style={{ maxWidth: '24ch' }}>{displayName(p.name)}</h1>
+            {displayName(p.name) !== p.name ? <p className={m.fullName}>{p.name}</p> : null}
             <p className={m.dek}>
               {[p.category, location].filter(Boolean).join(' · ')}
             </p>
@@ -187,7 +188,7 @@ export default function PracticePage({ view, practice: p }: { view: MarketView; 
         </div>
       </section>
 
-      <section id="next" className={`${ti.section} ${ti.band}`}>
+      <section id="next" className={`${ti.section} ${ti.bandTint}`}>
         <div className={ti.frame}>
           <div className={m.cta}>
 <SectionLabel n="06">is this you?</SectionLabel>

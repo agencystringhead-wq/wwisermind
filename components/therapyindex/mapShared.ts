@@ -14,6 +14,6 @@ export type MapPoint = {
 export const KIND_COLOUR: Record<MapPoint['kind'], string> = {
   practice: '#146ef5',
   chain: '#b8860b',
-  medical: '#b4443f',
-  nonprofit: '#2f7d5b',
+  medical: '#e8553b',
+  nonprofit: '#0a9a86',
 };

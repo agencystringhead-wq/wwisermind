@@ -3,7 +3,12 @@
 
 /* ---- page header ----------------------------------------------------------------------------------- */
 
+/* every page header sits on a soft wash of the brand colours */
 .top {
+  background:
+    radial-gradient(60% 120% at 10% 0%, rgba(20, 110, 245, 0.11) 0%, transparent 60%),
+    radial-gradient(50% 110% at 94% 8%, rgba(10, 154, 134, 0.1) 0%, transparent 60%),
+    #ffffff;
   padding-block: clamp(40px, 5vw, 80px) clamp(32px, 4vw, 56px);
 }
 
@@ -18,6 +23,12 @@
   line-height: 1.06;
   letter-spacing: -0.04em;
   max-width: 22ch;
+}
+
+.fullName {
+  margin-top: -10px;
+  font-size: 15px;
+  color: var(--ti-muted);
 }
 
 .dek {
@@ -137,6 +148,14 @@
   color: var(--ti-accent);
 }
 
+.wwhhItem:nth-child(2) { background: var(--ti-teal-soft); }
+.wwhhItem:nth-child(2) h3 { color: var(--ti-teal); }
+.wwhhItem:nth-child(3) { background: var(--ti-coral-soft); }
+.wwhhItem:nth-child(3) h3 { color: var(--ti-coral); }
+.wwhhItem:nth-child(4) { background: var(--ti-violet-soft); }
+.wwhhItem:nth-child(4) h3 { color: var(--ti-violet); }
+.wwhhItem:nth-child(1) { background: var(--ti-tint); }
+
 .wwhhItem p {
   font-size: 15px;
   color: var(--ti-muted);
@@ -171,6 +190,18 @@
 .boxTitle {
   margin-bottom: 14px;
   font-size: 18px;
+}
+
+.pack,
+.race,
+.walk {
+  transition: translate 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.pack:hover,
+.race:hover {
+  translate: 0 -3px;
+  box-shadow: 0 16px 38px rgba(20, 110, 245, 0.15);
 }
 
 .snap {
@@ -524,7 +555,7 @@
   line-height: 0.9;
   font-weight: var(--ti-fw-heading);
   letter-spacing: -0.05em;
-  color: var(--ti-accent);
+  color: var(--ti-coral);
   font-variant-numeric: tabular-nums;
 }
 
@@ -606,6 +637,7 @@
 }
 
 .aiStat strong {
+  color: var(--ti-teal);
   font-size: clamp(30px, 4vw, 44px);
   line-height: 1;
   letter-spacing: -0.04em;
@@ -749,6 +781,7 @@
 }
 
 .fact strong {
+  color: var(--ti-accent);
   font-size: clamp(28px, 3.4vw, 40px);
   line-height: 1;
   letter-spacing: -0.04em;
