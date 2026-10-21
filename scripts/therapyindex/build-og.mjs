@@ -35,13 +35,14 @@ const cards = [
   { file: 'profile', title: 'Practice profile', sub: 'Google Maps, Google search and AI visibility' },
 ];
 
-/** Light style, as on the site: white ground, a soft grey band along the foot, black title, brand-blue wordmark. No imagery. */
+/** Light style, as on the site: white ground with soft blue, teal and peach glows, a pale band along the foot, black title. No imagery. */
 const html = (card) => `<!doctype html><html><head><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&family=JetBrains+Mono&display=block" rel="stylesheet">
 <style>
   * { margin: 0; box-sizing: border-box; }
   body { width: 1200px; height: 630px; position: relative; overflow: hidden; background: #ffffff; font-family: Inter, 'Segoe UI', Arial, sans-serif; color: #0c0c0c; }
-  .band { position: absolute; left: 0; right: 0; bottom: 0; height: 150px; background: #f5f5f5; }
+  .glow { position: absolute; inset: 0; background: radial-gradient(520px 420px at 92% 8%, rgba(20,110,245,0.22), transparent 70%), radial-gradient(460px 380px at 70% 100%, rgba(10,154,134,0.18), transparent 70%), radial-gradient(420px 320px at 0% 0%, rgba(255,190,160,0.22), transparent 70%); }
+  .band { position: absolute; left: 0; right: 0; bottom: 0; height: 150px; background: rgba(245,245,245,0.7); }
   .wrap { position: absolute; inset: 0; padding: 64px 72px; display: flex; flex-direction: column; justify-content: space-between; }
   .brand { display: flex; align-items: baseline; gap: 14px; }
   .brand b { font-size: 34px; font-weight: 600; letter-spacing: -0.03em; }
@@ -51,6 +52,7 @@ const html = (card) => `<!doctype html><html><head><meta charset="utf-8">
   .foot { display: flex; justify-content: space-between; align-items: center; font-size: 24px; color: #5a5a5a; }
   .foot i { font-style: normal; color: #146ef5; font-weight: 600; }
 </style></head><body>
+<div class="glow"></div>
 <div class="band"></div>
 <div class="wrap">
   <div class="brand"><b>Therapy Index</b><span>by wwisermind</span></div>
