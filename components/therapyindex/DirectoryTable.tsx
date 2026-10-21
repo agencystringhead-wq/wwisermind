@@ -73,8 +73,8 @@ export default function DirectoryTable({ rows }: { rows: DirectoryRow[] }) {
         <table className={`${ti.table} ${styles.dirTable}`}>
           <thead>
             <tr>
-              {header('rank', 'Rank', true)}
               {header('name', 'Practice')}
+              {header('rank', 'Rank', true)}
               <th scope="col">Location</th>
               {header('reviews', 'Rating', true)}
               {header('map', 'Best map', true)}
@@ -85,8 +85,8 @@ export default function DirectoryTable({ rows }: { rows: DirectoryRow[] }) {
           <tbody>
             {sorted.map((row) => (
               <tr key={row.slug}>
-                <td className={ti.num}>{row.rank ?? '–'}</td>
                 <td className={styles.dirName}>{row.href ? <Link href={row.href}>{row.name}</Link> : row.name}</td>
+                <td className={ti.num}>{row.rank ?? '–'}</td>
                 <td className={styles.dirLoc}>{row.location}</td>
                 <td className={ti.num}>{row.rating !== null ? `${row.rating} (${row.reviews})` : '–'}</td>
                 <td className={ti.num}>{row.mapRank !== null ? `#${row.mapRank}` : '–'}</td>

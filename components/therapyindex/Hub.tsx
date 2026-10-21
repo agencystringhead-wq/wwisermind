@@ -4,8 +4,7 @@ import CtaLink from '@/components/booking/CtaLink';
 import CountUp from '@/components/ui/CountUp';
 import Reveal from '@/components/ui/Reveal';
 import { routes } from '@/lib/routes';
-import { founder } from '@/lib/site';
-import { CONTACT_EMAIL, CONTACT_MAILTO, SEARCH_GROUPS, SOURCES } from '@/lib/therapyindex/config';
+import { CONTACT_EMAIL, CONTACT_MAILTO, FOUNDER_PHOTO, SEARCH_GROUPS, SOURCES } from '@/lib/therapyindex/config';
 import { getHubStats, getMarketViews, searchLabel, type MarketView } from '@/lib/therapyindex/data';
 import CityTabs, { type CityCase } from './CityTabs';
 import { Disclaimer, ReviewButton, SectionHead, SectionLabel, TiButton } from './Primitives';
@@ -186,7 +185,7 @@ export default function Hub() {
                 <SectionHead n="02" label="areas" title="What we measure" stacked />
                 <figure className={styles.quote}>
                   <div className={styles.quoteMeta}>
-                    <Image src={founder.portrait.src} alt="" width={32} height={32} className={styles.avatar} />
+                    <Image src={FOUNDER_PHOTO} alt="" width={32} height={32} className={styles.avatar} />
                     <span className={styles.quoteBy}>SrikaantH, founder</span>
                   </div>
                   <blockquote className={styles.quoteText}>We measure everyone the same way.</blockquote>
@@ -370,7 +369,7 @@ export default function Hub() {
                 <SectionHead n="08" label="why trust it" title="Why trust it" stacked />
                 <figure className={styles.quote}>
                   <div className={styles.quoteMeta}>
-                    <Image src={founder.portrait.src} alt="" width={32} height={32} className={styles.avatar} />
+                    <Image src={FOUNDER_PHOTO} alt="" width={32} height={32} className={styles.avatar} />
                     <span className={styles.quoteBy}>SrikaantH, founder</span>
                   </div>
                   <blockquote className={styles.quoteText}>No practice can pay to move up.</blockquote>

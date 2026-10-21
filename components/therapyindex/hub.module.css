@@ -897,3 +897,23 @@
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* ---- phones: 44px targets ---------------------------------------------------------------------------------------- */
+
+@media (max-width: 720px) {
+  .tab {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .planList a,
+  .closingMeta a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .planList {
+    gap: 0;
+  }
+}

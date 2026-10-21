@@ -509,3 +509,27 @@
 .link:hover {
   text-decoration-color: var(--ti-accent);
 }
+
+/* a table link is a 44px target on a phone: the row padding gives the room, the link claims it */
+@media (max-width: 720px) {
+  .table td a {
+    display: inline-block;
+    min-width: 44px;
+    padding-block: 14px;
+    margin-block: -14px;
+  }
+
+  .table td {
+    padding-block: 14px;
+  }
+}
+
+/* the site's breadcrumb row sits inside these pages: give its links a 44px target on a phone */
+@media (max-width: 720px) {
+  .root nav[aria-label='Breadcrumb'] a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    min-width: 44px;
+  }
+}

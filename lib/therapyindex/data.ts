@@ -1,5 +1,5 @@
 import { routes } from '@/lib/routes';
-import { LOW_VISIBILITY_BELOW } from './config';
+import { LOW_VISIBILITY_BELOW, PROFILE_INDEX_MIN_SCORE } from './config';
 import { MARKETS } from './markets';
 import { isRankEligible } from './score';
 import { getSnapshots } from './snapshots';
@@ -150,8 +150,18 @@ export function getMarketView(state: string, city: string): MarketView | undefin
 /** A practice gets a page of its own when it has a website or a score above zero. Directories never do. */
 export const hasProfile = (p: Practice) => !p.isDirectory && (!!p.website || p.visibilityScore > 0);
 
+/** Indexable when the score reaches PROFILE_INDEX_MIN_SCORE, or ChatGPT or Claude named the practice. */
+export const isProfileIndexable = (p: Practice) => p.visibilityScore >= PROFILE_INDEX_MIN_SCORE || p.aiMentions.chatgpt + p.aiMentions.claude > 0;
+
 export function practiceProfiles(): { state: string; city: string; practice: string }[] {
   return getMarketViews().flatMap((m) => m.practices.filter(hasProfile).map((p) => ({ state: m.state.slug, city: m.city.slug, practice: p.slug })));
+}
+
+/** The profiles that go in the sitemap (when INDEXABLE is on): the indexable ones. */
+export function indexableProfiles(): { state: string; city: string; practice: string }[] {
+  return getMarketViews().flatMap((m) =>
+    m.practices.filter((p) => hasProfile(p) && isProfileIndexable(p)).map((p) => ({ state: m.state.slug, city: m.city.slug, practice: p.slug })),
+  );
 }
 
 export type HubStats = {

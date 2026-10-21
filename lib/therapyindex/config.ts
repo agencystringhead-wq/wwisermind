@@ -10,6 +10,14 @@ import { footerMain, siteConfig } from '@/lib/site';
     a sitemap must not list a page that asks not to be indexed. Flip it to true on launch day. */
 export const INDEXABLE = false;
 
+/** When INDEXABLE is true, a practice profile is indexable only if its score is at least this, or it was named by ChatGPT or
+    Claude. Every other profile stays live and linked but is sent noindex and left out of the sitemap. The hub, the city reports
+    and the methodology page are always indexable when INDEXABLE is true. */
+export const PROFILE_INDEX_MIN_SCORE = 10;
+
+/** The founder's photo in the hub's quote bubbles. Replace the file at this path (square WebP, 256 x 256). */
+export const FOUNDER_PHOTO = '/images/therapyindex/srikaanth-founder.webp';
+
 /** The address on every disclaimer: the site's own contact email. */
 export const CONTACT_EMAIL: string = footerMain.contact.email.value;
 export const CONTACT_MAILTO = `mailto:${CONTACT_EMAIL}`;

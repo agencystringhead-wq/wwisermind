@@ -982,3 +982,105 @@
 .snapList {
   max-width: 640px;
 }
+
+/* ---- directory table: the practice name stays put while the rest scrolls sideways ---------------------------------- */
+
+.dirTable thead th:first-child,
+.dirTable td.dirName {
+  position: sticky;
+  left: 0;
+  background: var(--ti-surface);
+  border-right: 1px solid var(--ti-line);
+}
+
+.dirTable thead th:first-child {
+  z-index: 3;
+}
+
+.dirTable td.dirName {
+  z-index: 1;
+}
+
+.dirTable tbody tr:hover td.dirName {
+  background: #faf8f4;
+}
+
+/* ---- phones: every control is at least 44px, and tables scroll inside their container ----------------------------- */
+
+@media (max-width: 720px) {
+  .tocLink {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .toggleBtn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* rank grid: 44px rows, the practice name fills the row */
+  .rankTable tbody th,
+  .rankTable tbody td {
+    height: 44px;
+    padding-block: 0;
+  }
+
+  .rankTable .stickyName {
+    max-width: 11rem;
+    min-width: 8.5rem;
+  }
+
+  .rankTable tbody .stickyName a {
+    display: block;
+    line-height: 44px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* directory table */
+  .dirTable th button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .dirTable td {
+    padding-block: 14px;
+  }
+
+  .dirName {
+    min-width: 8.5rem;
+    max-width: 10.5rem;
+  }
+
+  .dirName a {
+    display: block;
+    padding-block: 4px;
+  }
+
+  /* lists: each row is a full 44px target; the link's hit area covers the whole row */
+  .packList,
+  .raceList {
+    gap: 0;
+  }
+
+  .packItem,
+  .raceItem,
+  .topItem {
+    padding-block: 14px;
+    min-height: 44px;
+  }
+
+  .packItem a,
+  .raceItem a,
+  .topName a {
+    display: inline-block;
+    padding-block: 14px;
+    margin-block: -14px;
+  }
+
+  .pack,
+  .race {
+    gap: 4px;
+  }
+}
