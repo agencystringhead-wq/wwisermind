@@ -49,10 +49,11 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .mesh span { will-change: transform; }
-  .blobBlue { animation: drift1 26s ease-in-out infinite alternate; }
-  .blobTeal { animation: drift2 32s ease-in-out infinite alternate; }
-  .blobViolet { animation: drift3 30s ease-in-out infinite alternate; }
-  .blobPeach { animation: drift2 36s ease-in-out infinite alternate-reverse; }
+  /* The drift starts after the page has settled: a backdrop that moves from the first frame keeps a page-load recording from ever looking finished. */
+  .blobBlue { animation: drift1 26s ease-in-out 6s infinite alternate; }
+  .blobTeal { animation: drift2 32s ease-in-out 6s infinite alternate; }
+  .blobViolet { animation: drift3 30s ease-in-out 6s infinite alternate; }
+  .blobPeach { animation: drift2 36s ease-in-out 6s infinite alternate-reverse; }
 }
 
 @keyframes drift1 { to { transform: translate3d(12vw, 8vh, 0) scale(1.15); } }

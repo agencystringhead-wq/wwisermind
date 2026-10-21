@@ -36,7 +36,7 @@ export default function HeroArt() {
         <span className={styles.blobPeach} />
       </div>
       <div ref={art} className={styles.heroShapes}>
-        <Image src="/images/therapyindex/hero.webp" alt="" width={1300} height={958} priority fetchPriority="high" sizes="(max-width: 900px) 90vw, 760px" />
+        <Image src="/images/therapyindex/hero.webp" alt="" width={1000} height={737} priority fetchPriority="high" sizes="(max-width: 900px) 90vw, 760px" />
       </div>
     </div>
   );

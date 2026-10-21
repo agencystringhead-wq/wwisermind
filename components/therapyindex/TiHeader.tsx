@@ -19,17 +19,17 @@ export default function TiHeader({ cities }: { cities: HeaderCity[] }) {
     <header className={styles.header}>
       <div className={styles.bar}>
         <div className={styles.brand}>
-          <Link href={routes.therapyIndex.hub} className={styles.wordmark}>
+          <Link href={routes.therapyIndex.hub} prefetch={false} className={styles.wordmark}>
             Therapy Index
           </Link>
-          <Link href={routes.home} className={styles.by}>
+          <Link href={routes.home} prefetch={false} className={styles.by}>
             by wwisermind
           </Link>
         </div>
 
         <nav className={styles.cities} aria-label="Cities">
           {cities.map((c) => (
-            <Link key={c.slug} href={c.href} className={styles.city} aria-current={c.slug === current ? 'page' : undefined}>
+            <Link key={c.slug} href={c.href} prefetch={false} className={styles.city} aria-current={c.slug === current ? 'page' : undefined}>
               {c.name}
             </Link>
           ))}
