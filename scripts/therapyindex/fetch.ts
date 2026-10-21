@@ -4,7 +4,7 @@ import {
 } from '../../lib/therapyindex/markets';
 import { directoryName, normaliseDomain } from '../../lib/therapyindex/directories';
 import { aiUnitCost, dfsGet, dfsPost, ENDPOINTS, pool, PREVIOUS_AI_MODELS, type Call } from './dfs';
-import { aiKey, buildResult, fillPrompt, organicQuery, writeResult, type BuildOptions } from './normalise';
+import { aiKey, buildResult, fillPrompt, mapsKey, organicQuery, writeResult, type BuildOptions } from './normalise';
 import { RawStore, type Kind } from './store';
 
 /* Usage:
@@ -13,6 +13,7 @@ import { RawStore, type Kind } from './store';
      add --smoke for the smallest live run (see SMOKE in markets.ts): first market only, 2 keywords,
        1 AI prompt per model, 1 profile lookup, Lighthouse on the first 3 sites. Output goes to
        data/therapyindex/smoke/ so it never overwrites a real snapshot.
+     --only maps[,organic,ai,...] fetches just those call kinds (live run: skips profile lookups and Lighthouse, then rebuilds the snapshot).
      --check-locations verifies each market's dfsLocationName against DataForSEO's locations list (free).
      --models lists the model names the two AI endpoints currently accept (free, needs credentials).
    Cached responses (data/therapyindex/raw/<market>/<date>/) are never requested again. */
@@ -48,6 +49,9 @@ if (!markets.length) {
 const plan = smoke
   ? { keywords: SMOKE.keywords, promptIndexes: SMOKE.promptIndexes, lighthouseMax: SMOKE.lighthousePractices, gmbMax: SMOKE.gmbLookups, gmbForce: true }
   : { keywords: KEYWORDS, promptIndexes: AI_PROMPTS.map((_, i) => i), lighthouseMax: LIGHTHOUSE_MAX_PRACTICES, gmbMax: GMB_MAX_LOOKUPS, gmbForce: false };
+/** --only maps,organic,ai,gmb,lighthouse: restrict a run to those call kinds (names match kind prefixes; "ai" = both AI engines). */
+const only = opt('only')?.split(',').map((x) => x.trim()).filter(Boolean);
+const wanted = (kind: Kind) => !only || only.some((o) => kind === o || kind.startsWith(`${o}-`));
 const buildOpts: BuildOptions = { keywords: plan.keywords, promptIndexes: plan.promptIndexes };
 
 /** Assumed sizes for the calls that depend on earlier results, used only for the dry-run estimate. */
@@ -60,7 +64,7 @@ function phaseOneCalls(m: Market): Call[] {
   const calls: Call[] = [];
   for (const kw of plan.keywords) {
     const common = { keyword: kw, location_name: m.dfsLocationName, language_code: LANGUAGE_CODE };
-    calls.push({ kind: 'maps', key: kw, endpoint: ENDPOINTS.maps.path, label: `maps "${kw}"`, task: { ...common, depth: MAPS_DEPTH } });
+    calls.push({ kind: 'maps', key: mapsKey(kw), endpoint: ENDPOINTS.maps.path, label: `maps "${kw}"`, task: { ...common, depth: MAPS_DEPTH } });
     // Organic is searched as "<keyword> <city> <state>" with the market location also set.
     const query = organicQuery(kw, m);
     calls.push({ kind: 'organic', key: query, endpoint: ENDPOINTS.organic.path, label: `organic "${query}"`, task: { ...common, keyword: query, depth: ORGANIC_DEPTH, device: 'desktop' } });
@@ -208,13 +212,15 @@ async function main() {
     const tally = emptyTally();
     for (const m of markets) {
       const store = new RawStore(m.slug, date);
-      for (const c of phaseOneCalls(m)) {
+      for (const c of phaseOneCalls(m).filter((c) => wanted(c.kind))) {
         tally[c.kind].calls++;
         if (store.has(c.kind, c.key)) tally[c.kind].cached++;
       }
       // Phase two: real counts when phase one is already cached, else the assumptions.
-      if (plan.keywords.every((kw) => store.has('maps', kw) && store.has('organic', organicQuery(kw, m)))) {
-        for (const c of phaseTwoCalls(m, store)) {
+      if (only && !wanted('gmb') && !wanted('lighthouse')) {
+        // phase two not requested
+      } else if (plan.keywords.every((kw) => store.has('maps', mapsKey(kw)) && store.has('organic', organicQuery(kw, m)))) {
+        for (const c of phaseTwoCalls(m, store).filter((c) => wanted(c.kind))) {
           tally[c.kind].calls++;
           if (store.has(c.kind, c.key)) tally[c.kind].cached++;
         }
@@ -232,9 +238,11 @@ async function main() {
   for (const m of markets) {
     const store = new RawStore(m.slug, date);
     console.log(`\n${m.slug}: searches and AI answers`);
-    await runCalls(store, phaseOneCalls(m), spent);
-    console.log(`${m.slug}: profile lookups and Lighthouse`);
-    await runCalls(store, phaseTwoCalls(m, store), spent);
+    await runCalls(store, phaseOneCalls(m).filter((c) => wanted(c.kind)), spent);
+    if (!only || wanted('gmb') || wanted('lighthouse')) {
+      console.log(`${m.slug}: profile lookups and Lighthouse`);
+      await runCalls(store, phaseTwoCalls(m, store).filter((c) => wanted(c.kind)), spent);
+    }
     const files = writeResult(buildResult(m, date, store, buildOpts), smoke ? 'smoke' : '');
     console.log(`${m.slug}: wrote\n      ${files.join('\n      ')}`);
   }

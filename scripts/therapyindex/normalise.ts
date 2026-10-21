@@ -4,7 +4,7 @@ import path from 'node:path';
 import { isMentalHealthCategory } from '../../lib/therapyindex/categories';
 import { chainFor } from '../../lib/therapyindex/chains';
 import { classifyDomain, directoryName, normaliseDomain } from '../../lib/therapyindex/directories';
-import { AI_MODELS, AI_PROMPTS, KEYWORDS, MARKETS, ORGANIC_TOP_N, type Market } from '../../lib/therapyindex/markets';
+import { AI_MODELS, AI_PROMPTS, KEYWORDS, MAPS_DEPTH, MARKETS, ORGANIC_TOP_N, type Market } from '../../lib/therapyindex/markets';
 import { visibilityScores } from '../../lib/therapyindex/score';
 import type {
   AiOnlyMention, AiProvider, AiReviewEntry, ExcludedMapsResult, LocalPackEntry, OrganicTopEntry, Practice, ReviewEntry, Snapshot,
@@ -25,6 +25,11 @@ export function fillPrompt(prompt: string, market: Market): string {
 /** The organic query: keyword plus city and state code, with the market location also set on the request. */
 export function organicQuery(keyword: string, market: Market): string {
   return `${keyword} ${market.city} ${market.stateAbbr}`;
+}
+
+/** Cache key for a Maps search. Includes the depth so a deeper (or shallower) search never reuses another depth's data. */
+export function mapsKey(keyword: string, depth: number = MAPS_DEPTH): string {
+  return `${keyword} depth${depth}`;
 }
 
 /** Cache key for an AI answer. Includes the prompt text and model so changing either never reuses a stale answer. */
@@ -67,7 +72,7 @@ export function mapsPractices(raw: RawReader, keywords: string[]): { drafts: Dra
   const byCid = new Map<string, Draft>();
   const byDomain = new Map<string, Draft>();
   for (const kw of keywords) {
-    for (const item of resultItems(raw.read('maps', kw))) {
+    for (const item of resultItems(raw.read('maps', mapsKey(kw)))) {
       if (item.type !== 'maps_search' || !item.title) continue;
       const rank: number = item.rank_group;
       const categories: string[] = [item.category, ...(item.additional_categories ?? [])].filter(Boolean);

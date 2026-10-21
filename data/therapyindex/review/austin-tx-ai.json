@@ -12,7 +12,10 @@
       "https://www.gracetherapyaustin.com/?utm_source=openai"
     ],
     "matchedPractices": [
-      "Grace Therapy and Wellness, PLLC - Downtown Location One"
+      "Grace Therapy and Wellness, PLLC - Downtown Location One",
+      "Therapy Austin - Central Austin",
+      "Just Mind Counseling",
+      "Austin Counseling and Trauma Specialists"
     ],
     "extractedNames": [
       "Austin Center for CBT",
@@ -36,7 +39,10 @@
       "https://justmind.org/anxiety-counseling/?utm_source=openai",
       "https://www.deannagraves.com/?utm_source=openai"
     ],
-    "matchedPractices": [],
+    "matchedPractices": [
+      "Just Mind Counseling",
+      "Anxiety Treatment Center of Austin"
+    ],
     "extractedNames": [
       "Austin Center for CBT",
       "Dr. Tamara Bryan",
@@ -62,9 +68,12 @@
     ],
     "matchedPractices": [
       "Relationship Vitality Center",
+      "Aracely Cummings, LCSW - Bilingual Therapist",
       "Liana Mauro, LPC – Somatic & EMDR Therapist",
       "Austin STRONG: Relationship Building Center",
-      "Horseshoe Counseling"
+      "Mind Waves PLLC",
+      "Horseshoe Counseling",
+      "Ashley Genty Counseling"
     ],
     "extractedNames": [
       "Westlake Couples Counseling, PLLC",
@@ -84,8 +93,10 @@
       "https://theaustinpulse.com/post/top-therapists-counselors-austin-tx-guide"
     ],
     "matchedPractices": [
+      "Bloom Therapy",
       "Carlisle Collective",
-      "Bloom Therapy"
+      "Just Mind Counseling",
+      "Westlake Psychotherapy of Austin, PLLC"
     ],
     "extractedNames": [
       "Just Mind Counseling",
@@ -106,7 +117,11 @@
       "https://www.therapyden.com/therapists/us/tx/austin/anxiety"
     ],
     "matchedPractices": [
-      "Bloom Therapy"
+      "Bloom Therapy",
+      "Just Mind Counseling",
+      "Counseling Austin",
+      "Anxiety Treatment Center of Austin",
+      "Racine Anxiety"
     ],
     "extractedNames": [
       "Just Mind Counseling",
@@ -133,7 +148,11 @@
       "https://www.psychologytoday.com/us/therapists/tx/austin?category=couples-counseling"
     ],
     "matchedPractices": [
-      "Bloom Therapy"
+      "Bloom Therapy",
+      "Austin Family Counseling",
+      "Just Mind Counseling",
+      "Relationship Counseling Center of Austin",
+      "Thriveworks"
     ],
     "extractedNames": [
       "Just Mind Counseling",

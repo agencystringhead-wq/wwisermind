@@ -47,6 +47,438 @@
     ]
   },
   {
+    "title": "Sara E. Sanford, OTR",
+    "category": "Occupational therapist",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 26
+      }
+    ]
+  },
+  {
+    "title": "The Training Room",
+    "category": "Physical therapy clinic",
+    "additionalCategories": [
+      "Massage therapist",
+      "Medical group",
+      "Physical therapist"
+    ],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 30
+      }
+    ]
+  },
+  {
+    "title": "Anthony Winn",
+    "category": "Physical therapist",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 32
+      }
+    ]
+  },
+  {
+    "title": "Oak Haven Massage",
+    "category": "Massage therapist",
+    "additionalCategories": [
+      "Aromatherapy service",
+      "Day spa",
+      "Lymph drainage therapist",
+      "Massage spa",
+      "Reflexologist",
+      "Sauna",
+      "Sports massage therapist",
+      "Thai massage therapist"
+    ],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 47
+      }
+    ]
+  },
+  {
+    "title": "Riverstone Massage Therapy",
+    "category": "Massage therapist",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 52
+      }
+    ]
+  },
+  {
+    "title": "Form + Function Massage",
+    "category": "Sports massage therapist",
+    "additionalCategories": [
+      "Massage spa",
+      "Massage therapist"
+    ],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 57
+      }
+    ]
+  },
+  {
+    "title": "ONYX Wellness & Massage Therapy",
+    "category": "Massage therapist",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 70
+      }
+    ]
+  },
+  {
+    "title": "Ruth Shrader, LMT",
+    "category": "Massage therapist",
+    "additionalCategories": [
+      "Doctor"
+    ],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 84
+      }
+    ]
+  },
+  {
+    "title": "Dynamic Sports Medicine - Austin Downtown",
+    "category": "Chiropractor",
+    "additionalCategories": [
+      "Dietitian",
+      "Nutritionist",
+      "Sports massage therapist",
+      "Sports medicine clinic",
+      "Wellness center"
+    ],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 86
+      }
+    ]
+  },
+  {
+    "title": "Origin Physical Therapy",
+    "category": "Physical therapy clinic",
+    "additionalCategories": [
+      "Childbirth class",
+      "Family planning center",
+      "Physical therapist",
+      "Reproductive health clinic"
+    ],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 96
+      }
+    ]
+  },
+  {
+    "title": "Mindful Career Austin: Career Coach | Student Academic Advisor | Career Counseling Austin",
+    "category": "Career guidance service",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "counselor",
+        "rank": 23
+      }
+    ]
+  },
+  {
+    "title": "Texas Counseling Association",
+    "category": "Association / Organization",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "counselor",
+        "rank": 35
+      }
+    ]
+  },
+  {
+    "title": "Comprehensive College Check",
+    "category": "Student career counseling office",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "counselor",
+        "rank": 39
+      }
+    ]
+  },
+  {
+    "title": "Texas State Board of Examiners of Professional Counselors",
+    "category": "State government office",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "counselor",
+        "rank": 62
+      }
+    ]
+  },
+  {
+    "title": "UT Austin Anxiety and Health Behaviors Lab (AHBL)",
+    "category": "Laboratory",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "anxiety therapist",
+        "rank": 44
+      },
+      {
+        "keyword": "depression therapist",
+        "rank": 100
+      }
+    ]
+  },
+  {
+    "title": "Angel Hands Trauma Resolution and Massage",
+    "category": "Psychomotor therapist",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "trauma therapist",
+        "rank": 56
+      }
+    ]
+  },
+  {
+    "title": "The Johnson Center for Child Health & Development",
+    "category": "Medical clinic",
+    "additionalCategories": [
+      "Community center",
+      "Educational testing service",
+      "Nutritionist",
+      "Research institute"
+    ],
+    "searches": [
+      {
+        "keyword": "child therapist",
+        "rank": 23
+      }
+    ]
+  },
+  {
+    "title": "KidTherapy Rehabilitation Center",
+    "category": "Physical therapy clinic",
+    "additionalCategories": [
+      "Occupational health service",
+      "Occupational therapist",
+      "Speech pathologist"
+    ],
+    "searches": [
+      {
+        "keyword": "child therapist",
+        "rank": 26
+      }
+    ]
+  },
+  {
+    "title": "Kidworks Therapy Services",
+    "category": "Medical clinic",
+    "additionalCategories": [
+      "Occupational health service",
+      "Physical therapist",
+      "Physical therapy clinic",
+      "Speech pathologist"
+    ],
+    "searches": [
+      {
+        "keyword": "child therapist",
+        "rank": 30
+      }
+    ]
+  },
+  {
+    "title": "Elevated Kids",
+    "category": "Applied behavior analysis therapist",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "child therapist",
+        "rank": 34
+      }
+    ]
+  },
+  {
+    "title": "Cole Pediatric Therapy",
+    "category": "Pediatric clinic",
+    "additionalCategories": [
+      "Occupational therapist",
+      "Physical therapist",
+      "Speech pathologist"
+    ],
+    "searches": [
+      {
+        "keyword": "child therapist",
+        "rank": 47
+      }
+    ]
+  },
+  {
+    "title": "Abby's Learning Center",
+    "category": "Applied behavior analysis therapist",
+    "additionalCategories": [
+      "Education center",
+      "Occupational therapist",
+      "Speech pathologist"
+    ],
+    "searches": [
+      {
+        "keyword": "child therapist",
+        "rank": 57
+      }
+    ]
+  },
+  {
+    "title": "Austin ABA Center - In Home ABA Therapy For Kids with Autism",
+    "category": "Applied behavior analysis therapist",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "child therapist",
+        "rank": 68
+      }
+    ]
+  },
+  {
+    "title": "Special Kids Care",
+    "category": "Home health care service",
+    "additionalCategories": [
+      "Nursing agency",
+      "Occupational therapist",
+      "Physical therapist",
+      "Speech pathologist"
+    ],
+    "searches": [
+      {
+        "keyword": "child therapist",
+        "rank": 70
+      }
+    ]
+  },
+  {
+    "title": "Spark Learning Preschool and ABA Therapy",
+    "category": "Applied behavior analysis therapist",
+    "additionalCategories": [
+      "Preschool",
+      "Special education school"
+    ],
+    "searches": [
+      {
+        "keyword": "child therapist",
+        "rank": 72
+      }
+    ]
+  },
+  {
+    "title": "Line Leader Pediatric Therapy",
+    "category": "Pediatric clinic",
+    "additionalCategories": [
+      "Occupational therapist",
+      "Physical therapy clinic",
+      "Speech pathologist"
+    ],
+    "searches": [
+      {
+        "keyword": "child therapist",
+        "rank": 74
+      }
+    ]
+  },
+  {
+    "title": "KidVentures Therapy Services",
+    "category": "Occupational therapist",
+    "additionalCategories": [
+      "Pediatric clinic",
+      "Speech pathologist"
+    ],
+    "searches": [
+      {
+        "keyword": "child therapist",
+        "rank": 75
+      }
+    ]
+  },
+  {
+    "title": "Year One Wellness: Pediatric Physical Therapy & Occupational Therapy",
+    "category": "Physical therapist",
+    "additionalCategories": [
+      "Lactation service",
+      "Occupational therapist"
+    ],
+    "searches": [
+      {
+        "keyword": "child therapist",
+        "rank": 84
+      }
+    ]
+  },
+  {
+    "title": "Wonder Pediatric Physical Therapy and Wellness",
+    "category": "Physical therapist",
+    "additionalCategories": [
+      "Pediatric clinic"
+    ],
+    "searches": [
+      {
+        "keyword": "child therapist",
+        "rank": 85
+      }
+    ]
+  },
+  {
+    "title": "RiverKids Pediatric Home Health",
+    "category": "Home health care service",
+    "additionalCategories": [
+      "Home help service agency",
+      "Occupational therapist",
+      "Physical therapist",
+      "Speech pathologist"
+    ],
+    "searches": [
+      {
+        "keyword": "child therapist",
+        "rank": 88
+      }
+    ]
+  },
+  {
+    "title": "Psychologists Examiners Board",
+    "category": "State government office",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "psychologist",
+        "rank": 25
+      }
+    ]
+  },
+  {
+    "title": "CLOUD 9",
+    "category": "Information services",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "psychologist",
+        "rank": 59
+      }
+    ]
+  },
+  {
     "title": "Christi Center",
     "category": "Non-profit organization",
     "additionalCategories": [
@@ -67,6 +499,63 @@
       {
         "keyword": "grief counseling",
         "rank": 19
+      }
+    ]
+  },
+  {
+    "title": "Aspire with Aliz | Breathwork & Transformation Coaching",
+    "category": "Wellness program",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "grief counseling",
+        "rank": 24
+      }
+    ]
+  },
+  {
+    "title": "Hospice Austin’s Christopher House",
+    "category": "Hospice",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "grief counseling",
+        "rank": 53
+      }
+    ]
+  },
+  {
+    "title": "Alex Negrete",
+    "category": "Hypnotherapy service",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "grief counseling",
+        "rank": 57
+      }
+    ]
+  },
+  {
+    "title": "Hospice Austin",
+    "category": "Hospice",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "grief counseling",
+        "rank": 86
+      }
+    ]
+  },
+  {
+    "title": "Lauren Johnston",
+    "category": "Life coach",
+    "additionalCategories": [
+      "Hypnotherapy service"
+    ],
+    "searches": [
+      {
+        "keyword": "grief counseling",
+        "rank": 93
       }
     ]
   }

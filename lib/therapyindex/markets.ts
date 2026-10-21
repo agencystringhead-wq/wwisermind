@@ -80,8 +80,9 @@ export const AI_PROMPTS: string[] = [
 /* ---- Data collection settings ---- */
 
 export const LANGUAGE_CODE = 'en';
-/** How many Maps results to read per keyword. One Maps SERP bills per 100 results, so 20 costs the same as 100. */
-export const MAPS_DEPTH = 20;
+/** How many Maps results to read per keyword. One Maps SERP bills per 100 results, so 100 costs the same as 20.
+    (Google may return fewer than this.) The cache key includes the depth, so changing it never reuses older data. */
+export const MAPS_DEPTH = 100;
 /** Organic results requested per keyword (one billed SERP = 10 results). */
 export const ORGANIC_DEPTH = 10;
 /** How many organic results per search are kept in organicTopBySearch. */
