@@ -151,27 +151,31 @@ export const freebies: Freebie[] = [
   },
   {
     slug: 'website-scorecard-for-therapists',
-    title: 'Website Scorecard',
+    title: 'website scorecard',
     shortDescription:
-      'Answer 12 quick questions and get a score for how well your website turns visitors into enquiries.',
+      'We scan your website, ask a few questions only you can answer, and give you a score with your top five fixes.',
     longDescription:
-      'Answer 12 quick questions and get a score for how well your website turns visitors into enquiries.',
-    typeLabel: 'Quiz',
-    type: 'quiz',
+      'We scan your website, ask a few questions only you can answer, and give you a score, five category scores and a short list of fixes in order of impact.',
+    typeLabel: 'Free tool',
+    type: 'tool',
     gated: false,
-    /* The quiz does not exist yet. */
-    status: 'comingSoon',
+    /* Live: the page is its own tool (components/scorecard), not the shared freebie template. */
+    status: 'live',
     assetUrl: '',
-    assetLabel: 'Take the quiz',
+    assetLabel: 'Start the scorecard',
     relatedService: {
-      text: 'Want a website that turns visitors into enquiries?',
+      text: 'Want a website that turns visitors into inquiries?',
       label: 'See One-Week Website pricing',
       href: routes.pricing.oneWeekWebsite,
     },
     icon: 'clipboard',
     previewImage: null,
     whatsInside: [],
-    pageNote: 'This quiz is not ready yet. Leave your email and we’ll let you know when it is.',
+    seo: {
+      title: 'Free Website Scorecard for Therapists | wwisermind',
+      description:
+        'A free scan of your therapy website plus a short quiz. Get a score out of 100, five category scores and your top five fixes in about 3 minutes.',
+    },
     faq: [],
   },
   {

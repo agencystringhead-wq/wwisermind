@@ -124,3 +124,7 @@
 /explore/freebies/* /freebies/ 301
 /explore /blog/ 301
 /explore/ /blog/ 301
+
+# website scorecard: every private report (/r/<id>/) is served by the one static shell page, which
+# reads the id from the address and loads the report from /api/scorecard/result/<id>.
+/tools/website-scorecard-for-therapists/r/* /tools/website-scorecard-for-therapists/r/ 200

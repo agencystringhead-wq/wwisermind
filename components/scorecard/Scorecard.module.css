@@ -1,0 +1,594 @@
+/* website scorecard. Reads the Therapy Index tokens (--ti-*), which its header and footer share, so
+   the tool looks like the rest of the site. Nothing here animates on entrance. */
+
+.section {
+  composes: section from '../therapyindex/ti.module.css';
+}
+
+.band {
+  background: var(--ti-band);
+}
+
+.narrow {
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.eyebrow {
+  composes: eyebrow from '../therapyindex/ti.module.css';
+  margin: 0 0 14px;
+}
+
+.h1 {
+  margin: 0 0 18px;
+  font-size: var(--ti-h1);
+  line-height: var(--ti-h1-lh);
+  font-weight: var(--ti-fw-heading);
+  letter-spacing: var(--ti-tracking);
+  color: var(--ti-ink);
+}
+
+.h2 {
+  margin: 0 0 14px;
+  font-size: var(--ti-h2);
+  line-height: 1.15;
+  font-weight: var(--ti-fw-heading);
+  letter-spacing: var(--ti-tracking);
+  color: var(--ti-ink);
+}
+
+.h3 {
+  margin: 0 0 6px;
+  font-size: var(--ti-h3);
+  line-height: 1.25;
+  font-weight: 600;
+  color: var(--ti-ink);
+}
+
+.lede {
+  margin: 0 0 28px;
+  font-size: var(--ti-lead);
+  line-height: var(--ti-text-lh);
+  color: var(--ti-muted);
+  max-width: 62ch;
+}
+
+.small {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ti-muted);
+}
+
+/* ---- buttons ------------------------------------------------------------------------------- */
+
+.btn {
+  composes: btnDark from '../therapyindex/ti.module.css';
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+
+.btnAccent {
+  composes: btnAccent from '../therapyindex/ti.module.css';
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+
+.btnLight {
+  composes: btnLight from '../therapyindex/ti.module.css';
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+
+.btn:disabled,
+.btnAccent:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn:focus-visible,
+.btnAccent:focus-visible,
+.btnLight:focus-visible,
+.option:focus-visible,
+.input:focus-visible,
+.textLink:focus-visible {
+  outline: 3px solid var(--ti-accent);
+  outline-offset: 3px;
+}
+
+.textLink {
+  color: var(--ti-accent-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* ---- the url form ---------------------------------------------------------------------------- */
+
+.urlForm {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  max-width: 620px;
+}
+
+.urlField {
+  flex: 1 1 280px;
+  min-width: 0;
+}
+
+.label {
+  display: block;
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ti-ink);
+}
+
+.input {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 18px;
+  font: inherit;
+  font-size: 16px; /* 16px stops iOS zooming into the field */
+  color: var(--ti-ink);
+  background: var(--ti-card);
+  border: 1px solid var(--ti-line-strong);
+  border-radius: 999px;
+}
+
+.inputBox {
+  composes: input;
+  border-radius: 14px;
+}
+
+.error {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: #a12626;
+}
+
+.urlRow {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+/* ---- cards and lists ---------------------------------------------------------------------------- */
+
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--ti-card);
+  border: 1px solid var(--ti-line);
+  border-radius: var(--ti-radius);
+  box-shadow: var(--ti-shadow);
+  padding: var(--ti-card-pad);
+}
+
+.card p {
+  margin: 0;
+  color: var(--ti-muted);
+  line-height: 1.55;
+}
+
+.checkList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.checkList li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  line-height: 1.5;
+}
+
+/* ---- the scan --------------------------------------------------------------------------------- */
+
+.steps {
+  margin: 0 0 20px;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 17px;
+  color: var(--ti-muted);
+}
+
+.stepDone {
+  color: var(--ti-ink);
+}
+
+.dot {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--ti-line-strong);
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.dotDone {
+  background: var(--ti-accent);
+  border-color: var(--ti-accent);
+  color: #fff;
+}
+
+.dotWorking {
+  border-color: var(--ti-accent);
+  border-top-color: transparent;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dotWorking {
+    animation: spin 0.9s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.notice {
+  background: var(--ti-accent-soft);
+  border-radius: var(--ti-radius-sm);
+  padding: 16px 18px;
+  color: var(--ti-ink);
+  line-height: 1.55;
+  margin: 0 0 20px;
+}
+
+/* ---- the quiz --------------------------------------------------------------------------------- */
+
+.progress {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--ti-line);
+  overflow: hidden;
+  margin: 0 0 8px;
+}
+
+.progressBar {
+  display: block;
+  height: 100%;
+  background: var(--ti-accent);
+  border-radius: 999px;
+  transition: width 0.25s ease;
+}
+
+.progressText {
+  margin: 0 0 28px;
+  font-size: 14px;
+  color: var(--ti-muted);
+}
+
+.question {
+  margin: 0 0 8px;
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1.2;
+  font-weight: var(--ti-fw-heading);
+  letter-spacing: var(--ti-tracking);
+  outline: none;
+}
+
+.options {
+  display: grid;
+  gap: 10px;
+  margin: 24px 0;
+  border: 0;
+  padding: 0;
+}
+
+.option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  min-height: 56px;
+  padding: 14px 20px;
+  font: inherit;
+  font-size: 17px;
+  color: var(--ti-ink);
+  background: var(--ti-card);
+  border: 1px solid var(--ti-line-strong);
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.option:hover {
+  border-color: var(--ti-ink);
+}
+
+.optionOn {
+  border-color: var(--ti-accent);
+  background: var(--ti-accent-soft);
+  box-shadow: inset 0 0 0 1px var(--ti-accent);
+}
+
+/* ---- the email step ------------------------------------------------------------------------------ */
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 24px 0 18px;
+}
+
+.fieldWide {
+  grid-column: 1 / -1;
+}
+
+.honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.consent {
+  margin: 0 0 18px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ti-muted);
+}
+
+/* ---- the results ---------------------------------------------------------------------------------- */
+
+.scoreHead {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.ring {
+  position: relative;
+  width: 180px;
+  height: 180px;
+}
+
+.ring svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.ringNum {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+}
+
+.ringNum strong {
+  font-size: 52px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.ringNum span {
+  font-size: 14px;
+  color: var(--ti-muted);
+}
+
+.tier {
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: var(--ti-accent-soft);
+  color: var(--ti-accent-deep);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.cats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.catScore {
+  margin: 4px 0 10px;
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.catScore small {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--ti-muted);
+  letter-spacing: 0;
+}
+
+.bar {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--ti-line);
+  overflow: hidden;
+  margin: 0 0 12px;
+}
+
+.barFill {
+  display: block;
+  height: 100%;
+  background: var(--ti-accent);
+}
+
+.fixes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 16px;
+}
+
+.fix {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 16px;
+}
+
+.fixNum {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--ti-ink);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+}
+
+.fix p {
+  margin: 0 0 8px;
+  line-height: 1.55;
+}
+
+.why {
+  color: var(--ti-muted);
+}
+
+.checkGroup {
+  margin: 0 0 28px;
+}
+
+.checkTable {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--ti-line);
+}
+
+.checkRow {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--ti-line);
+  line-height: 1.5;
+}
+
+.mark {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.markFound {
+  background: var(--ti-accent);
+}
+
+.markNot {
+  background: #fff;
+  color: var(--ti-ink);
+  border: 2px solid var(--ti-ink);
+}
+
+.markUnknown {
+  background: var(--ti-line);
+  color: var(--ti-muted);
+}
+
+.rowLabel {
+  font-weight: 600;
+}
+
+.rowMeta {
+  color: var(--ti-muted);
+  font-size: 14px;
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--ti-ink);
+  color: #fff;
+  border-radius: var(--ti-radius);
+  padding: clamp(24px, 4vw, 40px);
+}
+
+.cta h2 {
+  margin: 0 0 8px;
+  font-size: clamp(24px, 3vw, 30px);
+  line-height: 1.15;
+  letter-spacing: var(--ti-tracking);
+  font-weight: 600;
+  color: #fff;
+}
+
+.cta p {
+  margin: 0;
+  color: #d8d8d8;
+  max-width: 52ch;
+  line-height: 1.55;
+}
+
+.ctaBtn {
+  composes: btnWhite from '../therapyindex/ti.module.css';
+}
+
+.stack > * + * {
+  margin-top: 40px;
+}
+
+@media (max-width: 760px) {
+  .grid3 {
+    grid-template-columns: 1fr;
+  }
+  .fields {
+    grid-template-columns: 1fr;
+  }
+  .scoreHead {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .ring {
+    width: 150px;
+    height: 150px;
+  }
+  .urlRow .btn,
+  .urlRow .btnAccent {
+    width: 100%;
+  }
+}

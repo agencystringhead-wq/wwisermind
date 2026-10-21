@@ -17,3 +17,9 @@ https://:version.wwisermind.pages.dev/*
 /widget/*
   Access-Control-Allow-Origin: *
   Cache-Control: public, max-age=3600
+
+# website scorecard reports are private: keep them out of search results and caches.
+/tools/website-scorecard-for-therapists/r/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: private, no-store
+  Referrer-Policy: no-referrer

@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "images": "node scripts/convert-images.mjs",
+    "scorecard:scan": "tsx scripts/scorecard/scan-cli.ts",
+    "scorecard:check": "tsx scripts/scorecard/check-rules.ts",
     "guide:pdf": "node scripts/guides/full-caseload-plan/build-pdf.mjs",
     "predev": "node scripts/build-crisis-data.mjs",
     "crisis:data": "node scripts/build-crisis-data.mjs",
