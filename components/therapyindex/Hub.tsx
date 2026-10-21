@@ -7,13 +7,14 @@ import { ChatIcon, ClipboardIcon, GlobeIcon, MapPinIcon, SearchCheckIcon, Speedo
 import { routes } from '@/lib/routes';
 import { CONTACT_EMAIL, CONTACT_MAILTO, FOUNDER_PHOTO, SEARCH_GROUPS, SOURCES } from '@/lib/therapyindex/config';
 import { displayName, getHubStats, getMarketViews, searchLabel } from '@/lib/therapyindex/data';
-import HeroArt from './HeroArt';
+import HeroSearch from './HeroSearch';
+import HeroVideo from './HeroVideo';
 import MarketsSection, { type MarketCardData } from './MarketsSection';
-import PracticeSearch from './PracticeSearch';
-import { Disclaimer, ReviewButton, SectionHead, SectionLabel, TiButton } from './Primitives';
+import { Disclaimer, ReviewButton, SectionHead, TiButton } from './Primitives';
 import Ring, { Bar } from './Ring';
 import TiFaq, { type FaqRow } from './TiFaq';
 import UsBase from './UsBase';
+import hero from './hero.module.css';
 import styles from './hub.module.css';
 import ti from './ti.module.css';
 
@@ -126,51 +127,24 @@ export default function Hub() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, '\\u003c') }} />
 
       {/* 01 intro */}
-      <section id="intro" className={`${ti.section} ${styles.hero}`}>
-        <HeroArt />
+      <section id="intro" className={hero.hero}>
         <div className={ti.frame}>
-          <div className={styles.heroBody}>
-            <div className={styles.rise} style={{ '--i': 0 } as React.CSSProperties}>
-              <SectionLabel n="01">intro</SectionLabel>
+          <div className={hero.inner}>
+            <div className={hero.text}>
+              <p className={hero.eyebrow}>Therapy Index / {cityNames.join(' · ')}</p>
+              <h1 className={hero.h1}>
+                <span>Every search,</span> <span>in full view.</span>
+              </h1>
+              <p className={hero.sub}>
+                {num(stats.practices)} practices. Google Maps, Google search and AI answers. Measured the same way, every month.
+              </p>
+              <div className={hero.actions}>
+                <HeroSearch />
+                <p className={hero.asOf}>data as of {stats.date}</p>
+              </div>
             </div>
-            <h1 className={`${styles.h1} ${styles.rise}`} style={{ '--i': 1 } as React.CSSProperties}>
-              Who therapy patients <span className={ti.gradText}>actually find</span> in {cities}
-            </h1>
-            <p className={`${styles.heroSub} ${styles.rise}`} style={{ '--i': 2 } as React.CSSProperties}>
-              Every practice measured the same way across Google Maps, Google search and AI answers.
-            </p>
-            <div className={`${styles.searchSlot} ${styles.rise}`} style={{ '--i': 3 } as React.CSSProperties}>
-              <PracticeSearch />
-            </div>
-            <div className={`${styles.heroLinks} ${styles.rise}`} style={{ '--i': 4 } as React.CSSProperties}>
-              <a href="#markets" className={ti.link}>See the cities</a>
-              <a href="#process" className={ti.link}>How it works</a>
-            </div>
+            <HeroVideo />
           </div>
-          <dl className={`${styles.stats} ${styles.rise}`} style={{ '--i': 5 } as React.CSSProperties}>
-            <div className={styles.stat}>
-              <dd className={`${styles.statValue} ${ti.nBlue}`}>
-                <CountUp to={stats.practices} commas />
-              </dd>
-              <dt className={styles.statLabel}>practices measured</dt>
-            </div>
-            <div className={styles.stat}>
-              <dd className={`${styles.statValue} ${ti.nCoral}`}>
-                <CountUp to={Math.round(stats.directoryShare)} />%
-              </dd>
-              <dt className={styles.statLabel}>of Google results held by directories</dt>
-            </div>
-            <div className={styles.stat}>
-              <dd className={`${styles.statValue} ${ti.nTeal}`}>
-                <CountUp to={stats.cities} />
-              </dd>
-              <dt className={styles.statLabel}>cities covered</dt>
-            </div>
-            <div className={styles.stat}>
-              <dd className={`${styles.statValue} ${styles.statDate}`}>{stats.date}</dd>
-              <dt className={styles.statLabel}>data date</dt>
-            </div>
-          </dl>
         </div>
       </section>
 

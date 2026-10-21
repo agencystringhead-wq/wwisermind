@@ -1,57 +1,183 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import CtaLink from '@/components/booking/CtaLink';
 import { routes } from '@/lib/routes';
 import styles from './header.module.css';
 
 export type HeaderCity = { slug: string; name: string; href: string };
 
-/** The Therapy Index's own header, used in place of the main site header on every /therapyindex page. */
+const FOCUSABLE = 'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+/** A thin ring: the Therapy Index mark. */
+function RingMark({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
+      <defs>
+        <linearGradient id="ti-ring" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#146ef5" />
+          <stop offset="1" stopColor="#112962" />
+        </linearGradient>
+      </defs>
+      <circle cx="12" cy="12" r="8" fill="none" stroke="url(#ti-ring)" strokeWidth="3.2" />
+    </svg>
+  );
+}
+
+/**
+ * The Therapy Index's own header, used in place of the main site header on every /therapyindex page: a floating pill with the
+ * wordmark on the left and one "Explore" button, which opens a full-screen menu (cities, how it works, getting help).
+ * The menu traps focus, closes on Escape or ×, and hands focus back to the button.
+ */
 export default function TiHeader({ cities }: { cities: HeaderCity[] }) {
-  const router = useRouter();
-  const pathname = usePathname() ?? '';
-  // /therapyindex/<state>/<city>/...: the city segment is the third one.
-  const current = cities.find((c) => pathname.startsWith(c.href))?.slug ?? '';
+  const [open, setOpen] = useState(false);
+  const button = useRef<HTMLButtonElement>(null);
+  const menu = useRef<HTMLDivElement>(null);
+  const close = useRef<HTMLButtonElement>(null);
+
+  const closeMenu = useCallback(() => {
+    setOpen(false);
+    button.current?.focus();
+  }, []);
+
+  // Lock page scroll and move focus into the menu while it is open.
+  useEffect(() => {
+    if (!open) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    close.current?.focus();
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [open]);
+
+  const onKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeMenu();
+      return;
+    }
+    if (event.key !== 'Tab' || !menu.current) return;
+    const items = Array.from(menu.current.querySelectorAll<HTMLElement>(FOCUSABLE)).filter((el) => el.offsetParent !== null);
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
+
+  const hub = routes.therapyIndex.hub;
+  const understand = [
+    { label: 'How it works', href: `${hub}#process` },
+    { label: 'Methodology', href: routes.therapyIndex.methodology },
+    { label: 'FAQ', href: `${hub}#faq` },
+  ];
 
   return (
     <header className={styles.header}>
-      <div className={styles.bar}>
-        <div className={styles.brand}>
-          <Link href={routes.therapyIndex.hub} prefetch={false} className={styles.wordmark}>
-            Therapy Index
-          </Link>
-          <Link href={routes.home} prefetch={false} className={styles.by}>
-            by wwisermind
-          </Link>
+      <div className={styles.pill}>
+        <Link href={hub} prefetch={false} className={styles.brand} aria-label="Therapy Index home">
+          <RingMark className={styles.ring} />
+          <span className={styles.wordmark}>therapy index.</span>
+        </Link>
+        <button
+          ref={button}
+          type="button"
+          className={styles.explore}
+          aria-haspopup="dialog"
+          aria-expanded={open}
+          aria-controls="ti-menu"
+          onClick={() => setOpen(true)}
+        >
+          Explore
+          <svg viewBox="0 0 16 16" className={styles.exploreIcon} aria-hidden="true">
+            <circle cx="3.5" cy="3.5" r="1.6" />
+            <circle cx="12.5" cy="3.5" r="1.6" />
+            <circle cx="3.5" cy="12.5" r="1.6" />
+            <circle cx="12.5" cy="12.5" r="1.6" />
+          </svg>
+        </button>
+      </div>
+
+      <div
+        id="ti-menu"
+        ref={menu}
+        className={`${styles.menu} ${open ? styles.menuOpen : ''}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Explore the Therapy Index"
+        aria-hidden={!open}
+        inert={!open}
+        onKeyDown={onKeyDown}
+      >
+        <div className={styles.menuTop}>
+          <span className={styles.brand}>
+            <RingMark className={styles.ring} />
+            <span className={styles.wordmark}>therapy index.</span>
+          </span>
+          <button ref={close} type="button" className={styles.close} onClick={closeMenu} aria-label="Close menu">
+            <span aria-hidden="true">×</span>
+          </button>
         </div>
 
-        <nav className={styles.cities} aria-label="Cities">
-          {cities.map((c) => (
-            <Link key={c.slug} href={c.href} prefetch={false} className={styles.city} aria-current={c.slug === current ? 'page' : undefined}>
-              {c.name}
-            </Link>
-          ))}
-        </nav>
-
-        <div className={styles.right}>
-          <label className={styles.select}>
-            <span className={styles.srOnly}>City</span>
-            <select value={current} onChange={(e) => e.target.value && router.push(cities.find((c) => c.slug === e.target.value)!.href)}>
-              <option value="">Cities</option>
+        <nav className={styles.columns} aria-label="Therapy Index">
+          <div className={styles.column}>
+            <h2 className={styles.colTitle}>
+              <span>01</span> / CITIES
+            </h2>
+            <ul>
               {cities.map((c) => (
-                <option key={c.slug} value={c.slug}>
-                  {c.name}
-                </option>
+                <li key={c.slug}>
+                  <Link href={c.href} prefetch={false} className={styles.link} onClick={() => setOpen(false)}>
+                    {c.name}
+                  </Link>
+                </li>
               ))}
-            </select>
-          </label>
-          <CtaLink href={routes.contactBook} className={styles.cta}>
-            <span className={styles.ctaLong}>Book a free review</span>
-            <span className={styles.ctaShort}>Free review</span>
-          </CtaLink>
-        </div>
+            </ul>
+          </div>
+          <div className={styles.column}>
+            <h2 className={styles.colTitle}>
+              <span>02</span> / UNDERSTAND
+            </h2>
+            <ul>
+              {understand.map((item) => (
+                <li key={item.label}>
+                  <Link href={item.href} prefetch={false} className={styles.link} onClick={() => setOpen(false)}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className={styles.column}>
+            <h2 className={styles.colTitle}>
+              <span>03</span> / GET HELP
+            </h2>
+            <ul>
+              <li>
+                <CtaLink href={routes.contactBook} className={styles.link} onClick={() => setOpen(false)}>
+                  Book a free review
+                </CtaLink>
+              </li>
+              <li>
+                <Link href={routes.pricing.localSeo} prefetch={false} className={styles.link} onClick={() => setOpen(false)}>
+                  Local SEO
+                </Link>
+              </li>
+              <li>
+                <Link href={routes.home} prefetch={false} className={styles.link} onClick={() => setOpen(false)}>
+                  wwisermind.com
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
       </div>
     </header>
   );

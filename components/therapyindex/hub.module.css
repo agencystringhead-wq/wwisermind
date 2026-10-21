@@ -15,167 +15,6 @@
 .pillViolet { background: var(--ti-violet-soft); color: #5645bd; }
 .pillAmber { background: var(--ti-amber-soft); color: #94600a; }
 
-/* ---- 01 intro ------------------------------------------------------------------------------------ */
-
-.hero {
-  position: relative;
-  overflow: hidden;
-  padding-block: clamp(48px, 7vw, 96px) clamp(40px, 5vw, 72px);
-  background: linear-gradient(180deg, #f6f9ff 0%, #ffffff 100%);
-}
-
-.heroArt {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.mesh {
-  position: absolute;
-  inset: 0;
-}
-
-.mesh span {
-  position: absolute;
-  width: clamp(380px, 50vw, 760px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-}
-
-.blobBlue { background: radial-gradient(closest-side, rgba(20, 110, 245, 0.34), transparent); top: -30%; left: -12%; }
-.blobTeal { background: radial-gradient(closest-side, rgba(95, 214, 196, 0.55), transparent); top: 0%; right: 6%; }
-.blobViolet { background: radial-gradient(closest-side, rgba(183, 169, 245, 0.55), transparent); bottom: -40%; left: 28%; }
-.blobPeach { background: radial-gradient(closest-side, rgba(255, 190, 160, 0.6), transparent); top: -28%; right: -14%; }
-
-@media (prefers-reduced-motion: no-preference) {
-  .mesh span { will-change: transform; }
-  /* The drift starts after the page has settled: a backdrop that moves from the first frame keeps a page-load recording from ever looking finished. */
-  .blobBlue { animation: drift1 26s ease-in-out 6s infinite alternate; }
-  .blobTeal { animation: drift2 32s ease-in-out 6s infinite alternate; }
-  .blobViolet { animation: drift3 30s ease-in-out 6s infinite alternate; }
-  .blobPeach { animation: drift2 36s ease-in-out 6s infinite alternate-reverse; }
-}
-
-@keyframes drift1 { to { transform: translate3d(12vw, 8vh, 0) scale(1.15); } }
-@keyframes drift2 { to { transform: translate3d(-10vw, 10vh, 0) scale(0.9); } }
-@keyframes drift3 { to { transform: translate3d(8vw, -10vh, 0) scale(1.2); } }
-
-.heroShapes {
-  position: absolute;
-  top: 2%;
-  right: -3%;
-  width: min(780px, 58vw);
-  mix-blend-mode: multiply;
-  opacity: 0.92;
-  /* the picture's pale edges are faded to white in the file itself, so multiply leaves no rectangle */
-  will-change: transform;
-}
-
-.heroShapes img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.heroBody {
-  position: relative;
-  display: grid;
-  gap: clamp(18px, 2.4vw, 26px);
-  justify-items: start;
-  max-width: 680px;
-}
-
-.rise {
-  position: relative;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .rise {
-    animation: rise 0.9s var(--ease) both;
-    animation-delay: calc(var(--i, 0) * 90ms);
-  }
-}
-
-@keyframes rise {
-  from { opacity: 0; transform: translateY(22px); }
-  to { opacity: 1; transform: none; }
-}
-
-.h1 {
-  font-size: var(--ti-h1);
-  line-height: var(--ti-h1-lh);
-  letter-spacing: -0.04em;
-  max-width: 17ch;
-}
-
-.heroSub {
-  max-width: 50ch;
-  font-size: var(--ti-lead);
-  line-height: 1.55;
-  color: var(--ti-muted);
-}
-
-.searchSlot {
-  width: 100%;
-  max-width: 600px;
-}
-
-.heroLinks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 24px;
-  font-size: 15px;
-}
-
-.heroLinks a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-}
-
-.stats {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  margin: clamp(40px, 5vw, 64px) 0 0;
-  padding: 26px clamp(20px, 3vw, 36px);
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.86);
-  box-shadow: 0 20px 50px rgba(20, 110, 245, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.9);
-}
-
-.stat {
-  display: grid;
-  gap: 6px;
-  align-content: start;
-  padding-right: 20px;
-}
-
-.statValue {
-  order: 1;
-  margin: 0;
-  font-size: clamp(30px, 3.4vw, 44px);
-  line-height: 1;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  font-variant-numeric: tabular-nums;
-}
-
-.statDate {
-  font-size: clamp(18px, 2vw, 22px);
-  line-height: 1.25;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
-.statLabel {
-  order: 2;
-  font-size: 14px;
-  line-height: 1.4;
-  color: var(--ti-muted);
-}
-
 /* ---- rings and bars: they fill with their reveal group's --t ---------------------------------------- */
 
 .ring {
@@ -923,15 +762,7 @@
     min-height: 300px;
   }
 
-  .stats {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px 0;
-  }
 
-  .heroShapes {
-    width: min(620px, 80vw);
-    opacity: 0.55;
-  }
 }
 
 @media (max-width: 720px) {
@@ -943,13 +774,6 @@
     gap: 16px;
   }
 
-  .heroShapes {
-    top: auto;
-    bottom: 22%;
-    right: -30%;
-    width: 110vw;
-    opacity: 0.4;
-  }
 
   /* steps stack with a vertical line */
   .stepLine {

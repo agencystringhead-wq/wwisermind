@@ -13,7 +13,7 @@ export default function TherapyIndexLayout({ children }: { children: React.React
   return (
     <div className={styles.root}>
       <TiHeader cities={cities} />
-      {children}
+      <div className={styles.below}>{children}</div>
     </div>
   );
 }

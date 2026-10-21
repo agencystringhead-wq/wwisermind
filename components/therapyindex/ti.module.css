@@ -44,7 +44,7 @@
   --ti-radius: 20px; /* the site's card radius */
   --ti-radius-sm: 12px;
   --ti-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* the site's card shadow */
-  --ti-header-h: 68px;
+  --ti-header-h: 88px; /* the floating pill: 16px above, 56px tall, 16px below */
   --header-height: var(--ti-header-h); /* anchors and sticky bars under the Therapy Index header */
   --ti-anchor-offset: calc(var(--ti-header-h) + 16px);
 
@@ -59,7 +59,7 @@
 @media (max-width: 720px) {
   .root {
     --ti-card-pad: 22px;
-    --ti-header-h: 64px;
+    --ti-header-h: 80px;
   }
 }
 
@@ -80,6 +80,10 @@
 }
 
 /* ---- sections ------------------------------------------------------------------------------------------ */
+
+.below {
+  padding-top: var(--ti-header-h);
+}
 
 .section {
   position: relative;

@@ -114,3 +114,18 @@
     align-items: flex-start;
   }
 }
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* inside the hero's search dialog the results sit in the flow under the box, not over the page */
+.panelInline {
+  margin-top: 4px;
+  padding: 4px 0 0;
+}

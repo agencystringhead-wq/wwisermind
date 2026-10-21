@@ -1,0 +1,217 @@
+/* The hub hero: headline left, looping glass ring right, on one flat ground that the video's own background matches.
+   Nothing here animates on entrance; the only motion is the video itself. */
+
+.hero {
+  --hero-bg: #f5f7fc;
+  --navy: #112962;
+  position: relative;
+  overflow: hidden;
+  margin-top: calc(var(--ti-header-h) * -1); /* runs up under the floating pill */
+  padding-top: var(--ti-header-h);
+  background: var(--hero-bg);
+}
+
+.inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  align-items: center;
+  gap: clamp(8px, 2vw, 32px);
+  min-height: min(100svh, 880px);
+  padding-block: clamp(24px, 4vw, 56px);
+}
+
+/* ---- text ------------------------------------------------------------------------------------------------ */
+
+.text {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: clamp(20px, 2.2vw, 30px);
+  justify-items: start;
+}
+
+.eyebrow {
+  font-family: var(--ti-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: #5b6a8c;
+}
+
+/* `.root h1` sets the site-wide heading weight and tracking; this needs to outrank it */
+.hero .h1 {
+  font-size: clamp(46px, 8.1vw, 116px);
+  font-weight: 700;
+  letter-spacing: -0.062em;
+  line-height: 1.04;
+  color: var(--navy);
+  text-wrap: balance;
+}
+
+.hero .h1 span {
+  display: block;
+  white-space: nowrap;
+}
+
+.sub {
+  max-width: 34ch;
+  font-size: clamp(17px, 1.5vw, 20px);
+  line-height: 1.5;
+  color: #44527a;
+}
+
+.actions {
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+}
+
+.findButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  height: 56px;
+  padding: 0 30px;
+  border-radius: 999px;
+  background: var(--navy);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: background-color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.findButton:hover {
+  background: #146ef5;
+  transform: translateY(-1px);
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.25s var(--ease);
+}
+
+.findButton:hover .arrow {
+  transform: translateX(3px);
+}
+
+.asOf {
+  font-size: 13px;
+  color: #7482a3;
+}
+
+/* ---- the visual -------------------------------------------------------------------------------------------- */
+
+.visual {
+  position: relative;
+  width: 124%;
+  margin-left: -10%;
+  aspect-ratio: 16 / 9;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  /* the clip's edges dissolve into the ground, so no box shows */
+  -webkit-mask-image: radial-gradient(ellipse 56% 60% at 50% 50%, #000 66%, transparent 100%);
+  mask-image: radial-gradient(ellipse 56% 60% at 50% 50%, #000 66%, transparent 100%);
+}
+
+.visualReady {
+  opacity: 1;
+}
+
+.media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---- the search dialog ------------------------------------------------------------------------------------- */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 14vh 16px 16px;
+  overflow-y: auto;
+  background: rgba(17, 41, 98, 0.38);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.dialog {
+  width: min(640px, 100%);
+  padding: 22px 22px 18px;
+  border-radius: 28px;
+  background: #ffffff;
+  box-shadow: 0 30px 80px rgba(17, 41, 98, 0.3);
+}
+
+.dialogHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-left: 6px;
+}
+
+.dialogTitle {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--navy);
+}
+
+.dialogClose {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #f1f4fb;
+  color: var(--navy);
+  font-size: 26px;
+  line-height: 1;
+}
+
+.dialogClose:hover {
+  background: #e3e9f7;
+}
+
+/* ---- tablet and phone: the visual sits above the headline, smaller --------------------------------------------- */
+
+@media (max-width: 900px) {
+  .inner {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    gap: 0;
+    padding-block: 8px 48px;
+  }
+
+  .visual {
+    order: -1;
+    width: min(104%, 480px);
+    margin-inline: auto;
+    margin-top: 4px;
+    margin-bottom: -8px;
+  }
+
+  .hero .h1 {
+    font-size: clamp(46px, 13.6vw, 84px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .visual {
+    transition: none;
+  }
+
+  .findButton,
+  .arrow {
+    transition: none;
+  }
+}

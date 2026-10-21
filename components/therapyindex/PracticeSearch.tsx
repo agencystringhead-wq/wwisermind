@@ -11,7 +11,7 @@ type Row = { n: string; f?: string; c: string; u: string; r: number };
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim();
 
 /** "Find your practice": type a practice name, pick it from the list. Matches in the browser over search-index.json. */
-export default function PracticeSearch() {
+export default function PracticeSearch({ autoFocus = false, inline = false }: { autoFocus?: boolean; inline?: boolean }) {
   const router = useRouter();
   const id = useId();
   const rows = useRef<(Row & { k: string })[] | null>(null);
@@ -78,12 +78,13 @@ export default function PracticeSearch() {
 
   return (
     <div className={styles.search} onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setOpen(false)}>
-      <label htmlFor={`${id}-input`} className={styles.label}>
+      <label htmlFor={`${id}-input`} className={inline ? styles.srOnly : styles.label}>
         Find your practice
       </label>
       <input
         id={`${id}-input`}
         className={styles.input}
+        autoFocus={autoFocus}
         type="search"
         role="combobox"
         aria-expanded={open && typed}
@@ -102,7 +103,7 @@ export default function PracticeSearch() {
         onKeyDown={onKeyDown}
       />
       {open && typed ? (
-        <div className={styles.panel}>
+        <div className={inline ? styles.panelInline : styles.panel}>
           {results.length ? (
             <ul id={listId} role="listbox" aria-label="Matching practices" className={styles.list}>
               {results.map((r, i) => (

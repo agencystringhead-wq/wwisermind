@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Breadcrumbs from '@/components/ui/Breadcrumbs';
+import { BreadcrumbJsonLd } from '@/components/ui/Breadcrumbs';
 import Hub, { joinNames } from '@/components/therapyindex/Hub';
 import { routes } from '@/lib/routes';
 import { absUrl } from '@/lib/site';
@@ -26,7 +26,7 @@ export function generateMetadata(): Metadata {
 export default function Page() {
   return (
     <>
-      <Breadcrumbs
+      <BreadcrumbJsonLd
         trail={[
           { label: 'Home', href: routes.home },
           { label: 'Therapy Index', href: routes.therapyIndex.hub },
