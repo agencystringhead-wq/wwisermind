@@ -145,14 +145,14 @@ function NationalSections({ headingLevel }: { headingLevel: 'h2' | 'h3' }) {
 function ForTherapists() {
   return (
     <section className={styles.therapists} aria-labelledby="crisis-therapists">
-      <h2 className={styles.groupTitle} id="crisis-therapists">
+      <h2 className={styles.therapistsTitle} id="crisis-therapists">
         For therapists
       </h2>
-      <p className={styles.body}>
+      <p className={styles.therapistsBody}>
         You can add these resources to your own practice website for free with the help now widget.
         We keep the numbers current, so you do not have to.
       </p>
-      <Link href={routes.tools.helpNowWidget} className={styles.textLink}>
+      <Link href={routes.tools.helpNowWidget} className={styles.therapistsButton}>
         Add the help now widget to your site
       </Link>
     </section>

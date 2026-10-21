@@ -28,6 +28,9 @@ const states = Object.entries(STATE_NAMES)
   .map(([code, name]) => ({ code, name }))
   .sort((a, b) => a.name.localeCompare(b.name));
 
+const disclaimer =
+  "The help now widget shares public helpline information. It doesn't replace your own emergency procedures or any requirements from your licensing board.";
+
 const noCodeNote =
   'If you do not see this option, your plan may not allow custom code. Contact us and we will help.';
 
@@ -122,6 +125,7 @@ export default function Page() {
           </h2>
           <Accordion items={guides} numbered defaultOpen={0} />
           <p className={styles.note}>{noCodeNote}</p>
+          <p className={styles.note}>{disclaimer}</p>
           <p className={styles.note}>
             Want to see the numbers first? They are on our{' '}
             <Link href={routes.tools.crisisResources}>crisis resources page</Link>.

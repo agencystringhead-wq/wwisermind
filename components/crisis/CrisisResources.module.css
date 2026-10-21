@@ -249,11 +249,51 @@
 }
 
 .therapists {
-  margin-top: 56px;
-  padding: 28px;
-  border: 1px solid var(--color-line);
+  /* The site's dark ground (#1d166a, the contact hero's), so the card reads as its own block even
+     beside a dark footer. Its custom properties (--dark-body and the rest) come with it. */
+  composes: dark from '../ui/Controls.module.css';
+  margin-top: 64px;
+  padding: 40px;
   border-radius: 20px;
+}
+
+.therapists .therapistsTitle {
+  color: var(--color-white);
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: var(--fw-semibold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.therapists .therapistsBody {
+  max-width: 62ch;
+  margin-top: 12px;
+  color: var(--dark-body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+/* The brand yellow with ink on it (19.6:1), a full-size pill. Hover flips to white. */
+.therapists .therapistsButton {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  margin-top: 24px;
+  padding: 0 28px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-yellow);
+  color: var(--color-ink);
+  font-weight: var(--fw-semibold);
+  text-decoration: none;
+}
+
+.therapists .therapistsButton:hover {
   background-color: var(--color-white);
+}
+
+.therapists .therapistsButton:focus-visible {
+  outline: 3px solid var(--color-white);
+  outline-offset: 3px;
 }
 
 .textLink {
@@ -275,8 +315,25 @@
   line-height: 1.6;
 }
 
+/* After the dark card the note keeps a clear stretch of the page background, then the page's own
+   bottom padding, so the card is never against the footer. */
+.therapists + .footnote {
+  margin-top: 64px;
+}
+
 .footnote a {
   color: var(--color-ink);
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+  .therapists {
+    margin-top: 40px;
+    padding: 28px;
+  }
+
+  .therapists + .footnote {
+    margin-top: 40px;
+  }
 }
