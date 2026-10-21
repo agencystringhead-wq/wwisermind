@@ -84,6 +84,85 @@
   line-height: 1.55;
 }
 
+/* --- jump links and the quick-exit note, under the intro ------------------------------------- */
+.jump {
+  margin-top: 24px;
+}
+
+/* Wraps onto as many lines as it needs, so there is never a sideways scroll at 320px. */
+.jumpList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.jumpLink {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  padding: 0 18px;
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-white);
+  color: var(--color-ink);
+  font-size: 15px;
+  font-weight: var(--fw-medium);
+  text-decoration: none;
+}
+
+.jumpLink:hover {
+  background-color: var(--color-surface);
+}
+
+.jumpLink:focus-visible {
+  outline: 3px solid var(--color-ink);
+  outline-offset: 3px;
+}
+
+.leaveNote {
+  max-width: 62ch;
+  margin-top: 16px;
+  color: var(--color-muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* --- the quick exit: always on screen, bottom right ------------------------------------------ */
+/* Black with white type (21:1) and a white keyline so it reads on any ground, 48px tall. It sits at
+   z-index 45, under the header's 50, so an open menu covers it rather than the other way round. */
+.quickExit {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 45;
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 20px 0 16px;
+  border: 2px solid var(--color-white);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-ink);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  color: var(--color-white);
+  font-size: 15px;
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  cursor: pointer;
+}
+
+.quickExit:hover {
+  background-color: #262626;
+}
+
+.quickExit:focus-visible {
+  outline: 3px solid var(--color-brand);
+  outline-offset: 3px;
+}
+
 .content {
   padding-block: 24px 80px;
 }
@@ -103,8 +182,14 @@
 }
 
 /* --- a group of resources ------------------------------------------------------------------- */
+.group:focus {
+  outline: none;
+}
+
 .group {
   margin-top: 48px;
+  /* a jump link lands with the heading clear of the sticky header */
+  scroll-margin-top: calc(var(--header-height) + 24px);
 }
 
 .groupTitle {
@@ -113,6 +198,11 @@
   line-height: 1.2;
   letter-spacing: -0.02em;
   scroll-margin-top: calc(var(--header-height) + 24px);
+}
+
+/* The two local-help cards under the state list, or under its placeholder line. */
+.grid.localHelp {
+  margin-top: 24px;
 }
 
 .nationalTitle {

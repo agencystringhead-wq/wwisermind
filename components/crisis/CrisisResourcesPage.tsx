@@ -3,15 +3,19 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import {
   CRISIS_SECTIONS,
   formatVerifiedDate,
-  getNationalResources,
+  getListedNationalResources,
+  getLocalHelp,
   getStateResources,
   getStatesWithData,
   safeHref,
   type CrisisResource,
   type CrisisState,
+  type LocalHelpResource,
 } from '@/lib/crisis-resources';
 import { routes } from '@/lib/routes';
 import { footerMain } from '@/lib/site';
+import JumpLinks from './JumpLinks';
+import QuickExit from './QuickExit';
 import styles from './CrisisResources.module.css';
 
 /**
@@ -116,8 +120,38 @@ function ResourceCard({ resource }: { resource: CrisisResource }) {
   );
 }
 
+/** A directory that points to local help: its audience, a call button when it has a number, and its
+    main link. Drawn like a resource card, with no hours because a directory has none of its own. */
+function LocalHelpCard({ resource }: { resource: LocalHelpResource }) {
+  const { name } = resource;
+  const callHref = safeHref(resource.callHref, 'tel:');
+  const linkHref = safeHref(resource.link.href, 'https://');
+
+  return (
+    <li className={styles.card}>
+      <h3 className={styles.cardTitle}>{name}</h3>
+      <p className={styles.audience}>{resource.audience}</p>
+      {callHref && resource.call ? (
+        <ul className={styles.actions} aria-label={`Ways to reach ${name}`}>
+          <li>
+            <a className={styles.button} href={callHref} aria-label={`Call ${resource.call}: ${name}`}>
+              Call {resource.call}
+            </a>
+          </li>
+        </ul>
+      ) : null}
+      {linkHref ? (
+        <a className={styles.textLink} href={linkHref} target="_blank" rel="noopener noreferrer">
+          {resource.link.label}
+          <span className="sr-only"> (opens in a new tab)</span>
+        </a>
+      ) : null}
+    </li>
+  );
+}
+
 function NationalSections({ headingLevel }: { headingLevel: 'h2' | 'h3' }) {
-  const national = getNationalResources();
+  const national = getListedNationalResources();
   const Heading = headingLevel;
 
   return (
@@ -126,7 +160,12 @@ function NationalSections({ headingLevel }: { headingLevel: 'h2' | 'h3' }) {
         const items = national.filter((resource) => section.categories.includes(resource.category));
         if (items.length === 0) return null;
         return (
-          <section className={styles.group} key={section.id} aria-labelledby={`crisis-${section.id}`}>
+          <section
+            className={styles.group}
+            id={section.id}
+            key={section.id}
+            aria-labelledby={`crisis-${section.id}`}
+          >
             <Heading className={styles.groupTitle} id={`crisis-${section.id}`}>
               {section.title}
             </Heading>
@@ -177,6 +216,14 @@ function Footnote() {
 export default function CrisisResourcesPage({ state }: { state?: CrisisState }) {
   const stateResources = state ? getStateResources(state.code) : [];
   const states = getStatesWithData();
+  const localHelp = getLocalHelp();
+  const listed = getListedNationalResources();
+  const jumpItems = [
+    ...CRISIS_SECTIONS.filter((section) =>
+      listed.some((resource) => section.categories.includes(resource.category)),
+    ).map((section) => ({ id: section.id, label: section.jump })),
+    { id: 'your-state', label: 'Your state' },
+  ];
   const trail = [
     { label: 'Home', href: routes.home },
     { label: 'Crisis Resources by State', href: routes.tools.crisisResources },
@@ -185,6 +232,7 @@ export default function CrisisResourcesPage({ state }: { state?: CrisisState }) 
 
   return (
     <>
+      <QuickExit />
       <EmergencyBanner />
 
       <section className={styles.hero}>
@@ -197,6 +245,11 @@ export default function CrisisResourcesPage({ state }: { state?: CrisisState }) 
               ? `Free, confidential helplines for people in ${state.name}, with the national lines below. Each one was checked against its official source.`
               : 'Free, confidential US helplines, organized by what you need and checked against their official sources.'}
           </p>
+          <JumpLinks items={jumpItems} />
+          <p className={styles.leaveNote}>
+            Need to leave quickly? Press Esc or use the Leave this site button. It won't clear your
+            browser history.
+          </p>
         </div>
       </section>
 
@@ -204,7 +257,7 @@ export default function CrisisResourcesPage({ state }: { state?: CrisisState }) 
 
       <div className={`container ${styles.content} ${state ? '' : styles.contentBeforeBand}`}>
         {state ? (
-          <section className={styles.group} aria-labelledby="crisis-state">
+          <section className={styles.group} id="your-state" aria-labelledby="crisis-state">
             <h2 className={styles.groupTitle} id="crisis-state">
               {state.name} resources
             </h2>
@@ -222,7 +275,7 @@ export default function CrisisResourcesPage({ state }: { state?: CrisisState }) 
         <NationalSections headingLevel={state ? 'h3' : 'h2'} />
 
         {state ? null : (
-          <section className={styles.group} aria-labelledby="crisis-states">
+          <section className={styles.group} id="your-state" aria-labelledby="crisis-states">
             <h2 className={styles.groupTitle} id="crisis-states">
               Find resources in your state
             </h2>
@@ -239,6 +292,13 @@ export default function CrisisResourcesPage({ state }: { state?: CrisisState }) 
             ) : (
               <p className={styles.body}>State and local resources are being added state by state.</p>
             )}
+            {localHelp.length > 0 ? (
+              <ul className={`${styles.grid} ${styles.localHelp}`}>
+                {localHelp.map((resource) => (
+                  <LocalHelpCard resource={resource} key={resource.id} />
+                ))}
+              </ul>
+            ) : null}
           </section>
         )}
 

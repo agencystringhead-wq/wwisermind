@@ -58,10 +58,32 @@ export type CrisisResource = {
   needsCheck?: boolean;
 };
 
+/** Help that is not a crisis line and is not published for the help now widget: a directory to find
+    local help, kept in the data file's own `localHelp` list so the public JSON never carries it. */
+export type LocalHelpResource = {
+  /** kebab-case */
+  id: string;
+  name: string;
+  /** Who it is for, short. */
+  audience: string;
+  /** Display format, when there is a number to call. */
+  call?: string;
+  /** A tel: link, digits only. */
+  callHref?: string;
+  /** The main link: its words and an https address. */
+  link: { label: string; href: string };
+  /** The official URL used to verify the entry. */
+  source: string;
+  /** YYYY-MM-DD */
+  verified: string;
+  needsCheck?: boolean;
+};
+
 type CrisisData = {
   updated: string;
   national: CrisisResource[];
   states: Record<string, CrisisResource[]>;
+  localHelp?: LocalHelpResource[];
 };
 
 const crisisData = data as CrisisData;
@@ -139,6 +161,21 @@ export function getNationalResources(): CrisisResource[] {
   return publishable(crisisData.national);
 }
 
+/** Entries that are in the data (and in the help now widget's copy of it) but not in the category
+    lists on this site's pages. 911 is the emergency banner's own line, so it is not listed twice. */
+const NOT_LISTED_ON_SITE = ['emergency-911'];
+
+/** The national resources the site's pages list under each category: every checked one except those
+    the page already shows elsewhere. The widget does not use this; it reads the full public data. */
+export function getListedNationalResources(): CrisisResource[] {
+  return getNationalResources().filter((resource) => !NOT_LISTED_ON_SITE.includes(resource.id));
+}
+
+/** The local-help directories (211, the NAMI warmline directory) that have been checked. */
+export function getLocalHelp(): LocalHelpResource[] {
+  return (crisisData.localHelp ?? []).filter((entry) => entry.needsCheck !== true);
+}
+
 /** A state's own resources, by two-letter code in any case. Empty when there are none. */
 export function getStateResources(code: string): CrisisResource[] {
   return publishable(crisisData.states[code.toUpperCase()] ?? []);
@@ -168,13 +205,19 @@ export function formatVerifiedDate(iso: string = crisisData.updated): string {
 }
 
 /** The groups the main page draws, in order. A group with no resources to show is not drawn. */
-export const CRISIS_SECTIONS: { id: string; title: string; categories: CrisisCategory[] }[] = [
-  { id: 'crisis', title: 'Crisis and suicide', categories: ['emergency', 'crisis'] },
-  { id: 'veterans', title: 'Veterans', categories: ['veterans'] },
-  { id: 'lgbtq', title: 'LGBTQ+', categories: ['lgbtq'] },
-  { id: 'violence', title: 'Violence and abuse', categories: ['violence'] },
-  { id: 'substance-use', title: 'Substance use', categories: ['substance-use'] },
-  { id: 'maternal', title: 'Pregnancy and new parents', categories: ['maternal'] },
-  { id: 'eating-disorders', title: 'Eating disorders', categories: ['eating-disorders'] },
-  { id: 'support', title: 'Information and support', categories: ['support'] },
+export const CRISIS_SECTIONS: {
+  id: string;
+  title: string;
+  /** The short word on this section's jump link at the top of the page. */
+  jump: string;
+  categories: CrisisCategory[];
+}[] = [
+  { id: 'crisis', title: 'Crisis and suicide', jump: 'Crisis', categories: ['emergency', 'crisis'] },
+  { id: 'veterans', title: 'Veterans', jump: 'Veterans', categories: ['veterans'] },
+  { id: 'lgbtq', title: 'LGBTQ+', jump: 'LGBTQ+', categories: ['lgbtq'] },
+  { id: 'violence', title: 'Violence and abuse', jump: 'Abuse', categories: ['violence'] },
+  { id: 'substance-use', title: 'Substance use', jump: 'Substance use', categories: ['substance-use'] },
+  { id: 'maternal', title: 'Pregnancy and new parents', jump: 'New parents', categories: ['maternal'] },
+  { id: 'eating-disorders', title: 'Eating disorders', jump: 'Eating disorders', categories: ['eating-disorders'] },
+  { id: 'support', title: 'Information and support', jump: 'Support', categories: ['support'] },
 ];

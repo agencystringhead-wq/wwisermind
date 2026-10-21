@@ -208,5 +208,33 @@
       "needsCheck": false
     }
   ],
-  "states": {}
+  "states": {},
+  "localHelp": [
+    {
+      "id": "211",
+      "name": "211",
+      "audience": "Anyone looking for local help: food, housing, mental health services and more",
+      "call": "211",
+      "callHref": "tel:211",
+      "link": {
+        "label": "Find your local 211",
+        "href": "https://www.211.org"
+      },
+      "source": "https://www.211.org",
+      "verified": "2026-10-21",
+      "needsCheck": false
+    },
+    {
+      "id": "nami-warmline-directory",
+      "name": "NAMI Warmline Directory",
+      "audience": "Warmlines are for when you're struggling but not in crisis and want someone to talk to",
+      "link": {
+        "label": "Find a warmline in your state",
+        "href": "https://www.nami.org/nami-helpline/nami-warmline-directory/"
+      },
+      "source": "https://www.nami.org/nami-helpline/nami-warmline-directory/",
+      "verified": "2026-10-21",
+      "needsCheck": false
+    }
+  ]
 }
