@@ -30,6 +30,12 @@ export const FAIL_BELOW = 0.6;
     category shows as "not checked", so a couple of easy checks (https, viewport) cannot stand in for a speed score. */
 export const MIN_KNOWN_SHARE = 0.5;
 
+/** Items that must have real data for their category to be scored at all. Speed needs the PageSpeed result: https
+    and the viewport tag alone say nothing about how fast the site is. */
+export const REQUIRED_FOR_SCORE: Partial<Record<CategoryId, string[]>> = {
+  speed: ['psi_perf'],
+};
+
 /** How many fixes the report lists. */
 export const MAX_FIXES = 5;
 

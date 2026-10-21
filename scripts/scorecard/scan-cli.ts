@@ -20,7 +20,11 @@ for (const u of urls) {
   for (const [id, c] of Object.entries(scan.checks)) console.log(`  ${id.padEnd(17)} ${c.status.padEnd(9)} ${c.score.toFixed(2)} ${c.detail ?? ''}`);
   /* A neutral set of answers, to see the shape of the report. */
   const answers: Record<string, string> = {};
-  for (const q of questionsFor(scan)) answers[q.id] = q.options[0].id;
+  /* A middling set of answers: each scored question gets the option nearest 0.7, context questions the first option. */
+  for (const q of questionsFor(scan)) {
+    const scored = q.options.filter((o) => o.score !== undefined);
+    answers[q.id] = scored.length ? scored.reduce((a, b) => (Math.abs(b.score! - 0.7) < Math.abs(a.score! - 0.7) ? b : a)).id : q.options[0].id;
+  }
   const report = buildReport({ id: 'test', websiteUrl: scan.url, practiceName: 'Test', scan, answers: cleanAnswers(answers, scan) ?? {} });
   console.log(`overall ${report.overall} (${report.tier?.name})`, report.categories.map((c) => `${c.id}:${c.score}`).join(' '));
   console.log('fixes:', report.fixes.map((f) => f.id).join(', '));
