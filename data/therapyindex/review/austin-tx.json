@@ -42,34 +42,6 @@
     "promotedTo": null
   },
   {
-    "domain": "lifebulb.com",
-    "title": "Mental Health Therapy in Austin, TX",
-    "url": "https://www.lifebulb.com/austin",
-    "searches": [
-      {
-        "keyword": "psychologist",
-        "rank": 6
-      }
-    ],
-    "tag": "local-no-map",
-    "overridden": false,
-    "promotedTo": null
-  },
-  {
-    "domain": "rootsbehavioralhealth.com",
-    "title": "PTSD & Trauma Therapy in Austin, Texas - Roots ...",
-    "url": "https://rootsbehavioralhealth.com/lp/ptsd-trauma-therapy-in-austin-texas/",
-    "searches": [
-      {
-        "keyword": "trauma therapist",
-        "rank": 6
-      }
-    ],
-    "tag": "local-no-map",
-    "overridden": false,
-    "promotedTo": null
-  },
-  {
     "domain": "soundsofsaving.org",
     "title": "Austin, TX",
     "url": "https://www.soundsofsaving.org/locations/austin-tx",
@@ -79,8 +51,8 @@
         "rank": 2
       }
     ],
-    "tag": "local-no-map",
-    "overridden": false,
+    "tag": "other",
+    "overridden": true,
     "promotedTo": null
   },
   {
@@ -97,8 +69,8 @@
         "rank": 1
       }
     ],
-    "tag": "local-no-map",
-    "overridden": false,
+    "tag": "other",
+    "overridden": true,
     "promotedTo": null
   },
   {

@@ -38,6 +38,8 @@ export const CHAINS: Chain[] = [
   { name: 'MDLive', domains: ['mdlive.com'], namePrefixes: ['mdlive'] },
   { name: 'Newport Healthcare', domains: ['newporthealthcare.com'], namePrefixes: ['newport academy', 'newport healthcare'] },
   { name: 'Pathlight', domains: ['pathlightmhs.com'], namePrefixes: ['pathlight'] },
+  { name: 'LifeBulb', domains: ['lifebulb.com'], namePrefixes: ['lifebulb'] },
+  { name: 'Hightop Health (formerly Roots Behavioral Health)', domains: ['hightophealth.com', 'rootsbehavioralhealth.com'], namePrefixes: ['hightop health', 'roots behavioral health'] },
   { name: 'Mental Health Match', domains: ['mentalhealthmatch.com'] },
 ];
 

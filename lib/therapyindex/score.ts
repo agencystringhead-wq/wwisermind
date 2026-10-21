@@ -5,13 +5,14 @@ import {
   MAP_BELOW_PACK_POINTS,
   MAP_PACK_POINTS,
   ORGANIC_POINTS,
+  REVIEW_WEIGHT,
 } from './markets';
 import type { Practice } from './types';
 
 /* ==========================================================================
    Visibility score. All the weights live in markets.ts; this file only combines them.
 
-   For one practice:
+   Step 1, activity points, for one practice:
      map points      summed over every keyword the practice shows in Google Maps for
                        rank 1 / 2 / 3  -> MAP_PACK_POINTS (10 / 8 / 6)
                        rank 4 to 10    -> MAP_BELOW_PACK_POINTS (1)
@@ -20,15 +21,20 @@ import type { Practice } from './types';
                      (4 / 3 / 2.5 / 2 / 1.5 / 1): worth less than the same map position
      AI bonus        AI_MENTION_POINTS for each ChatGPT or Claude answer that names it,
                      capped at AI_BONUS_CAP
-   raw = map + organic + AI bonus.
+   activity = map + organic + AI bonus.
 
-   The score shown is raw scaled so the best independent practice in the market = 100. National chain
-   locations (isChain) are scored on the same scale (capped at 100) but never set the leader, and
-   directories score 0.
-   Lighthouse results are shown on the page but do not feed the score.
+   Step 2, scale both parts to 0..1 within the market (independent practices only: no directories, no chains):
+     visibility = min(1, activity / best activity)
+     reviews    = ln(reviewCount + 1) / ln(most reviews + 1)       (no reviews = 0)
+
+   Step 3, blend:   combined = (1 - REVIEW_WEIGHT) * visibility + REVIEW_WEIGHT * reviews     (90% / 10%)
+   The score shown is combined scaled so the best independent practice = 100.
+
+   National chain locations (isChain) are scored on the same scale (capped at 100) but never set the leader or
+   the review maximum; directories score 0. Lighthouse results are shown on the page but do not feed the score.
    ========================================================================== */
 
-type Scorable = Pick<Practice, 'mapRankBySearch' | 'organicRankBySearch' | 'aiMentions' | 'isDirectory' | 'isChain'>;
+type Scorable = Pick<Practice, 'mapRankBySearch' | 'organicRankBySearch' | 'aiMentions' | 'isDirectory' | 'isChain' | 'reviewCount'>;
 
 export function mapPoints(rank: number): number {
   if (rank >= 1 && rank <= MAP_PACK_POINTS.length) return MAP_PACK_POINTS[rank - 1];
@@ -48,10 +54,18 @@ export function rawScore(p: Scorable): number {
   return map + organic + ai;
 }
 
-/** Each practice's 0 to 100 score, in the same order. The leader is the best practice that is neither a
-    directory nor a chain location; a chain scoring above it is capped at 100. */
-export function visibilityScores(practices: Scorable[]): number[] {
-  const raws = practices.map((p) => (p.isDirectory ? 0 : rawScore(p)));
-  const leader = Math.max(0, ...raws.filter((_, i) => !practices[i].isDirectory && !practices[i].isChain));
-  return raws.map((r) => (leader > 0 ? Math.min(100, Math.round((r / leader) * 100)) : 0));
+/** Each practice's 0 to 100 score, in the same order (see the formula at the top of this file). */
+export function visibilityScores(practices: Scorable[], reviewWeight: number = REVIEW_WEIGHT): number[] {
+  const independent = practices.map((p) => !p.isDirectory && !p.isChain);
+  const activity = practices.map((p) => (p.isDirectory ? 0 : rawScore(p)));
+  const bestActivity = Math.max(0, ...activity.filter((_, i) => independent[i]));
+  const maxReviews = Math.max(0, ...practices.filter((_, i) => independent[i]).map((p) => p.reviewCount ?? 0));
+  const combined = practices.map((p, i) => {
+    if (p.isDirectory || bestActivity === 0) return 0;
+    const visibility = Math.min(1, activity[i] / bestActivity);
+    const reviews = maxReviews > 0 ? Math.log((p.reviewCount ?? 0) + 1) / Math.log(maxReviews + 1) : 0;
+    return (1 - reviewWeight) * visibility + reviewWeight * Math.min(1, reviews);
+  });
+  const top = Math.max(0, ...combined.filter((_, i) => independent[i]));
+  return combined.map((c) => (top > 0 ? Math.min(100, Math.round((c / top) * 100)) : 0));
 }

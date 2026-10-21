@@ -1,3 +1,4 @@
+import { chainFor } from './chains';
 import { DOMAIN_OVERRIDES } from './overrides';
 import type { Market } from './markets';
 import type { OrganicKind } from './types';
@@ -68,7 +69,8 @@ export function classifyDomain(
   market: Market,
 ): { kind: OrganicKind; candidate: boolean; overridden: boolean } {
   const known = !!directoryName(domain) || (!!domain && practiceDomains.has(domain));
-  const candidate = !known && looksLikeSinglePractice(domain, title, url, snippet, market);
+  // A chain's own website is not a single local practice, even when its title mentions the city.
+  const candidate = !known && !(domain && chainFor(domain, '')) && looksLikeSinglePractice(domain, title, url, snippet, market);
   const override = domain ? DOMAIN_OVERRIDES[domain] : undefined;
   if (override) return { kind: override, candidate, overridden: true };
   if (directoryName(domain)) return { kind: 'directory', candidate, overridden: false };

@@ -5,6 +5,8 @@ import type { OverrideTag } from './types';
    Review candidates in data/therapyindex/review/<market>.json, then add the ones to flip here.
    An override wins over everything, including the automatic directory list. */
 export const DOMAIN_OVERRIDES: Record<string, OverrideTag> = {
+  // Not local practices (flagged in the Austin review):
+  'soundsofsaving.org': 'other',
+  'therapylab.com': 'other',
   // 'example-counseling.com': 'local-no-map',
-  // 'some-listicle-site.com': 'other',
 };
