@@ -22,11 +22,13 @@ import type { Practice } from './types';
                      capped at AI_BONUS_CAP
    raw = map + organic + AI bonus.
 
-   The score shown is raw scaled so the best non-directory practice in the market = 100.
+   The score shown is raw scaled so the best independent practice in the market = 100. National chain
+   locations (isChain) are scored on the same scale (capped at 100) but never set the leader, and
+   directories score 0.
    Lighthouse results are shown on the page but do not feed the score.
    ========================================================================== */
 
-type Scorable = Pick<Practice, 'mapRankBySearch' | 'organicRankBySearch' | 'aiMentions' | 'isDirectory'>;
+type Scorable = Pick<Practice, 'mapRankBySearch' | 'organicRankBySearch' | 'aiMentions' | 'isDirectory' | 'isChain'>;
 
 export function mapPoints(rank: number): number {
   if (rank >= 1 && rank <= MAP_PACK_POINTS.length) return MAP_PACK_POINTS[rank - 1];
@@ -46,10 +48,10 @@ export function rawScore(p: Scorable): number {
   return map + organic + ai;
 }
 
-/** Each practice's 0 to 100 score, in the same order. Directories score 0 and are left out of
-    the leader calculation. */
+/** Each practice's 0 to 100 score, in the same order. The leader is the best practice that is neither a
+    directory nor a chain location; a chain scoring above it is capped at 100. */
 export function visibilityScores(practices: Scorable[]): number[] {
   const raws = practices.map((p) => (p.isDirectory ? 0 : rawScore(p)));
-  const leader = Math.max(0, ...raws);
-  return raws.map((r) => (leader > 0 ? Math.round((r / leader) * 100) : 0));
+  const leader = Math.max(0, ...raws.filter((_, i) => !practices[i].isDirectory && !practices[i].isChain));
+  return raws.map((r) => (leader > 0 ? Math.min(100, Math.round((r / leader) * 100)) : 0));
 }

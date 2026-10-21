@@ -1,3 +1,5 @@
+import { DOMAIN_OVERRIDES } from './overrides';
+import type { Market } from './markets';
 import type { OrganicKind } from './types';
 
 /** Therapist directories and marketplaces. Matched against the result's domain (subdomains count). */
@@ -50,8 +52,69 @@ export function directoryName(domain: string | null): string | null {
   return null;
 }
 
-export function classifyDomain(domain: string | null, practiceDomains: Set<string>): OrganicKind {
-  if (directoryName(domain)) return 'directory';
-  if (domain && practiceDomains.has(domain)) return 'local practice';
-  return 'other';
+/** Tag for one organic result. Order: manual override, known directory, Maps practice, single-practice
+    guess, otherwise 'other'. `candidate` is true when the heuristic thought the domain was a single
+    local practice outside Maps; those go into the review file with their final tag. */
+export function classifyDomain(
+  domain: string | null,
+  practiceDomains: Set<string>,
+  title: string,
+  url: string,
+  market: Market,
+): { kind: OrganicKind; candidate: boolean; overridden: boolean } {
+  const known = !!directoryName(domain) || (!!domain && practiceDomains.has(domain));
+  const candidate = !known && looksLikeSinglePractice(domain, title, url, market);
+  const override = domain ? DOMAIN_OVERRIDES[domain] : undefined;
+  if (override) return { kind: override, candidate, overridden: true };
+  if (directoryName(domain)) return { kind: 'directory', candidate, overridden: false };
+  if (known) return { kind: 'local practice', candidate, overridden: false };
+  return { kind: candidate ? 'local-no-map' : 'other', candidate, overridden: false };
+}
+
+/* ---- "Looks like a single practice" heuristic (for organic results that are neither a directory
+   nor in Maps). It only guesses: every guess is written to data/therapyindex/review/<market>.json
+   and can be corrected in overrides.ts. ---- */
+
+/** National brands, publishers, forums, social and reference sites. Subdomains count. */
+export const NOT_A_PRACTICE_DOMAINS = [
+  'reddit.com', 'quora.com', 'wikipedia.org', 'youtube.com', 'instagram.com', 'tiktok.com', 'pinterest.com',
+  'medium.com', 'indeed.com', 'glassdoor.com', 'nextdoor.com', 'mapquest.com', 'bbb.org', 'google.com',
+  'nytimes.com', 'forbes.com', 'usnews.com', 'cnn.com', 'npr.org', 'washingtonpost.com', 'time.com',
+  'healthline.com', 'verywellmind.com', 'psychcentral.com', 'everydayhealth.com', 'mayoclinic.org',
+  'clevelandclinic.org', 'hopkinsmedicine.org', 'nami.org', 'apa.org', 'psychiatry.org', 'mhanational.org',
+  'lifestance.com', 'mindpath.com', 'talkiatry.com', 'amwell.com', 'teladoc.com', 'mdlive.com',
+  'cigna.com', 'aetna.com', 'uhc.com', 'unitedhealthcare.com', 'anthem.com', 'bcbs.com', 'kaiserpermanente.org',
+  'cvs.com', 'walgreens.com', 'goodrx.com', 'nimh.nih.gov', 'samhsa.gov',
+];
+/** Words that mark an institution rather than one practice, matched anywhere in the domain. */
+const INSTITUTION_WORDS = /(hospital|medicalcenter|medical|healthsystem|healthcare|health-system|university|college|school)/;
+/** Titles of roundups and articles. */
+const ARTICLE_TITLE = /\b(best|top\s*\d*|\d+\s+(best|top)|list of|near me|how to|guide|reviews?|vs\.?|cost of|what is)\b/i;
+
+const US_STATE_ABBRS = new Set(
+  'AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY DC'.split(' '),
+);
+
+const escapeRe = (x: string) => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+/** Does the text mention the market's city, one of its suburbs or the state, without naming another state? */
+export function mentionsMarket(text: string, market: Market): boolean {
+  const flat = text.replace(/[-_/.]+/g, ' ');
+  // "Richmond, CA" style: a different state in the title rules the market out.
+  for (const m of text.matchAll(/,\s*([A-Z]{2})\b/g)) {
+    if (US_STATE_ABBRS.has(m[1]) && m[1] !== market.stateAbbr) return false;
+  }
+  const places = [market.city, ...market.extraLocations, market.stateName];
+  if (places.some((p) => new RegExp(String.raw`\b${escapeRe(p)}\b`, 'i').test(flat))) return true;
+  return new RegExp(String.raw`\b${market.stateAbbr}\b`).test(flat);
+}
+
+/** Directories never reach this check (they are tagged first). Only a local-no-map guess has to look local. */
+export function looksLikeSinglePractice(domain: string | null, title: string, url: string, market: Market): boolean {
+  if (!domain) return false;
+  if (/\.(gov|edu|mil)$/.test(domain) || /\.(gov|edu|mil)\.[a-z]{2}$/.test(domain)) return false;
+  if (NOT_A_PRACTICE_DOMAINS.some((d) => domain === d || domain.endsWith(`.${d}`))) return false;
+  if (INSTITUTION_WORDS.test(domain)) return false;
+  if (ARTICLE_TITLE.test(title)) return false;
+  return mentionsMarket(`${title} ${url}`, market);
 }

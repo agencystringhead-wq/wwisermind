@@ -1,15 +1,20 @@
 import {
   AI_MODELS, AI_PROMPTS, GMB_MAX_LOOKUPS, KEYWORDS, LANGUAGE_CODE, LIGHTHOUSE_MAX_PRACTICES,
-  MAPS_DEPTH, MARKETS, ORGANIC_DEPTH, type Market,
+  MAPS_DEPTH, MARKETS, ORGANIC_DEPTH, SMOKE, type Market,
 } from '../../lib/therapyindex/markets';
-import { normaliseDomain } from '../../lib/therapyindex/directories';
-import { dfsPost, ENDPOINTS, pool, type Call } from './dfs';
-import { buildSnapshot, fillPrompt, writeSnapshot } from './normalise';
+import { directoryName, normaliseDomain } from '../../lib/therapyindex/directories';
+import { aiUnitCost, dfsGet, dfsPost, ENDPOINTS, pool, PREVIOUS_AI_MODELS, type Call } from './dfs';
+import { aiKey, buildResult, fillPrompt, organicQuery, writeResult, type BuildOptions } from './normalise';
 import { RawStore, type Kind } from './store';
 
 /* Usage:
      npx tsx scripts/therapyindex/fetch.ts [--market <slug>|all] [--date YYYY-MM-DD]          dry run (default)
      npx tsx scripts/therapyindex/fetch.ts --live [--market <slug>|all] [--date YYYY-MM-DD]   spends money
+     add --smoke for the smallest live run (see SMOKE in markets.ts): first market only, 2 keywords,
+       1 AI prompt per model, 1 profile lookup, Lighthouse on the first 3 sites. Output goes to
+       data/therapyindex/smoke/ so it never overwrites a real snapshot.
+     --check-locations verifies each market's dfsLocationName against DataForSEO's locations list (free).
+     --models lists the model names the two AI endpoints currently accept (free, needs credentials).
    Cached responses (data/therapyindex/raw/<market>/<date>/) are never requested again. */
 
 const argv = process.argv.slice(2);
@@ -19,69 +24,85 @@ const opt = (n: string) => {
   return i >= 0 ? argv[i + 1] : undefined;
 };
 
-if (flag('live') && flag('dry-run')) {
-  console.error('Pass either --live or --dry-run, not both.');
-  process.exit(1);
-}
-const live = flag('live');
-const date = opt('date') ?? new Date().toISOString().slice(0, 10);
-const marketArg = opt('market') ?? 'all';
-const markets: Market[] = marketArg === 'all' ? MARKETS : MARKETS.filter((m) => m.slug === marketArg);
-if (!markets.length) {
-  console.error(`Unknown market "${marketArg}". Known: ${MARKETS.map((m) => m.slug).join(', ')}`);
-  process.exit(1);
-}
-
-/** Assumed sizes for the calls that depend on earlier results, used only for the dry-run estimate. */
-const ASSUMED_UNIQUE_PRACTICES = 60;
-const ASSUMED_GMB_SHARE = 0.2;
-
 try {
   process.loadEnvFile('.env.local');
 } catch {
   /* no .env.local: fine for a dry run */
 }
 
+if (flag('live') && flag('dry-run')) {
+  console.error('Pass either --live or --dry-run, not both.');
+  process.exit(1);
+}
+const live = flag('live');
+const smoke = flag('smoke');
+const date = opt('date') ?? new Date().toISOString().slice(0, 10);
+const marketArg = smoke ? (opt('market') ?? MARKETS[0].slug) : (opt('market') ?? 'all');
+const markets: Market[] = marketArg === 'all' ? MARKETS : MARKETS.filter((m) => m.slug === marketArg);
+if (!markets.length) {
+  console.error(`Unknown market "${marketArg}". Known: ${MARKETS.map((m) => m.slug).join(', ')}`);
+  process.exit(1);
+}
+
+/** What one run covers. The smoke test shrinks every list; everything else is the full config. */
+const plan = smoke
+  ? { keywords: SMOKE.keywords, promptIndexes: SMOKE.promptIndexes, lighthouseMax: SMOKE.lighthousePractices, gmbMax: SMOKE.gmbLookups, gmbForce: true }
+  : { keywords: KEYWORDS, promptIndexes: AI_PROMPTS.map((_, i) => i), lighthouseMax: LIGHTHOUSE_MAX_PRACTICES, gmbMax: GMB_MAX_LOOKUPS, gmbForce: false };
+const buildOpts: BuildOptions = { keywords: plan.keywords, promptIndexes: plan.promptIndexes };
+
+/** Assumed sizes for the calls that depend on earlier results, used only for the dry-run estimate. */
+const ASSUMED_UNIQUE_PRACTICES = 60;
+const ASSUMED_GMB_SHARE = 0.2;
+const assumedGmb = smoke ? SMOKE.gmbLookups : Math.min(GMB_MAX_LOOKUPS, Math.round(ASSUMED_UNIQUE_PRACTICES * ASSUMED_GMB_SHARE));
+const assumedLighthouse = Math.min(plan.lighthouseMax, ASSUMED_UNIQUE_PRACTICES);
+
 function phaseOneCalls(m: Market): Call[] {
   const calls: Call[] = [];
-  for (const kw of KEYWORDS) {
+  for (const kw of plan.keywords) {
     const common = { keyword: kw, location_name: m.dfsLocationName, language_code: LANGUAGE_CODE };
     calls.push({ kind: 'maps', key: kw, endpoint: ENDPOINTS.maps.path, label: `maps "${kw}"`, task: { ...common, depth: MAPS_DEPTH } });
-    calls.push({ kind: 'organic', key: kw, endpoint: ENDPOINTS.organic.path, label: `organic "${kw}"`, task: { ...common, depth: ORGANIC_DEPTH, device: 'desktop' } });
+    // Organic is searched as "<keyword> <city> <state>" with the market location also set.
+    const query = organicQuery(kw, m);
+    calls.push({ kind: 'organic', key: query, endpoint: ENDPOINTS.organic.path, label: `organic "${query}"`, task: { ...common, keyword: query, depth: ORGANIC_DEPTH, device: 'desktop' } });
   }
-  AI_PROMPTS.forEach((p, i) => {
-    const prompt = fillPrompt(p, m);
+  for (const i of plan.promptIndexes) {
+    const prompt = fillPrompt(AI_PROMPTS[i], m);
     for (const provider of ['chatgpt', 'claude'] as const) {
       const kind: Kind = provider === 'chatgpt' ? 'ai-chatgpt' : 'ai-claude';
       calls.push({
-        kind, key: `p${i}`, endpoint: ENDPOINTS[kind].path, label: `${provider} "${prompt}"`,
+        kind, key: aiKey(i, prompt, AI_MODELS[provider]), endpoint: ENDPOINTS[kind].path, label: `${provider} "${prompt}"`,
         task: {
           user_prompt: prompt, model_name: AI_MODELS[provider], web_search: true,
           web_search_country_iso_code: 'US', web_search_city: m.city, max_output_tokens: 1500,
         },
       });
     }
-  });
+  }
   return calls;
 }
 
-/** GMB lookups for map results missing a phone, website or category, and Lighthouse for the best-ranked sites. */
+/** GMB lookups for map results missing a phone, website or category (the smoke test forces one), and
+    Lighthouse for the best-ranked sites. */
 function phaseTwoCalls(m: Market, store: RawStore): Call[] {
-  const prelim = buildSnapshot(m, date, store).practices.filter((p) => !p.isDirectory);
+  const prelim = buildResult(m, date, store, buildOpts).snapshot.practices.filter((p) => !p.isDirectory);
   const calls: Call[] = [];
-  prelim
-    .filter((p) => p.mapsCid && (!p.phone || !p.website || !p.category) && !store.has('gmb', p.mapsCid))
-    .slice(0, GMB_MAX_LOOKUPS)
-    .forEach((p) =>
-      calls.push({
-        kind: 'gmb', key: p.mapsCid!, endpoint: ENDPOINTS.gmb.path, label: `gmb ${p.name}`,
-        task: { keyword: `cid:${p.mapsCid}`, location_name: m.dfsLocationName, language_code: LANGUAGE_CODE },
-      }),
-    );
+  const gmbPool = prelim.filter((p) => p.mapsCid && (plan.gmbForce || !p.phone || !p.website || !p.category));
+  const gmbTargets = plan.gmbForce
+    ? gmbPool.slice(0, plan.gmbMax)
+    : gmbPool.filter((p) => !store.has('gmb', p.mapsCid!)).slice(0, plan.gmbMax);
+  for (const p of gmbTargets) {
+    calls.push({
+      kind: 'gmb', key: p.mapsCid!, endpoint: ENDPOINTS.gmb.path, label: `gmb ${p.name}`,
+      task: { keyword: `cid:${p.mapsCid}`, location_name: m.dfsLocationName, language_code: LANGUAGE_CODE },
+    });
+  }
   const seen = new Set<string>();
   for (const p of prelim) {
+    if (seen.size >= plan.lighthouseMax) break;
+    // No Lighthouse for national chains or sites hosted on a directory: not the practice's own website.
+    if (p.isChain) continue;
     const domain = normaliseDomain(p.website);
-    if (!domain || seen.has(domain) || seen.size >= LIGHTHOUSE_MAX_PRACTICES) continue;
+    if (!domain || seen.has(domain) || directoryName(domain)) continue;
     seen.add(domain);
     calls.push({
       kind: 'lighthouse', key: domain, endpoint: ENDPOINTS.lighthouse.path, label: `lighthouse ${domain}`,
@@ -95,9 +116,11 @@ type Tally = Record<Kind, { calls: number; cached: number }>;
 const emptyTally = (): Tally =>
   Object.fromEntries((Object.keys(ENDPOINTS) as Kind[]).map((k) => [k, { calls: 0, cached: 0 }])) as Tally;
 
+const usd = (n: number) => `$${n.toFixed(4)}`;
+
 function printDryRun(tally: Tally, assumed: Kind[]) {
   let total = 0;
-  console.log('\nEndpoint'.padEnd(52) + 'calls  cached  billable  est. cost');
+  console.log('\n' + 'Endpoint'.padEnd(52) + 'calls  cached  billable  est. cost');
   for (const kind of Object.keys(ENDPOINTS) as Kind[]) {
     const t = tally[kind];
     const billable = t.calls - t.cached;
@@ -105,12 +128,22 @@ function printDryRun(tally: Tally, assumed: Kind[]) {
     total += cost;
     console.log(
       `${ENDPOINTS[kind].title}${assumed.includes(kind) ? ' *' : ''}`.padEnd(52) +
-        `${t.calls}`.padEnd(7) + `${t.cached}`.padEnd(8) + `${billable}`.padEnd(10) + `$${cost.toFixed(4)}`,
+        `${t.calls}`.padEnd(7) + `${t.cached}`.padEnd(8) + `${billable}`.padEnd(10) + usd(cost),
     );
   }
-  console.log(`${'TOTAL'.padEnd(77)}$${total.toFixed(4)}`);
-  console.log('\n* count assumed (depends on search results): ' +
-    `${ASSUMED_UNIQUE_PRACTICES} unique practices, ${ASSUMED_GMB_SHARE * 100}% needing a GMB lookup, Lighthouse capped at ${LIGHTHOUSE_MAX_PRACTICES}.`);
+  console.log(`${'TOTAL'.padEnd(77)}${usd(total)}`);
+
+  // AI model comparison per market: the same AI calls priced on the previous and the current models.
+  const aiCallsPerMarket = plan.promptIndexes.length;
+  const prev = aiCallsPerMarket * (aiUnitCost(PREVIOUS_AI_MODELS.chatgpt) + aiUnitCost(PREVIOUS_AI_MODELS.claude));
+  const now = aiCallsPerMarket * (aiUnitCost(AI_MODELS.chatgpt) + aiUnitCost(AI_MODELS.claude));
+  console.log(`\nAI models, per market (${aiCallsPerMarket} prompt(s) x 2 engines, web search on):`);
+  console.log(`  previous  ${PREVIOUS_AI_MODELS.chatgpt} + ${PREVIOUS_AI_MODELS.claude}: ${usd(prev)}`);
+  console.log(`  current   ${AI_MODELS.chatgpt} + ${AI_MODELS.claude}: ${usd(now)}`);
+  console.log(`  difference: ${now >= prev ? '+' : '-'}${usd(Math.abs(now - prev))} per market`);
+
+  console.log(`\n* count assumed (depends on search results): ${assumedGmb} profile lookup(s), ${assumedLighthouse} Lighthouse scan(s)` +
+    (smoke ? '.' : ` (${ASSUMED_UNIQUE_PRACTICES} unique practices, ${ASSUMED_GMB_SHARE * 100}% needing a lookup, Lighthouse capped at ${LIGHTHOUSE_MAX_PRACTICES}).`));
   console.log('AI cost per call is an assumption (DataForSEO bills the model/web-search cost through at actual usage).');
   console.log('Dry run only: nothing was sent. Re-run with --live to spend.');
 }
@@ -123,14 +156,45 @@ async function runCalls(store: RawStore, calls: Call[], spent: { total: number }
       const { response, cost } = await dfsPost(c);
       store.write(c.kind, c.key, response);
       spent.total += cost;
-      console.log(`  ok  ${c.label}  $${cost.toFixed(4)}`);
+      console.log(`  ok  ${c.label}  ${usd(cost)}`);
     } catch (e) {
       console.error(`  FAIL ${c.label}: ${(e as Error).message}`);
     }
   });
 }
 
+/** Free reference lookup: checks each market's dfsLocationName against DataForSEO's Google locations list. */
+async function checkLocations() {
+  const json = await dfsGet('serp/google/locations/us');
+  const locations: any[] = json?.tasks?.[0]?.result ?? [];
+  console.log(`DataForSEO lists ${locations.length} US locations.`);
+  let bad = 0;
+  for (const m of markets) {
+    const hit = locations.find((l) => l.location_name === m.dfsLocationName);
+    if (hit) {
+      console.log(`  OK   ${m.slug}: "${hit.location_name}" (code ${hit.location_code}, ${hit.location_type})`);
+    } else {
+      bad++;
+      const near = locations.filter((l) => String(l.location_name).startsWith(`${m.city},`)).slice(0, 6).map((l) => `"${l.location_name}"`);
+      console.log(`  MISS ${m.slug}: "${m.dfsLocationName}". Similar: ${near.join(', ') || 'none'}`);
+    }
+  }
+  if (bad) process.exitCode = 1;
+}
+
+async function listModels() {
+  for (const [name, p] of [['ChatGPT', 'ai_optimization/chat_gpt/llm_responses/models'], ['Claude', 'ai_optimization/claude/llm_responses/models']]) {
+    const json = await dfsGet(p);
+    const models: any[] = json?.tasks?.[0]?.result ?? [];
+    console.log(`\n${name} models (${models.length}):`);
+    for (const m of models) console.log(`  ${m.model_name}${m.web_search_supported === false ? '  (no web search)' : ''}`);
+  }
+}
+
 async function main() {
+  if (flag('models')) return listModels();
+  if (flag('check-locations')) return checkLocations();
+
   if (!live) {
     const tally = emptyTally();
     for (const m of markets) {
@@ -139,19 +203,18 @@ async function main() {
         tally[c.kind].calls++;
         if (store.has(c.kind, c.key)) tally[c.kind].cached++;
       }
-      // Phase two: use real counts when phase one is already cached, else the assumptions.
-      const haveSerp = KEYWORDS.every((kw) => store.has('maps', kw));
-      if (haveSerp) {
+      // Phase two: real counts when phase one is already cached, else the assumptions.
+      if (plan.keywords.every((kw) => store.has('maps', kw) && store.has('organic', organicQuery(kw, m)))) {
         for (const c of phaseTwoCalls(m, store)) {
           tally[c.kind].calls++;
           if (store.has(c.kind, c.key)) tally[c.kind].cached++;
         }
       } else {
-        tally.gmb.calls += Math.min(GMB_MAX_LOOKUPS, Math.round(ASSUMED_UNIQUE_PRACTICES * ASSUMED_GMB_SHARE));
-        tally.lighthouse.calls += Math.min(LIGHTHOUSE_MAX_PRACTICES, ASSUMED_UNIQUE_PRACTICES);
+        tally.gmb.calls += assumedGmb;
+        tally.lighthouse.calls += assumedLighthouse;
       }
     }
-    console.log(`Therapy Index dry run: ${markets.map((m) => m.slug).join(', ')} (${date})`);
+    console.log(`Therapy Index ${smoke ? 'SMOKE TEST ' : ''}dry run: ${markets.map((m) => `${m.slug} (${m.dfsLocationName})`).join(', ')} (${date})`);
     printDryRun(tally, ['gmb', 'lighthouse']);
     return;
   }
@@ -163,10 +226,10 @@ async function main() {
     await runCalls(store, phaseOneCalls(m), spent);
     console.log(`${m.slug}: profile lookups and Lighthouse`);
     await runCalls(store, phaseTwoCalls(m, store), spent);
-    const file = writeSnapshot(buildSnapshot(m, date, store));
-    console.log(`${m.slug}: wrote ${file}`);
+    const files = writeResult(buildResult(m, date, store, buildOpts), smoke ? 'smoke' : '');
+    console.log(`${m.slug}: wrote\n      ${files.join('\n      ')}`);
   }
-  console.log(`\nSpent this run: $${spent.total.toFixed(4)} (as reported by DataForSEO)`);
+  console.log(`\nSpent this run: ${usd(spent.total)} (as reported by DataForSEO)`);
 }
 
 main().catch((e) => {

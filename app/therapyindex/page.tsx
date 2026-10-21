@@ -14,7 +14,7 @@ export default function Page() {
       <h1>Therapy Index (placeholder)</h1>
       {snapshots.length === 0 && <p>No snapshots yet.</p>}
       {snapshots.map((s) => {
-        const top = s.practices.filter((p) => !p.isDirectory).slice(0, 10);
+        const top = s.practices.filter((p) => !p.isDirectory && !p.isChain).slice(0, 10);
         return (
           <section key={s.market.slug}>
             <h2>

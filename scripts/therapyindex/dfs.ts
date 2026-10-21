@@ -1,3 +1,4 @@
+import { AI_MODELS } from '../../lib/therapyindex/markets';
 import type { Kind } from './store';
 
 /* DataForSEO client and the price list behind --dry-run.
@@ -6,6 +7,24 @@ import type { Kind } from './store';
    Prices are published figures for Live mode; re-check them before a big run. */
 
 const BASE = 'https://api.dataforseo.com/v3';
+
+/* Provider cost per AI call (model tokens plus web search) is NOT published by DataForSEO; it is billed
+   through at actual usage. These are rough per-call assumptions for the dry run only. Replace them with
+   the real figures once a smoke run reports its cost. */
+export const AI_TASK_FEE = 0.0006;
+export const AI_COST_ASSUMPTIONS: Record<string, number> = {
+  'gpt-5-mini': 0.015,
+  'gpt-5': 0.04,
+  'claude-haiku-4-5': 0.015,
+  'claude-sonnet-5': 0.05,
+  'claude-sonnet-5-5': 0.012, // observed in the 2026-10-21 smoke run (1 web-search answer)
+  'gpt-5.6-luna': 0.0123, // observed in the 2026-10-21 smoke run (1 web-search answer)
+  'gpt-5.6-sol': 0.05,
+};
+export const AI_COST_FALLBACK = 0.04;
+/** The models used before the switch to the consumer defaults, kept for the cost comparison. */
+export const PREVIOUS_AI_MODELS = { chatgpt: 'gpt-5-mini', claude: 'claude-haiku-4-5' } as const;
+export const aiUnitCost = (model: string) => AI_TASK_FEE + (AI_COST_ASSUMPTIONS[model] ?? AI_COST_FALLBACK);
 
 export type Call = {
   kind: Kind;
@@ -46,17 +65,26 @@ export const ENDPOINTS: Record<Kind, { path: string; title: string; unitCost: nu
   'ai-chatgpt': {
     path: 'ai_optimization/chat_gpt/llm_responses/live',
     title: 'AI Optimization LLM Responses: ChatGPT (live)',
-    // $0.0006 task fee + assumed provider cost with web search (not published by DataForSEO; see note).
-    unitCost: 0.0006 + 0.015,
-    note: '$0.0006 task fee + ASSUMED ~$0.015 model/web-search cost (billed through at actual token cost)',
+    unitCost: aiUnitCost(AI_MODELS.chatgpt),
+    note: '$0.0006 task fee + ASSUMED model/web-search cost per call (billed through at actual usage)',
   },
   'ai-claude': {
     path: 'ai_optimization/claude/llm_responses/live',
     title: 'AI Optimization LLM Responses: Claude (live)',
-    unitCost: 0.0006 + 0.015,
-    note: '$0.0006 task fee + ASSUMED ~$0.015 model/web-search cost (billed through at actual token cost)',
+    unitCost: aiUnitCost(AI_MODELS.claude),
+    note: '$0.0006 task fee + ASSUMED model/web-search cost per call (billed through at actual usage)',
   },
 };
+
+export async function dfsGet(pathUnderV3: string): Promise<any> {
+  const login = process.env.DATAFORSEO_LOGIN;
+  const password = process.env.DATAFORSEO_PASSWORD;
+  if (!login || !password) throw new DfsError('DATAFORSEO_LOGIN / DATAFORSEO_PASSWORD missing. Put them in .env.local.');
+  const auth = Buffer.from(`${login}:${password}`).toString('base64');
+  const res = await fetch(`${BASE}/${pathUnderV3}`, { headers: { Authorization: `Basic ${auth}` } });
+  if (!res.ok) throw new DfsError(`GET ${pathUnderV3}: HTTP ${res.status}`);
+  return res.json();
+}
 
 export class DfsError extends Error {}
 

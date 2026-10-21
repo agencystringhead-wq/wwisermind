@@ -10,22 +10,48 @@ export type Market = {
   city: string;
   stateSlug: string;
   stateName: string;
+  /** Two-letter code, used in organic queries ("therapist Houston TX") and the local-site check. */
+  stateAbbr: string;
   /** Exact DataForSEO location name ("City,State,United States"). Check it against
       https://api.dataforseo.com/v3/serp/google/locations before a live run. */
   dfsLocationName: string;
   /** Human wording for the area, e.g. "Richmond and the surrounding area". */
   areaLabel: string;
+  /** Suburbs and nearby cities of the market. Used only to decide whether an organic result that is not in Maps
+      looks local (its title or URL must mention the city, one of these, or the state). */
+  extraLocations: string[];
 };
 
-/** PLACEHOLDER: one market so the pipeline can be dry-run. Replace or extend with the 3 real cities. */
 export const MARKETS: Market[] = [
   {
-    slug: 'richmond-va',
-    city: 'Richmond',
-    stateSlug: 'virginia',
-    stateName: 'Virginia',
-    dfsLocationName: 'Richmond,Virginia,United States',
-    areaLabel: 'Richmond and the surrounding area',
+    slug: 'houston-tx',
+    city: 'Houston',
+    stateSlug: 'texas',
+    stateName: 'Texas',
+    stateAbbr: 'TX',
+    dfsLocationName: 'Houston,Texas,United States',
+    areaLabel: 'Houston and the surrounding area',
+    extraLocations: ['Katy', 'Sugar Land', 'The Woodlands', 'Pearland', 'Spring', 'Cypress', 'Humble', 'Bellaire', 'Pasadena', 'Galveston', 'League City', 'Missouri City', 'Conroe', 'Kingwood', 'Memorial', 'Heights'],
+  },
+  {
+    slug: 'austin-tx',
+    city: 'Austin',
+    stateSlug: 'texas',
+    stateName: 'Texas',
+    stateAbbr: 'TX',
+    dfsLocationName: 'Austin,Texas,United States',
+    areaLabel: 'Austin and the surrounding area',
+    extraLocations: ['Round Rock', 'Cedar Park', 'Georgetown', 'Pflugerville', 'Lakeway', 'Leander', 'Kyle', 'Buda', 'San Marcos', 'Bee Cave', 'Westlake', 'Dripping Springs', 'Hutto'],
+  },
+  {
+    slug: 'denver-co',
+    city: 'Denver',
+    stateSlug: 'colorado',
+    stateName: 'Colorado',
+    stateAbbr: 'CO',
+    dfsLocationName: 'Denver,Colorado,United States',
+    areaLabel: 'Denver and the surrounding area',
+    extraLocations: ['Aurora', 'Lakewood', 'Littleton', 'Arvada', 'Westminster', 'Centennial', 'Englewood', 'Thornton', 'Boulder', 'Highlands Ranch', 'Parker', 'Castle Rock', 'Greenwood Village', 'Wheat Ridge', 'Golden', 'Cherry Creek'],
   },
 ];
 
@@ -44,11 +70,11 @@ export const KEYWORDS: string[] = [
   'grief counseling',
 ];
 
-/** Asked to ChatGPT and Claude per market. {city} and {state} are filled in. Keep each under 500 characters. */
+/** Asked to ChatGPT and Claude per market. {city} and {stateName} are filled in. Keep each under 500 characters. */
 export const AI_PROMPTS: string[] = [
-  'Who is the best therapist in {city}?',
-  'Recommend an anxiety therapist in {city}',
-  'Best couples counselor in {city}',
+  'Who is the best therapist in {city}, {stateName}?',
+  'Recommend an anxiety therapist in {city}, {stateName}',
+  'Best couples counselor in {city}, {stateName}',
 ];
 
 /* ---- Data collection settings ---- */
@@ -60,8 +86,14 @@ export const MAPS_DEPTH = 20;
 export const ORGANIC_DEPTH = 10;
 /** How many organic results per search are kept in organicTopBySearch. */
 export const ORGANIC_TOP_N = 6;
-/** DataForSEO model names (see the Models endpoints). Cheaper models keep the cost down. */
-export const AI_MODELS = { chatgpt: 'gpt-5-mini', claude: 'claude-haiku-4-5' } as const;
+/** DataForSEO model names, checked against the live Models endpoints on 2026-10-21
+    (`npm run therapyindex:fetch -- --models` prints the current list). Aim: the default models people
+    use in the ChatGPT and Claude apps. A base name resolves to its latest dated version.
+    claude-sonnet-5-5: the newest Sonnet, the tier the Claude app defaults to.
+    gpt-5.6-luna: the ChatGPT default for free users (Aug 2026 reports); the list also has gpt-5.6-sol (the paid
+    flagship) and a gpt-6 line (gpt-6-luna, gpt-6-sol), which reports say is limited to the desktop app so far.
+    Swap here if you decide a different one better represents what your audience sees. */
+export const AI_MODELS = { chatgpt: 'gpt-5.6-luna', claude: 'claude-sonnet-5-5' } as const;
 /** Lighthouse is slow and costs per page, so only the best-ranked practice sites are tested. */
 export const LIGHTHOUSE_MAX_PRACTICES = 40;
 /** Cap on Google My Business lookups, used only for map results missing a phone, site or category. */
@@ -80,3 +112,14 @@ export const ORGANIC_POINTS = [4, 3, 2.5, 2, 1.5, 1];
 export const AI_MENTION_POINTS = 3;
 /** Ceiling on the AI bonus so a few lucky answers cannot outweigh local search. */
 export const AI_BONUS_CAP = 12;
+
+/* ---- Smoke test (--smoke): the smallest live run that touches every endpoint ---- */
+
+export const SMOKE = {
+  keywords: ['therapist', 'couples counseling'],
+  /** Index into AI_PROMPTS; one prompt per model. */
+  promptIndexes: [0],
+  lighthousePractices: 3,
+  /** One forced Google My Business lookup, so that endpoint is exercised too. */
+  gmbLookups: 1,
+};

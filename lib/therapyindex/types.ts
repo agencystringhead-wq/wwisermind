@@ -28,9 +28,64 @@ export type Practice = {
   /** 0 to 100, the top practice = 100. Directories are not scored (0). */
   visibilityScore: number;
   isDirectory: boolean;
+  /** A location of a national chain or telehealth network (see chains.ts). Kept in practices[], but skipped
+      for Lighthouse and never a top-10 or leader slot; shown with a "national chain" label. */
+  isChain: boolean;
+  chainName: string | null;
 };
 
-export type OrganicKind = 'local practice' | 'directory' | 'other';
+/** 'local-no-map': looks like a single practice's own site but is not in the Maps results. A
+    heuristic guess, listed in data/therapyindex/review/<market>.json for manual confirmation. */
+export type OrganicKind = 'local practice' | 'directory' | 'local-no-map' | 'other';
+/** Tags an override can force onto a domain (see overrides.ts). */
+export type OverrideTag = 'directory' | 'local-no-map' | 'other';
+
+export type AiOnlyMention = {
+  /** Name as written in the answer; no matching Maps listing was found. */
+  name: string;
+  provider: AiProvider;
+  /** DataForSEO model name that produced the answer. */
+  model: string;
+  prompt: string;
+};
+
+export type ReviewEntry = {
+  domain: string;
+  title: string;
+  url: string;
+  searches: { keyword: string; rank: number }[];
+  /** Tag in the snapshot: 'local-no-map' unless an override changed it. */
+  tag: OrganicKind;
+  overridden: boolean;
+};
+
+/** One result of the Google local pack that appears inside the organic SERP. */
+export type LocalPackEntry = {
+  position: number;
+  title: string;
+  domain: string | null;
+  url: string | null;
+  phone: string | null;
+  mapsCid: string | null;
+  rating: number | null;
+  reviewCount: number | null;
+  /** Slug of the matching entry in practices[] (by CID, else website domain). */
+  practiceSlug: string | null;
+};
+
+/** One raw AI answer, saved for manual review (data/therapyindex/review/<market>-ai.json). */
+export type AiReviewEntry = {
+  provider: AiProvider;
+  model: string;
+  prompt: string;
+  text: string;
+  /** URLs the engine cited (web search annotations). */
+  citations: string[];
+  /** Practices from Maps that the answer named. */
+  matchedPractices: string[];
+  /** Names kept in aiOnlyMentions[] from this answer. */
+  aiOnlyNames: string[];
+};
 
 export type OrganicTopEntry = {
   rank: number;
@@ -59,7 +114,13 @@ export type Snapshot = {
     /** Share (0 to 100) of organic top-N slots, across all searches, held by directories. */
     directorySharePercent: number;
     practicesNamedByAi: number;
+    /** Practices that are locations of a national chain (isChain). */
+    chainLocations: number;
   };
   practices: Practice[];
+  /** Names the AI engines recommended that matched nothing in Maps. Not scored, not in practices[]. */
+  aiOnlyMentions: AiOnlyMention[];
   organicTopBySearch: Record<string, OrganicTopEntry[]>;
+  /** keyword -> the local pack shown on the organic results page. */
+  localPackBySearch: Record<string, LocalPackEntry[]>;
 };
