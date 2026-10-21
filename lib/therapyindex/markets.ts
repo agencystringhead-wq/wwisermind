@@ -31,7 +31,7 @@ export const MARKETS: Market[] = [
     stateAbbr: 'TX',
     dfsLocationName: 'Houston,Texas,United States',
     areaLabel: 'Houston and the surrounding area',
-    extraLocations: ['Katy', 'Sugar Land', 'The Woodlands', 'Pearland', 'Spring', 'Cypress', 'Humble', 'Bellaire', 'Pasadena', 'Galveston', 'League City', 'Missouri City', 'Conroe', 'Kingwood', 'Memorial', 'Heights'],
+    extraLocations: ['Katy', 'Sugar Land', 'The Woodlands', 'Pearland', 'Spring', 'Cypress', 'Humble', 'Bellaire', 'Pasadena', 'Galveston', 'League City', 'Missouri City', 'Conroe', 'Kingwood', 'Memorial', 'Friendswood', 'Tomball'],
   },
   {
     slug: 'austin-tx',

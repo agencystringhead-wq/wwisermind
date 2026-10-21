@@ -179,6 +179,15 @@ async function checkLocations() {
       console.log(`  MISS ${m.slug}: "${m.dfsLocationName}". Similar: ${near.join(', ') || 'none'}`);
     }
   }
+  // extraLocations: each should exist as "<name>,<State>,United States" in the list.
+  console.log('\nmarket | suburb | matched location name | code | type');
+  for (const m of markets) {
+    for (const sub of m.extraLocations) {
+      const hit = locations.find((l) => String(l.location_name).startsWith(`${sub},${m.stateName},`));
+      if (!hit) bad++;
+      console.log(`${m.slug} | ${sub} | ${hit ? hit.location_name : 'NO MATCH'} | ${hit ? hit.location_code : '-'} | ${hit ? hit.location_type : '-'}`);
+    }
+  }
   if (bad) process.exitCode = 1;
 }
 
