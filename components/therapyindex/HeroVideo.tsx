@@ -10,7 +10,9 @@ type NetworkInformation = { saveData?: boolean };
 
 /**
  * The hero's looping visual. Nothing is requested until the page has painted and loaded: the server sends an empty, correctly sized box,
- * and this adds the <video> afterwards, so the headline stays the first and largest thing the page paints.
+ * and this adds the <video> afterwards, so the headline stays the first and largest thing the page paints. The <video> carries no poster
+ * attribute on purpose: a poster is a largest-contentful-paint candidate, and it would overtake the headline. It is hidden until its first
+ * frame has loaded anyway, so a poster would never be seen; the poster file is used only where the video is not.
  *
  * It picks the 800px or the 1600px file by screen width and WebM or MP4 by support, plays only while it is on screen and the tab is visible,
  * and under reduced motion or Save-Data shows the poster frame and never fetches the video.
@@ -76,9 +78,8 @@ export default function HeroVideo() {
           loop
           playsInline
           preload="none"
-          poster={POSTER}
           disablePictureInPicture
-          onPlaying={() => setReady(true)}
+          onLoadedData={() => setReady(true)}
         />
       ) : null}
       {mode === 'poster' ? (
