@@ -5,6 +5,7 @@ import Link from 'next/link';
 import SocialLinks from '@/components/SocialLinks';
 import CtaLink from '@/components/booking/CtaLink';
 import { footerCta, footerMain } from '@/lib/site';
+import CrisisGate from './CrisisGate';
 import CtaBadge from './CtaBadge';
 import FooterCtaGate from './FooterCtaGate';
 import FooterClocks from './FooterClocks';
@@ -230,11 +231,15 @@ export default function Footer({ hideCta = false }: { hideCta?: boolean }) {
       </section>
 
       {/* --- closing panel: the dotted headline ---------------------------------- */}
-      <section className={styles.media}>
-        {/* A plain space between the words: the plus sign's own side bearings already open
-            the gap the reference shows. */}
-        <FooterDotText text={media.headline.join(' ')} />
-      </section>
+      {/* Left out on the crisis resources pages, where a decorative headline about the studio is
+          out of place: the footer's links stay, the panel does not. */}
+      <CrisisGate>
+        <section className={styles.media}>
+          {/* A plain space between the words: the plus sign's own side bearings already open
+              the gap the reference shows. */}
+          <FooterDotText text={media.headline.join(' ')} />
+        </section>
+      </CrisisGate>
     </footer>
   );
 }
