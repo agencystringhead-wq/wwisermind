@@ -109,6 +109,10 @@ export const MAP_BELOW_PACK_POINTS = 1;
 export const MAP_BELOW_PACK_MAX_RANK = 10;
 /** Points for an organic position, per search. Index 0 = rank 1. Deliberately smaller than the map pack. */
 export const ORGANIC_POINTS = [4, 3, 2.5, 2, 1.5, 1];
+/** A practice needs at least this many Google reviews to take a top-10 or leader slot. Below it, it stays in the
+    directory with its real score and a fewReviews flag. */
+export const MIN_REVIEWS_FOR_RANKING = 10;
+
 /** Share of the final score that comes from review strength (the rest is map + organic + AI). */
 export const REVIEW_WEIGHT = 0.25;
 

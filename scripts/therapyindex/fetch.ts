@@ -3,6 +3,7 @@ import {
   MAPS_DEPTH, MARKETS, ORGANIC_DEPTH, SMOKE, type Market,
 } from '../../lib/therapyindex/markets';
 import { directoryName, normaliseDomain } from '../../lib/therapyindex/directories';
+import { isRankEligible } from '../../lib/therapyindex/score';
 import { aiUnitCost, dfsGet, dfsPost, ENDPOINTS, pool, PREVIOUS_AI_MODELS, type Call } from './dfs';
 import { aiKey, buildResult, fillPrompt, mapsKey, organicQuery, writeResult, type BuildOptions } from './normalise';
 import { RawStore, type Kind } from './store';
@@ -88,7 +89,10 @@ function phaseOneCalls(m: Market): Call[] {
 /** GMB lookups for map results missing a phone, website or category (the smoke test forces one), and
     Lighthouse for the best-ranked sites. */
 function phaseTwoCalls(m: Market, store: RawStore): Call[] {
-  const prelim = buildResult(m, date, store, buildOpts).snapshot.practices.filter((p) => !p.isDirectory);
+  // Practices that can reach the top 10 come first, so the capped Lighthouse and lookup budgets go to them.
+  const prelim = buildResult(m, date, store, buildOpts)
+    .snapshot.practices.filter((p) => !p.isDirectory)
+    .sort((a, b) => Number(!isRankEligible(a)) - Number(!isRankEligible(b)));
   const calls: Call[] = [];
   const gmbPool = prelim.filter((p) => p.mapsCid && (plan.gmbForce || !p.phone || !p.website || !p.category));
   const gmbTargets = plan.gmbForce
@@ -104,7 +108,7 @@ function phaseTwoCalls(m: Market, store: RawStore): Call[] {
   for (const p of prelim) {
     if (seen.size >= plan.lighthouseMax) break;
     // No Lighthouse for national chains or sites hosted on a directory: not the practice's own website.
-    if (p.isChain) continue;
+    if (p.isChain || p.isMedical) continue;
     const domain = normaliseDomain(p.website);
     if (!domain || seen.has(domain) || directoryName(domain)) continue;
     seen.add(domain);

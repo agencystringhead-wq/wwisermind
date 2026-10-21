@@ -3,8 +3,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { isMentalHealthCategory } from '../../lib/therapyindex/categories';
 import { chainFor } from '../../lib/therapyindex/chains';
+import { medicalReason } from '../../lib/therapyindex/medical';
 import { classifyDomain, directoryName, normaliseDomain } from '../../lib/therapyindex/directories';
-import { AI_MODELS, AI_PROMPTS, KEYWORDS, MAPS_DEPTH, MARKETS, ORGANIC_TOP_N, type Market } from '../../lib/therapyindex/markets';
+import { AI_MODELS, AI_PROMPTS, KEYWORDS, MAPS_DEPTH, MARKETS, MIN_REVIEWS_FOR_RANKING, ORGANIC_TOP_N, type Market } from '../../lib/therapyindex/markets';
 import { visibilityScores } from '../../lib/therapyindex/score';
 import type {
   AiOnlyMention, AiProvider, AiReviewEntry, ExcludedMapsResult, LocalPackEntry, OrganicTopEntry, Practice, ReviewEntry, Snapshot,
@@ -59,7 +60,8 @@ function emptyPractice(name: string): Draft {
     slug: '', name, address: null, city: null, phone: null, website: null, mapsCid: null, category: null,
     rating: null, reviewCount: null, mapRankBySearch: {}, organicRankBySearch: {},
     aiMentions: { chatgpt: 0, claude: 0, prompts: [] }, lighthouse: null, visibilityScore: 0,
-    isDirectory: false, isChain: false, chainName: null, hasMapListing: true, people: [], _domain: null,
+    isDirectory: false, isChain: false, chainName: null, hasMapListing: true, people: [], categories: [], isMedical: false,
+    fewReviews: false, _domain: null,
   };
 }
 
@@ -100,6 +102,7 @@ export function mapsPractices(raw: RawReader, keywords: string[]): { drafts: Dra
       d.rating ??= item.rating?.value ?? null;
       d.reviewCount ??= item.rating?.votes_count ?? null;
       d._domain ??= domain;
+      for (const c of categories) if (!d.categories.includes(c)) d.categories.push(c);
       const prev = d.mapRankBySearch[kw];
       if (prev === undefined || rank < prev) d.mapRankBySearch[kw] = rank;
       if (cid) byCid.set(cid, d);
@@ -117,6 +120,7 @@ export type BuildResult = {
   aiReview: AiReviewEntry[];
   excluded: ExcludedMapsResult[];
   promoted: PromotedPractice[];
+  medical: { name: string; reason: string }[];
 };
 
 export function buildSnapshot(market: Market, date: string, raw: RawReader, opts: BuildOptions = {}): Snapshot {
@@ -144,6 +148,13 @@ export function buildResult(market: Market, date: string, raw: RawReader, opts: 
     const chain = chainFor(d._domain, d.name);
     d.isChain = !!chain;
     d.chainName = chain ? chain.name : null;
+  }
+  const medical: { name: string; reason: string }[] = [];
+  for (const d of drafts) {
+    const reason = medicalReason(d.name, d.categories);
+    d.isMedical = !!reason;
+    if (reason) medical.push({ name: d.name, reason });
+    d.fewReviews = (d.reviewCount ?? 0) < MIN_REVIEWS_FOR_RANKING;
   }
 
   const practiceDomains = new Set(drafts.map((d) => d._domain).filter((x): x is string => !!x && !directoryName(x)));
@@ -254,6 +265,7 @@ export function buildResult(market: Market, date: string, raw: RawReader, opts: 
     }
     const d = emptyPractice(e.name);
     d.hasMapListing = false;
+    d.fewReviews = true; // no Google reviews known
     d.website = hit.url || `https://${hit.domain}`;
     d._domain = hit.domain;
     d.people = e.people;
@@ -338,6 +350,8 @@ export function buildResult(market: Market, date: string, raw: RawReader, opts: 
       practicesNamedByAi: local.filter((p) => p.aiMentions.chatgpt + p.aiMentions.claude > 0).length,
       chainLocations: local.filter((p) => p.isChain).length,
       unlistedPractices: local.filter((p) => !p.hasMapListing).length,
+      medicalPractices: local.filter((p) => p.isMedical).length,
+      fewReviewPractices: local.filter((p) => p.fewReviews).length,
     },
     practices,
     aiOnlyMentions: aiOnly,
@@ -348,11 +362,11 @@ export function buildResult(market: Market, date: string, raw: RawReader, opts: 
   const promoted: PromotedPractice[] = promotedDrafts.map((d) => ({
     name: d.name, domain: d._domain!, slug: d.slug, people: d.people, aiMentions: d.aiMentions.prompts.length,
   }));
-  return { snapshot, review, aiReview, excluded, promoted };
+  return { snapshot, review, aiReview, excluded, promoted, medical };
 }
 
 /** Writes the snapshot and its review files. `subdir` keeps smoke-test output apart from the real snapshots. */
-export function writeResult({ snapshot, review, aiReview, excluded }: BuildResult, subdir = ''): string[] {
+export function writeResult({ snapshot, review, aiReview, excluded, medical }: BuildResult, subdir = ''): string[] {
   const dir = path.join(DATA_DIR, subdir);
   const reviewDir = path.join(DATA_DIR, subdir, 'review');
   fs.mkdirSync(reviewDir, { recursive: true });
@@ -362,6 +376,7 @@ export function writeResult({ snapshot, review, aiReview, excluded }: BuildResul
     [path.join(reviewDir, `${slug}.json`), review],
     [path.join(reviewDir, `${slug}-ai.json`), aiReview],
     [path.join(reviewDir, `${slug}-excluded.json`), excluded],
+    [path.join(reviewDir, `${slug}-medical.json`), medical],
   ];
   for (const [file, data] of files) fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n');
   return files.map(([file]) => file);

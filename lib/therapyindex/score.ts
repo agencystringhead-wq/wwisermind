@@ -23,18 +23,24 @@ import type { Practice } from './types';
                      capped at AI_BONUS_CAP
    activity = map + organic + AI bonus.
 
-   Step 2, scale both parts to 0..1 within the market (independent practices only: no directories, no chains):
+   Step 2, scale both parts to 0..1 within the market (rank-eligible practices set the maximum):
      visibility = min(1, activity / best activity)
      reviews    = ln(reviewCount + 1) / ln(most reviews + 1)       (no reviews = 0)
 
    Step 3, blend:   combined = (1 - REVIEW_WEIGHT) * visibility + REVIEW_WEIGHT * reviews     (75% / 25%)
    The score shown is combined scaled so the best independent practice = 100.
 
-   National chain locations (isChain) are scored on the same scale (capped at 100) but never set the leader or
-   the review maximum; directories score 0. Lighthouse results are shown on the page but do not feed the score.
+   Only rank-eligible practices (isRankEligible: no directories, chains, medical clinics, or practices under
+   MIN_REVIEWS_FOR_RANKING reviews) set the leader and the review maximum. The others keep their real score on
+   the same scale (capped at 100) but never take a top-10 or leader slot; directories score 0. Lighthouse results are shown on the page but do not feed the score.
    ========================================================================== */
 
-type Scorable = Pick<Practice, 'mapRankBySearch' | 'organicRankBySearch' | 'aiMentions' | 'isDirectory' | 'isChain' | 'reviewCount'>;
+type Scorable = Pick<Practice, 'mapRankBySearch' | 'organicRankBySearch' | 'aiMentions' | 'isDirectory' | 'isChain' | 'isMedical' | 'fewReviews' | 'reviewCount'>;
+
+/** Can take a top-10 or leader slot: not a directory, a national chain, a medical clinic, or a practice with too few reviews. */
+export function isRankEligible(p: Pick<Practice, 'isDirectory' | 'isChain' | 'isMedical' | 'fewReviews'>): boolean {
+  return !p.isDirectory && !p.isChain && !p.isMedical && !p.fewReviews;
+}
 
 export function mapPoints(rank: number): number {
   if (rank >= 1 && rank <= MAP_PACK_POINTS.length) return MAP_PACK_POINTS[rank - 1];
@@ -56,7 +62,7 @@ export function rawScore(p: Scorable): number {
 
 /** Each practice's 0 to 100 score, in the same order (see the formula at the top of this file). */
 export function visibilityScores(practices: Scorable[], reviewWeight: number = REVIEW_WEIGHT): number[] {
-  const independent = practices.map((p) => !p.isDirectory && !p.isChain);
+  const independent = practices.map(isRankEligible);
   const activity = practices.map((p) => (p.isDirectory ? 0 : rawScore(p)));
   const bestActivity = Math.max(0, ...activity.filter((_, i) => independent[i]));
   const maxReviews = Math.max(0, ...practices.filter((_, i) => independent[i]).map((p) => p.reviewCount ?? 0));

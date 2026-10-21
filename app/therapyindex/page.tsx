@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { isRankEligible } from '@/lib/therapyindex/score';
 import { getSnapshots } from '@/lib/therapyindex/snapshots';
 
 /* Phase 1 placeholder: plain text only, to prove the snapshots load in the static build. */
@@ -14,7 +15,7 @@ export default function Page() {
       <h1>Therapy Index (placeholder)</h1>
       {snapshots.length === 0 && <p>No snapshots yet.</p>}
       {snapshots.map((s) => {
-        const top = s.practices.filter((p) => !p.isDirectory && !p.isChain).slice(0, 10);
+        const top = s.practices.filter(isRankEligible).slice(0, 10);
         return (
           <section key={s.market.slug}>
             <h2>

@@ -34,6 +34,12 @@ export type Practice = {
   chainName: string | null;
   /** False for a practice found only through organic results and AI answers (no Google Maps listing in the results). */
   hasMapListing: boolean;
+  /** Google categories of the Maps listing (primary first, then additional). */
+  categories: string[];
+  /** Interventional psychiatry or psychiatry-only (see medical.ts). Kept in the directory, never top-10 or leader. */
+  isMedical: boolean;
+  /** Fewer than MIN_REVIEWS_FOR_RANKING Google reviews. Kept with its real score, never top-10 or leader. */
+  fewReviews: boolean;
   /** Named clinicians attached to this practice by AI answers. */
   people: string[];
 };
@@ -133,6 +139,8 @@ export type Snapshot = {
     chainLocations: number;
     /** Practices with no Maps listing, promoted from organic results because AI named them. */
     unlistedPractices: number;
+    medicalPractices: number;
+    fewReviewPractices: number;
   };
   practices: Practice[];
   /** Names the AI engines recommended that matched nothing in Maps. Not scored, not in practices[]. */
