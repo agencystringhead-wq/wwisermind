@@ -1084,3 +1084,12 @@
     gap: 4px;
   }
 }
+
+/* the map's zoom buttons are 44px targets on a phone */
+@media (max-width: 720px) {
+  .mapCanvas :global(.leaflet-bar a) {
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+  }
+}

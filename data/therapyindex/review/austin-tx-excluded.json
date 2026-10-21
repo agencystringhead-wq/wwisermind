@@ -561,6 +561,36 @@
   },
   {
     "reason": "manual decision",
+    "title": "Alison Kate Holistic Healing and Therapy",
+    "category": "Mental health service",
+    "additionalCategories": [
+      "Alternative medicine practitioner",
+      "Service establishment",
+      "Health counselor",
+      "Holistic medicine practitioner",
+      "Hypnotherapy service",
+      "Life coach",
+      "Meditation instructor",
+      "Reiki therapist",
+      "Yoga instructor"
+    ],
+    "searches": [
+      {
+        "keyword": "therapist",
+        "rank": 43
+      },
+      {
+        "keyword": "trauma therapist",
+        "rank": 99
+      },
+      {
+        "keyword": "grief counseling",
+        "rank": 59
+      }
+    ]
+  },
+  {
+    "reason": "manual decision",
     "title": "Life Coach Austin",
     "category": "Marriage or relationship counselor",
     "additionalCategories": [
@@ -576,6 +606,62 @@
       {
         "keyword": "marriage counselor",
         "rank": 31
+      }
+    ]
+  },
+  {
+    "reason": "manual decision",
+    "title": "Miki Tesh, Ph.D., LCSW",
+    "category": "Psychotherapist",
+    "additionalCategories": [
+      "Social worker"
+    ],
+    "searches": [
+      {
+        "keyword": "trauma therapist",
+        "rank": 55
+      }
+    ]
+  },
+  {
+    "reason": "manual decision",
+    "title": "Round Rock Children’s Therapy Center",
+    "category": "Mental health clinic",
+    "additionalCategories": [
+      "Applied behavior analysis therapist",
+      "Occupational therapist",
+      "Speech pathologist"
+    ],
+    "searches": [
+      {
+        "keyword": "child therapist",
+        "rank": 73
+      }
+    ]
+  },
+  {
+    "reason": "manual decision",
+    "title": "Austin Psychological and Testing Center",
+    "category": "Psychologist",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "psychologist",
+        "rank": 71
+      }
+    ]
+  },
+  {
+    "reason": "manual decision",
+    "title": "Loran Coaching",
+    "category": "Marriage or relationship counselor",
+    "additionalCategories": [
+      "Life coach"
+    ],
+    "searches": [
+      {
+        "keyword": "marriage counselor",
+        "rank": 95
       }
     ]
   }

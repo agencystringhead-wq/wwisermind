@@ -5,6 +5,7 @@ import { routes } from '@/lib/routes';
 import { absUrl } from '@/lib/site';
 import { BRAND, INDEXABLE } from '@/lib/therapyindex/config';
 import { getMarketView, hasProfile, isProfileIndexable, practiceProfiles, scoreText } from '@/lib/therapyindex/data';
+import { ogImages, ogUrl } from '@/lib/therapyindex/og';
 
 /* A profile for every practice with a website or a score above zero. Directories never get one. */
 export const dynamicParams = false;
@@ -37,8 +38,8 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
     /* With INDEXABLE off the layout already sends noindex, nofollow. With it on, a profile below the score bar that no AI
        named is noindex but still followed, so its links keep working. */
     ...(INDEXABLE && !isProfileIndexable(p) ? { robots: { index: false, follow: true } } : {}),
-    openGraph: { type: 'website', siteName: BRAND, title, description, url },
-    twitter: { card: 'summary', title, description },
+    openGraph: { type: 'website', siteName: BRAND, title, description, url, images: ogImages('profile', title) },
+    twitter: { card: 'summary_large_image', title, description, images: [ogUrl('profile')] },
   };
 }
 

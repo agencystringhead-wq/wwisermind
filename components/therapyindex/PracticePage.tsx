@@ -45,7 +45,7 @@ export default function PracticePage({ view, practice: p }: { view: MarketView; 
       />
 
       <header className={`${m.top} ${ti.lines}`}>
-        <div className={ti.dots} aria-hidden="true" />
+        <div className={ti.headerBg} aria-hidden="true" />
         <div className={ti.frame}>
           <div className={m.topBody}>
             <SectionLabel n="TI">{city.name} profile</SectionLabel>

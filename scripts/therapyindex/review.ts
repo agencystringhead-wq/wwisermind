@@ -10,8 +10,8 @@ import { DATA_DIR, latestRawDate, RawStore } from './store';
 
 /* Manual review of each market's top 30 eligible practices.
      npm run therapyindex:review-export   writes data/therapyindex/review/top30.csv with an empty "decision" column
-     npm run therapyindex:review-apply    reads your decisions from that CSV into lib/therapyindex/overrides.ts,
-                                          rebuilds every snapshot from cache (free) and rewrites the CSV
+     npm run therapyindex:review-apply    reads your decisions from that CSV (or the file path given after --) into
+                                          lib/therapyindex/overrides.ts, rebuilds every snapshot from cache (free) and rewrites the CSV
    decision: keep | chain | medical | nonprofit | exclude   (blank = no change) */
 
 const CSV_FILE = path.join(DATA_DIR, 'review', 'top30.csv');
@@ -75,24 +75,41 @@ function exportCsv(): string {
     });
   }
   fs.mkdirSync(path.dirname(CSV_FILE), { recursive: true });
-  fs.writeFileSync(CSV_FILE, lines.join('\n') + '\n');
-  return CSV_FILE;
+  try {
+    fs.writeFileSync(CSV_FILE, lines.join('\n') + '\n');
+    return CSV_FILE;
+  } catch (e) {
+    // A spreadsheet that has the file open locks it (Excel on Windows). Write the fresh list beside it instead of failing.
+    const code = (e as NodeJS.ErrnoException).code;
+    if (code !== 'EBUSY' && code !== 'EPERM' && code !== 'EACCES') throw e;
+    const next = path.join(path.dirname(CSV_FILE), 'top30-next.csv');
+    fs.writeFileSync(next, lines.join('\n') + '\n');
+    console.warn(`top30.csv is open in another program and could not be replaced; wrote ${next} instead. Close the spreadsheet and rename it.`);
+    return next;
+  }
 }
 
 /** Existing entries of the PRACTICE_DECISIONS block, with their trailing comments, so hand edits survive. */
 function existingBlock(source: string): Map<string, { decision: Decision; note: string }> {
   const entries = new Map<string, { decision: Decision; note: string }>();
   const block = source.match(/\/\/ BEGIN PRACTICE_DECISIONS([\s\S]*?)\/\/ END PRACTICE_DECISIONS/);
-  for (const line of (block?.[1] ?? '').split('\n')) {
+  // Windows checkouts can leave CRLF line endings: split on either, or every line would fail the pattern and be dropped.
+  const lines = (block?.[1] ?? '').split(/\r?\n/);
+  for (const line of lines) {
     const m = line.match(/^\s*'([^']+)':\s*'(\w+)',(?:\s*\/\/\s*(.*))?$/);
     if (m && DECISIONS.includes(m[2] as Decision)) entries.set(m[1], { decision: m[2] as Decision, note: m[3] ?? '' });
+  }
+  // Never rewrite the block if a line that looks like an entry was not understood: that would silently delete a decision.
+  const looksLikeEntry = lines.filter((l) => /^\s*'[^']+'\s*:/.test(l)).length;
+  if (looksLikeEntry !== entries.size) {
+    throw new Error(`overrides.ts: ${looksLikeEntry} decision lines but only ${entries.size} understood; fix the block by hand first.`);
   }
   return entries;
 }
 
-function applyDecisions(): void {
-  if (!fs.existsSync(CSV_FILE)) throw new Error(`${CSV_FILE} not found. Run therapyindex:review-export first.`);
-  const rows = parseCsv(fs.readFileSync(CSV_FILE, 'utf8'));
+function applyDecisions(file: string = CSV_FILE): void {
+  if (!fs.existsSync(file)) throw new Error(`${file} not found. Run therapyindex:review-export first.`);
+  const rows = parseCsv(fs.readFileSync(file, 'utf8'));
   const head = rows[0];
   const col = (name: string) => head.indexOf(name);
   const [iKey, iName, iDecision, iMarket] = [col('key'), col('name'), col('decision'), col('market')];
@@ -140,7 +157,8 @@ async function main(): Promise<void> {
   if (command === 'export') {
     console.log(`Wrote ${exportCsv()}`);
   } else if (command === 'apply') {
-    applyDecisions();
+    // An optional path reads decisions from another file: `npm run therapyindex:review-apply -- path/to/decided.csv`.
+    applyDecisions(process.argv[3] ? path.resolve(process.argv[3]) : CSV_FILE);
     // Re-import overrides in a child process: this process still holds the old PRACTICE_DECISIONS.
     const run = spawnSync(process.execPath, ['--import', 'tsx', 'scripts/therapyindex/review.ts', 'rebuild'], { stdio: 'inherit' });
     if (run.status !== 0) process.exit(run.status ?? 1);

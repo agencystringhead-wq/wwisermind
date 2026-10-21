@@ -3,6 +3,14 @@
 
 /* ---- 01 intro ------------------------------------------------------------------------------------ */
 
+/* 01 intro background: the generated halftone landscape (Higgsfield), settled at the lower right, clear on the left */
+.heroBg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: url('/images/therapyindex/hub-hero.webp') right bottom / cover no-repeat;
+}
+
 .hero {
   position: relative;
   padding-block: clamp(40px, 6vw, 88px) 0;
@@ -403,19 +411,23 @@
   position: relative;
   min-height: clamp(220px, 28vw, 340px);
   overflow: hidden;
-  background: radial-gradient(120% 140% at 85% 0%, rgba(20, 110, 245, 0.55) 0%, rgba(20, 110, 245, 0) 55%), linear-gradient(160deg, #26262a 0%, #111113 100%);
+  background: #030409; /* the generated panels fade to this near-black */
   isolation: isolate;
 }
 
+.casePanelImage {
+  object-fit: cover;
+  object-position: center top;
+  z-index: -2;
+}
+
+/* a soft floor under the city name so it reads on any part of the image */
 .casePanel::after {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: 45% 0 0 0;
   z-index: -1;
-  background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.28) 0.9px, transparent 1.3px);
-  background-size: 8px 8px;
-  -webkit-mask-image: linear-gradient(120deg, transparent 20%, #000 90%);
-  mask-image: linear-gradient(120deg, transparent 20%, #000 90%);
+  background: linear-gradient(to top, rgba(3, 4, 9, 0.7), transparent);
 }
 
 .casePanelInner {
@@ -867,6 +879,14 @@
   position: relative;
   overflow: hidden;
   border-top: 1px solid var(--ti-line);
+}
+
+/* 11 closing background: the generated halftone landscape (Higgsfield), calm in the middle */
+.closingBg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: url('/images/therapyindex/closing.webp') center bottom / cover no-repeat;
 }
 
 .closingBody {

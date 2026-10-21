@@ -7,8 +7,8 @@ import { footerMain, siteConfig } from '@/lib/site';
 
 /** The one switch for search visibility. While false, every Therapy Index page is sent
     noindex, nofollow (app/therapyindex/layout.tsx) and the pages are left out of the sitemap, because
-    a sitemap must not list a page that asks not to be indexed. Flip it to true on launch day. */
-export const INDEXABLE = false;
+    a sitemap must not list a page that asks not to be indexed. True from launch day (2026-10-21). */
+export const INDEXABLE = true;
 
 /** When INDEXABLE is true, a practice profile is indexable only if its score is at least this, or it was named by ChatGPT or
     Claude. Every other profile stays live and linked but is sent noindex and left out of the sitemap. The hub, the city reports

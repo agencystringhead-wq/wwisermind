@@ -384,7 +384,10 @@ export const megaPanels: Record<string, MegaPanel> = {
       {
         lead: 'Open',
         title: 'Transparency',
-        links: [{ label: 'OpenBook', href: routes.homeSection('openbook'), desc: 'A look inside the studio' }],
+        links: [
+          { label: 'OpenBook', href: routes.homeSection('openbook'), desc: 'A look inside the studio' },
+          { label: 'Therapy Index', href: routes.therapyIndex.hub, desc: 'Who patients find in your city' },
+        ],
       },
       {
         lead: 'Care',
@@ -1080,6 +1083,7 @@ export const footerMain = {
         { label: 'AI Chatbot', href: serviceHref('ai-chatbot') },
         { label: 'Local Map Assessment', href: routes.homeSection('local-map-assessment') },
         { label: 'Crisis Resources by State', href: routes.tools.crisisResources },
+        { label: 'Therapy Index', href: routes.therapyIndex.hub },
       ],
     },
   ],

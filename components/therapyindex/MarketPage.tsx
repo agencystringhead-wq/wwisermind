@@ -127,7 +127,7 @@ export default function MarketPage({ view }: { view: MarketView }) {
       <JsonLd data={itemList} />
 
       <header className={`${m.top} ${ti.lines}`}>
-        <div className={ti.dots} aria-hidden="true" />
+        <div className={ti.headerBg} aria-hidden="true" />
         <div className={ti.frame}>
           <div className={m.topBody}>
             <SectionLabel n="TI">{city.name}, {state.name}</SectionLabel>

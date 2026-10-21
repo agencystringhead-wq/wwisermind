@@ -26,14 +26,14 @@
     "Best couples counselor in Houston, Texas"
   ],
   "summary": {
-    "totalPractices": 382,
+    "totalPractices": 380,
     "practicesInAnyMapPack": 19,
     "directorySharePercent": 19.7,
     "practicesNamedByAi": 4,
-    "chainLocations": 5,
+    "chainLocations": 6,
     "unlistedPractices": 0,
-    "medicalPractices": 3,
-    "nonprofitPractices": 1,
+    "medicalPractices": 6,
+    "nonprofitPractices": 3,
     "fewReviewPractices": 248
   },
   "practices": [
@@ -84,7 +84,7 @@
       "lng": -95.361335,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -143,7 +143,7 @@
       "lng": -95.3721693,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -251,7 +251,7 @@
       "lng": -95.4377358,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -314,7 +314,7 @@
       "lng": -95.38914199999999,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -368,7 +368,7 @@
       "lng": -95.45942559999999,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -484,7 +484,7 @@
       "lng": -95.4217493,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -527,9 +527,9 @@
       ],
       "lat": 29.6991211,
       "lng": -95.409786,
-      "isMedical": false,
+      "isMedical": true,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "medical",
       "fewReviews": false
     },
     {
@@ -591,7 +591,7 @@
       "lng": -95.4544727,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -638,7 +638,7 @@
       "lng": -95.3907395,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -680,7 +680,7 @@
       "lng": -95.39219639999999,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -823,7 +823,7 @@
       "lng": -95.3899524,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -876,7 +876,7 @@
       "lng": -95.4582054,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -951,8 +951,8 @@
       "lighthouse": null,
       "visibilityScore": 23,
       "isDirectory": false,
-      "isChain": false,
-      "chainName": null,
+      "isChain": true,
+      "chainName": "Chain (manual decision)",
       "hasMapListing": true,
       "people": [],
       "categories": [
@@ -967,7 +967,7 @@
       "lng": -95.3907053,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "chain",
       "fewReviews": false
     },
     {
@@ -1015,7 +1015,7 @@
       "lng": -95.42101029999999,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1070,7 +1070,7 @@
       "lng": -95.3930602,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1123,7 +1123,7 @@
       "lng": -95.3730109,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1173,7 +1173,7 @@
       "lng": -95.5129709,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1235,7 +1235,7 @@
       "lng": -95.4191216,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1277,7 +1277,7 @@
       "lng": -95.39265789999999,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1331,7 +1331,7 @@
       "lng": -95.39841349999999,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1376,7 +1376,7 @@
       "lng": -95.162207,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1418,9 +1418,9 @@
       ],
       "lat": 29.7863825,
       "lng": -95.525424,
-      "isMedical": false,
+      "isMedical": true,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "medical",
       "fewReviews": false
     },
     {
@@ -1462,9 +1462,9 @@
       ],
       "lat": 29.776323599999998,
       "lng": -95.4046485,
-      "isMedical": false,
+      "isMedical": true,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "medical",
       "fewReviews": false
     },
     {
@@ -1508,8 +1508,8 @@
       "lat": 29.7368205,
       "lng": -95.3847869,
       "isMedical": false,
-      "isNonprofit": false,
-      "manualDecision": null,
+      "isNonprofit": true,
+      "manualDecision": "nonprofit",
       "fewReviews": false
     },
     {
@@ -1551,8 +1551,8 @@
       "lat": 29.6729728,
       "lng": -95.4251889,
       "isMedical": false,
-      "isNonprofit": false,
-      "manualDecision": null,
+      "isNonprofit": true,
+      "manualDecision": "nonprofit",
       "fewReviews": false
     },
     {
@@ -1601,49 +1601,7 @@
       "lng": -95.44502539999999,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
-      "fewReviews": false
-    },
-    {
-      "slug": "evaluations-for-immigration",
-      "name": "Evaluations for Immigration",
-      "address": "1400 McKinney St, Houston, TX 77010",
-      "city": "Houston",
-      "phone": "+1832-986-8477",
-      "website": "https://evaluationsforimmigration.com/",
-      "mapsCid": "865003038371226366",
-      "category": "Psychotherapist",
-      "rating": 4.9,
-      "reviewCount": 84,
-      "mapRankBySearch": {
-        "anxiety therapist": 47,
-        "psychologist": 8
-      },
-      "organicRankBySearch": {},
-      "aiMentions": {
-        "chatgpt": 0,
-        "claude": 0,
-        "prompts": []
-      },
-      "lighthouse": {
-        "performance": 68,
-        "seo": 100,
-        "accessibility": 91
-      },
-      "visibilityScore": 20,
-      "isDirectory": false,
-      "isChain": false,
-      "chainName": null,
-      "hasMapListing": true,
-      "people": [],
-      "categories": [
-        "Psychotherapist"
-      ],
-      "lat": 29.754078999999997,
-      "lng": -95.3611085,
-      "isMedical": false,
-      "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1732,7 +1690,7 @@
       "lng": -95.3965386,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1778,51 +1736,7 @@
       "lng": -95.3985771,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
-      "fewReviews": false
-    },
-    {
-      "slug": "dr-d-ivan-young-icf-mcc-nbc-hwc",
-      "name": "Dr. D Ivan Young, ICF-MCC, NBC-HWC",
-      "address": "5225 Katy Fwy Ste 410, Houston, TX 77007",
-      "city": "Houston",
-      "phone": "+1877-508-2025",
-      "website": "https://drdivanyoung.com/",
-      "mapsCid": "15619385785355644331",
-      "category": "Life coach",
-      "rating": 4.9,
-      "reviewCount": 75,
-      "mapRankBySearch": {
-        "counselor": 79,
-        "couples counseling": 20,
-        "marriage counselor": 16
-      },
-      "organicRankBySearch": {},
-      "aiMentions": {
-        "chatgpt": 0,
-        "claude": 0,
-        "prompts": []
-      },
-      "lighthouse": {
-        "performance": 44,
-        "seo": 100,
-        "accessibility": 93
-      },
-      "visibilityScore": 19,
-      "isDirectory": false,
-      "isChain": false,
-      "chainName": null,
-      "hasMapListing": true,
-      "people": [],
-      "categories": [
-        "Life coach",
-        "Health counselor"
-      ],
-      "lat": 29.776584999999997,
-      "lng": -95.4140394,
-      "isMedical": false,
-      "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {

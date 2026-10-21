@@ -14,7 +14,9 @@
     "therapyindex:fetch": "tsx scripts/therapyindex/fetch.ts",
     "therapyindex:normalise": "tsx scripts/therapyindex/normalise.ts",
     "therapyindex:review-export": "tsx scripts/therapyindex/review.ts export",
-    "therapyindex:review-apply": "tsx scripts/therapyindex/review.ts apply"
+    "therapyindex:review-apply": "tsx scripts/therapyindex/review.ts apply",
+    "therapyindex:og": "node scripts/therapyindex/build-og.mjs",
+    "therapyindex:check": "node scripts/therapyindex/check-pages.mjs"
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",

@@ -493,5 +493,43 @@
         "rank": 94
       }
     ]
+  },
+  {
+    "reason": "manual decision",
+    "title": "Dr. D Ivan Young, ICF-MCC, NBC-HWC",
+    "category": "Life coach",
+    "additionalCategories": [
+      "Health counselor"
+    ],
+    "searches": [
+      {
+        "keyword": "counselor",
+        "rank": 79
+      },
+      {
+        "keyword": "couples counseling",
+        "rank": 20
+      },
+      {
+        "keyword": "marriage counselor",
+        "rank": 16
+      }
+    ]
+  },
+  {
+    "reason": "manual decision",
+    "title": "Evaluations for Immigration",
+    "category": "Psychotherapist",
+    "additionalCategories": [],
+    "searches": [
+      {
+        "keyword": "anxiety therapist",
+        "rank": 47
+      },
+      {
+        "keyword": "psychologist",
+        "rank": 8
+      }
+    ]
   }
 ]

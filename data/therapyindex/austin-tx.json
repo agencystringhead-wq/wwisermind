@@ -26,14 +26,14 @@
     "Best couples counselor in Austin, Texas"
   ],
   "summary": {
-    "totalPractices": 413,
+    "totalPractices": 408,
     "practicesInAnyMapPack": 17,
     "directorySharePercent": 24.2,
     "practicesNamedByAi": 20,
     "chainLocations": 7,
     "unlistedPractices": 0,
     "medicalPractices": 5,
-    "nonprofitPractices": 0,
+    "nonprofitPractices": 1,
     "fewReviewPractices": 321
   },
   "practices": [
@@ -97,7 +97,7 @@
       "lng": -97.75010789999999,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -250,7 +250,7 @@
       "lng": -97.7721449,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -329,7 +329,7 @@
       "lng": -97.83853769999999,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -382,7 +382,7 @@
       "lng": -97.747523,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -450,7 +450,7 @@
       "lng": -97.74193079999999,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -505,7 +505,7 @@
       "lng": -97.7813381,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -553,7 +553,7 @@
       "lng": -97.751105,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1020,7 +1020,7 @@
       "lng": -97.74630169999999,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1072,7 +1072,7 @@
       "lng": -97.7773696,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1116,7 +1116,7 @@
       "lng": -97.7419673,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1164,7 +1164,7 @@
       "lng": -97.80422829999999,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1215,7 +1215,7 @@
       "lng": -97.7425179,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1269,7 +1269,7 @@
       "lng": -97.738721,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1364,8 +1364,8 @@
       "lat": 30.313549499999997,
       "lng": -97.73635499999999,
       "isMedical": false,
-      "isNonprofit": false,
-      "manualDecision": null,
+      "isNonprofit": true,
+      "manualDecision": "nonprofit",
       "fewReviews": false
     },
     {
@@ -1416,7 +1416,7 @@
       "lng": -97.8176682,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1470,7 +1470,7 @@
       "lng": -97.75013709999999,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1529,7 +1529,7 @@
       "lng": -97.78355839999999,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1615,44 +1615,7 @@
       "lng": -97.8596431,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
-      "fewReviews": false
-    },
-    {
-      "slug": "austin-psychological-and-testing-center",
-      "name": "Austin Psychological and Testing Center",
-      "address": "2403 W Ben White Blvd, Austin, TX 78704",
-      "city": "Austin",
-      "phone": "+1512-707-2782",
-      "website": "https://www.psychologicalassessmentsaustin.com/",
-      "mapsCid": "3927950758977263371",
-      "category": "Psychologist",
-      "rating": 2.8,
-      "reviewCount": 53,
-      "mapRankBySearch": {
-        "psychologist": 71
-      },
-      "organicRankBySearch": {},
-      "aiMentions": {
-        "chatgpt": 0,
-        "claude": 0,
-        "prompts": []
-      },
-      "lighthouse": null,
-      "visibilityScore": 21,
-      "isDirectory": false,
-      "isChain": false,
-      "chainName": null,
-      "hasMapListing": true,
-      "people": [],
-      "categories": [
-        "Psychologist"
-      ],
-      "lat": 30.231924099999997,
-      "lng": -97.793864,
-      "isMedical": false,
-      "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1704,7 +1667,7 @@
       "lng": -97.74993549999999,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1749,45 +1712,7 @@
       "lng": -97.78877759999999,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
-      "fewReviews": false
-    },
-    {
-      "slug": "miki-tesh-ph-d-lcsw",
-      "name": "Miki Tesh, Ph.D., LCSW",
-      "address": "2306 Lake Austin Blvd, Austin, TX 78703",
-      "city": "Austin",
-      "phone": "+1512-539-9701",
-      "website": "https://emotionalsupportanimalsoftexas.com/about-miki-tesh-what-makes-esa-of-texas-different/",
-      "mapsCid": "1770035324614829756",
-      "category": "Psychotherapist",
-      "rating": 4.8,
-      "reviewCount": 52,
-      "mapRankBySearch": {
-        "trauma therapist": 55
-      },
-      "organicRankBySearch": {},
-      "aiMentions": {
-        "chatgpt": 0,
-        "claude": 0,
-        "prompts": []
-      },
-      "lighthouse": null,
-      "visibilityScore": 21,
-      "isDirectory": false,
-      "isChain": false,
-      "chainName": null,
-      "hasMapListing": true,
-      "people": [],
-      "categories": [
-        "Psychotherapist",
-        "Social worker"
-      ],
-      "lat": 30.2780144,
-      "lng": -97.7719145,
-      "isMedical": false,
-      "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1831,47 +1756,7 @@
       "lng": -97.7598525,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
-      "fewReviews": false
-    },
-    {
-      "slug": "round-rock-children-s-therapy-center",
-      "name": "Round Rock Children’s Therapy Center",
-      "address": "503 E Palm Valley Blvd Ste 300, Round Rock, TX 78664",
-      "city": "Round Rock",
-      "phone": "+1512-341-9991",
-      "website": "http://rrchildrenstherapy.com/",
-      "mapsCid": "11751499631991281617",
-      "category": "Mental health clinic",
-      "rating": 4.6,
-      "reviewCount": 58,
-      "mapRankBySearch": {
-        "child therapist": 73
-      },
-      "organicRankBySearch": {},
-      "aiMentions": {
-        "chatgpt": 0,
-        "claude": 0,
-        "prompts": []
-      },
-      "lighthouse": null,
-      "visibilityScore": 21,
-      "isDirectory": false,
-      "isChain": false,
-      "chainName": null,
-      "hasMapListing": true,
-      "people": [],
-      "categories": [
-        "Mental health clinic",
-        "Applied behavior analysis therapist",
-        "Occupational therapist",
-        "Speech pathologist"
-      ],
-      "lat": 30.517727599999997,
-      "lng": -97.6767847,
-      "isMedical": false,
-      "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -1911,7 +1796,7 @@
       "lng": -97.8229959,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -2009,7 +1894,7 @@
       "lng": -97.734117,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -2064,7 +1949,7 @@
       "lng": -97.74439,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {
@@ -2106,54 +1991,6 @@
       "fewReviews": false
     },
     {
-      "slug": "alison-kate-holistic-healing-and-therapy",
-      "name": "Alison Kate Holistic Healing and Therapy",
-      "address": null,
-      "city": null,
-      "phone": "+1917-485-5233",
-      "website": "https://www.alisonkatehealing.com/",
-      "mapsCid": "7882945087304438773",
-      "category": "Mental health service",
-      "rating": 5,
-      "reviewCount": 37,
-      "mapRankBySearch": {
-        "therapist": 43,
-        "trauma therapist": 99,
-        "grief counseling": 59
-      },
-      "organicRankBySearch": {},
-      "aiMentions": {
-        "chatgpt": 0,
-        "claude": 0,
-        "prompts": []
-      },
-      "lighthouse": null,
-      "visibilityScore": 19,
-      "isDirectory": false,
-      "isChain": false,
-      "chainName": null,
-      "hasMapListing": true,
-      "people": [],
-      "categories": [
-        "Mental health service",
-        "Alternative medicine practitioner",
-        "Service establishment",
-        "Health counselor",
-        "Holistic medicine practitioner",
-        "Hypnotherapy service",
-        "Life coach",
-        "Meditation instructor",
-        "Reiki therapist",
-        "Yoga instructor"
-      ],
-      "lat": 30.296114,
-      "lng": -97.73297,
-      "isMedical": false,
-      "isNonprofit": false,
-      "manualDecision": null,
-      "fewReviews": false
-    },
-    {
       "slug": "autonomy-therapy",
       "name": "Autonomy Therapy",
       "address": "601 Farley Dr, Austin, TX 78753",
@@ -2189,45 +2026,7 @@
       "lng": -97.678668,
       "isMedical": false,
       "isNonprofit": false,
-      "manualDecision": null,
-      "fewReviews": false
-    },
-    {
-      "slug": "loran-coaching",
-      "name": "Loran Coaching",
-      "address": "4131 Spicewood Springs Rd Unit N-2, Austin, TX 78759",
-      "city": "Austin",
-      "phone": "+1512-751-8482",
-      "website": "https://www.lorancoaching.com/",
-      "mapsCid": "3234209066256285169",
-      "category": "Marriage or relationship counselor",
-      "rating": 5,
-      "reviewCount": 36,
-      "mapRankBySearch": {
-        "marriage counselor": 95
-      },
-      "organicRankBySearch": {},
-      "aiMentions": {
-        "chatgpt": 0,
-        "claude": 0,
-        "prompts": []
-      },
-      "lighthouse": null,
-      "visibilityScore": 19,
-      "isDirectory": false,
-      "isChain": false,
-      "chainName": null,
-      "hasMapListing": true,
-      "people": [],
-      "categories": [
-        "Marriage or relationship counselor",
-        "Life coach"
-      ],
-      "lat": 30.369016499999997,
-      "lng": -97.75645379999999,
-      "isMedical": false,
-      "isNonprofit": false,
-      "manualDecision": null,
+      "manualDecision": "keep",
       "fewReviews": false
     },
     {

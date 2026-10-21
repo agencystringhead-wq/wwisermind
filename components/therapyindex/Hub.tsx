@@ -39,6 +39,7 @@ function cityCase(view: MarketView): CityCase {
     figure: String(named),
     figureNote: `${named === 1 ? 'practice was' : 'practices were'} named by ChatGPT or Claude in ${view.city.name}.`,
     meta: `${view.month} snapshot`,
+    image: `/images/therapyindex/city-${view.city.slug}.webp`,
   };
 }
 
@@ -132,7 +133,7 @@ export default function Hub() {
 
       {/* 01 intro */}
       <section id="intro" className={`${ti.section} ${styles.hero} ${ti.lines}`} style={{ paddingBottom: 0 }}>
-        <div className={ti.dots} aria-hidden="true" />
+        <div className={styles.heroBg} aria-hidden="true" />
         <div className={ti.frame}>
           <Reveal as="div" className={styles.heroBody}>
             <div data-reveal="0">
@@ -483,7 +484,7 @@ export default function Hub() {
 
       {/* 11 closing call to action */}
       <section id="contact" className={`${ti.section} ${styles.closing} ${ti.lines}`}>
-        <div className={ti.dots} aria-hidden="true" />
+        <div className={styles.closingBg} aria-hidden="true" />
         <div className={ti.frame}>
           <div className={styles.closingBody}>
             <SectionLabel n="11">contact</SectionLabel>

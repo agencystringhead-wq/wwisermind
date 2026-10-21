@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useId, useRef, useState, type KeyboardEvent } from 'react';
 import ti from './ti.module.css';
@@ -16,6 +17,8 @@ export type CityCase = {
   figure: string;
   figureNote: string;
   meta: string;
+  /** The generated panel image for the city. */
+  image: string;
 };
 
 /**
@@ -82,8 +85,9 @@ export default function CityTabs({ cities }: { cities: CityCase[] }) {
               <p>{city.intro}</p>
             </div>
             <div className={ti.main}>
-              <div className={styles.casePanel} aria-hidden="true">
-                <div className={styles.casePanelInner}>
+              <div className={styles.casePanel}>
+                <Image src={city.image} alt="" fill sizes="(max-width: 900px) 100vw, 920px" className={styles.casePanelImage} />
+                <div className={styles.casePanelInner} aria-hidden="true">
                   <span className={styles.casePanelCity}>{city.name}</span>
                   <span>{city.meta}</span>
                 </div>

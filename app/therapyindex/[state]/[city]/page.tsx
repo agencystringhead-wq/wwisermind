@@ -5,6 +5,7 @@ import { routes } from '@/lib/routes';
 import { absUrl } from '@/lib/site';
 import { BRAND } from '@/lib/therapyindex/config';
 import { getMarketView, getMarketViews } from '@/lib/therapyindex/data';
+import { ogImages, ogUrl } from '@/lib/therapyindex/og';
 
 /* One report per snapshot, at /therapyindex/<state>/<city>/ (texas/austin). Add a market to
    lib/therapyindex/markets.ts, fetch it, and its report appears. */
@@ -27,8 +28,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { type: 'website', siteName: BRAND, title, description, url },
-    twitter: { card: 'summary', title, description },
+    openGraph: { type: 'website', siteName: BRAND, title, description, url, images: ogImages(`city-${view.city.slug}`, title) },
+    twitter: { card: 'summary_large_image', title, description, images: [ogUrl(`city-${view.city.slug}`)] },
   };
 }
 
