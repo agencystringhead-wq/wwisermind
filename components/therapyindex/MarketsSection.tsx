@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState, type ReactNode } from 'react';
 import CountUp from '@/components/ui/CountUp';
 import { ArrowRightIcon } from '@/components/ui/icons';
@@ -29,15 +30,17 @@ export type MarketCardData = {
  * first tap on a pin lights its card and the second opens the report. `children` is the static map artwork (a server component).
  */
 export default function MarketsSection({ cities, children }: { cities: MarketCardData[]; children: ReactNode }) {
+  const router = useRouter();
   const [active, setActive] = useState<string | null>(null);
   const most = Math.max(...cities.map((c) => c.practices), 1);
 
-  const onPinClick = (event: React.MouseEvent, slug: string) => {
+  const openPin = (slug: string, href: string) => {
     // Touch: the first tap only highlights the card, so the report is one deliberate tap away.
     if (window.matchMedia('(hover: none)').matches && active !== slug) {
-      event.preventDefault();
       setActive(slug);
+      return;
     }
+    router.push(href);
   };
 
   return (
@@ -51,17 +54,22 @@ export default function MarketsSection({ cities, children }: { cities: MarketCar
               const r = 7 + 9 * (c.practices / most);
               const isActive = active === c.slug;
               return (
-                <Link
+                // A focusable group with a link role, not an SVG <a>: Cloudflare's email-decode script reads `href.indexOf` on every anchor
+                // and throws on an SVG one.
+                <g
                   key={c.slug}
-                  href={c.href}
-                  prefetch={false}
+                  role="link"
+                  tabIndex={0}
                   aria-label={`${c.city}, ${c.practices} practices. Open the ${c.city} report`}
                   className={`${styles.pin} ${isActive ? styles.pinActive : ''}`}
                   onMouseEnter={() => setActive(c.slug)}
                   onMouseLeave={() => setActive(null)}
                   onFocus={() => setActive(c.slug)}
                   onBlur={() => setActive(null)}
-                  onClick={(e) => onPinClick(e, c.slug)}
+                  onClick={() => openPin(c.slug, c.href)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') router.push(c.href);
+                  }}
                 >
                   <circle className={styles.pinHit} cx={x} cy={y} r={Math.max(r, 26)} />
                   <circle className={styles.pinPulse} cx={x} cy={y} r={r} />
@@ -77,7 +85,7 @@ export default function MarketsSection({ cities, children }: { cities: MarketCar
                       {c.city}
                     </text>
                   )}
-                </Link>
+                </g>
               );
             })}
           </svg>
