@@ -17,8 +17,8 @@ export const AI_COST_ASSUMPTIONS: Record<string, number> = {
   'gpt-5': 0.04,
   'claude-haiku-4-5': 0.015,
   'claude-sonnet-5': 0.05,
-  'claude-sonnet-5-5': 0.012, // observed in the 2026-10-21 smoke run (1 web-search answer)
-  'gpt-5.6-luna': 0.0123, // observed in the 2026-10-21 smoke run (1 web-search answer)
+  'claude-sonnet-5-5': 0.0512, // observed in the Austin full run (9 answers averaged ~$0.052 each; the earlier smoke answer was cheaper)
+  'gpt-5.6-luna': 0.0163, // observed in the Austin full run (average of 3 answers)
   'gpt-5.6-sol': 0.05,
 };
 export const AI_COST_FALLBACK = 0.04;

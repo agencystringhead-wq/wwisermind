@@ -1,0 +1,4080 @@
+{
+  "snapshotDate": "2026-10-21",
+  "market": {
+    "slug": "austin-tx",
+    "city": "Austin",
+    "stateSlug": "texas",
+    "stateName": "Texas",
+    "areaLabel": "Austin and the surrounding area"
+  },
+  "keywords": [
+    "therapist",
+    "counselor",
+    "anxiety therapist",
+    "couples counseling",
+    "trauma therapist",
+    "EMDR therapist",
+    "child therapist",
+    "psychologist",
+    "marriage counselor",
+    "depression therapist",
+    "grief counseling"
+  ],
+  "aiPrompts": [
+    "Who is the best therapist in Austin, Texas?",
+    "Recommend an anxiety therapist in Austin, Texas",
+    "Best couples counselor in Austin, Texas"
+  ],
+  "summary": {
+    "totalPractices": 93,
+    "practicesInAnyMapPack": 18,
+    "directorySharePercent": 21.2,
+    "practicesNamedByAi": 7,
+    "chainLocations": 0
+  },
+  "practices": [
+    {
+      "slug": "grace-therapy-and-wellness-pllc-downtown-location-one",
+      "name": "Grace Therapy and Wellness, PLLC - Downtown Location One",
+      "address": "805 W 10th St #302, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-387-0703",
+      "website": "http://www.gracetherapyaustin.com/",
+      "mapsCid": "11831769083776933687",
+      "category": "Counselor",
+      "rating": 5,
+      "reviewCount": 11,
+      "mapRankBySearch": {
+        "therapist": 2,
+        "counselor": 3,
+        "anxiety therapist": 4,
+        "couples counseling": 3,
+        "trauma therapist": 1,
+        "EMDR therapist": 5,
+        "child therapist": 4,
+        "psychologist": 15,
+        "marriage counselor": 2,
+        "depression therapist": 1,
+        "grief counseling": 1
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 1,
+        "claude": 0,
+        "prompts": [
+          {
+            "provider": "chatgpt",
+            "prompt": "Who is the best therapist in Austin, Texas?"
+          }
+        ]
+      },
+      "lighthouse": {
+        "performance": 58,
+        "seo": 92,
+        "accessibility": 100
+      },
+      "visibilityScore": 100,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "relationship-vitality-center",
+      "name": "Relationship Vitality Center",
+      "address": "Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1609-759-0046",
+      "website": "https://www.psychologytoday.com/us/therapists/christine-poane-new-york-ny/289462",
+      "mapsCid": "289302837828367241",
+      "category": "Marriage or relationship counselor",
+      "rating": 5,
+      "reviewCount": 2,
+      "mapRankBySearch": {
+        "therapist": 3,
+        "counselor": 1,
+        "couples counseling": 1,
+        "marriage counselor": 1
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 1,
+        "claude": 0,
+        "prompts": [
+          {
+            "provider": "chatgpt",
+            "prompt": "Best couples counselor in Austin, Texas"
+          }
+        ]
+      },
+      "lighthouse": null,
+      "visibilityScore": 61,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "dr-lawrence-a-resnick-psy-d",
+      "name": "Dr. Lawrence A. Resnick, Psy.D.",
+      "address": "111 Congress Ave. Ste 500, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-829-8949",
+      "website": "https://drlawrenceresnick.com/",
+      "mapsCid": "9299787067891736118",
+      "category": "Psychotherapist",
+      "rating": 5,
+      "reviewCount": 9,
+      "mapRankBySearch": {
+        "anxiety therapist": 1,
+        "psychologist": 1,
+        "depression therapist": 2
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 82,
+        "seo": 40,
+        "accessibility": 93
+      },
+      "visibilityScore": 44,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "delicia-s-mclean-ph-d-mha",
+      "name": "Delicia S. Mclean, Ph.D, MHA",
+      "address": "500 W 6th St #400, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-364-8882",
+      "website": "http://www.theraedagroup.com/",
+      "mapsCid": "15748833858627011072",
+      "category": "Counselor",
+      "rating": 5,
+      "reviewCount": 11,
+      "mapRankBySearch": {
+        "therapist": 8,
+        "counselor": 12,
+        "anxiety therapist": 10,
+        "child therapist": 1,
+        "psychologist": 2,
+        "depression therapist": 13
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 24,
+        "seo": 85,
+        "accessibility": 85
+      },
+      "visibilityScore": 31,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "deep-centered-mental-health-dcmh-downtown-austin",
+      "name": "Deep Centered Mental Health (DCMH) - Downtown Austin",
+      "address": "508 Deep Eddy Ave, Austin, TX 78703",
+      "city": "Austin",
+      "phone": "+1512-957-2848",
+      "website": "https://deepcentered.com/location/downtown-austin/?utm_source=google_business_profile&utm_medium=organic&utm_campaign=gbp&utm_content=austin_downtown",
+      "mapsCid": "3340644917157697286",
+      "category": "Counselor",
+      "rating": 4.4,
+      "reviewCount": 267,
+      "mapRankBySearch": {
+        "therapist": 6,
+        "counselor": 5,
+        "anxiety therapist": 3,
+        "trauma therapist": 11,
+        "EMDR therapist": 6,
+        "child therapist": 12,
+        "psychologist": 18,
+        "depression therapist": 6
+      },
+      "organicRankBySearch": {
+        "marriage counselor": 1
+      },
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 45,
+        "seo": 92,
+        "accessibility": 93
+      },
+      "visibilityScore": 22,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "dove-wolf-individual-couples-counseling",
+      "name": "Dove + Wolf | Individual + Couples Counseling",
+      "address": "910 West Ave, Austin, TX 78701",
+      "city": "Austin",
+      "phone": null,
+      "website": "http://www.doveandwolf.com/",
+      "mapsCid": "6418752393488466451",
+      "category": "Marriage or relationship counselor",
+      "rating": 4.8,
+      "reviewCount": 6,
+      "mapRankBySearch": {
+        "counselor": 17,
+        "couples counseling": 2,
+        "marriage counselor": 3
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 29,
+        "seo": 92,
+        "accessibility": 96
+      },
+      "visibilityScore": 22,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "austin-trauma-therapy-center",
+      "name": "Austin Trauma Therapy Center",
+      "address": "2111 Dickson Dr #16, Austin, TX 78704",
+      "city": "Austin",
+      "phone": "+1512-270-8215",
+      "website": "https://atxtraumatherapycenter.com/",
+      "mapsCid": "13155049788560433450",
+      "category": "Counselor",
+      "rating": 4.4,
+      "reviewCount": 19,
+      "mapRankBySearch": {
+        "trauma therapist": 3
+      },
+      "organicRankBySearch": {
+        "trauma therapist": 1,
+        "grief counseling": 2
+      },
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 68,
+        "seo": 92,
+        "accessibility": 92
+      },
+      "visibilityScore": 20,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "bloom-therapy",
+      "name": "Bloom Therapy",
+      "address": "1205 & 1206, W 43rd St, Austin, TX 78756",
+      "city": "Austin",
+      "phone": "+1512-710-7645",
+      "website": "https://bloomtherapytx.com/",
+      "mapsCid": "15295146484692642317",
+      "category": "Counselor",
+      "rating": 4.8,
+      "reviewCount": 42,
+      "mapRankBySearch": {
+        "depression therapist": 19
+      },
+      "organicRankBySearch": {
+        "anxiety therapist": 3
+      },
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 3,
+        "prompts": [
+          {
+            "provider": "claude",
+            "prompt": "Who is the best therapist in Austin, Texas?"
+          },
+          {
+            "provider": "claude",
+            "prompt": "Recommend an anxiety therapist in Austin, Texas"
+          },
+          {
+            "provider": "claude",
+            "prompt": "Best couples counselor in Austin, Texas"
+          }
+        ]
+      },
+      "lighthouse": {
+        "performance": 47,
+        "seo": 100,
+        "accessibility": 85
+      },
+      "visibilityScore": 18,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "alchemy-collective-pllc",
+      "name": "Alchemy Collective PLLC",
+      "address": "805 W 10th St #400, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-325-7868",
+      "website": "http://www.alchemycollectiveaustin.com/",
+      "mapsCid": "13805453283651461046",
+      "category": "Mental health clinic",
+      "rating": 4.5,
+      "reviewCount": 8,
+      "mapRankBySearch": {
+        "therapist": 9,
+        "counselor": 15,
+        "anxiety therapist": 8,
+        "couples counseling": 17,
+        "trauma therapist": 4,
+        "EMDR therapist": 3,
+        "child therapist": 10,
+        "depression therapist": 7
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 44,
+        "seo": 100,
+        "accessibility": 94
+      },
+      "visibilityScore": 17,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "liana-mauro-lpc-somatic-emdr-therapist",
+      "name": "Liana Mauro, LPC – Somatic & EMDR Therapist",
+      "address": "2525 Wallingwood Dr, Austin, TX 78746",
+      "city": "Austin",
+      "phone": "+1512-222-7953",
+      "website": "https://www.psychologytoday.com/profile/1246201",
+      "mapsCid": "6422624679209715361",
+      "category": "Psychotherapist",
+      "rating": 5,
+      "reviewCount": 3,
+      "mapRankBySearch": {
+        "EMDR therapist": 2
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 1,
+        "claude": 0,
+        "prompts": [
+          {
+            "provider": "chatgpt",
+            "prompt": "Best couples counselor in Austin, Texas"
+          }
+        ]
+      },
+      "lighthouse": null,
+      "visibilityScore": 17,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "willow-tree-collective-austin-anxiety-lgbtqia-therapy",
+      "name": "Willow Tree Collective - Austin Anxiety & LGBTQIA+ Therapy",
+      "address": "825 W 11th St Suite 1C, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-766-0791",
+      "website": "https://www.willowtreecollective.com/",
+      "mapsCid": "14774418281508928795",
+      "category": "Counselor",
+      "rating": 5,
+      "reviewCount": 9,
+      "mapRankBySearch": {
+        "therapist": 18,
+        "anxiety therapist": 2,
+        "couples counseling": 16,
+        "trauma therapist": 7,
+        "depression therapist": 8,
+        "grief counseling": 4
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 32,
+        "seo": 100,
+        "accessibility": 93
+      },
+      "visibilityScore": 17,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "austindeep-downtown",
+      "name": "AUSTINDEEP Downtown",
+      "address": "320 Congress Ave. Unit B, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-550-3799",
+      "website": "https://austindeep.com/?utm_source=google&utm_medium=organic&utm_campaign=gbp_profile",
+      "mapsCid": "12825584390864164637",
+      "category": "Massage therapist",
+      "rating": 4.8,
+      "reviewCount": 385,
+      "mapRankBySearch": {
+        "therapist": 1
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 46,
+        "seo": 92,
+        "accessibility": 85
+      },
+      "visibilityScore": 16,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "emdr-and-relationship-therapy",
+      "name": "EMDR and Relationship Therapy",
+      "address": "707 W 34th St, Austin, TX 78705",
+      "city": "Austin",
+      "phone": "+1617-519-6513",
+      "website": "https://www.herpsychotherapy.com/?utm_source=google&utm_medium=wix_google_business_profile&utm_campaign=17471308774226072107",
+      "mapsCid": "9910420342708800374",
+      "category": "Mental health service",
+      "rating": 5,
+      "reviewCount": 10,
+      "mapRankBySearch": {
+        "EMDR therapist": 1,
+        "grief counseling": 15
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 56,
+        "seo": 100,
+        "accessibility": 98
+      },
+      "visibilityScore": 16,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "resilient-therapy-pllc",
+      "name": "Resilient Therapy PLLC",
+      "address": "Telehealth, Austin, TX 78723",
+      "city": "Austin",
+      "phone": "+1512-905-3609",
+      "website": "http://www.therapyr.com/",
+      "mapsCid": "17613542959082233453",
+      "category": "Mental health service",
+      "rating": 5,
+      "reviewCount": 1,
+      "mapRankBySearch": {
+        "therapist": 11,
+        "anxiety therapist": 6,
+        "trauma therapist": 2,
+        "depression therapist": 5
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 46,
+        "seo": 92,
+        "accessibility": 93
+      },
+      "visibilityScore": 16,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "alethia-counseling-austin",
+      "name": "Alethia Counseling Austin",
+      "address": "1105 Nueces St, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1903-561-8955",
+      "website": "https://www.alethiacounseling.com/counseling-locations-austin-tx/",
+      "mapsCid": "1829261576451750849",
+      "category": "Mental health service",
+      "rating": 5,
+      "reviewCount": 14,
+      "mapRankBySearch": {
+        "therapist": 7,
+        "counselor": 2,
+        "anxiety therapist": 13,
+        "psychologist": 19,
+        "depression therapist": 11
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 38,
+        "seo": 85,
+        "accessibility": 72
+      },
+      "visibilityScore": 14,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "thriving-center-of-psychology",
+      "name": "Thriving Center of Psychology",
+      "address": "111 Congress Ave. Ste 500, Austin, TX 78704",
+      "city": "Austin",
+      "phone": "+1310-955-1352",
+      "website": "https://thrivingcenterofpsych.com/locations/texas/austin/?utm_source=google&utm_medium=GMB&utm_campaign=Austin+Office",
+      "mapsCid": "4401917978446016942",
+      "category": "Counselor",
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {
+        "counselor": 10,
+        "psychologist": 3,
+        "grief counseling": 10
+      },
+      "organicRankBySearch": {
+        "therapist": 6
+      },
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 53,
+        "seo": 100,
+        "accessibility": 83
+      },
+      "visibilityScore": 14,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "austin-counseling-associates",
+      "name": "Austin Counseling Associates",
+      "address": "1704 1/2 S Congress Ave Ste l, Austin, TX 78704",
+      "city": "Austin",
+      "phone": "+1512-326-4040",
+      "website": "http://austincounselingassociates.com/",
+      "mapsCid": "4296851564719380033",
+      "category": "Counselor",
+      "rating": 4.6,
+      "reviewCount": 37,
+      "mapRankBySearch": {
+        "therapist": 17,
+        "counselor": 6,
+        "couples counseling": 5,
+        "trauma therapist": 20,
+        "depression therapist": 20,
+        "grief counseling": 3
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 61,
+        "seo": 92,
+        "accessibility": 92
+      },
+      "visibilityScore": 13,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "clear-mind-collective-psychology-group-pllc",
+      "name": "Clear Mind Collective Psychology Group, PLLC",
+      "address": "611 W 14th St, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-790-0708",
+      "website": "http://www.clearmindcollective.com/",
+      "mapsCid": "7752937933253828514",
+      "category": "Psychologist",
+      "rating": 5,
+      "reviewCount": 2,
+      "mapRankBySearch": {
+        "anxiety therapist": 17,
+        "child therapist": 2,
+        "psychologist": 11,
+        "depression therapist": 14
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 32,
+        "seo": 92,
+        "accessibility": 98
+      },
+      "visibilityScore": 13,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "austin-psychotherapy-services",
+      "name": "Austin Psychotherapy Services",
+      "address": "805 W 10th St #201, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-270-9002",
+      "website": "https://austinpsychotherapyservices.com/",
+      "mapsCid": "13659775158659157622",
+      "category": "Psychotherapist",
+      "rating": 5,
+      "reviewCount": 10,
+      "mapRankBySearch": {
+        "therapist": 4,
+        "counselor": 13,
+        "anxiety therapist": 15,
+        "couples counseling": 18,
+        "trauma therapist": 8,
+        "EMDR therapist": 18,
+        "psychologist": 16,
+        "depression therapist": 10
+      },
+      "organicRankBySearch": {
+        "therapist": 4,
+        "psychologist": 3
+      },
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 26,
+        "seo": 100,
+        "accessibility": 96
+      },
+      "visibilityScore": 12,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "atx-counseling",
+      "name": "ATX Counseling",
+      "address": "3906 N Lamar Blvd, Austin, TX 78756",
+      "city": "Austin",
+      "phone": null,
+      "website": "https://www.atx-counseling.com/",
+      "mapsCid": "3600275153466117615",
+      "category": "Mental health clinic",
+      "rating": 4.8,
+      "reviewCount": 26,
+      "mapRankBySearch": {
+        "depression therapist": 16
+      },
+      "organicRankBySearch": {
+        "couples counseling": 2,
+        "marriage counselor": 6,
+        "depression therapist": 4
+      },
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 76,
+        "seo": 36,
+        "accessibility": 93
+      },
+      "visibilityScore": 9,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "supported-minds-psychological-services-melissa-tester-ph-d",
+      "name": "Supported Minds Psychological Services , Melissa Tester, Ph.D.",
+      "address": "3724 Jefferson St #307, Austin, TX 78731",
+      "city": "Austin",
+      "phone": "+1512-484-4994",
+      "website": "http://www.supportedminds.com/",
+      "mapsCid": "214345520136409414",
+      "category": "Psychologist",
+      "rating": 5,
+      "reviewCount": 1,
+      "mapRankBySearch": {
+        "child therapist": 3
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 54,
+        "seo": 100,
+        "accessibility": 97
+      },
+      "visibilityScore": 9,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "decades-counseling",
+      "name": "Decades Counseling",
+      "address": "1609 Shoal Creek Blvd Ste 301, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-222-7124",
+      "website": "https://www.decadescounseling.com/",
+      "mapsCid": "12459471701928629364",
+      "category": "Counselor",
+      "rating": 4.9,
+      "reviewCount": 13,
+      "mapRankBySearch": {
+        "therapist": 15,
+        "counselor": 9,
+        "anxiety therapist": 7,
+        "couples counseling": 8,
+        "trauma therapist": 10,
+        "EMDR therapist": 15,
+        "marriage counselor": 11,
+        "depression therapist": 4
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 33,
+        "seo": 100,
+        "accessibility": 87
+      },
+      "visibilityScore": 8,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "briana-bass-therapy-lpc",
+      "name": "Briana Bass Therapy, LPC",
+      "address": "501 N Interstate Hwy 35 Suite 103, Austin, TX 78702",
+      "city": "Austin",
+      "phone": "+1972-755-9608",
+      "website": "https://brianabass.org/",
+      "mapsCid": "1549696330907780751",
+      "category": "Counselor",
+      "rating": 5,
+      "reviewCount": 14,
+      "mapRankBySearch": {
+        "therapist": 13,
+        "counselor": 8,
+        "anxiety therapist": 5,
+        "couples counseling": 13,
+        "EMDR therapist": 7,
+        "psychologist": 14,
+        "marriage counselor": 7
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 57,
+        "seo": 100,
+        "accessibility": 91
+      },
+      "visibilityScore": 6,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "christi-center",
+      "name": "Christi Center",
+      "address": "2306 Hancock Dr, Austin, TX 78756",
+      "city": "Austin",
+      "phone": "+1512-467-2600",
+      "website": "http://www.christicenter.org/",
+      "mapsCid": "16403883066204064941",
+      "category": "Non-profit organization",
+      "rating": 4.2,
+      "reviewCount": 40,
+      "mapRankBySearch": {
+        "grief counseling": 11
+      },
+      "organicRankBySearch": {
+        "grief counseling": 1
+      },
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 55,
+        "seo": 100,
+        "accessibility": 92
+      },
+      "visibilityScore": 6,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "emdr-therapy-austin",
+      "name": "EMDR Therapy Austin",
+      "address": "4601 Spicewood Springs Rd Bldg. 3, Ste. 200, Austin, TX 78759",
+      "city": "Austin",
+      "phone": "+1512-503-0700",
+      "website": "http://www.emdrtherapyaustin.com/",
+      "mapsCid": "17222609350076228033",
+      "category": "Counselor",
+      "rating": 5,
+      "reviewCount": 3,
+      "mapRankBySearch": {
+        "EMDR therapist": 11
+      },
+      "organicRankBySearch": {
+        "EMDR therapist": 1
+      },
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 30,
+        "seo": 100,
+        "accessibility": 90
+      },
+      "visibilityScore": 6,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "louis-laves-webb-lcsw-lpc-s-associates",
+      "name": "Louis Laves-Webb, LCSW, LPC-S & Associates",
+      "address": "601 W 18th St, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-914-6635",
+      "website": "https://www.louislaves-webb.com/?utm_source=GMB&utm_medium=organic&utm_campaign=GMB",
+      "mapsCid": "1781999315282544878",
+      "category": "Counselor",
+      "rating": 4.9,
+      "reviewCount": 17,
+      "mapRankBySearch": {
+        "therapist": 14,
+        "counselor": 7,
+        "anxiety therapist": 19,
+        "couples counseling": 9,
+        "trauma therapist": 12,
+        "EMDR therapist": 12,
+        "marriage counselor": 4,
+        "depression therapist": 15,
+        "grief counseling": 9
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 52,
+        "seo": 92,
+        "accessibility": 82
+      },
+      "visibilityScore": 6,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "austin-anxiety-and-ocd-specialists",
+      "name": "Austin Anxiety and OCD Specialists",
+      "address": "205 Wild Basin Rd S 3 SUITE 202, Austin, TX 78746",
+      "city": "Austin",
+      "phone": "+1512-246-7225",
+      "website": "https://www.austinanxiety.com/",
+      "mapsCid": "2520905822505322449",
+      "category": "Psychologist",
+      "rating": 4.4,
+      "reviewCount": 13,
+      "mapRankBySearch": {
+        "anxiety therapist": 20
+      },
+      "organicRankBySearch": {
+        "anxiety therapist": 2
+      },
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 43,
+        "seo": 92,
+        "accessibility": 98
+      },
+      "visibilityScore": 5,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "austin-child-guidance-center",
+      "name": "Austin Child Guidance Center",
+      "address": "810 W 45th St, Austin, TX 78751",
+      "city": "Austin",
+      "phone": "+1512-451-2242",
+      "website": "https://www.austinchildguidance.org/?utm_source=GMB&utm_medium=direct",
+      "mapsCid": "15092342391044981487",
+      "category": "Mental health service",
+      "rating": 4,
+      "reviewCount": 35,
+      "mapRankBySearch": {
+        "child therapist": 5
+      },
+      "organicRankBySearch": {
+        "child therapist": 3
+      },
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 43,
+        "seo": 100,
+        "accessibility": 92
+      },
+      "visibilityScore": 5,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "austin-strong-relationship-building-center",
+      "name": "Austin STRONG: Relationship Building Center",
+      "address": "1714 Fort View Rd #106, Austin, TX 78704",
+      "city": "Austin",
+      "phone": "+1512-887-8036",
+      "website": "http://www.austinstrongrbc.com/",
+      "mapsCid": "9862584523804913218",
+      "category": "Counselor",
+      "rating": 5,
+      "reviewCount": 4,
+      "mapRankBySearch": {
+        "marriage counselor": 17
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 1,
+        "claude": 0,
+        "prompts": [
+          {
+            "provider": "chatgpt",
+            "prompt": "Best couples counselor in Austin, Texas"
+          }
+        ]
+      },
+      "lighthouse": {
+        "performance": 52,
+        "seo": 100,
+        "accessibility": 99
+      },
+      "visibilityScore": 5,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "carlisle-collective",
+      "name": "Carlisle Collective",
+      "address": "2525 Wallingwood Dr Bldg 12, Austin, TX 78746",
+      "city": "Austin",
+      "phone": "+1512-501-6200",
+      "website": "https://www.carlislecollective.co/",
+      "mapsCid": "10528128392057376097",
+      "category": "Psychotherapist",
+      "rating": 4.9,
+      "reviewCount": 29,
+      "mapRankBySearch": {
+        "EMDR therapist": 19
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 1,
+        "prompts": [
+          {
+            "provider": "claude",
+            "prompt": "Who is the best therapist in Austin, Texas?"
+          }
+        ]
+      },
+      "lighthouse": {
+        "performance": 32,
+        "seo": 100,
+        "accessibility": 95
+      },
+      "visibilityScore": 5,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "horseshoe-counseling",
+      "name": "Horseshoe Counseling",
+      "address": "205 E Monroe St Unit 202, Austin, TX 78704",
+      "city": "Austin",
+      "phone": "+1512-766-4993",
+      "website": "https://www.psychologytoday.com/us/therapists/sheridan-aguilar-austin-tx/1658315",
+      "mapsCid": "7059822472381402628",
+      "category": "Psychotherapist",
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {
+        "grief counseling": 14
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 1,
+        "claude": 0,
+        "prompts": [
+          {
+            "provider": "chatgpt",
+            "prompt": "Best couples counselor in Austin, Texas"
+          }
+        ]
+      },
+      "lighthouse": null,
+      "visibilityScore": 5,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "christy-reeder-phd-cgp-sep-psychologist-in-austin",
+      "name": "Christy Reeder, PhD, CGP, SEP – Psychologist in Austin",
+      "address": "1015 Beecave Woods Dr #204, Rollingwood, TX 78746",
+      "city": "Rollingwood",
+      "phone": "+1512-364-9619",
+      "website": "https://christyreederphd.com/",
+      "mapsCid": "10682341835514280073",
+      "category": "Counselor",
+      "rating": 5,
+      "reviewCount": 15,
+      "mapRankBySearch": {
+        "trauma therapist": 18
+      },
+      "organicRankBySearch": {
+        "trauma therapist": 3
+      },
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 89,
+        "seo": 92,
+        "accessibility": 87
+      },
+      "visibilityScore": 4,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "bridge-haven-counseling-charisse-ferrer-m-ed-lpc-s",
+      "name": "Bridge + Haven Counseling | Charisse Ferrer, M.Ed., LPC-S",
+      "address": "1107 S 8th St Ste D, Austin, TX 78704",
+      "city": "Austin",
+      "phone": "+1832-919-6422",
+      "website": "https://bridgeandhaven.com/",
+      "mapsCid": "206055147090013374",
+      "category": "Marriage or relationship counselor",
+      "rating": 5,
+      "reviewCount": 6,
+      "mapRankBySearch": {
+        "couples counseling": 7,
+        "marriage counselor": 5
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 76,
+        "seo": 92,
+        "accessibility": 96
+      },
+      "visibilityScore": 3,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "melody-li-lmft",
+      "name": "Melody Li, LMFT",
+      "address": "1012 E 38th 1/2 St, Austin, TX 78751",
+      "city": "Austin",
+      "phone": null,
+      "website": "http://melodyli.com/",
+      "mapsCid": "12530513464931396987",
+      "category": "Marriage or relationship counselor",
+      "rating": 5,
+      "reviewCount": 10,
+      "mapRankBySearch": {
+        "couples counseling": 10,
+        "marriage counselor": 6
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 63,
+        "seo": 92,
+        "accessibility": 81
+      },
+      "visibilityScore": 3,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "solstice-therapy-tx",
+      "name": "Solstice Therapy TX",
+      "address": "601 W 18th St, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1801-599-8470",
+      "website": "https://www.solsticetherapytx.com/",
+      "mapsCid": "814211808702120158",
+      "category": "Psychotherapist",
+      "rating": 5,
+      "reviewCount": 4,
+      "mapRankBySearch": {
+        "anxiety therapist": 12,
+        "trauma therapist": 5,
+        "depression therapist": 9
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 3,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "unitive-counseling-services",
+      "name": "Unitive Counseling Services",
+      "address": "3536 Bee Caves Rd, Austin, TX 78746",
+      "city": "Austin",
+      "phone": "+1512-888-7743",
+      "website": "http://www.unitivecounseling.com/",
+      "mapsCid": "8282645523885680936",
+      "category": "Counselor",
+      "rating": 5,
+      "reviewCount": 91,
+      "mapRankBySearch": {
+        "couples counseling": 11,
+        "marriage counselor": 10,
+        "grief counseling": 7
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 40,
+        "seo": 85,
+        "accessibility": 87
+      },
+      "visibilityScore": 3,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "austin-grief-counseling",
+      "name": "Austin Grief Counseling",
+      "address": "3355 Bee Caves Rd Ste 605, Austin, TX 78746",
+      "city": "Austin",
+      "phone": "+1713-391-9966",
+      "website": "https://www.austingriefcounseling.com/?utm_source=google&utm_medium=wix_google_business_profile&utm_campaign=8749934113907997895",
+      "mapsCid": "5050304492794790868",
+      "category": "Mental health service",
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {
+        "grief counseling": 6
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 62,
+        "seo": 100,
+        "accessibility": 99
+      },
+      "visibilityScore": 2,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "bryce-gibbs-phd-associates",
+      "name": "Bryce Gibbs PhD & Associates",
+      "address": "1717 West Ave, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-368-8609",
+      "website": "https://www.brycegibbsphd.com/",
+      "mapsCid": "594632375108240494",
+      "category": "Psychologist",
+      "rating": 4.8,
+      "reviewCount": 24,
+      "mapRankBySearch": {
+        "psychologist": 10
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 66,
+        "seo": 83,
+        "accessibility": 84
+      },
+      "visibilityScore": 2,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "crystal-mind-counseling",
+      "name": "Crystal Mind Counseling",
+      "address": "2525 Wallingwood Dr Ste 802, Austin, TX 78746",
+      "city": "Austin",
+      "phone": "+1210-624-7100",
+      "website": "http://www.crystalmindcounseling.com/",
+      "mapsCid": "4494834360333977244",
+      "category": "Counselor",
+      "rating": 5,
+      "reviewCount": 5,
+      "mapRankBySearch": {
+        "couples counseling": 14,
+        "marriage counselor": 8
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 52,
+        "seo": 92,
+        "accessibility": 98
+      },
+      "visibilityScore": 2,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "dr-diane-boudreaux",
+      "name": "Dr. Diane Boudreaux",
+      "address": "211 E 7th St #620, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1415-742-8411",
+      "website": null,
+      "mapsCid": "11628725201715998118",
+      "category": "Psychologist",
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {
+        "psychologist": 8
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 2,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "dr-jennifer-fast",
+      "name": "Dr. Jennifer Fast",
+      "address": "211 E 7th St #620, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1800-370-3651",
+      "website": null,
+      "mapsCid": "17530405400609462908",
+      "category": "Psychologist",
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {
+        "psychologist": 6
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 2,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "dr-peggy-brewer-psyd",
+      "name": "Dr. Peggy Brewer, PsyD",
+      "address": "606 W 15th St, Austin, TX 78703",
+      "city": "Austin",
+      "phone": "+1512-969-8270",
+      "website": "https://drpeggybrewer.com/",
+      "mapsCid": "17527255954618222034",
+      "category": "Psychotherapist",
+      "rating": 5,
+      "reviewCount": 1,
+      "mapRankBySearch": {
+        "anxiety therapist": 14,
+        "trauma therapist": 14,
+        "EMDR therapist": 10,
+        "depression therapist": 17
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 68,
+        "seo": 92,
+        "accessibility": 83
+      },
+      "visibilityScore": 2,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "dr-william-july",
+      "name": "Dr. William July",
+      "address": "401 Congress Ave #1540, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1214-299-8549",
+      "website": "https://www.drwilliamjuly.com/",
+      "mapsCid": "10488884613316894237",
+      "category": "Psychologist",
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {
+        "psychologist": 4
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 91,
+        "seo": 40,
+        "accessibility": 93
+      },
+      "visibilityScore": 2,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "dylan-davies-lmft-lpc",
+      "name": "Dylan Davies, LMFT, LPC",
+      "address": "1215 Parkway, Austin, TX 78703",
+      "city": "Austin",
+      "phone": "+1512-928-4889",
+      "website": "http://www.dylandaviestherapy.com/",
+      "mapsCid": "16215389516251331938",
+      "category": "Counselor",
+      "rating": 5,
+      "reviewCount": 6,
+      "mapRankBySearch": {
+        "couples counseling": 4,
+        "marriage counselor": 12
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 58,
+        "seo": 92,
+        "accessibility": 87
+      },
+      "visibilityScore": 2,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "esther-frogel",
+      "name": "Esther Frogel",
+      "address": "211 E 7th St #620, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1800-370-3651",
+      "website": null,
+      "mapsCid": "2608663167569915126",
+      "category": "Psychologist",
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {
+        "psychologist": 7
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 2,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "family-care-center-therapy-psychiatry-central-austin",
+      "name": "Family Care Center Therapy & Psychiatry - Central Austin",
+      "address": "3705 Medical Pkwy #410, Austin, TX 78705",
+      "city": "Austin",
+      "phone": "+1512-320-5779",
+      "website": "https://fccwellbeing.com/clinic-locations/texas/central-austin-clinic/?utm_medium=organic&utm_source=gmb&utm_campaign=referral",
+      "mapsCid": "9304367089465104173",
+      "category": "Mental health service",
+      "rating": 4.6,
+      "reviewCount": 212,
+      "mapRankBySearch": {
+        "child therapist": 6
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": {
+        "performance": 69,
+        "seo": 92,
+        "accessibility": 97
+      },
+      "visibilityScore": 2,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "hope-for-the-journey",
+      "name": "Hope For The Journey",
+      "address": "4131 Spicewood Springs Rd St. L-1, Austin, TX 78759",
+      "city": "Austin",
+      "phone": "+1512-400-4790",
+      "website": "https://hopeforthejourney.org/",
+      "mapsCid": "8192468818704448794",
+      "category": "Counselor",
+      "rating": 5,
+      "reviewCount": 10,
+      "mapRankBySearch": {
+        "EMDR therapist": 17
+      },
+      "organicRankBySearch": {
+        "EMDR therapist": 5
+      },
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 2,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "janeff-trauma-grief-counseling",
+      "name": "Janeff Trauma & Grief Counseling",
+      "address": "2222 Western Trails Blvd, Austin, TX 78745",
+      "city": "Austin",
+      "phone": "+1512-333-4820",
+      "website": "https://deanjaneff.com/where-i-work/therapist-austin-metro-area",
+      "mapsCid": "10223963997892443013",
+      "category": "Psychotherapist",
+      "rating": 4.3,
+      "reviewCount": 4,
+      "mapRankBySearch": {
+        "grief counseling": 5
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 2,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "learning-perch",
+      "name": "Learning Perch",
+      "address": "Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-766-4004",
+      "website": "http://www.learning-perch.com/",
+      "mapsCid": "2950266686327889079",
+      "category": "Applied behavior analysis therapist",
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {
+        "therapist": 10
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 2,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "meagan-read-psychotherapy-lcsw-s-cctp",
+      "name": "Meagan Read Psychotherapy LCSW-S, CCTP",
+      "address": "2520 Longview St #212, Austin, TX 78705",
+      "city": "Austin",
+      "phone": null,
+      "website": "http://meaganreadtherapy.com/",
+      "mapsCid": "17686227456999158388",
+      "category": "Psychotherapist",
+      "rating": 5,
+      "reviewCount": 4,
+      "mapRankBySearch": {
+        "EMDR therapist": 9
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 2,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "new-vision-therapy-center-austin",
+      "name": "New Vision Therapy Center - Austin",
+      "address": "3625 Menchaca Rd, Austin, TX 78704",
+      "city": "Austin",
+      "phone": "+1737-237-2976",
+      "website": "https://www.newvisiontherapycenter.com/austin-tx",
+      "mapsCid": "14917809246353477815",
+      "category": "Counselor",
+      "rating": 4.7,
+      "reviewCount": 27,
+      "mapRankBySearch": {
+        "couples counseling": 12,
+        "marriage counselor": 9,
+        "grief counseling": 16
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 2,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "radical-therapy-wellness",
+      "name": "Radical Therapy + Wellness",
+      "address": "825 W 11th St, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-294-2908",
+      "website": "http://www.radicaltherapytx.com/",
+      "mapsCid": "4192902119392800522",
+      "category": "Psychotherapist",
+      "rating": 5,
+      "reviewCount": 2,
+      "mapRankBySearch": {
+        "anxiety therapist": 16,
+        "trauma therapist": 9,
+        "EMDR therapist": 20
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 2,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "satterfield-rochelle-phd",
+      "name": "Satterfield Rochelle PHD",
+      "address": "150 W 6th St, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-499-8419",
+      "website": null,
+      "mapsCid": "14771724599264715712",
+      "category": "Psychologist",
+      "rating": 1,
+      "reviewCount": 1,
+      "mapRankBySearch": {
+        "psychologist": 5
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 2,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "texas-grief-therapy-pllc",
+      "name": "Texas Grief Therapy PLLC",
+      "address": "2320 Gracy Farms Ln Unit 523, Austin, TX 78758",
+      "city": "Austin",
+      "phone": "+1512-738-0928",
+      "website": "https://www.txgrieftherapy.com/grief-therapy",
+      "mapsCid": "4827153013949600595",
+      "category": "Mental health service",
+      "rating": 5,
+      "reviewCount": 5,
+      "mapRankBySearch": {
+        "grief counseling": 8
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 2,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "the-missing-peace-clinic-pllc",
+      "name": "The Missing Peace Clinic PLLC",
+      "address": "4022 Menchaca Rd, Austin, TX 78704",
+      "city": "Austin",
+      "phone": null,
+      "website": "https://www.missingpeaceclinic.com/",
+      "mapsCid": "14875810236314491425",
+      "category": "Mental health clinic",
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {
+        "psychologist": 9
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 2,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "trailhead-therapy-emdr-and-men-s-counseling",
+      "name": "Trailhead Therapy: EMDR and Men's Counseling",
+      "address": "916 Springdale Rd FT-5, Austin, TX 78702",
+      "city": "Austin",
+      "phone": "+1512-609-0577",
+      "website": "https://trailheadtherapyatx.com/",
+      "mapsCid": "646452519751163254",
+      "category": "Counselor",
+      "rating": 5,
+      "reviewCount": 7,
+      "mapRankBySearch": {
+        "trauma therapist": 13,
+        "EMDR therapist": 4
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 2,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "williamsburg-therapy-group-austin",
+      "name": "Williamsburg Therapy Group Austin",
+      "address": "2121 S Lamar Blvd Ste 200, Austin, TX 78704",
+      "city": "Austin",
+      "phone": "+1512-675-1262",
+      "website": "https://williamsburgtherapygroup.com/?utm_source=gmb_listing&utm_medium=organic&utm_campaign=gmb-profile",
+      "mapsCid": "7512896836559107443",
+      "category": "Psychologist",
+      "rating": 5,
+      "reviewCount": 14,
+      "mapRankBySearch": {
+        "child therapist": 9
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 2,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "alchemy-psychotherapy",
+      "name": "Alchemy Psychotherapy",
+      "address": "4424 Gaines Ranch Loop, Austin, TX 78735",
+      "city": "Austin",
+      "phone": "+1720-663-0103",
+      "website": "https://www.alchemypsychotherapy.com/",
+      "mapsCid": "16316025739641479517",
+      "category": "Counselor",
+      "rating": 5,
+      "reviewCount": 17,
+      "mapRankBySearch": {
+        "trauma therapist": 17
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "amaya-shiva-relationship-coaching-astrology",
+      "name": "Amaya Shiva Relationship Coaching & Astrology",
+      "address": "1401 Art Dilly Dr., Austin, TX 78702",
+      "city": "Austin",
+      "phone": "+1512-710-8015",
+      "website": "https://amayashiva.com/",
+      "mapsCid": "18174421089707393747",
+      "category": "Marriage or relationship counselor",
+      "rating": 4.9,
+      "reviewCount": 23,
+      "mapRankBySearch": {
+        "marriage counselor": 13
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "anchor-counseling-atx",
+      "name": "anchor counseling atx",
+      "address": "604 W 35th St, Austin, TX 78705",
+      "city": "Austin",
+      "phone": "+1512-886-9143",
+      "website": null,
+      "mapsCid": "1232433621548742506",
+      "category": "Mental health service",
+      "rating": 5,
+      "reviewCount": 1,
+      "mapRankBySearch": {
+        "child therapist": 19
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "ashley-massage-therapist-spa",
+      "name": "Ashley massage Therapist & Spa",
+      "address": "303 W 5th St, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-507-1075",
+      "website": null,
+      "mapsCid": "18439154686235995528",
+      "category": "Massage spa",
+      "rating": 5,
+      "reviewCount": 1,
+      "mapRankBySearch": {
+        "therapist": 12
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "attuned-austin-therapy-services-pllc",
+      "name": "Attuned Austin Therapy Services, PLLC",
+      "address": "2222 Western Trails Blvd #300, Austin, TX 78745",
+      "city": "Austin",
+      "phone": "+1512-580-6305",
+      "website": "https://www.attunedaustintherapyservices.com/",
+      "mapsCid": "4909641072945843935",
+      "category": "Mental health clinic",
+      "rating": 5,
+      "reviewCount": 3,
+      "mapRankBySearch": {
+        "child therapist": 18
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "austin-premarital-counseling",
+      "name": "Austin Premarital Counseling",
+      "address": "3906 N Lamar Blvd #204d, Austin, TX 78756",
+      "city": "Austin",
+      "phone": null,
+      "website": "http://www.austinpremaritalcounseling.com/",
+      "mapsCid": "8923045611607148815",
+      "category": "Marriage or relationship counselor",
+      "rating": 5,
+      "reviewCount": 1,
+      "mapRankBySearch": {
+        "marriage counselor": 19
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "austin-relational-wellness",
+      "name": "Austin Relational Wellness",
+      "address": "2499 S Capital of Texas Hwy Ste A-203, Austin, TX 78746",
+      "city": "Austin",
+      "phone": "+1512-909-2535",
+      "website": "https://www.austinrelationalwellness.com/",
+      "mapsCid": "17893326310893737096",
+      "category": "Marriage or relationship counselor",
+      "rating": 4.6,
+      "reviewCount": 11,
+      "mapRankBySearch": {
+        "couples counseling": 20,
+        "marriage counselor": 18
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "austin-therapist-insight",
+      "name": "Austin Therapist Insight",
+      "address": "711 W 38th St Bldg D Suite 3, Austin, TX 78705",
+      "city": "Austin",
+      "phone": "+1737-336-5038",
+      "website": "https://www.austintherapistinsight.com/",
+      "mapsCid": "3156338702002058344",
+      "category": "Counselor",
+      "rating": 5,
+      "reviewCount": 11,
+      "mapRankBySearch": {
+        "child therapist": 11
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "cathy-fariss-lpc",
+      "name": "Cathy Fariss, LPC",
+      "address": "1007 Mopac Circle suite 202, Austin, TX 78746",
+      "city": "Austin",
+      "phone": "+1512-577-9932",
+      "website": "http://www.cathyfariss.com/",
+      "mapsCid": "10110717544179415985",
+      "category": "Counselor",
+      "rating": 5,
+      "reviewCount": 1,
+      "mapRankBySearch": {
+        "grief counseling": 18
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "christian-counseling-austin",
+      "name": "Christian Counseling Austin",
+      "address": "5000 Bee Caves Rd Ste 100, Austin, TX 78746",
+      "city": "Austin",
+      "phone": "+1512-200-3880",
+      "website": "https://www.christiancounselingaustin.com/?utm_source=google&utm_medium=organic&utm_campaign=gmb-listing",
+      "mapsCid": "12243055937238508565",
+      "category": "Marriage or relationship counselor",
+      "rating": 5,
+      "reviewCount": 11,
+      "mapRankBySearch": {
+        "marriage counselor": 20
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "connected-counseling-wellness",
+      "name": "Connected Counseling & Wellness",
+      "address": "2525 Wallingwood Dr, Austin, TX 78746",
+      "city": "Austin",
+      "phone": "+1512-601-0881",
+      "website": "https://www.connected-wellness.com/",
+      "mapsCid": "1412952033266452541",
+      "category": "Psychologist",
+      "rating": 4.9,
+      "reviewCount": 15,
+      "mapRankBySearch": {
+        "couples counseling": 19,
+        "marriage counselor": 16
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "connected-family-partners",
+      "name": "Connected Family Partners",
+      "address": "1102 W 6th St Ste 200, Austin, TX 78703",
+      "city": "Austin",
+      "phone": null,
+      "website": "https://www.connectedfamilypartners.com/",
+      "mapsCid": "9590852424849937103",
+      "category": "Mental health service",
+      "rating": 4.8,
+      "reviewCount": 20,
+      "mapRankBySearch": {
+        "child therapist": 13
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "connected-heart-therapy",
+      "name": "Connected Heart Therapy",
+      "address": "206 Wild Basin Rd S Building A Suite 208, Austin, TX 78746",
+      "city": "Austin",
+      "phone": "+1512-890-2109",
+      "website": "https://connectedhearttherapy.com/",
+      "mapsCid": "3885388330961565635",
+      "category": "Mental health service",
+      "rating": 5,
+      "reviewCount": 26,
+      "mapRankBySearch": {
+        "EMDR therapist": 16
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "counseling-central-austin",
+      "name": "Counseling Central Austin",
+      "address": "1502 W 6th St Ste A, Austin, TX 78703",
+      "city": "Austin",
+      "phone": "+1512-417-7086",
+      "website": "http://counselingcentralaustin.com/",
+      "mapsCid": "7277965581675771856",
+      "category": "Counselor",
+      "rating": 5,
+      "reviewCount": 2,
+      "mapRankBySearch": {
+        "counselor": 19
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "couples-counseling-south-austin",
+      "name": "Couples Counseling South Austin",
+      "address": "4009 Banister Ln #330, Austin, TX 78704",
+      "city": "Austin",
+      "phone": "+1512-557-0944",
+      "website": "https://www.couplescounselingsouthaustin.com/",
+      "mapsCid": "3814542572382403721",
+      "category": "Marriage or relationship counselor",
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {
+        "couples counseling": 15,
+        "marriage counselor": 14
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "diane-hoffman-lpc-s",
+      "name": "Diane Hoffman, LPC-S",
+      "address": "1001 West Ave, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-638-3321",
+      "website": "http://www.dianehoffmantherapy.com/",
+      "mapsCid": "11610337138047081852",
+      "category": "Family counselor",
+      "rating": 3.8,
+      "reviewCount": 6,
+      "mapRankBySearch": {
+        "child therapist": 17
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "discovery-counseling-austin",
+      "name": "Discovery Counseling Austin",
+      "address": "2520 Longview St #307, Austin, TX 78705",
+      "city": "Austin",
+      "phone": "+1512-607-9360",
+      "website": "http://discoverycounselingaustin.com/",
+      "mapsCid": "17588239139584309301",
+      "category": "Counselor",
+      "rating": 4.3,
+      "reviewCount": 6,
+      "mapRankBySearch": {
+        "counselor": 20,
+        "child therapist": 14
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "discovery-mood-anxiety-program-austin",
+      "name": "Discovery Mood & Anxiety Program - Austin",
+      "address": "1717 W 6th St #210, Austin, TX 78703",
+      "city": "Austin",
+      "phone": "+1855-339-0591",
+      "website": "https://discoverymood.com/locations/austin/",
+      "mapsCid": "14002650912772987086",
+      "category": "Mental health service",
+      "rating": 3.7,
+      "reviewCount": 25,
+      "mapRankBySearch": {
+        "anxiety therapist": 18,
+        "depression therapist": 18
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "dr-laura-greenlee",
+      "name": "Dr. Laura Greenlee",
+      "address": "211 E 7th St #620, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1800-370-3651",
+      "website": null,
+      "mapsCid": "8007246323510459752",
+      "category": "Psychologist",
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {
+        "psychologist": 13
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "ellen-pace-therapy",
+      "name": "Ellen Pace Therapy",
+      "address": "3400 Kerbey Ln, Austin, TX 78703",
+      "city": "Austin",
+      "phone": "+1512-766-9873",
+      "website": "https://www.ellenpacetherapy.com/contact/",
+      "mapsCid": "1028430115469550197",
+      "category": "Counselor",
+      "rating": 5,
+      "reviewCount": 3,
+      "mapRankBySearch": {
+        "EMDR therapist": 14
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "fox-acorn-child-therapy-pllc",
+      "name": "Fox & Acorn Child Therapy PLLC",
+      "address": "630 Ralph Ablanedo Dr #7, Austin, TX 78748",
+      "city": "Austin",
+      "phone": "+1202-854-8741",
+      "website": "https://www.foxandacornchildtherapy.com/",
+      "mapsCid": "13780666626277281920",
+      "category": "Mental health clinic",
+      "rating": 5,
+      "reviewCount": 2,
+      "mapRankBySearch": {
+        "child therapist": 16
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "good-grief",
+      "name": "GOOD GRiEF",
+      "address": "1620 E Riverside Dr, Austin, TX 78741",
+      "city": "Austin",
+      "phone": null,
+      "website": "https://www.goodgriefrunning.com/",
+      "mapsCid": "6025004624409499896",
+      "category": "Wellness program",
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {
+        "grief counseling": 19
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "hannah-spa-and-massage",
+      "name": "Hannah spa and massage",
+      "address": "101 W 5th St, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1407-738-4237",
+      "website": null,
+      "mapsCid": "17701799341115711300",
+      "category": "Massage therapist",
+      "rating": 5,
+      "reviewCount": 2,
+      "mapRankBySearch": {
+        "therapist": 19
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "insightful-mind-therapy",
+      "name": "Insightful Mind Therapy",
+      "address": "Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-222-9792",
+      "website": "https://www.insightfulmindtherapy.com/contact",
+      "mapsCid": "7196228744663978600",
+      "category": "Counselor",
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {
+        "therapist": 16
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "kimberley-mead",
+      "name": "Kimberley Mead",
+      "address": "2525 Wallingwood Dr Bldg 12, Austin, TX 78746",
+      "city": "Austin",
+      "phone": "+1512-789-6125",
+      "website": "http://www.kmeadcounseling.com/",
+      "mapsCid": "6031653376593842842",
+      "category": "Psychotherapist",
+      "rating": 5,
+      "reviewCount": 1,
+      "mapRankBySearch": {
+        "grief counseling": 17
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "lifeologie-counseling-austin",
+      "name": "Lifeologie Counseling Austin",
+      "address": "2104 Alexander Ave, Austin, TX 78722",
+      "city": "Austin",
+      "phone": "+1512-651-3575",
+      "website": "https://wefixbrains.com/austin/",
+      "mapsCid": "10144135598266274911",
+      "category": "Counselor",
+      "rating": 4.9,
+      "reviewCount": 9,
+      "mapRankBySearch": {
+        "grief counseling": 12
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "maria-lizardo",
+      "name": "Maria Lizardo",
+      "address": "211 E 7th St #620, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1800-370-3651",
+      "website": null,
+      "mapsCid": "10626678750788148923",
+      "category": "Psychologist",
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {
+        "psychologist": 17
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "nichole-cardona-lpc",
+      "name": "Nichole Cardona,LPC",
+      "address": "200 E Cesar Chavez St suite g-140, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-654-4100",
+      "website": "https://www.bswhealth.com/counselor/nichole-cardona?utm_content=main-website&utm_source=pg-google&utm_medium=organic&utm_campaign=29985-9717812-1740874874",
+      "mapsCid": "13037775893302414413",
+      "category": "Counselor",
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {
+        "counselor": 16
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "porch-light-therapy-services-pllc",
+      "name": "Porch Light Therapy Services, PLLC",
+      "address": "821 W 11th St, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-765-4698",
+      "website": "https://porchlighttherapyservices.com/",
+      "mapsCid": "9194669464578067579",
+      "category": "Mental health service",
+      "rating": 3.7,
+      "reviewCount": 3,
+      "mapRankBySearch": {
+        "trauma therapist": 19
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "psyche-s-lantern-counseling",
+      "name": "Psyche's Lantern Counseling",
+      "address": "3908 Avenue B, Austin, TX 78751",
+      "city": "Austin",
+      "phone": null,
+      "website": "https://www.psycheslantern.com/",
+      "mapsCid": "10682119228523165785",
+      "category": "Counselor",
+      "rating": 5,
+      "reviewCount": 3,
+      "mapRankBySearch": {
+        "child therapist": 20,
+        "grief counseling": 13
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "psychiatry-of-austin-now-with-autopsych",
+      "name": "Psychiatry of Austin now with AutoPsych",
+      "address": "111 Congress Ave. Ste 500, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-815-2742",
+      "website": "https://www.psychiatryofaustin.com/",
+      "mapsCid": "11933073403617194899",
+      "category": "Mental health clinic",
+      "rating": 4.6,
+      "reviewCount": 44,
+      "mapRankBySearch": {
+        "anxiety therapist": 11,
+        "depression therapist": 12
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "shift-happens-therapy",
+      "name": "Shift Happens Therapy",
+      "address": "4422 Pack Saddle Pass, Austin, TX 78745",
+      "city": "Austin",
+      "phone": "+1512-763-7002",
+      "website": "http://www.shifthappenstherapy.com/",
+      "mapsCid": "16330614926903491354",
+      "category": "Counselor",
+      "rating": 5,
+      "reviewCount": 3,
+      "mapRankBySearch": {
+        "trauma therapist": 15
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "suzanne-bartholomew-lcsw-individual-therapy-couples-counseling-emdr-ketamine-ass",
+      "name": "Suzanne Bartholomew, LCSW - individual therapy, couples counseling, EMDR, Ketamine Assisted Psychotherapy",
+      "address": "2100 E 17th St #1, Austin, TX 78702",
+      "city": "Austin",
+      "phone": "+1512-955-5387",
+      "website": "http://suzannebartholomewlcsw.com/",
+      "mapsCid": "3291126895968631539",
+      "category": "Psychotherapist",
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {
+        "EMDR therapist": 13,
+        "grief counseling": 20
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "texas-queer-counseling",
+      "name": "Texas Queer counseling",
+      "address": "305 W 10th St Ste 302, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-774-5688",
+      "website": "https://www.texasqueercounseling.com/?utm_source=google&utm_medium=wix_google_business_profile&utm_campaign=1566615595295367411",
+      "mapsCid": "8711562340458999740",
+      "category": "Counselor",
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {
+        "counselor": 14
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "town-lake-counseling",
+      "name": "Town Lake Counseling",
+      "address": "1300 W Lynn St Ste 206, Austin, TX 78703",
+      "city": "Austin",
+      "phone": "+1512-348-8771",
+      "website": "https://townlakecounseling.com/",
+      "mapsCid": "17834200257765113101",
+      "category": "Family counselor",
+      "rating": 5,
+      "reviewCount": 1,
+      "mapRankBySearch": {
+        "counselor": 18
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "vera-psychotherapy",
+      "name": "Vera Psychotherapy",
+      "address": "1105 Nueces St Ste C, Austin, TX 78701",
+      "city": "Austin",
+      "phone": "+1512-387-4970",
+      "website": "https://www.veratherapygroup.com/",
+      "mapsCid": "129822036643466822",
+      "category": "Psychotherapist",
+      "rating": 5,
+      "reviewCount": 5,
+      "mapRankBySearch": {
+        "therapist": 20
+      },
+      "organicRankBySearch": {},
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": false,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "betterhelp",
+      "name": "BetterHelp",
+      "address": null,
+      "city": null,
+      "phone": null,
+      "website": "https://betterhelp.com",
+      "mapsCid": null,
+      "category": null,
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {},
+      "organicRankBySearch": {
+        "counselor": 5
+      },
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": true,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "facebook",
+      "name": "Facebook",
+      "address": null,
+      "city": null,
+      "phone": null,
+      "website": "https://facebook.com",
+      "mapsCid": null,
+      "category": null,
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {},
+      "organicRankBySearch": {
+        "anxiety therapist": 4
+      },
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": true,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "psychology-today",
+      "name": "Psychology Today",
+      "address": null,
+      "city": null,
+      "phone": null,
+      "website": "https://psychologytoday.com",
+      "mapsCid": null,
+      "category": null,
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {},
+      "organicRankBySearch": {
+        "therapist": 5,
+        "counselor": 3,
+        "trauma therapist": 5,
+        "depression therapist": 2
+      },
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": true,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "therapyden",
+      "name": "TherapyDen",
+      "address": null,
+      "city": null,
+      "phone": null,
+      "website": "https://therapyden.com",
+      "mapsCid": null,
+      "category": null,
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {},
+      "organicRankBySearch": {
+        "marriage counselor": 3
+      },
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": true,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "thriveworks",
+      "name": "Thriveworks",
+      "address": null,
+      "city": null,
+      "phone": null,
+      "website": "https://thriveworks.com",
+      "mapsCid": null,
+      "category": null,
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {},
+      "organicRankBySearch": {
+        "psychologist": 2,
+        "marriage counselor": 4
+      },
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": true,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "yelp",
+      "name": "Yelp",
+      "address": null,
+      "city": null,
+      "phone": null,
+      "website": "https://yelp.com",
+      "mapsCid": null,
+      "category": null,
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {},
+      "organicRankBySearch": {
+        "counselor": 4
+      },
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": true,
+      "isChain": false,
+      "chainName": null
+    },
+    {
+      "slug": "zocdoc",
+      "name": "Zocdoc",
+      "address": null,
+      "city": null,
+      "phone": null,
+      "website": "https://zocdoc.com",
+      "mapsCid": null,
+      "category": null,
+      "rating": null,
+      "reviewCount": null,
+      "mapRankBySearch": {},
+      "organicRankBySearch": {
+        "counselor": 1,
+        "couples counseling": 1,
+        "psychologist": 5
+      },
+      "aiMentions": {
+        "chatgpt": 0,
+        "claude": 0,
+        "prompts": []
+      },
+      "lighthouse": null,
+      "visibilityScore": 0,
+      "isDirectory": true,
+      "isChain": false,
+      "chainName": null
+    }
+  ],
+  "aiOnlyMentions": [
+    {
+      "name": "Dr. Tamara Bryan",
+      "provider": "chatgpt",
+      "model": "gpt-5.6-luna",
+      "prompt": "Who is the best therapist in Austin, Texas?"
+    },
+    {
+      "name": "Dr. Tamara Bryan / Austin Center for CBT",
+      "provider": "chatgpt",
+      "model": "gpt-5.6-luna",
+      "prompt": "Who is the best therapist in Austin, Texas?"
+    },
+    {
+      "name": "Marsha Lowes Psychotherapy",
+      "provider": "chatgpt",
+      "model": "gpt-5.6-luna",
+      "prompt": "Who is the best therapist in Austin, Texas?"
+    },
+    {
+      "name": "Austin Counseling & Trauma Specialists",
+      "provider": "chatgpt",
+      "model": "gpt-5.6-luna",
+      "prompt": "Who is the best therapist in Austin, Texas?"
+    },
+    {
+      "name": "Just Mind Counseling",
+      "provider": "chatgpt",
+      "model": "gpt-5.6-luna",
+      "prompt": "Who is the best therapist in Austin, Texas?"
+    },
+    {
+      "name": "Just Mind",
+      "provider": "chatgpt",
+      "model": "gpt-5.6-luna",
+      "prompt": "Who is the best therapist in Austin, Texas?"
+    },
+    {
+      "name": "Texas Behavioral Health Executive Council",
+      "provider": "chatgpt",
+      "model": "gpt-5.6-luna",
+      "prompt": "Who is the best therapist in Austin, Texas?"
+    },
+    {
+      "name": "Deanna Graves, LPC",
+      "provider": "chatgpt",
+      "model": "gpt-5.6-luna",
+      "prompt": "Recommend an anxiety therapist in Austin, Texas"
+    },
+    {
+      "name": "Dr. Tamara Bryan",
+      "provider": "chatgpt",
+      "model": "gpt-5.6-luna",
+      "prompt": "Recommend an anxiety therapist in Austin, Texas"
+    },
+    {
+      "name": "Austin Center for CBT",
+      "provider": "chatgpt",
+      "model": "gpt-5.6-luna",
+      "prompt": "Recommend an anxiety therapist in Austin, Texas"
+    },
+    {
+      "name": "Anxiety Treatment Center of Austin",
+      "provider": "chatgpt",
+      "model": "gpt-5.6-luna",
+      "prompt": "Recommend an anxiety therapist in Austin, Texas"
+    },
+    {
+      "name": "Central Texas Anxiety and OCD Center",
+      "provider": "chatgpt",
+      "model": "gpt-5.6-luna",
+      "prompt": "Recommend an anxiety therapist in Austin, Texas"
+    },
+    {
+      "name": "Just Mind Counseling",
+      "provider": "chatgpt",
+      "model": "gpt-5.6-luna",
+      "prompt": "Recommend an anxiety therapist in Austin, Texas"
+    },
+    {
+      "name": "Just Mind",
+      "provider": "chatgpt",
+      "model": "gpt-5.6-luna",
+      "prompt": "Recommend an anxiety therapist in Austin, Texas"
+    },
+    {
+      "name": "Veronica Leal, LPC-S",
+      "provider": "chatgpt",
+      "model": "gpt-5.6-luna",
+      "prompt": "Best couples counselor in Austin, Texas"
+    },
+    {
+      "name": "Claudia Thompson, LMFT",
+      "provider": "chatgpt",
+      "model": "gpt-5.6-luna",
+      "prompt": "Best couples counselor in Austin, Texas"
+    },
+    {
+      "name": "Danae King, LPC",
+      "provider": "chatgpt",
+      "model": "gpt-5.6-luna",
+      "prompt": "Best couples counselor in Austin, Texas"
+    },
+    {
+      "name": "Westlake Couples Counseling, PLLC",
+      "provider": "chatgpt",
+      "model": "gpt-5.6-luna",
+      "prompt": "Best couples counselor in Austin, Texas"
+    },
+    {
+      "name": "Emotionally Focused Therapy",
+      "provider": "chatgpt",
+      "model": "gpt-5.6-luna",
+      "prompt": "Best couples counselor in Austin, Texas"
+    },
+    {
+      "name": "Enhancing Intimacy Counseling",
+      "provider": "chatgpt",
+      "model": "gpt-5.6-luna",
+      "prompt": "Best couples counselor in Austin, Texas"
+    },
+    {
+      "name": "Just Mind Counseling",
+      "provider": "claude",
+      "model": "claude-sonnet-5-5",
+      "prompt": "Who is the best therapist in Austin, Texas?"
+    },
+    {
+      "name": "Westlake Psychotherapy of Austin",
+      "provider": "claude",
+      "model": "claude-sonnet-5-5",
+      "prompt": "Who is the best therapist in Austin, Texas?"
+    },
+    {
+      "name": "Ron Grace, PsyD",
+      "provider": "claude",
+      "model": "claude-sonnet-5-5",
+      "prompt": "Recommend an anxiety therapist in Austin, Texas"
+    },
+    {
+      "name": "Garcia Puckett, LPC",
+      "provider": "claude",
+      "model": "claude-sonnet-5-5",
+      "prompt": "Recommend an anxiety therapist in Austin, Texas"
+    },
+    {
+      "name": "Dr. Jill Racine",
+      "provider": "claude",
+      "model": "claude-sonnet-5-5",
+      "prompt": "Recommend an anxiety therapist in Austin, Texas"
+    },
+    {
+      "name": "Dr. Ruba Fattouh",
+      "provider": "claude",
+      "model": "claude-sonnet-5-5",
+      "prompt": "Recommend an anxiety therapist in Austin, Texas"
+    },
+    {
+      "name": "Just Mind Counseling",
+      "provider": "claude",
+      "model": "claude-sonnet-5-5",
+      "prompt": "Recommend an anxiety therapist in Austin, Texas"
+    },
+    {
+      "name": "Anxiety Treatment Center of Austin",
+      "provider": "claude",
+      "model": "claude-sonnet-5-5",
+      "prompt": "Recommend an anxiety therapist in Austin, Texas"
+    },
+    {
+      "name": "Julie D. Lee, LCSW",
+      "provider": "claude",
+      "model": "claude-sonnet-5-5",
+      "prompt": "Best couples counselor in Austin, Texas"
+    },
+    {
+      "name": "Just Mind Counseling",
+      "provider": "claude",
+      "model": "claude-sonnet-5-5",
+      "prompt": "Best couples counselor in Austin, Texas"
+    },
+    {
+      "name": "Relationship Counseling Center of Austin",
+      "provider": "claude",
+      "model": "claude-sonnet-5-5",
+      "prompt": "Best couples counselor in Austin, Texas"
+    },
+    {
+      "name": "Austin Family Counseling",
+      "provider": "claude",
+      "model": "claude-sonnet-5-5",
+      "prompt": "Best couples counselor in Austin, Texas"
+    }
+  ],
+  "organicTopBySearch": {
+    "therapist": [
+      {
+        "rank": 1,
+        "title": "Therapy, Counseling & Mental Health Services",
+        "url": "https://www.austinymca.org/programs/counseling/",
+        "domain": "austinymca.org",
+        "kind": "other",
+        "practiceSlug": null
+      },
+      {
+        "rank": 2,
+        "title": "Find Therapists in Austin, Texas",
+        "url": "https://psychhub.com/us/texas/austin",
+        "domain": "psychhub.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      },
+      {
+        "rank": 3,
+        "title": "Expert Psychologist and CBT Therapists in Austin",
+        "url": "https://www.therapylab.com/locations/austin-therapists",
+        "domain": "therapylab.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      },
+      {
+        "rank": 4,
+        "title": "Psychotherapy and psychoanalysis in Austin, TX",
+        "url": "https://www.austinpsychotherapyservices.com/",
+        "domain": "austinpsychotherapyservices.com",
+        "kind": "local practice",
+        "practiceSlug": "austin-psychotherapy-services"
+      },
+      {
+        "rank": 5,
+        "title": "Find Depression Therapists and Psychologists in Austin, TX",
+        "url": "https://www.psychologytoday.com/us/therapists/tx/austin?category=depression",
+        "domain": "psychologytoday.com",
+        "kind": "directory",
+        "practiceSlug": "psychology-today"
+      },
+      {
+        "rank": 6,
+        "title": "Therapists Near Me in Austin, Texas",
+        "url": "https://thrivingcenterofpsych.com/locations/texas/austin/",
+        "domain": "thrivingcenterofpsych.com",
+        "kind": "local practice",
+        "practiceSlug": "thriving-center-of-psychology"
+      }
+    ],
+    "counselor": [
+      {
+        "rank": 1,
+        "title": "Book 100+ of the best Psychotherapists near me in Austin, TX",
+        "url": "https://www.zocdoc.com/psychotherapists/austin-221873pm",
+        "domain": "zocdoc.com",
+        "kind": "directory",
+        "practiceSlug": "zocdoc"
+      },
+      {
+        "rank": 2,
+        "title": "Austin, TX",
+        "url": "https://www.soundsofsaving.org/locations/austin-tx",
+        "domain": "soundsofsaving.org",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      },
+      {
+        "rank": 3,
+        "title": "Find 1199SEIU Therapists and Psychologists in Austin, TX",
+        "url": "https://www.psychologytoday.com/us/therapists/tx/austin?category=1199seiu",
+        "domain": "psychologytoday.com",
+        "kind": "directory",
+        "practiceSlug": "psychology-today"
+      },
+      {
+        "rank": 4,
+        "title": "TOP 10 BEST Psychotherapist near East Austin, Austin, TX",
+        "url": "https://www.yelp.com/search?find_desc=Psychotherapist&find_loc=East+Austin%2C+Austin%2C+TX",
+        "domain": "yelp.com",
+        "kind": "directory",
+        "practiceSlug": "yelp"
+      },
+      {
+        "rank": 5,
+        "title": "Licensed therapists in Austin, TX",
+        "url": "https://www.betterhelp.com/therapists/tx/austin/78751/",
+        "domain": "betterhelp.com",
+        "kind": "directory",
+        "practiceSlug": "betterhelp"
+      },
+      {
+        "rank": 6,
+        "title": "TOP 10 BEST Free Counseling in Austin, TX - Updated 2026",
+        "url": "https://www.yelp.com/search?find_desc=Free+Counseling&find_loc=Austin%2C+TX",
+        "domain": "yelp.com",
+        "kind": "directory",
+        "practiceSlug": "yelp"
+      }
+    ],
+    "anxiety therapist": [
+      {
+        "rank": 1,
+        "title": "Our Team - Anxiety Treatment Center of Austin",
+        "url": "https://www.anxietyaustin.com/our-team",
+        "domain": "anxietyaustin.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      },
+      {
+        "rank": 2,
+        "title": "Online Therapy in Austin",
+        "url": "https://www.austinanxiety.com/online-therapy",
+        "domain": "austinanxiety.com",
+        "kind": "local practice",
+        "practiceSlug": "austin-anxiety-and-ocd-specialists"
+      },
+      {
+        "rank": 3,
+        "title": "Bloom Therapy: Welcome",
+        "url": "https://bloomtherapytx.com/",
+        "domain": "bloomtherapytx.com",
+        "kind": "local practice",
+        "practiceSlug": "bloom-therapy"
+      },
+      {
+        "rank": 4,
+        "title": "Anxiety Treatment Center of Austin",
+        "url": "https://www.facebook.com/AnxietyAustin/",
+        "domain": "facebook.com",
+        "kind": "directory",
+        "practiceSlug": "facebook"
+      },
+      {
+        "rank": 5,
+        "title": "Seek Support for Anxiety Therapy with Autonomy in Austin ...",
+        "url": "https://autonomytherapyatx.com/anxiety-therapy-austin-tx",
+        "domain": "autonomytherapyatx.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      },
+      {
+        "rank": 6,
+        "title": "Austin Counseling & Trauma Specialists - Austin Therapy",
+        "url": "https://www.austincts.com/",
+        "domain": "austincts.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      }
+    ],
+    "couples counseling": [
+      {
+        "rank": 1,
+        "title": "Couples Therapy - Austin, TX",
+        "url": "https://www.zocdoc.com/doctors/couples-therapy-austin",
+        "domain": "zocdoc.com",
+        "kind": "directory",
+        "practiceSlug": "zocdoc"
+      },
+      {
+        "rank": 2,
+        "title": "ATX Counseling | Austin Therapy | Best Therapists in Austin, TX",
+        "url": "https://atx-counseling.com/",
+        "domain": "atx-counseling.com",
+        "kind": "local practice",
+        "practiceSlug": "atx-counseling"
+      },
+      {
+        "rank": 3,
+        "title": "Couples Counseling Recommendations : r/Austin",
+        "url": "https://www.reddit.com/r/Austin/comments/1clquv8/couples_counseling_recommendations/",
+        "domain": "reddit.com",
+        "kind": "other",
+        "practiceSlug": null
+      },
+      {
+        "rank": 4,
+        "title": "Couples Counseling Austin & Georgetown, TX",
+        "url": "https://timothycenter.com/couples-counseling/",
+        "domain": "timothycenter.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      },
+      {
+        "rank": 5,
+        "title": "New Leaf Counseling - Austin, TX",
+        "url": "https://www.newleafcounseling.com/",
+        "domain": "newleafcounseling.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      },
+      {
+        "rank": 6,
+        "title": "Licensed Couples Therapy in Texas",
+        "url": "https://www.gramercyclinic.com/couples-therapy-texas/",
+        "domain": "gramercyclinic.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      }
+    ],
+    "trauma therapist": [
+      {
+        "rank": 1,
+        "title": "Therapy in Austin, TX | Trauma-Informed Therapist | ATTC",
+        "url": "https://atxtraumatherapycenter.com/",
+        "domain": "atxtraumatherapycenter.com",
+        "kind": "local practice",
+        "practiceSlug": "austin-trauma-therapy-center"
+      },
+      {
+        "rank": 2,
+        "title": "Austin Counseling & Trauma Specialists - Austin Therapy",
+        "url": "https://www.austincts.com/",
+        "domain": "austincts.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      },
+      {
+        "rank": 3,
+        "title": "Christy Reeder, PhD, CGP, SEP: Trauma Therapy in Austin, TX",
+        "url": "https://christyreederphd.com/",
+        "domain": "christyreederphd.com",
+        "kind": "local practice",
+        "practiceSlug": "christy-reeder-phd-cgp-sep-psychologist-in-austin"
+      },
+      {
+        "rank": 4,
+        "title": "PTSD & Trauma Therapy In Austin, TX",
+        "url": "https://justmind.org/ptsd-and-trauma-counseling/",
+        "domain": "justmind.org",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      },
+      {
+        "rank": 5,
+        "title": "Trauma and PTSD Therapists in Austin, TX",
+        "url": "https://www.psychologytoday.com/us/therapists/tx/austin?category=trauma-and-ptsd",
+        "domain": "psychologytoday.com",
+        "kind": "directory",
+        "practiceSlug": "psychology-today"
+      },
+      {
+        "rank": 6,
+        "title": "PTSD & Trauma Therapy in Austin, Texas - Roots ...",
+        "url": "https://rootsbehavioralhealth.com/lp/ptsd-trauma-therapy-in-austin-texas/",
+        "domain": "rootsbehavioralhealth.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      }
+    ],
+    "EMDR therapist": [
+      {
+        "rank": 1,
+        "title": "EMDR Therapy Austin",
+        "url": "https://www.emdrtherapyaustin.com/emdr-therapy-in-austin-texas",
+        "domain": "emdrtherapyaustin.com",
+        "kind": "local practice",
+        "practiceSlug": "emdr-therapy-austin"
+      },
+      {
+        "rank": 2,
+        "title": "Eye Movement Desensitization and Reprocessing Training",
+        "url": "https://www.austintexas.gov/police/eye-movement-desensitization-and-reprocessing-training",
+        "domain": "austintexas.gov",
+        "kind": "other",
+        "practiceSlug": null
+      },
+      {
+        "rank": 3,
+        "title": "EMDR THERAPY – Counseling Austin",
+        "url": "https://brunolepore.com/portfolio-items/emdr/",
+        "domain": "brunolepore.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      },
+      {
+        "rank": 4,
+        "title": "Contact Us — EMDR Therapy Austin",
+        "url": "https://www.emdrtherapyaustin.com/contact",
+        "domain": "emdrtherapyaustin.com",
+        "kind": "local practice",
+        "practiceSlug": "emdr-therapy-austin"
+      },
+      {
+        "rank": 5,
+        "title": "Finding Your EMDR Therapist in Austin: A Guide for Best Match",
+        "url": "https://hopeforthejourney.org/finding-your-emdr-therapist-in-austin-a-guide-for-best-match/",
+        "domain": "hopeforthejourney.org",
+        "kind": "local practice",
+        "practiceSlug": "hope-for-the-journey"
+      },
+      {
+        "rank": 6,
+        "title": "Discover the Best EMDR Therapists in Austin",
+        "url": "https://hopeforthejourney.org/discover-the-best-emdr-therapists-in-austin/",
+        "domain": "hopeforthejourney.org",
+        "kind": "local practice",
+        "practiceSlug": "hope-for-the-journey"
+      }
+    ],
+    "child therapist": [
+      {
+        "rank": 1,
+        "title": "Child Therapist and Play Therapy in Austin, TX",
+        "url": "https://justmind.org/child-counseling-play-therapy/",
+        "domain": "justmind.org",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      },
+      {
+        "rank": 2,
+        "title": "Home - Austin Family Counseling | Child, Teen, Marriage ...",
+        "url": "https://austinfamilycounseling.com/",
+        "domain": "austinfamilycounseling.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      },
+      {
+        "rank": 3,
+        "title": "Austin Child Guidance Center: Youth and Family Mental ...",
+        "url": "https://www.austinchildguidance.org/",
+        "domain": "austinchildguidance.org",
+        "kind": "local practice",
+        "practiceSlug": "austin-child-guidance-center"
+      },
+      {
+        "rank": 4,
+        "title": "Ensemble Therapy - Children's Therapy Austin TX",
+        "url": "https://www.ensembletherapy.com/",
+        "domain": "ensembletherapy.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      },
+      {
+        "rank": 5,
+        "title": "Dr. Julia Hoke | Austin Child & Adolescent Psychologist",
+        "url": "https://drjuliahoke.com/",
+        "domain": "drjuliahoke.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      },
+      {
+        "rank": 6,
+        "title": "Kristen Felter | Kind Therapy Austin | Austin, TX 78759",
+        "url": "https://kindtherapyaustin.com/",
+        "domain": "kindtherapyaustin.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      }
+    ],
+    "psychologist": [
+      {
+        "rank": 1,
+        "title": "Expert Psychologist and CBT Therapists in Austin",
+        "url": "https://www.therapylab.com/locations/austin-therapists",
+        "domain": "therapylab.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      },
+      {
+        "rank": 2,
+        "title": "Austin, TX Therapy, Psychiatry & Counseling",
+        "url": "https://thriveworks.com/austin-counseling-therapy/",
+        "domain": "thriveworks.com",
+        "kind": "directory",
+        "practiceSlug": "thriveworks"
+      },
+      {
+        "rank": 3,
+        "title": "Psychotherapy and psychoanalysis in Austin, TX",
+        "url": "https://www.austinpsychotherapyservices.com/",
+        "domain": "austinpsychotherapyservices.com",
+        "kind": "local practice",
+        "practiceSlug": "austin-psychotherapy-services"
+      },
+      {
+        "rank": 4,
+        "title": "Austin PsychCare | Austin's Premier Mental Health Practice",
+        "url": "https://www.austinpsychcare.com/",
+        "domain": "austinpsychcare.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      },
+      {
+        "rank": 5,
+        "title": "Best Therapists/Counselors Near Me in Austin, TX",
+        "url": "https://www.zocdoc.com/therapist-counselors/austin-221873pm",
+        "domain": "zocdoc.com",
+        "kind": "directory",
+        "practiceSlug": "zocdoc"
+      },
+      {
+        "rank": 6,
+        "title": "Mental Health Therapy in Austin, TX",
+        "url": "https://www.lifebulb.com/austin",
+        "domain": "lifebulb.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      }
+    ],
+    "marriage counselor": [
+      {
+        "rank": 1,
+        "title": "Couples Therapy | Deep Centered Counseling",
+        "url": "https://deepcentered.com/couples-therapy/",
+        "domain": "deepcentered.com",
+        "kind": "local practice",
+        "practiceSlug": "deep-centered-mental-health-dcmh-downtown-austin"
+      },
+      {
+        "rank": 2,
+        "title": "Relationship Therapy Austin - The Center for Relationships",
+        "url": "https://www.findmycenter.org/",
+        "domain": "findmycenter.org",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      },
+      {
+        "rank": 3,
+        "title": "10 BEST Therapists, Austin, TX for Marriage Counseling",
+        "url": "https://www.therapyden.com/therapists/us/tx/austin/relationship-marriage-issues",
+        "domain": "therapyden.com",
+        "kind": "directory",
+        "practiceSlug": "therapyden"
+      },
+      {
+        "rank": 4,
+        "title": "Austin, TX Therapy, Psychiatry & Counseling",
+        "url": "https://thriveworks.com/austin-counseling-therapy/",
+        "domain": "thriveworks.com",
+        "kind": "directory",
+        "practiceSlug": "thriveworks"
+      },
+      {
+        "rank": 5,
+        "title": "Marriage Counseling in Austin",
+        "url": "https://timothycenter.com/finding-the-right-therapist-for-your-relationship/",
+        "domain": "timothycenter.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      },
+      {
+        "rank": 6,
+        "title": "ATX Counseling | Austin Therapy | Best Therapists in Austin, TX",
+        "url": "https://atx-counseling.com/",
+        "domain": "atx-counseling.com",
+        "kind": "local practice",
+        "practiceSlug": "atx-counseling"
+      }
+    ],
+    "depression therapist": [
+      {
+        "rank": 1,
+        "title": "Therapy Austin | Local Supportive Therapists in Austin, TX",
+        "url": "https://therapyaustin.com/",
+        "domain": "therapyaustin.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      },
+      {
+        "rank": 2,
+        "title": "Find Therapists and Psychologists in Austin, TX",
+        "url": "https://www.psychologytoday.com/us/therapists/tx/austin",
+        "domain": "psychologytoday.com",
+        "kind": "directory",
+        "practiceSlug": "psychology-today"
+      },
+      {
+        "rank": 3,
+        "title": "Just Mind Counseling | Therapists in Austin, TX",
+        "url": "https://justmind.org/",
+        "domain": "justmind.org",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      },
+      {
+        "rank": 4,
+        "title": "ATX Counseling | Austin Therapy | Best Therapists in Austin, TX",
+        "url": "https://atx-counseling.com/",
+        "domain": "atx-counseling.com",
+        "kind": "local practice",
+        "practiceSlug": "atx-counseling"
+      },
+      {
+        "rank": 5,
+        "title": "Welcome to Deep Eddy Psychotherapy! | Therapy Practice ...",
+        "url": "https://deepeddypsychotherapy.com/",
+        "domain": "deepeddypsychotherapy.com",
+        "kind": "other",
+        "practiceSlug": null
+      },
+      {
+        "rank": 6,
+        "title": "Krista Jordan: Professional Austin Psychotherapist",
+        "url": "https://kristajordan.com/",
+        "domain": "kristajordan.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      }
+    ],
+    "grief counseling": [
+      {
+        "rank": 1,
+        "title": "Christi Center: Home",
+        "url": "https://christicenter.org/",
+        "domain": "christicenter.org",
+        "kind": "local practice",
+        "practiceSlug": "christi-center"
+      },
+      {
+        "rank": 2,
+        "title": "Grief and Loss Therapist in Austin TX, Las Vegas and Chicago",
+        "url": "https://atxtraumatherapycenter.com/service/grief-and-loss/",
+        "domain": "atxtraumatherapycenter.com",
+        "kind": "local practice",
+        "practiceSlug": "austin-trauma-therapy-center"
+      },
+      {
+        "rank": 3,
+        "title": "Grief Counseling",
+        "url": "https://www.hospiceaustin.org/our-services/grief-support/individual-counseling/",
+        "domain": "hospiceaustin.org",
+        "kind": "other",
+        "practiceSlug": null
+      },
+      {
+        "rank": 4,
+        "title": "Grief counseling or support group? : r/Austin",
+        "url": "https://www.reddit.com/r/Austin/comments/1d6xxhd/grief_counseling_or_support_group/",
+        "domain": "reddit.com",
+        "kind": "other",
+        "practiceSlug": null
+      },
+      {
+        "rank": 5,
+        "title": "Free Grief Counseling | GriefShare in Austin, TX",
+        "url": "https://bannockburnchurch.com/free-griefshare-in-austin-tx/",
+        "domain": "bannockburnchurch.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      },
+      {
+        "rank": 6,
+        "title": "Grief Counseling | Austin, TX",
+        "url": "https://www.luminarycounseling.com/grief-loss/",
+        "domain": "luminarycounseling.com",
+        "kind": "local-no-map",
+        "practiceSlug": null
+      }
+    ]
+  },
+  "localPackBySearch": {
+    "therapist": [
+      {
+        "position": 1,
+        "title": "Grace Therapy and Wellness, PLLC - Downtown Location One",
+        "domain": "gracetherapyaustin.com",
+        "url": "http://www.gracetherapyaustin.com/",
+        "phone": "(512) 387-0703",
+        "mapsCid": "11831769083776933687",
+        "rating": 5,
+        "reviewCount": 11,
+        "practiceSlug": "grace-therapy-and-wellness-pllc-downtown-location-one"
+      },
+      {
+        "position": 2,
+        "title": "Grace Therapy and Wellness PLLC, Downtown Location 2",
+        "domain": "gracetherapyaustin.com",
+        "url": "https://www.gracetherapyaustin.com/",
+        "phone": "(512) 387-0703",
+        "mapsCid": "7917903254399157993",
+        "rating": 5,
+        "reviewCount": 15,
+        "practiceSlug": "grace-therapy-and-wellness-pllc-downtown-location-one"
+      },
+      {
+        "position": 3,
+        "title": "Just Mind Counseling",
+        "domain": "justmind.org",
+        "url": "https://justmind.org/north-austin-spicewood-springs-location-just-mind-counseling-austin/?utm_medium=organic&utm_source=gpb&utm_campaign=website&utm_term=north+austin",
+        "phone": "(512) 866-4855",
+        "mapsCid": "12247536047718151290",
+        "rating": 4.9,
+        "reviewCount": 60,
+        "practiceSlug": null
+      }
+    ],
+    "counselor": [],
+    "anxiety therapist": [
+      {
+        "position": 1,
+        "title": "Austin Anxiety and OCD Specialists",
+        "domain": "austinanxiety.com",
+        "url": "https://www.austinanxiety.com/",
+        "phone": "(512) 246-7225",
+        "mapsCid": "2520905822505322449",
+        "rating": 4.4,
+        "reviewCount": 13,
+        "practiceSlug": "austin-anxiety-and-ocd-specialists"
+      },
+      {
+        "position": 2,
+        "title": "Anxiety Treatment Center of Austin",
+        "domain": "anxietyaustin.com",
+        "url": "http://anxietyaustin.com/",
+        "phone": "(512) 879-1836",
+        "mapsCid": "14534518405752772050",
+        "rating": 5,
+        "reviewCount": 6,
+        "practiceSlug": null
+      },
+      {
+        "position": 3,
+        "title": "Willow Tree Collective - Austin Anxiety & LGBTQIA+ Therapy",
+        "domain": "willowtreecollective.com",
+        "url": "https://www.willowtreecollective.com/",
+        "phone": "(512) 766-0791",
+        "mapsCid": "14774418281508928795",
+        "rating": 5,
+        "reviewCount": 9,
+        "practiceSlug": "willow-tree-collective-austin-anxiety-lgbtqia-therapy"
+      }
+    ],
+    "couples counseling": [
+      {
+        "position": 1,
+        "title": "Life Coach Austin",
+        "domain": "lifecoachaustin.com",
+        "url": "http://lifecoachaustin.com/",
+        "phone": "(512) 653-4316",
+        "mapsCid": "12284878031430850689",
+        "rating": 4.9,
+        "reviewCount": 130,
+        "practiceSlug": null
+      },
+      {
+        "position": 2,
+        "title": "Just Mind Counseling",
+        "domain": "justmind.org",
+        "url": "https://justmind.org/north-austin-spicewood-springs-location-just-mind-counseling-austin/?utm_medium=organic&utm_source=gpb&utm_campaign=website&utm_term=north+austin",
+        "phone": "(512) 866-4855",
+        "mapsCid": "12247536047718151290",
+        "rating": 4.9,
+        "reviewCount": 60,
+        "practiceSlug": null
+      },
+      {
+        "position": 3,
+        "title": "Austin STRONG: Relationship Building Center",
+        "domain": "austinstrongrbc.com",
+        "url": "http://www.austinstrongrbc.com/",
+        "phone": "(512) 887-8036",
+        "mapsCid": "9862584523804913218",
+        "rating": 5,
+        "reviewCount": 4,
+        "practiceSlug": "austin-strong-relationship-building-center"
+      }
+    ],
+    "trauma therapist": [
+      {
+        "position": 1,
+        "title": "Austin Trauma Therapy Center",
+        "domain": "atxtraumatherapycenter.com",
+        "url": "https://atxtraumatherapycenter.com/",
+        "phone": "(512) 270-8215",
+        "mapsCid": "13155049788560433450",
+        "rating": 4.4,
+        "reviewCount": 19,
+        "practiceSlug": "austin-trauma-therapy-center"
+      },
+      {
+        "position": 2,
+        "title": "Christy Reeder, PhD, CGP, SEP – Psychologist in Austin",
+        "domain": "christyreederphd.com",
+        "url": "https://christyreederphd.com/",
+        "phone": "(512) 364-9619",
+        "mapsCid": "10682341835514280073",
+        "rating": 5,
+        "reviewCount": 15,
+        "practiceSlug": "christy-reeder-phd-cgp-sep-psychologist-in-austin"
+      },
+      {
+        "position": 3,
+        "title": "Austin Counseling and Trauma Specialists",
+        "domain": "austincts.com",
+        "url": "https://www.austincts.com/",
+        "phone": "(512) 400-4321",
+        "mapsCid": "3180217100113482688",
+        "rating": 4.8,
+        "reviewCount": 25,
+        "practiceSlug": null
+      }
+    ],
+    "EMDR therapist": [
+      {
+        "position": 1,
+        "title": "EMDR Therapy Austin",
+        "domain": "emdrtherapyaustin.com",
+        "url": "http://www.emdrtherapyaustin.com/",
+        "phone": "(512) 503-0700",
+        "mapsCid": "17222609350076228033",
+        "rating": 5,
+        "reviewCount": 3,
+        "practiceSlug": "emdr-therapy-austin"
+      },
+      {
+        "position": 2,
+        "title": "Align Therapy and EMDR PLLC",
+        "domain": "aligntherapyandemdr.com",
+        "url": "http://aligntherapyandemdr.com/",
+        "phone": "(512) 967-3275",
+        "mapsCid": "17040583152102183693",
+        "rating": 4.8,
+        "reviewCount": 19,
+        "practiceSlug": null
+      },
+      {
+        "position": 3,
+        "title": "Trailhead Therapy: EMDR and Men's Counseling",
+        "domain": "trailheadtherapyatx.com",
+        "url": "https://trailheadtherapyatx.com/",
+        "phone": "(512) 609-0577",
+        "mapsCid": "646452519751163254",
+        "rating": 5,
+        "reviewCount": 7,
+        "practiceSlug": "trailhead-therapy-emdr-and-men-s-counseling"
+      }
+    ],
+    "child therapist": [
+      {
+        "position": 1,
+        "title": "Family Care Center Therapy & Psychiatry - Central Austin",
+        "domain": "fccwellbeing.com",
+        "url": "https://fccwellbeing.com/clinic-locations/texas/central-austin-clinic/?utm_medium=organic&utm_source=gmb&utm_campaign=referral",
+        "phone": "(512) 320-5779",
+        "mapsCid": "9304367089465104173",
+        "rating": 4.6,
+        "reviewCount": 212,
+        "practiceSlug": "family-care-center-therapy-psychiatry-central-austin"
+      },
+      {
+        "position": 2,
+        "title": "Just Mind Counseling",
+        "domain": "justmind.org",
+        "url": "https://justmind.org/north-austin-spicewood-springs-location-just-mind-counseling-austin/?utm_medium=organic&utm_source=gpb&utm_campaign=website&utm_term=north+austin",
+        "phone": "(512) 866-4855",
+        "mapsCid": "12247536047718151290",
+        "rating": 4.9,
+        "reviewCount": 60,
+        "practiceSlug": null
+      },
+      {
+        "position": 3,
+        "title": "Krista Jordan, Ph.D. and Associates",
+        "domain": "kristajordan.com",
+        "url": "http://www.kristajordan.com/",
+        "phone": "(512) 202-7279",
+        "mapsCid": "16012064742307516827",
+        "rating": 4.8,
+        "reviewCount": 19,
+        "practiceSlug": null
+      }
+    ],
+    "psychologist": [
+      {
+        "position": 1,
+        "title": "Grace Therapy and Wellness, PLLC - Downtown Location One",
+        "domain": "gracetherapyaustin.com",
+        "url": "http://www.gracetherapyaustin.com/",
+        "phone": "(512) 387-0703",
+        "mapsCid": "11831769083776933687",
+        "rating": 5,
+        "reviewCount": 11,
+        "practiceSlug": "grace-therapy-and-wellness-pllc-downtown-location-one"
+      },
+      {
+        "position": 2,
+        "title": "Deep Centered Mental Health (DCMH) - Downtown Austin",
+        "domain": "deepcentered.com",
+        "url": "https://deepcentered.com/location/downtown-austin/?utm_source=google_business_profile&utm_medium=organic&utm_campaign=gbp&utm_content=austin_downtown",
+        "phone": "(512) 957-2848",
+        "mapsCid": "3340644917157697286",
+        "rating": 4.4,
+        "reviewCount": 267,
+        "practiceSlug": "deep-centered-mental-health-dcmh-downtown-austin"
+      },
+      {
+        "position": 3,
+        "title": "Dr. Lawrence A. Resnick, Psy.D.",
+        "domain": "drlawrenceresnick.com",
+        "url": "https://drlawrenceresnick.com/",
+        "phone": "(512) 829-8949",
+        "mapsCid": "9299787067891736118",
+        "rating": 5,
+        "reviewCount": 9,
+        "practiceSlug": "dr-lawrence-a-resnick-psy-d"
+      }
+    ],
+    "marriage counselor": [
+      {
+        "position": 1,
+        "title": "Life Coach Austin",
+        "domain": "lifecoachaustin.com",
+        "url": "http://lifecoachaustin.com/",
+        "phone": "(512) 653-4316",
+        "mapsCid": "12284878031430850689",
+        "rating": 4.9,
+        "reviewCount": 130,
+        "practiceSlug": null
+      },
+      {
+        "position": 2,
+        "title": "Just Mind Counseling",
+        "domain": "justmind.org",
+        "url": "https://justmind.org/north-austin-spicewood-springs-location-just-mind-counseling-austin/?utm_medium=organic&utm_source=gpb&utm_campaign=website&utm_term=north+austin",
+        "phone": "(512) 866-4855",
+        "mapsCid": "12247536047718151290",
+        "rating": 4.9,
+        "reviewCount": 60,
+        "practiceSlug": null
+      },
+      {
+        "position": 3,
+        "title": "Austin Relational Wellness",
+        "domain": "austinrelationalwellness.com",
+        "url": "https://www.austinrelationalwellness.com/",
+        "phone": "(512) 909-2535",
+        "mapsCid": "17893326310893737096",
+        "rating": 4.6,
+        "reviewCount": 11,
+        "practiceSlug": "austin-relational-wellness"
+      }
+    ],
+    "depression therapist": [
+      {
+        "position": 1,
+        "title": "Grace Therapy and Wellness, PLLC - Downtown Location One",
+        "domain": "gracetherapyaustin.com",
+        "url": "http://www.gracetherapyaustin.com/",
+        "phone": "(512) 387-0703",
+        "mapsCid": "11831769083776933687",
+        "rating": 5,
+        "reviewCount": 11,
+        "practiceSlug": "grace-therapy-and-wellness-pllc-downtown-location-one"
+      },
+      {
+        "position": 2,
+        "title": "Grace Therapy and Wellness PLLC, Downtown Location 2",
+        "domain": "gracetherapyaustin.com",
+        "url": "https://www.gracetherapyaustin.com/",
+        "phone": "(512) 387-0703",
+        "mapsCid": "7917903254399157993",
+        "rating": 5,
+        "reviewCount": 15,
+        "practiceSlug": "grace-therapy-and-wellness-pllc-downtown-location-one"
+      },
+      {
+        "position": 3,
+        "title": "Mindpath Health Psychiatrists & Therapists - Austin",
+        "domain": "mindpath.com",
+        "url": "https://www.mindpath.com/locations/austin-mopac/?pk_source=gmb&pk_medium=organic",
+        "phone": "(512) 200-9432",
+        "mapsCid": "290770796865302071",
+        "rating": 4.8,
+        "reviewCount": 193,
+        "practiceSlug": null
+      }
+    ],
+    "grief counseling": [
+      {
+        "position": 1,
+        "title": "Christi Center",
+        "domain": "christicenter.org",
+        "url": "http://www.christicenter.org/",
+        "phone": "(512) 467-2600",
+        "mapsCid": "16403883066204064941",
+        "rating": 4.2,
+        "reviewCount": 40,
+        "practiceSlug": "christi-center"
+      },
+      {
+        "position": 2,
+        "title": "Grace Therapy and Wellness, PLLC - Downtown Location One",
+        "domain": "gracetherapyaustin.com",
+        "url": "http://www.gracetherapyaustin.com/",
+        "phone": "(512) 387-0703",
+        "mapsCid": "11831769083776933687",
+        "rating": 5,
+        "reviewCount": 11,
+        "practiceSlug": "grace-therapy-and-wellness-pllc-downtown-location-one"
+      },
+      {
+        "position": 3,
+        "title": "Janeff Trauma & Grief Counseling",
+        "domain": "deanjaneff.com",
+        "url": "https://deanjaneff.com/where-i-work/therapist-austin-metro-area",
+        "phone": "(512) 333-4820",
+        "mapsCid": "10223963997892443013",
+        "rating": 4.3,
+        "reviewCount": 4,
+        "practiceSlug": "janeff-trauma-grief-counseling"
+      }
+    ]
+  }
+}

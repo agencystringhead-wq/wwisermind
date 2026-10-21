@@ -1,0 +1,142 @@
+[
+  {
+    "provider": "chatgpt",
+    "model": "gpt-5.6-luna",
+    "prompt": "Who is the best therapist in Austin, Texas?",
+    "text": "There isn’t one objectively “best” therapist in Austin—the best fit depends on your goals, insurance, budget, and preferred approach. Based on current specialization and credentials, I’d start with these:\n\n- **For anxiety, OCD, panic, or evidence-based CBT:** **Dr. Tamara Bryan / Austin Center for CBT**. She is a licensed clinical psychologist with more than 20 years of CBT experience and offers CBT, ERP for OCD, and Gottman-based couples work. ([atxcbt.com](https://www.atxcbt.com/?utm_source=openai))\n- **For couples, trauma, grief, or postpartum concerns:** **Marsha Lowes Psychotherapy**. She focuses on couples therapy, attachment, trauma, grief, perinatal transitions, and IFS-informed work. ([marshalowespsychotherapy.com](https://www.marshalowespsychotherapy.com/?utm_source=openai))\n- **For trauma, PTSD, EMDR, first responders, veterans, or LGBTQ+ clients:** **Austin Counseling & Trauma Specialists**. The practice includes licensed psychologists, counselors, and social workers and specializes in trauma-informed care. ([austincts.com](https://www.austincts.com/?utm_source=openai))\n- **For a larger practice with matching, insurance options, and evening/weekend availability:** **Just Mind Counseling**. It has 50+ clinicians, offers in-person and telehealth care, and treats anxiety, trauma, ADHD/neurodivergence, depression, and relationship concerns. ([justmind.org](https://justmind.org/marriage-and-couples-counseling/?utm_source=openai))\n- **For general adult therapy, anxiety, relationships, or LGBTQIA+-affirming care:** **Grace Therapy & Wellness** offers several clinicians with training in EMDR, DBT, psychodynamic therapy, and OCD treatment. ([gracetherapyaustin.com](https://www.gracetherapyaustin.com/?utm_source=openai))\n\n**My practical recommendation:**  \nIf you’re unsure where to begin, contact **Just Mind** for matching, or schedule brief consultations with two individual therapists. Ask:\n\n1. “Do you regularly treat my specific issue?”\n2. “What treatment approach would you use?”\n3. “Do you take my insurance, and what is the out-of-pocket cost?”\n4. “How soon can I start?”\n5. “What happens if we’re not a good fit?”\n\nThe therapist’s license can be verified through the **Texas Behavioral Health Executive Council**. If you’re in immediate danger or considering suicide, call or text **988** or go to the nearest emergency room.",
+    "citations": [
+      "https://www.atxcbt.com/?utm_source=openai",
+      "https://www.marshalowespsychotherapy.com/?utm_source=openai",
+      "https://www.austincts.com/?utm_source=openai",
+      "https://justmind.org/marriage-and-couples-counseling/?utm_source=openai",
+      "https://www.gracetherapyaustin.com/?utm_source=openai"
+    ],
+    "matchedPractices": [
+      "Grace Therapy and Wellness, PLLC - Downtown Location One"
+    ],
+    "aiOnlyNames": [
+      "Dr. Tamara Bryan",
+      "Dr. Tamara Bryan / Austin Center for CBT",
+      "Marsha Lowes Psychotherapy",
+      "Austin Counseling & Trauma Specialists",
+      "Just Mind Counseling",
+      "Just Mind",
+      "Texas Behavioral Health Executive Council"
+    ]
+  },
+  {
+    "provider": "chatgpt",
+    "model": "gpt-5.6-luna",
+    "prompt": "Recommend an anxiety therapist in Austin, Texas",
+    "text": "A strong starting recommendation is **Austin Center for CBT**, especially if you want structured, evidence-based treatment for generalized anxiety, panic, social anxiety, stress, or OCD. It’s led by **Dr. Tamara Bryan**, a licensed clinical psychologist, and offers CBT—including exposure-based approaches—via teletherapy throughout Texas. ([atxcbt.com](https://www.atxcbt.com/?utm_source=openai))\n\nOther good Austin-area options:\n\n- **Anxiety Treatment Center of Austin** — specializes in anxiety and OCD, with clinicians focused specifically on anxiety disorders; they currently advertise introductory consultations. ([anxietyaustin.com](https://www.anxietyaustin.com/?utm_source=openai))\n- **Central Texas Anxiety and OCD Center** — treats adults, adolescents, and children using CBT and ERP for conditions including panic disorder, social anxiety, GAD, phobias, and OCD. ([centraltexasanxiety.clientsecure.me](https://centraltexasanxiety.clientsecure.me/?utm_source=openai))\n- **Just Mind Counseling** — offers in-person offices in North and South Austin, plus online therapy, with evening and weekend availability. ([justmind.org](https://justmind.org/anxiety-counseling/?utm_source=openai))\n- **Deanna Graves, LPC** — offers Austin/in-person and Texas-wide telehealth, with CBT, ACT, mindfulness-based therapy, and a free 30-minute consultation; lists Aetna, UnitedHealthcare, Oscar, Lyra, and Moda among accepted plans. ([deannagraves.com](https://www.deannagraves.com/?utm_source=openai))\n\n**My practical pick:**  \n- Choose **Austin Center for CBT** for classic skills-based anxiety treatment.  \n- Choose **Anxiety Treatment Center of Austin** if anxiety or OCD is your primary concern and you want a specialist practice.  \n- Choose **Just Mind** if location, scheduling, or evening/weekend appointments matter most.\n\nBefore booking, ask about **Texas licensure, experience with your specific anxiety pattern, insurance/out-of-network benefits, session fee, and earliest availability**. A 15–30 minute consultation is often enough to assess fit.",
+    "citations": [
+      "https://www.atxcbt.com/?utm_source=openai",
+      "https://www.anxietyaustin.com/?utm_source=openai",
+      "https://centraltexasanxiety.clientsecure.me/?utm_source=openai",
+      "https://justmind.org/anxiety-counseling/?utm_source=openai",
+      "https://www.deannagraves.com/?utm_source=openai"
+    ],
+    "matchedPractices": [],
+    "aiOnlyNames": [
+      "Deanna Graves, LPC",
+      "Dr. Tamara Bryan",
+      "Austin Center for CBT",
+      "Anxiety Treatment Center of Austin",
+      "Central Texas Anxiety and OCD Center",
+      "Just Mind Counseling",
+      "Just Mind"
+    ]
+  },
+  {
+    "provider": "chatgpt",
+    "model": "gpt-5.6-luna",
+    "prompt": "Best couples counselor in Austin, Texas",
+    "text": "If you want **one strong starting point**, I’d recommend **Westlake Couples Counseling, PLLC**, especially if you’re dealing with recurring conflict, emotional disconnection, or rebuilding trust. Veronica Leal, LPC-S reportedly has **more than 20 years of clinical experience** and uses both the **Gottman Method** and **Emotionally Focused Therapy (EFT)**—two well-established approaches for couples work. ([westlakecouplescounseling.com](https://www.westlakecouplescounseling.com/?utm_source=openai))\n\n### Other good Austin options\n\n- **Enhancing Intimacy Counseling — Claudia Thompson, LMFT-S, LPC-S, CST-S**  \n  A good fit for couples dealing with intimacy, sexuality, sexual health, or relationship patterns. ([psychologytoday.com](https://www.psychologytoday.com/us/therapists/tx/austin?category=couples-counseling&page=1&utm_source=openai))\n\n- **Austin STRONG: Relationship Building Center**  \n  Worth considering for premarital counseling, communication problems, infidelity recovery, and relationship-building; they advertise trauma-informed and mindfulness-based work, with sliding-fee availability. ([trustanalytica.org](https://trustanalytica.org/us/tx/austin/best-marriage-counselors?utm_source=openai))\n\n- **Danae King, LPC**  \n  Potentially a good choice when ADHD, neurodivergence, parenting stress, or trauma affects the relationship; her profile notes Gottman training. ([psychologytoday.com](https://www.psychologytoday.com/us/therapists/tx/austin?category=couples-counseling&page=1&utm_source=openai))\n\n- **The Center for Relationships**  \n  A broader Austin practice offering work with couples and families, with public reviews emphasizing an empathetic and practical style. ([lovefix.app](https://lovefix.app/couples-therapy/austin-tx/?utm_source=openai))\n\n### How I’d choose\n\nBefore booking, ask:\n\n1. **Do you primarily treat couples, or mostly individuals?**\n2. **Which approach do you use—Gottman, EFT, or another model?**\n3. **Do you work with infidelity, high-conflict couples, LGBTQ+ couples, or non-monogamy if relevant?**\n4. **What is the session fee, and do you provide superbills for out-of-network insurance?**\n5. **Can both partners have a brief consultation before committing?**\n\nFor most couples, I’d prioritize **therapist fit and specialized experience over online star ratings**. If there is domestic violence, coercive control, or fear between partners, traditional joint couples counseling may not be appropriate; seek individual support first.",
+    "citations": [
+      "https://www.westlakecouplescounseling.com/?utm_source=openai",
+      "https://www.psychologytoday.com/us/therapists/tx/austin?category=couples-counseling&page=1&utm_source=openai",
+      "https://trustanalytica.org/us/tx/austin/best-marriage-counselors?utm_source=openai",
+      "https://lovefix.app/couples-therapy/austin-tx/?utm_source=openai"
+    ],
+    "matchedPractices": [
+      "Relationship Vitality Center",
+      "Liana Mauro, LPC – Somatic & EMDR Therapist",
+      "Austin STRONG: Relationship Building Center",
+      "Horseshoe Counseling"
+    ],
+    "aiOnlyNames": [
+      "Veronica Leal, LPC-S",
+      "Claudia Thompson, LMFT",
+      "Danae King, LPC",
+      "Westlake Couples Counseling, PLLC",
+      "Emotionally Focused Therapy",
+      "Enhancing Intimacy Counseling"
+    ]
+  },
+  {
+    "provider": "claude",
+    "model": "claude-sonnet-5-5",
+    "prompt": "Who is the best therapist in Austin, Texas?",
+    "text": "I'll search for current information on highly-rated therapists in Austin.\nThere isn't one \"best\" therapist in Austin, because the right fit depends on your needs, budget, and personality. Research on therapy outcomes shows the relationship between you and your therapist matters more than any ranking. The search results do point to some starting places.\n\n**Highly rated on Yelp**\nYelp lists \nBloom Therapy at 5.0 stars (29 reviews)\n, \nJust Mind Counseling at 4.7 (13 reviews)\n, and \nLauren Johnston at 5.0 (31 reviews)\n. Others on the list include \nErika Marcoux, MA, at 5.0 (26 reviews)\n. This Yelp data was about 128 days old, so check for updates.\n\n**Notable practices**\n- **Just Mind Counseling** has \nover 50 clinicians across two Austin locations, offering CBT, DBT, EMDR, IFS, and somatic therapies\n.\n- **Westlake Psychotherapy of Austin** \noffers EMDR intensives and trauma-informed therapy in a boutique, comfort-focused setting\n.\n- **Carlisle Collective** offers \ndepth-oriented, relational work, EMDR, and even walk-and-talk sessions on Austin's trails\n.\n- **Grace Therapy & Wellness** is \nlocated downtown, highly rated, and serves both in-person and virtual clients\n.\n\n**Lower-cost options**\nAustin has \nsliding-scale therapy, often as low as $15–$60 per session, with no insurance required\n, through the Counseling & Consultation Center (CAC). Integral Care is Travis County's Local Mental Health Authority and offers crisis services.\n\n**Directories for searching**\n- **Psychology Today**: filter by specialty, insurance, and gender.\n- **TherapyDen**: lists therapists with a range of specialties, such as trauma, addiction, and couples counseling.\n- **Headway and SonderMind**: show therapists who accept your insurance.\n\n**Tips for choosing**\n1. Decide what you want help with (anxiety, trauma, relationships, etc.), then look for someone who specializes in it.\n2. Check your insurance coverage, or ask about out-of-network and sliding-scale rates.\n3. Book a free consultation call. Many therapists offer one, and it's the best way to judge fit.\n4. Verify the license through the Texas State Board of Examiners.\n\nIf you tell me what you're looking for, such as the issue, budget, in-person or online, and insurance, I can help narrow the options.\n\nIf you're in crisis, you can call or text 988, the Suicide & Crisis Lifeline.",
+    "citations": [
+      "https://www.yelp.com/search?find_desc=Therapist&find_loc=Austin%2C+TX",
+      "https://theaustinpulse.com/post/top-therapists-counselors-austin-tx-guide"
+    ],
+    "matchedPractices": [
+      "Carlisle Collective",
+      "Bloom Therapy"
+    ],
+    "aiOnlyNames": [
+      "Just Mind Counseling",
+      "Westlake Psychotherapy of Austin"
+    ]
+  },
+  {
+    "provider": "claude",
+    "model": "claude-sonnet-5-5",
+    "prompt": "Recommend an anxiety therapist in Austin, Texas",
+    "text": "Let me search for current options in Austin.\nHere are some well-regarded options in Austin, grouped by what you might be looking for. I can't vouch for any individual therapist's quality, so treat these as starting points to research.\n\n**Group practices**\n- **Just Mind Counseling**: \nAustin American-Statesman and Austin Monthly readers voted Just Mind Best Counseling Center in Austin for 2026.\n They offer several approaches, including \nRon Grace, PsyD, a licensed clinical psychologist with advanced training in CBT for Anxiety\n. They also have \nCourtney Garcia Puckett, LPC, at their Westlake office, who is trained in EMDR and works with anxiety, chronic stress and perfectionism.\n \nTherapists see clients at their North or South Austin office, online, or both.\n\n- **Bloom Therapy**: On Yelp, it holds a \n5.0 rating (29 reviews) and offers free consultations\n.\n- **Anxiety Treatment Center of Austin**: This is a specialty clinic, though it has only \n2 reviews on Yelp\n, so there is less feedback to go on.\n\n**Specialist for OCD, panic, and severe anxiety**\n- **Racine Anxiety (Dr. Jill Racine)**: This practice offers \nspecialist OCD and anxiety treatment in Austin using ERP and CBT\n. They also see \nchildren through adults\n.\n\n**Individual therapists with strong Yelp reviews**\n- \nKris Andersen, MA, LPC has a 4.9 rating (7 reviews)\n.\n- \nErika Marcoux, MA has a 5.0 rating (26 reviews)\n.\n- \nDr. Ruba Fattouh, downtown, has a 5.0 rating (7 reviews)\n.\n\n**Directories to search by insurance, price, and specialty**\n- Psychology Today, TherapyDen, GoodTherapy, and Grow Therapy (for insurance-based matching) all let you filter Austin therapists by anxiety.\n\n**Tips for choosing**\n1. **Look for evidence-based approaches** such as CBT, ACT, or ERP (for OCD). \nCBT can reduce panic, social anxiety, and generalized anxiety symptoms by up to 60%.\n\n2. **Check insurance and cost.** Some therapists are out-of-network, so confirm before booking.\n3. **Use a consultation call.** Many offer a free 15-minute call, which is a good way to check fit.\n4. **Decide on in-person or online.** Many Austin therapists offer both.\n\nIf you tell me your insurance, your preferred part of Austin, or the type of anxiety (panic, social, generalized, OCD), I can narrow this down. If you're in crisis, you can call or text **988** (Suicide & Crisis Lifeline) at any time.",
+    "citations": [
+      "https://justmind.org/anxiety-counseling/",
+      "https://www.yelp.com/search?find_desc=Anxiety+Therapist&find_loc=Austin%2C+TX",
+      "https://racineanxiety.com/",
+      "https://www.yelp.com/search?find_desc=Therapist+Anxiety&find_loc=Austin,+TX",
+      "https://www.therapyden.com/therapists/us/tx/austin/anxiety"
+    ],
+    "matchedPractices": [
+      "Bloom Therapy"
+    ],
+    "aiOnlyNames": [
+      "Ron Grace, PsyD",
+      "Garcia Puckett, LPC",
+      "Dr. Jill Racine",
+      "Dr. Ruba Fattouh",
+      "Just Mind Counseling",
+      "Anxiety Treatment Center of Austin"
+    ]
+  },
+  {
+    "provider": "claude",
+    "model": "claude-sonnet-5-5",
+    "prompt": "Best couples counselor in Austin, Texas",
+    "text": "I'll search for current information on couples counselors in Austin.\nThere isn't one objectively \"best\" couples counselor, since fit between you, your partner, and the therapist matters most. Here are some well-regarded options in Austin.\n\n**Practices**\n\n- **Just Mind Counseling**: \nNamed Best Counseling Center in Austin 2026 by the Austin-American Statesman & Austin Monthly.\n \nIt has two Austin locations and 50+ licensed clinicians providing evidence-based therapy.\n \nIt was founded in 2007 by a husband-and-wife team and specializes in trauma recovery, couples counseling, ADHD support, and family therapy.\n\n- **Thriveworks Austin**: \nOffers in-person and online care and accepts most major insurances.\n It lists a 4.9 rating from 67 reviews.\n- **Relationship Counseling Center of Austin (RCC Austin)**: \nOffers affordable therapy for couples, families, and individuals.\n This could suit you if cost is a concern.\n- **Austin Family Counseling**: \nProvides couples and marriage counseling for all stages of couplehood, from dating to divorce to second marriages.\n\n- **Therapy Austin**: \nOffers both premarital and marriage counseling for engaged and married, committed, or long-term couples.\n\n\n**Individual therapists with strong Yelp reviews**\n\nThese ratings come from an older Yelp snapshot, so check current reviews.\n- \nJulie D. Lee, LCSW: 4.8 stars (20 reviews), with one client saying she and her wife rely on her for couples counseling.\n\n- \nStewart Gallas, MS, LPC: 4.3 stars (21 reviews).\n\n- \nBloom Therapy: 5.0 stars (29 reviews).\n\n\n**Directories to browse**\n\n- **Psychology Today** lets you \nfilter by therapy type, specialty, and more.\n Its Austin couples listings include \nMichelle Silva Segura (LMFT-S, LPC-S)\n and Laura L. Ryan (LMFT).\n- **GoodTherapy** also has an Austin marriage and relationship counselor directory.\n\n**Tips for choosing**\n\n1. **Look for relationship-specific training.** \nCouples therapy is often led by licensed marriage and family therapists (LMFTs).\n Also ask about methods like Gottman Method or Emotionally Focused Therapy (EFT).\n2. **Book a consultation call first.** Many therapists offer a free 15-minute call, and both partners should feel comfortable with the therapist.\n3. **Check logistics.** Ask about insurance, sliding-scale fees, and telehealth, which matters for Austin traffic.\n4. **Be wary of \"associate\" clinicians.** They're licensed but supervised, and often cheaper, which can be a good value.\n\nIf you tell me your neighborhood, budget, insurance, or what you're working through (communication, infidelity, premarital, LGBTQ+-affirming care, etc.), I can help narrow this down.",
+    "citations": [
+      "https://justmind.org/marriage-and-couples-counseling/",
+      "https://thriveworks.com/north-austin-counseling/couples-marriage-counseling/",
+      "https://rccaustin.com/",
+      "https://austinfamilycounseling.com/counseling-services/austin-couples-counseling/",
+      "https://therapyaustin.com/services/couples-therapy/",
+      "https://www.yelp.com/search?find_desc=Couples+Counseling&find_loc=Austin%2C+TX",
+      "https://www.psychologytoday.com/us/therapists/tx/austin?category=couples-counseling"
+    ],
+    "matchedPractices": [
+      "Bloom Therapy"
+    ],
+    "aiOnlyNames": [
+      "Julie D. Lee, LCSW",
+      "Just Mind Counseling",
+      "Relationship Counseling Center of Austin",
+      "Austin Family Counseling"
+    ]
+  }
+]
