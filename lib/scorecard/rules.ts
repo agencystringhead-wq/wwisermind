@@ -26,6 +26,10 @@ export const RULES_VERSION = 1;
 /** An item scoring below this (0 to 1) counts as a gap and can appear in the fix list. */
 export const FAIL_BELOW = 0.6;
 
+/** A category needs at least this share of its weight actually checked or answered to get a score. Below it the
+    category shows as "not checked", so a couple of easy checks (https, viewport) cannot stand in for a speed score. */
+export const MIN_KNOWN_SHARE = 0.5;
+
 /** How many fixes the report lists. */
 export const MAX_FIXES = 5;
 
@@ -84,7 +88,8 @@ export const SCAN_LIMITS = {
   budgetMs: 20000,
   perRequestMs: 8000,
   maxPagesExtra: 3,
-  maxBodyBytes: 300_000,
+  /* Page builders inline a lot of CSS (Divi and Squarespace homepages run past 400 KB), so the cap is generous. */
+  maxBodyBytes: 1_200_000,
   /** Scans per IP per hour that hit a live site (a cached scan does not count). */
   perIpPerHour: 5,
   cacheHours: 24,
@@ -257,12 +262,12 @@ export const CHECKS: CheckRule[] = [
     id: 'booking_cta',
     category: 'booking',
     weight: 5,
-    label: 'Booking or consult button near the top',
-    found: 'We found a booking or consultation link near the top of your site.',
-    notFound: 'We couldn’t find a booking or consultation button in your header or first screen.',
+    label: 'Booking or consult button',
+    found: 'We found a booking or consultation link on your homepage.',
+    notFound: 'We couldn’t find a booking or consultation button on your homepage.',
     fix: {
       why: 'Someone ready to reach out should not have to hunt for how. A clear next step makes contacting you easier on a hard day.',
-      what: 'Put one button, such as "Book a free consultation", in your header and near the top of your homepage.',
+      what: 'Put one button, such as "Book a free consultation", in your header and near the top of your homepage, so it is the first thing a visitor sees.',
     },
   },
   {

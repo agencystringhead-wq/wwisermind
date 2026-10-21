@@ -125,6 +125,8 @@ async function fetchText(url: string, timeoutMs: number, wantHtml = true): Promi
     const challenged = res.headers.get('cf-mitigated') === 'challenge' || ([401, 403, 429, 503].includes(res.status) && BLOCK_MARKERS.test(body.slice(0, 4000)));
     if (challenged) return { ...fail('the site asked for a human check', res.status), body: '' };
     if (res.status >= 400) return { ...fail(`the site answered ${res.status}`, res.status), headers: res.headers };
+    /* Inline CSS is most of a page builder's HTML and none of it matters here, so it goes before parsing. */
+    body = body.replace(/<style\b[\s\S]*?<\/style>/gi, ' ');
     return { ok: true, status: res.status, finalUrl: current, body, headers: res.headers, blocked: null, contentType };
   }
   return fail('too many redirects');
@@ -177,10 +179,11 @@ const LOCAL_SCHEMA = /^(LocalBusiness|MedicalBusiness|Psychologist|MedicalClinic
 
 const BOOKING_TEXT =
   /\b(book|schedule|request|set up|make)\b[^.]{0,24}\b(appointment|consult\w*|call|session|intake|time|now|online|visit)\b|\bfree\b[^.]{0,20}\b(consult\w*|call|chat|phone)\b|\bbook now\b|\bget started\b|\bnew clients?\b|\bappointments?\b|\bintake\b|\bschedule\b/i;
+const CONTACT_TEXT = /\b(contact( me| us)?|get in touch|reach out|say hello|inquire|inquiry)\b/i;
 const BOOKING_HOST = /(simplepractice|calendly|janeapp|acuityscheduling|squareup\.com\/appointments|zocdoc|tebra|cal\.com|theranest|jane\.app|setmore|youcanbook|appointlet|tidycal|healthie)/i;
 
 const CREDENTIALS =
-  /\b(LCSW-?C?|LICSW|LISW|LMSW|LPC-?[SCA]?|LPCC|LCPC|LMFT|LMHC|LCMHC|LMHP|LCADC|PsyD|Psy\.D\.?|Ph\.?D\.?|MFT|APCC|NCC|LCAT|LPCS)\b/;
+  /\b(LCSW-?C?|LICSW|LISW|LMSW|LPC-?[SCA]?|LPCC|LCPC|LMFT|LMHC|LCMHC|LMHP|LCADC|LMHCA|LMFTA|LMFT-A|LSW|LSCSW|LCSWA|LCMHCA|LPC-A|AMFT|APCC|PMHNP|PsyD|Psy\.D\.?|Ph\.?D\.?|MFT|APCC|NCC|LCAT|LPCS)\b/;
 
 const STATES =
   /\b(alabama|alaska|arizona|arkansas|california|colorado|connecticut|delaware|florida|georgia|hawaii|idaho|illinois|indiana|iowa|kansas|kentucky|louisiana|maine|maryland|massachusetts|michigan|minnesota|mississippi|missouri|montana|nebraska|nevada|new hampshire|new jersey|new mexico|new york|north carolina|north dakota|ohio|oklahoma|oregon|pennsylvania|rhode island|south carolina|south dakota|tennessee|texas|utah|vermont|virginia|washington|west virginia|wisconsin|wyoming)\b|\b(licensed in|serving (clients|residents)|residents of|located in)\b/i;
@@ -288,8 +291,8 @@ export async function runScan(
   }
 
   const origin = new URL(base).origin;
-  const aboutUrl = pickLinks(homeInfo.links, base, /\b(about|team|meet|our-?(therapists|clinicians|team)|staff|bio|clinicians?)\b/i);
-  const feesUrl = pickLinks(homeInfo.links, base, /\b(fees?|rates?|insurance|investment|pricing|cost|payment)\b/i);
+  const aboutUrl = pickLinks(homeInfo.links, base, /(team|clinicians?|therapists|staff|bios?\b)/i) ?? pickLinks(homeInfo.links, base, /(about|meet)/i);
+  const feesUrl = pickLinks(homeInfo.links, base, /\b(fees?|rates?|insurances?|investment|pricing|cost|payment)\b/i);
   const contactUrl = pickLinks(homeInfo.links, base, /\b(contact|get-?in-?touch|schedule|appointments?|book)\b/i);
   const wanted = [...new Set([aboutUrl, feesUrl, contactUrl].filter((u): u is string => !!u))].slice(0, SCAN_LIMITS.maxPagesExtra);
 
@@ -360,13 +363,23 @@ export async function runScan(
         : notFound(`${alt.withAlt} of ${alt.total}`, alt.withAlt / alt.total);
 
   const topBooking = homeInfo.topActions.some((l) => BOOKING_TEXT.test(l.text) || BOOKING_HOST.test(l.href));
-  checks.booking_cta = yes(topBooking);
+  const topContact = homeInfo.topActions.some((l) => CONTACT_TEXT.test(l.text));
+  /* In the header or first screen is full marks. Anywhere else on the homepage still counts, a little less:
+     a visitor can find it, but has to scroll. */
+  const anywhereBooking = homeInfo.links.some((l) => BOOKING_TEXT.test(l.text) || BOOKING_HOST.test(l.href));
+  checks.booking_cta = topBooking
+    ? found('in the header or first screen')
+    : anywhereBooking
+      ? found('further down the homepage, not in the header', 0.75)
+      : topContact
+        ? notFound('there is a contact link, but we couldn’t find a booking or consultation button', 0.5)
+        : notFound();
 
   checks.tel_link = yes(all.some((p) => p.hasTel));
   const hasContactLink = allLinks.some((l) => /contact/i.test(l.href) || /^contact/i.test(l.text));
   checks.contact_page = yes(hasContactLink || (contactUrl !== null && extra.some((e) => e.ok && e.finalUrl === contactUrl)));
 
-  const feeHit = /\b(insurance|out[- ]of[- ]network|superbill|sliding[- ]scale|self[- ]pay|private[- ]pay|session fees?|fees?|rates?|cost)\b[^.]{0,80}\$|\$\s?\d{2,3}\b|\b(insurance|out[- ]of[- ]network|superbill|sliding[- ]scale|self[- ]pay|private[- ]pay)\b/i.exec(allText);
+  const feeHit = /\b(insurances?|out[- ]of[- ]network|superbill|sliding[- ]scale|self[- ]pay|private[- ]pay|session fees?|fees?|rates?|cost)\b[^.]{0,80}\$|\$\s?\d{2,3}\b|\b(insurances?|in[- ]network|out[- ]of[- ]network|superbill|sliding[- ]scale|self[- ]pay|private[- ]pay)\b/i.exec(allText);
   checks.fees_info = yes(!!feeHit || (feesUrl !== null && extra.some((e) => e.ok && e.finalUrl === feesUrl)));
 
   checks.accepting = yes(/\b(accepting|taking|open to|now (accepting|scheduling)|currently (accepting|seeing))\b[^.]{0,30}\b(new )?(clients|patients)\b|\bnew (clients|patients) (are )?welcome\b|\bopenings? (available|for)\b/i.test(allText));
@@ -374,7 +387,7 @@ export async function runScan(
   const tele = /\btele-?health\b|\btele-?therapy\b|\bonline (therapy|counseling|counselling|sessions)\b|\bvirtual (sessions|therapy|appointments)\b|\bvideo sessions?\b/i.test(allText);
   checks.telehealth = tele ? (STATES.test(allText) ? found() : notFound('telehealth is mentioned, but we couldn’t find the states served', 0.5)) : notFound();
 
-  checks.bios_credentials = yes(all.some((p) => CREDENTIALS.test(p.html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]*>/g, ' '))));
+  checks.bios_credentials = yes(all.some((p) => CREDENTIALS.test(p.textCase)));
   checks.privacy_policy = yes(allLinks.some((l) => /privacy/i.test(l.href) || /privacy/i.test(l.text)));
   checks.crisis_info = yes(/\b988\b|\b911\b|crisis (line|text|hotline|resources?)|suicide (prevention|hotline)|emergency room|in case of (an )?emergency|mental health emergency/i.test(allText));
 

@@ -3,6 +3,7 @@ import {
   CHECKS,
   FAIL_BELOW,
   MAX_FIXES,
+  MIN_KNOWN_SHARE,
   QUESTIONS,
   RULES_VERSION,
   TIERS,
@@ -126,7 +127,8 @@ export function buildReport(args: {
   const categories: ScoredCategory[] = CATEGORIES.map((cat) => {
     const known = items.filter((i) => i.category === cat.id && i.score !== null);
     const total = known.reduce((sum, i) => sum + i.weight, 0);
-    const score = total === 0 ? null : Math.round((100 * known.reduce((s, i) => s + i.weight * i.score!, 0)) / total);
+    const possible = items.filter((i) => i.category === cat.id).reduce((sum, i) => sum + i.weight, 0);
+    const score = total === 0 || total / possible < MIN_KNOWN_SHARE ? null : Math.round((100 * known.reduce((s, i) => s + i.weight * i.score!, 0)) / total);
     return { id: cat.id, label: cat.label, score, note: cat.blurb };
   });
 

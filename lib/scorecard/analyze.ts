@@ -18,6 +18,8 @@ export type PageInfo = {
   topActions: Link[];
   /** Visible text, lower-cased and collapsed. */
   text: string;
+  /** The same text with its original case, for credentials such as LCSW. */
+  textCase: string;
   hasTel: boolean;
   forms: { hasOpenText: boolean }[];
   /** Whether the page text carries a "don't share sensitive details" note. */
@@ -109,8 +111,9 @@ export function analyzePage(rawHtml: string): PageInfo {
 
   const bodyStart = body.search(/<body\b/i);
   const bodyHtml = bodyStart >= 0 ? body.slice(bodyStart) : body;
-  const headerMatch = /<header\b[\s\S]*?<\/header>/i.exec(bodyHtml) ?? /<nav\b[\s\S]*?<\/nav>/i.exec(bodyHtml);
-  const topHtml = (headerMatch ? headerMatch[0].slice(0, 20000) : '') + ' ' + bodyHtml.slice(0, 9000);
+  /* Every header and nav block counts as "the header" (page builders often have several), plus the first screen's markup. */
+  const chrome = [...(bodyHtml.match(/<header\b[\s\S]*?<\/header>/gi) ?? []).slice(0, 3), ...(bodyHtml.match(/<nav\b[\s\S]*?<\/nav>/gi) ?? []).slice(0, 3)];
+  const topHtml = chrome.map((c) => c.slice(0, 20000)).join(' ') + ' ' + bodyHtml.slice(0, 9000);
 
   const forms: PageInfo['forms'] = [];
   for (const f of body.match(/<form\b[\s\S]*?<\/form>/gi) ?? []) {
@@ -120,7 +123,8 @@ export function analyzePage(rawHtml: string): PageInfo {
     forms.push({ hasOpenText: open });
   }
 
-  const text = strip(body).toLowerCase();
+  const textCase = strip(body);
+  const text = textCase.toLowerCase();
   return {
     title: titleMatch ? strip(titleMatch[1]) : '',
     metaDescription,
@@ -134,9 +138,10 @@ export function analyzePage(rawHtml: string): PageInfo {
     links: extractLinks(bodyHtml, 700),
     topActions: extractLinks(topHtml, 120),
     text,
+    textCase,
     hasTel: /href\s*=\s*["']tel:/i.test(body),
     forms,
-    hasSensitiveNote: SENSITIVE_NOTE.test(strip(body)),
+    hasSensitiveNote: SENSITIVE_NOTE.test(textCase),
     html,
   };
 }
