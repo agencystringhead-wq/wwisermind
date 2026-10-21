@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import BottomBar from '@/components/layout/BottomBar';
 import ContactBar from '@/components/layout/ContactBar';
+import CrisisGate from '@/components/layout/CrisisGate';
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
 import TopBar from '@/components/layout/TopBar';
@@ -54,12 +55,16 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
-        <TopBar />
+        <CrisisGate>
+          <TopBar />
+        </CrisisGate>
         <Header />
         <main>{children}</main>
         <Footer />
-        <BottomBar />
-        <ContactBar />
+        <CrisisGate>
+          <BottomBar />
+          <ContactBar />
+        </CrisisGate>
       </body>
     </html>
   );

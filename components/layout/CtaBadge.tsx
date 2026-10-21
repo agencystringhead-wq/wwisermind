@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import CtaLink from '@/components/booking/CtaLink';
 
 type Props = {
@@ -124,8 +124,11 @@ export default function CtaBadge({ lines, href, className }: Props) {
       className={className}
       data-visible={visible ? 'true' : 'false'}
     >
-      {lines.map((line) => (
-        <span key={line}>{line}</span>
+      {lines.map((line, index) => (
+        <Fragment key={line}>
+          {index > 0 ? ' ' : null}
+          <span>{line}</span>
+        </Fragment>
       ))}
     </CtaLink>
   );

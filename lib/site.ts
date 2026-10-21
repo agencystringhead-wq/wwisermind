@@ -884,6 +884,19 @@ export const footerCtaHiddenPaths: string[] = [
   routes.freebies.hub,
 ];
 
+/** The crisis resources directory and every state page under it. A visitor there may be in distress,
+    so the page leaves out the announcement bar, the footer's call to action, the floating contact bar
+    and the closing colour band, and keeps the header and the footer's links. The help now widget page
+    is for therapists, not for someone in crisis, so it keeps all of them. */
+export const isCrisisResourcesPage = (pathname: string): boolean => {
+  const trim = (path: string) => path.replace(/\/+$/, '');
+  const here = trim(pathname);
+  const root = trim(routes.tools.crisisResources);
+  const widget = trim(routes.tools.helpNowWidget);
+  if (here === widget || here.startsWith(`${widget}/`)) return false;
+  return here === root || here.startsWith(`${root}/`);
+};
+
 export const footerCta = {
   /** The backdrop is drawn in CSS now — see the concentric rings in Footer.module.css. */
   /** Three fixed lines, as in both reference frames. */
@@ -1013,8 +1026,8 @@ export const footerMain = {
       value: 'USA  /  Australia  /  Ireland  /  Dubai',
     },
     email: { label: 'Email', value: 'admin@wwisermind.com', href: 'mailto:admin@wwisermind.com' },
-    hotline: {
-      label: 'Hotline',
+    phone: {
+      label: 'Phone',
       value: siteConfig.contact.phoneDisplay,
       href: `tel:${siteConfig.contact.phoneTel}`,
     },

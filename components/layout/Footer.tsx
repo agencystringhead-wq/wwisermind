@@ -178,9 +178,9 @@ export default function Footer({ hideCta = false }: { hideCta?: boolean }) {
             </div>
 
             <div>
-              <p className={styles.detailLabel}>{contact.hotline.label}</p>
+              <p className={styles.detailLabel}>{contact.phone.label}</p>
               <p className={styles.detailValue}>
-                <a href={contact.hotline.href}>{contact.hotline.value}</a>
+                <a href={contact.phone.href}>{contact.phone.value}</a>
               </p>
             </div>
           </div>
