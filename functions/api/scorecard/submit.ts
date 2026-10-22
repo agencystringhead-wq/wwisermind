@@ -70,7 +70,10 @@ export const onRequestPost = async ({ request, env, waitUntil }: Ctx) => {
     ).bind(id, name, email, practice, cityState, websiteUrl, now),
   ]);
 
-  const origin = env.SITE_ORIGIN || 'https://wwisermind.com';
+  /* Links in the emails point back at the site the report was made on. On a pages.dev preview that is the preview
+     itself, so a test email opens the test report; everywhere else it is the canonical SITE_ORIGIN. */
+  const requestUrl = new URL(request.url);
+  const origin = requestUrl.hostname.endsWith('.pages.dev') ? requestUrl.origin : env.SITE_ORIGIN || 'https://wwisermind.com';
   const from = env.RESEND_FROM || 'wwisermind <scorecard@wwisermind.com>';
   const notifyTo = env.LEAD_NOTIFY_EMAIL || 'admin@wwisermind.com';
   const firstName = name.split(' ')[0];
