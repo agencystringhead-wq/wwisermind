@@ -126,16 +126,16 @@ export type MegaPanel = {
   mobileLink?: NavItem;
 };
 
-/** The website scorecard's link for the Tools menu, from its entry in lib/freebies.ts: its title, its
-    subtitle ("Quiz") and the "Soon" badge while it is not live. Empty if the entry is ever removed. */
+/** The scorecard's link for the Tools menu. The menu label is its own ("Free Website Scorecard", with the NEW badge);
+    the page, the subtitle and the "Soon" state still come from its entry in lib/freebies.ts. Empty if the entry is ever removed. */
 const scorecard = freebieList.find((freebie) => freebie.slug === 'website-scorecard-for-therapists');
 const scorecardLink = scorecard
   ? [
       {
-        label: scorecard.title,
+        label: 'Free Website Scorecard',
         href: freebiePath(scorecard),
         desc: scorecard.typeLabel,
-        ...(scorecard.status === 'comingSoon' ? { badge: 'Soon' } : {}),
+        badge: scorecard.status === 'comingSoon' ? 'Soon' : 'NEW',
       },
     ]
   : [];
@@ -984,16 +984,9 @@ export const isTherapyIndexPage = (pathname: string): boolean => /^\/therapyinde
 
 /** The Therapy Index's own header and footer replace the site's on its pages and on the tool pages that carry its research
     branding. Every other page keeps the site's header, footer and floating contact bar. */
-export const tiChromeToolPaths: string[] = ['/tools/website-scorecard-for-therapists', '/tools/ai-visibility-report'];
-export const usesTiChrome = (pathname: string): boolean => {
-  const here = pathname.replace(/\/+$/, '');
-  return (
-    isTherapyIndexPage(pathname) ||
-    tiChromeToolPaths.includes(here) ||
-    /* The scorecard's private report pages (/r/<id>/) carry the same chrome as the tool. */
-    here.startsWith('/tools/website-scorecard-for-therapists/r')
-  );
-};
+export const tiChromeToolPaths: string[] = ['/tools/ai-visibility-report'];
+export const usesTiChrome = (pathname: string): boolean =>
+  isTherapyIndexPage(pathname) || tiChromeToolPaths.includes(pathname.replace(/\/+$/, ''));
 
 export const isCrisisResourcesPage = (pathname: string): boolean => {
   const trim = (path: string) => path.replace(/\/+$/, '');

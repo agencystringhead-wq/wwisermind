@@ -2,11 +2,12 @@
    the tool looks like the rest of the site. Nothing here animates on entrance. */
 
 .section {
-  composes: section from '../therapyindex/ti.module.css';
+  padding-block: clamp(64px, 8vw, 112px);
+  background-color: var(--color-white);
 }
 
 .band {
-  background: var(--ti-band);
+  background-color: var(--color-surface);
 }
 
 .narrow {
@@ -15,41 +16,41 @@
 }
 
 .eyebrow {
-  composes: eyebrow from '../therapyindex/ti.module.css';
+  composes: eyebrow from '../pricing/LocalSeo.module.css';
   margin: 0 0 14px;
 }
 
 .h1 {
   margin: 0 0 18px;
-  font-size: var(--ti-h1);
-  line-height: var(--ti-h1-lh);
-  font-weight: var(--ti-fw-heading);
-  letter-spacing: var(--ti-tracking);
-  color: var(--ti-ink);
+  font-size: clamp(34px, 4.4vw, 56px);
+  line-height: 1.06;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.025em;
+  color: var(--color-ink);
 }
 
 .h2 {
   margin: 0 0 14px;
-  font-size: var(--ti-h2);
+  font-size: clamp(26px, 3vw, 36px);
   line-height: 1.15;
-  font-weight: var(--ti-fw-heading);
-  letter-spacing: var(--ti-tracking);
-  color: var(--ti-ink);
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.025em;
+  color: var(--color-ink);
 }
 
 .h3 {
   margin: 0 0 6px;
-  font-size: var(--ti-h3);
+  font-size: 20px;
   line-height: 1.25;
   font-weight: 600;
-  color: var(--ti-ink);
+  color: var(--color-ink);
 }
 
 .lede {
   margin: 0 0 28px;
-  font-size: var(--ti-lead);
-  line-height: var(--ti-text-lh);
-  color: var(--ti-muted);
+  font-size: 17px;
+  line-height: var(--lh-body);
+  color: var(--color-muted);
   max-width: 62ch;
 }
 
@@ -57,13 +58,13 @@
   margin: 0;
   font-size: 14px;
   line-height: 1.55;
-  color: var(--ti-muted);
+  color: var(--color-muted);
 }
 
 /* ---- buttons ------------------------------------------------------------------------------- */
 
 .btn {
-  composes: btnDark from '../therapyindex/ti.module.css';
+  composes: button from '../ui/Controls.module.css';
   border: 0;
   cursor: pointer;
   font: inherit;
@@ -71,7 +72,7 @@
 }
 
 .btnAccent {
-  composes: btnAccent from '../therapyindex/ti.module.css';
+  composes: buttonBlue from '../ui/Controls.module.css';
   border: 0;
   cursor: pointer;
   font: inherit;
@@ -79,10 +80,22 @@
 }
 
 .btnLight {
-  composes: btnLight from '../therapyindex/ti.module.css';
+  composes: button from '../ui/Controls.module.css';
   cursor: pointer;
   font: inherit;
   font-weight: 600;
+}
+
+.btnLight.btnLight {
+  background-color: var(--color-white);
+  color: var(--color-ink);
+  border: 1px solid var(--color-divider);
+}
+
+.btnLight.btnLight:hover {
+  background-color: var(--color-surface);
+  border-color: var(--color-ink);
+  color: var(--color-ink);
 }
 
 .btn:disabled,
@@ -97,12 +110,12 @@
 .option:focus-visible,
 .input:focus-visible,
 .textLink:focus-visible {
-  outline: 3px solid var(--ti-accent);
+  outline: 3px solid var(--color-brand);
   outline-offset: 3px;
 }
 
 .textLink {
-  color: var(--ti-accent-deep);
+  color: var(--color-brand-dark);
   text-decoration: underline;
   text-underline-offset: 3px;
   background: none;
@@ -131,7 +144,7 @@
   margin: 0 0 6px;
   font-size: 14px;
   font-weight: 600;
-  color: var(--ti-ink);
+  color: var(--color-ink);
 }
 
 .input {
@@ -140,9 +153,9 @@
   padding: 0 18px;
   font: inherit;
   font-size: 16px; /* 16px stops iOS zooming into the field */
-  color: var(--ti-ink);
-  background: var(--ti-card);
-  border: 1px solid var(--ti-line-strong);
+  color: var(--color-ink);
+  background: var(--color-white);
+  border: 1px solid var(--color-divider);
   border-radius: 999px;
 }
 
@@ -173,16 +186,16 @@
 }
 
 .card {
-  background: var(--ti-card);
-  border: 1px solid var(--ti-line);
-  border-radius: var(--ti-radius);
-  box-shadow: var(--ti-shadow);
-  padding: var(--ti-card-pad);
+  background: var(--color-white);
+  border: 1px solid var(--color-line);
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  padding: 28px;
 }
 
 .card p {
   margin: 0;
-  color: var(--ti-muted);
+  color: var(--color-muted);
   line-height: 1.55;
 }
 
@@ -216,11 +229,11 @@
   align-items: center;
   gap: 12px;
   font-size: 17px;
-  color: var(--ti-muted);
+  color: var(--color-muted);
 }
 
 .stepDone {
-  color: var(--ti-ink);
+  color: var(--color-ink);
 }
 
 .dot {
@@ -228,7 +241,7 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  border: 2px solid var(--ti-line-strong);
+  border: 2px solid var(--color-divider);
   display: grid;
   place-items: center;
   font-size: 12px;
@@ -236,13 +249,13 @@
 }
 
 .dotDone {
-  background: var(--ti-accent);
-  border-color: var(--ti-accent);
+  background: var(--color-brand);
+  border-color: var(--color-brand);
   color: #fff;
 }
 
 .dotWorking {
-  border-color: var(--ti-accent);
+  border-color: var(--color-brand);
   border-top-color: transparent;
 }
 
@@ -259,10 +272,10 @@
 }
 
 .notice {
-  background: var(--ti-accent-soft);
-  border-radius: var(--ti-radius-sm);
+  background: #eef5ff;
+  border-radius: 12px;
   padding: 16px 18px;
-  color: var(--ti-ink);
+  color: var(--color-ink);
   line-height: 1.55;
   margin: 0 0 20px;
 }
@@ -272,7 +285,7 @@
 .progress {
   height: 8px;
   border-radius: 999px;
-  background: var(--ti-line);
+  background: var(--color-line);
   overflow: hidden;
   margin: 0 0 8px;
 }
@@ -280,7 +293,7 @@
 .progressBar {
   display: block;
   height: 100%;
-  background: var(--ti-accent);
+  background: var(--color-brand);
   border-radius: 999px;
   transition: width 0.25s ease;
 }
@@ -288,15 +301,15 @@
 .progressText {
   margin: 0 0 28px;
   font-size: 14px;
-  color: var(--ti-muted);
+  color: var(--color-muted);
 }
 
 .question {
   margin: 0 0 8px;
   font-size: clamp(24px, 3vw, 32px);
   line-height: 1.2;
-  font-weight: var(--ti-fw-heading);
-  letter-spacing: var(--ti-tracking);
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.025em;
   outline: none;
 }
 
@@ -316,21 +329,21 @@
   padding: 14px 20px;
   font: inherit;
   font-size: 17px;
-  color: var(--ti-ink);
-  background: var(--ti-card);
-  border: 1px solid var(--ti-line-strong);
+  color: var(--color-ink);
+  background: var(--color-white);
+  border: 1px solid var(--color-divider);
   border-radius: 14px;
   cursor: pointer;
 }
 
 .option:hover {
-  border-color: var(--ti-ink);
+  border-color: var(--color-ink);
 }
 
 .optionOn {
-  border-color: var(--ti-accent);
-  background: var(--ti-accent-soft);
-  box-shadow: inset 0 0 0 1px var(--ti-accent);
+  border-color: var(--color-brand);
+  background: #eef5ff;
+  box-shadow: inset 0 0 0 1px var(--color-brand);
 }
 
 /* ---- the email step ------------------------------------------------------------------------------ */
@@ -358,7 +371,7 @@
   margin: 0 0 18px;
   font-size: 14px;
   line-height: 1.55;
-  color: var(--ti-muted);
+  color: var(--color-muted);
 }
 
 /* ---- the results ---------------------------------------------------------------------------------- */
@@ -399,7 +412,7 @@
 
 .ringNum span {
   font-size: 14px;
-  color: var(--ti-muted);
+  color: var(--color-muted);
 }
 
 .tier {
@@ -407,8 +420,8 @@
   margin: 0 0 10px;
   padding: 4px 14px;
   border-radius: 999px;
-  background: var(--ti-accent-soft);
-  color: var(--ti-accent-deep);
+  background: #eef5ff;
+  color: var(--color-brand-dark);
   font-weight: 600;
   font-size: 15px;
 }
@@ -429,14 +442,14 @@
 .catScore small {
   font-size: 15px;
   font-weight: 400;
-  color: var(--ti-muted);
+  color: var(--color-muted);
   letter-spacing: 0;
 }
 
 .bar {
   height: 8px;
   border-radius: 999px;
-  background: var(--ti-line);
+  background: var(--color-line);
   overflow: hidden;
   margin: 0 0 12px;
 }
@@ -444,7 +457,7 @@
 .barFill {
   display: block;
   height: 100%;
-  background: var(--ti-accent);
+  background: var(--color-brand);
 }
 
 .fixes {
@@ -465,7 +478,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--ti-ink);
+  background: var(--color-ink);
   color: #fff;
   display: grid;
   place-items: center;
@@ -478,7 +491,7 @@
 }
 
 .why {
-  color: var(--ti-muted);
+  color: var(--color-muted);
 }
 
 .checkGroup {
@@ -489,7 +502,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid var(--ti-line);
+  border-top: 1px solid var(--color-line);
 }
 
 .checkRow {
@@ -497,7 +510,7 @@
   grid-template-columns: 28px 1fr;
   gap: 12px;
   padding: 12px 0;
-  border-bottom: 1px solid var(--ti-line);
+  border-bottom: 1px solid var(--color-line);
   line-height: 1.5;
 }
 
@@ -513,18 +526,18 @@
 }
 
 .markFound {
-  background: var(--ti-accent);
+  background: var(--color-brand);
 }
 
 .markNot {
   background: #fff;
-  color: var(--ti-ink);
-  border: 2px solid var(--ti-ink);
+  color: var(--color-ink);
+  border: 2px solid var(--color-ink);
 }
 
 .markUnknown {
-  background: var(--ti-line);
-  color: var(--ti-muted);
+  background: var(--color-line);
+  color: var(--color-muted);
 }
 
 .rowLabel {
@@ -532,7 +545,7 @@
 }
 
 .rowMeta {
-  color: var(--ti-muted);
+  color: var(--color-muted);
   font-size: 14px;
 }
 
@@ -542,9 +555,9 @@
   gap: 24px;
   align-items: center;
   justify-content: space-between;
-  background: var(--ti-ink);
+  background: var(--color-ink);
   color: #fff;
-  border-radius: var(--ti-radius);
+  border-radius: 24px;
   padding: clamp(24px, 4vw, 40px);
 }
 
@@ -552,7 +565,7 @@
   margin: 0 0 8px;
   font-size: clamp(24px, 3vw, 30px);
   line-height: 1.15;
-  letter-spacing: var(--ti-tracking);
+  letter-spacing: -0.025em;
   font-weight: 600;
   color: #fff;
 }
@@ -565,7 +578,7 @@
 }
 
 .ctaBtn {
-  composes: btnWhite from '../therapyindex/ti.module.css';
+  composes: buttonBlue from '../ui/Controls.module.css';
 }
 
 .stack > * + * {
