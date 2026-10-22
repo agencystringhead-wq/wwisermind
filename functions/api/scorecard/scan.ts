@@ -36,7 +36,7 @@ export const onRequestPost = async ({ request, env, waitUntil }: Ctx) => {
 
   if (!(await underLimit(env, request, 'scan', SCAN_PER_HOUR))) {
     return json(
-      { error: 'rate_limited', message: 'You’ve reached the scan limit for now. You can try again in an hour. You can still get your score today: we’ll skip the website scan and ask a few extra questions instead.' },
+      { error: 'rate_limited', message: 'You can try again in an hour. You can still get your score today: we’ll skip the website scan and ask a few extra questions instead.' },
       429,
     );
   }
