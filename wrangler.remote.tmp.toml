@@ -1,0 +1,7 @@
+name = "wwisermind"
+compatibility_date = "2025-01-01"
+[[d1_databases]]
+binding = "DB"
+database_name = "wwisermind-scorecard"
+database_id = "eea58670-e0dc-48f2-a99f-9d10e5bd834a"
+migrations_dir = "migrations"

@@ -119,7 +119,7 @@ export default function ScorecardApp() {
     setScanId(id);
     /* The speed test takes longer than the rest of the scan, so it runs while the visitor answers the questions. */
     speedRef.current =
-      result && !result.blocked && id && result.speed === 'pending'
+      result && !result.blocked && id && result.speed !== 'done'
         ? fetch(`${API}/speed`, {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
@@ -137,8 +137,8 @@ export default function ScorecardApp() {
     } else {
       setScanMessage(
         result.partial
-          ? `We read most of your site. A few checks ran out of time, so they’ll show as not checked. Now a few questions only you can answer.${result.speed === 'pending' ? ' The speed test keeps running in the background while you answer.' : ''}`
-          : `We’ve finished looking at your site. Now a few questions only you can answer.${result.speed === 'pending' ? ' The speed test keeps running in the background while you answer.' : ''}`,
+          ? `We read most of your site. A few checks ran out of time, so they’ll show as not checked. Now a few questions only you can answer.${result.speed !== 'done' ? ' The speed test keeps running in the background while you answer.' : ''}`
+          : `We’ve finished looking at your site. Now a few questions only you can answer.${result.speed !== 'done' ? ' The speed test keeps running in the background while you answer.' : ''}`,
       );
       setPhase('scanNote');
     }
