@@ -22,13 +22,13 @@ function Ring({ score }: { score: number | null }) {
   return (
     <div className={styles.ring} role="img" aria-label={score === null ? 'No score' : `Overall score ${score} out of 100`}>
       <svg viewBox="0 0 180 180" aria-hidden="true">
-        <circle cx="90" cy="90" r={r} fill="none" stroke="var(--ti-line)" strokeWidth="12" />
+        <circle cx="90" cy="90" r={r} fill="none" stroke="var(--color-line)" strokeWidth="12" />
         <circle
           cx="90"
           cy="90"
           r={r}
           fill="none"
-          stroke="var(--ti-accent)"
+          stroke="var(--color-brand)"
           strokeWidth="12"
           strokeLinecap="round"
           strokeDasharray={`${(c * pct) / 100} ${c}`}

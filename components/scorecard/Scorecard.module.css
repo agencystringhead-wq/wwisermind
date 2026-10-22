@@ -1,5 +1,5 @@
-/* website scorecard. Reads the Therapy Index tokens (--ti-*), which its header and footer share, so
-   the tool looks like the rest of the site. Nothing here animates on entrance. */
+/* website scorecard. Uses the main wwisermind tokens (app/globals.css) and button styles, like the rest of the site.
+   Nothing here animates on entrance. */
 
 .section {
   padding-block: clamp(64px, 8vw, 112px);
