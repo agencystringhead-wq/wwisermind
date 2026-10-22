@@ -1,0 +1,18 @@
+# For LOCAL development and for running D1 migrations only (use `-c wrangler.example.toml`).
+# It is deliberately not named wrangler.toml: a wrangler.toml in the repo would make Cloudflare Pages
+# take its bindings from this file instead of the dashboard. Production bindings and secrets are set
+# in the Pages dashboard. See the "website scorecard" section of README.md.
+name = "wwisermind"
+pages_build_output_dir = "out"
+compatibility_date = "2025-01-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "wwisermind-scorecard"
+database_id = "local-scorecard"
+migrations_dir = "migrations"
+
+[vars]
+SITE_ORIGIN = "https://wwisermind.com"
+LEAD_NOTIFY_EMAIL = "admin@wwisermind.com"
+RESEND_FROM = "wwisermind <scorecard@wwisermind.com>"

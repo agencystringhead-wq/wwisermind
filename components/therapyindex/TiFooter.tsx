@@ -11,7 +11,7 @@ type FooterCity = { slug: string; name: string; href: string };
 
 /** The free tools, by the name the footer gives them. A link appears only once its page is live; with none live the column is left out. */
 const TOOLS = [
-  { label: 'Website Scorecard', slug: 'website-scorecard-for-therapists' },
+  { label: 'website scorecard', slug: 'website-scorecard-for-therapists' },
   { label: 'Local Visibility Assessment', slug: 'ai-visibility-report' },
 ] as const;
 

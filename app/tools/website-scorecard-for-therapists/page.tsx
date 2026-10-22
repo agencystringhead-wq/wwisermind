@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import FreebiePage from '@/components/freebies/FreebiePage';
+import ScorecardApp from '@/components/scorecard/ScorecardApp';
 import { freebieMetadata } from '@/lib/freebie-metadata';
 import { getFreebie } from '@/lib/freebies';
 
@@ -10,5 +10,5 @@ export const metadata: Metadata = freebie ? freebieMetadata(freebie) : {};
 
 export default function Page() {
   if (!freebie) notFound();
-  return <FreebiePage freebie={freebie} />;
+  return <ScorecardApp />;
 }
