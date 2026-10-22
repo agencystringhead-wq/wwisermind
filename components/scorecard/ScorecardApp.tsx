@@ -47,6 +47,8 @@ export default function ScorecardApp() {
   const [scan, setScan] = useState<ScanResult | null>(null);
   const [scanId, setScanId] = useState<string | null>(null);
   const [scanMessage, setScanMessage] = useState('');
+  /* True when the hourly scan limit was hit, so the note says that instead of "we couldn't read your site". */
+  const [scanLimit, setScanLimit] = useState(false);
   const [answers, setAnswers] = useState<Answers>({});
   const [index, setIndex] = useState(0);
   const [formError, setFormError] = useState('');
@@ -72,6 +74,7 @@ export default function ScorecardApp() {
       return;
     }
     setSteps({});
+    setScanLimit(false);
     setPhase('scanning');
     try {
       const res = await fetch(`${API}/scan`, {
@@ -87,6 +90,7 @@ export default function ScorecardApp() {
       }
       if (!res.ok || !res.body) {
         const data = (await res.json().catch(() => ({}))) as { message?: string };
+        if (res.status === 429) setScanLimit(true);
         finishScan(null, null, data.message || 'We couldn’t run the scan just now.');
         return;
       }
@@ -337,7 +341,7 @@ export default function ScorecardApp() {
           {phase === 'scanNote' ? (
             <>
               <h1 className={styles.question} ref={headingRef} tabIndex={-1}>
-                {scan && !scan.blocked ? 'Scan finished' : 'We couldn’t read your site'}
+                {scanLimit ? 'You’ve reached the scan limit for now' : scan && !scan.blocked ? 'Scan finished' : 'We couldn’t read your site'}
               </h1>
               <p className={styles.notice}>{scanMessage}</p>
               <button type="button" className={styles.btn} onClick={() => setPhase('quiz')}>
