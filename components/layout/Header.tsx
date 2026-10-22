@@ -251,6 +251,7 @@ export default function Header() {
   const [accOpen, setAccOpen] = useState<string[]>([]);
 
   const headerRef = useRef<HTMLElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   useEffect(() => {
@@ -267,7 +268,17 @@ export default function Header() {
        neither component needs to know the other exists. */
     document.body.dataset.drawerOpen = 'true';
 
+    /* Where the panel starts on screen, so its max-height can stop at the bottom edge. The
+       body is locked, so this only changes if the viewport does. */
+    const measure = () => {
+      const panel = panelRef.current;
+      if (panel) panel.style.setProperty('--panel-top', `${panel.getBoundingClientRect().top}px`);
+    };
+    measure();
+    window.addEventListener('resize', measure);
+
     return () => {
+      window.removeEventListener('resize', measure);
       document.removeEventListener('keydown', onKeyDown);
       document.body.style.overflow = '';
       delete document.body.dataset.drawerOpen;
@@ -439,7 +450,7 @@ export default function Header() {
         ))}
 
         {open && (
-          <div className={styles.panel} id="mobile-menu">
+          <div className={styles.panel} id="mobile-menu" ref={panelRef}>
             <div className={`container ${styles.panelInner}`}>
               {mainNav.map((item) => {
                 const panel = megaPanels[item.label];
