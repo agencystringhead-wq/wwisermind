@@ -24,9 +24,9 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
 
   const row = await env.DB.prepare('SELECT scan_json FROM scan_cache WHERE url_key = ?1').bind(key).first<{ scan_json: string }>();
   if (!row) return json({ status: 'unavailable' });
-  const scan = JSON.parse(row.scan_json) as ScanResult & { speedTriedAt?: number };
+  const scan = JSON.parse(row.scan_json) as ScanResult & { speedTriedAt?: number; speedError?: string };
   if (scan.speed === 'done') return json({ status: 'done' });
-  if (scan.speedTriedAt && Date.now() - scan.speedTriedAt < RETRY_AFTER_MS) return json({ status: scan.speed ?? 'failed' });
+  if (scan.speedTriedAt && Date.now() - scan.speedTriedAt < RETRY_AFTER_MS) return json({ status: scan.speed ?? 'failed', ...(scan.speedError ? { why: scan.speedError } : {}) });
 
   /* Mark the try first, so two tabs do not both run it. */
   scan.speedTriedAt = Date.now();
@@ -34,14 +34,15 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
 
   const result = await runSpeed(scan.url, env.PSI_API_KEY, PSI_TIMEOUT_MS);
   const fresh = await env.DB.prepare('SELECT scan_json FROM scan_cache WHERE url_key = ?1').bind(key).first<{ scan_json: string }>();
-  const latest = (fresh ? JSON.parse(fresh.scan_json) : scan) as ScanResult & { speedTriedAt?: number };
-  if (result) {
+  const latest = (fresh ? JSON.parse(fresh.scan_json) : scan) as ScanResult & { speedTriedAt?: number; speedError?: string };
+  if (result.checks && result.metrics) {
     latest.checks = { ...latest.checks, ...result.checks };
     latest.metrics = result.metrics;
     latest.speed = 'done';
   } else {
     latest.speed = 'failed';
+    latest.speedError = result.error;
   }
   await env.DB.prepare('UPDATE scan_cache SET scan_json = ?2 WHERE url_key = ?1').bind(key, JSON.stringify(latest)).run();
-  return json({ status: latest.speed });
+  return json({ status: latest.speed, ...(latest.speedError ? { why: latest.speedError } : {}) });
 };

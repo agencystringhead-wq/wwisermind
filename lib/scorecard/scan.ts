@@ -136,7 +136,7 @@ async function fetchText(url: string, timeoutMs: number, wantHtml = true): Promi
 
 type Psi = { perf: number | null; lcpMs: number | null; cls: number | null };
 
-async function runPsi(url: string, key: string | undefined, timeoutMs: number): Promise<Psi | null> {
+async function runPsi(url: string, key: string | undefined, timeoutMs: number, onError?: (why: string) => void): Promise<Psi | null> {
   if (!key) return null;
   const api = new URL('https://www.googleapis.com/pagespeedonline/v5/runPagespeed');
   api.searchParams.set('url', url);
@@ -145,7 +145,11 @@ async function runPsi(url: string, key: string | undefined, timeoutMs: number): 
   api.searchParams.set('key', key);
   try {
     const res = await fetch(api, { signal: AbortSignal.timeout(Math.max(1000, timeoutMs)) });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      const err = (await res.json().catch(() => ({}))) as { error?: { message?: string } };
+      onError?.(`PageSpeed answered ${res.status}: ${(err.error?.message ?? 'no message').slice(0, 200)}`);
+      return null;
+    }
     const data = (await res.json()) as {
       lighthouseResult?: {
         categories?: { performance?: { score?: number | null } };
@@ -153,13 +157,17 @@ async function runPsi(url: string, key: string | undefined, timeoutMs: number): 
       };
     };
     const lh = data.lighthouseResult;
-    if (!lh) return null;
+    if (!lh) {
+      onError?.('PageSpeed answered without a result');
+      return null;
+    }
     return {
       perf: lh.categories?.performance?.score ?? null,
       lcpMs: lh.audits?.['largest-contentful-paint']?.numericValue ?? null,
       cls: lh.audits?.['cumulative-layout-shift']?.numericValue ?? null,
     };
-  } catch {
+  } catch (e) {
+    onError?.(e instanceof Error && (e.name === 'TimeoutError' || e.name === 'AbortError') ? 'PageSpeed took too long' : 'could not reach PageSpeed');
     return null;
   }
 }
@@ -419,10 +427,11 @@ export async function runScan(
 
 /** The PageSpeed half of a scan, run on its own because it can take longer than the rest of the scan put together. */
 export async function runSpeed(url: string, key: string | undefined, timeoutMs: number) {
-  const psi = await runPsi(url, key, timeoutMs);
+  let error = 'unknown';
+  const psi = await runPsi(url, key, timeoutMs, (why) => (error = why));
   const checks: ScanResult['checks'] = {};
   addPsiChecks(checks, psi, true);
-  return psi ? { checks, metrics: psi } : null;
+  return psi ? { checks, metrics: psi, error: null } : { checks: null, metrics: null, error };
 }
 
 function addPsiChecks(checks: Partial<Record<CheckId, CheckResult>>, psi: Psi | null, keyed = true) {
