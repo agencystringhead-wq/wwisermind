@@ -223,7 +223,7 @@ function detectPlatform(home: PageInfo, headers: Headers | null): Platform {
 
 export async function runScan(
   input: string,
-  opts: { psiKey?: string; onStep?: (e: StepEvent) => void } = {},
+  opts: { psiKey?: string; onStep?: (e: StepEvent) => void; deferSpeed?: boolean } = {},
 ): Promise<ScanResult> {
   const norm = normalizeUrl(input);
   const startedAt = Date.now();
@@ -249,11 +249,13 @@ export async function runScan(
   const step = (s: StepId, state: 'start' | 'done') => opts.onStep?.({ step: s, state });
 
   /* PageSpeed is the slow one, so it starts first and runs alongside everything else. */
-  step('speed', 'start');
-  const psiPromise = runPsi(norm.url, opts.psiKey, left() - 500).then((r) => {
-    step('speed', 'done');
-    return r;
-  });
+  if (!opts.deferSpeed) step('speed', 'start');
+  const psiPromise: Promise<Psi | null> = opts.deferSpeed
+    ? Promise.resolve(null)
+    : runPsi(norm.url, opts.psiKey, left() - 500).then((r) => {
+        step('speed', 'done');
+        return r;
+      });
 
   step('homepage', 'start');
   const home = await fetchText(norm.url, slice());
@@ -331,7 +333,7 @@ export async function runScan(
   const all = [homeInfo, ...pageInfos.map((p) => p.info)];
   const allText = all.map((p) => p.text).join(' ');
   const allLinks = all.flatMap((p) => p.links);
-  const partial = extra.some((e) => !e.ok) || (opts.psiKey ? psi === null : false) || (!robots.ok && robots.status !== 404) || Date.now() >= deadline;
+  const partial = extra.some((e) => !e.ok) || (opts.psiKey && !opts.deferSpeed ? psi === null : false) || (!robots.ok && robots.status !== 404) || Date.now() >= deadline;
 
   const checks: ScanResult['checks'] = {};
   addPsiChecks(checks, psi, !!opts.psiKey);
@@ -411,7 +413,16 @@ export async function runScan(
     pagesChecked: [base, ...pageInfos.map((p) => p.url)],
     metrics: psi ?? { perf: null, lcpMs: null, cls: null },
     scannedAt: startedAt,
+    speed: opts.deferSpeed ? 'pending' : psi ? 'done' : 'failed',
   };
+}
+
+/** The PageSpeed half of a scan, run on its own because it can take longer than the rest of the scan put together. */
+export async function runSpeed(url: string, key: string | undefined, timeoutMs: number) {
+  const psi = await runPsi(url, key, timeoutMs);
+  const checks: ScanResult['checks'] = {};
+  addPsiChecks(checks, psi, true);
+  return psi ? { checks, metrics: psi } : null;
 }
 
 function addPsiChecks(checks: Partial<Record<CheckId, CheckResult>>, psi: Psi | null, keyed = true) {

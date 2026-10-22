@@ -5,7 +5,7 @@ import { SCAN_PER_HOUR, json, underLimit } from '../../../lib/scorecard/server/h
 
 /* POST /api/scorecard/scan  { url }
    Streams newline-delimited JSON: {"step":"homepage","state":"start"|"done"} lines as the scan
-   works, then one final {"result": ScanResult, "scanId": "..."} line. A cached scan (same site
+   works (homepage, pages, files), then one final {"result": ScanResult, "scanId": "..."} line. A cached scan (same site
    within 24 hours) answers straight away. Errors are plain JSON with a status code. */
 export const onRequestPost = async ({ request, env, waitUntil }: Ctx) => {
   let body: { url?: unknown };
@@ -27,7 +27,7 @@ export const onRequestPost = async ({ request, env, waitUntil }: Ctx) => {
     .bind(norm.key, Date.now() - SCAN_LIMITS.cacheHours * 3_600_000)
     .first<{ scan_json: string }>();
   if (cached) {
-    const steps = (['homepage', 'pages', 'files', 'speed'] as const)
+    const steps = (['homepage', 'pages', 'files'] as const)
       .map((step) => `${JSON.stringify({ step, state: 'done' })}\n`)
       .join('');
     const result = `${JSON.stringify({ result: JSON.parse(cached.scan_json), scanId: norm.key, cached: true })}\n`;
@@ -48,6 +48,8 @@ export const onRequestPost = async ({ request, env, waitUntil }: Ctx) => {
       try {
         const scan = await runScan(norm.url, {
           psiKey: env.PSI_API_KEY,
+          /* PageSpeed can take 20 to 40 seconds, so it runs in its own request (see speed.ts) while the visitor answers the quiz. */
+          deferSpeed: !!env.PSI_API_KEY,
           onStep: (e: StepEvent) => void writer.write(line(e)).catch(() => undefined),
         });
         if (!scan.blocked) {

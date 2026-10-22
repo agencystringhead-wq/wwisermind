@@ -11,13 +11,12 @@ import { API, REPORT_BASE } from './api';
 
 type Phase = 'intro' | 'scanning' | 'scanNote' | 'quiz' | 'gate' | 'sending';
 
-const STEP_LABELS: Record<StepId, string> = {
+const STEP_LABELS: Partial<Record<StepId, string>> = {
   homepage: 'Reading your homepage',
   pages: 'Looking at your about, fees and contact pages',
   files: 'Checking your sitemap and robots.txt',
-  speed: 'Checking how fast it loads on a phone',
 };
-const STEP_ORDER: StepId[] = ['homepage', 'pages', 'files', 'speed'];
+const STEP_ORDER: StepId[] = ['homepage', 'pages', 'files'];
 
 const SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '';
 /* Cloudflare's published always-pass test key, used only on localhost. */
@@ -52,6 +51,7 @@ export default function ScorecardApp() {
   const [index, setIndex] = useState(0);
   const [formError, setFormError] = useState('');
   const [token, setToken] = useState('');
+  const speedRef = useRef<Promise<unknown> | null>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const widgetRef = useRef<HTMLDivElement>(null);
   const widgetId = useRef<string | undefined>(undefined);
@@ -115,8 +115,17 @@ export default function ScorecardApp() {
   }
 
   function finishScan(result: ScanResult | null, id: string | null, message: string) {
-    setScan(result && !result.blocked ? result : result);
+    setScan(result);
     setScanId(id);
+    /* The speed test takes longer than the rest of the scan, so it runs while the visitor answers the questions. */
+    speedRef.current =
+      result && !result.blocked && id && result.speed === 'pending'
+        ? fetch(`${API}/speed`, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ scanId: id }),
+          }).catch(() => undefined)
+        : null;
     setIndex(0);
     if (!result || result.blocked) {
       const reason = result?.blockedReason ? ` (${result.blockedReason})` : '';
@@ -128,8 +137,8 @@ export default function ScorecardApp() {
     } else {
       setScanMessage(
         result.partial
-          ? 'We read most of your site. A few checks ran out of time, so they’ll show as not checked. Now a few questions only you can answer.'
-          : 'We’ve finished looking at your site. Now a few questions only you can answer.',
+          ? `We read most of your site. A few checks ran out of time, so they’ll show as not checked. Now a few questions only you can answer.${result.speed === 'pending' ? ' The speed test keeps running in the background while you answer.' : ''}`
+          : `We’ve finished looking at your site. Now a few questions only you can answer.${result.speed === 'pending' ? ' The speed test keeps running in the background while you answer.' : ''}`,
       );
       setPhase('scanNote');
     }
@@ -185,6 +194,8 @@ export default function ScorecardApp() {
     }
     setPhase('sending');
     try {
+      /* If the speed test is still running, give it a moment so the report can include it. */
+      if (speedRef.current) await Promise.race([speedRef.current, new Promise((r) => setTimeout(r, 20000))]);
       const res = await fetch(`${API}/submit`, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
@@ -452,7 +463,7 @@ export default function ScorecardApp() {
                 ) : null}
                 <div className={styles.urlRow}>
                   <button type="submit" className={styles.btnAccent} disabled={phase === 'sending'}>
-                    {phase === 'sending' ? 'Building your report…' : 'Show my results'}
+                    {phase === 'sending' ? 'Finishing the speed test and building your report…' : 'Show my results'}
                   </button>
                   <button type="button" className={styles.btnLight} onClick={back} disabled={phase === 'sending'}>
                     Back

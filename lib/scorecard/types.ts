@@ -54,6 +54,8 @@ export type ScanResult = {
   pagesChecked: string[];
   metrics: { perf: number | null; lcpMs: number | null; cls: number | null };
   scannedAt: number;
+  /** Speed (PageSpeed) runs separately: 'pending' until /api/scorecard/speed has filled it in. */
+  speed?: 'pending' | 'done' | 'failed';
 };
 
 export type Answers = Record<string, string>;
