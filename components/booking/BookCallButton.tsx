@@ -3,7 +3,7 @@
 import { type AnchorHTMLAttributes } from 'react';
 import { routes } from '@/lib/routes';
 import { siteConfig } from '@/lib/site';
-import { calConfigAttr, calReady, initCal } from './cal';
+import { calConfig, calConfigAttr, calReady, initCal, showCalLoading } from './cal';
 
 type Props = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> & {
   /** Where it goes if the popup script never runs. */
@@ -15,21 +15,18 @@ type Props = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> & {
  * JavaScript, or before Cal has loaded, it simply navigates to the calendar on the contact
  * page. The styling is whatever `className` brings, so every existing button keeps its look.
  *
- * Cal's embed script is not loaded with the page. The first hover, focus or touch on any
- * booking button starts it, so by the time the click lands it is usually ready; a click that
- * beats it waits for the embed (up to LOAD_WAIT) and then opens the popup, and only falls
- * through to the contact page if Cal never reports in.
+ * Cal's embed script is not loaded with the page, and not on hover either: the first click on
+ * any booking button starts it. That click is held, a small "Opening…" pill shows while the
+ * embed arrives (up to LOAD_WAIT), and the popup then opens. Only if Cal never reports in does
+ * the click fall through to the contact page.
  */
 
 /** How long a click that arrives before Cal is ready waits for it before navigating. */
-const LOAD_WAIT = 3000;
+const LOAD_WAIT = 6000;
 export default function BookCallButton({
   href = routes.contactBook,
   children,
   onClick,
-  onPointerEnter,
-  onFocus,
-  onTouchStart,
   ...rest
 }: Props) {
   const { namespace, calLink, origin } = siteConfig.booking;
@@ -38,18 +35,6 @@ export default function BookCallButton({
     <a
       {...rest}
       href={href}
-      onPointerEnter={(event) => {
-        onPointerEnter?.(event);
-        void initCal();
-      }}
-      onFocus={(event) => {
-        onFocus?.(event);
-        void initCal();
-      }}
-      onTouchStart={(event) => {
-        onTouchStart?.(event);
-        void initCal();
-      }}
       onClick={(event) => {
         onClick?.(event);
         if (event.defaultPrevented) return;
@@ -65,11 +50,18 @@ export default function BookCallButton({
         const link = event.currentTarget;
         event.preventDefault();
         const timeout = new Promise<void>((resolve) => window.setTimeout(resolve, LOAD_WAIT));
+        const hideLoading = showCalLoading();
         void Promise.race([initCal().then(() => undefined), timeout])
           .catch(() => undefined)
           .then(() => {
-            if (calReady()) link.click();
-            else window.location.assign(link.href);
+            hideLoading();
+            if (calReady()) {
+              /* Cal's document click listener may not be bound the instant the script reports
+                 in, so a replayed click can land on nothing; ask for the popup directly. */
+              void initCal().then((cal) =>
+                cal('modal', { calLink, calOrigin: origin, config: calConfig } as never),
+              );
+            } else window.location.assign(link.href);
           });
       }}
       data-cal-namespace={namespace}

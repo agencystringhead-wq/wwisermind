@@ -1,6 +1,27 @@
 /* ==========================================================================
    Design tokens
    ========================================================================== */
+/* Inter, self-hosted. /public/fonts/inter-latin-v1.woff2 is Google's variable latin file cut
+   down to the ~110 characters the built pages use (ASCII, Latin-1, typographic punctuation and
+   a few arrows), weight axis kept, so this one file serves every weight from 400 to 900. Rename
+   the file (v2) if it is regenerated: /fonts is cached for a year. The fallback face matches
+   Inter's metrics so the swap does not move the layout. */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-latin-v1.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  ascent-override: 89.79%;
+  descent-override: 22.36%;
+  line-gap-override: 0%;
+  size-adjust: 107.89%;
+}
+
 :root {
   /* layout */
   --container-width: 1300px;
@@ -24,6 +45,7 @@
   --color-brand-dark: #0d55c9;
 
   /* typography */
+  --font-inter: 'Inter', 'Inter Fallback';
   --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, Helvetica, Arial, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, 'SF Mono', Menlo,

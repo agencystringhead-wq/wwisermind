@@ -1144,7 +1144,7 @@ export const footerMain = {
   /** The heart sits inline where the word "love" would be, so its alt text is that word and
       the sentence still reads straight through for anyone not seeing the icon. */
   love: {
-    icon: '/icons/heart.png',
+    icon: '/icons/heart.webp',
     iconAlt: 'love',
     lead: 'Therapist websites and marketing. Created with ',
     tail: ' and gratitude in India, for the world, at wwisermind.',

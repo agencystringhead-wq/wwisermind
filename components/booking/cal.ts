@@ -59,3 +59,30 @@ export function calReady() {
   const cal = (window as unknown as { Cal?: { loaded?: boolean; ns?: Record<string, unknown> } }).Cal;
   return Boolean(cal?.loaded && cal.ns?.[booking.namespace]);
 }
+
+/** A small pill at the foot of the screen while the embed is fetched after a Book click, so the
+    first click is acknowledged rather than silent. Built in the DOM, not React: the click
+    handler has no component to render it from, and the pill outlives the button's re-renders.
+    Returns the function that removes it. */
+export function showCalLoading() {
+  const pill = document.createElement('div');
+  pill.setAttribute('role', 'status');
+  pill.setAttribute('aria-live', 'polite');
+  pill.textContent = 'Opening the booking calendar…';
+  Object.assign(pill.style, {
+    position: 'fixed',
+    left: '50%',
+    bottom: '24px',
+    transform: 'translateX(-50%)',
+    zIndex: '2147483000',
+    padding: '10px 18px',
+    borderRadius: '999px',
+    background: 'var(--color-ink, #111)',
+    color: 'var(--color-white, #fff)',
+    font: '500 14px/1.2 var(--font-sans, system-ui, sans-serif)',
+    boxShadow: '0 6px 24px rgba(0,0,0,.2)',
+    pointerEvents: 'none',
+  });
+  document.body.appendChild(pill);
+  return () => pill.remove();
+}

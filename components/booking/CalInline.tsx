@@ -1,10 +1,13 @@
 'use client';
 
-import Cal from '@calcom/embed-react';
+import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
 import { siteConfig } from '@/lib/site';
 import { calConfig, initCal } from './cal';
 import styles from './CalInline.module.css';
+
+/* The embed library stays out of the page's own JS: it is fetched with the calendar. */
+const Cal = dynamic(() => import('@calcom/embed-react'), { ssr: false });
 
 /**
  * The inline calendar. It sits in a fixed-height frame with a quiet skeleton in the same

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import { JetBrains_Mono } from 'next/font/google';
 import BottomBar from '@/components/layout/BottomBar';
 import ContactBar from '@/components/layout/ContactBar';
 import CrisisGate from '@/components/layout/CrisisGate';
@@ -10,13 +10,6 @@ import TopBar from '@/components/layout/TopBar';
 import { siteConfig } from '@/lib/site';
 import './globals.css';
 
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
-  display: 'swap',
-  variable: '--font-inter',
-});
-
 /* The footer's world clock is set in mono, matching the reference at pengon.dev, which uses
    JetBrains Mono. Self-hosted at build time by next/font exactly as Inter is, so it costs one
    more file in _next/static/media and still makes no third-party request. One weight only —
@@ -25,6 +18,8 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   weight: ['400'],
   display: 'swap',
+  /* Footer clock only, below the fold: fetched when it is first drawn, not preloaded. */
+  preload: false,
   variable: '--font-jetbrains-mono',
 });
 
@@ -50,7 +45,18 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={jetbrainsMono.variable}>
+      <head>
+        {/* The one Inter file (variable, every weight), fetched with the HTML rather than after the
+            CSS has been parsed. */}
+        <link
+          rel="preload"
+          href="/fonts/inter-latin-v1.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>
         <script
           type="application/ld+json"
