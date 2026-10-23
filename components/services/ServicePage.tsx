@@ -19,7 +19,7 @@ export type Ground = 'light' | 'grey';
 
 /** A frame takes the next ground in turn, or names its own: the homepage FAQ is white
     and sets its own spacing, so it is a fixed point the alternation runs through. */
-type Frame = { render: (ground: Ground) => ReactNode; fixed?: Ground };
+type Frame = { render: (ground: Ground) => ReactNode; fixed?: Ground; inert?: boolean };
 
 /**
  * The one template every service page is. Header, footer, the floating contact bar and
@@ -48,6 +48,18 @@ export default function ServicePage({
   if (service.whatWeDo) {
     const block = service.whatWeDo;
     frames.push({ render: (g) => <ServiceWhatWeDo block={block} ground={g} key="what-we-do" /> });
+  }
+
+  /* The free tool a service points to, straight after "what we do". It sits on the page's own
+     white and takes no ground, so the frames around it keep alternating as they did. */
+  if (service.relatedTool) {
+    const toolId = service.relatedTool;
+    frames.push({
+      inert: true,
+      render: () => (
+        <ToolCallout key="tool" variant="wide" toolId={toolId} placement={`service-${service.slug}`} />
+      ),
+    });
   }
 
   frames.push({ render: (g) => <ServiceIncluded service={service} ground={g} key="included" /> });
@@ -85,15 +97,6 @@ export default function ServicePage({
     ),
   });
   frames.push({ render: (g) => <ServiceRelated service={service} ground={g} key="related" /> });
-  if (service.relatedTool) {
-    const toolId = service.relatedTool;
-    frames.push({
-      fixed: 'light',
-      render: () => (
-        <ToolCallout key="tool" variant="wide" toolId={toolId} placement={`service-${service.slug}`} />
-      ),
-    });
-  }
 
   let ground: Ground = 'grey';
 
@@ -109,6 +112,7 @@ export default function ServicePage({
       ) : null}
       {afterHero}
       {frames.map((frame) => {
+        if (frame.inert) return frame.render(ground);
         ground = frame.fixed ?? (ground === 'light' ? 'grey' : 'light');
         return frame.render(ground);
       })}

@@ -33,6 +33,8 @@ export type Tool = {
   title: string;
   description: string;
   ctaLabel: string;
+  /** The quiet text link under a service page's hero button, when that page points here. */
+  heroLink?: string;
   /** The decorative drawing on the callout: inline SVG, no image file. */
   preview: ToolPreviewKind;
   /** A photo for the callout, when a tool has one. Unused so far. */
@@ -45,6 +47,7 @@ export const tools: Tool[] = [
   {
     id: 'website-scorecard',
     preview: 'dial',
+    heroLink: 'Not sure yet? Get your free website score',
     name: 'Free Website Scorecard',
     route: routes.tools.websiteScorecard,
     eyebrow: 'Free Website Scorecard',
@@ -55,6 +58,7 @@ export const tools: Tool[] = [
   {
     id: 'local-map-assessment',
     preview: 'map',
+    heroLink: 'Not sure yet? Check your map ranking free',
     name: 'Local Map Assessment',
     route: routes.localMapAssessment,
     eyebrow: DEFAULT_TOOL_EYEBROW,
@@ -65,6 +69,7 @@ export const tools: Tool[] = [
   {
     id: 'therapy-index',
     preview: 'ranking',
+    heroLink: 'Not sure yet? See how practices rank in your city',
     name: 'Therapy Index',
     route: routes.therapyIndex.hub,
     eyebrow: DEFAULT_TOOL_EYEBROW,

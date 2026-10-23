@@ -101,6 +101,21 @@
   margin-top: 36px;
 }
 
+/* The quiet link under the button: body font, muted on the dark ground, underlined on hover. */
+.toolLink {
+  margin-top: 16px;
+  color: var(--dark-quiet);
+  font-size: 14px;
+  line-height: 1.4;
+  text-underline-offset: 3px;
+  transition: color var(--dur) var(--ease);
+}
+
+.toolLink:hover {
+  color: var(--dark-headline);
+  text-decoration: underline;
+}
+
 /* --- responsive ---------------------------------------------------------- */
 @media (max-width: 1279px) {
   .section {

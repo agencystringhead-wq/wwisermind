@@ -28,12 +28,17 @@ type Compact = Shared & {
   eyebrow?: string;
 };
 
+type Inline = Shared & {
+  variant: 'inline';
+  toolId: ToolId;
+};
+
 type Grid = Shared & {
   variant: 'grid';
   toolIds: ToolId[];
 };
 
-export type ToolCalloutProps = Wide | Compact | Grid;
+export type ToolCalloutProps = Wide | Compact | Grid | Inline;
 
 /**
  * A free tool, offered in the middle of a page that is about something else. The copy and the
@@ -86,6 +91,31 @@ export default function ToolCallout(props: ToolCalloutProps) {
           </div>
         </div>
       </section>
+    );
+  }
+
+  if (props.variant === 'inline') {
+    const tool = getTool(props.toolId);
+    return (
+      <aside className={styles.inline} data-tool-card aria-label="Free tool">
+        <div className={`${styles.panel} ${styles.inlinePanel}`} aria-hidden="true">
+          <ToolPreview kind={tool.preview} />
+        </div>
+        <div className={styles.inlineBody}>
+          <Badges eyebrow={tool.eyebrow} />
+          <p className={styles.inlineTitle}>{tool.title}</p>
+          <p className={styles.description}>{tool.description}</p>
+          <Link
+            href={tool.ctaRoute ?? tool.route}
+            className={styles.link}
+            data-tool={tool.id}
+            data-placement={placement}
+          >
+            {tool.ctaLabel}
+            <ArrowRightIcon className={styles.arrow} />
+          </Link>
+        </div>
+      </aside>
     );
   }
 

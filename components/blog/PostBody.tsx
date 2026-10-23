@@ -98,7 +98,77 @@ function renderBlocks(blocks: Block[]): ReactNode[] {
   });
 }
 
-/** The post's body, from the parsed blocks. The words are the file's, untouched. */
-export default function PostBody({ blocks }: { blocks: Block[] }) {
-  return <div className={styles.prose}>{renderBlocks(blocks)}</div>;
+/** The words in a block, for finding how far through the post a point falls. */
+function weight(block: Block): number {
+  const inline = (parts: Inline[]) => parts.reduce((sum, part) => sum + part.text.length, 0);
+  switch (block.type) {
+    case 'p':
+      return inline(block.content);
+    case 'h2':
+    case 'h3':
+      return block.text.length;
+    case 'ul':
+    case 'ol':
+    case 'checklist':
+      return block.items.reduce((sum, item) => sum + inline(item), 0);
+    case 'quote':
+    case 'note':
+      return block.blocks.reduce((sum, inner) => sum + weight(inner), 0);
+    default:
+      return 0;
+  }
+}
+
+/**
+ * Where a callout goes in the body: after the block at about 40% of the words, but only in the
+ * gap between two paragraphs, so never inside a list, a note or a quote and never straight after
+ * a heading. Takes the paragraph break nearest to 40%. Returns the index of the block it goes
+ * after, or -1 when the post has no such break.
+ */
+export function inlineSlot(blocks: Block[]): number {
+  const total = blocks.reduce((sum, block) => sum + weight(block), 0);
+  let running = 0;
+  let target = 0;
+  for (let i = 0; i < blocks.length; i += 1) {
+    running += weight(blocks[i]);
+    if (running >= total * 0.4) {
+      target = i;
+      break;
+    }
+  }
+  let best = -1;
+  for (let i = 0; i < blocks.length - 1; i += 1) {
+    if (blocks[i].type !== 'p' || blocks[i + 1].type !== 'p') continue;
+    if (best === -1 || Math.abs(i - target) < Math.abs(best - target)) best = i;
+  }
+  return best;
+}
+
+/** The post's body, from the parsed blocks. The words are the file's, untouched. `inline`, when
+    given, is set between two blocks: `after` is the index of the one it follows. */
+export default function PostBody({
+  blocks,
+  inline,
+}: {
+  blocks: Block[];
+  inline?: { after: number; node: ReactNode };
+}) {
+  if (!inline) return <div className={styles.prose}>{renderBlocks(blocks)}</div>;
+  if (inline.after < 0) {
+    return (
+      <>
+        <div className={styles.prose}>{renderBlocks(blocks)}</div>
+        {inline.node}
+      </>
+    );
+  }
+  const head = blocks.slice(0, inline.after + 1);
+  const tail = blocks.slice(inline.after + 1);
+  return (
+    <>
+      <div className={styles.prose}>{renderBlocks(head)}</div>
+      {inline.node}
+      <div className={styles.prose}>{renderBlocks(tail)}</div>
+    </>
+  );
 }

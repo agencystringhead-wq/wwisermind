@@ -7,7 +7,7 @@ import Reveal from '@/components/ui/Reveal';
 import ToolCallout from '@/components/tools/ToolCallout';
 import section from '@/components/services/Section.module.css';
 import BlogCard from './BlogCard';
-import PostBody, { renderInline } from './PostBody';
+import PostBody, { inlineSlot, renderInline } from './PostBody';
 import styles from './Blog.module.css';
 
 /** An absolute address for a path on this site, for the structured data. */
@@ -171,7 +171,19 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
             </Reveal>
           ) : null}
 
-          <PostBody blocks={post.body} />
+          <PostBody
+            blocks={post.body}
+            inline={
+              post.relatedTool
+                ? {
+                    after: inlineSlot(post.body),
+                    node: (
+                      <ToolCallout variant="inline" toolId={post.relatedTool} placement="blog-inline" />
+                    ),
+                  }
+                : undefined
+            }
+          />
 
           {post.faq.length > 0 ? (
             <section className={`${styles.faq} ${styles.prose}`} aria-labelledby="faq-heading">
@@ -208,9 +220,6 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
           ) : null}
         </div>
 
-        {post.relatedTool ? (
-          <ToolCallout variant="wide" toolId={post.relatedTool} placement={`blog-${post.slug}`} />
-        ) : null}
       </article>
 
       {more.length > 0 ? (

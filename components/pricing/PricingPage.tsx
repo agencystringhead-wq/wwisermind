@@ -81,13 +81,13 @@ export default function PricingPage() {
       <ReviewsNumbers ground={section.grey} />
       <PricingFeatured />
       <PricingPackages />
-      <PricingFaq />
       <ToolCallout
         variant="compact"
         toolIds={['website-scorecard']}
         eyebrow="Not sure what you need?"
         placement="pricing-hub"
       />
+      <PricingFaq />
     </>
   );
 }
