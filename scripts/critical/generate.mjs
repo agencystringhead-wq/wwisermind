@@ -23,6 +23,14 @@ const VIEWPORTS = [
 ];
 const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.mp4': 'video/mp4', '.webm': 'video/webm', '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg', '.txt': 'text/plain', '.xml': 'application/xml' };
 
+/* `--url https://some.pages.dev` crawls a deployment instead of the local out/. Cloudflare's build
+   names its stylesheets differently from a local build (same rules, different chunking), and
+   apply.mjs only trusts a page whose stylesheet names match, so data.json for the live site has to be
+   recorded from a Cloudflare build of the same code: deploy a preview, then
+     node scripts/critical/generate.mjs --url https://<preview>.pages.dev
+   (the page list still comes from the local out/, so build locally first). The deployment must not
+   already have critical CSS in it, or what is recorded is the half-loaded page. */
+const remote = process.argv.includes('--url') ? process.argv[process.argv.indexOf('--url') + 1].replace(/\/$/, '') : null;
 const server = http.createServer((req, res) => {
   let f = path.join(OUT, decodeURIComponent(req.url.split('?')[0]));
   if (fs.existsSync(f) && fs.statSync(f).isDirectory()) f = path.join(f, 'index.html');
@@ -30,8 +38,8 @@ const server = http.createServer((req, res) => {
   res.writeHead(200, { 'content-type': types[path.extname(f)] || 'application/octet-stream' });
   fs.createReadStream(f).pipe(res);
 });
-await new Promise((r) => server.listen(0, r));
-const base = `http://localhost:${server.address().port}`;
+if (!remote) await new Promise((r) => server.listen(0, r));
+const base = remote ?? `http://localhost:${server.address().port}`;
 
 const pages = [];
 (function walk(d) {
@@ -126,7 +134,7 @@ for (const route of pages) {
   if (++done % 10 === 0) console.log(`${done}/${pages.length}`);
 }
 await browser.close();
-server.close();
+if (!remote) server.close();
 
 /* Identical blocks are stored once. */
 const blocks = {};

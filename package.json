@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/check-crisis-data.mjs && next build && node scripts/critical/apply.mjs",
+    "build": "node scripts/check-crisis-data.mjs && next build",
     "critical": "node scripts/critical/generate.mjs",
     "start": "next start",
     "lint": "next lint",

@@ -1,5 +1,7 @@
 /**
- * Runs after `next build`. For every page that has an entry in data.json whose stylesheet list still
+
+ * Runs after `next build` (next.config.mjs calls it when the build process exits, so it happens
+ * whichever command starts the build — Cloudflare runs `npx next build`). For every page that has an entry in data.json whose stylesheet list still
  * matches, puts that page's critical CSS in the <head> and loads the full stylesheets without
  * blocking the first paint (media="print" until they have arrived, then "all"). A page with no entry,
  * or whose stylesheets changed since data.json was made, is left exactly as built.
@@ -22,6 +24,7 @@ for (const [route, { sheets, block, hide }] of Object.entries(routes)) {
   const file = path.join(OUT, route, 'index.html');
   if (!fs.existsSync(file)) continue;
   let html = fs.readFileSync(file, 'utf8');
+  if (html.includes('data-critical')) continue; // already done
   const links = [...html.matchAll(LINK)];
   if (links.length !== sheets.length || links.some((m, i) => m[1] !== sheets[i])) {
     stale++;
