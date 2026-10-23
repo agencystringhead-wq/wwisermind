@@ -1,5 +1,6 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { type AnchorHTMLAttributes } from 'react';
 import { routes } from '@/lib/routes';
 import { siteConfig } from '@/lib/site';
@@ -30,6 +31,18 @@ export default function BookCallButton({
   ...rest
 }: Props) {
   const { namespace, calLink, origin } = siteConfig.booking;
+  const pathname = usePathname();
+
+  /* On the Good Faith Estimate page a visitor may be mid-form with a client's details on
+     screen, so no third-party script is loaded there: the button is a plain link that opens
+     the booking page on cal.com in a new tab. */
+  if (pathname?.startsWith(routes.tools.goodFaithEstimate)) {
+    return (
+      <a {...rest} href={`https://cal.com/${calLink}`} target="_blank" rel="noopener noreferrer">
+        {children}
+      </a>
+    );
+  }
 
   return (
     <a

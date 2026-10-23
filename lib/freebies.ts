@@ -179,6 +179,35 @@ export const freebies: Freebie[] = [
     faq: [],
   },
   {
+    slug: 'good-faith-estimate',
+    title: 'Good Faith Estimate generator',
+    shortDescription:
+      'Fill in a short form and download a Good Faith Estimate PDF for a self-pay client. Nothing about your client leaves your browser.',
+    longDescription:
+      'Make a Good Faith Estimate for a self-pay therapy client in a few minutes, on the layout of the CMS standard form.',
+    typeLabel: 'Free tool',
+    type: 'tool',
+    gated: false,
+    /* Live: the page is its own tool (components/gfe), not the shared freebie template. */
+    status: 'live',
+    assetUrl: '',
+    assetLabel: 'Make an estimate',
+    relatedService: {
+      text: 'Want a website that turns visitors into inquiries?',
+      label: 'See One-Week Website pricing',
+      href: routes.pricing.oneWeekWebsite,
+    },
+    icon: 'clipboard',
+    previewImage: null,
+    whatsInside: [],
+    seo: {
+      title: 'Free Good Faith Estimate Generator for Therapists | wwisermind',
+      description:
+        'Make a Good Faith Estimate PDF for a self-pay therapy client in a few minutes. Free, follows the CMS form, and your client’s details never leave your browser.',
+    },
+    faq: [],
+  },
+  {
     slug: 'psychology-today-profile-kit-for-therapists',
     title: 'Psychology Today Profile Kit',
     shortDescription:

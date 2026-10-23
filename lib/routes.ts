@@ -83,6 +83,7 @@ export const FREEBIE_PATHS = {
   '2027-full-caseload-plan-for-therapists': '/freebies/2027-full-caseload-plan-for-therapists/',
   'ai-visibility-report': '/tools/ai-visibility-report/',
   'website-scorecard-for-therapists': '/tools/website-scorecard-for-therapists/',
+  'good-faith-estimate': '/tools/good-faith-estimate/',
   'psychology-today-profile-kit-for-therapists':
     '/freebies/psychology-today-profile-kit-for-therapists/',
   'google-business-profile-checklist-for-therapists':
@@ -146,6 +147,7 @@ export const routes = {
   tools: {
     aiVisibilityReport: FREEBIE_PATHS['ai-visibility-report'],
     websiteScorecard: FREEBIE_PATHS['website-scorecard-for-therapists'],
+    goodFaithEstimate: FREEBIE_PATHS['good-faith-estimate'],
     /** The public helpline directory, and the install page for the help now widget. */
     crisisResources: '/tools/crisis-resources/',
     helpNowWidget: '/tools/crisis-resources/help-now-widget/',

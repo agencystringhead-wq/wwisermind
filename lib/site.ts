@@ -383,6 +383,7 @@ export const megaPanels: Record<string, MegaPanel> = {
         links: [
           { label: 'Local Map Assessment', href: routes.localMapAssessment, desc: 'Your Google Maps presence' },
           ...scorecardLink,
+          { label: 'Good Faith Estimate', href: routes.tools.goodFaithEstimate, desc: 'Free PDF for self-pay clients' },
           { label: 'Marketing Assessment', href: routes.homeSection('marketing-assessment'), desc: 'Where you stand today' },
           { label: 'AI Visibility Report', href: routes.homeSection('ai-visibility-report'), desc: 'Does ChatGPT know you exist?', badge: 'Soon' },
         ],

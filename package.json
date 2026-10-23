@@ -22,12 +22,15 @@
     "therapyindex:review-export": "tsx scripts/therapyindex/review.ts export",
     "therapyindex:review-apply": "tsx scripts/therapyindex/review.ts apply",
     "therapyindex:og": "node scripts/therapyindex/build-og.mjs",
-    "therapyindex:check": "node scripts/therapyindex/check-pages.mjs"
+    "therapyindex:check": "node scripts/therapyindex/check-pages.mjs",
+    "gfe:test": "tsx scripts/gfe/e2e.mts",
+    "gfe:legal": "tsx scripts/gfe/export-legal.mts"
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",
     "leaflet": "^1.9.4",
     "next": "^15.5.4",
+    "pdf-lib": "^1.17.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
