@@ -24,3 +24,6 @@ data/therapyindex/smoke/
 # Cloudflare local secrets and wrangler state
 .dev.vars
 .wrangler/
+
+# Playwright MCP scratch output
+.playwright-mcp/
