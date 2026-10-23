@@ -14,7 +14,11 @@ import type { Listing } from '../../../lib/local-map/types';
    Checks Turnstile and the daily limits, saves the lead, and either reuses a report made for the same place, keywords and radius
    within the last 7 days, or posts the 100 checks to DataForSEO (one request, plus two for your own reviews and posts) and returns the
    new report's id at once. No results are processed here: the report page polls the status endpoint for that.
-   Outside requests: Turnstile 1, DataForSEO 3, two emails 2. */
+   Outside requests: Turnstile 1, DataForSEO 3, two emails 2.
+
+   CPU NOTE (measured in the live log tail, 2026-10-23): this function used about 23 ms of CPU, over the Workers free plan's 10 ms. Along with the
+   early competitor pick (about 20 ms) and the final report build (about 19 ms) in lib/local-map/server/pipeline.ts, it needs the Workers Paid
+   plan before outreach goes live. See "Workers Paid is needed before outreach" in README.md. */
 
 const clean = (v: unknown, max: number) =>
   typeof v === 'string' ? v.replace(/[\u0000-\u001f\u007f]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, max) : '';

@@ -248,7 +248,8 @@ async function advance(env: LmEnv, row: Row, hooks: StatusHooks): Promise<{ row:
         hurry = true;
         moved = true;
       } else if (!timings.early && gridDone / tasks.grid.length >= EARLY_COMPETITORS_SHARE) {
-        /* Early pick: from the half of the grid that is in, ask for the reviews and posts of the likeliest practices ahead of you. */
+        /* Early pick: from the half of the grid that is in, ask for the reviews and posts of the likeliest practices ahead of you.
+           CPU NOTE: about 20 ms in the live tail, over the free plan's 10 ms. Needs Workers Paid before outreach goes live (see README). */
         const cells = await loadCells(env, row.id, pointsTotal, keywordCount);
         const out = await postProfiles(env, row.id, tasks.prof, wanted(cells, listing, EARLY_CANDIDATES), `competitors, early (up to ${EARLY_CANDIDATES}): ${gridDone} of ${tasks.grid.length} grid checks in`);
         meter.calls += out.calls;
@@ -310,6 +311,7 @@ async function advance(env: LmEnv, row: Row, hooks: StatusHooks): Promise<{ row:
         moved = true;
       }
     } else if (status === 'building') {
+      /* CPU NOTE: about 19 ms in the live tail, over the free plan's 10 ms. Needs Workers Paid before outreach goes live (see README). */
       const cells = await loadCells(env, row.id, pointsTotal, keywordCount);
       reportJson = JSON.stringify(finalise(row, listing, cells, JSON.parse(competitorsJson ?? '[]'), results.extras, now));
       timings.finished = now;

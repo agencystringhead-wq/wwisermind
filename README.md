@@ -165,6 +165,29 @@ either count passes 35 of 50. CPU time cannot be read from inside a Worker; use 
 
 Limits: 3 reports a day per IP and per email, 20 lookups a day per IP, 7-day cache per place + centre + keywords + radius.
 
+### Workers Paid is needed before outreach goes live
+
+**Start, the early competitor pick and the final report build are over the free plan's 10 ms of CPU per invocation, and every report needs all three.**
+Real CPU time from the live log tail (Cloudflare's own `cpuTime`, 2026-10-23, 57 invocations across two full reports, every outcome `ok`, nothing killed):
+
+| Step | CPU | Over 10 ms |
+| --- | --- | --- |
+| `start` | about 23 ms | yes |
+| early competitor pick (a `status` poll) | about 20 ms | yes |
+| final report build (a `status` poll) | about 19 ms | yes |
+| collecting poll, 8 fetches | median 8 ms, highest 14 ms | 3 of 32 |
+| `lookup` | about 8 ms | no |
+| small polls, finished report served | 1 to 4 ms | no |
+
+In that sample 9 of 57 invocations (16%) were over 10 ms and another 22 were between 8 and 10 ms. Cloudflare did not stop any of them (no `exceededCpu`), and it is not known how it
+enforces the limit for this account, but a scan cannot complete without the three heavy steps, so **move the Pages project to Workers Paid before sending real visitors here**.
+Outside requests (highest 8 of 50) and D1 queries (highest 12 of 50) have plenty of room. The local test's CPU figures (`npm run localmap:test`) run 3 to 6 times lower than
+Cloudflare's, so use the tail, not the test, for CPU: `wrangler pages deployment tail <deployment id> --project-name wwisermind --environment production --format json` (each event has `cpuTime`
+and `outcome`; the tail may refuse a brand new deployment for a few minutes).
+
+If it has to stay on the free plan, these would get the three steps under 10 ms (not done yet): keep a running tally of who appears in the top three while collecting, so the early and final
+picks need no cell reads; build the report one keyword per poll and assemble it in a last small poll; and move the two emails and the first reviews and posts tasks out of `start` into the first polls.
+
 ### Watching spend and speed
 
 ```sql
