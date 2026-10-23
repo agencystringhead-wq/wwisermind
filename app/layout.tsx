@@ -13,13 +13,12 @@ import './globals.css';
 /* The footer's world clock is set in mono, matching the reference at pengon.dev, which uses
    JetBrains Mono. Self-hosted at build time by next/font exactly as Inter is, so it costs one
    more file in _next/static/media and still makes no third-party request. One weight only —
-   the clock never asks for another. */
+   the clock never asks for another. It is also the type of the small mono labels above the fold
+   (eyebrows, the home hero's guide line), so it is preloaded: arriving late it re-flowed them. */
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   weight: ['400'],
   display: 'swap',
-  /* Footer clock only, below the fold: fetched when it is first drawn, not preloaded. */
-  preload: false,
   variable: '--font-jetbrains-mono',
 });
 
