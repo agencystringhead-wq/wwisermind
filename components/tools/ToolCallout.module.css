@@ -10,6 +10,15 @@
   padding-block: 56px;
 }
 
+/* a grid that sits inside a section of its own (the hub) */
+.flush {
+  padding-block: 0;
+}
+
+.flush .grid {
+  justify-content: flex-start;
+}
+
 /* --- shared text ------------------------------------------------------------------- */
 
 .eyebrow {
@@ -139,7 +148,7 @@
   list-style: none;
 }
 
-.grid > .card {
+.grid > li {
   flex: 0 0 calc((100% - 40px) / 3);
 }
 
@@ -261,7 +270,7 @@
 /* --- narrower screens ---------------------------------------------------------------- */
 
 @media (max-width: 1023px) {
-  .grid > .card {
+  .grid > li {
     flex-basis: calc((100% - 20px) / 2);
   }
 }
@@ -319,7 +328,7 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .grid > .card {
+  .grid > li {
     flex-basis: 100%;
   }
 

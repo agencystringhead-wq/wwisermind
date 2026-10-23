@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import ToolCallout from '@/components/tools/ToolCallout';
 import { routes } from '@/lib/routes';
-import { tools } from '@/lib/tools';
+import { liveTools } from '@/lib/tools';
 import styles from './not-found.module.css';
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export default function NotFound() {
         </Link>
       </section>
       <div className={styles.tools}>
-        <ToolCallout variant="grid" toolIds={tools.map((tool) => tool.id)} placement="404-grid" />
+        <ToolCallout variant="grid" toolIds={liveTools.map((tool) => tool.id)} placement="404-grid" />
       </div>
     </>
   );

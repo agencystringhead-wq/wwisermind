@@ -4,7 +4,7 @@ import { getStatesWithData } from '@/lib/crisis-resources';
 import { freebiePath, freebies, isLive } from '@/lib/freebies';
 import { routes, SERVICE_PATHS } from '@/lib/routes';
 import { services, type ServiceCategory } from '@/lib/services';
-import { getTool } from '@/lib/tools';
+import { getTool, tools } from '@/lib/tools';
 import { INDEXABLE } from '@/lib/therapyindex/config';
 import { getMarketViews, indexableProfiles } from '@/lib/therapyindex/data';
 
@@ -53,7 +53,15 @@ const servicesIn = (category: ServiceCategory): SitemapLink[] =>
     .filter((service) => service.category === category && !service.draft)
     .map((service) => link(service.name, SERVICE_PATHS[service.slug]));
 
-const liveFreebies = freebies.filter((freebie) => INCLUDE_COMING_SOON || isLive(freebie));
+/** A tool marked "hidden" in lib/tools.ts is in no sitemap, whatever its own page says. */
+const hiddenToolRoutes = new Set<string>(
+  tools.filter((tool) => tool.status === 'hidden').map((tool) => tool.route),
+);
+
+const liveFreebies = freebies.filter(
+  (freebie) =>
+    (INCLUDE_COMING_SOON || isLive(freebie)) && !hiddenToolRoutes.has(freebiePath(freebie)),
+);
 
 export function sitemapGroups(): SitemapGroup[] {
   const posts = getAllPosts();
@@ -95,7 +103,7 @@ export function sitemapGroups(): SitemapGroup[] {
     {
       title: 'Free resources',
       links: [
-        link('Freebies', routes.freebies.hub),
+        link('Free Tools', routes.freebies.hub),
         ...liveFreebies.map((freebie) => link(freebie.title, freebiePath(freebie))),
         link(getTool('local-map-assessment').name, getTool('local-map-assessment').route),
         link(getTool('crisis-resources').name, getTool('crisis-resources').route),

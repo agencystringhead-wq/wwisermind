@@ -1,6 +1,7 @@
+import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { ArrowRightIcon } from '@/components/ui/icons';
-import { DEFAULT_TOOL_EYEBROW, getTool, type Tool, type ToolId } from '@/lib/tools';
+import { DEFAULT_TOOL_EYEBROW, getTool, isLiveTool, type Tool, type ToolId } from '@/lib/tools';
 import controls from '@/components/ui/Controls.module.css';
 import ToolPreview from './ToolPreviews';
 import styles from './ToolCallout.module.css';
@@ -36,6 +37,10 @@ type Inline = Shared & {
 type Grid = Shared & {
   variant: 'grid';
   toolIds: ToolId[];
+  /** Cards that are not tools (the hub's downloads), set in the same grid after the tools. */
+  extra?: ReactNode;
+  /** No section padding, for a grid that sits inside a section of its own. */
+  flush?: boolean;
 };
 
 export type ToolCalloutProps = Wide | Compact | Grid | Inline;
@@ -63,6 +68,9 @@ function Badges({ eyebrow }: { eyebrow: string }) {
 
 export default function ToolCallout(props: ToolCalloutProps) {
   const { placement } = props;
+
+  /* A hidden tool is shown nowhere: a callout for it renders nothing. */
+  if ((props.variant === 'wide' || props.variant === 'inline') && !isLiveTool(props.toolId)) return null;
 
   if (props.variant === 'wide') {
     const tool = getTool(props.toolId);
@@ -119,7 +127,8 @@ export default function ToolCallout(props: ToolCalloutProps) {
     );
   }
 
-  const ids = props.toolIds;
+  const ids = props.toolIds.filter(isLiveTool);
+  if (ids.length === 0 && !(props.variant === 'grid' && props.extra)) return null;
   const heading = props.variant === 'compact' ? props.heading : undefined;
   const eyebrowOverride = props.variant === 'compact' ? props.eyebrow : undefined;
   const Title = heading || props.variant === 'grid' ? 'h3' : 'h2';
@@ -127,10 +136,10 @@ export default function ToolCallout(props: ToolCalloutProps) {
 
   return (
     <section
-      className={styles.cardsSection}
+      className={`${styles.cardsSection} ${props.variant === 'grid' && props.flush ? styles.flush : ''}`}
       {...(heading ? { 'aria-labelledby': `tool-${placement}` } : { 'aria-label': 'Free tools' })}
     >
-      <div className="container">
+      <div className={props.variant === 'grid' && props.flush ? undefined : 'container'}>
         {heading ? (
           <h2 className={styles.heading} id={`tool-${placement}`}>
             {heading}
@@ -165,6 +174,7 @@ export default function ToolCallout(props: ToolCalloutProps) {
               </li>
             );
           })}
+          {props.variant === 'grid' ? props.extra : null}
         </ul>
       </div>
     </section>

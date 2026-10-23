@@ -7,7 +7,6 @@ import { metadata as processMeta } from '@/app/process/page';
 import { metadata as resultsMeta } from '@/app/results/page';
 import { metadata as reviewsMeta } from '@/app/reviews/page';
 import { metadata as servicesMeta } from '@/app/services/page';
-import { metadata as crisisMeta } from '@/app/tools/crisis-resources/page';
 import { freebiePath, freebies, hubMeta, isLive } from '@/lib/freebies';
 import { AUDIENCE_SLUGS } from '@/lib/audience-slugs';
 import { getAudience } from '@/lib/audiences';
@@ -21,7 +20,8 @@ import { seoAuditMeta } from '@/lib/pricing/seo-audit';
 import { websiteDesignMeta } from '@/lib/pricing/website-design';
 import { SERVICE_PATHS, routes } from '@/lib/routes';
 import { services } from '@/lib/services';
-import { absUrl, megaPanels } from '@/lib/site';
+import { absUrl } from '@/lib/site';
+import { liveTools } from '@/lib/tools';
 
 /* Static export: this is written to /llms.txt at build time. */
 export const dynamic = 'force-static';
@@ -70,9 +70,9 @@ export function GET() {
       ],
     },
     {
-      title: 'Freebies',
+      title: 'Free tools and downloads',
       entries: [
-        { name: 'Freebies', path: routes.freebies.hub, description: hubMeta.description },
+        { name: 'Free Tools', path: routes.freebies.hub, description: hubMeta.description },
         ...freebies.filter(isLive).map((freebie) => ({
           name: freebie.title,
           path: freebiePath(freebie),
@@ -82,18 +82,12 @@ export function GET() {
     },
     {
       title: 'Tools',
-      /* The Free resources column is the Freebies section above, and its coming-soon pages stay out. */
-      entries: (megaPanels.Tools?.columns ?? [])
-        .filter((column) => column.lead !== 'Free')
-        .flatMap((column) => column.links)
-        .map((link) => ({ name: link.label, path: link.href, description: link.desc }))
-        .concat([
-          {
-            name: 'Crisis Resources by State',
-            path: routes.tools.crisisResources,
-            description: crisisMeta.description ?? '',
-          },
-        ]),
+      /* Every live tool in lib/tools.ts; a hidden one is left out. */
+      entries: liveTools.map((tool) => ({
+        name: tool.name,
+        path: tool.route,
+        description: tool.description,
+      })),
     },
     {
       title: 'Company',

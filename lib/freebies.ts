@@ -497,15 +497,15 @@ export function eyebrowFor(freebie: Freebie): string {
 /* --- the hub ------------------------------------------------------------------------- */
 
 export const hubMeta = {
-  title: 'Free Resources for Therapists | Templates, Checklists & Tools | wwisermind',
+  title: 'Free Tools for Therapists | Scorecard, Map Check, Templates & Guides | wwisermind',
   description:
-    'Free tools and templates for therapists: Psychology Today profile kit, Google Business Profile checklist, social media and business card templates, email signature and more.',
+    'Free tools and downloads for therapists: website scorecard, local map assessment, Therapy Index, Good Faith Estimate, crisis resources, email signature, guides and templates.',
 };
 
 export const hubHero = {
-  eyebrow: 'Freebies',
-  title: 'Free tools and templates for therapists',
-  sub: 'Practical things you can use today to get found, look professional and save time. No catch. Some ask for your email so we can send them over.',
+  eyebrow: 'Free tools',
+  title: 'Free tools and downloads for therapists',
+  sub: 'Everything here is free. No credit card, no strings. Check your practice, see your market, sort the paperwork, or grab a guide or template. Some downloads ask for your email so we can send them over.',
 };
 
 export const hubCta = {

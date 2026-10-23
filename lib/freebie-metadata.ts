@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { freebiePath, type Freebie } from '@/lib/freebies';
 import { absUrl, siteConfig } from '@/lib/site';
+import { tools } from '@/lib/tools';
 
 /** The metadata every freebie page shares: "{Title} | Free for Therapists | wwisermind", the short
     description, a canonical and Open Graph address, and noindex while the freebie is coming soon.
@@ -10,12 +11,14 @@ export function freebieMetadata(freebie: Freebie): Metadata {
   const title = freebie.seo?.title ?? `${freebie.title} | Free for Therapists | wwisermind`;
   const description = freebie.seo?.description ?? freebie.shortDescription;
   const url = absUrl(freebiePath(freebie));
+  /* Coming soon, or marked hidden in lib/tools.ts: the page stays, but asks not to be indexed. */
+  const hidden = tools.some((tool) => tool.status === 'hidden' && tool.route === freebiePath(freebie));
 
   return {
     title,
     description,
     alternates: { canonical: url },
-    robots: freebie.status === 'comingSoon' ? { index: false, follow: true } : undefined,
+    robots: freebie.status === 'comingSoon' || hidden ? { index: false, follow: true } : undefined,
     openGraph: {
       type: 'website',
       siteName: siteConfig.name,

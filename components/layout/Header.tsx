@@ -101,7 +101,11 @@ function Mega({
     >
       <div
         className={`container ${styles.megaGrid} ${
-          panel.columns.length === 3 ? styles.megaGrid3 : styles.megaGrid2
+          panel.columns.length >= 4
+            ? styles.megaGrid4
+            : panel.columns.length === 3
+              ? styles.megaGrid3
+              : styles.megaGrid2
         }`}
       >
         {panel.columns.map((column, index) => (
@@ -416,9 +420,6 @@ export default function Header() {
           </nav>
 
           <div className={styles.actions} onMouseEnter={scheduleClose}>
-            <Link href={siteConfig.contactUrl} className={styles.contact}>
-              Contact Us
-            </Link>
             <CtaLink href={siteConfig.bookingUrl} className={styles.cta}>
               Book Your Free Call
             </CtaLink>
@@ -485,13 +486,6 @@ export default function Header() {
                 >
                   Book Your Free Call
                 </CtaLink>
-                <Link
-                  href={siteConfig.contactUrl}
-                  className={styles.panelContact}
-                  onClick={() => setOpen(false)}
-                >
-                  Contact Us
-                </Link>
               </div>
             </div>
           </div>

@@ -967,3 +967,35 @@
     width: 100%;
   }
 }
+
+/* --- the combined hub: four groups, each a mono label over its cards -------------------- */
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.group {
+  display: block;
+}
+
+.groupLabel {
+  margin-bottom: 20px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.groupLabel b {
+  color: var(--color-brand);
+  font-weight: 400;
+}
+
+@media (max-width: 767px) {
+  .groups {
+    gap: 48px;
+  }
+}

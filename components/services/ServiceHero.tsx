@@ -1,7 +1,7 @@
 import CtaLink from '@/components/booking/CtaLink';
 import Link from 'next/link';
 import { contactPage, siteConfig } from '@/lib/site';
-import { getTool } from '@/lib/tools';
+import { getTool, isLiveTool } from '@/lib/tools';
 import type { Service } from '@/lib/services';
 import BackgroundVideo from '@/components/ui/BackgroundVideo';
 import styles from './ServiceHero.module.css';
@@ -28,7 +28,8 @@ export default function ServiceHero({
 }) {
   const { background } = contactPage.hero;
   const [source] = background.sources;
-  const tool = service.relatedTool ? getTool(service.relatedTool) : null;
+  const tool =
+    service.relatedTool && isLiveTool(service.relatedTool) ? getTool(service.relatedTool) : null;
 
   return (
     <section className={`${styles.section} ${withMosaic ? styles.sectionMosaic : ''}`}>

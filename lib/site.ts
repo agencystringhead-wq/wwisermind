@@ -5,6 +5,7 @@ import { freebiePath, freebies as freebieList } from '@/lib/freebies';
 import { routes } from '@/lib/routes';
 import { serviceHref } from '@/lib/service-slugs';
 import { getTool } from '@/lib/tools';
+import { freeToolGroups, freeToolLinks } from '@/lib/free-tools';
 import { reviews, reviewsSummary } from '@/lib/reviews';
 
 export type NavItem = {
@@ -70,12 +71,11 @@ export const announcement = {
 
 export const mainNav: NavItem[] = [
   { label: 'Services', href: '#services' },
-  { label: 'Results', href: routes.results },
   { label: 'Who We Help', href: '#who-we-help' },
+  { label: 'Results', href: routes.results },
   { label: 'Pricing', href: routes.pricing.hub },
+  { label: 'Free Tools', href: routes.freebies.hub, badge: 'NEW' },
   { label: 'About', href: routes.about },
-  { label: 'Freebies', href: routes.freebies.hub },
-  { label: 'Tools', href: '#tools', badge: 'NEW' },
 ];
 
 /* ==========================================================================
@@ -126,36 +126,6 @@ export type MegaPanel = {
       own (the desktop dropdown has its strip link; the accordion shows only the columns). */
   mobileLink?: NavItem;
 };
-
-/** The scorecard's link for the Tools menu. The menu label is its own ("Free Website Scorecard", with the NEW badge);
-    the page, the subtitle and the "Soon" state still come from its entry in lib/freebies.ts. Empty if the entry is ever removed. */
-const scorecard = freebieList.find((freebie) => freebie.slug === 'website-scorecard-for-therapists');
-const scorecardLink = scorecard
-  ? [
-      {
-        label: getTool('website-scorecard').name,
-        href: freebiePath(scorecard),
-        desc: scorecard.typeLabel,
-        badge: scorecard.status === 'comingSoon' ? 'Soon' : 'NEW',
-      },
-    ]
-  : [];
-
-/** A freebie's menu link, from its entry in lib/freebies.ts: title, type line and, while it is not
-    live, the "Soon" badge. */
-const freebieMenuLink = (freebie: (typeof freebieList)[number]): MegaLink => ({
-  label: freebie.title,
-  href: freebiePath(freebie),
-  desc: freebie.typeLabel,
-  ...(freebie.status === 'comingSoon' ? { badge: 'Soon' } : {}),
-});
-
-/** The links for these freebies, in the order given. A slug that is not in the data is skipped. */
-const freebieMenuLinks = (slugs: string[]): MegaLink[] =>
-  slugs.flatMap((slug) => {
-    const freebie = freebieList.find((entry) => entry.slug === slug);
-    return freebie ? [freebieMenuLink(freebie)] : [];
-  });
 
 const caseloadPlan = freebieList.find((freebie) => freebie.slug === '2027-full-caseload-plan-for-therapists');
 
@@ -299,6 +269,7 @@ export const megaPanels: Record<string, MegaPanel> = {
           { label: 'About Us', href: routes.about, desc: 'The story behind wwisermind' },
           { label: 'Our Process', href: routes.process, desc: 'Three steps, no mystery' },
           { label: 'Reviews', href: routes.reviews, desc: 'What therapists say' },
+          { label: 'Contact', href: routes.contact, desc: 'Questions, or a free 30-minute call' },
         ],
       },
       {
@@ -324,31 +295,16 @@ export const megaPanels: Record<string, MegaPanel> = {
     strip: { text: 'Built in Pune, India. Honest about it from the first hello.' },
   },
 
-  Freebies: {
-    id: 'freebies',
-    /* Every link is read from lib/freebies.ts, the data the /freebies/ page uses, so a freebie
-       renamed, retyped or marked "Soon" there changes here too. The two tools (AI Visibility
-       Report, Website Scorecard) live in the Tools menu. */
-    columns: [
-      {
-        lead: 'Learn',
-        title: 'Guides',
-        links: freebieMenuLinks([
-          '2027-full-caseload-plan-for-therapists',
-          'psychology-today-profile-kit-for-therapists',
-          'google-business-profile-checklist-for-therapists',
-        ]),
-      },
-      {
-        lead: 'Make',
-        title: 'Templates',
-        links: freebieMenuLinks([
-          'social-media-posts-for-therapists',
-          'business-card-template-for-therapists',
-          'email-signature-for-therapists',
-        ]),
-      },
-    ],
+  'Free Tools': {
+    id: 'free-tools',
+    /* One menu for every free thing, grouped the way the /freebies/ hub groups it. The groups,
+       names and lines come from lib/free-tools.ts, which reads the tools' status: a hidden tool is
+       not here. No item carries a badge; the only one is NEW on the top-level label. */
+    columns: freeToolGroups.map((group) => ({
+      lead: group.lead,
+      title: group.title,
+      links: freeToolLinks(group),
+    })),
     feature: {
       eyebrow: 'Start Here',
       lead: caseloadPlan?.heading ?? '2027 Full-Caseload Plan',
@@ -369,55 +325,10 @@ export const megaPanels: Record<string, MegaPanel> = {
         : {}),
     },
     strip: {
-      text: 'Every freebie is free. No credit card.',
-      link: { label: 'See all freebies', href: routes.freebies.hub },
+      text: 'Everything here is free. No credit card, no strings.',
+      link: { label: 'See everything free', href: routes.freebies.hub },
     },
-    mobileLink: { label: 'See all freebies', href: routes.freebies.hub },
-  },
-
-  Tools: {
-    id: 'tools',
-    columns: [
-      {
-        lead: 'Check',
-        title: 'Free Assessments',
-        links: [
-          { label: getTool('local-map-assessment').name, href: getTool('local-map-assessment').route, desc: 'Your Google Maps presence' },
-          ...scorecardLink,
-          { label: getTool('good-faith-estimate').name, href: getTool('good-faith-estimate').route, desc: 'Free PDF for self-pay clients' },
-          { label: 'Marketing Assessment', href: routes.homeSection('marketing-assessment'), desc: 'Where you stand today' },
-          { label: 'AI Visibility Report', href: routes.homeSection('ai-visibility-report'), desc: 'Does ChatGPT know you exist?', badge: 'Soon' },
-        ],
-      },
-      {
-        lead: 'Open',
-        title: 'Transparency',
-        links: [
-          { label: getTool('therapy-index').name, href: getTool('therapy-index').route, desc: 'Who patients find in your city', badge: 'LIVE DATA', badgeTone: 'orange', badgeAbove: true },
-        ],
-      },
-      {
-        lead: 'Care',
-        title: 'For Your Clients',
-        links: [
-          {
-            label: getTool('crisis-resources').name,
-            href: getTool('crisis-resources').route,
-            desc: 'Free helpline directory',
-            badge: 'IMPORTANT',
-            badgeTone: 'green',
-            badgeAbove: true,
-          },
-        ],
-      },
-    ],
-    feature: {
-      eyebrow: 'Try This First',
-      lead: 'Therapy Index',
-      body: 'See who patients actually find in Houston, Austin and Denver, on Google Maps, Google search and AI answers.',
-      link: { label: 'Open the Therapy Index', href: routes.therapyIndex.hub },
-    },
-    strip: { text: 'All tools are free. No credit card, no strings.' },
+    mobileLink: { label: 'See everything free', href: routes.freebies.hub },
   },
 };
 
@@ -1061,8 +972,7 @@ export const footerMain = {
       { label: 'About', href: routes.about },
       { label: 'Our Process', href: routes.process },
       { label: 'Blog', href: routes.blog },
-      { label: 'Freebies', href: routes.freebies.hub },
-      { label: 'Tools', href: '#tools' },
+      { label: 'Free Tools', href: routes.freebies.hub },
     ],
   ] as NavItem[][],
 
@@ -1101,7 +1011,6 @@ export const footerMain = {
       /* Two of these are services with pages; the report and the assessment are tools,
          and their anchors wait for the tool pages. */
       items: [
-        { label: 'AI Visibility Report', href: routes.homeSection('ai-visibility-report') },
         { label: 'AI Search Optimization', href: serviceHref('ai-search-optimization') },
         { label: 'AI Chatbot', href: serviceHref('ai-chatbot') },
         ...(['local-map-assessment', 'crisis-resources', 'therapy-index'] as const).map((id) => ({
