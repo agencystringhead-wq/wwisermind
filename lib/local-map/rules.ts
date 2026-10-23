@@ -23,8 +23,17 @@ export const RETRIES_PER_REPORT = 2;
 /** After this long, checks that have not come back are treated as missing. */
 export const GRID_TIMEOUT_MS = 9 * 60_000;
 export const PROFILE_TIMEOUT_MS = 2 * 60_000;
+/** Reviews and posts asked for only once the grid was complete (the final four differed from the early pick) wait this long, and then the
+    report is built from the competitors that did come back: the gap table averages whoever is there. */
+export const LATE_PROFILE_GRACE_MS = 20_000;
 /** Below this share of finished checks, the report is not made: the visitor is asked to try again. */
 export const MIN_DONE_SHARE = 0.6;
+/** Once this share of the grid is in, the practices ahead of you are picked from what we have and their reviews and posts tasks go out,
+    so those run alongside the rest of the grid instead of after it. */
+export const EARLY_COMPETITORS_SHARE = 0.5;
+/** The early pick is wider than the final four: a practice that is in the top three a little less often at the halfway mark can still make
+    the final four, and a lookup asked for too late costs about two minutes. Each extra practice costs about $0.003. */
+export const EARLY_CANDIDATES = 8;
 /** A poll fetches at most this many finished tasks, to stay inside a Pages Function's limit on outside calls. */
 export const FETCH_PER_POLL = 30;
 

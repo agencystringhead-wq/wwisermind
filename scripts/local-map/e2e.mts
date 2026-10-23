@@ -78,6 +78,10 @@ const cost = sqlite.prepare('select sum(cost) c, sum(calls) n from lm_cost_log w
 const steps = sqlite.prepare('select step, count(*) n, sum(calls) calls, round(sum(cost),5) cost from lm_cost_log group by step').all();
 console.log('cost log:', JSON.stringify(steps), 'total $', cost.c.toFixed(5));
 check('cost was logged', cost.c > 0);
+const notes = (sqlite.prepare("select note from lm_cost_log where step = 'post_profiles' and report_id = ?").all(started.id) as { note: string }[]).map((r) => r.note);
+check('your reviews and posts were asked for at the start, competitors early (before the grid finished)', notes.some((n) => /^you, at the start/.test(n)) && notes.some((n) => /^competitors, early/.test(n)), notes.join(' | '));
+const t1 = JSON.parse((sqlite.prepare('select timings_json from lm_reports where id = ?').get(started.id) as { timings_json: string }).timings_json) as Record<string, number>;
+check('early competitor post came before the grid completed', !!t1.competitorsEarly && t1.competitorsEarly <= t1.gridDone, `early ${t1.competitorsEarly - t1.posted}ms, grid ${t1.gridDone - t1.posted}ms`);
 
 const second = (await (await start(ctx(post('start', body('pat@example.com'), '9.9.9.2'))))).json() as Promise<{ id: string; cached?: boolean }>;
 const s2 = await second;

@@ -94,12 +94,16 @@ for (;;) {
 }
 
 const total = sqlite.prepare('select round(sum(cost), 5) as cost from lm_cost_log where report_id is not null').get() as { cost: number };
-console.log('\nCost log by step (USD as DataForSEO reports it):');
-for (const r of sqlite.prepare('select step, count(*) as rows_, sum(calls) as calls, sum(tasks) as tasks, round(sum(cost), 5) as cost, max(ms) as max_ms, group_concat(distinct note) as notes from lm_cost_log where report_id is not null group by step').all() as any[]) {
-  console.log(`  ${String(r.step).padEnd(14)} calls ${String(r.calls).padStart(4)}  tasks ${String(r.tasks).padStart(4)}  cost $${r.cost}  slowest call ${r.max_ms}ms  ${r.notes ? 'notes: ' + String(r.notes).slice(0, 160) : ''}`);
-}
 const row = sqlite.prepare('select total_cost, timings_json from lm_reports').get() as { total_cost: number; timings_json: string };
-console.log(`Report total_cost $${row.total_cost}, plus lookup $${found.cost} = $${(row.total_cost + found.cost).toFixed(5)}`);
 const t = JSON.parse(row.timings_json) as Record<string, number>;
-console.log('Timings (seconds after posting):', Object.fromEntries(Object.entries(t).map(([k, v]) => [k, Math.round((v - t.posted) / 1000)])));
+console.log('\nBatches posted (seconds after the grid was posted):');
+for (const r of sqlite.prepare("select step, tasks, round(cost, 5) as cost, note, at from lm_cost_log where report_id is not null and step like 'post%' order by id").all() as any[]) {
+  console.log(`  +${String(Math.round((r.at - t.posted) / 1000)).padStart(3)}s  ${String(r.step).padEnd(14)} tasks ${String(r.tasks).padStart(3)}  $${r.cost}  ${r.note ?? ''}`);
+}
+console.log('Cost by step (USD as DataForSEO reports it):');
+for (const r of sqlite.prepare('select step, sum(calls) as calls, sum(tasks) as tasks, round(sum(cost), 5) as cost from lm_cost_log where report_id is not null group by step').all() as any[]) {
+  console.log(`  ${String(r.step).padEnd(14)} calls ${String(r.calls).padStart(4)}  tasks ${String(r.tasks).padStart(4)}  cost $${r.cost}`);
+}
+console.log(`Report total_cost $${row.total_cost}, plus lookup $${found.cost} = $${(row.total_cost + found.cost).toFixed(5)}`);
+console.log('Timings (seconds after posting):', JSON.stringify(Object.fromEntries(Object.entries(t).map(([k, v]) => [k, Math.round((v - t.posted) / 1000)]))));
 void total;

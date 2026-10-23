@@ -127,8 +127,11 @@ Same architecture as the scorecard: a static export plus Cloudflare Pages Functi
 
 `start` posts all 100 checks (25 points x 4 search terms, `depth 20`, standard queue) to DataForSEO in one request and returns the
 report id at once. The report page then polls `status` every 3 seconds; each poll collects up to 30 finished tasks, and one poll at a
-time works on a report (`lock_until`). When the grid is in, the four practices that appear in the top three most often are chosen and
-reviews and posts tasks are posted for them and for you; when those are in, the report is built and the "ready" email goes out.
+time works on a report (`lock_until`). DataForSEO's queue is the slow part, so independent work runs side by side: your own newest
+review and post are asked for at the start; once about half the grid is in, the eight practices most often in the top three are picked and
+their reviews and posts are asked for while the rest of the grid finishes; when the grid is complete, any of the final four that were not
+in that early pick are asked for, and the report is built as soon as everything is back, waiting at most 20 seconds for those late ones
+(the gap table then averages the competitors that did come back). The "ready" email goes out when the report is built.
 Failed or timed-out checks are kept as missing: the report is built if 60% or more finished (the map shows "?" for the rest), otherwise
 the visitor sees a friendly retry that re-posts only the missing checks (twice per report at most).
 
@@ -157,7 +160,8 @@ NEXT_PUBLIC_LOCAL_MAP_API=http://localhost:8788 npm run dev
 
 - Report pages and the start page are `noindex`. Reports are private by an unguessable id; the id is not secret from anyone it is shared with.
 - Maps use OpenStreetMap tiles softened to grey, like the Therapy Index map: CARTO's free tiles now need an API key.
-- Checked against the live API on 2026-10-23 with one real report: the lookup, the Maps grid, the reviews and the posts endpoints all
-  work as written. Actual cost was $0.077 (lookup $0.002, 100 grid tasks $0.06, reviews $0.00375, posts $0.01125). Collecting a finished
-  task is free. Timing at standard priority: first results after 8 s, grid complete after about 2 minutes, reviews and posts
-  about 2 more minutes, 4 minutes in all. `npm run localmap:smoke -- "Practice name" "City"` repeats the test (it spends real money).
+- Checked against the live API on 2026-10-23 with real reports: the lookup, the Maps grid, the reviews and the posts endpoints all
+  work as written. Actual cost is $0.092 per report (lookup $0.002, 100 grid tasks $0.06, reviews and posts for you and up to eight
+  candidate competitors $0.03). Collecting a finished task is free. Timing at standard priority: first results after 8 s, the grid
+  complete after 2 to 2.5 minutes, the whole report in about 2 minutes 40 seconds (it was 4 minutes before reviews and posts were
+  asked for in parallel). `npm run localmap:smoke -- "Practice name" "City"` repeats the test (it spends real money).
