@@ -46,6 +46,17 @@ export default function RootLayout({
   return (
     <html lang="en" className={jetbrainsMono.variable}>
       <head>
+        {/* Inter's one face. A <style> here rather than in the stylesheets so that scripts/critical/apply.mjs
+            can replace exactly this declaration with a data-URI copy on the pages it inlines CSS into;
+            two declarations of the same face would make the browser swap from one to the other, and the
+            swap shows the stand-in font for a frame. Keep the text identical to FACE in apply.mjs. */}
+        <style
+          id="inter-face"
+          dangerouslySetInnerHTML={{
+            __html:
+              '@font-face{font-family:Inter;src:url(/fonts/inter-latin-v1.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}',
+          }}
+        />
         {/* The one Inter file (variable, every weight), fetched with the HTML rather than after the
             CSS has been parsed. */}
         <link

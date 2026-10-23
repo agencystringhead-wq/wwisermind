@@ -1,18 +1,9 @@
 /* ==========================================================================
    Design tokens
    ========================================================================== */
-/* Inter, self-hosted. /public/fonts/inter-latin-v1.woff2 is Google's variable latin file cut
-   down to the ~110 characters the built pages use (ASCII, Latin-1, typographic punctuation and
-   a few arrows), weight axis kept, so this one file serves every weight from 400 to 900. Rename
-   the file (v2) if it is regenerated: /fonts is cached for a year. The fallback face matches
-   Inter's metrics so the swap does not move the layout. */
-@font-face {
-  font-family: 'Inter';
-  src: url('/fonts/inter-latin-v1.woff2') format('woff2');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
+/* Inter, self-hosted: the face itself is declared in app/layout.tsx's <head>, not here, so that the
+   critical-CSS step can swap that one declaration for an inline copy without ever leaving two. See
+   public/fonts/inter-latin-v1.woff2 for what the file is. */
 /* The stand-in shown until Inter arrives, sized so text wraps where Inter will wrap it and nothing
    moves when the swap happens. Two faces because the weights differ in width: Arial's regular for
    400 to 500 and its bold for 600 up, each scaled by how much wider Inter is than it, measured over

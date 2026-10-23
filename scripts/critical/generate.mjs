@@ -104,7 +104,7 @@ function collect(vh) {
       else if (r.type === 7) out.push({ k, css: r.cssText, animation: r.name });
     });
   };
-  [...document.styleSheets].forEach((sheet, si) => { try { walk(sheet.cssRules, [si], ''); } catch { /* a sheet from another origin */ } });
+  [...document.styleSheets].forEach((sheet, si) => { if (sheet.ownerNode && sheet.ownerNode.id === 'inter-face') return; try { walk(sheet.cssRules, [si], ''); } catch { /* a sheet from another origin */ } });
   return { rules: out.filter((o) => !o.animation || animations.has(o.animation)), below };
 }
 

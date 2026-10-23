@@ -23,13 +23,15 @@ const LINK = /<link rel="stylesheet" href="([^"]+)"( data-precedence="[^"]*")?\/
    from the stand-in font re-wraps text (a few pixels of layout shift, whatever the stand-in's metrics).
    `block` here, not `swap`: a data URI is ready within a frame or two, and `swap` would paint the
    first frame in the stand-in font anyway, which is the shift again. The block period is that
-   instant, not the seconds a network font can take. The same face is declared again in globals.css
-   by file (`swap`), which the browser switches to once that stylesheet is in: identical glyphs, so
-   nothing moves. */
+   instant, not the seconds a network font can take. The face lives in one place, the
+   <style id="inter-face"> in the layout's head, and this swaps its text for the data-URI copy:
+   declared twice, the browser would switch from the inline copy to the file one when the
+   stylesheets landed and show the stand-in for a frame while it did. */
 const fontFile = path.resolve('public/fonts/inter-latin-v1.woff2');
-const inlineFont = fs.existsSync(fontFile)
+const FACE = '@font-face{font-family:Inter;src:url(/fonts/inter-latin-v1.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}';
+const FACE_INLINE = fs.existsSync(fontFile)
   ? `@font-face{font-family:Inter;src:url(data:font/woff2;base64,${fs.readFileSync(fontFile).toString('base64')}) format("woff2");font-weight:100 900;font-style:normal;font-display:block}`
-  : '';
+  : FACE;
 
 let applied = 0;
 const stale = [];
@@ -50,8 +52,9 @@ for (const [route, { sheets, block, hide }] of Object.entries(routes)) {
      With no JavaScript the mark is never set and the <noscript> sheets load normally. */
   const hideCss = hide.length ? `html[data-cp] :is(${hide.join(',')}){display:none!important}` : '';
   const script = `<script>(function(d){d.setAttribute('data-cp','');var l=d.ownerDocument.querySelectorAll('link[rel=stylesheet][media=print]'),n=l.length,t;function f(){clearTimeout(t);d.removeAttribute('data-cp')}function g(k){k.media='all';if(!--n)f()}t=setTimeout(function(){for(var i=0;i<l.length;i++)l[i].media='all';f()},2000);for(var i=0;i<l.length;i++)(function(k){k.addEventListener('load',function(){g(k)});k.addEventListener('error',function(){g(k)})})(l[i])})(document.documentElement)</script>`;
+  html = html.replace(`<style id="inter-face">${FACE}</style>`, `<style id="inter-face">${FACE_INLINE}</style>`);
   const first = html.indexOf('<link rel="stylesheet"');
-  html = html.slice(0, first) + `<style data-critical>${inlineFont}${blocks[block]}${hideCss}</style>` + html.slice(first);
+  html = html.slice(0, first) + `<style data-critical>${blocks[block]}${hideCss}</style>` + html.slice(first);
   const afterLinks = html.lastIndexOf('media="print"');
   const end = html.indexOf('/>', afterLinks) + 2;
   html = html.slice(0, end) + script + html.slice(end);
