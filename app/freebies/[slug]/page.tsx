@@ -9,7 +9,7 @@ import { routes } from '@/lib/routes';
    under /tools/. Anything else is a 404: the site is a static export. */
 export const dynamicParams = false;
 
-const onThisFolder = freebies.filter((freebie) => freebiePath(freebie).startsWith(routes.freebies.hub));
+const onThisFolder = freebies.filter((freebie) => freebiePath(freebie).startsWith(routes.freebies.folder));
 
 export function generateStaticParams() {
   return onThisFolder.map((freebie) => ({ slug: freebie.slug }));

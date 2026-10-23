@@ -1,0 +1,103 @@
+/* The category hubs: the hero's lede, and the cards. The page shells, hero type and closing band are
+   the shared pricing classes (LocalSeo.module.css); only the card grid is new. Nothing animates. */
+
+.hero {
+  text-align: left;
+}
+
+.lede {
+  max-width: 56ch;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 28px 28px;
+  border-radius: 24px;
+  background-color: var(--color-white);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.tagline {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+.name {
+  margin-top: 12px;
+  font-size: 22px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.name a:hover {
+  color: var(--color-brand);
+}
+
+.body {
+  margin-top: 10px;
+  color: var(--color-muted);
+  font-size: 15px;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.price {
+  color: var(--color-ink);
+  font-size: 14px;
+  font-weight: var(--fw-semibold);
+}
+
+.more {
+  margin-left: auto;
+  color: var(--color-brand);
+  font-size: 15px;
+  font-weight: var(--fw-semibold);
+}
+
+.more:hover {
+  color: var(--color-brand-dark);
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.08);
+  }
+}

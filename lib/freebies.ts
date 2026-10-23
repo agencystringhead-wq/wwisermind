@@ -1,4 +1,5 @@
 import type { ServiceIconName } from '@/components/ui/icons';
+import { categoryHubs } from '@/lib/categories';
 import { routes, type FreebieKey, type Route } from '@/lib/routes';
 
 /* ==========================================================================
@@ -496,16 +497,16 @@ export function eyebrowFor(freebie: Freebie): string {
 
 /* --- the hub ------------------------------------------------------------------------- */
 
+/* The free-resources hub's words are one of the five category hubs' (lib/categories.ts). */
 export const hubMeta = {
-  title: 'Free Tools for Therapists | Scorecard, Map Check, Templates & Guides | wwisermind',
-  description:
-    'Free tools and downloads for therapists: website scorecard, local map assessment, Therapy Index, Good Faith Estimate, crisis resources, email signature, guides and templates.',
+  title: categoryHubs['free-resources'].metaTitle,
+  description: categoryHubs['free-resources'].metaDescription,
 };
 
 export const hubHero = {
-  eyebrow: 'Free tools',
-  title: 'Free tools and downloads for therapists',
-  sub: 'Everything here is free. No credit card, no strings. Check your practice, see your market, sort the paperwork, or grab a guide or template. Some downloads ask for your email so we can send them over.',
+  eyebrow: 'Free resources',
+  title: categoryHubs['free-resources'].h1,
+  sub: categoryHubs['free-resources'].intro,
 };
 
 export const hubCta = {

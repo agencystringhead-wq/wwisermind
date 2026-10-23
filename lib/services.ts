@@ -3,6 +3,7 @@ import { SERVICE_SLUGS, serviceHref, type ServiceSlug } from '@/lib/service-slug
 import { heroBanner, homeIntro } from '@/lib/site';
 import type { ServiceIconName } from '@/components/ui/icons';
 import type { ToolId } from '@/lib/tools';
+import type { ServiceCategoryId } from '@/lib/categories';
 
 export { SERVICE_SLUGS, serviceHref, type ServiceSlug };
 
@@ -31,8 +32,9 @@ export { SERVICE_SLUGS, serviceHref, type ServiceSlug };
    lookup away, and swapping one for a real photograph is a one-line change to `src`.
    ========================================================================== */
 
-/** The three columns the mega menu sorts services into. The hero's breadcrumb reads it. */
-export type ServiceCategory = 'Website Design' | 'Online Marketing' | 'AI Services';
+/** The three categories services are sorted into: the menu's columns, the hero's breadcrumb and the
+    category hubs (lib/categories.ts, which holds each one's name and words). */
+export type ServiceCategory = ServiceCategoryId;
 
 export type ServiceImage = { src: string; alt: string; position?: string };
 
@@ -83,6 +85,8 @@ export type Service = {
   slug: ServiceSlug;
   name: string;
   category: ServiceCategory;
+  /** The short line under the name in the menu and on its category hub: "Live in 7 days, done for you". */
+  tagline: string;
   /** A free tool offered in a wide callout near the end of the page (lib/tools.ts). Absent, no callout. */
   relatedTool?: ToolId;
   /** True while the entry’s copy is unfinished. The page still renders, but it is sent
@@ -307,7 +311,8 @@ export const services: Service[] = [
     slug: 'one-week-website',
     relatedTool: 'website-scorecard',
     name: 'One Week Website',
-    category: 'Website Design',
+    category: 'website-design',
+    tagline: 'Live in 7 days, done for you',
     heroOutcome:
       'Your practice online in seven days, designed, written and launched while you stay in session.',
 
@@ -578,7 +583,8 @@ export const services: Service[] = [
     slug: 'custom-website-design',
     relatedTool: 'website-scorecard',
     name: 'Custom Website Design',
-    category: 'Website Design',
+    category: 'website-design',
+    tagline: 'Built around your practice',
     heroOutcome:
       'Every clinician, every location and every specialty on a site designed around how your practice runs, not around a template.',
 
@@ -860,7 +866,8 @@ export const services: Service[] = [
   {
     slug: 'website-hosting',
     name: 'Website Hosting',
-    category: 'Website Design',
+    category: 'website-design',
+    tagline: 'Fast, secure, managed',
     heroOutcome:
       'Your site fast, secure and online on a global network, with nothing you have to log in to and update.',
 
@@ -1110,7 +1117,8 @@ export const services: Service[] = [
     slug: 'website-care-plans',
     relatedTool: 'website-scorecard',
     name: 'Website Care Plans',
-    category: 'Website Design',
+    category: 'website-design',
+    tagline: 'Handled while you’re in session',
     heroOutcome:
       'Edits, updates and backups handled every month, so the site stays current while you stay in session.',
 
@@ -1367,7 +1375,8 @@ export const services: Service[] = [
     slug: 'local-seo',
     relatedTool: 'local-map-assessment',
     name: 'Local SEO',
-    category: 'Online Marketing',
+    category: 'marketing',
+    tagline: 'Be found in your city',
     heroOutcome:
       'Show up in the map results when someone in your city searches for a therapist, and keep showing up.',
 
@@ -1620,7 +1629,8 @@ export const services: Service[] = [
   {
     slug: 'seo-audit',
     name: 'SEO Audit / Assessment',
-    category: 'Online Marketing',
+    category: 'marketing',
+    tagline: 'An honest read on your visibility',
     heroOutcome:
       'A written, honest read on why your practice is not being found, and what to fix first.',
 
@@ -1873,7 +1883,8 @@ export const services: Service[] = [
     slug: 'one-time-seo',
     relatedTool: 'therapy-index',
     name: 'One Time SEO',
-    category: 'Online Marketing',
+    category: 'marketing',
+    tagline: 'Fix the foundation once',
     heroOutcome:
       'The technical and on-page foundation fixed once, properly, so your site can be found from then on.',
 
@@ -2122,7 +2133,8 @@ export const services: Service[] = [
     slug: 'ongoing-seo',
     relatedTool: 'therapy-index',
     name: 'Ongoing SEO / AEO / GEO',
-    category: 'Online Marketing',
+    category: 'marketing',
+    tagline: 'Keep climbing every month',
     heroOutcome:
       'Google, Maps and the AI answers worked on every month, with a short note on what changed.',
 
@@ -2379,7 +2391,8 @@ export const services: Service[] = [
   {
     slug: 'copywriting',
     name: 'Copywriting',
-    category: 'Online Marketing',
+    category: 'marketing',
+    tagline: 'Words that sound like you',
     heroOutcome:
       'Every page written to sound like you and speak to someone in distress, so the right clients know they have found you.',
 
@@ -2627,7 +2640,8 @@ export const services: Service[] = [
   {
     slug: 'meta-ads',
     name: 'Meta Ads',
-    category: 'Online Marketing',
+    category: 'marketing',
+    tagline: 'Reach the right families',
     heroOutcome:
       'Facebook and Instagram ads that reach the people in your area looking for a therapist, and no one else.',
 
@@ -2876,7 +2890,8 @@ export const services: Service[] = [
     slug: 'ai-search-optimization',
     relatedTool: 'therapy-index',
     name: 'AI Search Optimization',
-    category: 'AI Services',
+    category: 'ai',
+    tagline: 'Be the practice AI recommends',
     heroOutcome:
       'Be the practice named when a client asks ChatGPT, Gemini or Perplexity for a therapist near them.',
 
@@ -3130,7 +3145,8 @@ export const services: Service[] = [
     slug: 'ai-website-design',
     relatedTool: 'website-scorecard',
     name: 'AI Website Design',
-    category: 'AI Services',
+    category: 'ai',
+    tagline: 'Modern build, human review',
     heroOutcome:
       'A site drafted with AI tools and finished by people, so it is built faster without reading like a machine wrote it.',
 
@@ -3378,7 +3394,8 @@ export const services: Service[] = [
   {
     slug: 'ai-chatbot',
     name: 'AI Chatbot',
-    category: 'AI Services',
+    category: 'ai',
+    tagline: 'Answers at 11pm, bookings by 9',
     heroOutcome:
       'A chatbot on your site that answers the questions clients ask at 11pm and books the consultation, without giving clinical advice.',
 

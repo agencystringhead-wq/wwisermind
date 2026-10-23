@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { categoryHubs } from '@/lib/categories';
 import { relatedServices, serviceHref, type Service } from '@/lib/services';
 import { ArrowRightIcon } from '@/components/ui/icons';
 import ScrollReveal from '@/components/ui/ScrollReveal';
@@ -52,7 +53,7 @@ export default function ServiceRelated({ service, ground }: { service: Service; 
                 </span>
 
                 <span className={styles.copy}>
-                  <span className={styles.category}>{item.category}</span>
+                  <span className={styles.category}>{categoryHubs[item.category].name}</span>
                   <span className={styles.name}>{item.name}</span>
                   <span className={styles.body}>{item.heroOutcome}</span>
                 </span>

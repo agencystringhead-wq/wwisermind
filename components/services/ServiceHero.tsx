@@ -1,6 +1,7 @@
 import CtaLink from '@/components/booking/CtaLink';
 import Link from 'next/link';
 import { contactPage, siteConfig } from '@/lib/site';
+import { categoryHubs } from '@/lib/categories';
 import { getTool, isLiveTool } from '@/lib/tools';
 import type { Service } from '@/lib/services';
 import BackgroundVideo from '@/components/ui/BackgroundVideo';
@@ -49,7 +50,7 @@ export default function ServiceHero({
               <span className={styles.crumbArrow} aria-hidden="true">
                 ↳
               </span>
-              {service.category}
+              {categoryHubs[service.category].name}
             </li>
           </ol>
         </nav>

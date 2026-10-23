@@ -128,3 +128,7 @@
 # website scorecard: every private report (/r/<id>/) is served by the one static shell page, which
 # reads the id from the address and loads the report from /api/scorecard/result/<id>.
 /tools/website-scorecard-for-therapists/r/* /tools/website-scorecard-for-therapists/r/ 200
+
+# The freebies hub became the free-resources hub. Only the hub moves: every /freebies/<name>/ page keeps its address.
+/freebies /free-resources-for-therapists/ 301
+/freebies/ /free-resources-for-therapists/ 301

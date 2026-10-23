@@ -77,7 +77,7 @@ export default function FreebiePage({ freebie }: { freebie: Freebie }) {
       <Breadcrumbs
         trail={[
           { label: 'Home', href: routes.home },
-          { label: 'Freebies', href: routes.freebies.hub },
+          { label: 'Free Resources', href: routes.freebies.hub },
           { label: freebie.title, href: freebiePath(freebie) },
         ]}
       />

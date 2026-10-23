@@ -3,6 +3,7 @@ import { getAllPosts, getCategories } from '@/lib/blog';
 import { getStatesWithData } from '@/lib/crisis-resources';
 import { freebiePath, freebies, isLive } from '@/lib/freebies';
 import { routes, SERVICE_PATHS } from '@/lib/routes';
+import { categoryHubs, serviceCategoryIds } from '@/lib/categories';
 import { services, type ServiceCategory } from '@/lib/services';
 import { getTool, tools } from '@/lib/tools';
 import { INDEXABLE } from '@/lib/therapyindex/config';
@@ -43,9 +44,9 @@ const link = (label: string, href: string, xml = true): SitemapLink => ({ label,
 
 /** Group titles as the human page prints them. */
 const CATEGORY_TITLES: Record<ServiceCategory, string> = {
-  'Website Design': 'Website design',
-  'Online Marketing': 'Online marketing',
-  'AI Services': 'AI services',
+  'website-design': 'Website design',
+  marketing: 'Marketing',
+  ai: 'AI services',
 };
 
 const servicesIn = (category: ServiceCategory): SitemapLink[] =>
@@ -78,9 +79,13 @@ export function sitemapGroups(): SitemapGroup[] {
         link('All services', routes.services.hub),
       ],
     },
-    ...(Object.keys(CATEGORY_TITLES) as ServiceCategory[]).map((category) => ({
+    ...serviceCategoryIds.map((category) => ({
       title: CATEGORY_TITLES[category],
-      links: servicesIn(category),
+      links: [
+        /* the category's hub first, then each service in it */
+        link(`All ${categoryHubs[category].name.toLowerCase()}`, categoryHubs[category].route),
+        ...servicesIn(category),
+      ],
     })),
     {
       title: 'Pricing',
@@ -98,12 +103,15 @@ export function sitemapGroups(): SitemapGroup[] {
     },
     {
       title: 'Who we help',
-      links: audiences.map((audience) => link(audience.name, routes.audience(audience.slug))),
+      links: [
+        link('Who we help', routes.hubs.whoWeHelp),
+        ...audiences.map((audience) => link(audience.name, routes.audience(audience.slug))),
+      ],
     },
     {
       title: 'Free resources',
       links: [
-        link('Free Tools', routes.freebies.hub),
+        link('Free resources', routes.freebies.hub),
         ...liveFreebies.map((freebie) => link(freebie.title, freebiePath(freebie))),
         link(getTool('local-map-assessment').name, getTool('local-map-assessment').route),
         link(getTool('crisis-resources').name, getTool('crisis-resources').route),

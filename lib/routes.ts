@@ -133,8 +133,20 @@ export const routes = {
 
   pricing,
 
+  /** The five category hubs (lib/categories.ts). The free-resources hub is the old freebies hub, moved:
+      /freebies/ redirects to it, and each freebie's own page keeps its /freebies/<slug>/ address. */
+  hubs: {
+    websiteDesign: '/website-design-for-therapists/',
+    marketing: '/marketing-for-therapists/',
+    ai: '/ai-services-for-therapists/',
+    whoWeHelp: '/who-we-help/',
+    freeResources: '/free-resources-for-therapists/',
+  },
+
   freebies: {
-    hub: '/freebies/',
+    hub: '/free-resources-for-therapists/',
+    /** The folder the five download pages live in. The hub left it; the pages did not. */
+    folder: '/freebies/',
     fullCaseloadPlan: FREEBIE_PATHS['2027-full-caseload-plan-for-therapists'],
     psychologyTodayKit: FREEBIE_PATHS['psychology-today-profile-kit-for-therapists'],
     googleBusinessProfile: FREEBIE_PATHS['google-business-profile-checklist-for-therapists'],

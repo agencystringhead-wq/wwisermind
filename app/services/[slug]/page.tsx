@@ -10,6 +10,7 @@ import {
   serviceKeyForParam,
   type ServiceKey,
 } from '@/lib/routes';
+import { categoryHubs } from '@/lib/categories';
 import { getService } from '@/lib/services';
 import { absUrl, siteConfig } from '@/lib/site';
 
@@ -69,7 +70,7 @@ export default async function Page({ params }: Params) {
     '@id': `${url}#service`,
     name: service.name,
     serviceType: service.name,
-    category: service.category,
+    category: categoryHubs[service.category].name,
     description: service.seo.description,
     url,
     provider: {
@@ -100,7 +101,7 @@ export default async function Page({ params }: Params) {
           <Breadcrumbs
             trail={[
               { label: 'Home', href: routes.home },
-              { label: 'Services', href: routes.services.hub },
+              { label: categoryHubs[service.category].name, href: categoryHubs[service.category].route },
               { label: service.name, href: SERVICE_PATHS[key] },
             ]}
             related={

@@ -39,7 +39,19 @@ function Column({ column, onNavigate }: { column: MegaColumn; onNavigate: () => 
     <div>
       {column.lead ? (
         <p className={styles.colLabel}>
-          <b>{column.lead}</b>{column.title ? ` / ${column.title}` : null}
+          <b>{column.lead}</b>
+          {column.title ? (
+            column.titleHref ? (
+              <>
+                {' / '}
+                <Link href={column.titleHref} className={styles.colLabelLink} onClick={onNavigate}>
+                  {column.title}
+                </Link>
+              </>
+            ) : (
+              ` / ${column.title}`
+            )
+          ) : null}
         </p>
       ) : null}
 
@@ -214,7 +226,19 @@ function MobileSection({
             <div key={column.title ?? index}>
               {column.lead ? (
                 <p className={styles.accGroup}>
-                  <b>{column.lead}</b>{column.title ? ` / ${column.title}` : null}
+                  <b>{column.lead}</b>
+                  {column.title ? (
+                    column.titleHref ? (
+                      <>
+                        {' / '}
+                        <Link href={column.titleHref} className={styles.colLabelLink} onClick={onNavigate}>
+                          {column.title}
+                        </Link>
+                      </>
+                    ) : (
+                      ` / ${column.title}`
+                    )
+                  ) : null}
                 </p>
               ) : null}
 
@@ -383,7 +407,31 @@ export default function Header() {
 
                 return (
                   <li key={item.label}>
-                    {panel ? (
+                    {panel && item.hubLink ? (
+                      /* The label is a link to the hub; the plus beside it opens the dropdown. */
+                      <span className={styles.navSplit} onMouseEnter={() => openPanel(panel.id)}>
+                        <Link
+                          href={item.href}
+                          className={`${styles.navLink} ${styles.navSplitLink} ${
+                            openId === panel.id ? styles.navLinkOpen : ''
+                          }`}
+                          onClick={closeAll}
+                        >
+                          <span className={styles.navLabel}>{item.label}</span>
+                        </Link>
+                        <button
+                          type="button"
+                          className={styles.navSplitToggle}
+                          data-panel={panel.id}
+                          aria-expanded={openId === panel.id}
+                          aria-controls={`mega-${panel.id}`}
+                          aria-label={`${item.label} menu`}
+                          onClick={() => (openId === panel.id ? closeAll() : openPanel(panel.id))}
+                        >
+                          <Plus className={styles.navPlus} />
+                        </button>
+                      </span>
+                    ) : panel ? (
                       <button
                         type="button"
                         className={`${styles.navLink} ${styles.navTrigger}`}

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import local from '@/components/pricing/LocalSeo.module.css';
 import { SERVICE_PRICING, routes, type ServiceKey } from '@/lib/routes';
+import { categoryHubs } from '@/lib/categories';
 import { services } from '@/lib/services';
 import styles from './ServicesHub.module.css';
 
@@ -28,7 +29,11 @@ export default function ServicesHub() {
 
         {Object.entries(groups).map(([category, list]) => (
           <div className={styles.group} key={category}>
-            <h2 className={styles.groupTitle}>{category}</h2>
+            <h2 className={styles.groupTitle}>
+              <Link href={categoryHubs[category as keyof typeof categoryHubs].route}>
+                {categoryHubs[category as keyof typeof categoryHubs].name}
+              </Link>
+            </h2>
             <ul className={styles.grid}>
               {list.map((service) => {
                 const pricing = (SERVICE_PRICING as Partial<Record<ServiceKey, string>>)[service.slug];

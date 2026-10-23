@@ -2,10 +2,12 @@ import Link from 'next/link';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import ToolCallout from '@/components/tools/ToolCallout';
 import { serviceIcons } from '@/components/ui/icons';
+import { categoryHubs } from '@/lib/categories';
 import { freeToolGroups, type FreeToolItem } from '@/lib/free-tools';
 import { ctaLabel, freebiePath, getFreebie, hubCta, hubHero, isLive } from '@/lib/freebies';
 import { routes } from '@/lib/routes';
-import { isLiveTool, type ToolId } from '@/lib/tools';
+import { absUrl } from '@/lib/site';
+import { getTool, isLiveTool, type ToolId } from '@/lib/tools';
 import local from '@/components/pricing/LocalSeo.module.css';
 import LocalSeoCta from '@/components/pricing/LocalSeoCta';
 import styles from './Freebies.module.css';
@@ -39,8 +41,43 @@ function DownloadCard({ slug }: { slug: string }) {
  * A hidden tool is not listed. Nothing here animates.
  */
 export default function FreebiesHub() {
+  /* Every live tool and download on the page, in the order the groups print them. */
+  const listed = freeToolGroups.flatMap((group) =>
+    group.items.flatMap((item: FreeToolItem) => {
+      if (item.kind === 'download') {
+        const freebie = getFreebie(item.slug);
+        return freebie && isLive(freebie) ? [{ name: item.label, href: freebiePath(freebie) }] : [];
+      }
+      return isLiveTool(item.id)
+        ? [{ name: getTool(item.id).name, href: getTool(item.id).route }]
+        : [];
+    }),
+  );
+  const url = absUrl(routes.freebies.hub);
+  const collection = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${url}#page`,
+    name: categoryHubs['free-resources'].h1,
+    description: categoryHubs['free-resources'].metaDescription,
+    url,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: listed.map((entry, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: entry.name,
+        url: absUrl(entry.href),
+      })),
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collection).replace(/</g, '\\u003c') }}
+      />
       <section className={local.section}>
         <div className={`container ${styles.pageHero}`}>
           <p className={local.eyebrow}>{hubHero.eyebrow}</p>
@@ -52,7 +89,7 @@ export default function FreebiesHub() {
       <Breadcrumbs
         trail={[
           { label: 'Home', href: routes.home },
-          { label: 'Free Tools', href: routes.freebies.hub },
+          { label: categoryHubs['free-resources'].name, href: routes.freebies.hub },
         ]}
       />
 

@@ -299,6 +299,50 @@
   color: var(--color-ink);
 }
 
+.navSplit {
+  position: relative;
+  display: inline-block;
+}
+
+/* the label is a link with room on its right for the plus, which is its own button */
+.navSplitLink {
+  padding-right: 13px;
+}
+
+.navSplitLink::after {
+  width: calc(100% - 13px);
+}
+
+.navLinkOpen::after {
+  transform: scaleX(1);
+}
+
+.navSplitToggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 13px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.navSplitToggle .navPlus {
+  right: 0;
+}
+
+.navSplitToggle[aria-expanded='true'] .navPlus {
+  color: var(--color-ink);
+  transform: rotate(45deg);
+}
+
+.navSplitToggle:hover .navPlus {
+  color: var(--color-ink);
+}
+
 .mega {
   /* Scoped here rather than in globals: the panels are a calmer navy-on-white than the
      page's pure black, and nothing outside this menu should inherit that. */
@@ -365,6 +409,14 @@
   font-weight: var(--fw-medium);
   letter-spacing: 0.13em;
   text-transform: uppercase;
+}
+
+.colLabelLink {
+  transition: color var(--dur) var(--ease);
+}
+
+.colLabelLink:hover {
+  color: var(--color-brand);
 }
 
 .colLabel b {

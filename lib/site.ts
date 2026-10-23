@@ -13,6 +13,8 @@ export type NavItem = {
   href: string;
   /** A small red pill above the label's top-right corner on the desktop nav, and beside it in the mobile menu. */
   badge?: string;
+  /** The label is also a link to `href` while the item keeps its dropdown (Who We Help). */
+  hubLink?: boolean;
 };
 
 export const siteConfig = {
@@ -71,7 +73,7 @@ export const announcement = {
 
 export const mainNav: NavItem[] = [
   { label: 'Services', href: '#services' },
-  { label: 'Who We Help', href: '#who-we-help' },
+  { label: 'Who We Help', href: routes.hubs.whoWeHelp, hubLink: true },
   { label: 'Results', href: routes.results },
   { label: 'Pricing', href: routes.pricing.hub },
   { label: 'Free Tools', href: routes.freebies.hub, badge: 'NEW' },
@@ -104,6 +106,8 @@ export type MegaLink = NavItem & {
 };
 
 export type MegaColumn = {
+  /** Makes the column's title a link, to its category hub. */
+  titleHref?: string;
   /** the word before the slash in the column label, carried in the accent colour */
   lead?: string;
   title?: string;
@@ -136,6 +140,7 @@ export const megaPanels: Record<string, MegaPanel> = {
       {
         lead: 'Build',
         title: 'Therapist Website Design',
+        titleHref: routes.hubs.websiteDesign,
         links: [
           { label: 'One Week Website', href: serviceHref('one-week-website'), desc: 'Live in 7 days, done for you' },
           { label: 'Custom Website Design', href: serviceHref('custom-website-design'), desc: 'Built around your practice' },
@@ -145,7 +150,8 @@ export const megaPanels: Record<string, MegaPanel> = {
       },
       {
         lead: 'Grow',
-        title: 'Online Marketing',
+        title: 'Marketing',
+        titleHref: routes.hubs.marketing,
         links: [
           { label: 'Local SEO', href: serviceHref('local-seo'), desc: 'Be found in your city' },
           { label: 'SEO Audit / Assessment', href: serviceHref('seo-audit'), desc: 'An honest read on your visibility' },
@@ -158,6 +164,7 @@ export const megaPanels: Record<string, MegaPanel> = {
       {
         lead: 'AI',
         title: 'AI Services',
+        titleHref: routes.hubs.ai,
         links: [
           { label: 'AI Search Optimization', href: serviceHref('ai-search-optimization'), desc: 'Be the practice AI recommends' },
           { label: 'AI Website Design', href: serviceHref('ai-website-design'), desc: 'Modern build, human review' },
@@ -216,6 +223,7 @@ export const megaPanels: Record<string, MegaPanel> = {
       lead: 'Only therapists. Every project. No exceptions.',
     },
     strip: { text: 'Serving practices across the US, Australia, and Ireland, in your timezone.' },
+    mobileLink: { label: 'See who we help', href: routes.hubs.whoWeHelp },
   },
 
   Pricing: {
