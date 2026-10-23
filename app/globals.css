@@ -13,13 +13,30 @@
   font-style: normal;
   font-display: swap;
 }
+/* The stand-in shown until Inter arrives, sized so text wraps where Inter will wrap it and nothing
+   moves when the swap happens. Two faces because the weights differ in width: Arial's regular for
+   400 to 500 and its bold for 600 up, each scaled by how much wider Inter is than it, measured over
+   the text actually on the site's pages (regular 106.83%, bold 101.63%). The ascent and descent are
+   Inter's own (96.875% and 24.121% of the size) divided by that scale, which is how the
+   overrides are read. Arial is Liberation Sans or Helvetica on devices without it, which have
+   Arial's widths. */
 @font-face {
   font-family: 'Inter Fallback';
-  src: local('Arial');
-  ascent-override: 89.79%;
-  descent-override: 22.36%;
+  src: local('Arial'), local('ArialMT'), local('Liberation Sans'), local('Helvetica');
+  font-weight: 100 599;
+  ascent-override: 90.68%;
+  descent-override: 22.58%;
   line-gap-override: 0%;
-  size-adjust: 107.89%;
+  size-adjust: 106.83%;
+}
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial Bold'), local('Arial-BoldMT'), local('Liberation Sans Bold'), local('Helvetica Bold');
+  font-weight: 600 900;
+  ascent-override: 95.32%;
+  descent-override: 23.73%;
+  line-gap-override: 0%;
+  size-adjust: 101.63%;
 }
 
 :root {
