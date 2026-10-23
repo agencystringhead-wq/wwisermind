@@ -18,6 +18,16 @@ if (!fs.existsSync(dataFile)) {
 const { routes, blocks } = JSON.parse(fs.readFileSync(dataFile, 'utf8'));
 const LINK = /<link rel="stylesheet" href="([^"]+)"( data-precedence="[^"]*")?\/>/g;
 
+/* Inter goes inline with the critical CSS, as a data URI, so the first paint already has it: with the
+   file fetched separately it arrives a moment after the first paint on a slow connection, and the swap
+   from the stand-in font re-wraps text (a few pixels of layout shift, whatever the stand-in's metrics).
+   The same face is declared again in globals.css by file, which the browser swaps to once that
+   stylesheet is in: identical glyphs, so nothing moves. */
+const fontFile = path.resolve('public/fonts/inter-latin-v1.woff2');
+const inlineFont = fs.existsSync(fontFile)
+  ? `@font-face{font-family:Inter;src:url(data:font/woff2;base64,${fs.readFileSync(fontFile).toString('base64')}) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}`
+  : '';
+
 let applied = 0;
 const stale = [];
 for (const [route, { sheets, block, hide }] of Object.entries(routes)) {
@@ -38,7 +48,7 @@ for (const [route, { sheets, block, hide }] of Object.entries(routes)) {
   const hideCss = hide.length ? `html[data-cp] :is(${hide.join(',')}){display:none!important}` : '';
   const script = `<script>(function(d){d.setAttribute('data-cp','');var l=d.ownerDocument.querySelectorAll('link[rel=stylesheet][media=print]'),n=l.length,t;function f(){clearTimeout(t);d.removeAttribute('data-cp')}function g(k){k.media='all';if(!--n)f()}t=setTimeout(function(){for(var i=0;i<l.length;i++)l[i].media='all';f()},2000);for(var i=0;i<l.length;i++)(function(k){k.addEventListener('load',function(){g(k)});k.addEventListener('error',function(){g(k)})})(l[i])})(document.documentElement)</script>`;
   const first = html.indexOf('<link rel="stylesheet"');
-  html = html.slice(0, first) + `<style data-critical>${blocks[block]}${hideCss}</style>` + html.slice(first);
+  html = html.slice(0, first) + `<style data-critical>${inlineFont}${blocks[block]}${hideCss}</style>` + html.slice(first);
   const afterLinks = html.lastIndexOf('media="print"');
   const end = html.indexOf('/>', afterLinks) + 2;
   html = html.slice(0, end) + script + html.slice(end);
