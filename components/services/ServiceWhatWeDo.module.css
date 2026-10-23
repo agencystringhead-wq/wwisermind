@@ -306,27 +306,73 @@
 }
 
 /* --- the scrub ------------------------------------------------------------- */
-/* The same query the component reads. `pin` grows by one `--pin-per-slide` per slide and
-   `stage` sticks under the header for exactly that distance. The track and the fills drop
-   their transitions: the driver writes them every frame, already smoothed, and a transition
-   on top would only lag. */
+/* The same conditions the component reads: a wide viewport, motion allowed, and a browser
+   with scroll timelines. `pin` grows by one `--pin-per-slide` per slide and `stage` sticks
+   under the header for exactly that distance, and `pin` is the timeline's subject: the
+   timeline reads 0 when its top reaches the stage's sticking line and runs for the spacer's
+   height. `--start` is where that is on the `cover` range (the pin's top at the screen's foot,
+   less the distance down to the sticking line), and every window below is a length after it.
+
+   Each tab's fill wipes across its own slide's share of the range (`--i` is its place), and
+   the track glides one slide left in the last three tenths of the first two, as two
+   additive `translate` animations: GLIDE in the component is the 0.7. All of it is
+   transform, so it runs off the main thread, and scrolling back runs it in reverse. */
 @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
-  /* The range is a spacer in the flow, not padding: a sticky element is held within its
-     parent's content box, so padding would give it no room to stick. */
-  .pin::after {
-    content: '';
-    display: block;
-    height: calc(var(--pin-per-slide) * var(--slides, 3));
-  }
+  @supports (animation-timeline: view()) {
+    .pin {
+      --start: calc(100vh - var(--pin-top));
 
-  .stage {
-    position: sticky;
-    top: var(--pin-top);
-  }
+      view-timeline: --pin block;
+    }
 
-  .scrub .track,
-  .scrub .fill {
-    transition: none;
+    /* The range is a spacer in the flow, not padding: a sticky element is held within its
+       parent's content box, so padding would give it no room to stick. */
+    .pin::after {
+      content: '';
+      display: block;
+      height: calc(var(--pin-per-slide) * var(--slides, 3));
+    }
+
+    .stage {
+      position: sticky;
+      top: var(--pin-top);
+    }
+
+    .fill {
+      transition: none;
+      animation: wipe 1s linear both;
+      animation-timeline: --pin;
+      animation-range: cover calc(var(--start) + var(--i, 0) * var(--pin-per-slide))
+        cover calc(var(--start) + (var(--i, 0) + 1) * var(--pin-per-slide));
+    }
+
+    .track {
+      transform: none;
+      transition: none;
+      animation: glide 1s cubic-bezier(0.45, 0.05, 0.55, 0.95) both, glide 1s cubic-bezier(0.45, 0.05, 0.55, 0.95) both;
+      animation-composition: add, add;
+      animation-timeline: --pin, --pin;
+      animation-range: cover calc(var(--start) + 0.7 * var(--pin-per-slide)) cover calc(var(--start) + var(--pin-per-slide)),
+        cover calc(var(--start) + 1.7 * var(--pin-per-slide)) cover calc(var(--start) + 2 * var(--pin-per-slide));
+    }
+
+    @keyframes wipe {
+      from {
+        transform: scaleX(0);
+      }
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    @keyframes glide {
+      from {
+        translate: 0 0;
+      }
+      to {
+        translate: calc(-100% - var(--slide-gap)) 0;
+      }
+    }
   }
 }
 

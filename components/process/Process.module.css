@@ -69,8 +69,9 @@
 }
 
 /* The thin blue line down the left. The track is a pale tint; the fill sits on it and is
-   scaled from the top by the scroll hook's `--p`. With no value (reduced motion, or before
-   hydration under reduced motion) the rail is simply full. Only `transform` ever changes. */
+   scaled from the top. At rest (reduced motion, or a browser without scroll timelines) the
+   rail is simply full; where the browser has them, the fill follows the list's own scroll,
+   below. Only `transform` ever changes. */
 .rail {
   position: absolute;
   top: 8px;
@@ -87,12 +88,36 @@
   inset: 0;
   background: linear-gradient(to bottom, var(--color-brand), #5b9bff);
   transform-origin: top;
-  transform: scaleY(var(--p, 1));
+  transform: scaleY(1);
 }
 
+/* The fill grows from empty as the list passes: it starts when the list's top reaches 55% of
+   the way down the screen and is full when its foot has risen to the same line. The bottom
+   45% of the screen is held out of the timeline (the second inset), and the top is pushed
+   far above the screen (the first, negative) so the list is always smaller than the area it
+   moves through: `entry` is then exactly the stretch in which its own height crosses that
+   line, however tall it is. */
 @media (prefers-reduced-motion: no-preference) {
-  .railFill {
-    transform: scaleY(var(--p, 0));
+  @supports (animation-timeline: view()) {
+    .list {
+      view-timeline: --rail block;
+      view-timeline-inset: -100000px 45%;
+    }
+
+    .railFill {
+      animation: rail-fill 1s linear both;
+      animation-timeline: --rail;
+      animation-range: entry 0% entry 100%;
+    }
+
+    @keyframes rail-fill {
+      from {
+        transform: scaleY(0);
+      }
+      to {
+        transform: scaleY(1);
+      }
+    }
   }
 }
 

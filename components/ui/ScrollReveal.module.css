@@ -7,19 +7,40 @@
   --reveal-to: var(--color-ink);
 }
 
-/* `--t` runs 0 to 1 per word and the browser does the interpolation, so the scroll handler
-   only ever writes one number. Without color-mix every word simply stays ink, which is the
-   sentence at full contrast rather than a broken effect. */
+/* The resting state, and the whole effect wherever it cannot run: every word in ink, the
+   sentence at full contrast. A browser without scroll timelines (Firefox), a browser without
+   color-mix, and anyone who has asked for reduced motion all stop here, so text is never
+   hidden and nothing waits on script. */
 .word {
   color: var(--reveal-to);
 }
 
-@supports (color: color-mix(in srgb, red, blue)) {
-  .word {
-    color: color-mix(
-      in srgb,
-      var(--reveal-to) calc(var(--t, 1) * 100%),
-      var(--reveal-from)
-    );
+/* The effect, on a scroll timeline. The block is the timeline's subject (`view-timeline`) and
+   every word follows it, so all of them read the block's position, not their own.
+
+   `--sr-inset` shrinks the scroll area from below so the timeline opens when the block's top
+   reaches that point of the viewport (75% down by default), and `--sr-len` is how far the top
+   then travels before the last word lands (to 35% down). Each word's window inside that travel
+   is `--s` to `--s + --w`, as shares of it. `cover` begins when the top meets the inset edge,
+   so a length after it is distance travelled. */
+@supports ((animation-timeline: view()) and (color: color-mix(in srgb, red, blue))) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      view-timeline: --reveal block;
+      view-timeline-inset: 0px var(--sr-inset, 25%);
+    }
+
+    .word {
+      color: var(--reveal-from);
+      animation: ink 1s linear both;
+      animation-timeline: --reveal;
+      animation-range: cover calc(var(--s, 0) * var(--sr-len, 40vh)) cover calc((var(--s, 0) + var(--w, 1)) * var(--sr-len, 40vh));
+    }
+
+    @keyframes ink {
+      to {
+        color: var(--reveal-to);
+      }
+    }
   }
 }

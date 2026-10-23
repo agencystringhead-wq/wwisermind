@@ -140,51 +140,138 @@
   composes: buttonOutline from '../ui/Controls.module.css';
 }
 
-/* --- the motion ------------------------------------------------------------ */
-/* The same query the component reads. `pin` grows by `--pin-distance` and `stage` sticks
-   under the header for exactly that distance. The panels start where the driver's first
-   frame would put them — the first a little low and faint, the next below the first's
-   foot — so the first paint and the first driven frame agree. The driver then owns
-   `transform` and `opacity` inline. */
-@media (prefers-reduced-motion: no-preference) {
-  /* The range is a spacer in the flow, not padding: a sticky element is held within its
-     parent's content box, so padding would give it no room to stick. */
-  .pin::after {
-    content: '';
-    display: block;
-    height: var(--pin-distance);
-  }
-
-  .stage {
-    position: sticky;
-    top: var(--pin-top);
-  }
-
-  .first {
-    transform: translateY(96px);
-    opacity: 0.4;
-  }
-
-  .next {
-    transform: translateY(calc(100% + var(--stack-gap)));
-  }
+/* --- the stack at rest ----------------------------------------------------- */
+/* Two panels, one under the other: what reduced motion and a browser without scroll timelines
+   get, and what the page is before the motion rules below apply. */
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stack-gap);
 }
 
-/* --- reduced motion: two panels at rest, one under the other ---------------- */
-@media (prefers-reduced-motion: reduce) {
-  .stage {
-    display: flex;
-    flex-direction: column;
-    gap: var(--stack-gap);
-  }
+.next {
+  position: relative;
+  inset: auto;
+}
 
-  .panel {
-    will-change: auto;
-  }
+/* --- the motion ------------------------------------------------------------ */
+/* `pin` grows by `--pin-distance` and `stage` sticks under the header for exactly that
+   distance, and `pin` is the timeline's subject: it reads 0 when the pin's top reaches the
+   sticking line (`--start` is that point on the `cover` range) and runs for the distance.
+   The windows below are shares of it, as lengths after `--start`: the first quarter settles
+   the first panel, the next three tenths hold it, and the last forty-five hundredths slide
+   the others up over it, one after another (`--i` is a panel's place, `--m` how many rise).
+   Transform and opacity only, so it runs off the main thread. A covered panel's fade is a
+   `filter: opacity()` rather than `opacity`, which multiplies with the settle's opacity on the
+   first panel instead of replacing it. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .pin {
+      --start: calc(100vh - var(--pin-top));
+      --ease: cubic-bezier(0.45, 0.05, 0.55, 0.95);
 
-  .next {
-    position: relative;
-    inset: auto;
+      view-timeline: --pin block;
+    }
+
+    /* The range is a spacer in the flow, not padding: a sticky element is held within its
+       parent's content box, so padding would give it no room to stick. */
+    .pin::after {
+      content: '';
+      display: block;
+      height: var(--pin-distance);
+    }
+
+    .stage {
+      display: block;
+      position: sticky;
+      top: var(--pin-top);
+    }
+
+    .next {
+      position: absolute;
+      inset: 0;
+    }
+
+    /* The first panel: settle, then be covered. */
+    .first {
+      animation:
+        settle 1s var(--ease) both,
+        cover-scale 1s var(--ease) both,
+        cover-fade 1s var(--ease) both;
+      animation-composition: replace;
+      animation-timeline: --pin, --pin, --pin;
+      animation-range:
+        cover var(--start) cover calc(var(--start) + var(--pin-distance) * 0.25),
+        cover calc(var(--start) + var(--pin-distance) * 0.55)
+          cover calc(var(--start) + var(--pin-distance) * (0.55 + 0.45 / var(--m))),
+        cover calc(var(--start) + var(--pin-distance) * 0.55)
+          cover calc(var(--start) + var(--pin-distance) * (0.55 + 0.45 / var(--m)));
+    }
+
+    /* A later panel: rise over the one before, then be covered by the next. */
+    .next {
+      animation:
+        rise 1s var(--ease) both,
+        cover-scale 1s var(--ease) both,
+        cover-fade 1s var(--ease) both;
+      animation-composition: replace;
+      animation-timeline: --pin, --pin, --pin;
+      animation-range:
+        cover calc(var(--start) + var(--pin-distance) * (0.55 + 0.45 * (var(--i) - 1) / var(--m)))
+          cover calc(var(--start) + var(--pin-distance) * (0.55 + 0.45 * var(--i) / var(--m))),
+        cover calc(var(--start) + var(--pin-distance) * (0.55 + 0.45 * var(--i) / var(--m)))
+          cover calc(var(--start) + var(--pin-distance) * (0.55 + 0.45 * (var(--i) + 1) / var(--m))),
+        cover calc(var(--start) + var(--pin-distance) * (0.55 + 0.45 * var(--i) / var(--m)))
+          cover calc(var(--start) + var(--pin-distance) * (0.55 + 0.45 * (var(--i) + 1) / var(--m)));
+    }
+
+    /* The last panel is never covered: it only rises. */
+    .last {
+      animation: rise 1s var(--ease) both;
+      animation-composition: replace;
+      animation-timeline: --pin;
+      animation-range:
+        cover calc(var(--start) + var(--pin-distance) * (0.55 + 0.45 * (var(--i) - 1) / var(--m)))
+        cover calc(var(--start) + var(--pin-distance) * (0.55 + 0.45 * var(--i) / var(--m)));
+    }
+
+    @keyframes settle {
+      from {
+        translate: 0 96px;
+        opacity: 0.4;
+      }
+      to {
+        translate: 0 0;
+        opacity: 1;
+      }
+    }
+
+    @keyframes rise {
+      from {
+        translate: 0 calc(100% + var(--stack-gap));
+      }
+      to {
+        translate: 0 0;
+      }
+    }
+
+    @keyframes cover-scale {
+      from {
+        scale: 1;
+      }
+      to {
+        scale: 0.94;
+      }
+    }
+
+    @keyframes cover-fade {
+      from {
+        filter: opacity(1);
+      }
+      to {
+        filter: opacity(0.55);
+      }
+    }
   }
 }
 
@@ -248,7 +335,9 @@
 /* Over the first, the next panel has no flow height of its own on a phone either: it fills
    the first's box. At rest under reduced motion it keeps the floor above. */
 @media (max-width: 640px) and (prefers-reduced-motion: no-preference) {
-  .next {
-    min-height: 0;
+  @supports (animation-timeline: view()) {
+    .next {
+      min-height: 0;
+    }
   }
 }

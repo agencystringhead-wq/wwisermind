@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  useEffect,
   useId,
   useLayoutEffect,
   useRef,
@@ -13,7 +14,6 @@ import BookCallButton from '@/components/booking/BookCallButton';
 import type { Service } from '@/lib/services';
 import { CheckIcon } from '@/components/ui/icons';
 import ScrollReveal from '@/components/ui/ScrollReveal';
-import useScrollProgress from '@/components/ui/useScrollProgress';
 import section from './Section.module.css';
 import type { Ground } from './ServicePage';
 import styles from './ServiceWhatWeDo.module.css';
@@ -21,23 +21,22 @@ import styles from './ServiceWhatWeDo.module.css';
 /**
  * Where the section is driven by scroll rather than by clicks: a viewport wide enough that
  * the picture and the card sit side by side under the sticky header, for people who have
- * not asked for less motion. The stylesheet gates the pin's geometry on the same query, so
- * the page is laid out for it before hydration and nothing moves when the driver starts.
- * Under it the section is the plain click-tab version: on a phone the stacked slide is
+ * not asked for less motion, in a browser that has scroll timelines. The stylesheet gates the
+ * pin's geometry on the same conditions, so the page is laid out for it before hydration.
+ * Anywhere else the section is the plain click-tab version: on a phone the stacked slide is
  * taller than the screen, and a pinned block taller than the screen is a trap.
  */
 const SCRUB_QUERY = '(min-width: 1024px) and (prefers-reduced-motion: no-preference)';
+const scrubs = () =>
+  window.matchMedia(SCRUB_QUERY).matches && CSS.supports('animation-timeline', 'view()');
 
 /**
  * How much of each slide's third of the range the glide to the next slide occupies, at
  * the end of it: 0.3 means the track holds on a slide for the first seven tenths of its
  * third, while that tab fills, and glides across during the last three — landing on the
- * next slide exactly as its tab starts to fill.
+ * next slide exactly as its tab starts to fill. The stylesheet has the same numbers.
  */
 const GLIDE = 0.3;
-
-/** The smoothing on the scroll value, in milliseconds; see `useScrollProgress`. */
-const DAMPING = 110;
 
 type Mode = 'click' | 'scrub';
 
@@ -56,14 +55,15 @@ const smooth = (x: number) => x * x * (3 - 2 * x);
  * yellow fills from left to right across that third, tabs already passed stay full, and
  * in the last three tenths of the third the track glides one slide to the left — the
  * picture leaving on the left as the next arrives from the right, the neighbours' edges
- * showing past the container on the way. Every value is derived from where the page is,
- * so scrolling back up runs it all in reverse, and the value is smoothed before it is
- * painted so a mouse wheel's steps arrive as a glide. Transform only, written straight to
- * the nodes by the shared scroll-progress hook, which also parks itself while the section
- * is off screen. Clicking a tab scrolls the page to that slide's place in the range, so
- * what the click shows and what the scroll shows can never disagree.
+ * showing past the container on the way. The fills and the glide are CSS scroll-driven
+ * animations on a timeline that is the pin's own scroll (ServiceWhatWeDo.module.css), so
+ * scrolling back up runs them in reverse and no script touches them; script only works out
+ * which tab is current, and only while the section is on screen. Clicking a tab scrolls the
+ * page to that slide's place in the range, so what the click shows and what the scroll
+ * shows can never disagree. A browser without scroll timelines (Firefox) gets the plain tab
+ * set below.
  *
- * Everywhere else — phones, tablets, anyone asking for less motion — it is a plain tab
+ * Everywhere else — phones, tablets, anyone asking for less motion, Firefox — it is a plain tab
  * set: a click glides the track to that slide, or cuts to it when motion is reduced, and
  * the tabs up to it fill.
  *
@@ -85,77 +85,91 @@ export default function ServiceWhatWeDo({
 
   const pinRef = useRef<HTMLDivElement | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
-  const viewportRef = useRef<HTMLDivElement | null>(null);
-  const trackRef = useRef<HTMLDivElement | null>(null);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const fillRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const activeRef = useRef(0);
-  const gapRef = useRef(24);
 
   /* Layout effect so the switch lands before the first paint after hydration. */
   useLayoutEffect(() => {
+    const sync = () => setMode(scrubs() ? 'scrub' : 'click');
     const query = window.matchMedia(SCRUB_QUERY);
-    const sync = () => setMode(query.matches ? 'scrub' : 'click');
     sync();
     query.addEventListener('change', sync);
     return () => query.removeEventListener('change', sync);
   }, []);
 
-  const { scrollTo } = useScrollProgress(pinRef, {
-    enabled: mode === 'scrub',
-    damping: DAMPING,
-    measure: (pin) => {
-      const stage = stageRef.current;
-      const viewport = viewportRef.current;
-      const top = stage ? parseFloat(getComputedStyle(stage).top) || 0 : 0;
-      if (viewport) {
-        gapRef.current =
-          parseFloat(getComputedStyle(viewport).getPropertyValue('--slide-gap')) || 24;
-      }
-      return {
-        start: pin.getBoundingClientRect().top + window.scrollY - top,
-        length: Math.max(1, pin.offsetHeight - (stage?.offsetHeight ?? 0)),
-      };
-    },
-    onProgress: (progress) => {
-      const t = progress * count;
-      const fills = fillRefs.current;
-      for (let i = 0; i < count; i += 1) {
-        const fill = fills[i];
-        if (fill) fill.style.transform = `scaleX(${Math.round(clamp(t - i) * 1000) / 1000})`;
-      }
+  /* How far the page has scrolled through the range, in slides (one slide is `--pin-per-slide`
+     of scroll, the spacer's height over the count). */
+  const slidesScrolled = () => {
+    const pin = pinRef.current;
+    const stage = stageRef.current;
+    if (!pin || !stage) return 0;
+    const top = parseFloat(getComputedStyle(stage).top) || 0;
+    const unit = parseFloat(getComputedStyle(pin, '::after').height) / count || 1;
+    return (top - pin.getBoundingClientRect().top) / unit;
+  };
 
+  /* The visuals — the fills and the glide — are scroll-driven CSS and need nothing from here.
+     All that is left for script is which tab is current (the selected tab, `aria-selected`,
+     which slide is inert), and that is worked out only while the section is on screen: an
+     observer attaches one passive scroll listener while the pin is in view and takes it off
+     when it is not. */
+  useEffect(() => {
+    if (mode !== 'scrub') return;
+    const pin = pinRef.current;
+    if (!pin) return;
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const t = slidesScrolled();
       let position = 0;
-      for (let i = 0; i < count - 1; i += 1) {
-        position += smooth(clamp((t - i - (1 - GLIDE)) / GLIDE));
-      }
-      const track = trackRef.current;
-      if (track) {
-        const p = Math.round(position * 10000) / 10000;
-        track.style.transform = `translateX(calc(${-p * 100}% - ${p * gapRef.current}px))`;
-      }
-
+      for (let i = 0; i < count - 1; i += 1) position += smooth(clamp((t - i - (1 - GLIDE)) / GLIDE));
       const nearest = Math.round(position);
       if (nearest !== activeRef.current) {
         activeRef.current = nearest;
         setActive(nearest);
       }
-    },
-  });
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
 
-  /* Leaving scrub mode hands the nodes back to the stylesheet's click-tab version. */
-  useLayoutEffect(() => {
-    if (mode === 'scrub') return;
-    trackRef.current?.style.removeProperty('transform');
-    fillRefs.current.forEach((fill) => fill?.style.removeProperty('transform'));
-  }, [mode]);
+    let listening = false;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry?.isIntersecting && !listening) {
+        listening = true;
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+      } else if (!entry?.isIntersecting && listening) {
+        listening = false;
+        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('resize', onScroll);
+      }
+      update();
+    });
+    observer.observe(pin);
 
-  /* In scrub mode a tab is chosen by scrolling the page to the resting part of that
-     slide's third; the driver then shows it, gliding through the ones between on the way.
-     Otherwise it is simply set. */
+    return () => {
+      observer.disconnect();
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, [mode, count]);
+
+  /* In scrub mode a tab is chosen by scrolling the page to the resting part of that slide's
+     third; the glides between play as it goes. Otherwise it is simply set. */
   const select = (index: number) => {
     if (mode === 'scrub') {
-      scrollTo((index + (1 - GLIDE) / 2) / count);
+      const pin = pinRef.current;
+      const stage = stageRef.current;
+      if (!pin || !stage) return;
+      const top = parseFloat(getComputedStyle(stage).top) || 0;
+      const unit = parseFloat(getComputedStyle(pin, '::after').height) / count || 1;
+      window.scrollTo({
+        top: window.scrollY + pin.getBoundingClientRect().top - top + (index + (1 - GLIDE) / 2) * unit,
+        behavior: 'smooth',
+      });
       return;
     }
     activeRef.current = index;
@@ -213,10 +227,8 @@ export default function ServiceWhatWeDo({
                   >
                     <span
                       className={`${styles.fill} ${index <= active ? styles.fillDone : ''}`}
+                      style={{ '--i': index } as CSSProperties}
                       aria-hidden="true"
-                      ref={(node) => {
-                        fillRefs.current[index] = node;
-                      }}
                     />
                     <span className={styles.tabLabel}>{tab.label}</span>
                     <span className={styles.tabNumber}>
@@ -227,12 +239,8 @@ export default function ServiceWhatWeDo({
               })}
             </div>
 
-            <div className={styles.viewport} ref={viewportRef}>
-              <div
-                className={styles.track}
-                style={{ '--pos': active } as CSSProperties}
-                ref={trackRef}
-              >
+            <div className={styles.viewport}>
+              <div className={styles.track} style={{ '--pos': active } as CSSProperties}>
                 {block.tabs.map((tab, index) => {
                   const current = index === active;
 

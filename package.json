@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/check-crisis-data.mjs && next build",
+    "build": "node scripts/check-crisis-data.mjs && next build && node scripts/critical/apply.mjs",
+    "critical": "node scripts/critical/generate.mjs",
     "start": "next start",
     "lint": "next lint",
     "images": "node scripts/convert-images.mjs",

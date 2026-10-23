@@ -1,61 +1,23 @@
-'use client';
-
-import { useEffect, useRef, useState } from 'react';
 import { processPage } from '@/lib/process';
 import Reveal from '@/components/ui/Reveal';
 import ScrollReveal from '@/components/ui/ScrollReveal';
-import useScrollProgress from '@/components/ui/useScrollProgress';
 import section from '@/components/services/Section.module.css';
 import ConfirmChip from './ConfirmChip';
 import styles from './Process.module.css';
 
-const MOTION_QUERY = '(prefers-reduced-motion: no-preference)';
-
 /**
  * Frame 3 — the three steps, the body of the page.
  *
- * Three full-width blocks down a thin blue rail that fills as the page scrolls. The fill is
- * driven by the shared scroll hook, which measures once, reads `scrollY` and nothing else,
- * pauses while the list is off screen and smooths the value; the only property that moves is
- * the fill's `scaleY`. Each block arrives through the shared Reveal in a set order — the
+ * Three full-width blocks down a thin blue rail that fills as the page scrolls. The fill is a
+ * CSS scroll-driven animation on the list (see Process.module.css), so no script runs for it;
+ * the only property that moves is the fill's `scaleY`. Each block arrives through the shared Reveal in a set order — the
  * numeral, then the title, the paragraph, the two cards, and last the walk-away line.
  *
- * Under reduced motion the hook never runs and the stylesheet draws the rail full and every
- * block in place.
+ * Under reduced motion, or in a browser without scroll timelines, the stylesheet draws the rail
+ * full and every block in place.
  */
 export default function ProcessSteps() {
   const { eyebrow, heading, items } = processPage.steps;
-  const listRef = useRef<HTMLDivElement | null>(null);
-  const railRef = useRef<HTMLSpanElement | null>(null);
-  const [motion, setMotion] = useState(false);
-
-  useEffect(() => {
-    const query = window.matchMedia(MOTION_QUERY);
-    const sync = () => setMotion(query.matches);
-    sync();
-    query.addEventListener('change', sync);
-    return () => query.removeEventListener('change', sync);
-  }, []);
-
-  useScrollProgress(listRef, {
-    enabled: motion,
-    damping: 120,
-    measure: (list) => {
-      const height = window.innerHeight || 1;
-      const top = list.getBoundingClientRect().top + window.scrollY;
-      /* Starts as the list's top reaches 55% of the way down the screen, and is full when
-         its foot has risen to the same line. */
-      return { start: top - height * 0.55, length: Math.max(1, list.offsetHeight) };
-    },
-    onProgress: (progress) => {
-      railRef.current?.style.setProperty('--p', String(progress));
-    },
-  });
-
-  /* Off the driver, the stylesheet's resting state (a full rail) takes it back. */
-  useEffect(() => {
-    if (!motion) railRef.current?.style.removeProperty('--p');
-  }, [motion]);
 
   return (
     <section className={styles.steps}>
@@ -67,9 +29,9 @@ export default function ProcessSteps() {
           <ScrollReveal text={heading} className={section.heading} />
         </Reveal>
 
-        <div className={styles.list} ref={listRef}>
+        <div className={styles.list}>
           <span className={styles.rail} aria-hidden="true">
-            <span className={styles.railFill} ref={railRef} />
+            <span className={styles.railFill} />
           </span>
 
           {items.map((step) => (
