@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { formatDate, relatedPosts, type BlogPost, type Inline } from '@/lib/blog';
 import { siteConfig } from '@/lib/site';
 import Reveal from '@/components/ui/Reveal';
+import ToolCallout from '@/components/tools/ToolCallout';
 import section from '@/components/services/Section.module.css';
 import BlogCard from './BlogCard';
 import PostBody, { renderInline } from './PostBody';
@@ -206,6 +207,10 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
             </section>
           ) : null}
         </div>
+
+        {post.relatedTool ? (
+          <ToolCallout variant="wide" toolId={post.relatedTool} placement={`blog-${post.slug}`} />
+        ) : null}
       </article>
 
       {more.length > 0 ? (

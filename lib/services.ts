@@ -2,6 +2,7 @@ import { routes } from '@/lib/routes';
 import { SERVICE_SLUGS, serviceHref, type ServiceSlug } from '@/lib/service-slugs';
 import { heroBanner, homeIntro } from '@/lib/site';
 import type { ServiceIconName } from '@/components/ui/icons';
+import type { ToolId } from '@/lib/tools';
 
 export { SERVICE_SLUGS, serviceHref, type ServiceSlug };
 
@@ -82,6 +83,8 @@ export type Service = {
   slug: ServiceSlug;
   name: string;
   category: ServiceCategory;
+  /** A free tool offered in a wide callout near the end of the page (lib/tools.ts). Absent, no callout. */
+  relatedTool?: ToolId;
   /** True while the entry’s copy is unfinished. The page still renders, but it is sent
       out `noindex` so a search engine never files a half page. */
   draft?: boolean;
@@ -302,6 +305,7 @@ export const services: Service[] = [
   /* --- 01 · One Week Website ------------------------------------------------ */
   {
     slug: 'one-week-website',
+    relatedTool: 'website-scorecard',
     name: 'One Week Website',
     category: 'Website Design',
     heroOutcome:
@@ -572,6 +576,7 @@ export const services: Service[] = [
   /* --- 02 · Custom Website Design ------------------------------------------- */
   {
     slug: 'custom-website-design',
+    relatedTool: 'website-scorecard',
     name: 'Custom Website Design',
     category: 'Website Design',
     heroOutcome:
@@ -1103,6 +1108,7 @@ export const services: Service[] = [
   /* --- 04 · Website Care Plans ---------------------------------------------- */
   {
     slug: 'website-care-plans',
+    relatedTool: 'website-scorecard',
     name: 'Website Care Plans',
     category: 'Website Design',
     heroOutcome:
@@ -1359,6 +1365,7 @@ export const services: Service[] = [
   /* --- 05 · Local SEO ------------------------------------------------------- */
   {
     slug: 'local-seo',
+    relatedTool: 'local-map-assessment',
     name: 'Local SEO',
     category: 'Online Marketing',
     heroOutcome:
@@ -1864,6 +1871,7 @@ export const services: Service[] = [
   /* --- 07 · One Time SEO ---------------------------------------------------- */
   {
     slug: 'one-time-seo',
+    relatedTool: 'therapy-index',
     name: 'One Time SEO',
     category: 'Online Marketing',
     heroOutcome:
@@ -2112,6 +2120,7 @@ export const services: Service[] = [
   /* --- 08 · Ongoing SEO / AEO / GEO ----------------------------------------- */
   {
     slug: 'ongoing-seo',
+    relatedTool: 'therapy-index',
     name: 'Ongoing SEO / AEO / GEO',
     category: 'Online Marketing',
     heroOutcome:
@@ -2865,6 +2874,7 @@ export const services: Service[] = [
   /* --- 11 · AI Search Optimization ------------------------------------------ */
   {
     slug: 'ai-search-optimization',
+    relatedTool: 'therapy-index',
     name: 'AI Search Optimization',
     category: 'AI Services',
     heroOutcome:
@@ -3118,6 +3128,7 @@ export const services: Service[] = [
   /* --- 12 · AI Website Design ----------------------------------------------- */
   {
     slug: 'ai-website-design',
+    relatedTool: 'website-scorecard',
     name: 'AI Website Design',
     category: 'AI Services',
     heroOutcome:

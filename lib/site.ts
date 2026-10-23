@@ -4,6 +4,7 @@ import { audienceHref } from '@/lib/audience-slugs';
 import { freebiePath, freebies as freebieList } from '@/lib/freebies';
 import { routes } from '@/lib/routes';
 import { serviceHref } from '@/lib/service-slugs';
+import { getTool } from '@/lib/tools';
 import { reviews, reviewsSummary } from '@/lib/reviews';
 
 export type NavItem = {
@@ -132,7 +133,7 @@ const scorecard = freebieList.find((freebie) => freebie.slug === 'website-scorec
 const scorecardLink = scorecard
   ? [
       {
-        label: 'Free Website Scorecard',
+        label: getTool('website-scorecard').name,
         href: freebiePath(scorecard),
         desc: scorecard.typeLabel,
         badge: scorecard.status === 'comingSoon' ? 'Soon' : 'NEW',
@@ -381,9 +382,9 @@ export const megaPanels: Record<string, MegaPanel> = {
         lead: 'Check',
         title: 'Free Assessments',
         links: [
-          { label: 'Local Map Assessment', href: routes.localMapAssessment, desc: 'Your Google Maps presence' },
+          { label: getTool('local-map-assessment').name, href: getTool('local-map-assessment').route, desc: 'Your Google Maps presence' },
           ...scorecardLink,
-          { label: 'Good Faith Estimate', href: routes.tools.goodFaithEstimate, desc: 'Free PDF for self-pay clients' },
+          { label: getTool('good-faith-estimate').name, href: getTool('good-faith-estimate').route, desc: 'Free PDF for self-pay clients' },
           { label: 'Marketing Assessment', href: routes.homeSection('marketing-assessment'), desc: 'Where you stand today' },
           { label: 'AI Visibility Report', href: routes.homeSection('ai-visibility-report'), desc: 'Does ChatGPT know you exist?', badge: 'Soon' },
         ],
@@ -392,7 +393,7 @@ export const megaPanels: Record<string, MegaPanel> = {
         lead: 'Open',
         title: 'Transparency',
         links: [
-          { label: 'Therapy Index', href: routes.therapyIndex.hub, desc: 'Who patients find in your city', badge: 'LIVE DATA', badgeTone: 'orange', badgeAbove: true },
+          { label: getTool('therapy-index').name, href: getTool('therapy-index').route, desc: 'Who patients find in your city', badge: 'LIVE DATA', badgeTone: 'orange', badgeAbove: true },
         ],
       },
       {
@@ -400,8 +401,8 @@ export const megaPanels: Record<string, MegaPanel> = {
         title: 'For Your Clients',
         links: [
           {
-            label: 'Crisis Resources by State',
-            href: routes.tools.crisisResources,
+            label: getTool('crisis-resources').name,
+            href: getTool('crisis-resources').route,
             desc: 'Free helpline directory',
             badge: 'IMPORTANT',
             badgeTone: 'green',
@@ -1103,9 +1104,10 @@ export const footerMain = {
         { label: 'AI Visibility Report', href: routes.homeSection('ai-visibility-report') },
         { label: 'AI Search Optimization', href: serviceHref('ai-search-optimization') },
         { label: 'AI Chatbot', href: serviceHref('ai-chatbot') },
-        { label: 'Local Map Assessment', href: routes.localMapAssessment },
-        { label: 'Crisis Resources by State', href: routes.tools.crisisResources },
-        { label: 'Therapy Index', href: routes.therapyIndex.hub },
+        ...(['local-map-assessment', 'crisis-resources', 'therapy-index'] as const).map((id) => ({
+          label: getTool(id).name,
+          href: getTool(id).route,
+        })),
       ],
     },
   ],

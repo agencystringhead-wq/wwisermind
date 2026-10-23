@@ -7,6 +7,7 @@ tags: ymyl, e-e-a-t, seo, credentials, trust
 publishedAt: 2026-10-11
 updatedAt: 2026-10-11
 author: Srikaant H.
+relatedTool: website-scorecard
 featured: false
 image: /images/blog/blog-ymyl-eeat-credentials.webp
 imageAlt: A therapist straightening her framed licence on the wall of her office

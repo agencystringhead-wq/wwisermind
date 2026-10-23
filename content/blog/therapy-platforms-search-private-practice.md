@@ -7,6 +7,7 @@ tags: local seo, google business profile, betterhelp, referrals, private practic
 publishedAt: 2026-10-19
 updatedAt: 2026-10-19
 author: Srikaant H.
+relatedTool: therapy-index
 featured: false
 image: /images/blog/blog-small-practice-big-platforms.webp
 imageAlt: A small, warm therapy practice between two large glass towers

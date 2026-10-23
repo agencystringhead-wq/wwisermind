@@ -24,6 +24,7 @@ import {
   trustItems,
   visibilityBand,
 } from '@/lib/pricing/local-seo';
+import ToolCallout from '@/components/tools/ToolCallout';
 import LocalSeoBundle from './LocalSeoBundle';
 import LocalSeoCta from './LocalSeoCta';
 import LocalSeoFaq from './LocalSeoFaq';
@@ -107,6 +108,7 @@ export default function LocalSeoPage() {
       <LocalSeoProcess copy={processCopy} stages={processStages} />
       <LocalSeoBundle />
       <LocalSeoProjects copy={projectsCopy} projects={relevantProjects} />
+      <ToolCallout variant="wide" toolId="local-map-assessment" placement="pricing-local-seo" />
       <LocalSeoCta cta={finalCta} />
       <LocalSeoFaq copy={localSeoFaqCopy} items={localSeoFaqs} />
     </>

@@ -4,6 +4,7 @@ import { getStatesWithData } from '@/lib/crisis-resources';
 import { freebiePath, freebies, isLive } from '@/lib/freebies';
 import { routes, SERVICE_PATHS } from '@/lib/routes';
 import { services, type ServiceCategory } from '@/lib/services';
+import { getTool } from '@/lib/tools';
 import { INDEXABLE } from '@/lib/therapyindex/config';
 import { getMarketViews, indexableProfiles } from '@/lib/therapyindex/data';
 
@@ -96,8 +97,8 @@ export function sitemapGroups(): SitemapGroup[] {
       links: [
         link('Freebies', routes.freebies.hub),
         ...liveFreebies.map((freebie) => link(freebie.title, freebiePath(freebie))),
-        link('Local Map Assessment', routes.localMapAssessment),
-        link('Crisis Resources by State', routes.tools.crisisResources),
+        link(getTool('local-map-assessment').name, getTool('local-map-assessment').route),
+        link(getTool('crisis-resources').name, getTool('crisis-resources').route),
         link('Help now widget', routes.tools.helpNowWidget),
       ],
     },
@@ -123,7 +124,7 @@ export function sitemapGroups(): SitemapGroup[] {
           {
             title: 'Therapy Index',
             links: [
-              link('Therapy Index', routes.therapyIndex.hub),
+              link(getTool('therapy-index').name, getTool('therapy-index').route),
               link('Therapy Index methodology', routes.therapyIndex.methodology),
               ...getMarketViews().map((view) => link(`${view.city.name} therapist rankings`, view.path)),
             ],

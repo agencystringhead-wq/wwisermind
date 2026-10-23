@@ -5,6 +5,7 @@ category: Website platforms
 publishedAt: 2026-10-21
 updatedAt: 2026-10-21
 author: Srikaant H.
+relatedTool: website-scorecard
 image: /images/blog/featured/therapist-website-examples.webp
 imageAlt: A desk with a laptop, tablet and phone showing three calm therapist website layouts
 ---

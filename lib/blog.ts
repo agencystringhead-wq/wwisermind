@@ -23,6 +23,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { isToolId, type ToolId } from '@/lib/tools';
 
 const POSTS_DIR = path.join(process.cwd(), 'content', 'blog');
 
@@ -58,6 +59,9 @@ export type BlogPost = {
   faq: FaqItem[];
   /** Whole minutes, from the word count of the body at 220 words a minute. */
   readingMinutes: number;
+  /** A free tool offered in a wide callout after the post, from an optional `relatedTool:` line in the
+      header (an id from lib/tools.ts). Absent, no callout. */
+  relatedTool?: ToolId;
 };
 
 /* --- the body ----------------------------------------------------------------------- */
@@ -306,6 +310,13 @@ function parseFile(file: string): BlogPost {
     if (!DATE.test(text(key))) throw new Error(`[blog] ${file}: "${key}" must be YYYY-MM-DD`);
   }
 
+  const relatedTool = () => {
+    const id = text('relatedTool');
+    if (!id) return undefined;
+    if (!isToolId(id)) throw new Error(`[blog] ${file}: "relatedTool" is not a tool id: "${id}"`);
+    return id;
+  };
+
   const sources = list('sources').map((entry): BlogSource => {
     const cut = entry.lastIndexOf(' | ');
     if (cut === -1) throw new Error(`[blog] ${file}: source "${entry}" is not "label | url"`);
@@ -339,6 +350,7 @@ function parseFile(file: string): BlogPost {
     imagePlaceholder: text('imagePlaceholder') === 'true',
     imageCredit: text('imageCredit') || undefined,
     imageCreditUrl: text('imageCreditUrl') || undefined,
+    relatedTool: relatedTool(),
     takeaways: list('takeaways'),
     sources,
     body,

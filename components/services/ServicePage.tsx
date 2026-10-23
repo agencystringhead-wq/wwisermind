@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import type { Service } from '@/lib/services';
+import ToolCallout from '@/components/tools/ToolCallout';
 import ContactGallery from '@/components/sections/ContactGallery';
 import Faq from '@/components/sections/Faq';
 import ServiceHero from './ServiceHero';
@@ -84,6 +85,15 @@ export default function ServicePage({
     ),
   });
   frames.push({ render: (g) => <ServiceRelated service={service} ground={g} key="related" /> });
+  if (service.relatedTool) {
+    const toolId = service.relatedTool;
+    frames.push({
+      fixed: 'light',
+      render: () => (
+        <ToolCallout key="tool" variant="wide" toolId={toolId} placement={`service-${service.slug}`} />
+      ),
+    });
+  }
 
   let ground: Ground = 'grey';
 

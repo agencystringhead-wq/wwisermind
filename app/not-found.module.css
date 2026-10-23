@@ -1,0 +1,52 @@
+/* The 404 message, set in the site's type. */
+
+.message {
+  padding-block: 96px 8px;
+  text-align: center;
+}
+
+.code {
+  composes: monoLabel from '../components/ui/Controls.module.css';
+}
+
+.heading {
+  margin-top: 16px;
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: var(--fw-semibold);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--color-ink);
+}
+
+.lead {
+  margin-top: 12px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+.home {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: var(--fw-semibold);
+  color: var(--color-brand);
+}
+
+.home:hover {
+  color: var(--color-brand-dark);
+}
+
+.tools {
+  padding-bottom: 96px;
+}
+
+@media (max-width: 767px) {
+  .message {
+    padding-block: 64px 0;
+  }
+
+  .tools {
+    padding-bottom: 72px;
+  }
+}

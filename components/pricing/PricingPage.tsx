@@ -4,6 +4,7 @@ import section from '@/components/services/Section.module.css';
 import { PRICE_CURRENCY, pricingEntries, pricingFaqs } from '@/lib/pricing';
 import { siteConfig, absUrl } from '@/lib/site';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
+import ToolCallout from '@/components/tools/ToolCallout';
 import PricingFaq from './PricingFaq';
 import PricingFeatured from './PricingFeatured';
 import PricingHero from './PricingHero';
@@ -81,6 +82,12 @@ export default function PricingPage() {
       <PricingFeatured />
       <PricingPackages />
       <PricingFaq />
+      <ToolCallout
+        variant="compact"
+        toolIds={['website-scorecard']}
+        eyebrow="Not sure what you need?"
+        placement="pricing-hub"
+      />
     </>
   );
 }

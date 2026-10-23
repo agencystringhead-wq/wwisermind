@@ -6,6 +6,7 @@ import AboutBelief from './AboutBelief';
 import AboutTeam from './AboutTeam';
 import AboutTestimonials from './AboutTestimonials';
 import AboutCta from './AboutCta';
+import ToolCallout from '@/components/tools/ToolCallout';
 
 /**
  * /about — eight sections matching the About-Page-Design reference.
@@ -16,6 +17,12 @@ export default function AboutPage() {
     <>
       <AboutHero />
       <AboutFounder />
+      <ToolCallout
+        variant="compact"
+        toolIds={['crisis-resources', 'good-faith-estimate']}
+        heading="Free for every practice"
+        placement="about-pair"
+      />
       <AboutMission />
       <AboutStory />
       <AboutBelief />

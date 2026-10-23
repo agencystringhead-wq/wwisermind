@@ -5,6 +5,7 @@ category: Search and trust
 publishedAt: 2026-10-21
 updatedAt: 2026-10-21
 author: Srikaant H.
+relatedTool: website-scorecard
 image: /images/blog/featured/psychology-today-profile-tips.webp
 imageAlt: A therapist arranging a headshot beside a directory profile layout on a laptop
 ---

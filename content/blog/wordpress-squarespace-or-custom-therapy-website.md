@@ -7,6 +7,7 @@ tags: wordpress, squarespace, custom website, hipaa, website ownership
 publishedAt: 2026-10-11
 updatedAt: 2026-10-11
 author: Srikaant H.
+relatedTool: website-scorecard
 featured: false
 image: /images/blog/blog-builder-wordpress-custom.webp
 imageAlt: Three model houses: a kit house, a modular house and a hand-built one
