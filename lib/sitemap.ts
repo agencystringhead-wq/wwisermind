@@ -96,6 +96,7 @@ export function sitemapGroups(): SitemapGroup[] {
       links: [
         link('Freebies', routes.freebies.hub),
         ...liveFreebies.map((freebie) => link(freebie.title, freebiePath(freebie))),
+        link('Local Map Assessment', routes.localMapAssessment),
         link('Crisis Resources by State', routes.tools.crisisResources),
         link('Help now widget', routes.tools.helpNowWidget),
       ],

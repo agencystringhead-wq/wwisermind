@@ -381,7 +381,7 @@ export const megaPanels: Record<string, MegaPanel> = {
         lead: 'Check',
         title: 'Free Assessments',
         links: [
-          { label: 'Local Map Assessment', href: routes.homeSection('local-map-assessment'), desc: 'Your Google Maps presence' },
+          { label: 'Local Map Assessment', href: routes.localMapAssessment, desc: 'Your Google Maps presence' },
           ...scorecardLink,
           { label: 'Marketing Assessment', href: routes.homeSection('marketing-assessment'), desc: 'Where you stand today' },
           { label: 'AI Visibility Report', href: routes.homeSection('ai-visibility-report'), desc: 'Does ChatGPT know you exist?', badge: 'Soon' },
@@ -988,6 +988,12 @@ export const tiChromeToolPaths: string[] = ['/tools/ai-visibility-report'];
 export const usesTiChrome = (pathname: string): boolean =>
   isTherapyIndexPage(pathname) || tiChromeToolPaths.includes(pathname.replace(/\/+$/, ''));
 
+/** The Local Map Assessment landing page, and its start page, carry a header and footer of their own. */
+export const isLocalMapAssessmentPage = (pathname: string): boolean => /^\/local-map-assessment(\/|$)/.test(pathname);
+
+/** Pages whose own chrome replaces the site's header, footer and floating contact bar. */
+export const usesOwnChrome = (pathname: string): boolean => usesTiChrome(pathname) || isLocalMapAssessmentPage(pathname);
+
 export const isCrisisResourcesPage = (pathname: string): boolean => {
   const trim = (path: string) => path.replace(/\/+$/, '');
   const here = trim(pathname);
@@ -1096,7 +1102,7 @@ export const footerMain = {
         { label: 'AI Visibility Report', href: routes.homeSection('ai-visibility-report') },
         { label: 'AI Search Optimization', href: serviceHref('ai-search-optimization') },
         { label: 'AI Chatbot', href: serviceHref('ai-chatbot') },
-        { label: 'Local Map Assessment', href: routes.homeSection('local-map-assessment') },
+        { label: 'Local Map Assessment', href: routes.localMapAssessment },
         { label: 'Crisis Resources by State', href: routes.tools.crisisResources },
         { label: 'Therapy Index', href: routes.therapyIndex.hub },
       ],

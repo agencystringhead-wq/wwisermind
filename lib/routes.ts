@@ -106,6 +106,8 @@ export const routes = {
   contact: '/contact/',
   contactBook: '/contact/#book',
   contactForm: '/contact/#contact-form',
+  /** The free Local Map Assessment landing page. It has its own header and footer (see usesOwnChrome in lib/site.ts). */
+  localMapAssessment: '/local-map-assessment/',
   blog: '/blog/',
   rss: '/rss.xml',
 
