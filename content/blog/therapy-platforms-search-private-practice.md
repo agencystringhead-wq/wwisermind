@@ -6,7 +6,7 @@ category: Search and trust
 tags: local seo, google business profile, betterhelp, referrals, private practice
 publishedAt: 2026-10-19
 updatedAt: 2026-10-19
-author: SrikaantH
+author: Srikaant H.
 featured: false
 image: /images/blog/blog-small-practice-big-platforms.webp
 imageAlt: A small, warm therapy practice between two large glass towers

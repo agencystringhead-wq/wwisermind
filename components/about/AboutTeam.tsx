@@ -23,10 +23,10 @@ function LinkedInIcon() {
 
 const team = [
   {
-    name: 'SrikaantH',
+    name: 'Srikaant H.',
     role: 'Co-founder & Strategy Lead',
     photo: '/images/Srikaanth-Founder-wwisermind.webp',
-    photoAlt: 'SrikaantH, co-founder of wwisermind',
+    photoAlt: 'Srikaant H., co-founder of wwisermind',
     linkedin: siteConfig.social.find((item) => item.id === 'linkedin')?.href ?? '#',
   },
   {

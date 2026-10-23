@@ -317,7 +317,7 @@ export const megaPanels: Record<string, MegaPanel> = {
         src: '/images/srikaant.webp',
         width: 274,
         height: 275,
-        alt: 'SrikaantH, founder of wwisermind, at his desk',
+        alt: 'Srikaant H., founder of wwisermind, at his desk',
       },
     },
     strip: { text: 'Built in Pune, India. Honest about it from the first hello.' },
@@ -813,7 +813,7 @@ export const whyUs = {
 export const founder = {
   portrait: {
     src: '/images/Srikaanth-Founder-wwisermind.webp',
-    alt: 'SrikaantH, founder of wwisermind, at his desk in a book-lined office',
+    alt: 'Srikaant H., founder of wwisermind, at his desk in a book-lined office',
     /* Square source in a square frame, so cover crops nothing — the position is here to hold
        the face if a future portrait is not square. */
     position: 'center 30%',
@@ -822,7 +822,7 @@ export const founder = {
      that contrast itself now and a fixed colour would sit on top of it. */
   quote:
     "I started wwisermind after watching my own family search for the right therapist and struggle to find one — not because good therapists weren't out there, but because they were invisible online. Nine years of building websites for healthcare practices taught me how to fix that. This company exists to make sure the people who need you can actually find you.",
-  attribution: 'SrikaantH · Founder, wwisermind',
+  attribution: 'Srikaant H. · Founder, wwisermind',
 };
 
 export const freebies = {
@@ -924,7 +924,7 @@ export const faq = {
 export const contactBar = {
   avatar: {
     src: '/images/Srikaanth-Founder-wwisermind.webp',
-    alt: 'SrikaantH, founder of wwisermind',
+    alt: 'Srikaant H., founder of wwisermind',
   },
   items: [
     {

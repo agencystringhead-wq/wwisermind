@@ -6,7 +6,7 @@ category: Running your practice
 tags: medicare, telehealth, in-person visit, faq, older adults
 publishedAt: 2026-10-19
 updatedAt: 2026-10-19
-author: SrikaantH
+author: Srikaant H.
 featured: false
 image: /images/blog/blog-medicare-telehealth-at-home.webp
 imageAlt: An older man in his armchair at home in a video therapy session

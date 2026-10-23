@@ -4,7 +4,7 @@ excerpt: A practical, ethical plan to get more therapy clients in 2027. Fix your
 category: Running your practice
 publishedAt: 2026-10-21
 updatedAt: 2026-10-21
-author: SrikaantH
+author: Srikaant H.
 image: /images/blog/featured/how-to-get-more-therapy-clients.webp
 imageAlt: A warm, empty therapy office in morning light with the door slightly open
 ---

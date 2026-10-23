@@ -6,7 +6,7 @@ category: AI and your practice
 tags: ai laws, ai scribe, informed consent, chatbot, compliance
 publishedAt: 2026-10-19
 updatedAt: 2026-10-19
-author: SrikaantH
+author: Srikaant H.
 featured: true
 image: /images/blog/blog-ai-therapy-laws.webp
 imageAlt: A legal binder with one passage highlighted beside a therapist website on a laptop

@@ -178,7 +178,7 @@ export const privacyPolicy: LegalDoc = {
       id: 'grievance-officer',
       heading: '11. Grievance officer',
       body: [
-        'For India, our grievance officer is SrikaantH, Founder, reachable at admin@wwisermind.com.',
+        'For India, our grievance officer is Srikaant H., Founder, reachable at admin@wwisermind.com.',
       ],
     },
     {

@@ -6,7 +6,7 @@ category: AI and your practice
 tags: ai chatbot, hipaa, intake, privacy, crisis resources
 publishedAt: 2026-10-11
 updatedAt: 2026-10-11
-author: SrikaantH
+author: Srikaant H.
 featured: false
 image: /images/blog/blog-ai-chatbot-boundary.webp
 imageAlt: A phone showing a practice chat that stops at a clear boundary, beside a cup of tea

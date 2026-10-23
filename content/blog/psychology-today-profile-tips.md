@@ -4,7 +4,7 @@ excerpt: Psychology Today referrals slowing down? What we actually know about ho
 category: Search and trust
 publishedAt: 2026-10-21
 updatedAt: 2026-10-21
-author: SrikaantH
+author: Srikaant H.
 image: /images/blog/featured/psychology-today-profile-tips.webp
 imageAlt: A therapist arranging a headshot beside a directory profile layout on a laptop
 ---

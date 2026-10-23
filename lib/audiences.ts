@@ -137,10 +137,10 @@ export type Audience = {
 export const audienceFounder = {
   portrait: {
     src: '/images/Srikaanth-Founder-wwisermind.webp',
-    alt: 'SrikaantH, founder of wwisermind, at his desk in a book-lined office',
+    alt: 'Srikaant H., founder of wwisermind, at his desk in a book-lined office',
     position: 'center 30%',
   },
-  name: 'SrikaantH',
+  name: 'Srikaant H.',
   role: 'Founder, wwisermind',
 };
 

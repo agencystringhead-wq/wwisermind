@@ -4,7 +4,7 @@ excerpt: Nine real therapist website examples, from solo practices to group, tee
 category: Website platforms
 publishedAt: 2026-10-21
 updatedAt: 2026-10-21
-author: SrikaantH
+author: Srikaant H.
 image: /images/blog/featured/therapist-website-examples.webp
 imageAlt: A desk with a laptop, tablet and phone showing three calm therapist website layouts
 ---

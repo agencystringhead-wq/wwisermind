@@ -200,7 +200,7 @@ export default function Hub() {
                     <blockquote className={styles.quoteText}>We measure everyone the same way.</blockquote>
                     <figcaption className={styles.quoteBy}>
                       <Image src={FOUNDER_PHOTO} alt="" width={36} height={36} className={styles.avatar} />
-                      SrikaantH, founder
+                      Srikaant H., founder
                     </figcaption>
                     <TiButton href={routes.therapyIndex.methodology} tone="white">
                       How the score works
