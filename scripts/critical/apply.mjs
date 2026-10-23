@@ -21,11 +21,14 @@ const LINK = /<link rel="stylesheet" href="([^"]+)"( data-precedence="[^"]*")?\/
 /* Inter goes inline with the critical CSS, as a data URI, so the first paint already has it: with the
    file fetched separately it arrives a moment after the first paint on a slow connection, and the swap
    from the stand-in font re-wraps text (a few pixels of layout shift, whatever the stand-in's metrics).
-   The same face is declared again in globals.css by file, which the browser swaps to once that
-   stylesheet is in: identical glyphs, so nothing moves. */
+   `block` here, not `swap`: a data URI is ready within a frame or two, and `swap` would paint the
+   first frame in the stand-in font anyway, which is the shift again. The block period is that
+   instant, not the seconds a network font can take. The same face is declared again in globals.css
+   by file (`swap`), which the browser switches to once that stylesheet is in: identical glyphs, so
+   nothing moves. */
 const fontFile = path.resolve('public/fonts/inter-latin-v1.woff2');
 const inlineFont = fs.existsSync(fontFile)
-  ? `@font-face{font-family:Inter;src:url(data:font/woff2;base64,${fs.readFileSync(fontFile).toString('base64')}) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}`
+  ? `@font-face{font-family:Inter;src:url(data:font/woff2;base64,${fs.readFileSync(fontFile).toString('base64')}) format("woff2");font-weight:100 900;font-style:normal;font-display:block}`
   : '';
 
 let applied = 0;
