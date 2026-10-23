@@ -30,6 +30,10 @@ const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '
      node scripts/critical/generate.mjs --url https://<preview>.pages.dev
    (the page list still comes from the local out/, so build locally first). The deployment must not
    already have critical CSS in it, or what is recorded is the half-loaded page. */
+/* `--only <regex>` records just the routes that match and keeps every other route's entry in data.json as it is.
+   Use it when a deployment already has critical CSS inlined on most pages (recording those would capture the
+   half-loaded page) and only some pages, such as ones whose address changed, are missing it. */
+const only = process.argv.includes('--only') ? new RegExp(process.argv[process.argv.indexOf('--only') + 1]) : null;
 const remote = process.argv.includes('--url') ? process.argv[process.argv.indexOf('--url') + 1].replace(/\/$/, '') : null;
 const server = http.createServer((req, res) => {
   let f = path.join(OUT, decodeURIComponent(req.url.split('?')[0]));
@@ -49,7 +53,7 @@ const pages = [];
     else if (e.name === 'index.html') {
       const rel = path.relative(OUT, path.dirname(p)).split(path.sep).join('/');
       const route = rel ? `/${rel}/` : '/';
-      if (!SKIP.some((s) => s.test(route))) pages.push(route);
+      if (!SKIP.some((s) => s.test(route)) && (!only || only.test(route))) pages.push(route);
     }
   }
 })(OUT);
@@ -137,8 +141,15 @@ await browser.close();
 if (!remote) server.close();
 
 /* Identical blocks are stored once. */
-const blocks = {};
-const routes = {};
+const kept = only && fs.existsSync('scripts/critical/data.json') ? JSON.parse(fs.readFileSync('scripts/critical/data.json', 'utf8')) : null;
+const blocks = kept ? { ...kept.blocks } : {};
+const routes = kept ? { ...kept.routes } : {};
+if (kept) {
+  /* a route that no longer exists in out/ (an old address) is dropped */
+  const here = new Set();
+  (function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); if (e.isDirectory()) { if (e.name !== '_next') walk(p); } else if (e.name === 'index.html') { const rel = path.relative(OUT, path.dirname(p)).split(path.sep).join('/'); here.add(rel ? `/${rel}/` : '/'); } } })(OUT);
+  for (const route of Object.keys(routes)) if (!here.has(route)) delete routes[route];
+}
 for (const [route, { sheets, css, hide }] of Object.entries(data)) {
   const id = crypto.createHash('sha1').update(css).digest('hex').slice(0, 10);
   blocks[id] = css;
