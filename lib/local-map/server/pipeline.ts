@@ -6,14 +6,16 @@ import {
   FETCH_PER_POLL,
   GRID_TIMEOUT_MS,
   LATE_PROFILE_GRACE_MS,
+  MAX_TASK_ERRORS,
   MIN_DONE_SHARE,
   PROFILE_TIMEOUT_MS,
   RETRIES_PER_REPORT,
   RULES_VERSION,
+  STALL_MS,
 } from '../rules';
 import type { GridPoint, Listing, Progress, SerpRow } from '../types';
 import type { LmEnv, LmStmt } from './env';
-import { getTask, gridTask, postTasks, profileRef, readyIds, reviewsTask, updatesTask, type Family } from './dfs';
+import { getTask, gridTask, postTasks, profileRef, reviewsTask, updatesTask, type Family } from './dfs';
 import { newestStamp, toRows } from './parse';
 
 /* The scan, built for a Pages Function on the free plan: 10 ms of CPU and 50 outside requests per invocation.
@@ -22,12 +24,18 @@ import { newestStamp, toRows } from './parse';
    reviews and posts) and saves their ids. After that the report page asks for the status every few seconds, and EACH POLL DOES ONE KIND OF
    WORK, chosen from the report's state:
 
-     scanning   collect: fetch at most FETCH_PER_POLL finished tasks, keep only the first 20 results of each as one small row in lm_cells,
-                and tick them off. Once about half the grid is in, one poll instead does the early pick (below).
+     scanning   collect: ask for the results of a few waiting tasks BY THEIR ID (FETCH_PER_POLL in all), keep the first 20 results of each
+                finished one as one small row in lm_cells. Once about half the grid is in, one poll instead does the early pick (below).
      selecting  read the cells once, pick the final four practices ahead of you, ask for any reviews and posts not asked for yet.
-     profiles   collect the reviews and posts (at most FETCH_PER_POLL, shared with the above).
+     profiles   collect the reviews and posts, the same way.
      building   read the cells once, score, build the gap table and the fixes, save the finished report.
      done       nothing: the stored report is handed back as it is, never parsed.
+
+   Collecting never uses DataForSEO's "tasks ready" list. That list forgets a task as soon as its results have been read once, so a read that
+   was not saved (a failed write, a killed invocation) would lose the task for good. Asking for a task by its id works as often as needed, so
+   a poll that dies halfway just does the same work again on the next one. A task counts as collected only when its results have been SAVED:
+   the cell rows and the task list are written in one D1 batch, which is one transaction, so either all of it is kept or none of it.
+   Tasks are asked for in turn (fewest tries first), so a few that are still queued never crowd out the ones that are done.
 
    What a poll reads and writes is small and bounded: the report row (task list about 10 KB), at most FETCH_PER_POLL cells, and the
    state. The 170 KB of results is never read or rewritten by a collecting poll. Independent work still runs side by side, since the
@@ -35,10 +43,11 @@ import { newestStamp, toRows } from './parse';
    you are asked for once about half the grid is in. `lock_until` makes sure only one poll works on a report at a time.
 
    Because the scan only moves while a poll arrives, the clock for timeouts counts only time the page was actually polling (`act`): a
-   visitor who closes the tab and opens the link ten minutes later resumes where they stopped instead of finding checks timed out. */
+   visitor who closes the tab and opens the link ten minutes later resumes where they stopped instead of finding checks timed out. A scan
+   that makes no progress for STALL_MS of that time is flagged `stalled`: the visitor sees a calm message and wwisermind gets an alert. */
 
-/** One DataForSEO task: s is 0 waiting, 1 collected, 2 failed or timed out. */
-type TaskRef = { id: string | null; p: number; k: number; s: 0 | 1 | 2; f: Family; ref?: string; e?: string; l?: boolean };
+/** One DataForSEO task: s is 0 waiting, 1 collected and saved, 2 failed or timed out. `a` counts the times it was asked for, `x` the errors. */
+type TaskRef = { id: string | null; p: number; k: number; s: 0 | 1 | 2; f: Family; ref?: string; e?: string; l?: boolean; a?: number; x?: number };
 type Tasks = { grid: TaskRef[]; prof: TaskRef[] };
 type Results = { extras: Extras };
 /** `act` is milliseconds the page has spent polling; marks ending in Act are `act` readings. Other marks are wall-clock, for timing logs. */
@@ -56,6 +65,9 @@ type Timings = {
   profilesPosted?: number;
   profPostedAct?: number;
   finished?: number;
+  /** `act` at the last time anything moved forward, and the wall-clock time a stall was first flagged. */
+  progressAct?: number;
+  stalledAt?: number;
 };
 
 export type Status = 'scanning' | 'selecting' | 'profiles' | 'building' | 'done' | 'failed';
@@ -83,6 +95,8 @@ const COLUMNS =
 
 /** The most a gap between polls counts toward a timeout in one go: a poll after a long gap counts as a few seconds, not minutes. */
 const MAX_ACT_STEP_MS = 10_000;
+/** How long one poll keeps a report to itself. Short, so a poll that dies does not block the next one for long. */
+const LOCK_MS = 12_000;
 
 /* --- cost log ------------------------------------------------------------------------------------ */
 
@@ -102,7 +116,7 @@ export async function startScan(env: LmEnv, input: StartInput): Promise<void> {
   const points = makeGrid(input.centre.lat, input.centre.lng, input.radiusMiles);
   const refs = gridRefs(points, input.keywords.length);
 
-  const timings: Timings = { posted: now, act: 0, lastPoll: now, postedAct: 0 };
+  const timings: Timings = { posted: now, act: 0, lastPoll: now, postedAct: 0, progressAct: 0 };
   const body = refs.map((r) => gridTask(input.keywords[r.k], coordinateFor(points[r.p], input.radiusMiles)));
   const { posted, cost, ms } = await postTasks(env, 'grid', body);
   posted.forEach((p, i) => {
@@ -167,16 +181,24 @@ function statusText(r: Row, hurry: boolean): string {
   }
   const progress = progressOf(JSON.parse(r.tasks_json) as Tasks, 25);
   if (r.status === 'failed') return JSON.stringify({ status: 'failed', progress, message: FAILED_MESSAGE, canRetry: r.retries < RETRIES_PER_REPORT });
-  return JSON.stringify({ status: 'scanning', progress, hurry });
+  const stalled = !!(JSON.parse(r.timings_json) as Timings).stalledAt;
+  return JSON.stringify({ status: 'scanning', progress, hurry, ...(stalled ? { stalled: true } : {}) });
 }
 
+export type StatusHooks = {
+  /** Called once, when the report has just been built. */
+  onDone?: (reportId: string) => Promise<void>;
+  /** Called once, the first time a scan is flagged as stalled. */
+  onStalled?: (info: { reportId: string; listing: Listing; progress: Progress; status: Status; error: string | null; retries: number }) => Promise<void>;
+};
+
 /** Loads the report, does one step of work if it is not finished and `advanceWork` is set, and returns the status JSON (null if there is no such report). */
-export async function loadStatus(env: LmEnv, id: string, advanceWork: boolean, onDone?: (reportId: string) => Promise<void>): Promise<string | null> {
+export async function loadStatus(env: LmEnv, id: string, advanceWork: boolean, hooks: StatusHooks = {}): Promise<string | null> {
   const row = await env.DB.prepare(`SELECT ${COLUMNS} FROM lm_reports WHERE id = ?1`).bind(id).first<Row>();
   if (!row) return null;
   const active = row.status === 'scanning' || row.status === 'selecting' || row.status === 'profiles' || row.status === 'building';
   if (!advanceWork || !active) return statusText(row, false);
-  const out = await advance(env, row, onDone);
+  const out = await advance(env, row, hooks);
   return statusText(out?.row ?? row, out?.hurry ?? false);
 }
 
@@ -185,9 +207,9 @@ export async function loadStatus(env: LmEnv, id: string, advanceWork: boolean, o
 type Meter = { spent: number; posted: number; calls: number; longest: number; collected: number; gets: number };
 type Count = (c: { cost: number; ms: number }) => void;
 
-async function advance(env: LmEnv, row: Row, onDone?: (reportId: string) => Promise<void>): Promise<{ row: Row; hurry: boolean } | null> {
+async function advance(env: LmEnv, row: Row, hooks: StatusHooks): Promise<{ row: Row; hurry: boolean } | null> {
   const now = Date.now();
-  const claim = await env.DB.prepare('UPDATE lm_reports SET lock_until = ?1 WHERE id = ?2 AND lock_until < ?3').bind(now + 25_000, row.id, now).run();
+  const claim = await env.DB.prepare('UPDATE lm_reports SET lock_until = ?1 WHERE id = ?2 AND lock_until < ?3').bind(now + LOCK_MS, row.id, now).run();
   if (!claim.meta?.changes) return null;
 
   const tasks = JSON.parse(row.tasks_json) as Tasks;
@@ -202,6 +224,7 @@ async function advance(env: LmEnv, row: Row, onDone?: (reportId: string) => Prom
   let reportJson = row.report_json;
   let finishedNow = false;
   let hurry = false;
+  let moved = false; // anything that counts as progress, for the stall clock
   let step = row.status === 'scanning' ? 'poll_grid' : `poll_${row.status}`;
   const cellWrites: LmStmt[] = [];
   const meter: Meter = { spent: 0, posted: 0, calls: 0, longest: 0, collected: 0, gets: FETCH_PER_POLL };
@@ -223,6 +246,7 @@ async function advance(env: LmEnv, row: Row, onDone?: (reportId: string) => Prom
       if (settled) {
         status = 'selecting';
         hurry = true;
+        moved = true;
       } else if (!timings.early && gridDone / tasks.grid.length >= EARLY_COMPETITORS_SHARE) {
         /* Early pick: from the half of the grid that is in, ask for the reviews and posts of the likeliest practices ahead of you. */
         const cells = await loadCells(env, row.id, pointsTotal, keywordCount);
@@ -236,11 +260,12 @@ async function advance(env: LmEnv, row: Row, onDone?: (reportId: string) => Prom
         timings.profPostedAct = timings.act;
         step = 'early_pick';
         hurry = true;
+        moved = true;
       } else {
-        /* Collect: reviews and posts first (they have the longest wait), then what is left of this poll's few fetches for the grid. */
+        /* Collect: reviews and posts first (a few, they have the longest wait), then the rest of this poll's fetches for the grid. */
         await collectProfiles(env, tasks, results, meter, count);
         await collectGrid(env, row.id, tasks, cellWrites, timings, meter, count, now);
-        hurry = meter.gets === 0; // used the whole allowance: more finished checks are probably waiting
+        hurry = meter.collected >= FETCH_PER_POLL / 2; // most of what we asked for was finished: more is probably waiting
         if (tasks.grid.every((t) => t.s !== 0)) {
           status = 'selecting';
           hurry = true;
@@ -266,10 +291,11 @@ async function advance(env: LmEnv, row: Row, onDone?: (reportId: string) => Prom
         }
         competitorsJson = JSON.stringify(pickCompetitors(cells, listing));
         status = 'profiles';
+        moved = true;
       }
     } else if (status === 'profiles') {
-      await collectProfiles(env, tasks, results, meter, count);
-      hurry = meter.gets === 0;
+      await collectProfiles(env, tasks, results, meter, count, FETCH_PER_POLL);
+      hurry = meter.collected >= FETCH_PER_POLL / 2;
       const sinceGrid = timings.act - (timings.gridDoneAct ?? timings.act);
       if (sinceGrid > LATE_PROFILE_GRACE_MS) {
         for (const t of tasks.prof) if (t.s === 0 && t.l) (t.s = 2), (t.e = 'late: built without it');
@@ -281,6 +307,7 @@ async function advance(env: LmEnv, row: Row, onDone?: (reportId: string) => Prom
       if (tasks.prof.every((t) => t.s !== 0)) {
         status = 'building';
         hurry = true;
+        moved = true;
       }
     } else if (status === 'building') {
       const cells = await loadCells(env, row.id, pointsTotal, keywordCount);
@@ -288,6 +315,7 @@ async function advance(env: LmEnv, row: Row, onDone?: (reportId: string) => Prom
       timings.finished = now;
       status = 'done';
       finishedNow = true;
+      moved = true;
       step = 'build';
     }
   } catch (e) {
@@ -295,6 +323,14 @@ async function advance(env: LmEnv, row: Row, onDone?: (reportId: string) => Prom
     error = e instanceof Error ? e.message.slice(0, 200) : 'error';
     if (e instanceof Error && 'code' in e && [401, 40100, 40101].includes((e as { code?: number }).code ?? 0)) status = 'failed';
     console.error(JSON.stringify({ lm: true, event: 'advance-error', reportId: row.id, step, message: error }));
+  }
+
+  /* The stall clock: anything collected, or any step forward, restarts it. Flagged once, with an alert to wwisermind. */
+  if (moved || meter.collected > 0) timings.progressAct = timings.act;
+  let newlyStalled = false;
+  if (!timings.stalledAt && status !== 'done' && status !== 'failed' && timings.act - (timings.progressAct ?? 0) > STALL_MS) {
+    timings.stalledAt = now;
+    newlyStalled = true;
   }
 
   const writes: LmStmt[] = [
@@ -319,83 +355,85 @@ async function advance(env: LmEnv, row: Row, onDone?: (reportId: string) => Prom
       ),
     );
   }
-  await env.DB.batch(writes);
+  /* The cell rows and the task list go in as one batch (one transaction). If it fails nothing is kept, no task is marked collected, and
+     the same tasks are simply asked for again on the next poll. The lock is let go either way. */
+  try {
+    await env.DB.batch(writes);
+  } catch (e) {
+    await env.DB.prepare('UPDATE lm_reports SET lock_until = 0 WHERE id = ?1').bind(row.id).run().catch(() => undefined);
+    throw e;
+  }
 
-  if (finishedNow && onDone) await onDone(row.id).catch(() => undefined);
-  return {
-    row: { ...row, status, error, tasks_json: JSON.stringify(tasks), competitors_json: competitorsJson, report_json: reportJson, timings_json: JSON.stringify(timings) },
-    hurry,
-  };
+  const updated: Row = { ...row, status, error, tasks_json: JSON.stringify(tasks), competitors_json: competitorsJson, report_json: reportJson, timings_json: JSON.stringify(timings) };
+  if (finishedNow && hooks.onDone) await hooks.onDone(row.id).catch(() => undefined);
+  if (newlyStalled && hooks.onStalled) {
+    await hooks.onStalled({ reportId: row.id, listing, progress: progressOf(tasks, pointsTotal), status, error, retries: row.retries }).catch(() => undefined);
+  }
+  return { row: updated, hurry };
 }
 
-/** Collects the finished reviews and posts tasks. A task is looked at only once it shows in the ready list. */
-async function collectProfiles(env: LmEnv, tasks: Tasks, results: Results, meter: Meter, count: Count) {
-  for (const family of ['reviews', 'updates'] as const) {
-    const mine = tasks.prof.filter((t) => t.s === 0 && t.id && t.f === family);
-    if (!mine.length || meter.gets <= 0) continue;
-    try {
-      const ready = await readyIds(env, family);
-      count(ready);
-      const batch = mine.filter((t) => ready.ids.has(t.id!)).slice(0, Math.max(0, meter.gets));
-      meter.gets -= batch.length;
-      await Promise.all(
-        batch.map(async (t) => {
-          try {
-            const got = await getTask(env, family, t.id!);
-            count(got);
-            if (!got.ready) return;
-            if (got.error) {
-              t.s = 2;
-              t.e = got.error;
-              return;
-            }
-            t.s = 1;
-            const cur = (results.extras[t.ref ?? 'you'] ??= { lastReviewAt: null, lastPostAt: null });
-            const stamp = newestStamp(got.items);
-            if (family === 'reviews') cur.lastReviewAt = stamp;
-            else cur.lastPostAt = stamp;
-            meter.collected += 1;
-          } catch (e) {
-            t.e = e instanceof Error ? e.message : 'fetch failed'; // stays waiting: the next poll tries again
-          }
-        }),
-      );
-    } catch (e) {
-      for (const t of mine) t.e = e instanceof Error ? e.message : 'ready failed';
+/** The waiting tasks to ask for next: fewest tries first, then in order, so a few still-queued tasks never crowd out the finished ones. */
+const nextToAsk = (list: TaskRef[], limit: number, family?: Family) =>
+  list
+    .map((t, i) => ({ t, i }))
+    .filter(({ t }) => t.s === 0 && t.id && (!family || t.f === family))
+    .sort((a, b) => (a.t.a ?? 0) - (b.t.a ?? 0) || a.i - b.i)
+    .slice(0, Math.max(0, limit))
+    .map(({ t }) => t);
+
+/** Asks for one task's results by its id. Returns the items if it is finished, or null (it is still queued, or it errored: noted on the task). */
+async function ask(env: LmEnv, family: Family, t: TaskRef, meter: Meter, count: Count): Promise<any[] | null> {
+  t.a = (t.a ?? 0) + 1;
+  try {
+    const got = await getTask(env, family, t.id!);
+    count(got);
+    if (!got.ready) return null;
+    if (got.error) {
+      t.e = got.error;
+      t.x = (t.x ?? 0) + 1;
+      if (t.x >= MAX_TASK_ERRORS) t.s = 2;
+      return null;
     }
+    return got.items;
+  } catch (e) {
+    t.e = e instanceof Error ? e.message : 'fetch failed'; // a network hiccup: it stays waiting and is asked for again
+    return null;
   }
 }
 
-/** Collects finished grid checks with what is left of this poll's allowance: each becomes one small row in lm_cells. Times out any that never come back. */
+/** Collects the reviews and posts tasks that are finished, with at most `limit` fetches. */
+async function collectProfiles(env: LmEnv, tasks: Tasks, results: Results, meter: Meter, count: Count, limit = 4) {
+  const batch = nextToAsk(tasks.prof, Math.min(limit, meter.gets));
+  meter.gets -= batch.length;
+  await Promise.all(
+    batch.map(async (t) => {
+      const items = await ask(env, t.f, t, meter, count);
+      if (!items) return;
+      t.s = 1;
+      const cur = (results.extras[t.ref ?? 'you'] ??= { lastReviewAt: null, lastPostAt: null });
+      const stamp = newestStamp(items);
+      if (t.f === 'reviews') cur.lastReviewAt = stamp;
+      else cur.lastPostAt = stamp;
+      meter.collected += 1;
+    }),
+  );
+}
+
+/** Collects finished grid checks with what is left of this poll's fetches: each becomes one small row in lm_cells (written in the poll's batch). Times out any that never come back. */
 async function collectGrid(env: LmEnv, reportId: string, tasks: Tasks, writes: LmStmt[], timings: Timings, meter: Meter, count: Count, now: number) {
-  const pending = tasks.grid.filter((t) => t.s === 0 && t.id);
-  if (pending.length && meter.gets > 0) {
-    const ready = await readyIds(env, 'grid');
-    count(ready);
-    const batch = pending.filter((t) => ready.ids.has(t.id!)).slice(0, meter.gets);
-    meter.gets -= batch.length;
-    if (batch.length && !timings.firstReady) timings.firstReady = now;
-    await Promise.all(
-      batch.map(async (t) => {
-        try {
-          const got = await getTask(env, 'grid', t.id!);
-          count(got);
-          if (!got.ready) return;
-          if (got.error) {
-            t.s = 2;
-            t.e = got.error;
-          } else {
-            /* Keep only what the report needs from the response, and let the rest go. */
-            writes.push(env.DB.prepare('INSERT OR REPLACE INTO lm_cells (report_id, p, k, rows_json) VALUES (?1, ?2, ?3, ?4)').bind(reportId, t.p, t.k, JSON.stringify(toRows(got.items))));
-            t.s = 1;
-            meter.collected += 1;
-          }
-        } catch (e) {
-          t.e = e instanceof Error ? e.message : 'fetch failed';
-        }
-      }),
-    );
-  }
+  const batch = nextToAsk(tasks.grid, meter.gets);
+  meter.gets -= batch.length;
+  await Promise.all(
+    batch.map(async (t) => {
+      const items = await ask(env, 'grid', t, meter, count);
+      if (!items) return;
+      if (!timings.firstReady) timings.firstReady = now;
+      /* Keep only what the report needs from the response, and let the rest go. */
+      writes.push(env.DB.prepare('INSERT OR REPLACE INTO lm_cells (report_id, p, k, rows_json) VALUES (?1, ?2, ?3, ?4)').bind(reportId, t.p, t.k, JSON.stringify(toRows(items))));
+      t.s = 1;
+      meter.collected += 1;
+    }),
+  );
   if (tasks.grid.some((t) => t.s === 0 && t.id) && timings.act - (timings.postedAct ?? 0) > GRID_TIMEOUT_MS) {
     for (const t of tasks.grid) if (t.s === 0) (t.s = 2), (t.e = 'timed out');
   }
@@ -492,11 +530,15 @@ export async function retryScan(env: LmEnv, id: string): Promise<'ok' | 'not_fou
       todo[i].id = p.id;
       todo[i].s = p.id ? 0 : 2;
       todo[i].e = p.error;
+      todo[i].a = 0;
+      todo[i].x = 0;
     });
     await logCost(env, id, 'post_grid', 1, todo.length, cost, ms, 'retry');
     const timings = JSON.parse(row.timings_json) as Timings;
     timings.posted = Date.now();
     timings.postedAct = timings.act;
+    timings.progressAct = timings.act;
+    delete timings.stalledAt;
     timings.lastPoll = Date.now();
     await env.DB.prepare("UPDATE lm_reports SET status = 'scanning', error = NULL, tasks_json = ?1, timings_json = ?2, retries = retries + 1, total_cost = total_cost + ?3, lock_until = 0 WHERE id = ?4")
       .bind(JSON.stringify(tasks), JSON.stringify(timings), cost, id)

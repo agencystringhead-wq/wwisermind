@@ -131,11 +131,13 @@ posts tasks, saves the task ids and returns the report id. It processes no resul
 
 | State | What one poll does |
 | --- | --- |
-| `scanning` | Fetches at most 8 finished tasks (`FETCH_PER_POLL`), keeps the first 20 results of each as one small row in `lm_cells`, ticks them off. Once half the grid is in, one poll instead picks the eight likeliest competitors from the cells and asks for their reviews and posts. |
+| `scanning` | Asks for the results of up to 8 waiting tasks **by their id** (`FETCH_PER_POLL`, fewest tries first), keeps the first 20 results of each finished one as one small row in `lm_cells`, and ticks them off in the same D1 batch. Once half the grid is in, one poll instead picks the eight likeliest competitors from the cells and asks for their reviews and posts. |
 | `selecting` | Reads the cells once, picks the final four, asks for any reviews and posts not asked for yet. |
 | `profiles` | Collects reviews and posts (the same 8-fetch allowance). Late ones wait 20 seconds, then the report is built without them. |
 | `building` | Reads the cells once, scores, builds the gap table and the fixes, stores the finished report. |
 | `done` | Nothing: the stored report text is returned as it is, never parsed. |
+
+Collecting never uses DataForSEO's "tasks ready" list: it forgets a task once its results are read, so a read that was not saved would lose the task. Asking by id works again and again, and a task counts as collected only once its results are saved (cell rows and task list are one D1 batch, one transaction). A scan with no progress for 5 minutes of polling is flagged: the visitor sees "Taking longer than usual" and wwisermind gets a `STALLED` alert email.
 
 The scan moves only while a poll arrives, so a visitor who closes the tab and opens the report link again resumes where they stopped. Timeouts count
 only time the page was polling (`timings.act`), not time spent away. The visitor is emailed the link when the scan starts, and again when the

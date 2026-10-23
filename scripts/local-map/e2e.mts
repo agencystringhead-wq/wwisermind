@@ -14,7 +14,8 @@ import { onRequestGet as statusRaw } from '../../functions/api/local-map/status.
 import { onRequestPost as retryRaw } from '../../functions/api/local-map/retry.ts';
 import type { LmCtx, LmEnv } from '../../lib/local-map/server/env.ts';
 import type { Report, StatusResponse } from '../../lib/local-map/types.ts';
-import { CIDS, emails, installMock, mockCpu, state } from './mock-dfs.mts';
+import { CIDS, emails, installMock, mockCpu, seen, state } from './mock-dfs.mts';
+import { failures as d1Failures, strictD1 } from './fake-d1.mts';
 
 installMock();
 const realLog = console.log;
@@ -51,13 +52,7 @@ const retry = measured('retry', retryRaw);
 /* --- an in-memory D1 --------------------------------------------------------------------------- */
 const sqlite = new DatabaseSync(':memory:');
 for (const m of ['0002_local_map.sql', '0003_local_map_cells.sql']) sqlite.exec(fs.readFileSync(path.join(process.cwd(), 'migrations', m), 'utf8'));
-const stmt = (sql: string, args: unknown[] = []): any => ({
-  bind: (...v: unknown[]) => stmt(sql, v),
-  first: async () => (sqlite.prepare(sql).get(...(args as any[])) as any) ?? null,
-  all: async () => ({ results: sqlite.prepare(sql).all(...(args as any[])) as any[] }),
-  run: async () => ({ meta: { changes: Number(sqlite.prepare(sql).run(...(args as any[])).changes) } }),
-});
-const DB = { prepare: (sql: string) => stmt(sql), batch: async (list: any[]) => Promise.all(list.map((s) => s.run())) };
+const DB = strictD1(sqlite);
 
 /* --- the run ------------------------------------------------------------------------------------- */
 const env: LmEnv = { DB: DB as any, DATAFORSEO_LOGIN: 'x', DATAFORSEO_PASSWORD: 'y', DATAFORSEO_BASE: 'http://mock-dfs', RESEND_API_KEY: 'k', TURNSTILE_SECRET_KEY: 's' };
@@ -86,9 +81,9 @@ check('start returns an id', /^[A-Za-z0-9_-]{22}$/.test(started.id), started.id)
 check('100 checks posted, some refused', sqlite.prepare("select tasks_json from lm_reports").get() !== undefined);
 
 async function poll(id: string): Promise<StatusResponse> {
-  for (let i = 0; i < 60; i++) {
+  for (let i = 0; i < 400; i++) {
     const res = (await (await status(ctx(new Request(`https://wwisermind.com/api/local-map/status?id=${id}`)))).json()) as StatusResponse;
-    if (res.status !== 'scanning') return res;
+    if (res.status === 'done' || res.status === 'failed') return res;
   }
   throw new Error('never finished');
 }
@@ -138,6 +133,56 @@ for (let i = 0; i < 3; i++) {
 check('per-IP daily limit of 3 reports', refused >= 1, `${refused} refused`);
 const badTurnstile = await start(ctx(post('start', { ...body('z@example.com'), company: 'bot' }, '9.9.9.7')));
 check('honeypot is refused', badTurnstile.status === 400);
+
+check('the scan never used the "tasks ready" list', seen.tasksReady === 0, `${seen.tasksReady} calls`);
+
+/* A save that fails must not lose anything: nothing is marked collected, and the same tasks are asked for again. */
+{
+  const b = { ...body('save@example.com'), keywords: ['therapist', 'counselor', 'psychologist', 'grief counseling'] };
+  const s = (await (await start(ctx(post('start', b, '9.9.9.4')))).json()) as { id: string };
+  d1Failures.nextBatch = 3;
+  let threw = 0;
+  let res: StatusResponse | undefined;
+  for (let i = 0; i < 400 && !(res?.status === 'done'); i++) {
+    const r = await status(ctx(new Request(`https://wwisermind.com/api/local-map/status?id=${s.id}`)));
+    if (r.status >= 500) threw++;
+    else res = (await r.json()) as StatusResponse;
+  }
+  const cells = (sqlite.prepare('select count(*) as n from lm_cells where report_id = ?').get(s.id) as { n: number }).n;
+  check('three failed saves lose nothing: every check is still collected and the report is complete', threw === 3 && res?.status === 'done' && res.report?.missingChecks === 0 && cells === 100, `${threw} failed polls, ${cells} cells, missing ${res?.report?.missingChecks}`);
+}
+
+/* The strict fake refuses what real D1 refuses (the bug that stalled a live scan). */
+{
+  let refused = false;
+  try {
+    await DB.batch([{ bind() {}, run() {} }] as any);
+  } catch (e) {
+    refused = /Malformed input/.test(String(e));
+  }
+  check('the test database refuses statements that are not its own, like real D1', refused);
+}
+
+/* A scan that makes no progress is flagged once, the visitor sees the calm message, wwisermind gets an alert, and the scan still recovers. */
+{
+  state.neverReady = true;
+  const b = { ...body('stall@example.com'), keywords: ['therapist', 'counselor', 'psychologist', 'couples counseling'] };
+  const s = (await (await start(ctx(post('start', b, '9.9.9.5')))).json()) as { id: string };
+  for (let i = 0; i < 5; i++) await status(ctx(new Request(`https://wwisermind.com/api/local-map/status?id=${s.id}`)));
+  const t = JSON.parse((sqlite.prepare('select timings_json from lm_reports where id = ?').get(s.id) as { timings_json: string }).timings_json);
+  t.act = 6 * 60_000; // six minutes of the visitor's time on the page, with nothing collected
+  t.progressAct = 0;
+  sqlite.prepare('update lm_reports set timings_json = ? where id = ?').run(JSON.stringify(t), s.id);
+  const before = emails.filter((e) => /^STALLED/.test(e.subject)).length;
+  const r1 = (await (await status(ctx(new Request(`https://wwisermind.com/api/local-map/status?id=${s.id}`)))).json()) as StatusResponse;
+  await status(ctx(new Request(`https://wwisermind.com/api/local-map/status?id=${s.id}`)));
+  await Promise.all(pending.splice(0));
+  const alerts = emails.filter((e) => /^STALLED/.test(e.subject)).length - before;
+  check('a stalled scan tells the visitor and alerts wwisermind once', r1.status === 'scanning' && r1.stalled === true && alerts === 1, `stalled ${r1.stalled}, ${alerts} alert(s)`);
+  state.neverReady = false;
+  const done = await poll(s.id);
+  check('and it still finishes once DataForSEO answers', done.status === 'done' && !!done.report, done.status);
+}
 
 console.log('\nPer invocation (free plan limits: 10 ms CPU, 50 outside requests, 50 D1 queries):');
 for (const [name, u] of Object.entries(usage)) {

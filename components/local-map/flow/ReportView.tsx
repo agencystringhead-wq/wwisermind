@@ -22,12 +22,12 @@ const longDate = (ms: number) => new Date(ms).toLocaleDateString('en-US', { mont
 
 /* ------------------------------------------------------------------------------------------------ */
 
-function ProgressScreen({ progress, name }: { progress: Progress; name?: string }) {
+function ProgressScreen({ progress, name, stalled }: { progress: Progress; name?: string; stalled?: boolean }) {
   const share = progress.checksTotal ? Math.round((progress.checksDone / progress.checksTotal) * 100) : 0;
   return (
     <div className={styles.card} role="status" aria-live="polite">
       <span className={styles.spinner} aria-hidden="true" />
-      <h1 className={styles.title}>Checking 25 neighbourhoods…</h1>
+      <h1 className={styles.title}>Checking 25 neighborhoods…</h1>
       <p className={styles.lede}>
         {name ? `${name}: ` : ''}
         {progress.pointsDone} of {progress.pointsTotal} points checked
@@ -35,6 +35,11 @@ function ProgressScreen({ progress, name }: { progress: Progress; name?: string 
       <div className={styles.bar} aria-hidden="true">
         <i style={{ width: `${share}%` }} />
       </div>
+      {stalled ? (
+        <p className={styles.notice} role="status">
+          Taking longer than usual. We will email your report as soon as it is ready. You can keep this page open or come back to this link later.
+        </p>
+      ) : null}
       <p className={styles.hint}>This usually takes about three minutes. Keep this page open while we check. If you close it, open this page again or the link we emailed you, and the scan carries on from where it stopped.</p>
     </div>
   );
@@ -315,7 +320,7 @@ export default function ReportView() {
           </div>
         ) : data.status === 'scanning' ? (
           <>
-            <ProgressScreen progress={data.progress} />
+            <ProgressScreen progress={data.progress} stalled={data.stalled} />
             {problem ? <p className={styles.notice} role="status">{problem}</p> : null}
           </>
         ) : data.status === 'failed' ? (

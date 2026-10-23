@@ -23,7 +23,7 @@ export default function SampleReport() {
               <span>/ 100</span>
             </div>
           </div>
-          <VisibilityMap ranks={ranks} label={`Sample visibility map for ${HERO_TERM}: 25 points, coloured by rank`} />
+          <VisibilityMap ranks={ranks} label={`Sample visibility map for ${HERO_TERM}: 25 points, colored by rank`} />
           <ul className={styles.legend} aria-hidden="true">
             <li><i className={styles.tone_good} />Top 3</li>
             <li><i className={styles.tone_mid} />4 to 10</li>

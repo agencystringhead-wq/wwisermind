@@ -49,5 +49,5 @@ export default function PinMap({ centre, zoom, pin, onPick }: { centre: [number,
     map.current?.setView(centre, zoom);
   }, [centre, zoom]);
 
-  return <div ref={el} className={styles.pinMap} role="application" aria-label="Map: tap to place the centre of your service area" />;
+  return <div ref={el} className={styles.pinMap} role="application" aria-label="Map: tap to place the center of your service area" />;
 }

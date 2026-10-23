@@ -1,6 +1,6 @@
 import { REPORT_ID, json } from '../../../lib/scorecard/server/http';
 import type { LmCtx } from '../../../lib/local-map/server/env';
-import { originOf, sendReadyEmails } from '../../../lib/local-map/server/leads';
+import { originOf, sendReadyEmails, sendStallAlert } from '../../../lib/local-map/server/leads';
 import { loadStatus } from '../../../lib/local-map/server/pipeline';
 import { instrument } from '../../../lib/local-map/server/trace';
 
@@ -13,9 +13,25 @@ export const onRequestGet = ({ request, env, waitUntil }: LmCtx) =>
     const id = new URL(request.url).searchParams.get('id') ?? '';
     if (!REPORT_ID.test(id)) return json({ error: 'not_found', message: 'We could not find that report.' }, 404);
     const origin = originOf(request, e);
-    const text = await loadStatus(e, id, true, async (reportId) => {
-      trace.phase = 'build';
-      waitUntil(sendReadyEmails(e, reportId, origin));
+    const text = await loadStatus(e, id, true, {
+      onDone: async (reportId) => {
+        trace.phase = 'build';
+        waitUntil(sendReadyEmails(e, reportId, origin));
+      },
+      onStalled: async (info) => {
+        console.warn(JSON.stringify({ lm: true, event: 'stalled', reportId: info.reportId, status: info.status, checksDone: info.progress.checksDone, error: info.error }));
+        waitUntil(
+          sendStallAlert(e, origin, {
+            reportId: info.reportId,
+            practice: info.listing.name,
+            status: info.status,
+            error: info.error,
+            checksDone: info.progress.checksDone,
+            checksTotal: info.progress.checksTotal,
+            retries: info.retries,
+          }),
+        );
+      },
     });
     if (text === null) return json({ error: 'not_found', message: 'We could not find that report.' }, 404);
     trace.phase ||= (/"status":"(\w+)"/.exec(text.slice(0, 40)) ?? [])[1] ?? '';

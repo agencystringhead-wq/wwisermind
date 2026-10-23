@@ -39,7 +39,7 @@ function Summary({ listing, pinned }: { listing: Listing; pinned: boolean }) {
   return (
     <div className={styles.summary}>
       <p className={styles.summaryName}>{listing.name}</p>
-      <p className={styles.summaryMeta}>{listing.address ?? (pinned ? 'No public address. The grid is centred on your pin.' : 'No public address')}</p>
+      <p className={styles.summaryMeta}>{listing.address ?? (pinned ? 'No public address. The grid is centered on your pin.' : 'No public address')}</p>
       {listing.category || listing.rating ? (
         <p className={styles.summaryMeta}>
           {[listing.category, listing.rating ? `${listing.rating.toFixed(1)} ★${listing.reviews !== null ? ` (${listing.reviews})` : ''}` : null].filter(Boolean).join(' · ')}
@@ -245,11 +245,11 @@ export default function StartFlow() {
 
         {step === 'pin' && picked ? (
           <div className={styles.card}>
-            <h1 className={styles.title}>Where should we centre the map?</h1>
+            <h1 className={styles.title}>Where should we center the map?</h1>
             <p className={styles.lede}>
               {picked.cid || picked.placeId
-                ? 'Google does not show an address for this listing, so tap the map to place the centre of the area you serve.'
-                : 'Tap the map to place the centre of the area you serve. We will check 25 points around it.'}
+                ? 'Google does not show an address for this listing, so tap the map to place the center of the area you serve.'
+                : 'Tap the map to place the center of the area you serve. We will check 25 points around it.'}
             </p>
             {!picked.cid && !picked.placeId ? (
               <label className={styles.field}>

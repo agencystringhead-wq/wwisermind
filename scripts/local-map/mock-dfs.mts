@@ -37,7 +37,9 @@ export const tasks = new Map<string, { family: string; body: any; reads: number 
 let nextId = 1;
 let readyCalls = 0;
 export const emails: { to: string; subject: string }[] = [];
-export const state = { failTasks: 0, heavy: false };
+export const state = { failTasks: 0, heavy: false, notReadyFirst: 1, neverReady: false };
+/** How many times the "tasks ready" list was asked for: the scan must never use it. */
+export const seen = { tasksReady: 0 };
 
 const reply = (body: unknown) => new Response(JSON.stringify(body), { headers: { 'content-type': 'application/json' } });
 const ok = (tasksOut: unknown[], cost = 0) => reply({ status_code: 20000, cost, tasks: tasksOut });
@@ -98,6 +100,7 @@ async function handle(input: any, init?: any): Promise<Response> {
   }
   if (p.endsWith('/tasks_ready')) {
     readyCalls++;
+    seen.tasksReady++;
     const family = p.replace('/tasks_ready', '');
     const ids = [...tasks.entries()].filter(([, t]) => t.family === family && t.reads === 0).map(([id]) => ({ id }));
     return ok([{ status_code: 20000, result: readyCalls % 3 === 0 ? ids.slice(0, 0) : ids }]);
@@ -106,6 +109,8 @@ async function handle(input: any, init?: any): Promise<Response> {
   if (get) {
     const t = tasks.get(get[2])!;
     t.reads++;
+    // Asked for by id: the first few asks find the task still queued, like the real thing.
+    if (state.neverReady || t.reads <= state.notReadyFirst) return ok([{ status_code: 40602, status_message: 'Task In Queue', cost: 0, result: null }]);
     const cid = String(t.body.cid ?? String(t.body.keyword).replace('cid:', ''));
     const stamp = t.family.includes('reviews') ? (cid === CIDS.you ? '2026-07-20 12:00:00 +00:00' : '2026-10-18 12:00:00 +00:00') : (cid === CIDS.you ? '2026-05-01 12:00:00 +00:00' : '2026-10-15 12:00:00 +00:00');
     const items = t.family === 'serp/google/maps' ? serpFor(t.body) : [{ timestamp: stamp, post_date: stamp }];

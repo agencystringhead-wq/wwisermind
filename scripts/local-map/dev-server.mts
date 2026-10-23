@@ -14,20 +14,16 @@ import { onRequestPost as lookup } from '../../functions/api/local-map/lookup.ts
 import { onRequestPost as retry } from '../../functions/api/local-map/retry.ts';
 import { onRequestPost as start } from '../../functions/api/local-map/start.ts';
 import { onRequestGet as status } from '../../functions/api/local-map/status.ts';
+import { strictD1 } from './fake-d1.mts';
 import type { LmEnv } from '../../lib/local-map/server/env.ts';
 import { installMock, emails } from './mock-dfs.mts';
 
 installMock();
 const sqlite = new DatabaseSync(':memory:');
 for (const m of ['0002_local_map.sql', '0003_local_map_cells.sql']) sqlite.exec(fs.readFileSync(path.join(process.cwd(), 'migrations', m), 'utf8'));
-const stmt = (sql: string, args: unknown[] = []): any => ({
-  bind: (...v: unknown[]) => stmt(sql, v),
-  first: async () => (sqlite.prepare(sql).get(...(args as any[])) as any) ?? null,
-  all: async () => ({ results: sqlite.prepare(sql).all(...(args as any[])) as any[] }),
-  run: async () => ({ meta: { changes: Number(sqlite.prepare(sql).run(...(args as any[])).changes) } }),
-});
+const DB = strictD1(sqlite);
 const env: LmEnv = {
-  DB: { prepare: (sql: string) => stmt(sql), batch: async (list: any[]) => Promise.all(list.map((s) => s.run())) } as any,
+  DB: DB as any,
   DATAFORSEO_LOGIN: 'x', DATAFORSEO_PASSWORD: 'y', DATAFORSEO_BASE: 'http://mock-dfs', RESEND_API_KEY: 'k', TURNSTILE_SECRET_KEY: 's',
 };
 

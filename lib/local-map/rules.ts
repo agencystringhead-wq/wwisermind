@@ -26,6 +26,11 @@ export const PROFILE_TIMEOUT_MS = 2 * 60_000;
 /** Reviews and posts asked for only once the grid was complete (the final four differed from the early pick) wait this long, and then the
     report is built from the competitors that did come back: the gap table averages whoever is there. */
 export const LATE_PROFILE_GRACE_MS = 20_000;
+/** A scan that makes no progress for this long (counted in time the page spent polling) is flagged: the visitor is told it is taking longer
+    than usual, and wwisermind gets an alert. */
+export const STALL_MS = 5 * 60_000;
+/** A task that errors this many times when asked for its results is given up on (a task still being worked on is not an error). */
+export const MAX_TASK_ERRORS = 3;
 /** Below this share of finished checks, the report is not made: the visitor is asked to try again. */
 export const MIN_DONE_SHARE = 0.6;
 /** Once this share of the grid is in, the practices ahead of you are picked from what we have and their reviews and posts tasks go out,
@@ -124,6 +129,6 @@ export const FIX_TEXT = {
   },
   coverage: {
     title: 'Build a page for the areas you serve',
-    body: 'If clients come from several neighbourhoods, a short page for each one, with real detail about how sessions work for people there, helps Google connect you to those searches.',
+    body: 'If clients come from several neighborhoods, a short page for each one, with real detail about how sessions work for people there, helps Google connect you to those searches.',
   },
 } as const;

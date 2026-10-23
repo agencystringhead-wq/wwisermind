@@ -91,4 +91,6 @@ export type StatusResponse = {
   canRetry?: boolean;
   /** True when there is more to do right now (more finished checks waiting, or the next step is ready): ask again straight away. */
   hurry?: boolean;
+  /** True when the scan has made no progress for a long while: the page says it is taking longer than usual. */
+  stalled?: boolean;
 };

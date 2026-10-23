@@ -108,10 +108,10 @@ export const HERO_TERM: SearchTerm = 'therapist near me';
 export const realityCards = [
   {
     title: 'You do not know where you really rank.',
-    body: 'Google personalises results by location and history. What looks like first place to you may not show up at all for someone three neighbourhoods over.',
+    body: 'Google personalizes results by location and history. What looks like first place to you may not show up at all for someone three neighborhoods over.',
   },
   {
-    title: 'You can be top 3 in one neighbourhood and missing in the next.',
+    title: 'You can be top 3 in one neighborhood and missing in the next.',
     body: 'Map rankings shift block by block. The areas where your ideal clients live may never see you, and a single ranking number cannot tell you which.',
   },
   {
@@ -136,7 +136,7 @@ export const statsNote =
   'We have left out percentages on purpose. Published figures for how people use the map pack vary by study and method, and we would rather give you guidance than a number we cannot stand behind. The three-result pack is how Google Maps displays local results for most searches.';
 
 export const reportParts = [
-  { n: '01', title: 'Visibility map', body: 'A colour-coded grid of 25 points across your area, so you can see where you show up and where you do not.' },
+  { n: '01', title: 'Visibility map', body: 'A color-coded grid of 25 points across your area, so you can see where you show up and where you do not.' },
   { n: '02', title: 'Practices outranking you', body: 'The names of the practices that appear above you in each zone, for each of four search terms people use to find a therapist.' },
   { n: '03', title: 'Gap analysis', body: 'Your Google Business Profile beside the practices ahead of you: reviews, rating, photos and how recently you were active.' },
   { n: '04', title: 'A ranked action plan', body: 'A short list of fixes in order of impact, so you know what to do first. No 30 page document.' },

@@ -42,6 +42,19 @@ ${row('Keywords', lead.keywords.join(', '))}${row('Radius', `${lead.radiusMiles}
   return { subject: `New Local Map Assessment lead: ${lead.practice}`.slice(0, 150), html: shell(inner, `${lead.firstName} started a Local Map Assessment`) };
 }
 
+export function stallAlert(info: { practice: string; firstName: string; email: string; reportId: string; origin: string; status: string; error: string | null; checksDone: number; checksTotal: number; retries: number }) {
+  const row = (k: string, v: string) =>
+    `<tr><td style="padding:4px 12px 4px 0;color:${MUTED};font-size:14px;vertical-align:top;">${esc(k)}</td><td style="padding:4px 0;font-size:14px;">${esc(v)}</td></tr>`;
+  const inner = `
+<h1 style="margin:0 0 12px;font-size:22px;">Local Map Assessment scan is stalled</h1>
+<p style="margin:0 0 14px;">This scan has made no progress for 5 minutes of the visitor's time on the page. They have been told it is taking longer than usual and that we will email their report when it is ready.</p>
+<table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 18px;">
+${row('Practice', info.practice)}${row('Visitor', `${info.firstName} <${info.email}>`)}${row('State', info.status)}${row('Checks collected', `${info.checksDone} of ${info.checksTotal}`)}${row('Retries', String(info.retries))}${row('Last error', info.error ?? 'none')}
+</table>
+<p style="margin:0;"><a href="${esc(reportUrl(info.origin, info.reportId))}" style="color:${BLUE};">Open the report</a> (opening it also moves the scan along)</p>`;
+  return { subject: `STALLED Local Map Assessment: ${info.practice}`.slice(0, 150), html: shell(inner, 'A scan has stopped making progress') };
+}
+
 export function reportStarted(firstName: string, practice: string, origin: string, id: string) {
   const url = reportUrl(origin, id);
   const inner = `

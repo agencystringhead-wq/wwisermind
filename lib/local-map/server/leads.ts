@@ -1,6 +1,6 @@
 import type { Report } from '../types';
 import type { LmEnv } from './env';
-import { reportReady, sendEmail } from './email';
+import { reportReady, sendEmail, stallAlert } from './email';
 
 /** Links in emails point back at the site the report was made on: a pages.dev preview opens its own report, everywhere else is SITE_ORIGIN. */
 export function originOf(request: Request, env: LmEnv): string {
@@ -24,4 +24,16 @@ export async function sendReadyEmails(env: LmEnv, reportId: string, origin: stri
     const sent = await sendEmail(env.RESEND_API_KEY, { from: sender(env), to: lead.email, ...mail });
     if (sent) await env.DB.prepare('UPDATE lm_leads SET report_sent = 1 WHERE id = ?1').bind(lead.id).run();
   }
+}
+
+/** Tells wwisermind that a scan has stopped making progress, with who asked for it and where it got to. A failed email never fails anything. */
+export async function sendStallAlert(
+  env: LmEnv,
+  origin: string,
+  info: { reportId: string; practice: string; status: string; error: string | null; checksDone: number; checksTotal: number; retries: number },
+): Promise<void> {
+  const lead = await env.DB.prepare('SELECT first_name, email FROM lm_leads WHERE report_id = ?1 ORDER BY id LIMIT 1').bind(info.reportId).first<{ first_name: string; email: string }>();
+  const mail = stallAlert({ ...info, origin, firstName: lead?.first_name ?? 'unknown', email: lead?.email ?? 'unknown' });
+  if (env.trace) env.trace.fetches += 1;
+  await sendEmail(env.RESEND_API_KEY, { from: sender(env), to: env.LEAD_NOTIFY_EMAIL || 'admin@wwisermind.com', ...mail });
 }

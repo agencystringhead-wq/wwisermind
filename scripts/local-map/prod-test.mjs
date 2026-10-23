@@ -11,7 +11,7 @@ const [practice, where, email, base = 'https://wwisermind.com'] = process.argv.s
 if (!practice || !where || !email) throw new Error('usage: node prod-test.mjs "Practice name" "City or ZIP" email [baseUrl]');
 
 const calls = [];
-const browser = await chromium.launch({ headless: process.env.HEADED ? false : true });
+const browser = await chromium.launch(process.env.HEADED ? { headless: false, channel: 'chrome' } : { headless: true });
 const page = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
 page.on('response', async (res) => {
   const url = res.url();
@@ -42,7 +42,9 @@ await page.getByRole('button', { name: 'Continue' }).click();
 await page.getByRole('heading', { name: /Where should we send/ }).waitFor();
 await page.fill('input[name=firstName]', 'Smoke');
 await page.fill('input[name=email]', email);
-await page.waitForFunction(() => document.querySelector('[name=cf-turnstile-response]')?.value, null, { timeout: 90000 });
+console.log('WAITING FOR YOU: click the Turnstile check in the Chrome window (up to 20 minutes)');
+await page.waitForFunction(() => document.querySelector('[name=cf-turnstile-response]')?.value, null, { timeout: 20 * 60_000 });
+console.log('Turnstile passed, starting the scan');
 const startedAt = Date.now();
 await page.getByRole('button', { name: 'Run my report' }).click();
 await page.waitForURL(/report/, { timeout: 60000 });

@@ -21,15 +21,22 @@ export function newTrace(fn: string): Trace {
 
 /** The same environment, with every D1 statement counted into `trace`. A batch counts each of its statements. */
 export function traced(env: LmEnv, trace: Trace): LmEnv & { trace: Trace } {
-  const wrap = (stmt: LmStmt): LmStmt => ({
-    bind: (...v) => wrap(stmt.bind(...v)),
-    first: (...a) => ((trace.queries += 1), stmt.first(...(a as []))),
-    all: (...a) => ((trace.queries += 1), stmt.all(...(a as []))),
-    run: () => ((trace.queries += 1), stmt.run()),
-  });
+  /* D1's batch() accepts only the statements D1 itself made, so each wrapper remembers its original and batch() hands those over.
+     (Passing the wrappers made D1 answer "Malformed input" and every poll that saved anything failed.) */
+  const originals = new WeakMap<object, LmStmt>();
+  const wrap = (stmt: LmStmt): LmStmt => {
+    const wrapper: LmStmt = {
+      bind: (...v) => wrap(stmt.bind(...v)),
+      first: (...a) => ((trace.queries += 1), stmt.first(...(a as []))),
+      all: (...a) => ((trace.queries += 1), stmt.all(...(a as []))),
+      run: () => ((trace.queries += 1), stmt.run()),
+    };
+    originals.set(wrapper, stmt);
+    return wrapper;
+  };
   const DB: LmDb = {
     prepare: (q) => wrap(env.DB.prepare(q)),
-    batch: (list) => ((trace.queries += list.length), env.DB.batch(list)),
+    batch: (list) => ((trace.queries += list.length), env.DB.batch(list.map((s) => originals.get(s) ?? s))),
   };
   return { ...env, DB, trace };
 }

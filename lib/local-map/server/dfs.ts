@@ -74,15 +74,9 @@ export function profileRef(key: string): ProfileRef | null {
   return null;
 }
 
-/** The ids of finished tasks in a family that we have not collected yet. */
-export async function readyIds(env: LmEnv, family: Family): Promise<{ ids: Set<string>; cost: number; ms: number }> {
-  const call = await dfs(env, 'GET', `${FAMILY[family]}/tasks_ready`);
-  const ids = new Set<string>();
-  for (const t of call.json.tasks ?? []) for (const r of t.result ?? []) if (r?.id) ids.add(String(r.id));
-  return { ids, cost: call.cost, ms: call.ms };
-}
-
-/** One finished task. `ready` is false while it is still queued or being worked on. */
+/** One task's results, asked for by its id. `ready` is false while it is still queued or being worked on. This is the only way tasks are
+    collected: the "tasks ready" list is not used, because it forgets a task as soon as its results are read once, so a read that is not saved
+    would lose the task. Asking for a finished task by id works again and again. */
 export async function getTask(env: LmEnv, family: Family, id: string): Promise<{ ready: boolean; items: any[]; error?: string; cost: number; ms: number }> {
   const path = family === 'grid' ? `${FAMILY.grid}/task_get/advanced/${id}` : `${FAMILY[family]}/task_get/${id}`;
   const call = await dfs(env, 'GET', path);
