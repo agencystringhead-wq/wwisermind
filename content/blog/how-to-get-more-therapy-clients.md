@@ -77,7 +77,7 @@ If you only do three things this week, do these:
 2. Add your fees to your website.
 3. Claim or update your Google Business Profile.
 
-Then work through the rest over the next month. If you want a step-by-step version, our free guide, [The 2027 Full-Caseload Plan](/freebies/2027-full-caseload-plan-for-therapists/), turns all of this into a four-week, one-hour-a-week plan.
+Then work through the rest over the next month. If you want a step-by-step version, our free guide, [The 2027 Full-Caseload Plan](/free-tools/2027-full-caseload-plan-for-therapists/), turns all of this into a four-week, one-hour-a-week plan.
 
 ## Frequently asked questions
 

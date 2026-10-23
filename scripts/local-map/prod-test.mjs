@@ -29,7 +29,7 @@ page.on('response', async (res) => {
 });
 
 const t0 = Date.now();
-await page.goto(`${base}/local-map-assessment/start/?${new URLSearchParams({ practice, where })}`, { waitUntil: 'networkidle' });
+await page.goto(`${base}/free-tools/local-map-assessment/start/?${new URLSearchParams({ practice, where })}`, { waitUntil: 'networkidle' });
 await page.getByRole('heading', { name: /Is one of these|We could not find/ }).waitFor({ timeout: 60000 });
 const listings = await page.getByRole('button', { name: 'This is my practice' }).count();
 if (!listings) throw new Error('no listings found');

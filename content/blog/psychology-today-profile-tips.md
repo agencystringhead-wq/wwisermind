@@ -83,7 +83,7 @@ Your Psychology Today profile and your website should work together.
 - **Use the same name, address and phone number** on both, and on Google. Consistent details help search engines and AI tools trust your information.
 - **Make sure your website answers what the profile can't.** People who click through want to see more about you, your approach and your fees.
 
-If you want a head start, our free [Psychology Today Profile Kit](/freebies/psychology-today-profile-kit-for-therapists/) includes templates for each section.
+If you want a head start, our free [Psychology Today Profile Kit](/free-tools/psychology-today-profile-kit-for-therapists/) includes templates for each section.
 
 ## Is Psychology Today still worth it?
 
@@ -101,7 +101,7 @@ Even a great profile depends on someone else's platform and algorithm. The pract
 - **Referral relationships** with doctors, school counselors and other therapists.
 - **One or two other directories** that fit your niche, such as TherapyDen or your professional association's directory.
 
-For a step-by-step plan that ties all of this together, download our free guide, [The 2027 Full-Caseload Plan](/freebies/2027-full-caseload-plan-for-therapists/).
+For a step-by-step plan that ties all of this together, download our free guide, [The 2027 Full-Caseload Plan](/free-tools/2027-full-caseload-plan-for-therapists/).
 
 ## Frequently asked questions
 

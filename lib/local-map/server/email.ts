@@ -11,7 +11,7 @@ const LINE = '#e9e6e0';
 const BLUE = '#146ef5';
 const FONT = "-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif";
 
-export const reportUrl = (origin: string, id: string) => `${origin}/local-map-assessment/report/?id=${id}`;
+export const reportUrl = (origin: string, id: string) => `${origin}/free-tools/local-map-assessment/report/?id=${id}`;
 
 function shell(inner: string, preheader: string) {
   return `<!doctype html><html lang="en"><body style="margin:0;padding:0;background:#f5f5f5;">

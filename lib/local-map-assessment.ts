@@ -9,7 +9,7 @@ import { absUrl } from '@/lib/site';
    ========================================================================== */
 
 export const LMA_PATH = routes.localMapAssessment;
-export const LMA_START_PATH = '/local-map-assessment/start/';
+export const LMA_START_PATH = '/free-tools/local-map-assessment/start/';
 export const LMA_URL = absUrl(LMA_PATH);
 export const LMA_OG = '/images/local-map-assessment/og.jpg';
 

@@ -36,7 +36,7 @@ function DownloadCard({ slug }: { slug: string }) {
 }
 
 /**
- * The /freebies/ hub, now the one page for everything free: the live tools as the callout cards,
+ * The /free-tools/ hub, now the one page for everything free: the live tools as the callout cards,
  * the downloads as simple cards, in the same four groups the Free Tools menu has (lib/free-tools).
  * A hidden tool is not listed. Nothing here animates.
  */

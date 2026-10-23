@@ -43,7 +43,7 @@ const html = `<!doctype html><html><head><meta charset="utf-8">
 <div class="wrap">
   <div class="brand">wwisermind<span>Local Map Assessment</span></div>
   <div><h1>See who outranks you on Google Maps</h1><p>A free report for therapists, in under 4 minutes.</p></div>
-  <div class="foot"><b>Free</b> · wwisermind.com/local-map-assessment</div>
+  <div class="foot"><b>Free</b> · wwisermind.com/free-tools/local-map-assessment</div>
 </div></body></html>`;
 
 const browser = await chromium.launch();

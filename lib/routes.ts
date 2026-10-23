@@ -75,25 +75,34 @@ export const SERVICE_PRICING = {
   'ongoing-seo': pricing.seo,
 } as const satisfies Partial<Record<ServiceKey, Route>>;
 
-/* --- the freebies hub, the freebie pages and the two tools ---------------------------------- */
+/* --- the free-tools hub, the freebie pages and the tool pages -------------------------------- */
 
-/** Keyed by the slug in lib/freebies.ts: the folder the page lives in. The five downloads sit under
-    /freebies/, the two tools under /tools/. */
+/** Keyed by the slug in lib/freebies.ts: the page's address. Every download, template and tool sits
+    under /free-tools/. (They used to be under /freebies/ and /tools/; public/_redirects sends every
+    old address here.) */
 export const FREEBIE_PATHS = {
-  '2027-full-caseload-plan-for-therapists': '/freebies/2027-full-caseload-plan-for-therapists/',
-  'ai-visibility-report': '/tools/ai-visibility-report/',
-  'website-scorecard-for-therapists': '/tools/website-scorecard-for-therapists/',
-  'good-faith-estimate': '/tools/good-faith-estimate/',
+  '2027-full-caseload-plan-for-therapists': '/free-tools/2027-full-caseload-plan-for-therapists/',
+  'ai-visibility-report': '/free-tools/ai-visibility-report/',
+  'website-scorecard-for-therapists': '/free-tools/website-scorecard-for-therapists/',
+  'good-faith-estimate': '/free-tools/good-faith-estimate/',
   'psychology-today-profile-kit-for-therapists':
-    '/freebies/psychology-today-profile-kit-for-therapists/',
+    '/free-tools/psychology-today-profile-kit-for-therapists/',
   'google-business-profile-checklist-for-therapists':
-    '/freebies/google-business-profile-checklist-for-therapists/',
-  'social-media-posts-for-therapists': '/freebies/social-media-posts-for-therapists/',
-  'business-card-template-for-therapists': '/freebies/business-card-template-for-therapists/',
-  'email-signature-for-therapists': '/freebies/email-signature-for-therapists/',
+    '/free-tools/google-business-profile-checklist-for-therapists/',
+  'social-media-posts-for-therapists': '/free-tools/social-media-posts-for-therapists/',
+  'business-card-template-for-therapists': '/free-tools/business-card-template-for-therapists/',
+  'email-signature-for-therapists': '/free-tools/email-signature-for-therapists/',
 } as const satisfies Record<string, Route>;
 
 export type FreebieKey = keyof typeof FREEBIE_PATHS;
+
+/** The freebies that have a page folder of their own under app/free-tools/, so the shared [slug] page
+    leaves them out: the tools, not the downloads. */
+export const TOOL_PAGE_KEYS: FreebieKey[] = [
+  'ai-visibility-report',
+  'website-scorecard-for-therapists',
+  'good-faith-estimate',
+];
 
 /* --- everything else ------------------------------------------------------------------- */
 
@@ -108,7 +117,7 @@ export const routes = {
   contactBook: '/contact/#book',
   contactForm: '/contact/#contact-form',
   /** The free Local Map Assessment landing page. It has its own header and footer (see usesOwnChrome in lib/site.ts). */
-  localMapAssessment: '/local-map-assessment/',
+  localMapAssessment: '/free-tools/local-map-assessment/',
   blog: '/blog/',
   rss: '/rss.xml',
 
@@ -133,20 +142,18 @@ export const routes = {
 
   pricing,
 
-  /** The five category hubs (lib/categories.ts). The free-resources hub is the old freebies hub, moved:
-      /freebies/ redirects to it, and each freebie's own page keeps its /freebies/<slug>/ address. */
+  /** The five category hubs (lib/categories.ts). The free-resources hub is the one /free-tools/ hub:
+      /freebies/, /tools/ and /free-resources-for-therapists/ all redirect to it. */
   hubs: {
     websiteDesign: '/website-design-for-therapists/',
     marketing: '/marketing-for-therapists/',
     ai: '/ai-services-for-therapists/',
     whoWeHelp: '/who-we-help/',
-    freeResources: '/free-resources-for-therapists/',
+    freeResources: '/free-tools/',
   },
 
   freebies: {
-    hub: '/free-resources-for-therapists/',
-    /** The folder the five download pages live in. The hub left it; the pages did not. */
-    folder: '/freebies/',
+    hub: '/free-tools/',
     fullCaseloadPlan: FREEBIE_PATHS['2027-full-caseload-plan-for-therapists'],
     psychologyTodayKit: FREEBIE_PATHS['psychology-today-profile-kit-for-therapists'],
     googleBusinessProfile: FREEBIE_PATHS['google-business-profile-checklist-for-therapists'],
@@ -161,8 +168,8 @@ export const routes = {
     websiteScorecard: FREEBIE_PATHS['website-scorecard-for-therapists'],
     goodFaithEstimate: FREEBIE_PATHS['good-faith-estimate'],
     /** The public helpline directory, and the install page for the help now widget. */
-    crisisResources: '/tools/crisis-resources/',
-    helpNowWidget: '/tools/crisis-resources/help-now-widget/',
+    crisisResources: '/free-tools/crisis-resources/',
+    helpNowWidget: '/free-tools/crisis-resources/help-now-widget/',
   },
 
   /* The footer's bottom row. The legal pages share one template (components/legal/LegalPage.tsx)
@@ -179,8 +186,8 @@ export const routes = {
   blogPost: (slug: string): Route => `/blog/${slug}/`,
   /** `/blog/category/<slug>/` */
   blogCategory: (slug: string): Route => `/blog/category/${slug}/`,
-  /** `/tools/crisis-resources/<state>/`, the state's full lowercase name. */
-  crisisState: (slug: string): Route => `/tools/crisis-resources/${slug}/`,
+  /** `/free-tools/crisis-resources/<state>/`, the state's full lowercase name. */
+  crisisState: (slug: string): Route => `/free-tools/crisis-resources/${slug}/`,
   /** `/who-we-help/<slug>/` */
   audience: (slug: string): Route => `/who-we-help/${slug}/`,
 

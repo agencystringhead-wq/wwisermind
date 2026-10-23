@@ -2,7 +2,7 @@ import { absUrl } from '@/lib/site';
 
 /* Words for the Good Faith Estimate generator's page: metadata, the privacy line, the short explainer and the FAQs. */
 
-export const GFE_PATH = '/tools/good-faith-estimate/';
+export const GFE_PATH = '/free-tools/good-faith-estimate/';
 export const GFE_URL = absUrl(GFE_PATH);
 export const GFE_TITLE_TAG = 'Free Good Faith Estimate Generator for Therapists | wwisermind';
 export const GFE_DESCRIPTION =

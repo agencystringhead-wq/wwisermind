@@ -80,7 +80,7 @@ const row = sqlite.prepare('SELECT * FROM gfe_leads').get() as any;
 check('the lead is stored with lowercase email', row.email === 'dana@example.com' && row.practice === 'Dana Reyes Counseling' && row.city === 'Austin');
 check('both emails went out and were marked', row.notified === 1 && row.welcomed === 1);
 check('alert goes to admin@wwisermind.com', sent.some((m) => m.to[0] === 'admin@wwisermind.com' && /GFE tool lead/.test(m.subject)));
-check('therapist gets the link back to the tool', sent.some((m) => m.to[0] === 'dana@example.com' && m.html.includes('https://wwisermind.com/tools/good-faith-estimate/')));
+check('therapist gets the link back to the tool', sent.some((m) => m.to[0] === 'dana@example.com' && m.html.includes('https://wwisermind.com/free-tools/good-faith-estimate/')));
 const everything = JSON.stringify(sqlite.prepare('SELECT * FROM gfe_leads').all()) + sent.map((m) => m.html + m.subject).join('') + outbound.join('');
 check('client name, date of birth, diagnosis and fees never reach storage, emails or any outside request', !/Jamie|Quinn|1990-04-12|F41\.1|175|Alder|010-0199|jamie\.quinn/.test(everything));
 check('outside requests: 3 (Turnstile + 2 emails), D1 queries: 3 before the response (1 more after)', /fetches=3;queries=3/.test(trace), trace);

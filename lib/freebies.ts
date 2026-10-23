@@ -3,7 +3,7 @@ import { categoryHubs } from '@/lib/categories';
 import { routes, type FreebieKey, type Route } from '@/lib/routes';
 
 /* ==========================================================================
-   Freebies: the /freebies/ hub, the five freebie pages and the two tool pages.
+   Freebies: the /free-tools/ hub, the freebie pages and the tool pages.
 
    One data file, one shared page template: every word on those pages is read from here.
    Same pattern as lib/services.ts and the pricing data files.
@@ -23,10 +23,10 @@ import { routes, type FreebieKey, type Route } from '@/lib/routes';
 export const FORM_ENDPOINT = '';
 
 /* The 2027 Full-Caseload Plan is built by scripts/guides/full-caseload-plan/build-pdf.mjs into
-   public/guides/. The other two PDFs live in public/freebies/. */
+   public/guides/. The other two PDFs live in public/free-tools/. */
 const FULL_CASELOAD_PLAN_PDF = '/guides/wwisermind-2027-full-caseload-plan.pdf';
-const PT_KIT_PDF = '/freebies/psychology-today-profile-kit-for-therapists.pdf';
-const GBP_CHECKLIST_PDF = '/freebies/google-business-profile-checklist-for-therapists.pdf';
+const PT_KIT_PDF = '/free-tools/psychology-today-profile-kit-for-therapists.pdf';
+const GBP_CHECKLIST_PDF = '/free-tools/google-business-profile-checklist-for-therapists.pdf';
 
 /* TODO: the Canva template links ("make a copy" links). While one is empty its success state says
    the link is not ready, rather than showing a dead button. */

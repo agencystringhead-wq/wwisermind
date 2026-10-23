@@ -21,7 +21,7 @@ import styles from './CrisisResources.module.css';
 
 /**
  * The public helpline directory, read from lib/crisis-resources.json through the helpers. Used
- * for /tools/crisis-resources/ and, with a `state`, for each state page.
+ * for /free-tools/crisis-resources/ and, with a `state`, for each state page.
  *
  * The first thing on the page is the emergency banner, static and high contrast, with a large
  * tap target for 988. There is no hero image, no video and nothing that animates. Every button

@@ -4,7 +4,7 @@ import type { StatusResponse } from '@/lib/local-map/types';
     leave it empty in production (same origin). */
 export const API = `${process.env.NEXT_PUBLIC_LOCAL_MAP_API ?? ''}/api/local-map`;
 
-export const REPORT_PATH = '/local-map-assessment/report/';
+export const REPORT_PATH = '/free-tools/local-map-assessment/report/';
 
 export class ApiError extends Error {
   status: number;

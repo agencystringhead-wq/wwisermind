@@ -16,7 +16,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 
 const OUT = path.resolve('out');
-const SKIP = [/^\/therapyindex\//, /^\/404/, /^\/tools\/website-scorecard-for-therapists\/r\//];
+const SKIP = [/^\/therapyindex\//, /^\/404/, /^\/free-tools\/website-scorecard-for-therapists\/r\//];
 const VIEWPORTS = [
   { width: 412, height: 823, mobile: true },
   { width: 1440, height: 900, mobile: false },

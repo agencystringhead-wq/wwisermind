@@ -305,7 +305,7 @@ export const megaPanels: Record<string, MegaPanel> = {
 
   'Free Tools': {
     id: 'free-tools',
-    /* One menu for every free thing, grouped the way the /freebies/ hub groups it. The groups,
+    /* One menu for every free thing, grouped the way the /free-tools/ hub groups it. The groups,
        names and lines come from lib/free-tools.ts, which reads the tools' status: a hidden tool is
        not here. No item carries a badge; the only one is NEW on the top-level label. */
     columns: freeToolGroups.map((group) => ({
@@ -905,12 +905,12 @@ export const isTherapyIndexPage = (pathname: string): boolean => /^\/therapyinde
 
 /** The Therapy Index's own header and footer replace the site's on its pages and on the tool pages that carry its research
     branding. Every other page keeps the site's header, footer and floating contact bar. */
-export const tiChromeToolPaths: string[] = ['/tools/ai-visibility-report'];
+export const tiChromeToolPaths: string[] = ['/free-tools/ai-visibility-report'];
 export const usesTiChrome = (pathname: string): boolean =>
   isTherapyIndexPage(pathname) || tiChromeToolPaths.includes(pathname.replace(/\/+$/, ''));
 
 /** The Local Map Assessment landing page, and its start page, carry a header and footer of their own. */
-export const isLocalMapAssessmentPage = (pathname: string): boolean => /^\/local-map-assessment(\/|$)/.test(pathname);
+export const isLocalMapAssessmentPage = (pathname: string): boolean => /^\/free-tools\/local-map-assessment(\/|$)/.test(pathname);
 
 /** Pages whose own chrome replaces the site's header, footer and floating contact bar. */
 export const usesOwnChrome = (pathname: string): boolean => usesTiChrome(pathname) || isLocalMapAssessmentPage(pathname);

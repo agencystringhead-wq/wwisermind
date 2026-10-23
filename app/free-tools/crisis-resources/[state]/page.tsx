@@ -5,7 +5,7 @@ import { getStateBySlug, getStatesWithData } from '@/lib/crisis-resources';
 import { routes } from '@/lib/routes';
 import { absUrl } from '@/lib/site';
 
-/* One page per state that has data, at /tools/crisis-resources/<state>/ (the full lowercase
+/* One page per state that has data, at /free-tools/crisis-resources/<state>/ (the full lowercase
    name, like "illinois"). Add a state to lib/crisis-resources.json and its page appears.
 
    A static export refuses a dynamic route whose generateStaticParams() is empty. So while no state

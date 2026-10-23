@@ -37,7 +37,7 @@ server starts throwing module-not-found errors. Stop dev, `rm -rf .next`, then b
 
 ## website scorecard (tool with a backend)
 
-`/tools/website-scorecard-for-therapists/` scans a therapist's website, asks a short quiz and
+`/free-tools/website-scorecard-for-therapists/` scans a therapist's website, asks a short quiz and
 returns a private report. The site stays a static export; the server side lives in Cloudflare
 Pages Functions (`functions/api/scorecard/`), with the logic shared from `lib/scorecard/`.
 
@@ -91,17 +91,17 @@ when a change makes old and new scores not comparable.
 
 ### Notes
 
-- Reports live at `/tools/website-scorecard-for-therapists/r/<id>/`. One static shell page serves them all through the
+- Reports live at `/free-tools/website-scorecard-for-therapists/r/<id>/`. One static shell page serves them all through the
   `200` rewrite in `public/_redirects`; ids are 128-bit random and the page is `noindex`.
 - Pages Functions on the free plan allow 10 ms of CPU per request. The scan is mostly waiting on the network, but if
   scans fail with CPU errors in the logs, the Workers Paid plan lifts that limit.
 - The scan reports "we couldn't find X", never "you don't have X": keyword checks can miss things.
 
-## local map assessment (the real tool behind /local-map-assessment/)
+## local map assessment (the real tool behind /free-tools/local-map-assessment/)
 
-`/local-map-assessment/` is the landing page. Its search box hands the practice name and city or ZIP to
-`/local-map-assessment/start/`, which runs the tool: lookup, confirm, details (with Turnstile), then
-`/local-map-assessment/report/?id=<id>`, which shows the progress screen while the scan runs and the report when it is done.
+`/free-tools/local-map-assessment/` is the landing page. Its search box hands the practice name and city or ZIP to
+`/free-tools/local-map-assessment/start/`, which runs the tool: lookup, confirm, details (with Turnstile), then
+`/free-tools/local-map-assessment/report/?id=<id>`, which shows the progress screen while the scan runs and the report when it is done.
 Same architecture as the scorecard: a static export plus Cloudflare Pages Functions, the same D1 database (binding `DB`).
 
 | File | What it does |
@@ -119,7 +119,7 @@ Same architecture as the scorecard: a static export plus Cloudflare Pages Functi
    (no new binding: it uses `DB`).
 2. In the Pages dashboard (Settings > Variables and Secrets, Production and Preview) add the secrets `DATAFORSEO_LOGIN` and
    `DATAFORSEO_PASSWORD`. `RESEND_API_KEY`, `TURNSTILE_SECRET_KEY`, `LEAD_NOTIFY_EMAIL`, `RESEND_FROM`, `SITE_ORIGIN` and
-   `NEXT_PUBLIC_TURNSTILE_SITE_KEY` are the scorecard's and are shared. Optionally set `NEXT_PUBLIC_LOCAL_MAP_TOOL_URL=/local-map-assessment/`.
+   `NEXT_PUBLIC_TURNSTILE_SITE_KEY` are the scorecard's and are shared. Optionally set `NEXT_PUBLIC_LOCAL_MAP_TOOL_URL=/free-tools/local-map-assessment/`.
 3. Apply `migrations/0003_local_map_cells.sql` as well (`npx wrangler d1 execute wwisermind-scorecard --remote --file=migrations/0003_local_map_cells.sql`).
 4. The tool is built for the Workers **free** plan (10 ms CPU and 50 outside requests per invocation); see "Free plan limits" below.
 

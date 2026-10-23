@@ -10,7 +10,7 @@ const LINE = '#e9e6e0';
 const BLUE = '#146ef5';
 const FONT = "-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif";
 
-export const toolUrl = (origin: string) => `${origin}/tools/good-faith-estimate/`;
+export const toolUrl = (origin: string) => `${origin}/free-tools/good-faith-estimate/`;
 
 function shell(inner: string, preheader: string) {
   return `<!doctype html><html lang="en"><body style="margin:0;padding:0;background:#f5f5f5;">

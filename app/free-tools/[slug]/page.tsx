@@ -3,13 +3,13 @@ import { notFound } from 'next/navigation';
 import FreebiePage from '@/components/freebies/FreebiePage';
 import { freebieMetadata } from '@/lib/freebie-metadata';
 import { freebiePath, freebies, getFreebie } from '@/lib/freebies';
-import { routes } from '@/lib/routes';
+import { TOOL_PAGE_KEYS } from '@/lib/routes';
 
-/* One page per download or template, at /freebies/<slug>/. The two tools have their own folders
-   under /tools/. Anything else is a 404: the site is a static export. */
+/* One page per download or template, at /free-tools/<slug>/. The tools have their own folders next
+   to this one. Anything else is a 404: the site is a static export. */
 export const dynamicParams = false;
 
-const onThisFolder = freebies.filter((freebie) => freebiePath(freebie).startsWith(routes.freebies.folder));
+const onThisFolder = freebies.filter((freebie) => !TOOL_PAGE_KEYS.includes(freebie.slug));
 
 export function generateStaticParams() {
   return onThisFolder.map((freebie) => ({ slug: freebie.slug }));

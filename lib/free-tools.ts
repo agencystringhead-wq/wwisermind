@@ -1,6 +1,6 @@
 /* The free tools and downloads, grouped the one way the whole site shows them.
 
-   The Free Tools menu (desktop and mobile) and the /freebies/ hub both read this list, so a tool
+   The Free Tools menu (desktop and mobile) and the /free-tools/ hub both read this list, so a tool
    moves, is renamed or is hidden in one place. A tool comes from lib/tools.ts (and is dropped if its
    status is "hidden"); a download comes from lib/freebies.ts by its slug, with the short name and
    line the menu shows for it. */

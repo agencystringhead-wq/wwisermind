@@ -1,6 +1,6 @@
 /* wwisermind help now widget
    Adds a list of free US crisis and mental health helplines to any website.
-   Docs and a snippet generator: https://wwisermind.com/tools/crisis-resources/help-now-widget/
+   Docs and a snippet generator: https://wwisermind.com/free-tools/crisis-resources/help-now-widget/
 
    It makes one request, for the list of numbers, and nothing else: no cookies, no localStorage,
    no analytics, no third-party requests. If anything fails, the fallback text the site pasted
@@ -10,7 +10,7 @@
 
   var HOME = 'https://wwisermind.com';
   var DEFAULT_DATA = HOME + '/data/crisis-resources.json';
-  var TOOL_URL = HOME + '/tools/crisis-resources/';
+  var TOOL_URL = HOME + '/free-tools/crisis-resources/';
   var DEFAULT_COLOR = '#146ef5';
   var COMPACT_IDS = ['emergency-911', 'lifeline-988', 'crisis-text-line'];
   /* data-src is a testing hook. It is honoured only on these hosts; everywhere else the widget

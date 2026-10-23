@@ -150,7 +150,7 @@ Open your site on your phone and look for these:
 - [ ] You say how quickly you respond
 - [ ] Crisis information is easy to find
 
-If you're missing more than two of these, your website is probably costing you clients. Our free guide, [The 2027 Full-Caseload Plan](/freebies/2027-full-caseload-plan-for-therapists/), walks through fixing each one in about an hour a week.
+If you're missing more than two of these, your website is probably costing you clients. Our free guide, [The 2027 Full-Caseload Plan](/free-tools/2027-full-caseload-plan-for-therapists/), walks through fixing each one in about an hour a week.
 
 ## Frequently asked questions
 

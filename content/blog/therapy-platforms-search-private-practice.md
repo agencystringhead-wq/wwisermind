@@ -50,7 +50,7 @@ If a platform shows you as available when you've never joined, ask them in writi
 
 For local searches, the map results often sit above everything else. That's prime space, and platforms can't take it from you.
 
-Fill in every field. Pick accurate categories, list your services, add real photos of your office (not stock), and keep hours current, including telehealth-only hours if that's how you work. Our free [Google Business Profile checklist](/freebies/google-business-profile-checklist-for-therapists/) walks through it.
+Fill in every field. Pick accurate categories, list your services, add real photos of your office (not stock), and keep hours current, including telehealth-only hours if that's how you work. Our free [Google Business Profile checklist](/free-tools/google-business-profile-checklist-for-therapists/) walks through it.
 
 ## 3. Build pages for what you actually treat
 
@@ -72,7 +72,7 @@ So do professional referrals. Family doctors, school counselors, psychiatrists, 
 
 ## 6. Don't ignore AI search
 
-More people now ask ChatGPT or Google's AI answers to recommend a therapist. Those tools pull from the same signals: clear specialty pages, consistent listings, a complete Google profile. Doing steps one to five gets you most of the way there. We're building a free [AI Visibility Report](/tools/ai-visibility-report/) to check where you stand. It's coming soon on our tools page.
+More people now ask ChatGPT or Google's AI answers to recommend a therapist. Those tools pull from the same signals: clear specialty pages, consistent listings, a complete Google profile. Doing steps one to five gets you most of the way there. We're building a free [AI Visibility Report](/free-tools/ai-visibility-report/) to check where you stand. It's coming soon on our tools page.
 
 ## What about staying on a platform?
 

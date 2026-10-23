@@ -115,20 +115,75 @@
 /explore/faqs/ /faq/ 301
 /explore/testimonials /reviews/ 301
 /explore/testimonials/ /reviews/ 301
-/explore/freebies/email-signature /freebies/email-signature-for-therapists/ 301
-/explore/freebies/email-signature/ /freebies/email-signature-for-therapists/ 301
-/explore/freebies/business-card /freebies/business-card-template-for-therapists/ 301
-/explore/freebies/business-card/ /freebies/business-card-template-for-therapists/ 301
-/explore/freebies/social-media-template /freebies/social-media-posts-for-therapists/ 301
-/explore/freebies/social-media-template/ /freebies/social-media-posts-for-therapists/ 301
-/explore/freebies/* /freebies/ 301
+/explore/freebies/email-signature /free-tools/email-signature-for-therapists/ 301
+/explore/freebies/email-signature/ /free-tools/email-signature-for-therapists/ 301
+/explore/freebies/business-card /free-tools/business-card-template-for-therapists/ 301
+/explore/freebies/business-card/ /free-tools/business-card-template-for-therapists/ 301
+/explore/freebies/social-media-template /free-tools/social-media-posts-for-therapists/ 301
+/explore/freebies/social-media-template/ /free-tools/social-media-posts-for-therapists/ 301
+/explore/freebies/* /free-tools/ 301
 /explore /blog/ 301
 /explore/ /blog/ 301
 
 # website scorecard: every private report (/r/<id>/) is served by the one static shell page, which
-# reads the id from the address and loads the report from /api/scorecard/result/<id>.
-/tools/website-scorecard-for-therapists/r/* /tools/website-scorecard-for-therapists/r/ 200
+# reads the id from the address and loads the report from /api/scorecard/result/<id>. The 200 rule
+# is first so a new-address report is served; the 301 below carries an old emailed link, id and all,
+# to the new address.
+/free-tools/website-scorecard-for-therapists/r/* /free-tools/website-scorecard-for-therapists/r/ 200
+/tools/website-scorecard-for-therapists/r/* /free-tools/website-scorecard-for-therapists/r/:splat 301
 
-# The freebies hub became the free-resources hub. Only the hub moves: every /freebies/<name>/ page keeps its address.
-/freebies /free-resources-for-therapists/ 301
-/freebies/ /free-resources-for-therapists/ 301
+# Every tool, freebie and hub now lives under /free-tools/. Exact old addresses first (with and
+# without the trailing slash), each straight to its final address, then catch-alls for anything
+# that was missed. Individual page slugs are unchanged: only the parent folder moved.
+
+/tools /free-tools/ 301
+/tools/ /free-tools/ 301
+/freebies /free-tools/ 301
+/freebies/ /free-tools/ 301
+/free-resources-for-therapists /free-tools/ 301
+/free-resources-for-therapists/ /free-tools/ 301
+/tools/website-scorecard-for-therapists /free-tools/website-scorecard-for-therapists/ 301
+/tools/website-scorecard-for-therapists/ /free-tools/website-scorecard-for-therapists/ 301
+/tools/good-faith-estimate /free-tools/good-faith-estimate/ 301
+/tools/good-faith-estimate/ /free-tools/good-faith-estimate/ 301
+/tools/crisis-resources /free-tools/crisis-resources/ 301
+/tools/crisis-resources/ /free-tools/crisis-resources/ 301
+/tools/ai-visibility-report /free-tools/ai-visibility-report/ 301
+/tools/ai-visibility-report/ /free-tools/ai-visibility-report/ 301
+/tools/crisis-resources/help-now-widget /free-tools/crisis-resources/help-now-widget/ 301
+/tools/crisis-resources/help-now-widget/ /free-tools/crisis-resources/help-now-widget/ 301
+/tools/crisis-resources/california /free-tools/crisis-resources/california/ 301
+/tools/crisis-resources/california/ /free-tools/crisis-resources/california/ 301
+/tools/crisis-resources/florida /free-tools/crisis-resources/florida/ 301
+/tools/crisis-resources/florida/ /free-tools/crisis-resources/florida/ 301
+/tools/crisis-resources/illinois /free-tools/crisis-resources/illinois/ 301
+/tools/crisis-resources/illinois/ /free-tools/crisis-resources/illinois/ 301
+/tools/crisis-resources/new-york /free-tools/crisis-resources/new-york/ 301
+/tools/crisis-resources/new-york/ /free-tools/crisis-resources/new-york/ 301
+/tools/crisis-resources/texas /free-tools/crisis-resources/texas/ 301
+/tools/crisis-resources/texas/ /free-tools/crisis-resources/texas/ 301
+/local-map-assessment /free-tools/local-map-assessment/ 301
+/local-map-assessment/ /free-tools/local-map-assessment/ 301
+/local-map-assessment/start /free-tools/local-map-assessment/start/ 301
+/local-map-assessment/start/ /free-tools/local-map-assessment/start/ 301
+/local-map-assessment/report /free-tools/local-map-assessment/report/ 301
+/local-map-assessment/report/ /free-tools/local-map-assessment/report/ 301
+/freebies/2027-full-caseload-plan-for-therapists /free-tools/2027-full-caseload-plan-for-therapists/ 301
+/freebies/2027-full-caseload-plan-for-therapists/ /free-tools/2027-full-caseload-plan-for-therapists/ 301
+/freebies/psychology-today-profile-kit-for-therapists /free-tools/psychology-today-profile-kit-for-therapists/ 301
+/freebies/psychology-today-profile-kit-for-therapists/ /free-tools/psychology-today-profile-kit-for-therapists/ 301
+/freebies/google-business-profile-checklist-for-therapists /free-tools/google-business-profile-checklist-for-therapists/ 301
+/freebies/google-business-profile-checklist-for-therapists/ /free-tools/google-business-profile-checklist-for-therapists/ 301
+/freebies/social-media-posts-for-therapists /free-tools/social-media-posts-for-therapists/ 301
+/freebies/social-media-posts-for-therapists/ /free-tools/social-media-posts-for-therapists/ 301
+/freebies/business-card-template-for-therapists /free-tools/business-card-template-for-therapists/ 301
+/freebies/business-card-template-for-therapists/ /free-tools/business-card-template-for-therapists/ 301
+/freebies/email-signature-for-therapists /free-tools/email-signature-for-therapists/ 301
+/freebies/email-signature-for-therapists/ /free-tools/email-signature-for-therapists/ 301
+/freebies/psychology-today-profile-kit-for-therapists.pdf /free-tools/psychology-today-profile-kit-for-therapists.pdf 301
+/freebies/google-business-profile-checklist-for-therapists.pdf /free-tools/google-business-profile-checklist-for-therapists.pdf 301
+
+# Catch-alls, after the exact rules above.
+/tools/* /free-tools/:splat 301
+/freebies/* /free-tools/:splat 301
+/local-map-assessment/* /free-tools/local-map-assessment/:splat 301

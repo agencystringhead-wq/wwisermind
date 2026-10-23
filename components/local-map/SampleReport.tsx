@@ -11,7 +11,7 @@ export default function SampleReport() {
   const you = board[place - 1];
   return (
     <figure className={styles.sample}>
-      <BrowserFrame url="wwisermind.com/local-map-assessment/sample-report">
+      <BrowserFrame url="wwisermind.com/free-tools/local-map-assessment/sample-report">
         <div className={styles.sampleBody}>
           <div className={styles.sampleHead}>
             <div>

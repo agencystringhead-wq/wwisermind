@@ -12,7 +12,7 @@ const BLUE = '#146ef5';
 const FONT = "-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif";
 
 export function resultUrl(origin: string, id: string) {
-  return `${origin}/tools/website-scorecard-for-therapists/r/${id}/`;
+  return `${origin}/free-tools/website-scorecard-for-therapists/r/${id}/`;
 }
 
 function shell(inner: string, preheader: string) {

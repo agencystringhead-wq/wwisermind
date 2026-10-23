@@ -7,7 +7,7 @@ import type { CheckId, CheckResult, Platform, ScanResult } from './types';
    PageSpeed for the mobile numbers, all inside one time budget. Anything that fails is marked
    "couldn't check" instead of failing the scan. */
 
-const UA = 'Mozilla/5.0 (compatible; wwisermind-scorecard/1.0; +https://wwisermind.com/tools/website-scorecard-for-therapists/)';
+const UA = 'Mozilla/5.0 (compatible; wwisermind-scorecard/1.0; +https://wwisermind.com/free-tools/website-scorecard-for-therapists/)';
 
 const TRACKING_PARAM = /^(utm_|fbclid|gclid|msclkid|mc_|_ga|igshid|ref$)/i;
 
