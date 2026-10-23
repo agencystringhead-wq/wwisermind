@@ -96,3 +96,67 @@ when a change makes old and new scores not comparable.
 - Pages Functions on the free plan allow 10 ms of CPU per request. The scan is mostly waiting on the network, but if
   scans fail with CPU errors in the logs, the Workers Paid plan lifts that limit.
 - The scan reports "we couldn't find X", never "you don't have X": keyword checks can miss things.
+
+## local map assessment (the real tool behind /local-map-assessment/)
+
+`/local-map-assessment/` is the landing page. Its search box hands the practice name and city or ZIP to
+`/local-map-assessment/start/`, which runs the tool: lookup, confirm, details (with Turnstile), then
+`/local-map-assessment/report/?id=<id>`, which shows the progress screen while the scan runs and the report when it is done.
+Same architecture as the scorecard: a static export plus Cloudflare Pages Functions, the same D1 database (binding `DB`).
+
+| File | What it does |
+| --- | --- |
+| `lib/local-map/rules.ts` | **Every number and sentence**: credit by rank, radius options, limits, timeouts, gap thresholds, fix text. Tune here. |
+| `lib/local-map/report.ts`, `grid.ts` | Pure: the 25-point grid, ranks, scores, leaderboard, gap table, why bullets and ranked fixes. |
+| `lib/local-map/server/` | DataForSEO client, the stepped scan (`pipeline.ts`), limits, emails. |
+| `functions/api/local-map/` | `lookup` (POST), `geocode` (GET), `start` (POST), `status` (GET, also does the scan's work), `retry` (POST). |
+| `components/local-map/flow/` | The start flow, the progress screen, the report page and its maps. |
+| `migrations/0002_local_map.sql` | `lm_reports`, `lm_leads`, `lm_cost_log`, `lm_limits`. |
+
+### One-time setup
+
+1. Apply the migration to the existing database: `npx wrangler d1 migrations apply wwisermind-scorecard --remote`
+   (no new binding: it uses `DB`).
+2. In the Pages dashboard (Settings > Variables and Secrets, Production and Preview) add the secrets `DATAFORSEO_LOGIN` and
+   `DATAFORSEO_PASSWORD`. `RESEND_API_KEY`, `TURNSTILE_SECRET_KEY`, `LEAD_NOTIFY_EMAIL`, `RESEND_FROM`, `SITE_ORIGIN` and
+   `NEXT_PUBLIC_TURNSTILE_SITE_KEY` are the scorecard's and are shared. Optionally set `NEXT_PUBLIC_LOCAL_MAP_TOOL_URL=/local-map-assessment/`.
+3. Use the Workers Paid plan. A status poll parses a few hundred KB of stored results and makes up to ~32 outside calls; the free
+   plan's 10 ms of CPU per request is likely to be too little.
+
+### How a scan runs
+
+`start` posts all 100 checks (25 points x 4 search terms, `depth 20`, standard queue) to DataForSEO in one request and returns the
+report id at once. The report page then polls `status` every 3 seconds; each poll collects up to 30 finished tasks, and one poll at a
+time works on a report (`lock_until`). When the grid is in, the four practices that appear in the top three most often are chosen and
+reviews and posts tasks are posted for them and for you; when those are in, the report is built and the "ready" email goes out.
+Failed or timed-out checks are kept as missing: the report is built if 60% or more finished (the map shows "?" for the rest), otherwise
+the visitor sees a friendly retry that re-posts only the missing checks (twice per report at most).
+
+Limits: 3 reports a day per IP and per email, 20 lookups a day per IP, 7-day cache per place + centre + keywords + radius.
+
+### Watching spend and speed
+
+```sql
+select sum(cost) from lm_cost_log;                                   -- total USD, as DataForSEO reports it
+select step, count(*), round(avg(ms)), round(sum(cost), 4) from lm_cost_log group by step;
+select id, total_cost, (finished_at - created_at) / 1000 as seconds from lm_reports where status = 'done' order by created_at desc;
+select timings_json from lm_reports order by created_at desc limit 5;  -- posted, firstReady, gridDone, profilesPosted, finished (unix ms)
+```
+
+`rules.ts` has `DFS_PRIORITY` (1 standard, 2 high). Compare `finished_at - created_at` over a few real reports before changing it.
+
+### Try it without credentials
+
+```bash
+npm run localmap:test            # the whole backend against a pretend DataForSEO and an in-memory database
+npm run localmap:dev             # a local backend on :8788 with the same pretend data; then:
+NEXT_PUBLIC_LOCAL_MAP_API=http://localhost:8788 npm run dev
+```
+
+### Notes
+
+- Report pages and the start page are `noindex`. Reports are private by an unguessable id; the id is not secret from anyone it is shared with.
+- Maps use OpenStreetMap tiles softened to grey, like the Therapy Index map: CARTO's free tiles now need an API key.
+- The reviews and posts endpoints (`business_data/google/reviews`, `my_business_updates`) were written from DataForSEO's documentation and
+  not yet run against the live API (the Maps SERP shapes were checked against `data/therapyindex/raw`). A failure there is not fatal: those
+  gap rows show "n/a". Check `lm_cost_log.note` after the first real report.
