@@ -12,6 +12,7 @@ import type { LmEnv } from '../../lib/local-map/server/env.ts';
 import { toListing } from '../../lib/local-map/server/parse.ts';
 import { loadStatus, startScan } from '../../lib/local-map/server/pipeline.ts';
 import { defaultKeywords } from '../../lib/local-map/rules.ts';
+import type { StatusResponse } from '../../lib/local-map/types.ts';
 
 const [practice = 'Brightwater Therapy', where = 'Austin TX'] = process.argv.slice(2);
 
@@ -21,7 +22,7 @@ const dotenv = Object.fromEntries(
 if (!dotenv.DATAFORSEO_LOGIN || !dotenv.DATAFORSEO_PASSWORD) throw new Error('DATAFORSEO_LOGIN / DATAFORSEO_PASSWORD missing from .env.local');
 
 const sqlite = new DatabaseSync(':memory:');
-sqlite.exec(fs.readFileSync(path.join(process.cwd(), 'migrations', '0002_local_map.sql'), 'utf8'));
+for (const m of ['0002_local_map.sql', '0003_local_map_cells.sql']) sqlite.exec(fs.readFileSync(path.join(process.cwd(), 'migrations', m), 'utf8'));
 const stmt = (sql: string, args: unknown[] = []): any => ({
   bind: (...v: unknown[]) => stmt(sql, v),
   first: async () => (sqlite.prepare(sql).get(...(args as any[])) as any) ?? null,
@@ -67,11 +68,12 @@ await startScan(env, {
   centre: { lat: listing.lat, lng: listing.lng },
   cacheKey: 'smoke',
 });
-console.log('Posted. Polling every 5 seconds…');
+console.log('Posted. Polling every 3 seconds (400 ms when the last poll says there is more to do)…');
 
 let last = '';
 for (;;) {
-  const s = await loadStatus(env, id, true);
+  const text = await loadStatus(env, id, true);
+  const s = text ? (JSON.parse(text) as StatusResponse) : null;
   const line = `${s?.status} ${s?.progress.checksDone}/${s?.progress.checksTotal} checks, ${s?.progress.pointsDone}/25 points  (${Math.round((Date.now() - started) / 1000)}s)`;
   if (line !== last) console.log(line);
   last = line;
@@ -90,7 +92,7 @@ for (;;) {
     console.log('Gave up after 12 minutes');
     break;
   }
-  await new Promise((r) => setTimeout(r, 5000));
+  await new Promise((r) => setTimeout(r, s?.hurry ? 400 : 3000));
 }
 
 const total = sqlite.prepare('select round(sum(cost), 5) as cost from lm_cost_log where report_id is not null').get() as { cost: number };

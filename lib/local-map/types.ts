@@ -89,4 +89,6 @@ export type StatusResponse = {
   report?: Report;
   message?: string;
   canRetry?: boolean;
+  /** True when there is more to do right now (more finished checks waiting, or the next step is ready): ask again straight away. */
+  hurry?: boolean;
 };

@@ -120,20 +120,46 @@ Same architecture as the scorecard: a static export plus Cloudflare Pages Functi
 2. In the Pages dashboard (Settings > Variables and Secrets, Production and Preview) add the secrets `DATAFORSEO_LOGIN` and
    `DATAFORSEO_PASSWORD`. `RESEND_API_KEY`, `TURNSTILE_SECRET_KEY`, `LEAD_NOTIFY_EMAIL`, `RESEND_FROM`, `SITE_ORIGIN` and
    `NEXT_PUBLIC_TURNSTILE_SITE_KEY` are the scorecard's and are shared. Optionally set `NEXT_PUBLIC_LOCAL_MAP_TOOL_URL=/local-map-assessment/`.
-3. Use the Workers Paid plan. A status poll parses a few hundred KB of stored results and makes up to ~32 outside calls; the free
-   plan's 10 ms of CPU per request is likely to be too little.
+3. Apply `migrations/0003_local_map_cells.sql` as well (`npx wrangler d1 execute wwisermind-scorecard --remote --file=migrations/0003_local_map_cells.sql`).
+4. The tool is built for the Workers **free** plan (10 ms CPU and 50 outside requests per invocation); see "Free plan limits" below.
 
 ### How a scan runs
 
-`start` posts all 100 checks (25 points x 4 search terms, `depth 20`, standard queue) to DataForSEO in one request and returns the
-report id at once. The report page then polls `status` every 3 seconds; each poll collects up to 30 finished tasks, and one poll at a
-time works on a report (`lock_until`). DataForSEO's queue is the slow part, so independent work runs side by side: your own newest
-review and post are asked for at the start; once about half the grid is in, the eight practices most often in the top three are picked and
-their reviews and posts are asked for while the rest of the grid finishes; when the grid is complete, any of the final four that were not
-in that early pick are asked for, and the report is built as soon as everything is back, waiting at most 20 seconds for those late ones
-(the gap table then averages the competitors that did come back). The "ready" email goes out when the report is built.
+`start` posts all 100 checks (25 points x 4 search terms, `depth 20`, standard queue) to DataForSEO in one request, plus your own reviews and
+posts tasks, saves the task ids and returns the report id. It processes no results. The report page then polls `status` every 3 seconds (every
+0.4 s while the last answer says `hurry`), and **each poll does one kind of work**, chosen from the report's state in `lm_reports.status`:
+
+| State | What one poll does |
+| --- | --- |
+| `scanning` | Fetches at most 8 finished tasks (`FETCH_PER_POLL`), keeps the first 20 results of each as one small row in `lm_cells`, ticks them off. Once half the grid is in, one poll instead picks the eight likeliest competitors from the cells and asks for their reviews and posts. |
+| `selecting` | Reads the cells once, picks the final four, asks for any reviews and posts not asked for yet. |
+| `profiles` | Collects reviews and posts (the same 8-fetch allowance). Late ones wait 20 seconds, then the report is built without them. |
+| `building` | Reads the cells once, scores, builds the gap table and the fixes, stores the finished report. |
+| `done` | Nothing: the stored report text is returned as it is, never parsed. |
+
+The scan moves only while a poll arrives, so a visitor who closes the tab and opens the report link again resumes where they stopped. Timeouts count
+only time the page was polling (`timings.act`), not time spent away. The visitor is emailed the link when the scan starts, and again when the
+report is done (the second email goes out when the scan finishes, which needs the page to be open).
 Failed or timed-out checks are kept as missing: the report is built if 60% or more finished (the map shows "?" for the rest), otherwise
 the visitor sees a friendly retry that re-posts only the missing checks (twice per report at most).
+
+### Free plan limits and logging
+
+| Function | Outside requests | D1 queries | Heavy work |
+| --- | --- | --- | --- |
+| `lookup` | 1 (DataForSEO live) | 3 | parse one 30 KB response |
+| `geocode` | 1 (OpenStreetMap) | 2 | none |
+| `start` | 6 (Turnstile, 3 to DataForSEO, 2 emails) | 9 | build 100 task bodies, parse one 60 KB answer |
+| `status`, collecting | at most 11 (ready lists plus 8 fetches) | at most about 14 | parse at most 8 responses of about 40 KB |
+| `status`, pick and build steps | 3 or none | 6 to 22 | read about 170 KB of small cell rows once |
+| `status`, done | 0 | 1 | none |
+| `retry` | 1 | 3 | none |
+
+Every invocation logs a `begin` line and an `end` line (JSON with `"lm":true`, the function, report id, phase, outside requests, D1 queries and
+wall time), and sends the same counts back in an `x-lm-trace` response header. **A `begin` line with no matching `end` is an invocation that was killed**,
+and says which function and phase it was (CPU limit). An `error` line carries the counts and a `tooManySubrequests` flag. `end-near-limit` is logged when
+either count passes 35 of 50. CPU time cannot be read from inside a Worker; use the Pages project's Functions metrics in the Cloudflare dashboard
+(Workers & Pages > wwisermind > Metrics), or `npm run localmap:test`, which prints CPU, outside requests and D1 queries for every invocation.
 
 Limits: 3 reports a day per IP and per email, 20 lookups a day per IP, 7-day cache per place + centre + keywords + radius.
 

@@ -20,6 +20,7 @@ export async function sendReadyEmails(env: LmEnv, reportId: string, origin: stri
     .all<{ id: number; first_name: string; email: string }>();
   for (const lead of leads.results) {
     const mail = reportReady(report, lead.first_name, origin);
+    if (env.trace) env.trace.fetches += 1;
     const sent = await sendEmail(env.RESEND_API_KEY, { from: sender(env), to: lead.email, ...mail });
     if (sent) await env.DB.prepare('UPDATE lm_leads SET report_sent = 1 WHERE id = ?1').bind(lead.id).run();
   }

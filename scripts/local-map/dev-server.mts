@@ -19,7 +19,7 @@ import { installMock, emails } from './mock-dfs.mts';
 
 installMock();
 const sqlite = new DatabaseSync(':memory:');
-sqlite.exec(fs.readFileSync(path.join(process.cwd(), 'migrations', '0002_local_map.sql'), 'utf8'));
+for (const m of ['0002_local_map.sql', '0003_local_map_cells.sql']) sqlite.exec(fs.readFileSync(path.join(process.cwd(), 'migrations', m), 'utf8'));
 const stmt = (sql: string, args: unknown[] = []): any => ({
   bind: (...v: unknown[]) => stmt(sql, v),
   first: async () => (sqlite.prepare(sql).get(...(args as any[])) as any) ?? null,

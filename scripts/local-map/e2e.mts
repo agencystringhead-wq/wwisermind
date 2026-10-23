@@ -8,19 +8,49 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
-import { onRequestPost as lookup } from '../../functions/api/local-map/lookup.ts';
-import { onRequestPost as start } from '../../functions/api/local-map/start.ts';
-import { onRequestGet as status } from '../../functions/api/local-map/status.ts';
-import { onRequestPost as retry } from '../../functions/api/local-map/retry.ts';
+import { onRequestPost as lookupRaw } from '../../functions/api/local-map/lookup.ts';
+import { onRequestPost as startRaw } from '../../functions/api/local-map/start.ts';
+import { onRequestGet as statusRaw } from '../../functions/api/local-map/status.ts';
+import { onRequestPost as retryRaw } from '../../functions/api/local-map/retry.ts';
 import type { LmCtx, LmEnv } from '../../lib/local-map/server/env.ts';
 import type { Report, StatusResponse } from '../../lib/local-map/types.ts';
-import { CIDS, emails, installMock, state } from './mock-dfs.mts';
+import { CIDS, emails, installMock, mockCpu, state } from './mock-dfs.mts';
 
 installMock();
+const realLog = console.log;
+console.log = (...a: unknown[]) => (typeof a[0] === 'string' && a[0].startsWith('{"lm"') ? undefined : realLog(...a));
+console.warn = console.log;
+
+/* CPU and outside-request accounting for every invocation, as the free plan sees it: 10 ms of CPU, 50 outside requests, 50 D1 queries.
+   CPU here is elapsed time minus what the pretend servers took, so it is the handler's own work (the fake D1 is local SQLite and
+   counts a little heavier than a network round trip would). */
+const usage: Record<string, { n: number; cpuMax: number; cpuSum: number; fetchesMax: number; queriesMax: number }> = {};
+const pendingWork: Promise<unknown>[] = [];
+const measured = (name: string, handler: (ctx: any) => Promise<Response>) => async (ctx: any) => {
+  const t0 = performance.now();
+  const m0 = mockCpu.micros;
+  const res = await handler(ctx);
+  await Promise.all(pendingWork.splice(0)); // emails sent after the response belong to the same invocation
+  const cpu = performance.now() - t0 - (mockCpu.micros - m0) / 1000;
+  const t = /fetches=(\d+);queries=(\d+)/.exec(res.headers.get('x-lm-trace') ?? '');
+  const u = (usage[name] ??= { n: 0, cpuMax: 0, cpuSum: 0, fetchesMax: 0, queriesMax: 0 });
+  u.n++;
+  u.cpuSum += cpu;
+  u.cpuMax = Math.max(u.cpuMax, cpu);
+  if (t) {
+    u.fetchesMax = Math.max(u.fetchesMax, Number(t[1]));
+    u.queriesMax = Math.max(u.queriesMax, Number(t[2]));
+  }
+  return res;
+};
+const lookup = measured('lookup', lookupRaw);
+const start = measured('start', startRaw);
+const status = measured('status', statusRaw);
+const retry = measured('retry', retryRaw);
 
 /* --- an in-memory D1 --------------------------------------------------------------------------- */
 const sqlite = new DatabaseSync(':memory:');
-sqlite.exec(fs.readFileSync(path.join(process.cwd(), 'migrations', '0002_local_map.sql'), 'utf8'));
+for (const m of ['0002_local_map.sql', '0003_local_map_cells.sql']) sqlite.exec(fs.readFileSync(path.join(process.cwd(), 'migrations', m), 'utf8'));
 const stmt = (sql: string, args: unknown[] = []): any => ({
   bind: (...v: unknown[]) => stmt(sql, v),
   first: async () => (sqlite.prepare(sql).get(...(args as any[])) as any) ?? null,
@@ -32,7 +62,7 @@ const DB = { prepare: (sql: string) => stmt(sql), batch: async (list: any[]) => 
 /* --- the run ------------------------------------------------------------------------------------- */
 const env: LmEnv = { DB: DB as any, DATAFORSEO_LOGIN: 'x', DATAFORSEO_PASSWORD: 'y', DATAFORSEO_BASE: 'http://mock-dfs', RESEND_API_KEY: 'k', TURNSTILE_SECRET_KEY: 's' };
 const pending: Promise<unknown>[] = [];
-const ctx = (req: Request): LmCtx => ({ request: req, env, waitUntil: (p) => void pending.push(p) });
+const ctx = (req: Request): LmCtx => ({ request: req, env, waitUntil: (p) => void (pending.push(p), pendingWork.push(p)) });
 const post = (route: string, body: unknown, ip = '9.9.9.1') =>
   new Request(`https://wwisermind.com/api/local-map/${route}`, { method: 'POST', headers: { 'cf-connecting-ip': ip }, body: JSON.stringify(body) });
 
@@ -106,8 +136,16 @@ for (let i = 0; i < 3; i++) {
   if (r.status === 429) refused++;
 }
 check('per-IP daily limit of 3 reports', refused >= 1, `${refused} refused`);
-const badTurnstile = await start(ctx({ ...post('start', { ...body('z@example.com'), company: 'bot' }, '9.9.9.7') } as any));
+const badTurnstile = await start(ctx(post('start', { ...body('z@example.com'), company: 'bot' }, '9.9.9.7')));
 check('honeypot is refused', badTurnstile.status === 400);
 
+console.log('\nPer invocation (free plan limits: 10 ms CPU, 50 outside requests, 50 D1 queries):');
+for (const [name, u] of Object.entries(usage)) {
+  console.log(`  ${name.padEnd(7)} x${String(u.n).padStart(3)}  CPU max ${u.cpuMax.toFixed(2)} ms, avg ${(u.cpuSum / u.n).toFixed(2)} ms   outside requests max ${u.fetchesMax}   D1 queries max ${u.queriesMax}`);
+}
+const worst = Math.max(...Object.values(usage).map((u) => u.cpuMax));
+check('every invocation stays under 7 ms of CPU locally (70% of the free plan limit, cold JIT included)', worst < 7, `worst ${worst.toFixed(2)} ms`);
+check('no invocation makes more than 20 outside requests', Object.values(usage).every((u) => u.fetchesMax <= 20));
+check('no invocation runs more than 30 D1 queries', Object.values(usage).every((u) => u.queriesMax <= 30));
 console.log(failures ? `\n${failures} check(s) failed` : '\nAll checks passed');
 process.exit(failures ? 1 : 0);

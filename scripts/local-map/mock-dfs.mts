@@ -1,6 +1,23 @@
 /* A pretend DataForSEO, Turnstile and Resend for the Local Map Assessment: the same response shapes as the saved ones in
    data/therapyindex/raw, no network and no credentials. Used by e2e.mts and dev-server.mts. */
-/* --- a pretend DataForSEO, Turnstile and Resend ------------------------------------------------- */
+import fs from 'node:fs';
+
+/* Each pretend result carries the bulk of a real one (opening hours, photos, review snippets, related searches: about 2 KB), taken from a
+   saved real response, so a depth-20 answer is about 40 KB like the live ones and the CPU numbers from the tests mean something. */
+const TEMPLATE: Record<string, unknown> = (() => {
+  try {
+    const dir = 'data/therapyindex/raw/austin-tx/2026-10-21';
+    const file = fs.readdirSync(dir).find((f) => f.startsWith('maps'))!;
+    const json = JSON.parse(fs.readFileSync(`${dir}/${file}`, 'utf8'));
+    return json.tasks[0].result[0].items.find((i: any) => i.type === 'maps_search') as Record<string, unknown>;
+  } catch {
+    return { padding: 'x'.repeat(1800) };
+  }
+})();
+
+/** Time the pretend servers themselves took, so a test can subtract it from what a handler appears to use. Everything runs in one
+    process with no real waiting, so elapsed time is CPU time (process.cpuUsage ticks at 15 ms on Windows, too coarse to use). */
+export const mockCpu = { micros: 0 };
 export const CIDS = { you: '1111111111', cedar: '2222222222', north: '3333333333', willow: '4444444444', harbor: '5555555555' };
 export const NAMES: Record<string, string> = { [CIDS.you]: 'Brightwater Therapy', [CIDS.cedar]: 'Cedar Path Counseling', [CIDS.north]: 'Northside Therapy Collective', [CIDS.willow]: 'Willow Lane Psychology', [CIDS.harbor]: 'Harbor Street Therapy' };
 const STATS: Record<string, [number, number, number]> = { // rating, reviews, photos
@@ -10,6 +27,7 @@ const mockItem = (cid: string, rank: number, extra: Record<string, unknown> = {}
   const [rating, votes, photos] = STATS[cid] ?? [4.3 + (Number(cid.slice(-1)) % 5) / 10, 8 + Number(cid.slice(-2)) * 2, 3 + Number(cid.slice(-1))];
   const home = HOMES[cid];
   return {
+    ...TEMPLATE,
     type: 'maps_search', rank_group: rank, rank_absolute: rank, title: NAMES[cid] ?? `Practice ${cid}`, cid, place_id: `ChIJ${cid}`,
     rating: { value: rating, votes_count: votes }, total_photos: photos, category: 'Psychotherapist', additional_categories: ['Mental health service'],
     address: '1 Main St, Austin, TX 78701', latitude: home?.[0] ?? 30.26, longitude: home?.[1] ?? -97.74, url: 'https://example.com/', ...extra,
@@ -42,6 +60,16 @@ function serpFor(body: any) {
 const realFetch = globalThis.fetch;
 export function installMock() {
 globalThis.fetch = (async (input: any, init?: any) => {
+  const t0 = performance.now();
+  try {
+    return await handle(input, init);
+  } finally {
+    mockCpu.micros += (performance.now() - t0) * 1000;
+  }
+}) as typeof fetch;
+}
+
+async function handle(input: any, init?: any): Promise<Response> {
   const url = String(input?.url ?? input);
   if (url.startsWith('https://challenges.cloudflare.com')) return reply({ success: true });
   if (url.startsWith('https://api.resend.com')) {
@@ -84,5 +112,4 @@ globalThis.fetch = (async (input: any, init?: any) => {
     return ok([{ status_code: 20000, cost: 0, result: [{ items }] }]);
   }
   return new Response('not found', { status: 404 });
-}) as typeof fetch;
 }

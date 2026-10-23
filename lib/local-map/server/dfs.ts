@@ -20,6 +20,7 @@ export type DfsCall = { json: any; cost: number; ms: number };
 export async function dfs(env: LmEnv, method: 'GET' | 'POST', path: string, body?: unknown): Promise<DfsCall> {
   if (!env.DATAFORSEO_LOGIN || !env.DATAFORSEO_PASSWORD) throw new DfsError('DataForSEO is not configured', 401);
   const started = Date.now();
+  if (env.trace) env.trace.fetches += 1;
   const res = await fetch(`${env.DATAFORSEO_BASE || BASE}/${path}`, {
     method,
     headers: {

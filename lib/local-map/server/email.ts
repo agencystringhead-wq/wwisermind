@@ -42,6 +42,18 @@ ${row('Keywords', lead.keywords.join(', '))}${row('Radius', `${lead.radiusMiles}
   return { subject: `New Local Map Assessment lead: ${lead.practice}`.slice(0, 150), html: shell(inner, `${lead.firstName} started a Local Map Assessment`) };
 }
 
+export function reportStarted(firstName: string, practice: string, origin: string, id: string) {
+  const url = reportUrl(origin, id);
+  const inner = `
+<p style="margin:0 0 6px;font-size:14px;color:${MUTED};">your Local Map Assessment</p>
+<h1 style="margin:0 0 12px;font-size:26px;line-height:1.2;">We are checking ${esc(practice)}</h1>
+<p style="margin:0 0 14px;">Hi ${esc(firstName)}, your scan has started. It takes about three minutes, and the report is on this page.</p>
+<p style="margin:24px 0;">${button(url, 'Open your report')}</p>
+<p style="margin:0 0 14px;">Keep the page open while the progress bar runs. If you close it, just open this link again and the scan will pick up where it stopped.</p>
+<p style="margin:0;font-size:13px;color:${MUTED};">This page is private. Anyone with the link can see it, so share it only with people you trust. We read only public Google information.</p>`;
+  return { subject: 'Your Local Map Assessment is on its way', html: shell(inner, 'Open this link any time to see your report') };
+}
+
 export function reportReady(report: Report, firstName: string, origin: string) {
   const url = reportUrl(origin, report.id);
   const inner = `

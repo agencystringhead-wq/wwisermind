@@ -34,8 +34,9 @@ export const EARLY_COMPETITORS_SHARE = 0.5;
 /** The early pick is wider than the final four: a practice that is in the top three a little less often at the halfway mark can still make
     the final four, and a lookup asked for too late costs about two minutes. Each extra practice costs about $0.003. */
 export const EARLY_CANDIDATES = 8;
-/** A poll fetches at most this many finished tasks, to stay inside a Pages Function's limit on outside calls. */
-export const FETCH_PER_POLL = 30;
+/** A poll fetches and parses at most this many finished tasks. Each response is about 40 KB, so this bounds a poll's CPU time: the free
+    plan gives an invocation 10 ms in all. */
+export const FETCH_PER_POLL = 8;
 
 /* --- scoring: credit by rank -------------------------------------------------------------------- */
 

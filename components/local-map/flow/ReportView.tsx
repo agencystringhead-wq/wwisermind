@@ -15,6 +15,8 @@ import styles from './flow.module.css';
 const ResultsMap = dynamic(() => import('./ResultsMap'), { ssr: false, loading: () => <div className={styles.resultsMap} /> });
 
 const POLL_MS = 3000;
+/** When the last poll says there is more to do right now, ask again almost at once. */
+const HURRY_MS = 400;
 
 const longDate = (ms: number) => new Date(ms).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
@@ -33,7 +35,7 @@ function ProgressScreen({ progress, name }: { progress: Progress; name?: string 
       <div className={styles.bar} aria-hidden="true">
         <i style={{ width: `${share}%` }} />
       </div>
-      <p className={styles.hint}>This usually takes two to four minutes. You can leave this page open, or close it: we are emailing you a link to your report.</p>
+      <p className={styles.hint}>This usually takes about three minutes. Keep this page open while we check. If you close it, open this page again or the link we emailed you, and the scan carries on from where it stopped.</p>
     </div>
   );
 }
@@ -257,7 +259,7 @@ export default function ReportView() {
       if (!live.current) return;
       setData(next);
       setProblem('');
-      if (next.status === 'scanning') timer.current = setTimeout(poll, POLL_MS);
+      if (next.status === 'scanning') timer.current = setTimeout(poll, next.hurry ? HURRY_MS : POLL_MS);
     } catch (e) {
       if (!live.current) return;
       if (e instanceof ApiError && e.status === 404) {

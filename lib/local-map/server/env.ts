@@ -15,6 +15,8 @@ export interface LmEnv {
   DB: LmDb;
   DATAFORSEO_LOGIN?: string;
   DATAFORSEO_PASSWORD?: string;
+  /** Set by the tracing wrapper (trace.ts): counts the outside requests an invocation makes. */
+  trace?: { fetches: number; queries: number };
   /** Only for tests against a local stand-in server. Leave unset in production. */
   DATAFORSEO_BASE?: string;
   RESEND_API_KEY?: string;

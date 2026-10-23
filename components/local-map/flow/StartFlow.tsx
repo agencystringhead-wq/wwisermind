@@ -324,7 +324,7 @@ export default function StartFlow() {
         {step === 'form' && picked ? (
           <form className={styles.card} onSubmit={submit}>
             <h1 className={styles.title}>Where should we send your report?</h1>
-            <p className={styles.lede}>It takes about four minutes. We will email you a link too, so you can close this page if you like.</p>
+            <p className={styles.lede}>It takes about three minutes. We will email you a link too, so you can come back to your report any time.</p>
             <label className={styles.field}>
               <span>First name</span>
               <input name="firstName" required maxLength={60} autoComplete="given-name" />
