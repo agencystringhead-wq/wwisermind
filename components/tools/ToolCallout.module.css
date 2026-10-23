@@ -1,8 +1,9 @@
 /* Free-tool callouts: one wide band, small cards in pairs, and a grid of every live tool.
 
-   Nothing new: the card is Controls.module.css's (white, 1px line, 20px radius, the same hover
-   lift), the label is its mono label, the headline is the section-heading weight, and the wide
-   band's button is the site's blue pill. Hover is CSS only and nothing animates on arrival. */
+   The card is Controls.module.css's (white, 1px line, 20px radius), the label is its mono label,
+   the headline is the section-heading weight, the wide band's button is the site's blue pill,
+   and the picture sits on the same blue tint as the icon tile. Hover is CSS only, lifts 2px and
+   moves the drawing a little; nothing animates on arrival. */
 
 .wideSection,
 .cardsSection {
@@ -15,6 +16,36 @@
   composes: monoLabel from '../ui/Controls.module.css';
 }
 
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+/* the yellow accent, as a small pill */
+.pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-yellow);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* the tinted panel the drawing sits on: the icon tile's blue, at card size */
+.panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background-image: linear-gradient(to top right, #fefdf9, #cce6fd);
+}
+
 .description {
   color: var(--color-muted);
   font-size: var(--fs-body);
@@ -25,22 +56,34 @@
 /* --- wide ---------------------------------------------------------------------------- */
 
 .wide {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
   align-items: center;
-  justify-content: space-between;
   gap: 40px;
-  padding: 44px 48px;
+  padding: 28px 28px 28px 48px;
   border: 1px solid var(--color-line);
   border-radius: 20px;
-  background-color: var(--color-surface);
+  background-color: var(--color-white);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
 }
 
 .copy {
-  max-width: 640px;
+  max-width: 560px;
+}
+
+.widePanel {
+  align-self: stretch;
+  min-height: 220px;
+  padding: 12px;
+}
+
+.widePanel svg {
+  height: 196px;
 }
 
 .wideTitle {
-  margin-top: 14px;
+  margin-top: 16px;
   font-size: clamp(24px, 2.6vw, 34px);
   font-weight: var(--fw-semibold);
   line-height: 1.2;
@@ -54,7 +97,7 @@
 }
 
 .button {
-  flex: none;
+  margin-top: 24px;
 }
 
 /* --- compact and grid ---------------------------------------------------------------- */
@@ -104,12 +147,29 @@
   composes: card from '../ui/Controls.module.css';
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  padding: 14px 14px 24px;
+}
+
+.cardPanel {
+  height: 140px;
+  padding: 8px;
+}
+
+.cardPanel svg {
+  height: 124px;
+}
+
+.cardBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   align-items: flex-start;
-  padding: 28px 28px 24px;
+  padding: 20px 12px 0;
 }
 
 .cardTitle {
-  margin-top: 12px;
+  margin-top: 14px;
   font-size: 20px;
   font-weight: var(--fw-semibold);
   line-height: 1.25;
@@ -156,17 +216,33 @@
   }
 }
 
+/* the wide band stacks, picture on top, below 900px */
+@media (max-width: 899px) {
+  .wide {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    padding: 20px 20px 32px;
+  }
+
+  .widePanel {
+    order: -1;
+    min-height: 0;
+    padding: 16px;
+  }
+
+  .widePanel svg {
+    height: 150px;
+  }
+
+  .copy {
+    padding-inline: 8px;
+  }
+}
+
 @media (max-width: 767px) {
   .wideSection,
   .cardsSection {
     padding-block: 40px;
-  }
-
-  .wide {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
-    padding: 28px 24px;
   }
 
   .pair {
@@ -179,5 +255,16 @@
 
   .single {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* --- hover: lift 2px with a soft shadow --------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .wide:hover,
+  .cardsSection .card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-divider);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.08);
   }
 }

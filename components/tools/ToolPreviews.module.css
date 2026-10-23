@@ -1,0 +1,221 @@
+/* The drawings on the tool callouts (ToolPreviews.tsx).
+
+   Site tokens throughout; the three map shades are the ones the Local Map Assessment's own grid
+   uses. Hover motion runs from the card or band that carries data-tool-card, is CSS only, and
+   exists only for readers who have not asked for less motion. */
+
+.svg {
+  --pv-good: #1f9d55;
+  --pv-mid: #f0a500;
+  --pv-low: #e5484d;
+  --pv-grey: #d9dde3;
+  --pv-track: rgba(20, 110, 245, 0.14);
+
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* --- shared ------------------------------------------------------------------------- */
+
+.bar {
+  fill: var(--pv-grey);
+}
+
+.ink {
+  fill: var(--color-ink);
+}
+
+/* --- scorecard ---------------------------------------------------------------------- */
+
+.dialTrack {
+  fill: none;
+  stroke: var(--pv-track);
+  stroke-width: 9;
+}
+
+.dialRing {
+  fill: none;
+  stroke: var(--color-brand);
+  stroke-width: 9;
+  stroke-linecap: round;
+  stroke-dasharray: 145 214; /* 68% of the circle */
+}
+
+.dialValue {
+  fill: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 24px;
+  font-weight: 600;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.tickDisc {
+  fill: var(--color-brand);
+}
+
+.tick {
+  fill: none;
+  stroke: var(--color-white);
+  stroke-width: 1.800;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.crossDisc {
+  fill: var(--color-ink);
+}
+
+.cross {
+  fill: none;
+  stroke: var(--color-white);
+  stroke-width: 1.800;
+  stroke-linecap: round;
+}
+
+/* --- local map ---------------------------------------------------------------------- */
+
+.dotGood {
+  fill: var(--pv-good);
+}
+
+.dotMid {
+  fill: var(--pv-mid);
+}
+
+.dotLow {
+  fill: var(--pv-low);
+}
+
+.pinBody {
+  fill: var(--color-ink);
+  stroke: var(--color-white);
+  stroke-width: 2;
+}
+
+.pinEye {
+  fill: var(--color-yellow);
+}
+
+/* --- good faith estimate ------------------------------------------------------------ */
+
+.paper {
+  fill: var(--color-white);
+  stroke: var(--color-line);
+  stroke-width: 1.500;
+}
+
+.titleBar {
+  fill: var(--color-brand);
+}
+
+.rule {
+  stroke: var(--color-line);
+  stroke-width: 1.500;
+}
+
+.totalBand {
+  fill: var(--color-yellow);
+}
+
+/* --- therapy index ------------------------------------------------------------------ */
+
+.rowCard {
+  fill: var(--color-white);
+  stroke: var(--color-line);
+  stroke-width: 1.500;
+}
+
+.rank {
+  fill: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-anchor: middle;
+}
+
+.scoreTrack {
+  fill: var(--pv-track);
+}
+
+.scoreBar {
+  fill: var(--color-brand);
+  transform-box: fill-box;
+  transform-origin: left center;
+}
+
+/* --- crisis resources --------------------------------------------------------------- */
+
+.phoneBody {
+  fill: var(--color-white);
+  stroke: var(--color-ink);
+  stroke-width: 2.500;
+}
+
+.miniCard {
+  fill: var(--color-surface);
+}
+
+.dot {
+  fill: var(--color-yellow);
+  stroke: var(--color-ink);
+  stroke-width: 1;
+}
+
+.helpButton {
+  fill: var(--color-brand);
+}
+
+.helpText {
+  fill: var(--color-white);
+  font-family: var(--font-sans);
+  font-size: 8.500px;
+  font-weight: 600;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+/* --- hover motion ------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .dialRing,
+  .dotGood,
+  .dotMid,
+  .dotLow,
+  .scoreBar {
+    transition: stroke-dasharray 450ms var(--ease), fill 350ms var(--ease),
+      transform 450ms var(--ease);
+  }
+
+  .sheet,
+  .phone {
+    transition: transform 350ms var(--ease);
+  }
+
+  /* the dial fills a little further */
+  :global([data-tool-card]:hover) .dialRing {
+    stroke-dasharray: 160 214;
+  }
+
+  /* every dot moves up one shade: red to amber, amber to green */
+  :global([data-tool-card]:hover) .dotMid {
+    fill: var(--pv-good);
+  }
+
+  :global([data-tool-card]:hover) .dotLow {
+    fill: var(--pv-mid);
+  }
+
+  /* the score bars grow a few pixels */
+  :global([data-tool-card]:hover) .scoreBar {
+    transform: scaleX(1.08);
+  }
+
+  :global([data-tool-card]:hover) .sheet,
+  :global([data-tool-card]:hover) .phone {
+    transform: translateY(-3px);
+  }
+}

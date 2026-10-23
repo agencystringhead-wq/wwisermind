@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { ArrowRightIcon } from '@/components/ui/icons';
-import { getTool, type Tool, type ToolId } from '@/lib/tools';
+import { DEFAULT_TOOL_EYEBROW, getTool, type Tool, type ToolId } from '@/lib/tools';
 import controls from '@/components/ui/Controls.module.css';
+import ToolPreview from './ToolPreviews';
 import styles from './ToolCallout.module.css';
 
 type Shared = {
@@ -36,13 +37,25 @@ export type ToolCalloutProps = Wide | Compact | Grid;
 
 /**
  * A free tool, offered in the middle of a page that is about something else. The copy and the
- * route come from lib/tools.ts. Plain server markup with CSS-only hover: nothing moves on
- * arrival, so it is safe anywhere on the page.
+ * route come from lib/tools.ts, and each card carries a small drawing of the tool (ToolPreviews).
+ * Plain server markup with CSS-only hover: nothing moves on arrival, so it is safe anywhere on
+ * the page.
  *
  * Every button carries data-tool and data-placement. No analytics script is installed, so
  * nothing listens for them yet; when one is, a single delegated click handler on
  * `a[data-tool]` is all it needs.
  */
+/** The "Free tool" pill, and the tool's own label beside it when it has one of its own
+    (the scorecard's name, or a page's override). */
+function Badges({ eyebrow }: { eyebrow: string }) {
+  return (
+    <p className={styles.badges}>
+      <span className={styles.pill}>Free tool</span>
+      {eyebrow !== DEFAULT_TOOL_EYEBROW ? <span className={styles.eyebrow}>{eyebrow}</span> : null}
+    </p>
+  );
+}
+
 export default function ToolCallout(props: ToolCalloutProps) {
   const { placement } = props;
 
@@ -51,22 +64,25 @@ export default function ToolCallout(props: ToolCalloutProps) {
     return (
       <section className={styles.wideSection} aria-labelledby={`tool-${placement}`}>
         <div className="container">
-          <div className={styles.wide}>
+          <div className={styles.wide} data-tool-card>
             <div className={styles.copy}>
-              <p className={styles.eyebrow}>{props.eyebrow ?? tool.eyebrow}</p>
+              <Badges eyebrow={props.eyebrow ?? tool.eyebrow} />
               <h2 className={styles.wideTitle} id={`tool-${placement}`}>
                 {tool.title}
               </h2>
               <p className={styles.description}>{tool.description}</p>
+              <Link
+                href={tool.ctaRoute ?? tool.route}
+                className={`${controls.buttonBlue} ${styles.button}`}
+                data-tool={tool.id}
+                data-placement={placement}
+              >
+                {tool.ctaLabel}
+              </Link>
             </div>
-            <Link
-              href={tool.ctaRoute ?? tool.route}
-              className={`${controls.buttonBlue} ${styles.button}`}
-              data-tool={tool.id}
-              data-placement={placement}
-            >
-              {tool.ctaLabel}
-            </Link>
+            <div className={`${styles.panel} ${styles.widePanel}`} aria-hidden="true">
+              <ToolPreview kind={tool.preview} />
+            </div>
           </div>
         </div>
       </section>
@@ -98,21 +114,24 @@ export default function ToolCallout(props: ToolCalloutProps) {
           {ids.map((id, index) => {
             const tool: Tool = getTool(id);
             return (
-              <li key={id} className={styles.card}>
-                <p className={styles.eyebrow}>
-                  {index === 0 && eyebrowOverride ? eyebrowOverride : tool.eyebrow}
-                </p>
-                <Title className={styles.cardTitle}>{tool.title}</Title>
-                <p className={styles.description}>{tool.description}</p>
-                <Link
-                  href={tool.ctaRoute ?? tool.route}
-                  className={styles.link}
-                  data-tool={tool.id}
-                  data-placement={placement}
-                >
-                  {tool.ctaLabel}
-                  <ArrowRightIcon className={styles.arrow} />
-                </Link>
+              <li key={id} className={styles.card} data-tool-card>
+                <div className={`${styles.panel} ${styles.cardPanel}`} aria-hidden="true">
+                  <ToolPreview kind={tool.preview} />
+                </div>
+                <div className={styles.cardBody}>
+                  <Badges eyebrow={index === 0 && eyebrowOverride ? eyebrowOverride : tool.eyebrow} />
+                  <Title className={styles.cardTitle}>{tool.title}</Title>
+                  <p className={styles.description}>{tool.description}</p>
+                  <Link
+                    href={tool.ctaRoute ?? tool.route}
+                    className={styles.link}
+                    data-tool={tool.id}
+                    data-placement={placement}
+                  >
+                    {tool.ctaLabel}
+                    <ArrowRightIcon className={styles.arrow} />
+                  </Link>
+                </div>
               </li>
             );
           })}

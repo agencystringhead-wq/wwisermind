@@ -17,6 +17,9 @@ export type ToolId =
   | 'good-faith-estimate'
   | 'crisis-resources';
 
+/** Which drawing a callout shows for the tool (components/tools/ToolPreviews.tsx). */
+export type ToolPreviewKind = 'dial' | 'map' | 'document' | 'ranking' | 'phone';
+
 export type Tool = {
   id: ToolId;
   /** The name the Tools menu and the footer show. */
@@ -30,7 +33,9 @@ export type Tool = {
   title: string;
   description: string;
   ctaLabel: string;
-  /** A picture for the callout, when a tool has one. Unused so far. */
+  /** The decorative drawing on the callout: inline SVG, no image file. */
+  preview: ToolPreviewKind;
+  /** A photo for the callout, when a tool has one. Unused so far. */
   image?: { src: string; alt: string; width: number; height: number };
 };
 
@@ -39,6 +44,7 @@ export const DEFAULT_TOOL_EYEBROW = 'Free tool';
 export const tools: Tool[] = [
   {
     id: 'website-scorecard',
+    preview: 'dial',
     name: 'Free Website Scorecard',
     route: routes.tools.websiteScorecard,
     eyebrow: 'Free Website Scorecard',
@@ -48,6 +54,7 @@ export const tools: Tool[] = [
   },
   {
     id: 'local-map-assessment',
+    preview: 'map',
     name: 'Local Map Assessment',
     route: routes.localMapAssessment,
     eyebrow: DEFAULT_TOOL_EYEBROW,
@@ -57,6 +64,7 @@ export const tools: Tool[] = [
   },
   {
     id: 'therapy-index',
+    preview: 'ranking',
     name: 'Therapy Index',
     route: routes.therapyIndex.hub,
     eyebrow: DEFAULT_TOOL_EYEBROW,
@@ -67,6 +75,7 @@ export const tools: Tool[] = [
   },
   {
     id: 'good-faith-estimate',
+    preview: 'document',
     name: 'Good Faith Estimate',
     route: routes.tools.goodFaithEstimate,
     eyebrow: DEFAULT_TOOL_EYEBROW,
@@ -76,6 +85,7 @@ export const tools: Tool[] = [
   },
   {
     id: 'crisis-resources',
+    preview: 'phone',
     name: 'Crisis Resources by State',
     route: routes.tools.crisisResources,
     ctaRoute: routes.tools.helpNowWidget,
