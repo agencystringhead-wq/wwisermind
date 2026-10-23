@@ -157,6 +157,7 @@ NEXT_PUBLIC_LOCAL_MAP_API=http://localhost:8788 npm run dev
 
 - Report pages and the start page are `noindex`. Reports are private by an unguessable id; the id is not secret from anyone it is shared with.
 - Maps use OpenStreetMap tiles softened to grey, like the Therapy Index map: CARTO's free tiles now need an API key.
-- The reviews and posts endpoints (`business_data/google/reviews`, `my_business_updates`) were written from DataForSEO's documentation and
-  not yet run against the live API (the Maps SERP shapes were checked against `data/therapyindex/raw`). A failure there is not fatal: those
-  gap rows show "n/a". Check `lm_cost_log.note` after the first real report.
+- Checked against the live API on 2026-10-23 with one real report: the lookup, the Maps grid, the reviews and the posts endpoints all
+  work as written. Actual cost was $0.077 (lookup $0.002, 100 grid tasks $0.06, reviews $0.00375, posts $0.01125). Collecting a finished
+  task is free. Timing at standard priority: first results after 8 s, grid complete after about 2 minutes, reviews and posts
+  about 2 more minutes, 4 minutes in all. `npm run localmap:smoke -- "Practice name" "City"` repeats the test (it spends real money).

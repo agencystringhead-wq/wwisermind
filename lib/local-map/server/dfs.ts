@@ -87,9 +87,11 @@ export async function getTask(env: LmEnv, family: Family, id: string): Promise<{
   const call = await dfs(env, 'GET', path);
   const task = call.json.tasks?.[0];
   const code = task?.status_code;
-  if (code === 40601 || code === 40602) return { ready: false, items: [], cost: call.cost, ms: call.ms };
-  if (code !== 20000) return { ready: true, items: [], error: `${code} ${task?.status_message}`, cost: call.cost, ms: call.ms };
-  return { ready: true, items: task.result?.[0]?.items ?? [], cost: Number(task.cost ?? call.cost), ms: call.ms };
+  if (code === 40601 || code === 40602) return { ready: false, items: [], cost: 0, ms: call.ms };
+  if (code !== 20000) return { ready: true, items: [], error: `${code} ${task?.status_message}`, cost: 0, ms: call.ms };
+  /* A task is billed once, when it is posted. A finished Maps task echoes a cost when collected, but the account's own statistics show it is
+     not charged again (checked against a real report), so collecting costs nothing here. */
+  return { ready: true, items: task.result?.[0]?.items ?? [], cost: 0, ms: call.ms };
 }
 
 /** One live Maps search: used for the practice lookup, where the visitor is waiting. */
