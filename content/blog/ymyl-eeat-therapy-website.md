@@ -48,8 +48,6 @@ What you can do is make it easy for a reader, and for Google, to see who wrote a
 - Current fees, hours and policies that match your Google Business Profile
 - A privacy policy and a secure (https) site
 
-For more on building trust without client quotes, see [Can you put testimonials on a therapy website?](/blog/testimonials-on-therapy-website).
-
 ## What you don't need to worry about
 
 There's no hidden penalty for "ignoring YMYL." Nothing flips on your site. What happens instead is quieter. A page with no author, no credentials and generic advice gives Google little reason to choose it over the many others on the topic, and gives a nervous reader little reason to call.

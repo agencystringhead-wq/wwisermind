@@ -965,13 +965,13 @@ export const footerMain = {
       carries a fourth link, Our Process. */
   navColumns: [
     [
-      { label: 'Website Design', href: '#website-design' },
-      { label: 'Online Marketing', href: '#marketing' },
-      { label: 'AI Services', href: '#ai-services' },
+      { label: 'Website Design', href: routes.hubs.websiteDesign },
+      { label: 'Marketing', href: routes.hubs.marketing },
+      { label: 'AI Services', href: routes.hubs.ai },
       { label: 'FAQs', href: routes.faq },
     ],
     [
-      { label: 'Who We Help', href: '#who-we-help' },
+      { label: 'Who We Help', href: routes.hubs.whoWeHelp },
       { label: 'Results', href: routes.results },
       { label: 'Reviews', href: routes.reviews },
       { label: 'Pricing', href: routes.pricing.hub },

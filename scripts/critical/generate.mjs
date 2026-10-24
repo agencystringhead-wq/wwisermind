@@ -6,8 +6,10 @@
  *
  * Needs a browser, so it is run by hand, not by the Cloudflare build:
  *   npm run build && npm run critical
- * then commit data.json. A page whose stylesheet list no longer matches what was recorded is left
+ * then commit data.json. A page whose stylesheet list no longer matches any recorded variant is left
  * alone by apply.mjs (it keeps its normal blocking CSS), so a stale data.json costs speed, never looks.
+ * `--only <regex>` records just the matching routes; a recording is always added as a variant beside the
+ * existing ones (`--fresh` starts over). Check a deployment with `npm run critical:check -- <url>`.
  */
 import { chromium } from 'playwright';
 import fs from 'node:fs';
@@ -140,21 +142,29 @@ for (const route of pages) {
 await browser.close();
 if (!remote) server.close();
 
-/* Identical blocks are stored once. */
-const kept = only && fs.existsSync('scripts/critical/data.json') ? JSON.parse(fs.readFileSync('scripts/critical/data.json', 'utf8')) : null;
-const blocks = kept ? { ...kept.blocks } : {};
-const routes = kept ? { ...kept.routes } : {};
-if (kept) {
-  /* a route that no longer exists in out/ (an old address) is dropped */
-  const here = new Set();
-  (function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); if (e.isDirectory()) { if (e.name !== '_next') walk(p); } else if (e.name === 'index.html') { const rel = path.relative(OUT, path.dirname(p)).split(path.sep).join('/'); here.add(rel ? `/${rel}/` : '/'); } } })(OUT);
-  for (const route of Object.keys(routes)) if (!here.has(route)) delete routes[route];
+/* Identical blocks are stored once. A route can carry several variants (recordings with different
+   stylesheet lists: the build names one stylesheet differently from one build to the next); a new
+   recording is added beside the others, or replaces the one with the same stylesheet list. `--fresh`
+   starts from nothing. A route that no longer exists in out/ (an old address) is dropped. */
+const MAX_VARIANTS = 4;
+const prior = !process.argv.includes('--fresh') && fs.existsSync('scripts/critical/data.json') ? JSON.parse(fs.readFileSync('scripts/critical/data.json', 'utf8')) : null;
+const blocks = prior ? { ...prior.blocks } : {};
+const routes = {};
+const here = new Set();
+(function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); if (e.isDirectory()) { if (e.name !== '_next') walk(p); } else if (e.name === 'index.html') { const rel = path.relative(OUT, path.dirname(p)).split(path.sep).join('/'); here.add(rel ? `/${rel}/` : '/'); } } })(OUT);
+if (prior) {
+  for (const [route, entry] of Object.entries(prior.routes)) if (here.has(route)) routes[route] = Array.isArray(entry) ? [...entry] : [entry];
 }
 for (const [route, { sheets, css, hide }] of Object.entries(data)) {
   const id = crypto.createHash('sha1').update(css).digest('hex').slice(0, 10);
   blocks[id] = css;
-  routes[route] = { sheets, block: id, hide };
+  const variants = (routes[route] ?? []).filter((v) => JSON.stringify(v.sheets) !== JSON.stringify(sheets));
+  variants.push({ sheets, block: id, hide });
+  routes[route] = variants.slice(-MAX_VARIANTS);
 }
+/* drop blocks no variant uses any more */
+const usedBlocks = new Set(Object.values(routes).flat().map((v) => v.block));
+for (const id of Object.keys(blocks)) if (!usedBlocks.has(id)) delete blocks[id];
 fs.writeFileSync('scripts/critical/data.json', JSON.stringify({ routes, blocks }));
 const bytes = Object.values(blocks).reduce((n, c) => n + c.length, 0);
-console.log(`${pages.length} pages, ${Object.keys(blocks).length} distinct blocks, ${(bytes / 1024).toFixed(0)} KB`);
+console.log(`${pages.length} pages recorded, ${Object.keys(routes).length} routes, ${Object.keys(blocks).length} distinct blocks, ${(bytes / 1024).toFixed(0)} KB`);

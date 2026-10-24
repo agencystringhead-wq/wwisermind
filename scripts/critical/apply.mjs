@@ -1,8 +1,9 @@
 /**
 
  * Runs after `next build` (next.config.mjs calls it when the build process exits, so it happens
- * whichever command starts the build — Cloudflare runs `npx next build`). For every page that has an entry in data.json whose stylesheet list still
- * matches, puts that page's critical CSS in the <head> and loads the full stylesheets without
+ * whichever command starts the build — Cloudflare runs `npx next build`). For every page that has an entry in data.json with a stylesheet list that still
+ * matches (a page can carry several recorded variants: the build names one stylesheet differently from one
+ * build to the next, and any variant that matches will do), puts that page's critical CSS in the <head> and loads the full stylesheets without
  * blocking the first paint (media="print" until they have arrived, then "all"). A page with no entry,
  * or whose stylesheets changed since data.json was made, is left exactly as built.
  */
@@ -35,16 +36,23 @@ const FACE_INLINE = fs.existsSync(fontFile)
 
 let applied = 0;
 const stale = [];
-for (const [route, { sheets, block, hide }] of Object.entries(routes)) {
+/* An entry is one recording, or a list of them (variants): the first whose stylesheet list matches is used. */
+const variantsOf = (entry) => (Array.isArray(entry) ? entry : [entry]);
+const used = {};
+for (const [route, entry] of Object.entries(routes)) {
   const file = path.join(OUT, route, 'index.html');
   if (!fs.existsSync(file)) continue;
   let html = fs.readFileSync(file, 'utf8');
   if (html.includes('data-critical')) continue; // already done
   const links = [...html.matchAll(LINK)];
-  if (links.length !== sheets.length || links.some((m, i) => m[1] !== sheets[i])) {
+  const variants = variantsOf(entry);
+  const at = variants.findIndex((v) => links.length === v.sheets.length && links.every((m, i) => m[1] === v.sheets[i]));
+  if (at === -1) {
     stale.push(route);
     continue;
   }
+  used[at] = (used[at] ?? 0) + 1;
+  const { sheets, block, hide } = variants[at];
   html = html.replace(LINK, (m, href, precedence) => `<link rel="stylesheet" href="${href}" media="print"${precedence ?? ''}/>`);
   /* Until every full stylesheet has loaded, what is below the fold is hidden (see generate.mjs). The
      script marks <html data-cp>, then removes it when the sheets are in, or after 2 seconds whatever
@@ -62,7 +70,7 @@ for (const [route, { sheets, block, hide }] of Object.entries(routes)) {
   fs.writeFileSync(file, html);
   applied++;
 }
-console.log(`critical-css: ${applied} pages updated, ${stale.length} left as built`);
+console.log(`critical-css: ${applied} pages updated, ${stale.length} left as built (variant use: ${JSON.stringify(used)})`);
 
 /* A stale data.json costs speed, never looks, so the build carries on — but it says so loudly, because
    a silent fallback means the pages are quietly back to blocking on every stylesheet. Set
@@ -75,10 +83,14 @@ if (stale.length) {
     `  WARNING: scripts/critical/data.json IS STALE for ${stale.length} of ${Object.keys(routes).length} pages.`,
     '  Their stylesheets are not the ones it was recorded from, so they are built WITHOUT inlined critical',
     '  CSS and block the first paint on every stylesheet again (slower, but looks the same).',
-    `  First stale pages: ${stale.slice(0, 5).join('  ')}${stale.length > 5 ? '  ...' : ''}`,
-    '  To fix: deploy a preview of this code, then',
-    '    node scripts/critical/generate.mjs --url https://<preview>.pages.dev',
-    '  and commit scripts/critical/data.json (see the notes at the top of generate.mjs).',
+    ...stale.map((route) => `    ${route}`),
+    '  Local builds always report this (their stylesheets are named differently from a Cloudflare build).',
+    '  On a Cloudflare build it means a page changed address or a stylesheet changed. To fix: deploy a',
+    '  preview of this code, then',
+    '    node scripts/critical/generate.mjs --url https://<preview>.pages.dev [--only <regex>]',
+    '  (it adds a variant: it never discards a working one) and commit scripts/critical/data.json.',
+    '  After a deploy, `npm run critical:check -- https://wwisermind.com` lists any page still falling back.',
+    '  Set CRITICAL_STRICT=1 on a Cloudflare environment to make this a failed build instead.',
     bar,
     '',
   ];

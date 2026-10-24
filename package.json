@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "node scripts/check-crisis-data.mjs && next build",
     "critical": "node scripts/critical/generate.mjs",
+    "critical:check": "node scripts/critical/check-live.mjs",
     "start": "next start",
     "lint": "next lint",
     "images": "node scripts/convert-images.mjs",
